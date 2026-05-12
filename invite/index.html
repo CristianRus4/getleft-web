@@ -1,371 +1,382 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Join Left</title>
-    <meta name="description" content="You're invited you to connect on Left, the habit tracker, countdown, and life widgets app for iPhone." />
-    <meta name="theme-color" content="#FF6B24" />
-    <meta name="theme-color" content="#FF6B24" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)" />
-    <meta name="color-scheme" content="light dark" />
-    <meta name="robots" content="noindex,nofollow" />
 
-    <!-- Smart App Banner (iOS Safari) -->
-    <meta name="apple-itunes-app" content="app-id=6740155884" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-    <link rel="stylesheet" href="/style.css" />
-    <style>
-      /* Force nav visible — no hero scroll on this page */
-      .top-nav {
-        opacity: 1 !important;
-        transform: none !important;
-        pointer-events: auto !important;
-        background: transparent !important;
-        border-bottom: none !important;
-        backdrop-filter: none !important;
-        -webkit-backdrop-filter: none !important;
-      }
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Join Left</title>
+  <meta name="description"
+    content="You're invited you to connect on Left, the habit tracker, countdown, and life widgets app for iPhone." />
+  <meta name="theme-color" content="#FF6B24" />
+  <meta name="theme-color" content="#FF6B24" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="robots" content="noindex,nofollow" />
 
-      /* Page layout */
-      body {
-        min-height: 100dvh;
+  <!-- Smart App Banner (iOS Safari) -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    /* Force nav visible — no hero scroll on this page */
+    .top-nav {
+      opacity: 1 !important;
+      transform: none !important;
+      pointer-events: auto !important;
+      background: transparent !important;
+      border-bottom: none !important;
+      backdrop-filter: none !important;
+      -webkit-backdrop-filter: none !important;
+    }
+
+    /* Page layout */
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .invite-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(56px + 48px + env(safe-area-inset-top)) 24px 64px;
+      text-align: center;
+    }
+
+    .invite-headline {
+      font-size: clamp(32px, 7vw, 56px);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: #fff;
+      margin: 0 0 12px;
+      max-width: 640px;
+    }
+
+    .invite-sub {
+      font-size: clamp(15px, 2.5vw, 18px);
+      color: rgba(255, 255, 255, 0.7);
+      margin: 0 0 56px;
+      max-width: 480px;
+      line-height: 1.55;
+    }
+
+    /* Steps */
+    .invite-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+      width: 100%;
+      max-width: 480px;
+      text-align: center;
+      margin-top: 48px;
+    }
+
+    .invite-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .invite-step-label {
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #fff;
+      margin: 0;
+    }
+
+    /* App Store + QR row */
+    .invite-download-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .invite-appstore-badge {
+      display: block;
+      flex-shrink: 0;
+    }
+
+    .invite-appstore-badge img {
+      display: block;
+      width: 180px;
+      height: 60px;
+    }
+
+    .invite-qr {
+      display: none;
+      /* hidden on mobile */
+      flex-shrink: 0;
+      background: transparent;
+      border: 4px solid rgba(255, 255, 255, 1);
+      border-radius: 14px;
+      width: 150px;
+      height: 150px;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 6px;
+    }
+
+    .invite-qr img {
+      display: block;
+      width: 126px;
+      height: 126px;
+    }
+
+    /* On desktop: show QR large, hide App Store badge */
+    @media (min-width: 768px) {
+      .invite-qr {
         display: flex;
-        flex-direction: column;
-      }
-
-      .invite-wrap {
-        flex: 1;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: calc(56px + 48px + env(safe-area-inset-top)) 24px 64px;
-        text-align: center;
-      }
-
-      .invite-headline {
-        font-size: clamp(32px, 7vw, 56px);
-        font-weight: 800;
-        letter-spacing: -0.03em;
-        line-height: 1.05;
-        color: #fff;
-        margin: 0 0 12px;
-        max-width: 640px;
-      }
-
-      .invite-sub {
-        font-size: clamp(15px, 2.5vw, 18px);
-        color: rgba(255, 255, 255, 0.7);
-        margin: 0 0 56px;
-        max-width: 480px;
-        line-height: 1.55;
-      }
-
-      /* Steps */
-      .invite-steps {
-        display: flex;
-        flex-direction: column;
-        gap: 40px;
-        width: 100%;
-        max-width: 480px;
-        text-align: center;
-      }
-
-      .invite-step {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-      }
-
-      .invite-step-label {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: #fff;
-        margin: 0;
-      }
-
-      /* App Store + QR row */
-      .invite-download-row {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 16px;
       }
 
       .invite-appstore-badge {
-        display: block;
-        flex-shrink: 0;
+        display: none;
       }
 
-      .invite-appstore-badge img {
-        display: block;
-        width: 180px;
-        height: 60px;
-      }
-
-      .invite-qr {
-        display: none; /* hidden on mobile */
-        flex-shrink: 0;
-        background: transparent;
-        border: 4px solid rgba(255, 255, 255, 1);
-        border-radius: 14px;
-        width: 150px;
-        height: 150px;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        padding: 6px;
-      }
-
-      .invite-qr img {
-        display: block;
-        width: 126px;
-        height: 126px;
-      }
-
-      /* On desktop: show QR large, hide App Store badge */
-      @media (min-width: 768px) {
-        .invite-qr {
-          display: flex;
-        }
-        .invite-appstore-badge {
-          display: none;
-        }
-        .invite-footer {
-          display: block;
-        }
-      }
-
-      /* Accept button — full capsule */
-      .invite-accept-btn {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        padding: 16px 24px;
-        border-radius: 9999px;
-        background: rgba(255, 255, 255, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.35);
-        color: #fff;
-        font-size: 17px;
-        font-weight: 600;
-        text-decoration: none;
-        letter-spacing: -0.01em;
-        transition: background 180ms ease, border-color 180ms ease;
-        -webkit-backdrop-filter: blur(8px);
-        backdrop-filter: blur(8px);
-      }
-
-      .invite-accept-btn:hover {
-        background: rgba(255, 255, 255, 0.28);
-        border-color: rgba(255, 255, 255, 0.5);
-      }
-
-      .invite-accept-btn:active {
-        transform: translateY(1px);
-      }
-
-      .invite-step-note {
-        font-size: 13px;
-        color: rgba(255, 255, 255, 0.45);
-        margin: 0;
-        line-height: 1.55;
-      }
-
-      /* Error state */
-      .invite-error {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 12px;
-        max-width: 400px;
-      }
-
-      .invite-error h1 {
-        font-size: 28px;
-        font-weight: 800;
-        color: #fff;
-        margin: 0;
-      }
-
-      .invite-error p {
-        color: rgba(255,255,255,0.65);
-        margin: 0;
-      }
-
-      /* Footer on invite page */
       .invite-footer {
-        display: none; /* hidden on mobile */
-        text-align: center;
-        padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
-        border-top: 1px solid rgba(255,255,255,0.1);
-        font-size: 13px;
-        color: rgba(255,255,255,0.35);
-        margin-top: auto;
+        display: block;
       }
+    }
 
-      .invite-footer a {
-        color: rgba(255,255,255,0.45);
-        text-decoration: none;
-      }
+    /* Accept button — full capsule */
+    .invite-accept-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      padding: 16px 24px;
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      color: #fff;
+      font-size: 17px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: -0.01em;
+      transition: background 180ms ease, border-color 180ms ease;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
 
-      .invite-footer a:hover {
-        color: rgba(255,255,255,0.7);
-      }
+    .invite-accept-btn:hover {
+      background: rgba(255, 255, 255, 0.28);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
 
-      .invite-footer-links {
-        display: flex;
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 8px 20px;
-        margin-top: 8px;
-      }
-    </style>
-  </head>
-  <body>
-    <nav class="top-nav" aria-label="Primary">
-      <div class="container nav-inner">
-        <a href="/" class="brand" aria-label="Left home">Left</a>
-        <div class="nav-cta">
-          <a class="btn download-btn" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884" target="_blank" rel="noopener">Get Left</a>
-        </div>
+    .invite-accept-btn:active {
+      transform: translateY(1px);
+    }
+
+    .invite-step-note {
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.45);
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    /* Error state */
+    .invite-error {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 12px;
+      max-width: 400px;
+    }
+
+    .invite-error h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #fff;
+      margin: 0;
+    }
+
+    .invite-error p {
+      color: rgba(255, 255, 255, 0.65);
+      margin: 0;
+    }
+
+    /* Footer on invite page */
+    .invite-footer {
+      display: none;
+      /* hidden on mobile */
+      text-align: center;
+      padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 13px;
+      color: rgba(255, 255, 255, 0.35);
+      margin-top: auto;
+    }
+
+    .invite-footer a {
+      color: rgba(255, 255, 255, 0.45);
+      text-decoration: none;
+    }
+
+    .invite-footer a:hover {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .invite-footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="top-nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand" aria-label="Left home">Left</a>
+      <div class="nav-cta">
+        <a class="btn download-btn"
+          href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884"
+          target="_blank" rel="noopener">Get Left</a>
       </div>
+    </div>
+  </nav>
+
+  <main class="invite-wrap" id="invite-main">
+    <!-- Content injected by JS below -->
+  </main>
+
+  <footer class="invite-footer">
+    <div>Left — cntxt · Coded in NZ · © 2026</div>
+    <nav class="invite-footer-links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/support.html">Support</a>
+      <a href="/contact.html">Contact</a>
+      <a href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download</a>
+      <a href="http://cristianrus.me/apps/left" target="_blank" rel="noopener">Privacy</a>
     </nav>
+  </footer>
 
-    <main class="invite-wrap" id="invite-main">
-      <!-- Content injected by JS below -->
-    </main>
+  <script>
+    (function () {
+      var FIREBASE_PROJECT = "left-app-4ebe8";
+      var params = new URLSearchParams(window.location.search);
+      var inviteCode = params.get('invite');
+      var main = document.getElementById('invite-main');
 
-    <footer class="invite-footer">
-      <div>Left — cntxt · Coded in NZ · © 2026</div>
-      <nav class="invite-footer-links" aria-label="Footer">
-        <a href="/">Home</a>
-        <a href="/support.html">Support</a>
-        <a href="/contact.html">Contact</a>
-        <a href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download</a>
-        <a href="http://cristianrus.me/apps/left" target="_blank" rel="noopener">Privacy</a>
-      </nav>
-    </footer>
+      var appStoreLink = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884';
 
-    <script>
-      (function () {
-        var FIREBASE_PROJECT = "left-app-4ebe8";
-        var params = new URLSearchParams(window.location.search);
-        var inviteCode = params.get('invite');
-        var main = document.getElementById('invite-main');
+      if (!inviteCode) {
+        main.innerHTML =
+          '<div class="invite-error">' +
+          '  <h1>Link invalid or expired</h1>' +
+          '  <p>This invite link is invalid or has already expired. Ask your friend to send you a new one.</p>' +
+          '  <a class="btn" href="/" style="margin-top:4px;">Learn about Left</a>' +
+          '</div>';
+        return;
+      }
 
-        var appStoreLink = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884';
+      var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
 
-        if (!inviteCode) {
-          main.innerHTML =
-            '<div class="invite-error">' +
-            '  <h1>Link invalid or expired</h1>' +
-            '  <p>This invite link is invalid or has already expired. Ask your friend to send you a new one.</p>' +
-            '  <a class="btn" href="/" style="margin-top:4px;">Learn about Left</a>' +
-            '</div>';
-          return;
-        }
+      function renderPage(inviterName) {
+        var headline = inviterName
+          ? escapeHTML(inviterName) + ' wants to be your friend on Left!'
+          : 'You\'re invited to Left';
 
-        var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
+        /*
+        var sub = inviterName
+          ? 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.'
+          : 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.';
 
-        function renderPage(inviterName) {
-          var headline = inviterName
-            ? escapeHTML(inviterName) + ' wants to be your friend on Left!'
-            : 'You\'re invited to Left';
+        var note = inviterName
+          ? 'After downloading Left, return here and tap \'Accept invitation\' to add ' + escapeHTML(inviterName) + ' as a friend.'
+          : 'After downloading Left, return here and tap to accept the invitation to add your friend.';
+        */
 
-          /*
-          var sub = inviterName
-            ? 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.'
-            : 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.';
+        main.innerHTML =
+          '<h1 class="invite-headline" id="invite-headline">' + headline + '</h1>' +
+          // '<p class="invite-sub">' + sub + '</p>' +
 
-          var note = inviterName
-            ? 'After downloading Left, return here and tap \'Accept invitation\' to add ' + escapeHTML(inviterName) + ' as a friend.'
-            : 'After downloading Left, return here and tap to accept the invitation to add your friend.';
-          */
+          '<div class="invite-steps">' +
 
-          main.innerHTML =
-            '<h1 class="invite-headline" id="invite-headline">' + headline + '</h1>' +
-            // '<p class="invite-sub">' + sub + '</p>' +
+          '<div class="invite-step">' +
+          '<p class="invite-step-label">Get the app for free</p>' +
+          '<div class="invite-download-row">' +
+          '<a class="invite-appstore-badge" href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
+          '<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="180" height="60" />' +
+          '</a>' +
+          '<div class="invite-qr" aria-label="Scan to download Left">' +
+          '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="126" height="126" />' +
+          '</div>' +
+          '</div>' +
+          '</div>' +
 
-            '<div class="invite-steps">' +
+          '<div class="invite-step">' +
+          '<p class="invite-step-label">Come back and accept the invitation</p>' +
+          '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
+          // '<p class="invite-step-note">' + note + '</p>' +
+          '</div>' +
 
-              '<div class="invite-step">' +
-                '<p class="invite-step-label">Get the app for free</p>' +
-                '<div class="invite-download-row">' +
-                  '<a class="invite-appstore-badge" href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
-                    '<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="180" height="60" />' +
-                  '</a>' +
-                  '<div class="invite-qr" aria-label="Scan to download Left">' +
-                    '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="126" height="126" />' +
-                  '</div>' +
-                '</div>' +
-              '</div>' +
+          '</div>';
+      }
 
-              '<div class="invite-step">' +
-                '<p class="invite-step-label">Come back and accept the invitation</p>' +
-                '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
-                // '<p class="invite-step-note">' + note + '</p>' +
-              '</div>' +
+      function escapeHTML(str) {
+        return str
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
 
-            '</div>';
-        }
+      // Render immediately with fallback, then update with real name
+      renderPage(null);
 
-        function escapeHTML(str) {
-          return str
-            .replace(/&/g, '&amp;')
-            .replace(/</g, '&lt;')
-            .replace(/>/g, '&gt;')
-            .replace(/"/g, '&quot;');
-        }
+      // friendInvites/{inviteCode} — document ID IS the invite code.
+      // The app now writes inviterUsername directly into the document,
+      // so a single fetch is all we need. No auth required (rules allow get: true).
+      var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
 
-        // Render immediately with fallback, then update with real name
-        renderPage(null);
+      fetch(inviteDocURL)
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (doc) {
+          if (!doc || !doc.fields) return;
+          var fields = doc.fields;
 
-        // friendInvites/{inviteCode} — document ID IS the invite code.
-        // The app now writes inviterUsername directly into the document,
-        // so a single fetch is all we need. No auth required (rules allow get: true).
-        var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
+          // inviterUsername written directly by the app — use it immediately
+          var username = fields.inviterUsername && fields.inviterUsername.stringValue;
+          if (username && username.trim()) {
+            renderPage('@' + username.trim());
+            return;
+          }
 
-        fetch(inviteDocURL)
-          .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (doc) {
-            if (!doc || !doc.fields) return;
-            var fields = doc.fields;
+          // Fallback for old invites: fetch publicProfiles
+          var inviterID = fields.inviterId && fields.inviterId.stringValue;
+          if (!inviterID) return;
 
-            // inviterUsername written directly by the app — use it immediately
-            var username = fields.inviterUsername && fields.inviterUsername.stringValue;
-            if (username && username.trim()) {
-              renderPage('@' + username.trim());
-              return;
-            }
+          var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
+          return fetch(profileURL)
+            .then(function (r) { return r.ok ? r.json() : null; })
+            .then(function (profileDoc) {
+              if (!profileDoc || !profileDoc.fields) return;
+              var pf = profileDoc.fields;
+              var u = pf.username && pf.username.stringValue;
+              var dn = pf.userName && pf.userName.stringValue;
+              var name = (u && u.trim()) ? '@' + u.trim() : (dn && dn.trim()) || null;
+              if (name) renderPage(name);
+            });
+        })
+        .catch(function () {
+          // Keep the already-rendered fallback
+        });
+    })();
+  </script>
+</body>
 
-            // Fallback for old invites: fetch publicProfiles
-            var inviterID = fields.inviterId && fields.inviterId.stringValue;
-            if (!inviterID) return;
-
-            var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
-            return fetch(profileURL)
-              .then(function (r) { return r.ok ? r.json() : null; })
-              .then(function (profileDoc) {
-                if (!profileDoc || !profileDoc.fields) return;
-                var pf = profileDoc.fields;
-                var u = pf.username && pf.username.stringValue;
-                var dn = pf.userName && pf.userName.stringValue;
-                var name = (u && u.trim()) ? '@' + u.trim() : (dn && dn.trim()) || null;
-                if (name) renderPage(name);
-              });
-          })
-          .catch(function () {
-            // Keep the already-rendered fallback
-          });
-      })();
-    </script>
-  </body>
 </html>
