@@ -113,20 +113,20 @@
         display: none; /* hidden on mobile */
         flex-shrink: 0;
         background: transparent;
-        border: 2px solid rgba(255, 255, 255, 0.6);
+        border: 2px solid rgba(255, 255, 255, 1);
         border-radius: 14px;
         width: 150px;
         height: 150px;
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        padding: 4px;
+        padding: 10px;
       }
 
       .invite-qr img {
         display: block;
-        width: 138px;
-        height: 138px;
+        width: 126px;
+        height: 126px;
       }
 
       /* On desktop: show QR large, hide App Store badge */
@@ -314,47 +314,43 @@
         // Render immediately with fallback, then update with real name
         renderPage(null);
 
-        // friendInvites documents are keyed by UID, not invite code.
-        // We must query where the "code" field equals our invite code.
-        var queryURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents:runQuery';
-        var queryBody = JSON.stringify({
-          structuredQuery: {
-            from: [{ collectionId: 'friendInvites' }],
-            where: {
-              fieldFilter: {
-                field: { fieldPath: 'code' },
-                op: 'EQUAL',
-                value: { stringValue: inviteCode }
-              }
-            },
-            limit: 1
-          }
-        });
+        // friendInvites/{inviteCode} — document ID IS the invite code.
+        // The app now writes inviterUsername directly into the document,
+        // so a single fetch is all we need. No auth required (rules allow get: true).
+        var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
 
-        fetch(queryURL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: queryBody })
+        fetch(inviteDocURL)
           .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (results) {
-            if (!Array.isArray(results) || !results[0] || !results[0].document) return null;
-            var fields = results[0].document.fields;
-            if (!fields) return null;
-            // inviterId holds the UID of the person who created the invite
+          .then(function (doc) {
+            if (!doc || !doc.fields) return;
+            var fields = doc.fields;
+
+            // First try inviterUsername written directly by the app
+            var username = fields.inviterUsername && fields.inviterUsername.stringValue;
+            if (username && username.trim()) {
+              var h = document.getElementById('invite-headline');
+              if (h) h.textContent = '@' + username.trim() + ' invited you to Left';
+              return;
+            }
+
+            // Fallback: fetch publicProfiles if inviterUsername not present (old invites)
             var inviterID = fields.inviterId && fields.inviterId.stringValue;
-            if (!inviterID) return null;
+            if (!inviterID) return;
 
             var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
-            return fetch(profileURL).then(function (r) { return r.ok ? r.json() : null; });
-          })
-          .then(function (profileDoc) {
-            if (!profileDoc || !profileDoc.fields) return;
-            var fields = profileDoc.fields;
-            // Prefer @username handle, fall back to display name
-            var username = fields.username && fields.username.stringValue;
-            var displayName = fields.userName && fields.userName.stringValue;
-            var name = (username && username.trim()) ? '@' + username.trim() : (displayName && displayName.trim()) || null;
-            if (name) {
-              var h = document.getElementById('invite-headline');
-              if (h) h.textContent = name + ' invited you to Left';
-            }
+            return fetch(profileURL)
+              .then(function (r) { return r.ok ? r.json() : null; })
+              .then(function (profileDoc) {
+                if (!profileDoc || !profileDoc.fields) return;
+                var pf = profileDoc.fields;
+                var u = pf.username && pf.username.stringValue;
+                var dn = pf.userName && pf.userName.stringValue;
+                var name = (u && u.trim()) ? '@' + u.trim() : (dn && dn.trim()) || null;
+                if (name) {
+                  var h = document.getElementById('invite-headline');
+                  if (h) h.textContent = name + ' invited you to Left';
+                }
+              });
           })
           .catch(function () {
             // Keep the already-rendered fallback
