@@ -1,67 +1,9 @@
 <!doctype html>
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>You're invited to Left</title>
-    <meta name="description" content="Someone invited you to connect on Left — the habit tracker, countdown, and life widgets app for iPhone." />
-    <meta name="theme-color" content="#FF6B24" />
-    <meta name="theme-color" content="#FF6B24" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)" />
-    <meta name="color-scheme" content="light dark" />
-
-    <!-- No index — invite pages are ephemeral -->
-    <meta name="robots" content="noindex,nofollow" />
-
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
-    <link rel="shortcut icon" href="/favicon/favicon.ico" />
-
-    <link rel="stylesheet" href="/style.css" />
+    <meta http-equiv="refresh" content="0;url=/invite" />
+    <script>window.location.replace('/invite' + window.location.search);</script>
   </head>
-  <body>
-    <main class="invite-page" id="invite-main">
-      <!-- Content injected by JS below -->
-    </main>
-
-    <script>
-      (function () {
-        var params = new URLSearchParams(window.location.search);
-        var inviteCode = params.get('invite');
-        var main = document.getElementById('invite-main');
-
-        if (!inviteCode) {
-          // No invite code — show error state
-          main.innerHTML = [
-            '<div class="invite-error">',
-            '  <span class="invite-icon" aria-hidden="true">🔗</span>',
-            '  <h1>Link invalid or expired</h1>',
-            '  <p>This invite link is invalid or has already expired. Ask your friend to send you a new one.</p>',
-            '  <a class="btn btn-secondary" href="https://getleft.app/" style="margin-top:12px;">Learn about Left</a>',
-            '</div>'
-          ].join('');
-          return;
-        }
-
-        // Build the go.getleft.app deep link (Universal Link — opens app if installed)
-        var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
-        var appStoreLink = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884';
-
-        main.innerHTML = [
-          '<span class="invite-icon" aria-hidden="true">👋</span>',
-          '<h1>You\'re invited to Left</h1>',
-          '<p>Someone wants to connect with you on Left — the habit tracker, countdown, and life widgets app for iPhone.</p>',
-          '<div class="invite-actions">',
-          '  <p style="margin:0 0 4px; font-size:13px; color:rgba(255,255,255,0.7); text-align:center;">Already have Left installed?</p>',
-          '  <a class="btn btn-primary" href="' + deepLink + '" id="accept-btn">Accept invitation</a>',
-          '  <p style="margin:16px 0 4px; font-size:13px; color:rgba(255,255,255,0.7); text-align:center;">New to Left?</p>',
-          '  <a class="btn btn-secondary" href="' + appStoreLink + '" target="_blank" rel="noopener">',
-          '    <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="160" height="54" style="display:block;width:160px;height:auto;" />',
-          '  </a>',
-          '  <p style="margin:8px 0 0; font-size:12px; color:rgba(255,255,255,0.55); text-align:center;">After installing, tap "Accept invitation" above.</p>',
-          '</div>'
-        ].join('');
-      })();
-    </script>
-  </body>
+  <body></body>
 </html>

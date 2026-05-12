@@ -287,7 +287,7 @@ The `friendInvites` collection schema (`code`, `inviterId`, `createdAt`, `update
 - [ ] Validate AASA via Apple's CDN checker: `https://app-site-association.cdn-apple.com/a/v1/go.getleft.app`
 - [x] Add `applinks:go.getleft.app` entitlement in `Left.entitlements`
 - [x] Update `inviteID(from:)` in `FriendsManager` to accept `go.getleft.app/invite` Universal Links (alongside legacy custom scheme and old domains)
-- [x] Update `inviteURLString(for:)` in `FriendsManager` from `left://friends/invite` to `https://go.getleft.app/invite`
+- [x] Update `inviteURLString(for:)` in `FriendsManager` to `https://getleft.app/invite` (shared link opens landing page in Safari; only the "Accept invitation" button on that page points to `go.getleft.app` to trigger the Universal Link)
 - [ ] Test full flow: share invite → tap link (app not installed) → install → tap step 2 button → app opens with correct invite code
 - [ ] Test warm launch: app installed, tap `go.getleft.app/invite?invite=CODE` link → intercepts directly
 
