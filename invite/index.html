@@ -113,7 +113,7 @@
         display: none; /* hidden on mobile */
         flex-shrink: 0;
         background: transparent;
-        border: 2px solid rgba(255, 255, 255, 1);
+        border: 4px solid rgba(255, 255, 255, 1);
         border-radius: 14px;
         width: 150px;
         height: 150px;
@@ -273,12 +273,20 @@
 
         function renderPage(inviterName) {
           var headline = inviterName
-            ? escapeHTML(inviterName) + ' invited you to Left'
+            ? escapeHTML(inviterName) + ' wants to be your friend on Left!'
             : 'You\'re invited to Left';
+
+          var sub = inviterName
+            ? 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.'
+            : 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.';
+
+          var note = inviterName
+            ? 'After downloading Left, return here and tap \'Accept invitation\' to add ' + escapeHTML(inviterName) + ' as a friend.'
+            : 'After downloading Left, return here and tap to accept the invitation to add your friend.';
 
           main.innerHTML =
             '<h1 class="invite-headline" id="invite-headline">' + headline + '</h1>' +
-            '<p class="invite-sub">Get Left, the habit tracker, countdowns, and life widgets app for iPhone.</p>' +
+            '<p class="invite-sub">' + sub + '</p>' +
 
             '<div class="invite-steps">' +
 
@@ -289,14 +297,14 @@
                     '<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="180" height="60" />' +
                   '</a>' +
                   '<div class="invite-qr" aria-label="Scan to download Left">' +
-                    '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="138" height="138" />' +
+                    '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="126" height="126" />' +
                   '</div>' +
                 '</div>' +
               '</div>' +
 
               '<div class="invite-step">' +
                 '<p class="invite-step-label">Come back and accept the invitation</p>' +
-                '<p class="invite-step-note">After downloading Left, return here and tap to accept the invitation to add your friend.</p>' +
+                '<p class="invite-step-note">' + note + '</p>' +
                 '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
               '</div>' +
 
