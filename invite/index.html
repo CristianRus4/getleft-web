@@ -52,12 +52,29 @@
       font-size: clamp(32px, 7vw, 56px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.05;
+      line-height: 1.4;
       color: #fff;
       margin: 0 0 12px;
       max-width: 640px;
       position: relative;
       z-index: 1;
+    }
+
+    /* Text-highlight effect: tight white band, text matches page bg */
+    .invite-headline-hl {
+      display: inline;
+      background: #fff;
+      color: #FF6B24; /* light mode: orange (page bg) */
+      padding: 2px 10px 4px;
+      border-radius: 6px;
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .invite-headline-hl {
+        color: #131415; /* dark mode: near-black (page bg) */
+      }
     }
 
     .invite-sub {
@@ -237,38 +254,29 @@
       margin-top: 8px;
     }
 
-    /* Inviter avatar */
-    @keyframes avatar-shimmer {
-      0%   { background-position: -300px 0; }
-      100% { background-position:  300px 0; }
-    }
-
+    /* Inviter avatar — completely hidden until photo loads */
     .invite-avatar-wrap {
       flex-shrink: 0;
       position: relative;
       z-index: 0;
       width: 120px;
       height: 120px;
-      /* border hidden until photo is ready */
       border: 4px solid transparent;
       border-radius: 24px;
       overflow: hidden;
       /* overlap: pull bottom edge behind the headline */
       margin-bottom: -20px;
-      /* shimmer placeholder while image loads */
-      background: linear-gradient(
-        90deg,
-        rgba(255,255,255,0.08) 0%,
-        rgba(255,255,255,0.18) 50%,
-        rgba(255,255,255,0.08) 100%
-      );
-      background-size: 600px 100%;
-      animation: avatar-shimmer 1.4s infinite linear;
-      transition: border-color 200ms ease;
-      /* rotation set inline by JS */
+      background: transparent;
+      /* start invisible with blur */
+      opacity: 0;
+      filter: blur(14px);
+      transition: opacity 500ms ease, filter 500ms ease, border-color 500ms ease;
+      /* rotation + horizontal offset set inline by JS */
     }
 
     .invite-avatar-wrap.photo-ready {
+      opacity: 1;
+      filter: blur(0);
       border-color: rgba(255, 255, 255, 1);
     }
 
@@ -277,12 +285,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      opacity: 0;
-      transition: opacity 300ms ease;
-    }
-
-    .invite-avatar-wrap img.loaded {
-      opacity: 1;
     }
 
     @media (min-width: 768px) {
@@ -343,8 +345,10 @@
 
       var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
 
-      // Random tilt applied once per page load (-6° to +6°)
-      var avatarRotation = (Math.random() * 12 - 6).toFixed(2);
+      // Random tilt (-10° to +10°) and horizontal offset (30%–60% of viewport)
+      var avatarRotation = (Math.random() * 20 - 10).toFixed(2);
+      // Offset: avatar center lands between 30vw and 60vw (i.e. -20vw to +10vw from center)
+      var avatarOffsetX = ((Math.random() * 0.30 - 0.20) * window.innerWidth).toFixed(1);
 
       function renderPage(inviterName, photoURL) {
         var headline = inviterName
@@ -356,7 +360,7 @@
         if (photoURL) {
           var altText = inviterName ? escapeHTML(inviterName) + '\'s profile photo' : 'Inviter profile photo';
           avatarHTML =
-            '<div class="invite-avatar-wrap" id="invite-avatar-wrap" style="transform: rotate(' + avatarRotation + 'deg);">' +
+            '<div class="invite-avatar-wrap" id="invite-avatar-wrap" style="transform: translateX(' + avatarOffsetX + 'px) rotate(' + avatarRotation + 'deg);">' +
             '<img id="invite-avatar-img" src="' + escapeHTML(photoURL) + '" alt="' + altText + '" fetchpriority="high" decoding="async" />' +
             '</div>';
         }
@@ -373,7 +377,7 @@
 
         main.innerHTML =
           avatarHTML +
-          '<h1 class="invite-headline" id="invite-headline">' + headline + '</h1>' +
+          '<h1 class="invite-headline" id="invite-headline"><span class="invite-headline-hl">' + headline + '</span></h1>' +
           // '<p class="invite-sub">' + sub + '</p>' +
 
           '<div class="invite-steps">' +
@@ -398,13 +402,12 @@
 
           '</div>';
 
-        // Wire up fade-in, border reveal, and error-hide after DOM is ready
+        // Fade+unblur reveal and error-hide after DOM is ready
         if (photoURL) {
           var img  = document.getElementById('invite-avatar-img');
           var wrap = document.getElementById('invite-avatar-wrap');
           if (img) {
             function onPhotoLoaded() {
-              img.classList.add('loaded');
               if (wrap) wrap.classList.add('photo-ready');
             }
             // Already cached / instant load
