@@ -236,14 +236,29 @@
     }
 
     /* Inviter avatar */
+    @keyframes avatar-shimmer {
+      0%   { background-position: -300px 0; }
+      100% { background-position:  300px 0; }
+    }
+
     .invite-avatar-wrap {
       flex-shrink: 0;
+      position: relative;
       width: 120px;
       height: 120px;
       border: 4px solid rgba(255, 255, 255, 1);
       border-radius: 24px;
       overflow: hidden;
       margin-bottom: 28px;
+      /* shimmer placeholder while image loads */
+      background: linear-gradient(
+        90deg,
+        rgba(255,255,255,0.08) 0%,
+        rgba(255,255,255,0.18) 50%,
+        rgba(255,255,255,0.08) 100%
+      );
+      background-size: 600px 100%;
+      animation: avatar-shimmer 1.4s infinite linear;
       /* rotation set inline by JS */
     }
 
@@ -252,6 +267,12 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      opacity: 0;
+      transition: opacity 300ms ease;
+    }
+
+    .invite-avatar-wrap img.loaded {
+      opacity: 1;
     }
 
     @media (min-width: 768px) {
@@ -312,8 +333,8 @@
 
       var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
 
-      // Random tilt applied once per page load (-10° to +10°)
-      var avatarRotation = (Math.random() * 20 - 10).toFixed(2);
+      // Random tilt applied once per page load (-6° to +6°)
+      var avatarRotation = (Math.random() * 12 - 6).toFixed(2);
 
       function renderPage(inviterName, photoURL) {
         var headline = inviterName
@@ -323,9 +344,10 @@
         // Avatar block — only rendered when a photo URL is available
         var avatarHTML = '';
         if (photoURL) {
+          var altText = inviterName ? escapeHTML(inviterName) + '\'s profile photo' : 'Inviter profile photo';
           avatarHTML =
-            '<div class="invite-avatar-wrap" style="transform: rotate(' + avatarRotation + 'deg);">' +
-            '<img src="' + escapeHTML(photoURL) + '" alt="' + (inviterName ? escapeHTML(inviterName) + '\'s profile photo' : 'Inviter profile photo') + '" loading="eager" />' +
+            '<div class="invite-avatar-wrap" id="invite-avatar-wrap" style="transform: rotate(' + avatarRotation + 'deg);">' +
+            '<img id="invite-avatar-img" src="' + escapeHTML(photoURL) + '" alt="' + altText + '" fetchpriority="high" decoding="async" />' +
             '</div>';
         }
 
@@ -365,6 +387,21 @@
           '</div>' +
 
           '</div>';
+
+        // Wire up fade-in and error-hide after DOM is ready
+        if (photoURL) {
+          var img  = document.getElementById('invite-avatar-img');
+          var wrap = document.getElementById('invite-avatar-wrap');
+          if (img) {
+            // Already cached / instant load
+            if (img.complete && img.naturalWidth) {
+              img.classList.add('loaded');
+            } else {
+              img.addEventListener('load',  function () { img.classList.add('loaded'); });
+              img.addEventListener('error', function () { if (wrap) wrap.style.display = 'none'; });
+            }
+          }
+        }
       }
 
       // Build a Firebase Storage public download URL from a storage path
