@@ -13,8 +13,10 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="robots" content="noindex,nofollow" />
 
-  <!-- Smart App Banner (iOS Safari) -->
-  <meta name="apple-itunes-app" content="app-id=6740155884" />
+  <!-- Smart App Banner (iOS Safari) — app-argument passes the invite URL so
+       tapping "Open" in the banner delivers the invite code to the app via
+       the Universal Link handler (FriendsManager.handleIncomingURL). -->
+  <meta name="apple-itunes-app" id="smart-banner-meta" content="app-id=6740155884" />
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
   <link rel="shortcut icon" href="/favicon/favicon.ico" />
@@ -397,6 +399,16 @@
 
       var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
 
+      // Wire the Smart App Banner's "Open" button to deliver the invite code.
+      // The app-argument must be set before the banner renders, so update the
+      // meta tag content immediately while the page is still loading.
+      (function () {
+        var meta = document.getElementById('smart-banner-meta');
+        if (meta) {
+          meta.setAttribute('content', 'app-id=6740155884, app-argument=' + deepLink);
+        }
+      })();
+
       // Random tilt (±10°) — set BEFORE the avatar is shown so it appears already rotated
       var avatarRotation = (Math.random() * 20 - 10).toFixed(2);
       // var avatarOffsetX = 0; // always center-aligned for now
@@ -543,55 +555,35 @@
       // document, so a single fetch is all we need. No auth required (rules allow get: true).
       var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
 
-      // Custom scheme deep link — iOS opens the app directly without the
-      // Universal Link restriction that blocks same-browser navigation.
+      // custom scheme — used only as button fallback, never auto-fired
       var customSchemeLink = 'left://friends/invite?invite=' + encodeURIComponent(inviteCode);
 
-      // Auto-launch: attempt to open the app immediately on page load.
-      // If the app is installed, iOS intercepts left:// and opens it — the page
-      // goes into the background (document.hidden = true) so we cancel any fallback.
-      // If not installed, the scheme fails silently and the page continues loading normally.
-      // Guard: only attempt on iOS (navigator.platform or UA check), and only once per load
-      // using sessionStorage so a back-navigation doesn't re-trigger it.
-      (function () {
-        var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-        var alreadyAttempted = sessionStorage.getItem('leftAutoLaunch') === inviteCode;
-        if (!isIOS || alreadyAttempted) return;
-
-        sessionStorage.setItem('leftAutoLaunch', inviteCode);
-
-        // Small delay so the page has a moment to paint the loading state
-        // before iOS shows the "open in Left?" system prompt
-        var autoTimer = setTimeout(function () {
-          window.location.href = customSchemeLink;
-        }, 300);
-
-        // If the app opened, page goes hidden — clear the timer (nothing else to do)
-        document.addEventListener('visibilitychange', function onAutoVis() {
-          if (document.hidden) {
-            clearTimeout(autoTimer);
-            document.removeEventListener('visibilitychange', onAutoVis);
-          }
-        });
-      })();
-
-      // Wire up the accept button after renderPage() inserts it into the DOM.
-      // Uses custom URL scheme (left://) so iOS launches the app immediately.
-      // If the app isn't installed, the scheme silently fails and we fall back
-      // to the Universal Link (go.getleft.app) which the App Store banner handles.
+      // Universal Link (go.getleft.app) is the primary mechanism.
+      // When the shared URL (go.getleft.app/invite?invite=CODE) is opened from
+      // Messages, Mail, Notes, etc., iOS intercepts it before Safari loads and
+      // opens the app directly — zero prompt, zero browser. That path never
+      // reaches this page at all.
+      //
+      // This page only loads when:
+      //   a) the app is not installed (Universal Link fell through to Safari), or
+      //   b) the user opened the link from inside Safari itself.
+      //
+      // In case (b), we can still try to open the app via the custom scheme on
+      // button tap — the user will see an iOS confirmation prompt, which is
+      // unavoidable when already inside Safari. There is no prompt-free way to
+      // open an app from within Safari.
+      //
+      // "Open invite" button: try left:// first (opens app if installed),
+      // fall back to App Store after 1.5s if the app didn't open.
       function wireAcceptButton() {
         var btn = document.getElementById('invite-accept-btn');
         if (!btn) return;
         btn.addEventListener('click', function (e) {
           e.preventDefault();
-          // Try custom scheme — if app is installed iOS opens it immediately
           window.location.href = customSchemeLink;
-          // Fallback: if nothing happened after 1.5s the app isn't installed —
-          // send to Universal Link which will show the App Store
           var fallbackTimer = setTimeout(function () {
-            window.location.href = deepLink;
+            window.location.href = appStoreLink;
           }, 1500);
-          // If the page hides (app opened), cancel the fallback
           document.addEventListener('visibilitychange', function onVis() {
             if (document.hidden) {
               clearTimeout(fallbackTimer);
