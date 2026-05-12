@@ -56,6 +56,8 @@
       color: #fff;
       margin: 0 0 12px;
       max-width: 640px;
+      position: relative;
+      z-index: 1;
     }
 
     .invite-sub {
@@ -70,11 +72,11 @@
     .invite-steps {
       display: flex;
       flex-direction: column;
-      gap: 40px;
+      gap: 24px;
       width: 100%;
       max-width: 480px;
       text-align: center;
-      margin-top: 48px;
+      margin-top: 96px;
     }
 
     .invite-step {
@@ -244,12 +246,15 @@
     .invite-avatar-wrap {
       flex-shrink: 0;
       position: relative;
+      z-index: 0;
       width: 120px;
       height: 120px;
-      border: 4px solid rgba(255, 255, 255, 1);
+      /* border hidden until photo is ready */
+      border: 4px solid transparent;
       border-radius: 24px;
       overflow: hidden;
-      margin-bottom: 28px;
+      /* overlap: pull bottom edge behind the headline */
+      margin-bottom: -20px;
       /* shimmer placeholder while image loads */
       background: linear-gradient(
         90deg,
@@ -259,7 +264,12 @@
       );
       background-size: 600px 100%;
       animation: avatar-shimmer 1.4s infinite linear;
+      transition: border-color 200ms ease;
       /* rotation set inline by JS */
+    }
+
+    .invite-avatar-wrap.photo-ready {
+      border-color: rgba(255, 255, 255, 1);
     }
 
     .invite-avatar-wrap img {
@@ -388,16 +398,20 @@
 
           '</div>';
 
-        // Wire up fade-in and error-hide after DOM is ready
+        // Wire up fade-in, border reveal, and error-hide after DOM is ready
         if (photoURL) {
           var img  = document.getElementById('invite-avatar-img');
           var wrap = document.getElementById('invite-avatar-wrap');
           if (img) {
+            function onPhotoLoaded() {
+              img.classList.add('loaded');
+              if (wrap) wrap.classList.add('photo-ready');
+            }
             // Already cached / instant load
             if (img.complete && img.naturalWidth) {
-              img.classList.add('loaded');
+              onPhotoLoaded();
             } else {
-              img.addEventListener('load',  function () { img.classList.add('loaded'); });
+              img.addEventListener('load',  onPhotoLoaded);
               img.addEventListener('error', function () { if (wrap) wrap.style.display = 'none'; });
             }
           }
