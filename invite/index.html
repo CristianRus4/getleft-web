@@ -65,7 +65,7 @@
       display: inline;
       background: #fff;
       color: #FF6B24; /* light mode: orange (page bg) */
-      padding: 2px 10px 4px;
+      padding: 0px 8px 2px;
       border-radius: 6px;
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
@@ -85,13 +85,14 @@
       line-height: 1.55;
     }
 
-    /* "Join @username on Left" subtitle — smaller, no highlight */
+    /* "Join @username on Left" subtitle */
     .invite-sub--join {
-      font-size: clamp(14px, 2vw, 16px);
-      color: rgba(255, 255, 255, 0.6);
-      margin: 4px 0 40px;
+      font-size: clamp(16px, 3.5vw, 28px);
+      font-weight: 700;
+      color: rgba(255, 255, 255, 1);
+      margin: 2px 0 36px;
       max-width: 480px;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     /* Steps */
@@ -279,18 +280,18 @@
       flex-shrink: 0;
       position: relative;
       z-index: 0;
-      width: 120px;
-      height: 120px;
-      border: 4px solid transparent;
-      border-radius: 24px;
+      width: 84px;
+      height: 84px;
+      border: 3px solid transparent;
+      border-radius: 17px;
       overflow: hidden;
       /* slight overlap so avatar peeks behind headline */
-      margin-bottom: -6px;
+      margin-bottom: -4px;
       background: transparent;
       transform: rotate(var(--av-r)) translateY(0px);
       /* start invisible with blur */
       opacity: 0;
-      filter: blur(14px);
+      filter: blur(10px);
       transition: opacity 500ms ease, filter 500ms ease, border-color 500ms ease;
       cursor: pointer;
     }
@@ -312,11 +313,36 @@
       object-fit: cover;
     }
 
+    /* Loading dots shown while Firestore fetch is in-flight */
+    .invite-loading {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 40px;
+    }
+
+    .invite-loading-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      animation: dot-pulse 1.2s ease-in-out infinite;
+    }
+
+    .invite-loading-dot:nth-child(2) { animation-delay: 0.2s; }
+    .invite-loading-dot:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes dot-pulse {
+      0%, 80%, 100% { transform: scale(0.7); opacity: 0.4; }
+      40%            { transform: scale(1);   opacity: 1; }
+    }
+
     @media (min-width: 768px) {
       .invite-avatar-wrap {
-        width: 150px;
-        height: 150px;
-        border-radius: 28px;
+        width: 105px;
+        height: 105px;
+        border-radius: 20px;
       }
     }
   </style>
@@ -502,8 +528,14 @@
           .replace(/"/g, '&quot;');
       }
 
-      // Render immediately with fallback, then update with real name
-      renderPage(null, null);
+      // Show a loading indicator while fetching — do NOT render until we know
+      // whether there is a username, to avoid flashing the generic fallback.
+      main.innerHTML =
+        '<div class="invite-loading" aria-label="Loading">' +
+        '<div class="invite-loading-dot"></div>' +
+        '<div class="invite-loading-dot"></div>' +
+        '<div class="invite-loading-dot"></div>' +
+        '</div>';
 
       // friendInvites/{inviteCode} — document ID IS the invite code.
       // The app now writes inviterUsername and profilePhotoPath directly into the
@@ -513,7 +545,7 @@
       fetch(inviteDocURL)
         .then(function (r) { return r.ok ? r.json() : null; })
         .then(function (doc) {
-          if (!doc || !doc.fields) return;
+          if (!doc || !doc.fields) { renderPage(null, null); return; }
           var fields = doc.fields;
 
           // profilePhotoPath written by the app — convert to a public Storage URL
@@ -530,23 +562,24 @@
 
           // Fallback for old invites: fetch publicProfiles
           var inviterID = fields.inviterId && fields.inviterId.stringValue;
-          if (!inviterID) return;
+          if (!inviterID) { renderPage(null, null); return; }
 
           var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
           return fetch(profileURL)
             .then(function (r) { return r.ok ? r.json() : null; })
             .then(function (profileDoc) {
-              if (!profileDoc || !profileDoc.fields) return;
+              if (!profileDoc || !profileDoc.fields) { renderPage(null, null); return; }
               var pf = profileDoc.fields;
               var u = pf.username && pf.username.stringValue;
               var dn = pf.userName && pf.userName.stringValue;
               // Pass username without @ — renderPage handles the @ in the subtitle
               var name = (u && u.trim()) ? u.trim() : (dn && dn.trim()) || null;
-              if (name) renderPage(name, photo);
+              renderPage(name || null, photo);
             });
         })
         .catch(function () {
-          // Keep the already-rendered fallback
+          // Fetch failed — show generic fallback
+          renderPage(null, null);
         });
     })();
   </script>
