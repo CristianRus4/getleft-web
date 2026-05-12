@@ -23,10 +23,10 @@
         opacity: 1 !important;
         transform: none !important;
         pointer-events: auto !important;
-        background: rgba(19, 20, 21, 0.72) !important;
-        border-bottom: 1px solid rgba(255,255,255,0.08) !important;
-        -webkit-backdrop-filter: blur(20px) saturate(180%);
-        backdrop-filter: blur(20px) saturate(180%);
+        background: transparent !important;
+        border-bottom: none !important;
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
       }
 
       /* Page layout */
@@ -71,21 +71,22 @@
         gap: 40px;
         width: 100%;
         max-width: 480px;
-        text-align: left;
+        text-align: center;
       }
 
       .invite-step {
         display: flex;
         flex-direction: column;
+        align-items: center;
         gap: 16px;
       }
 
       .invite-step-label {
-        font-size: 11px;
+        font-size: 14px;
         font-weight: 700;
-        letter-spacing: 0.12em;
+        letter-spacing: 0.04em;
         text-transform: uppercase;
-        color: rgba(255, 255, 255, 0.45);
+        color: #fff;
         margin: 0;
       }
 
@@ -93,8 +94,8 @@
       .invite-download-row {
         display: flex;
         align-items: center;
-        gap: 24px;
-        flex-wrap: wrap;
+        justify-content: center;
+        gap: 16px;
       }
 
       .invite-appstore-badge {
@@ -105,44 +106,45 @@
       .invite-appstore-badge img {
         display: block;
         width: 180px;
-        height: auto;
+        height: 60px;
       }
 
       .invite-qr {
         display: none; /* hidden on mobile */
         flex-shrink: 0;
-        background: #fff;
-        border-radius: 12px;
-        padding: 8px;
-        width: 88px;
-        height: 88px;
+        background: transparent;
+        border: 2px solid rgba(255, 255, 255, 0.6);
+        border-radius: 10px;
+        width: 60px;
+        height: 60px;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
       }
 
       .invite-qr img {
         display: block;
-        width: 72px;
-        height: 72px;
+        width: 56px;
+        height: 56px;
       }
 
       /* Show QR on desktop */
       @media (min-width: 768px) {
         .invite-qr {
           display: flex;
-          align-items: center;
-          justify-content: center;
         }
       }
 
-      /* Accept button */
+      /* Accept button — full capsule */
       .invite-accept-btn {
         display: flex;
         align-items: center;
         justify-content: center;
         width: 100%;
         padding: 16px 24px;
-        border-radius: 14px;
+        border-radius: 9999px;
         background: rgba(255, 255, 255, 0.18);
-        border: 1px solid rgba(255, 255, 255, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.35);
         color: #fff;
         font-size: 17px;
         font-weight: 600;
@@ -155,7 +157,7 @@
 
       .invite-accept-btn:hover {
         background: rgba(255, 255, 255, 0.28);
-        border-color: rgba(255, 255, 255, 0.45);
+        border-color: rgba(255, 255, 255, 0.5);
       }
 
       .invite-accept-btn:active {
@@ -194,10 +196,11 @@
       /* Footer on invite page */
       .invite-footer {
         text-align: center;
-        padding: 24px 24px calc(24px + env(safe-area-inset-bottom));
-        border-top: 1px solid rgba(255,255,255,0.08);
+        padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
+        border-top: 1px solid rgba(255,255,255,0.1);
         font-size: 13px;
         color: rgba(255,255,255,0.35);
+        margin-top: auto;
       }
 
       .invite-footer a {
