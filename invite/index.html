@@ -120,7 +120,7 @@
         align-items: center;
         justify-content: center;
         overflow: hidden;
-        padding: 10px;
+        padding: 6px;
       }
 
       .invite-qr img {
@@ -304,8 +304,8 @@
 
               '<div class="invite-step">' +
                 '<p class="invite-step-label">Come back and accept the invitation</p>' +
-                '<p class="invite-step-note">' + note + '</p>' +
                 '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
+                '<p class="invite-step-note">' + note + '</p>' +
               '</div>' +
 
             '</div>';
@@ -333,15 +333,14 @@
             if (!doc || !doc.fields) return;
             var fields = doc.fields;
 
-            // First try inviterUsername written directly by the app
+            // inviterUsername written directly by the app — use it immediately
             var username = fields.inviterUsername && fields.inviterUsername.stringValue;
             if (username && username.trim()) {
-              var h = document.getElementById('invite-headline');
-              if (h) h.textContent = '@' + username.trim() + ' invited you to Left';
+              renderPage('@' + username.trim());
               return;
             }
 
-            // Fallback: fetch publicProfiles if inviterUsername not present (old invites)
+            // Fallback for old invites: fetch publicProfiles
             var inviterID = fields.inviterId && fields.inviterId.stringValue;
             if (!inviterID) return;
 
@@ -354,10 +353,7 @@
                 var u = pf.username && pf.username.stringValue;
                 var dn = pf.userName && pf.userName.stringValue;
                 var name = (u && u.trim()) ? '@' + u.trim() : (dn && dn.trim()) || null;
-                if (name) {
-                  var h = document.getElementById('invite-headline');
-                  if (h) h.textContent = name + ' invited you to Left';
-                }
+                if (name) renderPage(name);
               });
           })
           .catch(function () {
