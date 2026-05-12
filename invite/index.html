@@ -114,24 +114,28 @@
         flex-shrink: 0;
         background: transparent;
         border: 2px solid rgba(255, 255, 255, 0.6);
-        border-radius: 10px;
-        width: 60px;
-        height: 60px;
+        border-radius: 14px;
+        width: 150px;
+        height: 150px;
         align-items: center;
         justify-content: center;
         overflow: hidden;
+        padding: 4px;
       }
 
       .invite-qr img {
         display: block;
-        width: 56px;
-        height: 56px;
+        width: 138px;
+        height: 138px;
       }
 
-      /* Show QR on desktop */
+      /* On desktop: show QR large, hide App Store badge */
       @media (min-width: 768px) {
         .invite-qr {
           display: flex;
+        }
+        .invite-appstore-badge {
+          display: none;
         }
       }
 
@@ -279,21 +283,21 @@
             '<div class="invite-steps">' +
 
               '<div class="invite-step">' +
-                '<p class="invite-step-label">1 &mdash; Get the app for free</p>' +
+                '<p class="invite-step-label">Get the app for free</p>' +
                 '<div class="invite-download-row">' +
                   '<a class="invite-appstore-badge" href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
                     '<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="180" height="60" />' +
                   '</a>' +
                   '<div class="invite-qr" aria-label="Scan to download Left">' +
-                    '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="72" height="72" />' +
+                    '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="138" height="138" />' +
                   '</div>' +
                 '</div>' +
               '</div>' +
 
               '<div class="invite-step">' +
-                '<p class="invite-step-label">2 &mdash; Come back and accept the invitation</p>' +
+                '<p class="invite-step-label">Come back and accept the invitation</p>' +
+                '<p class="invite-step-note">After downloading Left, return here and tap to accept the invitation to add your friend.</p>' +
                 '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
-                '<p class="invite-step-note">After installing, return to this page and tap above. Left will open and add your friend automatically.</p>' +
               '</div>' +
 
             '</div>';
@@ -310,13 +314,31 @@
         // Render immediately with fallback, then update with real name
         renderPage(null);
 
-        // Fetch invite record from Firestore REST API
-        var inviteURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
-        fetch(inviteURL)
+        // friendInvites documents are keyed by UID, not invite code.
+        // We must query where the "code" field equals our invite code.
+        var queryURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents:runQuery';
+        var queryBody = JSON.stringify({
+          structuredQuery: {
+            from: [{ collectionId: 'friendInvites' }],
+            where: {
+              fieldFilter: {
+                field: { fieldPath: 'code' },
+                op: 'EQUAL',
+                value: { stringValue: inviteCode }
+              }
+            },
+            limit: 1
+          }
+        });
+
+        fetch(queryURL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: queryBody })
           .then(function (r) { return r.ok ? r.json() : null; })
-          .then(function (inviteDoc) {
-            if (!inviteDoc || !inviteDoc.fields) return null;
-            var inviterID = inviteDoc.fields.inviterId && inviteDoc.fields.inviterId.stringValue;
+          .then(function (results) {
+            if (!Array.isArray(results) || !results[0] || !results[0].document) return null;
+            var fields = results[0].document.fields;
+            if (!fields) return null;
+            // inviterId holds the UID of the person who created the invite
+            var inviterID = fields.inviterId && fields.inviterId.stringValue;
             if (!inviterID) return null;
 
             var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
@@ -325,13 +347,13 @@
           .then(function (profileDoc) {
             if (!profileDoc || !profileDoc.fields) return;
             var fields = profileDoc.fields;
+            // Prefer @username handle, fall back to display name
             var username = fields.username && fields.username.stringValue;
             var displayName = fields.userName && fields.userName.stringValue;
             var name = (username && username.trim()) ? '@' + username.trim() : (displayName && displayName.trim()) || null;
             if (name) {
-              // Update just the headline instead of re-rendering to avoid layout flash
               var h = document.getElementById('invite-headline');
-              if (h) h.textContent = escapeHTML(name) + ' invited you to Left';
+              if (h) h.textContent = name + ' invited you to Left';
             }
           })
           .catch(function () {
