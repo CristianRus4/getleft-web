@@ -34,7 +34,7 @@ getleft.app/
 - `public/invite/index.html` is served at `getleft.app/invite` (Cloudflare Pages serves `index.html` from directory automatically)
 - The `_redirects` file is Cloudflare Pages' native redirect mechanism (same syntax as Netlify)
 
-**✅ DONE:** Folder structure created. All files present:
+**✅ DONE:** GitHub repo created and connected to Cloudflare Pages. Both `getleft.app` and `go.getleft.app` are live and serving the site. Pushes to `main` auto-deploy. All files present:
 - `.well-known/apple-app-site-association` — AASA file with placeholder TEAMID (replace before go-live)
 - `public/invite/index.html` — fully functional invite landing page with JS flow
 - `index.html` — homepage styled to match left-web, with hero, features, reviews, FAQ, footer
@@ -280,13 +280,14 @@ The `friendInvites` collection schema (`code`, `inviterId`, `createdAt`, `update
 - [x] Add placeholder `index.html`, `support.html`, `contact.html` at root
 - [x] Add `.well-known/apple-app-site-association` with correct Team ID and bundle ID
 - [x] Add `public/invite/index.html` landing page
-- [ ] Connect repo to Cloudflare Pages
-- [ ] Add `getleft.app` and `go.getleft.app` as custom domains in Cloudflare Pages
+- [x] Connect repo to Cloudflare Pages
+- [x] Add `getleft.app` and `go.getleft.app` as custom domains in Cloudflare Pages
+- [x] Replace `TEAMID` placeholder in `.well-known/apple-app-site-association` with real Apple Developer Team ID (`5X94H5ZCD4`) and bundle identifier (`com.cr.left`), then push to main
 - [ ] Verify AASA is accessible at `https://go.getleft.app/.well-known/apple-app-site-association`
-- [ ] Validate AASA via Apple's CDN checker
-- [ ] Add `applinks:go.getleft.app` entitlement in Xcode
-- [ ] Implement Universal Link handler in `SceneDelegate` (both warm and cold launch)
-- [ ] Update invite URL string in app from `left://friends/invite` to `https://go.getleft.app/invite`
+- [ ] Validate AASA via Apple's CDN checker: `https://app-site-association.cdn-apple.com/a/v1/go.getleft.app`
+- [x] Add `applinks:go.getleft.app` entitlement in `Left.entitlements`
+- [x] Update `inviteID(from:)` in `FriendsManager` to accept `go.getleft.app/invite` Universal Links (alongside legacy custom scheme and old domains)
+- [x] Update `inviteURLString(for:)` in `FriendsManager` from `left://friends/invite` to `https://go.getleft.app/invite`
 - [ ] Test full flow: share invite → tap link (app not installed) → install → tap step 2 button → app opens with correct invite code
 - [ ] Test warm launch: app installed, tap `go.getleft.app/invite?invite=CODE` link → intercepts directly
 
