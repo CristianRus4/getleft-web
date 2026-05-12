@@ -9,15 +9,62 @@
     <meta name="theme-color" content="#FF6B24" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)" />
     <meta name="color-scheme" content="light dark" />
-
-    <!-- No index — invite pages are ephemeral -->
     <meta name="robots" content="noindex,nofollow" />
-
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
     <link rel="shortcut icon" href="/favicon/favicon.ico" />
-
     <link rel="stylesheet" href="/style.css" />
+    <style>
+      .invite-step {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+      }
+
+      .invite-step-label {
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.55);
+        margin: 0 0 8px;
+        text-align: left;
+      }
+
+      .invite-step + .invite-step {
+        margin-top: 28px;
+      }
+
+      .invite-step .btn-primary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 20px;
+        font-size: 17px;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.25);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .invite-step .btn-primary:hover {
+        background: rgba(255, 255, 255, 0.35);
+      }
+
+      .invite-step-note {
+        margin: 8px 0 0;
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: left;
+        line-height: 1.5;
+      }
+
+      .invite-divider {
+        width: 100%;
+        max-width: 320px;
+        margin: 0 auto;
+        border: none;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+      }
+    </style>
   </head>
   <body>
     <main class="invite-page" id="invite-main">
@@ -26,41 +73,85 @@
 
     <script>
       (function () {
+        var FIREBASE_PROJECT = "left-app-4ebe8";
         var params = new URLSearchParams(window.location.search);
         var inviteCode = params.get('invite');
         var main = document.getElementById('invite-main');
 
         if (!inviteCode) {
-          // No invite code — show error state
-          main.innerHTML = [
-            '<div class="invite-error">',
-            '  <span class="invite-icon" aria-hidden="true">🔗</span>',
-            '  <h1>Link invalid or expired</h1>',
-            '  <p>This invite link is invalid or has already expired. Ask your friend to send you a new one.</p>',
-            '  <a class="btn btn-secondary" href="https://getleft.app/" style="margin-top:12px;">Learn about Left</a>',
-            '</div>'
-          ].join('');
+          main.innerHTML =
+            '<div class="invite-error">' +
+            '  <h1>Link invalid or expired</h1>' +
+            '  <p>This invite link is invalid or has already expired. Ask your friend to send you a new one.</p>' +
+            '  <a class="btn" href="https://getleft.app/" style="margin-top:12px;">Learn about Left</a>' +
+            '</div>';
           return;
         }
 
-        // Build the go.getleft.app deep link (Universal Link — opens app if installed)
         var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
         var appStoreLink = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884';
 
-        main.innerHTML = [
-          '<span class="invite-icon" aria-hidden="true">👋</span>',
-          '<h1>You\'re invited to Left</h1>',
-          '<p>Someone wants to connect with you on Left — the habit tracker, countdown, and life widgets app for iPhone.</p>',
-          '<div class="invite-actions">',
-          '  <p style="margin:0 0 4px; font-size:13px; color:rgba(255,255,255,0.7); text-align:center;">Already have Left installed?</p>',
-          '  <a class="btn btn-primary" href="' + deepLink + '" id="accept-btn">Accept invitation</a>',
-          '  <p style="margin:16px 0 4px; font-size:13px; color:rgba(255,255,255,0.7); text-align:center;">New to Left?</p>',
-          '  <a class="btn btn-secondary" href="' + appStoreLink + '" target="_blank" rel="noopener">',
-          '    <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="160" height="54" style="display:block;width:160px;height:auto;" />',
-          '  </a>',
-          '  <p style="margin:8px 0 0; font-size:12px; color:rgba(255,255,255,0.55); text-align:center;">After installing, tap "Accept invitation" above.</p>',
-          '</div>'
-        ].join('');
+        function renderPage(inviterName) {
+          var headline = inviterName
+            ? inviterName + ' invited you to Left'
+            : 'You\'re invited to Left';
+
+          main.innerHTML =
+            '<h1>' + escapeHTML(headline) + '</h1>' +
+            '<p>Connect on Left — the habit tracker, countdown, and life widgets app for iPhone.</p>' +
+
+            '<div class="invite-step">' +
+            '  <p class="invite-step-label">Step 1 — Get the app</p>' +
+            '  <a href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
+            '    <img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="160" height="54" style="display:block;width:160px;height:auto;" />' +
+            '  </a>' +
+            '</div>' +
+
+            '<hr class="invite-divider" />' +
+
+            '<div class="invite-step">' +
+            '  <p class="invite-step-label">Step 2 — Accept the invitation</p>' +
+            '  <a class="btn btn-primary" href="' + deepLink + '">Accept invitation</a>' +
+            '  <p class="invite-step-note">Come back to this page after installing and tap above to accept. Left will open and add your friend automatically.</p>' +
+            '</div>';
+        }
+
+        function escapeHTML(str) {
+          return str
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;');
+        }
+
+        // Render immediately with fallback name, then try to fetch the real name
+        renderPage(null);
+
+        // Fetch invite record from Firestore REST API to get inviter UID
+        var inviteURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
+        fetch(inviteURL)
+          .then(function (r) { return r.ok ? r.json() : null; })
+          .then(function (inviteDoc) {
+            if (!inviteDoc || !inviteDoc.fields) return null;
+            var inviterID = inviteDoc.fields.inviterId && inviteDoc.fields.inviterId.stringValue;
+            if (!inviterID) return null;
+
+            // Fetch the inviter's public profile for their display name / username
+            var profileURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/publicProfiles/' + encodeURIComponent(inviterID);
+            return fetch(profileURL).then(function (r) { return r.ok ? r.json() : null; });
+          })
+          .then(function (profileDoc) {
+            if (!profileDoc || !profileDoc.fields) return;
+            var fields = profileDoc.fields;
+            // Prefer username (@handle), fall back to display name
+            var username = fields.username && fields.username.stringValue;
+            var displayName = fields.userName && fields.userName.stringValue;
+            var name = (username && username.trim()) ? '@' + username.trim() : (displayName && displayName.trim()) || null;
+            if (name) renderPage(name);
+          })
+          .catch(function () {
+            // Keep the already-rendered fallback — no user-visible error
+          });
       })();
     </script>
   </body>
