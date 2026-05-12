@@ -547,6 +547,34 @@
       // Universal Link restriction that blocks same-browser navigation.
       var customSchemeLink = 'left://friends/invite?invite=' + encodeURIComponent(inviteCode);
 
+      // Auto-launch: attempt to open the app immediately on page load.
+      // If the app is installed, iOS intercepts left:// and opens it — the page
+      // goes into the background (document.hidden = true) so we cancel any fallback.
+      // If not installed, the scheme fails silently and the page continues loading normally.
+      // Guard: only attempt on iOS (navigator.platform or UA check), and only once per load
+      // using sessionStorage so a back-navigation doesn't re-trigger it.
+      (function () {
+        var isIOS = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+        var alreadyAttempted = sessionStorage.getItem('leftAutoLaunch') === inviteCode;
+        if (!isIOS || alreadyAttempted) return;
+
+        sessionStorage.setItem('leftAutoLaunch', inviteCode);
+
+        // Small delay so the page has a moment to paint the loading state
+        // before iOS shows the "open in Left?" system prompt
+        var autoTimer = setTimeout(function () {
+          window.location.href = customSchemeLink;
+        }, 300);
+
+        // If the app opened, page goes hidden — clear the timer (nothing else to do)
+        document.addEventListener('visibilitychange', function onAutoVis() {
+          if (document.hidden) {
+            clearTimeout(autoTimer);
+            document.removeEventListener('visibilitychange', onAutoVis);
+          }
+        });
+      })();
+
       // Wire up the accept button after renderPage() inserts it into the DOM.
       // Uses custom URL scheme (left://) so iOS launches the app immediately.
       // If the app isn't installed, the scheme silently fails and we fall back
