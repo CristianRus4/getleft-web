@@ -49,12 +49,12 @@
     }
 
     .invite-headline {
-      font-size: clamp(40px, 9vw, 72px);
+      font-size: clamp(32px, 7vw, 56px);
       font-weight: 800;
       letter-spacing: -0.03em;
-      line-height: 1.25;
+      line-height: 1.4;
       color: #fff;
-      margin: 0 0 8px;
+      margin: 0 0 12px;
       max-width: 640px;
       position: relative;
       z-index: 1;
@@ -77,22 +77,21 @@
       }
     }
 
-    /* Subtitle below the highlighted username */
-    .invite-subtitle {
-      font-size: clamp(18px, 3.5vw, 26px);
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: rgba(255, 255, 255, 0.75);
-      margin: 0 0 0;
-      line-height: 1.35;
-    }
-
     .invite-sub {
       font-size: clamp(15px, 2.5vw, 18px);
       color: rgba(255, 255, 255, 0.7);
       margin: 0 0 56px;
       max-width: 480px;
       line-height: 1.55;
+    }
+
+    /* "Join @username on Left" subtitle — smaller, no highlight */
+    .invite-sub--join {
+      font-size: clamp(14px, 2vw, 16px);
+      color: rgba(255, 255, 255, 0.6);
+      margin: 4px 0 40px;
+      max-width: 480px;
+      line-height: 1.4;
     }
 
     /* Steps */
@@ -266,17 +265,16 @@
 
     /* Inviter avatar — completely hidden until photo loads */
     @keyframes avatar-bounce {
-      0%   { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(0); }
-      18%  { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(-20px); }
-      36%  { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(0); }
-      52%  { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(-10px); }
-      68%  { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(0); }
-      84%  { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(-3px); }
-      100% { transform: translateX(var(--av-x)) rotate(var(--av-r)) translateY(0); }
+      0%   { transform: rotate(var(--av-r)) translateY(0px); }
+      18%  { transform: rotate(var(--av-r)) translateY(-24px); }
+      36%  { transform: rotate(var(--av-r)) translateY(0px); }
+      54%  { transform: rotate(var(--av-r)) translateY(-12px); }
+      70%  { transform: rotate(var(--av-r)) translateY(0px); }
+      84%  { transform: rotate(var(--av-r)) translateY(-5px); }
+      100% { transform: rotate(var(--av-r)) translateY(0px); }
     }
 
     .invite-avatar-wrap {
-      --av-x: 0px;
       --av-r: 0deg;
       flex-shrink: 0;
       position: relative;
@@ -289,7 +287,7 @@
       /* slight overlap so avatar peeks behind headline */
       margin-bottom: -6px;
       background: transparent;
-      transform: translateX(var(--av-x)) rotate(var(--av-r));
+      transform: rotate(var(--av-r)) translateY(0px);
       /* start invisible with blur */
       opacity: 0;
       filter: blur(14px);
@@ -304,7 +302,7 @@
     }
 
     .invite-avatar-wrap.is-bouncing {
-      animation: avatar-bounce 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      animation: avatar-bounce 0.9s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
     }
 
     .invite-avatar-wrap img {
@@ -372,38 +370,40 @@
 
       var deepLink = 'https://go.getleft.app/invite?invite=' + encodeURIComponent(inviteCode);
 
-      // Random tilt (±10°) — horizontal offset commented out (always centred for now)
+      // Random tilt (±10°) — set BEFORE the avatar is shown so it appears already rotated
       var avatarRotation = (Math.random() * 20 - 10).toFixed(2);
-      // var contentW = Math.min(window.innerWidth, 480);
+      // var avatarOffsetX = 0; // always center-aligned for now
       var isBouncing = false;
+      var periodicTimer = null;
 
       function renderPage(inviterName, photoURL) {
-        var rawName = inviterName && inviterName.startsWith('@') ? inviterName.slice(1) : inviterName;
-
-        var headlineHTML, subtitleHTML;
-        if (rawName) {
-          headlineHTML = '<h1 class="invite-headline" id="invite-headline"><span class="invite-headline-hl">' + escapeHTML(rawName) + '</span></h1>';
-          subtitleHTML = '<p class="invite-subtitle">Join @' + escapeHTML(rawName) + ' on Left</p>';
+        // Headline: just the username (no @) with highlight
+        // Subtitle: "Join @username on Left" without highlight
+        var headlineInner, subtitleHTML;
+        if (inviterName) {
+          // Strip leading @ if present (we add it back only in subtitle)
+          var displayName = inviterName.replace(/^@/, '');
+          headlineInner = '<span class="invite-headline-hl">' + escapeHTML(displayName) + '</span>';
+          subtitleHTML = '<p class="invite-sub invite-sub--join">Join @' + escapeHTML(displayName) + ' on Left</p>';
         } else {
-          headlineHTML = '<h1 class="invite-headline" id="invite-headline">You\'re invited to join Left</h1>';
+          headlineInner = '<span class="invite-headline-hl">You\'re invited to join Left</span>';
           subtitleHTML = '';
         }
 
         // Avatar block — only rendered when a photo URL is available
         var avatarHTML = '';
         if (photoURL) {
-          var altText = rawName ? escapeHTML(rawName) + '\'s profile photo' : 'Inviter profile photo';
+          var altText = inviterName ? escapeHTML(inviterName.replace(/^@/, '')) + '\'s profile photo' : 'Inviter profile photo';
           avatarHTML =
             '<div class="invite-avatar-wrap" id="invite-avatar-wrap">' +
             '<img id="invite-avatar-img" src="' + escapeHTML(photoURL) + '" alt="' + altText + '" fetchpriority="high" decoding="async" />' +
             '</div>';
         }
 
-
         main.innerHTML =
           avatarHTML +
-          '<h1 class="invite-headline" id="invite-headline"><span class="invite-headline-hl">' + headline + '</span></h1>' +
-          // '<p class="invite-sub">' + sub + '</p>' +
+          '<h1 class="invite-headline" id="invite-headline">' + headlineInner + '</h1>' +
+          subtitleHTML +
 
           '<div class="invite-steps">' +
 
@@ -422,46 +422,58 @@
           '<div class="invite-step">' +
           '<p class="invite-step-label">Come back and open the invite</p>' +
           '<a class="invite-accept-btn" href="' + deepLink + '">Open invite</a>' +
-          // '<p class="invite-step-note">' + note + '</p>' +
           '</div>' +
 
           '</div>';
 
-        // Fade+unblur reveal, bounce, and error-hide after DOM is ready
+        // Avatar animation logic
         if (photoURL) {
           var img  = document.getElementById('invite-avatar-img');
           var wrap = document.getElementById('invite-avatar-wrap');
 
-          function triggerBounce() {
+          if (wrap) {
+            // Set rotation BEFORE the avatar becomes visible so it appears already tilted
+            wrap.style.setProperty('--av-r', avatarRotation + 'deg');
+            // avatarOffsetX commented out — always center aligned
+            // wrap.style.setProperty('--av-x', avatarOffsetX + 'px');
+          }
+
+          // Internal bounce: just triggers the CSS animation (rotation already set)
+          function doBounce() {
             if (!wrap || isBouncing) return;
             isBouncing = true;
-            // Randomise rotation BEFORE the bounce so it starts in the new tilt
-            avatarRotation = (Math.random() * 20 - 10).toFixed(2);
-            wrap.style.setProperty('--av-r', avatarRotation + 'deg');
             wrap.classList.remove('is-bouncing');
-            void wrap.offsetWidth; // force reflow so animation always re-fires
+            void wrap.offsetWidth; // force reflow
             wrap.classList.add('is-bouncing');
           }
 
-          if (wrap) {
-            wrap.style.setProperty('--av-x', avatarOffsetX + 'px');
-            // Set initial rotation before revealing — photo appears already tilted
+          // Public entry point: set a new random rotation, THEN bounce
+          function triggerBounceWithNewRotation() {
+            if (!wrap || isBouncing) return;
+            avatarRotation = (Math.random() * 20 - 10).toFixed(2);
             wrap.style.setProperty('--av-r', avatarRotation + 'deg');
+            // Small tick so the CSS variable is flushed before animation starts
+            requestAnimationFrame(function () { doBounce(); });
+          }
 
+          if (wrap) {
             wrap.addEventListener('animationend', function () {
               wrap.classList.remove('is-bouncing');
               isBouncing = false;
-              // Rotation was already set at the START of triggerBounce — nothing to do here
             });
-            wrap.addEventListener('click', triggerBounce);
+            // Tap: rotate then bounce
+            wrap.addEventListener('click', triggerBounceWithNewRotation);
           }
 
           function onPhotoLoaded() {
-            if (wrap) wrap.classList.add('photo-ready');
-            // Bounce immediately on reveal (no delay) — photo appears already bouncing
-            triggerBounce();
-            // Periodic bounce every 7 s
-            setInterval(triggerBounce, 7000);
+            if (!wrap) return;
+            // Make avatar visible — it's already at the correct rotation
+            wrap.classList.add('photo-ready');
+            // First bounce plays immediately as it fades in
+            setTimeout(doBounce, 30);
+            // Periodic bounce every 7 s — rotates first each time
+            if (periodicTimer) clearInterval(periodicTimer);
+            periodicTimer = setInterval(triggerBounceWithNewRotation, 7000);
           }
 
           if (img) {
@@ -511,7 +523,8 @@
           // inviterUsername written directly by the app — use it immediately
           var username = fields.inviterUsername && fields.inviterUsername.stringValue;
           if (username && username.trim()) {
-            renderPage('@' + username.trim(), photo);
+            // Pass username without @ — renderPage handles the @ in the subtitle
+            renderPage(username.trim(), photo);
             return;
           }
 
@@ -527,7 +540,8 @@
               var pf = profileDoc.fields;
               var u = pf.username && pf.username.stringValue;
               var dn = pf.userName && pf.userName.stringValue;
-              var name = (u && u.trim()) ? '@' + u.trim() : (dn && dn.trim()) || null;
+              // Pass username without @ — renderPage handles the @ in the subtitle
+              var name = (u && u.trim()) ? u.trim() : (dn && dn.trim()) || null;
               if (name) renderPage(name, photo);
             });
         })
