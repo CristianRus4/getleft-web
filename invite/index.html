@@ -137,6 +137,9 @@
         .invite-appstore-badge {
           display: none;
         }
+        .invite-footer {
+          display: block;
+        }
       }
 
       /* Accept button — full capsule */
@@ -199,6 +202,7 @@
 
       /* Footer on invite page */
       .invite-footer {
+        display: none; /* hidden on mobile */
         text-align: center;
         padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
         border-top: 1px solid rgba(255,255,255,0.1);
@@ -276,6 +280,7 @@
             ? escapeHTML(inviterName) + ' wants to be your friend on Left!'
             : 'You\'re invited to Left';
 
+          /*
           var sub = inviterName
             ? 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.'
             : 'Get Left, the habit tracker, countdowns, and life widgets app for iPhone.';
@@ -283,10 +288,11 @@
           var note = inviterName
             ? 'After downloading Left, return here and tap \'Accept invitation\' to add ' + escapeHTML(inviterName) + ' as a friend.'
             : 'After downloading Left, return here and tap to accept the invitation to add your friend.';
+          */
 
           main.innerHTML =
             '<h1 class="invite-headline" id="invite-headline">' + headline + '</h1>' +
-            '<p class="invite-sub">' + sub + '</p>' +
+            // '<p class="invite-sub">' + sub + '</p>' +
 
             '<div class="invite-steps">' +
 
@@ -305,7 +311,7 @@
               '<div class="invite-step">' +
                 '<p class="invite-step-label">Come back and accept the invitation</p>' +
                 '<a class="invite-accept-btn" href="' + deepLink + '">Accept invitation</a>' +
-                '<p class="invite-step-note">' + note + '</p>' +
+                // '<p class="invite-step-note">' + note + '</p>' +
               '</div>' +
 
             '</div>';
