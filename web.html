@@ -1,0 +1,1864 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Match browser/UI tint to page theme in light/dark -->
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#FDFDFC" />
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#131415" />
+    <title>Left</title>
+    <meta name="description" content="Visualize your time left — year, month, week, day, and life views you can share as images.">
+    <meta property="og:title" content="Left — Visualize Your Time Left">
+    <meta property="og:description" content="Year, month, week, day, and life views you can share as images.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://getleft.app/web.html">
+    <meta property="og:image" content="https://getleft.app/favicon/android-chrome-512x512.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Left — Visualize Your Time Left">
+    <meta name="twitter:description" content="Year, month, week, day, and life views you can share as images.">
+    <meta name="twitter:image" content="https://getleft.app/favicon/android-chrome-512x512.png">
+    <link rel="canonical" href="https://getleft.app/web.html">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- In standalone mode, blend status bar with app background -->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="color-scheme" content="light dark">
+    <link rel="manifest" href="left.webmanifest">
+    <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <!-- Material Symbols for Android share icon -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,1,0" />
+    <!-- Roboto for Material 3 typography on this page only -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Roboto Condensed for quotes only -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+      /* Material 3 color tokens (scoped to this page) */
+      :root {
+        --m3-primary: #6750A4;      /* strong brand accent */
+        --m3-on-surface: #111110;   /* readable text */
+        --m3-surface: #FFFBFE;      /* container background */
+        --m3-page-bg: #F6F3FF;      /* page background tint */
+      }
+
+      /* Light mode overrides for this page only */
+      @media (prefers-color-scheme: light) {
+        /* Keep site light background as-is */
+        /* Light mode: page background follows themed page tint */
+        html, body { color: var(--m3-on-surface); background: var(--m3-page-bg); }
+        .card { color: var(--m3-on-surface); }
+      }
+
+      :root {
+        /* Fixed sizes: dots never change size */
+        --dot-size: 8px;
+        --gap: 6px; /* updated by JS; only spacing changes */
+        --panel-bg: var(--m3-surface, #f7f7f4); /* card surface */
+        --accent-dark: var(--m3-primary, #EEEEEC); /* unify with primary for legacy refs */
+        --footer-color: inherit;
+        --m3-radius: 16px; /* Material rounded corners */
+        /* Shared card width cap so all cards match */
+        --card-width: min(90vw, 600px);
+        --actions-height: 60px; /* approx actions card total height (min) */
+      }
+
+      /* Page font and base typography */
+      /* Use Roboto everywhere (Material 3 default) */
+      body { font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif; }
+      button, input, select, textarea { font-family: inherit; }
+
+      /* App-specific layout (minimal; uses site styles) */
+      .card {
+        position: fixed;
+        top: 4vh; /* small space from top */
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--card-width);
+        height: 70vh; /* 70% viewport height */
+        min-width: 300px; /* enforce minimum width; grid/footer follow */
+        border-radius: var(--m3-radius);
+        background: var(--panel-bg);
+        /* flat style, no shadows */
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* grid vertically centered */
+        padding: 2rem;
+        box-sizing: border-box;
+        overflow: hidden; /* keep content inside */
+        z-index: 1;
+      }
+
+      .grid {
+        display: grid;
+        grid-auto-rows: var(--dot-size);
+        gap: var(--gap); /* updated by JS */
+        margin: 0; /* positioned by card */
+      }
+
+      .dot {
+        width: var(--dot-size);
+        height: var(--dot-size);
+        border-radius: 50%;
+        background: var(--m3-elements, var(--m3-primary, #111110)); /* Elements tint */
+      }
+      /* Glyph-based symbols */
+      .dot.glyph {
+        background: none;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(var(--dot-size) + 2px);
+        line-height: 1;
+        color: var(--m3-elements, var(--m3-primary, #111110));
+      }
+      .dot.past { opacity: 0.5; }
+
+      /* Bottom labels pinned to viewport edges (match site padding) */
+      .bottom {
+        position: absolute; /* inside the card */
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--footer-width, auto);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 1; /* match full-opacity future dots */
+        color: var(--m3-elements, var(--footer-color));
+        font-size: 0.95em;
+        font-weight: 500; /* match button weight */
+        letter-spacing: 0.15px; /* align with button typography */
+        pointer-events: auto; /* allow clicking/tapping labels */
+        z-index: 2;
+      }
+
+      /* Respect dark mode */
+      @media (prefers-color-scheme: dark) {
+        html, body { color: var(--m3-on-surface) !important; background: var(--m3-page-bg) !important; }
+        .card { background: var(--panel-bg, #141413); box-shadow: none; }
+      }
+
+      /* Hide native store CTA in installed PWA context */
+      @media all and (display-mode: standalone) {
+        #appBtn { display: none !important; }
+        #quoteBtn { display: inline-flex !important; }
+      }
+
+      /* Actions card at the bottom (10% viewport height) */
+      .actions-card {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2vh;
+        width: var(--card-width);
+        min-width: 300px; /* match main card minimum */
+        min-height: 48px; /* auto height based on content */
+        border-radius: var(--m3-radius);
+        background: var(--panel-bg);
+        color: var(--m3-elements, currentColor);
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px; /* tighter padding around text */
+        box-sizing: border-box;
+        z-index: 3;
+      }
+      .actions-card .actions {
+        display: grid;
+        grid-template-columns: 1fr auto auto; /* left icons | primary buttons | app */
+        align-items: center;
+        column-gap: 10px;
+        width: 100%;
+      }
+      .actions-left { display: flex; align-items: center; gap: 12px; justify-self: start; }
+      .actions-primary { display: flex; align-items: center; gap: 0; justify-self: end; }
+      .actions-tail { display: flex; align-items: center; justify-self: end; }
+      /* Week view rows */
+      .week-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 0;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: var(--m3-elements, currentColor);
+      }
+      .week-row.past { opacity: 0.5; }
+      /* Months view grid cells */
+      .month-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--m3-elements, currentColor);
+      }
+      .month-cell.past { opacity: 0.5; }
+      .actions-right {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .color-swatch {
+        display: inline-block;
+        width: 2em;   /* pill width */
+        height: 1em;  /* pill height */
+        border-radius: 9999px; /* capsule shape */
+        vertical-align: middle;
+        border: 1px solid rgba(0,0,0,0.85);
+        opacity: 0.9; /* match button text opacity */
+      }
+      #symbolPreview.symbol-circle {
+        display: inline-block;
+        border-radius: 50%;
+        background: currentColor;
+        vertical-align: middle;
+      }
+      .action-sep { display:none; }
+      .action-btn, .action-select, .actions-card a.action-btn {
+        background: transparent;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0.9;
+        display: inline-flex;
+        align-items: center;
+        line-height: 1; /* avoid extra vertical space */
+        /* no shadows on buttons */
+        box-shadow: none;
+      }
+      /* Icon font setup */
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+        line-height: 1;
+      }
+      /* Quote view */
+      .quote {
+        display: none;
+        max-width: 85%;
+        text-align: center;
+        font-family: 'Roboto Condensed', 'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        font-size: clamp(34px, 6.5vw, 72px);
+        line-height: 1.2;
+        font-style: italic;
+        color: var(--m3-elements, currentColor);
+        white-space: pre-wrap;
+      }
+      .card.quote-mode .grid, .card.quote-mode .bottom { display: none; }
+      .card.quote-mode .quote { display: block; }
+      /* M3 Title/Medium for button labels */
+      .actions-card .action-btn,
+      .actions-card a.action-btn {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+      }
+      /* Add rounded outline style to specific action buttons when NOT filled */
+      #bdayConfirm:not(.btn-filled),
+      #bdayBtn:not(.btn-filled),
+      #appBtn:not(.btn-filled) {
+        border: 0.4px solid currentColor; /* thinner outline */
+        /* reduce border opacity by 20% while keeping hue */
+        border-color: color-mix(in srgb, currentColor 80%, transparent);
+        border-radius: 9999px;
+        padding: 8px 14px;
+        box-shadow: none;
+      }
+      /* Filled primary buttons on the right */
+      .btn-filled {
+        background: var(--m3-elements) !important;
+        color: var(--m3-surface) !important;
+        border: none !important;
+        opacity: 1;
+      }
+      /* Ensure filled action buttons have consistent height */
+      .actions-primary .action-btn.btn-filled,
+      .actions-tail .action-btn.btn-filled,
+      #bdayConfirm.btn-filled {
+        padding: 8px 16px; /* slightly reduced height */
+        min-height: 40px;
+        border-radius: 9999px;
+      }
+      .actions-primary .material-symbols-outlined { font-size: 22px; }
+      /* Segmented pill radii (inner corners smaller) */
+      .btn-seg-left  { border-top-right-radius: calc(var(--m3-radius) / 2);  border-bottom-right-radius: calc(var(--m3-radius) / 2);  border-top-left-radius: var(--m3-radius); border-bottom-left-radius: var(--m3-radius); }
+      .btn-seg-right { border-top-left-radius: calc(var(--m3-radius) / 2);  border-bottom-left-radius: calc(var(--m3-radius) / 2);  border-top-right-radius: var(--m3-radius); border-bottom-right-radius: var(--m3-radius); }
+      .btn-standalone { border-radius: var(--m3-radius); }
+      /* Left icon buttons: compact, no outline */
+      #viewBtn, #symbolBtn, #colorBtn, #personBtn {
+        border: none;
+        padding: 8px 10px;
+        border-radius: 9999px;
+      }
+      /* Symbol preview uses Material Symbols in the picker */
+      #symbolPreview .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+        line-height: 1;
+      }
+      /* Exclude symbol and color pickers from outlined style */
+      #symbolBtn,
+      #colorBtn,
+      #personBtn { border: none; padding: 6px; }
+      /* Share button styled like left-side icons but stays right-aligned */
+      #shareBtn, #quoteBtn { border: none; padding: 6px; background: transparent; }
+      #shareBtn .material-symbols-outlined,
+      #quoteBtn .material-symbols-outlined { font-size: 22px; }
+      /* Hide quote button by default; show only when installed */
+      #quoteBtn { display: none; }
+      /* Make the view button larger (about 2x icon size) */
+      #viewBtn { padding: 6px; }
+      #viewBtn .material-symbols-outlined { font-size: 30px; }
+      #personBtn { padding: 6px; }
+      #personBtn .material-symbols-outlined { font-size: 25px; }
+      /* Constrain symbol preview box to prevent overflow on mobile */
+      #symbolPreview {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.1em;
+        height: 1.1em;
+        line-height: 1;
+        overflow: hidden; /* clamp oversized glyphs */
+      }
+      /* Override global link gradient styles inside the actions card */
+      .actions-card a.action-btn:not(.btn-filled),
+      .actions-card a.action-btn:visited:not(.btn-filled) {
+        color: inherit !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        -webkit-text-fill-color: currentColor !important;
+        text-decoration: none;
+      }
+      .actions-card a.action-btn.btn-filled {
+        color: var(--m3-surface) !important;
+        background: var(--m3-elements) !important;
+      }
+      .actions-card a.action-btn:hover { text-decoration: none; }
+      .bday-panel {
+        position: fixed; /* match exact width with cards */
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--card-width);
+        min-width: 300px;
+        bottom: calc(2vh + var(--actions-height) + 2px); /* tiny visual gap */
+        z-index: 4; /* ensure it appears above the actions card */
+        display: none;
+        gap: 8px;
+        align-items: flex-start;
+        flex-direction: column;
+        background: var(--panel-bg);
+        color: var(--m3-elements, currentColor);
+        border-radius: var(--m3-radius); /* match actions-card/card radius */
+        box-shadow: none;
+        padding: 12px 16px;
+        box-sizing: border-box;
+      }
+      /* Align Calculate button to the right inside the row */
+      #bdayConfirm { margin-left: auto; }
+      .bday-label { font-size: 0.9em; opacity: 0.8; width: 100%; text-align: center; }
+      .bday-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+      @media (prefers-color-scheme: dark) {
+        .actions-card, .bday-panel {
+          background: var(--panel-bg, #141413);
+          box-shadow: none;
+          color: var(--m3-elements, var(--m3-on-surface, #EEEEEC));
+        }
+        .actions-card a.action-btn,
+        .actions-card a.action-btn:hover,
+        .actions-card a.action-btn:visited {
+          color: var(--m3-elements, var(--m3-on-surface, inherit)) !important;
+          background: none !important;
+          -webkit-background-clip: initial !important;
+          -webkit-text-fill-color: currentColor !important;
+        }
+        /* no shadows on buttons in dark mode */
+        .action-btn { box-shadow: none; }
+        #bdayConfirm:not(.btn-filled),
+        #bdayBtn:not(.btn-filled),
+        #shareBtn:not(.btn-filled),
+        #appBtn:not(.btn-filled) {
+          /* thinner + 20% less opaque, synced with font color */
+          border-color: color-mix(in srgb, currentColor 80%, transparent);
+          box-shadow: none;
+      }
+        .color-swatch { border-color: rgba(255,255,255,0.35); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div id="grid" class="grid" aria-label="Days of the year"></div>
+      <div id="quote" class="quote" aria-live="polite"></div>
+      <div class="bottom">
+        <span id="year"></span>
+        <span id="right-info" aria-live="polite"></span>
+      </div>
+    </div>
+    <div class="actions-card">
+      <div class="actions">
+        <div class="actions-left">
+          <button id="viewBtn" class="action-btn" aria-label="Change view"><span class="material-symbols-outlined" aria-hidden="true">view_carousel</span></button>
+          <button id="symbolBtn" class="action-btn" aria-label="Change symbol"><span id="symbolPreview"></span></button>
+          <button id="colorBtn" class="action-btn" aria-label="Change color"><span class="material-symbols-outlined" aria-hidden="true">palette</span></button>
+          <button id="personBtn" class="action-btn" aria-label="Set your birthday"><span class="material-symbols-outlined" aria-hidden="true">person_edit</span></button>
+        </div>
+        <div class="actions-primary">
+          <button id="quoteBtn" aria-label="Show a quote" class="action-btn"><span class="material-symbols-outlined" aria-hidden="true">format_quote</span></button>
+          <button id="shareBtn" aria-label="Share snapshot" class="action-btn"><span class="material-symbols-outlined" aria-hidden="true">share</span></button>
+        </div>
+        <div class="actions-tail">
+          <button id="appBtn" class="action-btn btn-filled btn-standalone">Get the app</button>
+        </div>
+      </div>
+      <div id="bdayPanel" class="bday-panel">
+        <div class="bday-label">When were you born?</div>
+        <div class="bday-row">
+          <select id="bdayMonth" class="action-select"></select>
+          <select id="bdayYear" class="action-select"></select>
+          <button id="bdayConfirm" class="action-btn btn-filled">Calculate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- html2canvas for snapshotting the card -->
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+
+    <script>
+      // Register service worker for PWA capabilities
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').catch(function(err){
+            console.debug('SW registration failed', err);
+          });
+        });
+      }
+
+      // Notifications: prompt when installed and optionally schedule a daily reminder
+      (function notificationsSetup(){
+        const LS_OPT_IN = 'left_notify_opt_in';
+        const LS_PROMPTED = 'left_notify_prompted';
+        const LS_LAST_SENT = 'left_notify_last_sent'; // yyyy-mm-dd local
+        const LS_SCHEDULED_UNTIL = 'left_notify_scheduled_until'; // yyyy-mm-dd local
+
+        function dayOfYear(d){
+          const start = new Date(d.getFullYear(),0,1); // local midnight Jan 1
+          const ms = d - start;
+          return Math.floor(ms / 86400000);
+        }
+        function daysLeftInYearFor(d){
+          const yearStart = new Date(d.getFullYear(), 0, 1);
+          const nextStart = new Date(d.getFullYear()+1, 0, 1);
+          const total = Math.round((nextStart - yearStart) / 86400000);
+          const todayIndex = Math.floor((new Date(d.getFullYear(), d.getMonth(), d.getDate()) - yearStart)/86400000);
+          return Math.max(0, total - (todayIndex + 1));
+        }
+        function nextNineAMEpoch(){
+          const now = new Date();
+          const next = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 9, 0, 0, 0);
+          if (now.getTime() >= next.getTime()) {
+            next.setDate(next.getDate() + 1);
+          }
+          return next.getTime();
+        }
+        function nineAMOf(d){
+          const t = new Date(d.getFullYear(), d.getMonth(), d.getDate(), 9, 0, 0, 0);
+          return t.getTime();
+        }
+        function todaysKey(){
+          const n = new Date();
+          const mm = String(n.getMonth()+1).padStart(2,'0');
+          const dd = String(n.getDate()).padStart(2,'0');
+          return `${n.getFullYear()}-${mm}-${dd}`;
+        }
+        const messages = [
+          'Only {days} days left this year. Make them count.',
+          '{days} days remain. Do one small thing that matters.',
+          '{days} days to go. Spend them on what you value.',
+          'Tick tock: {days} days left this year.',
+          'You have {days} more chances this year.',
+          '{days} days left. Choose intentionally.',
+          'Make today count. {days} days left this year.',
+          '{days} days remain. Take a step forward today.',
+          'Focus on what matters. {days} days left.',
+          '{days} days left. Tiny steps add up.'
+        ];
+        function messageForDate(d){
+          const idx = dayOfYear(d) % messages.length;
+          return messages[idx].replace('{days}', String(daysLeftInYearFor(d)));
+        }
+        async function sendNotificationNow(reg){
+          try {
+            const title = 'Left';
+            const body = messageForDate(new Date());
+            const options = {
+              body,
+              tag: 'left-daily',
+              renotify: false,
+              icon: '/favicon/android-chrome-192x192.png',
+              badge: '/favicon/android-chrome-192x192.png'
+            };
+            if (reg && reg.showNotification) {
+              await reg.showNotification(title, options);
+            } else if (Notification && Notification.permission === 'granted') {
+              new Notification(title, options);
+            }
+            try { localStorage.setItem(LS_LAST_SENT, todaysKey()); } catch(_) {}
+          } catch(_) {}
+        }
+        function parseKey(k){
+          const [y,m,d] = (k||'').split('-').map(v => parseInt(v,10));
+          if (!y || !m || !d) return null;
+          return new Date(y, m-1, d);
+        }
+        function addDays(d, n){ const x = new Date(d.getFullYear(), d.getMonth(), d.getDate()); x.setDate(x.getDate()+n); return x; }
+        function keyForDate(d){
+          const mm = String(d.getMonth()+1).padStart(2,'0');
+          const dd = String(d.getDate()).padStart(2,'0');
+          return `${d.getFullYear()}-${mm}-${dd}`;
+        }
+        async function scheduleUpcoming(reg, count = 20){
+          try {
+            // Prefer Notification Triggers (Chrome-based, experimental)
+            if ('TimestampTrigger' in window && reg && reg.showNotification) {
+              const now = new Date();
+              const today9 = nineAMOf(now);
+              const startDate = (Date.now() < today9) ? new Date(now.getFullYear(), now.getMonth(), now.getDate()) : addDays(now, 1);
+
+              const scheduledUntilKey = (function(){ try { return localStorage.getItem(LS_SCHEDULED_UNTIL)||''; } catch(_) { return ''; } })();
+              const scheduledUntil = parseKey(scheduledUntilKey);
+
+              let targetUntil = addDays(startDate, count - 1);
+              // If we already scheduled into the future, only top up beyond that
+              let fromDate = startDate;
+              if (scheduledUntil && scheduledUntil.getTime() >= startDate.getTime()) {
+                fromDate = addDays(scheduledUntil, 1);
+                const daysAhead = Math.ceil((addDays(startDate, count - 1) - startDate)/86400000);
+                targetUntil = addDays(scheduledUntil, Math.max(0, daysAhead));
+              }
+
+              for (let d = new Date(fromDate.getFullYear(), fromDate.getMonth(), fromDate.getDate()); d.getTime() <= targetUntil.getTime(); d.setDate(d.getDate() + 1)) {
+                const when = nineAMOf(d);
+                // Skip if time somehow in the past
+                if (when <= Date.now()) continue;
+                const tag = `left-daily-${keyForDate(d)}`;
+                const opts = {
+                  tag,
+                  showTrigger: new window.TimestampTrigger(when),
+                  body: messageForDate(new Date(d.getFullYear(), d.getMonth(), d.getDate())),
+                  icon: '/favicon/android-chrome-192x192.png',
+                  badge: '/favicon/android-chrome-192x192.png',
+                  data: { date: keyForDate(d) }
+                };
+                await reg.showNotification('Left', opts);
+              }
+              try { localStorage.setItem(LS_SCHEDULED_UNTIL, keyForDate(targetUntil)); } catch(_) {}
+            } else {
+              // Fallback: best-effort timer while app is open
+              const ts = nextNineAMEpoch();
+              const delay = Math.max(0, ts - Date.now());
+              setTimeout(() => { sendNotificationNow(reg); scheduleUpcoming(reg, count); }, delay);
+            }
+          } catch(_) {}
+        }
+        async function enableDaily(){
+          try { localStorage.setItem(LS_OPT_IN, '1'); } catch(_) {}
+          const reg = await navigator.serviceWorker.getRegistration();
+          // If we already sent today (e.g., opening after 9am), don't duplicate
+          const last = (function(){ try { return localStorage.getItem(LS_LAST_SENT)||''; } catch(_) { return ''; }})();
+          if (last !== todaysKey()) {
+            // If already past 9am, fire now; otherwise schedule
+            if (Date.now() >= nextNineAMEpoch()) {
+              await sendNotificationNow(reg);
+            }
+          }
+          scheduleUpcoming(reg, 20);
+        }
+        async function requestAndSetup(){
+          try {
+            if (!('Notification' in window)) return;
+            if (Notification.permission === 'denied') return;
+            const perm = await Notification.requestPermission();
+            if (perm === 'granted') {
+              await enableDaily();
+            }
+          } catch(_) {}
+        }
+
+        // If already opted in, ensure scheduling on load
+        window.addEventListener('load', async () => {
+          try {
+            if (!('Notification' in window)) return;
+            if (localStorage.getItem(LS_OPT_IN) === '1' && Notification.permission === 'granted') {
+              const reg = await navigator.serviceWorker.getRegistration();
+              scheduleUpcoming(reg, 20);
+            }
+          } catch(_) {}
+        });
+
+        // Gentle, non-blocking prompt triggers after user engagement or time
+        (function setupGentleNotificationPrompt(){
+          const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator && window.navigator.standalone === true);
+          if (!isStandalone) return; // only prompt when running as PWA
+
+          function eligible(){
+            try {
+              if (!('Notification' in window)) return false;
+              if (Notification.permission === 'granted' || Notification.permission === 'denied') return false;
+              if (localStorage.getItem(LS_PROMPTED) === '1') return false;
+              if (localStorage.getItem(LS_OPT_IN) === '1') return false;
+              return true;
+            } catch(_) { return false; }
+          }
+
+          function showPrompt(){
+            if (!eligible()) return;
+            // Blocking confirm, but only after engagement or delay
+            const ok = window.confirm('Left wants to send you reminders of your time left. Allow notifications?');
+            try { localStorage.setItem(LS_PROMPTED, '1'); } catch(_) {}
+            if (ok) requestAndSetup();
+            removeHandlers();
+          }
+
+          let tapsAnywhere = 0;
+          let tapsFooter = 0;
+          const footer = document.querySelector('.bottom');
+          const onAnyTap = () => { if (!eligible()) return removeHandlers(); if (++tapsAnywhere >= 6) showPrompt(); };
+          const onFooterTap = () => { if (!eligible()) return removeHandlers(); if (++tapsFooter >= 3) showPrompt(); };
+          const timer = setTimeout(() => { showPrompt(); }, 30000); // 30s after load
+
+          function removeHandlers(){
+            try { document.removeEventListener('click', onAnyTap, true); } catch(_) {}
+            try { footer && footer.removeEventListener('click', onFooterTap, true); } catch(_) {}
+            try { clearTimeout(timer); } catch(_) {}
+          }
+
+          // Attach after load to avoid any startup cost
+          setTimeout(() => {
+            if (!eligible()) return removeHandlers();
+            document.addEventListener('click', onAnyTap, true);
+            if (footer) footer.addEventListener('click', onFooterTap, true);
+          }, 0);
+        })();
+      })();
+
+      (function () {
+        const grid = document.getElementById('grid');
+        const cardEl = document.querySelector('.card');
+        const quoteEl = document.getElementById('quote');
+        const yearEl = document.getElementById('year');
+        const infoEl = document.getElementById('right-info');
+        const shareBtn = document.getElementById('shareBtn');
+        const quoteBtn = document.getElementById('quoteBtn');
+        const viewBtn = document.getElementById('viewBtn');
+        const colorBtn = document.getElementById('colorBtn');
+        const symbolBtn = document.getElementById('symbolBtn');
+        const personBtn = document.getElementById('personBtn');
+        const bdayPanel = document.getElementById('bdayPanel');
+        const actionsCard = document.querySelector('.actions-card');
+        const appBtn = document.getElementById('appBtn');
+        let deferredInstallPrompt = null;
+        // Capture install prompt so we can trigger it from our button
+        window.addEventListener('beforeinstallprompt', (e) => {
+          try { e.preventDefault(); } catch(_) {}
+          deferredInstallPrompt = e;
+        });
+        // Keep bday panel gap accurate by syncing actions card height to a CSS var
+        function syncActionsHeight() {
+          try {
+            const h = actionsCard ? actionsCard.offsetHeight : 60;
+            document.documentElement.style.setProperty('--actions-height', h + 'px');
+          } catch(_) {}
+        }
+        syncActionsHeight();
+        window.addEventListener('resize', syncActionsHeight);
+        window.addEventListener('orientationchange', syncActionsHeight);
+        const bdayMonth = document.getElementById('bdayMonth');
+        const bdayYear = document.getElementById('bdayYear');
+        const bdayConfirm = document.getElementById('bdayConfirm');
+
+        const now = new Date();
+        const y = now.getFullYear();
+        const m = now.getMonth();
+        const DAY_MS = 86400000;
+
+        // Helpers
+        const monthsShort = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+        const monthsFull  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+        const ordinal = n => { const s = ["th","st","nd","rd"], v = n % 100; return n + (s[(v - 20) % 10] || s[v] || s[0]); };
+        const formatDate = d => `${ordinal(d.getUTCDate())} ${monthsShort[d.getUTCMonth()]}, ${d.getUTCFullYear()}`;
+
+        function yearState() {
+          const startUTC = Date.UTC(y, 0, 1);
+          const nextStartUTC = Date.UTC(y + 1, 0, 1);
+          const totalDays = Math.round((nextStartUTC - startUTC) / DAY_MS);
+          const todayIndex = Math.floor((Date.UTC(y, now.getMonth(), now.getDate()) - startUTC) / DAY_MS);
+          const daysLeft = totalDays - (todayIndex + 1);
+          return { labelLeft: String(y), startUTC, totalDays, todayIndex, cols: 15, rows: 25, daysLeft };
+        }
+
+        function monthState() {
+          const startUTC = Date.UTC(y, m, 1);
+          const nextStartUTC = Date.UTC(y, m + 1, 1);
+          const totalDays = Math.round((nextStartUTC - startUTC) / DAY_MS);
+          const todayIndex = Math.floor((Date.UTC(y, now.getMonth(), now.getDate()) - startUTC) / DAY_MS);
+          const cols = 7;
+          const rows = Math.ceil(totalDays / cols);
+          const daysLeft = Math.max(0, totalDays - (todayIndex + 1));
+          return { labelLeft: monthsFull[m], startUTC, totalDays, todayIndex, cols, rows, daysLeft };
+        }
+
+        function dayState() {
+          const nowLocal = new Date();
+          const startUTC = Date.UTC(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate());
+          const totalDays = 24; // 24 hours
+          const todayIndex = nowLocal.getHours(); // 0..23, current hour block considered past
+          const cols = 6; // 6 x 4 grid
+          const rows = 4;
+          const daysLeft = Math.max(0, totalDays - (todayIndex + 1));
+          const dow = nowLocal.toLocaleDateString(undefined, { weekday: 'long' });
+          return { kind: 'day', labelLeft: dow, startUTC, totalDays, todayIndex, cols, rows, daysLeft };
+        }
+
+        function monthsState() {
+          const nowLocal = new Date();
+          const startUTC = Date.UTC(nowLocal.getFullYear(), 0, 1);
+          const totalDays = 12; // months in a year
+          const todayIndex = nowLocal.getMonth(); // 0..11, current month not past
+          const cols = 3;
+          const rows = 4;
+          const daysLeft = Math.max(0, 11 - todayIndex); // months remaining after current
+          return { kind: 'months', labelLeft: 'Months', startUTC, totalDays, todayIndex, cols, rows, daysLeft };
+        }
+
+        function weekState() {
+          const nowLocal = new Date();
+          const dowSun0 = nowLocal.getDay(); // 0=Sun..6=Sat
+          const dowMon0 = (dowSun0 + 6) % 7; // 0=Mon..6=Sun
+          const startUTC = Date.UTC(nowLocal.getFullYear(), nowLocal.getMonth(), nowLocal.getDate());
+          const totalDays = 7;
+          const todayIndex = dowMon0; // current day is not past
+          const cols = 1;
+          const rows = 7;
+          const daysLeft = Math.max(0, 6 - dowMon0); // days remaining after today
+          return { kind: 'week', labelLeft: 'This week', startUTC, totalDays, todayIndex, cols, rows, daysLeft };
+        }
+
+        // Determine initial mode/state using stored preference
+        let mode = 'year';
+        try {
+          const savedMode = localStorage.getItem('left_mode');
+          if (savedMode === 'month' || savedMode === 'months' || savedMode === 'life' || savedMode === 'year' || savedMode === 'day' || savedMode === 'week') {
+            mode = savedMode;
+          }
+        } catch(_) {}
+        // URL param wins
+        try {
+          const urlMode = new URLSearchParams(location.search).get('mode');
+          if (urlMode && ['year','months','month','week','day','life'].includes(urlMode)) mode = urlMode;
+        } catch(_) {}
+
+        let state;
+        if (mode === 'life') {
+          try {
+            const saved = localStorage.getItem('left_birthdate');
+            if (saved) {
+              const [yy, mm] = saved.split('-').map(Number);
+              if (yy && mm) state = lifeState(new Date(yy, (mm-1)||0, 1));
+            }
+          } catch(_) {}
+        }
+        if (!state) {
+          if (mode === 'months') { state = monthsState(); }
+          else if (mode === 'month') { state = monthState(); }
+          else if (mode === 'week') { state = weekState(); }
+          else if (mode === 'day') { state = dayState(); }
+          else { state = yearState(); mode = 'year'; }
+        }
+
+        let showPercent = false; // right label mode
+
+        // Quotes for quote mode
+        const quotes = [
+          'Time is a nonrenewable budget. Spend it on what matters.',
+          'Days are currency. Spend them with care.',
+          'You are not late. You are finite. Choose.',
+          'Memento mori. Memento vivere.',
+          'The clock is honest. Be too.',
+          'Fewer days ahead than behind. Make this one count.',
+          'Attention is life. Guard it.',
+          'Do not wait for the mood. Act.',
+          'Most things can wait. Your life cannot.',
+          'The years are short. Today is the unit.',
+          'You cannot save time. You can shape it.',
+          'Do one small thing that matters.',
+          'Death gives today its edge.',
+          'The calendar will not plead. You must.',
+          'Your schedule is your values in motion.',
+          'Leave something better than you found it.',
+          'Less scrolling. More making.',
+          'Move like your time is yours.',
+          'Say no so you can say yes.',
+          'Time left is not a threat. It is permission.',
+          'Make a plan. Then make a start.',
+          'If it matters, put it on today.',
+          'Small effort, repeated, changes the shape of time.',
+          'You can be busy or you can be present.',
+          'The moment asks for attention, not perfection.',
+          'Trade comfort for meaning when you can.',
+          'Chase fewer goals. Finish more.',
+          'Focus is generosity to your future self.',
+          'Leave gaps in the calendar so life can breathe.',
+          'You own your minutes. Spend them like they are yours.',
+          'Most progress is quiet. Keep going.',
+          'Skip one distraction today.',
+          'Make the next hour obvious and simple.',
+          'Choose depth over speed.',
+          'The clock keeps moving. Move with it.',
+          'Time clarifies values. Let it guide your choices.',
+          'A good day has one thing that mattered.',
+          'If you cannot do a lot, do a little well.',
+          'Routine is a kindness to the future.',
+          'The finish line is a series of starts.',
+          'Say later to most things so you can say now to one.',
+          'Less urgency. More intent.',
+          'Your life will be a set of days like this one.',
+          'Hold attention like it is a candle.',
+          'You cannot borrow time. You can only direct it.',
+          'Make room for what you care about or it will not happen.',
+          'Tomorrow is built from small todays.',
+          'You will forget much. Make something worth remembering.',
+          'Time left invites courage.',
+          'You cannot do everything. You can do something.',
+          'Decide what to keep. Let the rest go.'
+        ];
+        let quoteMode = false;
+        let lastQuoteIndex = -1;
+        function nextQuoteIndex(){
+          if (!quotes.length) return 0;
+          if (quotes.length === 1) return 0;
+          let idx = -1;
+          do { idx = Math.floor(Math.random() * quotes.length); } while (idx === lastQuoteIndex);
+          lastQuoteIndex = idx;
+          return idx;
+        }
+        function showRandomQuote(){
+          try {
+            const idx = nextQuoteIndex();
+            if (quoteEl) quoteEl.textContent = quotes[idx];
+          } catch(_) {}
+        }
+        function enterQuoteMode(){
+          quoteMode = true;
+          try { cardEl && cardEl.classList.add('quote-mode'); } catch(_) {}
+          showRandomQuote();
+          try { quoteBtn && quoteBtn.setAttribute('aria-label', 'New quote'); } catch(_) {}
+        }
+        function exitQuoteMode(){
+          quoteMode = false;
+          try { cardEl && cardEl.classList.remove('quote-mode'); } catch(_) {}
+          try { quoteBtn && quoteBtn.setAttribute('aria-label', 'Show a quote'); } catch(_) {}
+        }
+
+        // Theme colors and symbols
+        const themes = [
+          { name: 'Monochrome', light: '#f7f7f4', dark: '#EEEEEC' },
+          { name: 'Red',        light: '#FADADA', dark: '#FF6B6B' },
+          { name: 'Blue',       light: '#EAF0F9', dark: '#6BA8FF' },
+          { name: 'Green',      light: '#E9F5EC', dark: '#4CAF6B' },
+          { name: 'Purple',     light: '#F0EAF9', dark: '#A07CFF' },
+          { name: 'Orange',     light: '#FBE7DA', dark: '#FFA347' },
+          // New softer-in-light, bolder-in-dark themes
+          { name: 'Brown',      light: '#EFE8E3', dark: '#A37555' },
+          { name: 'Mint',       light: '#E6F5F0', dark: '#48C9A9' },
+          { name: 'Yellow',     light: '#FFF6CC', dark: '#FFD54A' },
+          { name: 'Pink',       light: '#FBE3EE', dark: '#FF7FB0' },
+        ];
+        const symbols = [
+          { key: 'dot', label: 'Dot', char: '•', icon: 'circle' },
+          { key: 'square', label: 'Square', char: '■', icon: 'square' },
+          { key: 'triangle', label: 'Triangle', char: '▲', icon: 'triangle' },
+          { key: 'star', label: 'Star', char: '★', icon: 'star' },
+          { key: 'hexagon', label: 'Hexagon', char: '⬢', icon: 'hexagon' },
+        ];
+        // Hand-tuned palettes inspired by Material 3 tones (bg, container, element)
+        const palettes = {
+          'Purple': {
+            light: { bg: '#F6EDFF', surface: '#EADDFF', elements: '#4F378A' },
+            dark:  { bg: '#140B24', surface: '#1F1336', elements: '#D0BCFF' }
+          },
+          'Yellow': {
+            light: { bg: '#FFF6CC', surface: '#FFE082', elements: '#5C4B00' },
+            dark:  { bg: '#1F1A00', surface: '#2A2300', elements: '#FFE271' }
+          },
+          'Orange': {
+            light: { bg: '#FFE9D6', surface: '#FFCC9E', elements: '#7C2E00' },
+            dark:  { bg: '#2C1400', surface: '#3A1C00', elements: '#FFB68A' }
+          },
+          'Red': {
+            light: { bg: '#FFE5E7', surface: '#FFCDD2', elements: '#7F1D1D' },
+            dark:  { bg: '#2A0C0E', surface: '#3B0B0B', elements: '#FFB4A9' }
+          },
+          'Blue': {
+            light: { bg: '#E7F0FF', surface: '#CFE4FF', elements: '#0B4AA2' },
+            dark:  { bg: '#001326', surface: '#001A40', elements: '#8CC4FF' }
+          },
+          'Green': {
+            light: { bg: '#E9F6EE', surface: '#C8E6D1', elements: '#0B5B30' },
+            dark:  { bg: '#001E16', surface: '#00281F', elements: '#7EE0A6' }
+          },
+          'Mint': {
+            light: { bg: '#E6F7F2', surface: '#C4ECE3', elements: '#005046' },
+            dark:  { bg: '#001F1C', surface: '#002B26', elements: '#8EE6D1' }
+          },
+          'Pink': {
+            light: { bg: '#FFE7F1', surface: '#FFD0E1', elements: '#7A174A' },
+            dark:  { bg: '#2A0E1D', surface: '#3A0F23', elements: '#FFB1D1' }
+          },
+          'Brown': {
+            light: { bg: '#F2E8E1', surface: '#E4D0C4', elements: '#5D4037' },
+            dark:  { bg: '#1D140F', surface: '#2D1E16', elements: '#E0C2A7' }
+          },
+          'Monochrome': {
+            light: { bg: '#F3F3F3', surface: '#E5E5E5', elements: '#222222' },
+            dark:  { bg: '#121212', surface: '#1E1E1E', elements: '#E0E0E0' }
+          }
+        };
+        let themeIndex = 0;
+        let symbolIndex = 0; // 0 = dot
+
+        // Simple color helpers
+        function hexToRgb(hex){
+          const m = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex||'');
+          return m ? { r: parseInt(m[1],16), g: parseInt(m[2],16), b: parseInt(m[3],16) } : null;
+        }
+        function rgbToHex(r,g,b){
+          const to = (x)=> Math.max(0, Math.min(255, Math.round(x))).toString(16).padStart(2,'0');
+          return `#${to(r)}${to(g)}${to(b)}`;
+        }
+        function mix(a, b, p){
+          const ra = hexToRgb(a), rb = hexToRgb(b);
+          if (!ra || !rb) return a || b;
+          const q = Math.max(0, Math.min(1, p));
+          return rgbToHex(ra.r*(1-q)+rb.r*q, ra.g*(1-q)+rb.g*q, ra.b*(1-q)+rb.b*q);
+        }
+        function applyTheme() {
+          const t = themes[themeIndex];
+          const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          // Prefer hand-tuned palettes when available
+          const pal = palettes[t.name];
+          if (pal) {
+            const p = isDark ? pal.dark : pal.light;
+            const primary = p.elements;
+            const elements = p.elements;
+            const surface = p.surface;
+            const pageBg = p.bg;
+
+            document.documentElement.style.setProperty('--m3-primary', primary);
+            document.documentElement.style.setProperty('--m3-elements', elements);
+            document.documentElement.style.setProperty('--m3-on-surface', isDark ? '#EEEEEC' : '#111110');
+            document.documentElement.style.setProperty('--m3-surface', surface);
+            document.documentElement.style.setProperty('--m3-page-bg', pageBg);
+            document.documentElement.style.setProperty('--accent-dark', primary);
+            document.documentElement.style.setProperty('--panel-bg', surface);
+            document.documentElement.style.setProperty('--footer-color', isDark ? elements : 'inherit');
+            try { localStorage.setItem('left_theme_index', String(themeIndex)); } catch(_) {}
+            return;
+          }
+
+          // Fallback: derive tones from theme swatches
+          const darkSeed = t.dark || '#6BA8FF';
+          const lightSeed = t.light || '#f7f7f4';
+          // Primary: vibrant version of the seed
+          let primary = toVibrant(isDark ? darkSeed : lightSeed, isDark ? 'dark' : 'light');
+          // In dark mode, boost vibrancy for specific themes
+          if (isDark) {
+            const n = (t.name || '').toLowerCase();
+            if (n === 'red' || n === 'orange') {
+              primary = adjustSaturationLightness(primary, 1.25, 0.06);
+            } else if (n === 'yellow') {
+              primary = adjustSaturationLightness(primary, 1.10, 0.03);
+            }
+          }
+          // Surfaces: lightly tinted in light, subtly in dark
+          let pageBg = isDark ? mix('#0B0B0B', darkSeed, 0.12) : mix('#FFFFFF', lightSeed, 0.20);
+          // Card/container surface
+          let lightMix = 0.32; // stronger, mid tint for card
+          if (!isDark) {
+            const n = (t.name || '').toLowerCase();
+            if (n === 'brown') lightMix = 0.38;       // more brown in card
+            else if (n === 'yellow') lightMix = 0.36; // more yellow in card
+            else if (n === 'purple') lightMix = 0.34; // separation for purple
+          }
+          let surface = isDark ? mix('#141413', darkSeed, 0.22) : mix('#FFFEFC', lightSeed, lightMix);
+
+          // Elements tint:
+          // - dark: follow primary (already boosted for some themes)
+          // - light: strongly tinted version of light seed (more saturated, slightly darker)
+          let elements = primary;
+          if (!isDark) {
+            // Much stronger-tinted element color from the same hue
+            elements = adjustSaturationLightness(primary, 1.60, -0.20);
+          }
+
+          // Explicit mapping for Material Purple tones in light mode
+          if (!isDark && (t.name || '').toLowerCase() === 'purple') {
+            pageBg = '#F6EDFF';        // soft background
+            surface = '#EADDFF';       // primary-container
+            primary = '#4F378A';       // on-primary-container (used for elements)
+            elements = '#4F378A';
+          }
+
+          document.documentElement.style.setProperty('--m3-primary', primary);
+          document.documentElement.style.setProperty('--m3-elements', elements);
+          document.documentElement.style.setProperty('--m3-on-surface', isDark ? '#EEEEEC' : '#111110');
+          document.documentElement.style.setProperty('--m3-surface', surface);
+          document.documentElement.style.setProperty('--m3-page-bg', pageBg);
+          // Keep legacy vars in sync
+          document.documentElement.style.setProperty('--accent-dark', primary);
+          document.documentElement.style.setProperty('--panel-bg', surface);
+          document.documentElement.style.setProperty('--footer-color', isDark ? elements : 'inherit');
+          try { localStorage.setItem('left_theme_index', String(themeIndex)); } catch(_) {}
+        }
+
+        function currentSymbol() { return symbols[symbolIndex]; }
+        function isGlyphSymbol() { return currentSymbol().key !== 'dot'; }
+        function toggleColor() { themeIndex = (themeIndex + 1) % themes.length; applyTheme(); }
+        function toggleSymbol() { symbolIndex = (symbolIndex + 1) % symbols.length; renderGrid(); try { localStorage.setItem('left_symbol_index', String(symbolIndex)); } catch(_) {} }
+
+        // Make the swatch a bit more vibrant than the theme color without changing theme
+        function toVibrant(hex, mode) {
+          const m = String(hex).match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+          if (!m) return hex;
+          let r = parseInt(m[1], 16) / 255;
+          let g = parseInt(m[2], 16) / 255;
+          let b = parseInt(m[3], 16) / 255;
+          const max = Math.max(r, g, b), min = Math.min(r, g, b);
+          let h, s, l = (max + min) / 2;
+          if (max === min) { h = s = 0; }
+          else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) { case r: h = (g - b) / d + (g < b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; default: h = (r - g) / d + 4; }
+            h /= 6;
+          }
+          s = Math.min(1, s * 1.3 + 0.06);
+          l = mode === 'light' ? Math.max(0, l - 0.06) : Math.min(1, l + 0.04);
+          function h2rgb(p, q, t){ if(t<0) t+=1; if(t>1) t-=1; if(t<1/6) return p + (q - p) * 6 * t; if(t<1/2) return q; if(t<2/3) return p + (q - p) * (2/3 - t) * 6; return p; }
+          const q = l < 0.5 ? l * (1 + s) : l + s - l * s; const p = 2 * l - q;
+          const rr = Math.round(h2rgb(p, q, h + 1/3) * 255);
+          const gg = Math.round(h2rgb(p, q, h) * 255);
+          const bb = Math.round(h2rgb(p, q, h - 1/3) * 255);
+          const toHex = (x) => x.toString(16).padStart(2, '0');
+          return `#${toHex(rr)}${toHex(gg)}${toHex(bb)}`;
+        }
+
+        // Adjust saturation/lightness in HSL for specific cases
+        function adjustSaturationLightness(hex, satMul, lightDelta){
+          const m = String(hex).match(/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i);
+          if (!m) return hex;
+          let r = parseInt(m[1], 16) / 255;
+          let g = parseInt(m[2], 16) / 255;
+          let b = parseInt(m[3], 16) / 255;
+          const max = Math.max(r, g, b), min = Math.min(r, g, b);
+          let h, s, l = (max + min) / 2;
+          if (max === min) { h = s = 0; }
+          else {
+            const d = max - min;
+            s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+            switch (max) { case r: h = (g - b) / d + (g < b ? 6 : 0); break; case g: h = (b - r) / d + 2; break; default: h = (r - g) / d + 4; }
+            h /= 6;
+          }
+          s = Math.max(0, Math.min(1, s * satMul));
+          l = Math.max(0, Math.min(1, l + lightDelta));
+          function h2rgb(p, q, t){ if(t<0) t+=1; if(t>1) t-=1; if(t<1/6) return p + (q - p) * 6 * t; if(t<1/2) return q; if(t<2/3) return p + (q - p) * (2/3 - t) * 6; return p; }
+          const q = l < 0.5 ? l * (1 + s) : l + s - l * s; const p = 2 * l - q;
+          const rr = Math.round(h2rgb(p, q, h + 1/3) * 255);
+          const gg = Math.round(h2rgb(p, q, h) * 255);
+          const bb = Math.round(h2rgb(p, q, h - 1/3) * 255);
+          const toHex = (x) => x.toString(16).padStart(2, '0');
+          return `#${toHex(rr)}${toHex(gg)}${toHex(bb)}`;
+        }
+
+        function updateActionLabels() {
+          // Symbol button shows current glyph
+          try {
+            const preview = document.getElementById('symbolPreview');
+            symbolBtn.style.fontSize = '1em'; // reset
+            preview.className = '';
+            preview.style.width = '';
+            preview.style.height = '';
+            preview.style.fontSize = '';
+            // Always show a generic Shapes icon in the picker button
+            preview.innerHTML = `<span class="material-symbols-outlined" aria-hidden="true">shapes</span>`;
+            symbolBtn.setAttribute('aria-label', 'Change symbol');
+          } catch(_) {}
+          // Color button label reflects current theme name (icon is static palette)
+          try {
+            const t = themes[themeIndex];
+            colorBtn.setAttribute('aria-label', 'Change color: ' + t.name);
+          } catch(_) {}
+          // Person button icon reflects whether birthdate is set
+          try {
+            const saved = localStorage.getItem('left_birthdate');
+            const el = document.querySelector('#personBtn .material-symbols-outlined');
+            if (el) el.textContent = saved ? 'person' : 'person_edit';
+          } catch(_) {}
+        }
+
+        function rightText() {
+          if (!state) return '';
+          if (showPercent) {
+            const pct = state.totalDays ? Math.max(0, Math.min(100, Math.round((state.daysLeft / state.totalDays) * 100))) : 0;
+            return pct + '% left';
+          }
+          const unit = state.kind === 'life' ? 'years' : (state.kind === 'day' ? 'hours' : (state.kind === 'months' ? 'months' : 'days'));
+          return state.daysLeft + ' ' + unit + ' left';
+        }
+
+        function renderGrid() {
+          grid.innerHTML = '';
+          // Reset any custom spacing from other views
+          grid.style.rowGap = '';
+          grid.style.columnGap = '';
+          grid.style.gap = '';
+          if (state.kind === 'week') {
+            // Words instead of symbols; one row per day
+            grid.style.gridTemplateColumns = '1fr';
+            // Add vertical spacing between rows (website only)
+            try {
+              const card = document.querySelector('.card');
+              const cs = getComputedStyle(card);
+              const paddingY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+              const innerH = Math.max(0, card.clientHeight - paddingY);
+              // Week needs good separation: ~6% of inner height, clamped
+              const rowGap = Math.max(18, Math.min(64, Math.round(innerH * 0.06)));
+              grid.style.rowGap = rowGap + 'px';
+            } catch(_) {}
+            const days = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'];
+            for (let i = 0; i < 7; i++) {
+              const row = document.createElement('div');
+              const past = i < state.todayIndex; // current day not past
+              row.className = 'week-row' + (past ? ' past' : '');
+              row.textContent = days[i];
+              grid.appendChild(row);
+            }
+          } else if (state.kind === 'months') {
+            // 3 columns x 4 rows grid with month names
+            grid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            // Add generous vertical spacing between rows (website only)
+            try {
+              const card = document.querySelector('.card');
+              const cs = getComputedStyle(card);
+              const paddingY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+              const innerH = Math.max(0, card.clientHeight - paddingY);
+              // Target a large, responsive row gap (about 8% of inner height), within sane bounds
+              const rowGap = Math.max(28, Math.min(80, Math.round(innerH * 0.08)));
+              grid.style.rowGap = rowGap + 'px';
+            } catch(_) {}
+            for (let i = 0; i < 12; i++) {
+              const cell = document.createElement('div');
+              const past = i < state.todayIndex; // current month not past
+              cell.className = 'month-cell' + (past ? ' past' : '');
+              cell.textContent = monthsShort[i].toUpperCase();
+              cell.title = monthsFull[i];
+              grid.appendChild(cell);
+            }
+          } else {
+            grid.style.gridTemplateColumns = `repeat(${state.cols}, var(--dot-size))`;
+            for (let i = 0; i < state.totalDays; i++) {
+              const dot = document.createElement('div');
+              const past = (i <= state.todayIndex);
+              if (isGlyphSymbol()) {
+                dot.className = 'dot glyph' + (past ? ' past' : '');
+                const sym = currentSymbol();
+                dot.textContent = sym.char || '•';
+                // Make shapes visually larger; triangles/stars slightly bigger than default
+                if (sym.key === 'square' || sym.key === 'hexagon') {
+                  dot.style.fontSize = `calc(${getComputedStyle(document.documentElement).getPropertyValue('--dot-size').trim()} * 2)`;
+                } else if (sym.key === 'triangle' || sym.key === 'star') {
+                  dot.style.fontSize = `calc(${getComputedStyle(document.documentElement).getPropertyValue('--dot-size').trim()} * 1.6)`;
+                }
+              } else {
+                dot.className = 'dot' + (past ? ' past' : '');
+              }
+              if (state.kind === 'life') {
+                dot.title = String(state.birthYear + i);
+              } else if (state.kind === 'day') {
+                const hour = i;
+                const h12 = ((hour + 11) % 12) + 1; // 1..12
+                const ampm = hour < 12 ? 'AM' : 'PM';
+                dot.title = `${h12}:00 ${ampm}`;
+              } else {
+                const d = new Date(state.startUTC + i * DAY_MS);
+                dot.title = formatDate(d);
+              }
+              grid.appendChild(dot);
+            }
+          }
+
+          yearEl.textContent = state.labelLeft;
+          infoEl.textContent = rightText();
+          recalcGap();
+          updateActionLabels();
+        }
+
+        // Hover handlers: show date of hovered dot; revert on leave
+        grid.addEventListener('mouseover', (e) => {
+          const t = e.target;
+          if (t && t.classList && (t.classList.contains('dot') || t.classList.contains('week-row') || t.classList.contains('month-cell'))) {
+            infoEl.textContent = t.title;
+          }
+        });
+        grid.addEventListener('mouseout', (e) => {
+          const t = e.target;
+          if (t && t.classList && (t.classList.contains('dot') || t.classList.contains('week-row') || t.classList.contains('month-cell'))) {
+            infoEl.textContent = rightText();
+          }
+        });
+
+        // Helper to parse saved birthdate (YYYY-MM)
+        function getSavedBirthDate() {
+          try {
+            const saved = localStorage.getItem('left_birthdate');
+            if (!saved) return null;
+            const [yy, mm] = saved.split('-').map(Number);
+            if (!yy || !mm) return null;
+            return new Date(yy, (mm - 1) || 0, 1);
+          } catch(_) { return null; }
+        }
+
+        // Tap/click on the left label to toggle views in order:
+        // With birthday: Life → Year → Months → Month → Week → Day → (wrap)
+        // Without birthday: Year → Months → Month → Week → Day → (wrap)
+        yearEl.addEventListener('click', () => {
+          const savedBirth = getSavedBirthDate();
+          const cycle = savedBirth
+            ? ['life','year','months','month','week','day']
+            : ['year','months','month','week','day'];
+          const curIndex = Math.max(0, cycle.indexOf(mode));
+          const nextIndex = (curIndex + 1) % cycle.length;
+          const nextMode = cycle[nextIndex];
+          mode = nextMode;
+          if (mode === 'life') { state = lifeState(savedBirth); }
+          else if (mode === 'year') { state = yearState(); }
+          else if (mode === 'months') { state = monthsState(); }
+          else if (mode === 'month') { state = monthState(); }
+          else if (mode === 'week') { state = weekState(); }
+          else { state = dayState(); }
+          try { localStorage.setItem('left_mode', mode); } catch(_) {}
+          renderGrid();
+        });
+
+        // View button mirrors the left footer label behavior
+        if (viewBtn) viewBtn.addEventListener('click', () => { if (quoteMode) exitQuoteMode(); else { yearEl && yearEl.click(); } });
+
+        // Birthday flow → Life mode (7x12 = 84 years)
+        function lifeState(birth) {
+          const birthDate = new Date(birth.getFullYear(), birth.getMonth(), birth.getDate());
+          const birthYear = birthDate.getFullYear();
+          const targetLifespan = 84; // years
+          // Completed years
+          const today = new Date();
+          let yearsCompleted = today.getFullYear() - birthYear;
+          // Adjust if before birthday this year
+          const hadBirthday = (today.getMonth() > birth.getMonth()) || (today.getMonth() === birth.getMonth() && today.getDate() >= birth.getDate());
+          if (!hadBirthday) yearsCompleted -= 1;
+          yearsCompleted = Math.max(0, Math.min(targetLifespan, yearsCompleted));
+          const yearsLeft = Math.max(0, targetLifespan - yearsCompleted);
+
+          return {
+            kind: 'life',
+            labelLeft: 'My life',
+            totalDays: targetLifespan,
+            todayIndex: yearsCompleted - 1, // mark completed years as past
+            cols: 7,
+            rows: 12,
+            daysLeft: yearsLeft,
+            birthYear
+          };
+        }
+
+        function startLifeModeWith(input) {
+          try {
+            const d = input instanceof Date ? input : new Date(input);
+            if (isNaN(d.getTime())) return;
+            mode = 'life';
+            state = lifeState(d);
+            // Persist
+            try {
+              const key = `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}`; // YYYY-MM
+              localStorage.setItem('left_birthdate', key);
+              localStorage.setItem('left_mode', 'life');
+            } catch (_) {}
+            renderGrid();
+          } catch (_) {}
+        }
+
+        // Populate dropdowns
+        (function initBirthdayDropdowns(){
+          const monthsFull  = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+          bdayMonth.innerHTML = monthsFull.map((m, i) => `<option value="${i}">${m}</option>`).join('');
+          const thisYear = new Date().getFullYear();
+          const years = [];
+          for (let yv = thisYear; yv >= 1945; yv--) years.push(`<option value="${yv}">${yv}</option>`);
+          bdayYear.innerHTML = years.join('');
+        })();
+
+        // Hook up birthday button and panel (icon button in actions-left)
+        function openBirthdayFlow() {
+          const savedBirth = getSavedBirthDate();
+          // If a birthday is saved and we are not in life mode, jump straight to life
+          if (savedBirth && mode !== 'life') {
+            mode = 'life';
+            state = lifeState(savedBirth);
+            try { localStorage.setItem('left_mode', 'life'); } catch(_) {}
+            bdayPanel.style.display = 'none';
+            renderGrid();
+            return;
+          }
+
+          // Otherwise, open the panel (also allow changing when already in life)
+          try {
+            const saved = localStorage.getItem('left_birthdate');
+            if (saved) {
+              const [yy, mm] = saved.split('-').map(Number);
+              if (yy && mm) { bdayYear.value = String(yy); bdayMonth.value = String(mm-1); }
+            }
+          } catch(_){}
+          bdayPanel.style.display = bdayPanel.style.display === 'none' ? 'flex' : 'none';
+        }
+        if (personBtn) personBtn.addEventListener('click', openBirthdayFlow);
+        bdayConfirm.addEventListener('click', () => {
+          const yy = parseInt(bdayYear.value, 10);
+          const mm = parseInt(bdayMonth.value, 10);
+          if (!isNaN(yy) && !isNaN(mm)) {
+            startLifeModeWith(new Date(yy, mm, 1));
+            bdayPanel.style.display = 'none';
+          }
+        });
+        // Initial render uses the chosen mode/state above
+
+        // Toggle right label between days left and % left
+        infoEl.addEventListener('click', () => {
+          showPercent = !showPercent;
+          infoEl.textContent = rightText();
+        });
+
+        // Compute gap so the grid uses 90% of card height, never resizing dots
+        function recalcGap() {
+          const sample = grid.querySelector('.dot');
+          if (!sample) return;
+          const dotPx = sample.getBoundingClientRect().width || 8;
+
+          const cols = state.cols, rows = state.rows;
+          const card = document.querySelector('.card');
+          const cs = getComputedStyle(card);
+          const paddingX = parseFloat(cs.paddingLeft) + parseFloat(cs.paddingRight);
+          const paddingY = parseFloat(cs.paddingTop) + parseFloat(cs.paddingBottom);
+          const cardInnerW = Math.max(0, card.clientWidth - paddingX);
+          const cardInnerH = Math.max(0, card.clientHeight - paddingY);
+
+          const compute = (cCols, cRows, availW) => {
+            const targetH = cardInnerH * 0.9;
+            const gapH = (targetH - cRows * dotPx) / (cRows - 1 || 1);
+            const gapW = (availW - cCols * dotPx) / (cCols - 1 || 1);
+            const gap = Math.max(0, Math.min(gapW, gapH));
+            const width = cCols * dotPx + (cCols - 1) * gap;
+            return { gap, width };
+          };
+
+          // Compute how wide the YEAR grid would be in this viewport
+          const yearMetrics = compute(15, 25, cardInnerW);
+
+          // Cap grid width to the YEAR grid width for all views
+          const allowedW = Math.min(cardInnerW, yearMetrics.width);
+
+          const current = compute(cols, rows, allowedW);
+          grid.style.gap = current.gap + 'px';
+          grid.style.width = current.width + 'px';
+          document.documentElement.style.setProperty('--footer-width', current.width + 'px');
+        }
+
+        // Initial and on-resize calculations
+        renderGrid();
+        window.addEventListener('resize', recalcGap);
+        window.addEventListener('orientationchange', recalcGap);
+
+        // No manual positioning needed; actions are in an anchored card
+
+        // Color and Symbol controls
+        colorBtn.addEventListener('click', () => { toggleColor(); updateActionLabels(); });
+        symbolBtn.addEventListener('click', () => { toggleSymbol(); updateActionLabels(); });
+
+        // View switcher removed from action bar (use header tap or URL param)
+
+        // Quote button: toggles quote mode and cycles quotes
+        if (quoteBtn) {
+          quoteBtn.addEventListener('click', () => {
+            if (!quoteMode) enterQuoteMode();
+            else showRandomQuote();
+          });
+        }
+
+        // Hide App Store link when running as installed PWA
+        try {
+          const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator && window.navigator.standalone === true);
+          if (isStandalone && appBtn) appBtn.style.display = 'none';
+          if (isStandalone && quoteBtn) quoteBtn.style.display = 'inline-flex';
+          window.addEventListener('appinstalled', () => {
+            try {
+              if (appBtn) appBtn.style.display = 'none';
+              if (quoteBtn) quoteBtn.style.display = 'inline-flex';
+            } catch(_){}
+          });
+        } catch(_) {}
+
+        // On Android, intercept the Get app link and guide install
+        try {
+          const APP_URL = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884';
+          const isAndroid = /Android/i.test(navigator.userAgent || '');
+          if (isAndroid && appBtn) {
+            appBtn.addEventListener('click', async (e) => {
+              try {
+                const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || (window.navigator && window.navigator.standalone === true);
+                if (isStandalone) return;
+                e.preventDefault();
+                if (deferredInstallPrompt && typeof deferredInstallPrompt.prompt === 'function') {
+                  deferredInstallPrompt.prompt();
+                  const choice = await deferredInstallPrompt.userChoice;
+                  deferredInstallPrompt = null; // can only use once
+                  if (choice && choice.outcome === 'accepted') return;
+                }
+                alert('To install Left:\n\n1) Open the browser menu (⋮).\n2) Tap "Install app" or "Add to Home screen".\n3) Follow the prompts to add it to your home screen.\n\nTip: In Samsung Internet, open the ≡ menu and choose "Add page to" → "Home screen".');
+              } catch(_) {}
+            });
+          } else if (appBtn) {
+            appBtn.addEventListener('click', () => { try { window.open(APP_URL, '_blank', 'noopener'); } catch(_) {} });
+          }
+        } catch(_) {}
+
+        // Load persisted theme/symbol
+        try {
+          // Theme: if not set, choose a random theme per user and persist it
+          const storedTi = localStorage.getItem('left_theme_index');
+          if (storedTi == null) {
+            themeIndex = Math.floor(Math.random() * themes.length) % themes.length;
+            try { localStorage.setItem('left_theme_index', String(themeIndex)); } catch(_) {}
+          } else {
+            const ti = parseInt(storedTi, 10);
+            if (!Number.isNaN(ti)) themeIndex = (ti % themes.length + themes.length) % themes.length;
+          }
+          // Symbol: default to Square (index 1) if not set
+          const storedSi = localStorage.getItem('left_symbol_index');
+          if (storedSi == null) {
+            symbolIndex = 1;
+            try { localStorage.setItem('left_symbol_index', '1'); } catch(_) {}
+          } else {
+            const si = parseInt(storedSi, 10);
+            if (!Number.isNaN(si)) symbolIndex = (si % symbols.length + symbols.length) % symbols.length;
+          }
+        } catch(_) {}
+        applyTheme();
+        // Re-render grid now that themeIndex/symbolIndex may have changed from defaults
+        renderGrid();
+        updateActionLabels();
+        // Re-apply theme on OS theme change to keep tokens fresh
+        try {
+          if (window.matchMedia) {
+            const mm = window.matchMedia('(prefers-color-scheme: dark)');
+            if (mm && mm.addEventListener) mm.addEventListener('change', applyTheme);
+            else if (mm && mm.addListener) mm.addListener(applyTheme);
+          }
+        } catch(_) {}
+
+        // --- Share: capture card and download ---
+        async function shareSnapshot() {
+          if (typeof window.html2canvas !== 'function') {
+            alert('Sharing not available offline.');
+            return;
+          }
+
+          // Build an offscreen 2000x2000 export with a square card inside
+          const OUTER = 2000; // final image size
+          const CARD = 1800;  // inner card a bit smaller
+          const EXPORT_DOT = 16; // larger dots for export image
+
+          const exportRoot = document.createElement('div');
+          exportRoot.style.position = 'fixed';
+          exportRoot.style.left = '-99999px';
+          exportRoot.style.top = '0';
+          exportRoot.style.width = OUTER + 'px';
+          exportRoot.style.height = OUTER + 'px';
+          const isDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+          const computedPageBg = getComputedStyle(document.documentElement).getPropertyValue('--m3-page-bg').trim();
+          const siteBg = computedPageBg || (isDark ? '#222222' : '#FDFDFC'); // solid to avoid banding
+          exportRoot.style.background = siteBg;
+          exportRoot.style.overflow = 'hidden';
+
+          const exportCard = document.createElement('div');
+          exportCard.style.position = 'absolute';
+          exportCard.style.left = Math.round((OUTER - CARD) / 2) + 'px';
+          exportCard.style.top = Math.round((OUTER - CARD) / 2) + 'px';
+          exportCard.style.width = CARD + 'px';
+          exportCard.style.height = CARD + 'px';
+          const cardComp = getComputedStyle(document.querySelector('.card'));
+          exportCard.style.background = cardComp.backgroundColor || '#f7f7f4';
+          exportCard.style.borderRadius = '80px';
+          exportCard.style.boxShadow = 'none'; /* avoid corner artifacts */
+          exportCard.style.overflow = 'hidden';
+          exportCard.style.boxSizing = 'border-box';
+          exportCard.style.border = isDark ? '2px solid rgba(255,255,255,0.08)' : '2px solid rgba(0,0,0,0.06)';
+          exportCard.style.display = 'flex';
+          exportCard.style.flexDirection = 'column';
+          exportCard.style.alignItems = 'center';
+          // Center grid vertically inside the card, similar to on-page layout
+          exportCard.style.justifyContent = 'center';
+          exportCard.style.padding = '120px';
+          exportCard.style.boxSizing = 'border-box';
+
+          // Primary color for elements
+          const primary = getComputedStyle(document.documentElement).getPropertyValue('--m3-elements').trim() || getComputedStyle(document.documentElement).getPropertyValue('--m3-primary').trim() || '#4462FF';
+
+          if (quoteMode) {
+            // Build only a centered quote inside the export card
+            const exportQuote = document.createElement('div');
+            const currentQuote = (quoteEl && quoteEl.textContent && quoteEl.textContent.trim()) ? quoteEl.textContent.trim() : quotes[0];
+            exportQuote.textContent = currentQuote;
+            exportQuote.style.maxWidth = '80%';
+            exportQuote.style.textAlign = 'center';
+            exportQuote.style.fontFamily = "'Roboto Condensed', " + getComputedStyle(document.body).fontFamily;
+            exportQuote.style.fontSize = '96px';
+            exportQuote.style.lineHeight = '1.15';
+            exportQuote.style.fontWeight = '500';
+            exportQuote.style.fontStyle = 'italic';
+            exportQuote.style.letterSpacing = '0.015em';
+            exportQuote.style.color = primary;
+            exportQuote.style.whiteSpace = 'pre-wrap';
+            exportCard.appendChild(exportQuote);
+            exportRoot.appendChild(exportCard);
+            // Add bottom labels outside the card (same as non-quote)
+            const cardSide = Math.round((OUTER - CARD) / 2);
+            const exportLabelRight = document.createElement('div');
+            exportLabelRight.textContent = 'getleft.app';
+            exportLabelRight.style.position = 'absolute';
+            exportLabelRight.style.right = cardSide + 'px';
+            exportLabelRight.style.textAlign = 'right';
+            exportLabelRight.style.bottom = '40px';
+            exportLabelRight.style.fontFamily = getComputedStyle(document.body).fontFamily;
+            exportLabelRight.style.fontSize = '40px';
+            exportLabelRight.style.fontWeight = '500';
+            exportLabelRight.style.letterSpacing = '0.15px';
+            exportLabelRight.style.color = primary;
+            exportLabelRight.style.opacity = '1';
+            exportRoot.appendChild(exportLabelRight);
+
+            const exportLabelLeft = document.createElement('div');
+            exportLabelLeft.textContent = 'Visualize your time left';
+            exportLabelLeft.style.position = 'absolute';
+            exportLabelLeft.style.left = cardSide + 'px';
+            exportLabelLeft.style.textAlign = 'left';
+            exportLabelLeft.style.bottom = '40px';
+            exportLabelLeft.style.fontFamily = getComputedStyle(document.body).fontFamily;
+            exportLabelLeft.style.fontSize = '40px';
+            exportLabelLeft.style.fontWeight = '500';
+            exportLabelLeft.style.letterSpacing = '0.15px';
+            exportLabelLeft.style.color = primary;
+            exportLabelLeft.style.opacity = '1';
+            exportRoot.appendChild(exportLabelLeft);
+            document.body.appendChild(exportRoot);
+
+            const canvas = await window.html2canvas(exportRoot, {
+              backgroundColor: siteBg,
+              scale: 1,
+              width: OUTER,
+              height: OUTER
+            });
+
+            // Cleanup the offscreen DOM
+            exportRoot.remove();
+
+            canvas.toBlob(async (blob) => {
+              if (!blob) return;
+              const filename = 'left-quote.png';
+              let shared = false;
+              try {
+                const file = new File([blob], filename, { type: 'image/png' });
+                const shareData = { files: [file], title: 'Left', text: 'A thought on time from Left — https://getleft.app' };
+                if ((navigator.canShare && navigator.canShare(shareData)) || (navigator.share && !('canShare' in navigator))) {
+                  await navigator.share(shareData);
+                  shared = true;
+                }
+              } catch (err) {
+                if (err && (err.name === 'AbortError' || err.name === 'NotAllowedError')) return; // user dismissed
+              }
+              try {
+                if (!shared) {
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = filename;
+                  document.body.appendChild(a);
+                  a.click();
+                  a.remove();
+                  setTimeout(() => URL.revokeObjectURL(url), 2000);
+                }
+              } catch(_) {}
+            });
+            return; // quote mode handled
+          }
+
+          const exportGrid = document.createElement('div');
+          if (state.kind === 'week') {
+            // Use flex column so words space evenly and avoid footer overlap
+            exportGrid.style.display = 'flex';
+            exportGrid.style.flexDirection = 'column';
+            exportGrid.style.alignItems = 'center';
+            exportGrid.style.justifyContent = 'space-between';
+          } else if (state.kind === 'months') {
+            // Use grid 3x4 for months; widths handled later similar to week
+            exportGrid.style.display = 'grid';
+            exportGrid.style.gridTemplateColumns = 'repeat(3, 1fr)';
+            exportGrid.style.alignItems = 'center';
+            exportGrid.style.justifyItems = 'center';
+          } else {
+            exportGrid.style.display = 'grid';
+            exportGrid.style.gridTemplateColumns = `repeat(${state.cols}, ${EXPORT_DOT}px)`;
+          }
+          exportGrid.style.margin = '0 auto';
+          // Reserve space at the bottom for the footer so centering looks correct
+          exportGrid.style.marginBottom = '120px';
+
+          const exportFooter = document.createElement('div');
+          exportFooter.style.position = 'absolute';
+          exportFooter.style.bottom = '120px';
+          exportFooter.style.display = 'flex';
+          exportFooter.style.justifyContent = 'space-between';
+          exportFooter.style.opacity = '1';
+          exportFooter.style.fontFamily = getComputedStyle(document.body).fontFamily;
+          exportFooter.style.fontSize = '36px';
+
+          const leftLabel = document.createElement('span');
+          leftLabel.textContent = state.labelLeft;
+          const rightLabel = document.createElement('span');
+          rightLabel.textContent = rightText();
+          exportFooter.appendChild(leftLabel);
+          exportFooter.appendChild(rightLabel);
+
+          // Build dots or symbols for export (use M3 primary)
+          const useGlyph = (function(){
+            try { return (document.getElementById('symbolBtn') && (localStorage.getItem('left_symbol_index')|0) !== 0) || (typeof symbolIndex !== 'undefined' && symbolIndex !== 0); } catch(_) { return false; }
+          })();
+          const symMap = ['•','■','▲','★','⬢'];
+          const symChar = symMap[(function(){ try { return (localStorage.getItem('left_symbol_index')|0); } catch(_) { return 0; }})()];
+          if (state.kind === 'week') {
+            const days = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY'];
+            for (let i = 0; i < 7; i++) {
+              const row = document.createElement('div');
+              row.style.display = 'flex';
+              row.style.alignItems = 'center';
+              row.style.justifyContent = 'center';
+              row.style.fontWeight = '800';
+              row.style.letterSpacing = '0.02em';
+              row.style.fontSize = '72px';
+              row.style.lineHeight = '1';
+              row.style.color = primary;
+              row.style.opacity = (i < state.todayIndex) ? '0.5' : '1';
+              row.textContent = days[i];
+              exportGrid.appendChild(row);
+            }
+          } else if (state.kind === 'months') {
+            for (let i = 0; i < 12; i++) {
+              const cell = document.createElement('div');
+              cell.style.display = 'flex';
+              cell.style.alignItems = 'center';
+              cell.style.justifyContent = 'center';
+              cell.style.fontWeight = '800';
+              cell.style.letterSpacing = '0.02em';
+              cell.style.fontSize = '72px';
+              cell.style.lineHeight = '1';
+              cell.style.color = primary;
+              cell.style.opacity = (i < state.todayIndex) ? '0.5' : '1';
+              cell.textContent = monthsShort[i].toUpperCase();
+              exportGrid.appendChild(cell);
+            }
+          } else {
+            for (let i = 0; i < state.totalDays; i++) {
+              const isPast = i <= state.todayIndex;
+              if (useGlyph) {
+                const cell = document.createElement('div');
+                cell.style.width = EXPORT_DOT + 'px';
+                cell.style.height = EXPORT_DOT + 'px';
+                cell.style.display = 'flex';
+                cell.style.alignItems = 'center';
+                cell.style.justifyContent = 'center';
+                // Make shapes larger in export; triangle/star slightly bigger than default
+                const exportedSymbolIndex = (function(){ try { return (localStorage.getItem('left_symbol_index')|0); } catch(_) { return 0; }})();
+                const baseSize = EXPORT_DOT + 2;
+                const fontSize = (exportedSymbolIndex === 1 || exportedSymbolIndex === 4)
+                  ? baseSize * 2                        // 1=square, 4=hexagon
+                  : (exportedSymbolIndex === 2 || exportedSymbolIndex === 3)
+                    ? Math.round(baseSize * 1.6)       // 2=triangle, 3=star
+                    : baseSize;                         // dot
+                cell.style.fontSize = fontSize + 'px';
+                cell.style.lineHeight = '1';
+                cell.style.color = primary;
+                cell.style.opacity = isPast ? '0.5' : '1';
+                cell.textContent = symChar || '•';
+                exportGrid.appendChild(cell);
+              } else {
+                const dot = document.createElement('div');
+                dot.style.width = EXPORT_DOT + 'px';
+                dot.style.height = EXPORT_DOT + 'px';
+                dot.style.borderRadius = '50%';
+                dot.style.background = primary;
+                dot.style.opacity = isPast ? '0.5' : '1';
+                exportGrid.appendChild(dot);
+              }
+            }
+          }
+
+          // Footer color uses same tint as elements
+          exportFooter.style.color = primary;
+
+          exportCard.appendChild(exportGrid);
+          exportCard.appendChild(exportFooter);
+          exportRoot.appendChild(exportCard);
+
+          // Add bottom-centered site label outside the card
+          const cardSide = Math.round((OUTER - CARD) / 2);
+          const exportLabelRight = document.createElement('div');
+          exportLabelRight.textContent = 'getleft.app';
+          exportLabelRight.style.position = 'absolute';
+          // Align label with the card's right edge
+          exportLabelRight.style.right = cardSide + 'px';
+          exportLabelRight.style.textAlign = 'right';
+          exportLabelRight.style.bottom = '40px';
+          exportLabelRight.style.fontFamily = getComputedStyle(document.body).fontFamily;
+          exportLabelRight.style.fontSize = '40px';
+          exportLabelRight.style.fontWeight = '500';
+          exportLabelRight.style.letterSpacing = '0.15px';
+          exportLabelRight.style.color = primary; // match footer color
+          exportLabelRight.style.opacity = '1';
+          exportRoot.appendChild(exportLabelRight);
+
+          // Add bottom-left label aligned with the card's left edge
+          const exportLabelLeft = document.createElement('div');
+          exportLabelLeft.textContent = 'Visualize your time left';
+          exportLabelLeft.style.position = 'absolute';
+          exportLabelLeft.style.left = cardSide + 'px';
+          exportLabelLeft.style.textAlign = 'left';
+          exportLabelLeft.style.bottom = '40px';
+          exportLabelLeft.style.fontFamily = getComputedStyle(document.body).fontFamily;
+          exportLabelLeft.style.fontSize = '40px';
+          exportLabelLeft.style.fontWeight = '500';
+          exportLabelLeft.style.letterSpacing = '0.15px';
+          exportLabelLeft.style.color = primary; // match footer color
+          exportLabelLeft.style.opacity = '1';
+          exportRoot.appendChild(exportLabelLeft);
+          document.body.appendChild(exportRoot);
+
+          // Compute spacing inside export card to center-top grid and align footer width
+          (function calcExportLayout(){
+            const dotPx = EXPORT_DOT; // fixed for export
+            const padding = 120 * 2; // left+right and top+bottom equal
+            const innerW = CARD - padding;
+            const innerH = CARD - padding;
+
+            const compute = (cols, rows, availW) => {
+              const targetH = innerH * 0.9;
+              const gapH = (targetH - rows * dotPx) / (rows - 1 || 1);
+              const gapW = (availW - cols * dotPx) / (cols - 1 || 1);
+              const gap = Math.max(0, Math.min(gapW, gapH));
+              const gridW = cols * dotPx + (cols - 1) * gap;
+              return { gap, gridW };
+            };
+
+            // Base: compute how wide the YEAR grid would be in this export card
+            const yearBase = compute(15, 25, innerW);
+
+            // Current grid (month or year) is capped to the year width
+            const cols = (state.kind === 'week') ? 1 : (state.kind === 'months' ? 3 : state.cols);
+            const rows = (state.kind === 'week') ? 7 : (state.kind === 'months' ? 4 : state.rows);
+            const capped = compute(cols, rows, Math.min(innerW, yearBase.gridW));
+
+            if (state.kind === 'week' || state.kind === 'months') {
+              // For week/months views, allocate a fixed height so rows can breathe
+              const gridW = Math.min(innerW, yearBase.gridW);
+              exportGrid.style.width = gridW + 'px';
+              const targetH = Math.round(innerH * 0.82);
+              exportGrid.style.height = targetH + 'px';
+              if (state.kind === 'months') {
+                // Even spacing between the 4 rows of months
+                exportGrid.style.gridTemplateRows = 'repeat(4, 1fr)';
+                exportGrid.style.rowGap = '48px';
+              }
+            } else {
+              exportGrid.style.gap = capped.gap + 'px';
+              exportGrid.style.width = capped.gridW + 'px';
+            }
+
+            // Footer matches grid width and is centered horizontally
+            const widthForFooter = (state.kind === 'week' || state.kind === 'months') ? Math.min(innerW, yearBase.gridW) : capped.gridW;
+            exportFooter.style.width = widthForFooter + 'px';
+            const left = Math.round((CARD - widthForFooter) / 2);
+            exportFooter.style.left = left + 'px';
+          })();
+
+          const canvas = await window.html2canvas(exportRoot, {
+            backgroundColor: siteBg,
+            scale: 1,
+            width: OUTER,
+            height: OUTER
+          });
+
+          // Cleanup the offscreen DOM
+          exportRoot.remove();
+
+          canvas.toBlob(async (blob) => {
+            if (!blob) return;
+            const modeLabel = yearEl.textContent.trim();
+            const filename = `left-${modeLabel.replace(/\s+/g,'-').toLowerCase()}.png`;
+
+            // Attempt native share with files; avoid downloading if user cancels
+            let shared = false;
+            try {
+              const file = new File([blob], filename, { type: 'image/png' });
+              const shareData = { files: [file], title: 'Left', text: 'My time left! Check yours on https://getleft.app' };
+              if ((navigator.canShare && navigator.canShare(shareData)) || (navigator.share && !('canShare' in navigator))) {
+                await navigator.share(shareData);
+                shared = true;
+              }
+            } catch (err) {
+              if (err && (err.name === 'AbortError' || err.name === 'NotAllowedError')) return; // user dismissed
+            }
+            if (shared) return;
+
+            // Fallback: download the image
+            const a = document.createElement('a');
+            a.download = filename;
+            a.href = URL.createObjectURL(blob);
+            document.body.appendChild(a);
+            a.click();
+            URL.revokeObjectURL(a.href);
+            a.remove();
+          }, 'image/png');
+        }
+        shareBtn.addEventListener('click', shareSnapshot);
+      })();
+    </script>
+  </body>
+  </html>
