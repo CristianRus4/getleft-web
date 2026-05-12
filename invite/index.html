@@ -448,7 +448,7 @@
 
           '<div class="invite-step">' +
           '<p class="invite-step-label">Come back and open the invite</p>' +
-          '<a class="invite-accept-btn" href="' + deepLink + '">Open invite</a>' +
+          '<a class="invite-accept-btn" id="invite-accept-btn" href="' + deepLink + '">Open invite</a>' +
           '</div>' +
 
           '</div>';
@@ -542,6 +542,43 @@
       // The app now writes inviterUsername and profilePhotoPath directly into the
       // document, so a single fetch is all we need. No auth required (rules allow get: true).
       var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
+
+      // Custom scheme deep link — iOS opens the app directly without the
+      // Universal Link restriction that blocks same-browser navigation.
+      var customSchemeLink = 'left://friends/invite?invite=' + encodeURIComponent(inviteCode);
+
+      // Wire up the accept button after renderPage() inserts it into the DOM.
+      // Uses custom URL scheme (left://) so iOS launches the app immediately.
+      // If the app isn't installed, the scheme silently fails and we fall back
+      // to the Universal Link (go.getleft.app) which the App Store banner handles.
+      function wireAcceptButton() {
+        var btn = document.getElementById('invite-accept-btn');
+        if (!btn) return;
+        btn.addEventListener('click', function (e) {
+          e.preventDefault();
+          // Try custom scheme — if app is installed iOS opens it immediately
+          window.location.href = customSchemeLink;
+          // Fallback: if nothing happened after 1.5s the app isn't installed —
+          // send to Universal Link which will show the App Store
+          var fallbackTimer = setTimeout(function () {
+            window.location.href = deepLink;
+          }, 1500);
+          // If the page hides (app opened), cancel the fallback
+          document.addEventListener('visibilitychange', function onVis() {
+            if (document.hidden) {
+              clearTimeout(fallbackTimer);
+              document.removeEventListener('visibilitychange', onVis);
+            }
+          });
+        });
+      }
+
+      // Patch renderPage to wire the button after each render
+      var _origRenderPage = renderPage;
+      renderPage = function (inviterName, photoURL) {
+        _origRenderPage(inviterName, photoURL);
+        wireAcceptButton();
+      };
 
       fetch(inviteDocURL)
         .then(function (r) { return r.ok ? r.json() : null; })
