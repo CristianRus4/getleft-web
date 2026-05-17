@@ -363,7 +363,6 @@
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
     const heroText = document.querySelector('.hero-text');
-    const heroCta = document.querySelector('.hero-cta');
     if (!heroText) return;
     const mqMobile = window.matchMedia('(max-width: 900px)');
 
@@ -376,27 +375,21 @@
     };
 
     const update = () => {
+      const y = window.scrollY || 0;
+      document.body.classList.toggle('hero-scrolled', y > 4);
       if (!mqMobile.matches) {
-        reset(heroText); reset(heroCta);
+        reset(heroText);
         return;
       }
-      const y = window.scrollY || 0;
       const start = 10, range = 220;
       const t = clamp01((y - start) / range);
       const blurMax = 8;
       const parallax = (y * 0.45).toFixed(1);
       const op = (1 - t).toFixed(3);
       const blur = (t * blurMax).toFixed(2);
-      if (heroText) {
-        heroText.style.opacity = op;
-        heroText.style.filter = `blur(${blur}px)`;
-        heroText.style.transform = `translateY(${parallax}px)`;
-      }
-      if (heroCta) {
-        heroCta.style.opacity = op;
-        heroCta.style.filter = `blur(${blur}px)`;
-        heroCta.style.transform = `translateY(${parallax}px)`;
-      }
+      heroText.style.opacity = op;
+      heroText.style.filter = `blur(${blur}px)`;
+      heroText.style.transform = `translateY(${parallax}px)`;
     };
 
     let ticking = false;

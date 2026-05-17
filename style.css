@@ -433,12 +433,12 @@ p  { margin: 0 0 1em; }
 }
 
 @media (max-width: 900px) {
-  /* Mobile hero: full viewport, centered text, image as background, button pinned to bottom */
+  /* Mobile hero: centered text, image below in flow, button floats at bottom of viewport */
   .hero {
     min-height: 100svh;
     min-height: 100vh;
     padding-top: calc(var(--nav-h) + env(safe-area-inset-top) + 32px);
-    padding-bottom: calc(env(safe-area-inset-bottom) + 20px);
+    padding-bottom: 0;
     overflow: hidden;
   }
   .hero-inner {
@@ -447,11 +447,7 @@ p  { margin: 0 0 1em; }
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    min-height: calc(100svh - var(--nav-h) - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 52px);
     gap: 0;
-    position: relative;
-    z-index: 2;
   }
   .hero-text {
     max-width: 100%;
@@ -459,41 +455,49 @@ p  { margin: 0 0 1em; }
     will-change: opacity, filter, transform;
   }
   .hero-sub { margin-left: auto; margin-right: auto; }
-  .hero-cta {
+
+  /* In-flow image below the text (parallax-scrolls past the slower text) */
+  .hero-image-wrap {
+    position: relative;
+    inset: auto;
+    margin-top: 24px;
+    min-height: auto;
+    display: flex;
     justify-content: center;
     width: 100%;
-    margin-top: auto;
-    will-change: opacity, filter, transform;
-  }
-  .hero-download-group { align-items: center; }
-
-  /* Image becomes a parallax background behind the text */
-  .hero-image-wrap {
-    position: absolute;
-    inset: 0;
-    margin-top: 0;
-    min-height: 0;
     z-index: 0;
-    pointer-events: none;
-    display: block;
-    overflow: hidden;
   }
   .hero-image-wrap::before { display: none; }
   .hero-image {
-    position: absolute;
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
+    position: relative;
     width: auto;
-    height: 100%;
-    max-height: none;
-    max-width: none;
-    object-fit: cover;
-    object-position: center bottom;
+    max-width: 100%;
+    max-height: 70vh;
+    height: auto;
+    object-fit: contain;
     filter: none;
-    opacity: 0.55;
+    opacity: 1;
     animation: none;
   }
+
+  /* The in-flow CTA is replaced by a floating button at the viewport bottom */
+  .hero-cta { display: none; }
+  .hero-floater {
+    position: fixed;
+    left: 50%;
+    bottom: calc(env(safe-area-inset-bottom) + 16px);
+    transform: translateX(-50%);
+    z-index: 1001;
+    transition: opacity 220ms ease, transform 220ms ease;
+  }
+  body.hero-scrolled .hero-floater {
+    opacity: 0;
+    transform: translate(-50%, 16px);
+    pointer-events: none;
+  }
+}
+@media (min-width: 901px) {
+  .hero-floater { display: none; }
 }
 
 /* 8.2 Actions showcase (3 core features) --------------------- */
