@@ -367,9 +367,9 @@
         if (!btn || !qr) return;
         const w = btn.getBoundingClientRect().width;
         if (w > 0) {
-          qr.style.width = `${w}px`;
-          qr.style.height = `${w}px`;
-          qr.style.minHeight = `${w}px`;
+          qr.style.setProperty('width', `${w}px`, 'important');
+          qr.style.setProperty('height', `${w}px`, 'important');
+          qr.style.setProperty('min-height', `${w}px`, 'important');
         }
       });
     };
