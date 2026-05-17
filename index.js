@@ -132,7 +132,12 @@
     sentences.forEach((sentence, i) => {
       const span = document.createElement('span');
       span.className = 'scroll-sentence';
-      span.textContent = sentence.trim() + (i < sentences.length - 1 ? ' ' : '');
+      const text = sentence.trim() + (i < sentences.length - 1 ? ' ' : '');
+      if (text.includes('Left is built')) {
+        span.innerHTML = text.replace('Left is built', '<em class="scroll-accent">Left is built</em>');
+      } else {
+        span.textContent = text;
+      }
       scrollText.appendChild(span);
     });
     const sentenceSpans = scrollText.querySelectorAll('.scroll-sentence');
