@@ -1,0 +1,384 @@
+/*
+  web.css — styles for web.html only.
+  Extracted from web.html's inline <style> block plus the base rules
+  that web.html previously inherited from the marketing site's style.css.
+  Keep this file independent from the marketing style.css.
+*/
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+img { max-width: 100%; height: auto; }
+.container {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding-inline: clamp(24px, 6.5vw, 96px);
+}
+
+      /* Material 3 color tokens (scoped to this page) */
+      :root {
+        --m3-primary: #6750A4;      /* strong brand accent */
+        --m3-on-surface: #111110;   /* readable text */
+        --m3-surface: #FFFBFE;      /* container background */
+        --m3-page-bg: #F6F3FF;      /* page background tint */
+      }
+
+      /* Light mode overrides for this page only */
+      @media (prefers-color-scheme: light) {
+        /* Keep site light background as-is */
+        /* Light mode: page background follows themed page tint */
+        html, body { color: var(--m3-on-surface); background: var(--m3-page-bg); }
+        .card { color: var(--m3-on-surface); }
+      }
+
+      :root {
+        /* Fixed sizes: dots never change size */
+        --dot-size: 8px;
+        --gap: 6px; /* updated by JS; only spacing changes */
+        --panel-bg: var(--m3-surface, #f7f7f4); /* card surface */
+        --accent-dark: var(--m3-primary, #EEEEEC); /* unify with primary for legacy refs */
+        --footer-color: inherit;
+        --m3-radius: 16px; /* Material rounded corners */
+        /* Shared card width cap so all cards match */
+        --card-width: min(90vw, 600px);
+        --actions-height: 60px; /* approx actions card total height (min) */
+      }
+
+      /* Page font and base typography */
+      /* Use Roboto everywhere (Material 3 default) */
+      body { font-family: 'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif; }
+      button, input, select, textarea { font-family: inherit; }
+
+      /* App-specific layout (minimal; uses site styles) */
+      .card {
+        position: fixed;
+        top: 4vh; /* small space from top */
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--card-width);
+        height: 70vh; /* 70% viewport height */
+        min-width: 300px; /* enforce minimum width; grid/footer follow */
+        border-radius: var(--m3-radius);
+        background: var(--panel-bg);
+        /* flat style, no shadows */
+        box-shadow: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center; /* grid vertically centered */
+        padding: 2rem;
+        box-sizing: border-box;
+        overflow: hidden; /* keep content inside */
+        z-index: 1;
+      }
+
+      .grid {
+        display: grid;
+        grid-auto-rows: var(--dot-size);
+        gap: var(--gap); /* updated by JS */
+        margin: 0; /* positioned by card */
+      }
+
+      .dot {
+        width: var(--dot-size);
+        height: var(--dot-size);
+        border-radius: 50%;
+        background: var(--m3-elements, var(--m3-primary, #111110)); /* Elements tint */
+      }
+      /* Glyph-based symbols */
+      .dot.glyph {
+        background: none;
+        border-radius: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: calc(var(--dot-size) + 2px);
+        line-height: 1;
+        color: var(--m3-elements, var(--m3-primary, #111110));
+      }
+      .dot.past { opacity: 0.5; }
+
+      /* Bottom labels pinned to viewport edges (match site padding) */
+      .bottom {
+        position: absolute; /* inside the card */
+        bottom: 1.25rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--footer-width, auto);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        opacity: 1; /* match full-opacity future dots */
+        color: var(--m3-elements, var(--footer-color));
+        font-size: 0.95em;
+        font-weight: 500; /* match button weight */
+        letter-spacing: 0.15px; /* align with button typography */
+        pointer-events: auto; /* allow clicking/tapping labels */
+        z-index: 2;
+      }
+
+      /* Respect dark mode */
+      @media (prefers-color-scheme: dark) {
+        html, body { color: var(--m3-on-surface) !important; background: var(--m3-page-bg) !important; }
+        .card { background: var(--panel-bg, #141413); box-shadow: none; }
+      }
+
+      /* Hide native store CTA in installed PWA context */
+      @media all and (display-mode: standalone) {
+        #appBtn { display: none !important; }
+        #quoteBtn { display: inline-flex !important; }
+      }
+
+      /* Actions card at the bottom (10% viewport height) */
+      .actions-card {
+        position: fixed;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 2vh;
+        width: var(--card-width);
+        min-width: 300px; /* match main card minimum */
+        min-height: 48px; /* auto height based on content */
+        border-radius: var(--m3-radius);
+        background: var(--panel-bg);
+        color: var(--m3-elements, currentColor);
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 10px; /* tighter padding around text */
+        box-sizing: border-box;
+        z-index: 3;
+      }
+      .actions-card .actions {
+        display: grid;
+        grid-template-columns: 1fr auto auto; /* left icons | primary buttons | app */
+        align-items: center;
+        column-gap: 10px;
+        width: 100%;
+      }
+      .actions-left { display: flex; align-items: center; gap: 12px; justify-self: start; }
+      .actions-primary { display: flex; align-items: center; gap: 0; justify-self: end; }
+      .actions-tail { display: flex; align-items: center; justify-self: end; }
+      /* Week view rows */
+      .week-row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 6px 0;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        color: var(--m3-elements, currentColor);
+      }
+      .week-row.past { opacity: 0.5; }
+      /* Months view grid cells */
+      .month-cell {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--m3-elements, currentColor);
+      }
+      .month-cell.past { opacity: 0.5; }
+      .actions-right {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+      }
+      .color-swatch {
+        display: inline-block;
+        width: 2em;   /* pill width */
+        height: 1em;  /* pill height */
+        border-radius: 9999px; /* capsule shape */
+        vertical-align: middle;
+        border: 1px solid rgba(0,0,0,0.85);
+        opacity: 0.9; /* match button text opacity */
+      }
+      #symbolPreview.symbol-circle {
+        display: inline-block;
+        border-radius: 50%;
+        background: currentColor;
+        vertical-align: middle;
+      }
+      .action-sep { display:none; }
+      .action-btn, .action-select, .actions-card a.action-btn {
+        background: transparent;
+        border: none;
+        color: inherit;
+        font: inherit;
+        cursor: pointer;
+        text-decoration: none;
+        opacity: 0.9;
+        display: inline-flex;
+        align-items: center;
+        line-height: 1; /* avoid extra vertical space */
+        /* no shadows on buttons */
+        box-shadow: none;
+      }
+      /* Icon font setup */
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+        line-height: 1;
+      }
+      /* Quote view */
+      .quote {
+        display: none;
+        max-width: 85%;
+        text-align: center;
+        font-family: 'Roboto Condensed', 'Roboto', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+        font-weight: 500;
+        font-size: clamp(34px, 6.5vw, 72px);
+        line-height: 1.2;
+        font-style: italic;
+        color: var(--m3-elements, currentColor);
+        white-space: pre-wrap;
+      }
+      .card.quote-mode .grid, .card.quote-mode .bottom { display: none; }
+      .card.quote-mode .quote { display: block; }
+      /* M3 Title/Medium for button labels */
+      .actions-card .action-btn,
+      .actions-card a.action-btn {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        letter-spacing: 0.15px;
+      }
+      /* Add rounded outline style to specific action buttons when NOT filled */
+      #bdayConfirm:not(.btn-filled),
+      #bdayBtn:not(.btn-filled),
+      #appBtn:not(.btn-filled) {
+        border: 0.4px solid currentColor; /* thinner outline */
+        /* reduce border opacity by 20% while keeping hue */
+        border-color: color-mix(in srgb, currentColor 80%, transparent);
+        border-radius: 9999px;
+        padding: 8px 14px;
+        box-shadow: none;
+      }
+      /* Filled primary buttons on the right */
+      .btn-filled {
+        background: var(--m3-elements) !important;
+        color: var(--m3-surface) !important;
+        border: none !important;
+        opacity: 1;
+      }
+      /* Ensure filled action buttons have consistent height */
+      .actions-primary .action-btn.btn-filled,
+      .actions-tail .action-btn.btn-filled,
+      #bdayConfirm.btn-filled {
+        padding: 8px 16px; /* slightly reduced height */
+        min-height: 40px;
+        border-radius: 9999px;
+      }
+      .actions-primary .material-symbols-outlined { font-size: 22px; }
+      /* Segmented pill radii (inner corners smaller) */
+      .btn-seg-left  { border-top-right-radius: calc(var(--m3-radius) / 2);  border-bottom-right-radius: calc(var(--m3-radius) / 2);  border-top-left-radius: var(--m3-radius); border-bottom-left-radius: var(--m3-radius); }
+      .btn-seg-right { border-top-left-radius: calc(var(--m3-radius) / 2);  border-bottom-left-radius: calc(var(--m3-radius) / 2);  border-top-right-radius: var(--m3-radius); border-bottom-right-radius: var(--m3-radius); }
+      .btn-standalone { border-radius: var(--m3-radius); }
+      /* Left icon buttons: compact, no outline */
+      #viewBtn, #symbolBtn, #colorBtn, #personBtn {
+        border: none;
+        padding: 8px 10px;
+        border-radius: 9999px;
+      }
+      /* Symbol preview uses Material Symbols in the picker */
+      #symbolPreview .material-symbols-outlined {
+        font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+        font-size: 20px;
+        line-height: 1;
+      }
+      /* Exclude symbol and color pickers from outlined style */
+      #symbolBtn,
+      #colorBtn,
+      #personBtn { border: none; padding: 6px; }
+      /* Share button styled like left-side icons but stays right-aligned */
+      #shareBtn, #quoteBtn { border: none; padding: 6px; background: transparent; }
+      #shareBtn .material-symbols-outlined,
+      #quoteBtn .material-symbols-outlined { font-size: 22px; }
+      /* Hide quote button by default; show only when installed */
+      #quoteBtn { display: none; }
+      /* Make the view button larger (about 2x icon size) */
+      #viewBtn { padding: 6px; }
+      #viewBtn .material-symbols-outlined { font-size: 30px; }
+      #personBtn { padding: 6px; }
+      #personBtn .material-symbols-outlined { font-size: 25px; }
+      /* Constrain symbol preview box to prevent overflow on mobile */
+      #symbolPreview {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.1em;
+        height: 1.1em;
+        line-height: 1;
+        overflow: hidden; /* clamp oversized glyphs */
+      }
+      /* Override global link gradient styles inside the actions card */
+      .actions-card a.action-btn:not(.btn-filled),
+      .actions-card a.action-btn:visited:not(.btn-filled) {
+        color: inherit !important;
+        background: none !important;
+        -webkit-background-clip: initial !important;
+        -webkit-text-fill-color: currentColor !important;
+        text-decoration: none;
+      }
+      .actions-card a.action-btn.btn-filled {
+        color: var(--m3-surface) !important;
+        background: var(--m3-elements) !important;
+      }
+      .actions-card a.action-btn:hover { text-decoration: none; }
+      .bday-panel {
+        position: fixed; /* match exact width with cards */
+        left: 50%;
+        transform: translateX(-50%);
+        width: var(--card-width);
+        min-width: 300px;
+        bottom: calc(2vh + var(--actions-height) + 2px); /* tiny visual gap */
+        z-index: 4; /* ensure it appears above the actions card */
+        display: none;
+        gap: 8px;
+        align-items: flex-start;
+        flex-direction: column;
+        background: var(--panel-bg);
+        color: var(--m3-elements, currentColor);
+        border-radius: var(--m3-radius); /* match actions-card/card radius */
+        box-shadow: none;
+        padding: 12px 16px;
+        box-sizing: border-box;
+      }
+      /* Align Calculate button to the right inside the row */
+      #bdayConfirm { margin-left: auto; }
+      .bday-label { font-size: 0.9em; opacity: 0.8; width: 100%; text-align: center; }
+      .bday-row { display: flex; align-items: center; gap: 8px; width: 100%; }
+      @media (prefers-color-scheme: dark) {
+        .actions-card, .bday-panel {
+          background: var(--panel-bg, #141413);
+          box-shadow: none;
+          color: var(--m3-elements, var(--m3-on-surface, #EEEEEC));
+        }
+        .actions-card a.action-btn,
+        .actions-card a.action-btn:hover,
+        .actions-card a.action-btn:visited {
+          color: var(--m3-elements, var(--m3-on-surface, inherit)) !important;
+          background: none !important;
+          -webkit-background-clip: initial !important;
+          -webkit-text-fill-color: currentColor !important;
+        }
+        /* no shadows on buttons in dark mode */
+        .action-btn { box-shadow: none; }
+        #bdayConfirm:not(.btn-filled),
+        #bdayBtn:not(.btn-filled),
+        #shareBtn:not(.btn-filled),
+        #appBtn:not(.btn-filled) {
+          /* thinner + 20% less opaque, synced with font color */
+          border-color: color-mix(in srgb, currentColor 80%, transparent);
+          box-shadow: none;
+      }
+        .color-swatch { border-color: rgba(255,255,255,0.35); }
+      }

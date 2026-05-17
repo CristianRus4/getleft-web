@@ -4,6 +4,19 @@
 
 Full redesign of the Left marketing website. The current site uses orange as the primary background color. The new design flips this: white in light mode, near-black in dark mode, with orange as an accent only. The glassmorphism and blur aesthetic stays. All pages share the new `style.css` design system — including the invite page, which gets invite-specific overrides in a dedicated section at the bottom of the shared CSS rather than a separate file.
 
+### CSS architecture — two files only
+
+| File | Used by |
+|------|---------|
+| `style.css` | Every page: `index.html`, `privacy.html`, `terms.html`, `contact.html`, `support.html`, `press.html`, `blog/`, `invite/index.html`, `public/invite/index.html`, `ios-26.html` (if kept), all blog articles |
+| `web.css` | `web.html` only — the interactive time viewer keeps its own visual style completely separate |
+
+No other CSS files exist. `blog/blog.css` is migrated into `style.css` and deleted. The invite-specific rules live at the bottom of `style.css` under `/* ─── Invite page overrides ─── */`.
+
+### BLUEPRINT.md — primary content reference
+
+**The developer must read `BLUEPRINT.md` before writing any content.** It is the definitive documentation of every feature Left has, how each feature works, what the terminology is (Ahead, Since, Left Time, Planner, Joint Ahead, Shared Since, etc.), and what is free vs. paid. All copy on every page — FAQ answers, feature descriptions, article content, press page, support page — should be grounded in what BLUEPRINT.md describes. Do not invent feature names, do not guess at how things work. If it is in the app, it is in BLUEPRINT.md.
+
 ---
 
 ## 1. Migration & File Structure
@@ -15,81 +28,176 @@ Full redesign of the Left marketing website. The current site uses orange as the
 
 These are kept temporarily as a fallback reference. **No live page should reference them.** When they are deleted, nothing should break. The new `style.css` and new `index.html` fully replace them.
 
-### `web.html` — CSS isolation (important)
+### Complete inventory of existing files
 
-`web.html` currently imports `style.css` (line 29) and has an extensive inline `<style>` block with Material 3 tokens. It is visually almost entirely self-contained, but it relies on a handful of base styles from `style.css` (resets, `.container`, font-smoothing, basic body styles). 
+The repo already has more files than the plan originally accounted for. Here is every file, what it currently does, and what to do with it:
 
-**Action required:** Move the small set of base styles that `web.html` uses from the old `style.css` into its existing inline `<style>` block. After this, `web.html` should not reference any external CSS file except the Google Fonts it already loads. This makes it fully independent — no dependency on either `style.css` or `oldstyle.css`. It can then remain on its current visual style indefinitely regardless of what happens to the shared CSS.
+| File | Current purpose | Action |
+|------|----------------|--------|
+| `index.html` | Homepage | Rename to `oldindex.html`, rebuild from scratch |
+| `style.css` | Shared CSS | Rename to `oldstyle.css`, rebuild from scratch |
+| `web.html` | Interactive time viewer | Keep visual design; switch from inline `<style>` + `style.css` import → dedicated `web.css` file |
+| `contact.html` | Contact page | Update to new nav + footer; keep all content (email, press kit, X link) |
+| `support.html` | Troubleshooting FAQ | Keep as separate support page; update nav + footer; expand troubleshooting content |
+| `download.html` | App Store redirect | Remove `<link rel="stylesheet">` only — everything else stays |
+| `ios-26.html` | iOS 26 press/feature page | **Delete** — replaced by the new `press.html` |
+| `ios-26-es.html` | Spanish iOS 26 press page | **Delete** — replaced by `press.html` |
+| `better2026.html` | Promo code redirect | **Delete** — no longer needed |
+| `invite/index.html` | Friend invite landing page | **Keep all existing functionality exactly as-is.** Update only the `<link rel="stylesheet">` to point to the new `style.css`. The invite JS, routing, Cloudflare hooks, and all other mechanics are untouched. |
+| `public/invite/index.html` | Second invite path used by Cloudflare/app | **Keep exactly as-is.** This path is used by the app and Cloudflare infrastructure. Same treatment: update only the `<link rel="stylesheet">`. |
+| `blog/index.html` | Blog listing | Update nav + footer; see Section 5 |
+| `blog/*.html` | Individual articles | Rewrite content; update nav + footer |
+| `_redirects` | Cloudflare Pages redirect rules | **Do not change existing entries.** Add only the new ones listed below. |
+| `TemplateLibrary.json` | Template data for carousel | Read-only — used by JS |
+| `reviews.json` | Review data (to be created) | Create empty array `[]`; Cristian will populate with real reviews |
 
-The specific styles to inline into `web.html`:
-- `* { box-sizing: border-box; }`
-- `html, body { min-height: 100%; }`
-- `body { margin: 0; font-family: system-ui...; -webkit-font-smoothing: antialiased; }`
-- `img { max-width: 100%; height: auto; }`
-- `.container` (width, max-width, padding-inline)
+### `web.html` — move to `web.css`
 
-### `invite/index.html` — CSS update
+`web.html` currently imports `style.css` and has an extensive inline `<style>` block with Material 3 tokens. Create a new file `web.css` that contains everything `web.html` needs:
 
-The invite page moves from `/oldstyle.css` to `/style.css` (the new shared design system). It no longer needs any separate CSS file. Invite-specific styles (avatar rings, QR code container, invite card, accepted/pending states) live as a clearly marked section at the bottom of the main `style.css`, under a comment like `/* ─── Invite page overrides ─── */`. This means fonts, nav, buttons, footer, glass effects, colors, and dark mode all come from the shared system automatically.
+1. The base resets it currently inherits from `style.css`:
+   - `* { box-sizing: border-box; }`
+   - `html, body { min-height: 100%; }`
+   - `body { margin: 0; font-family: system-ui...; -webkit-font-smoothing: antialiased; }`
+   - `img { max-width: 100%; height: auto; }`
+   - `.container` rule
+2. Everything currently in `web.html`'s inline `<style>` block — move it all into `web.css`
+
+Then in `web.html`: replace `<link rel="stylesheet" href="style.css">` with `<link rel="stylesheet" href="web.css">` and remove the inline `<style>` block entirely.
+
+Result: `web.html` references only `web.css` (and its Google Fonts). Zero dependency on `style.css`. The visual design of the web viewer stays exactly the same forever regardless of marketing site changes.
+
+### `invite/index.html` and `public/invite/index.html` — CSS only
+
+Both invite pages keep **every single thing intact** — all JS, all routing, all Cloudflare-dependent logic, all redirect mechanics, all QR code logic. The app depends on these pages working exactly as they do now.
+
+The only change is the `<link rel="stylesheet">` tag: point it from the old `style.css` to the new `style.css`. The new shared CSS provides the base design (nav, footer, buttons, backgrounds, fonts, dark mode) that matches the rest of the site. Invite-specific visual styles (avatar rings, QR code container, invite card, participant states, accept/decline buttons) are defined in a dedicated section at the bottom of `style.css` under `/* ─── Invite page overrides ─── */`.
+
+### Images — important note
+
+The `/images/` folder is **not tracked in the repository** (likely in `.gitignore`). The HTML files reference images like `images/left-hero.webp`, `images/left-features-1.webp`, etc. but these files are not in the repo. The developer should:
+1. Build all `<img>` tags using the semantic filenames from Section 7 of this plan
+2. For local dev, use `https://source.unsplash.com/random/WxH/?[keyword]` as a temporary `src` value, or a CSS background-color placeholder `<div>` with correct aspect ratio
+3. Use a `data-final-src` attribute to mark images that need to be swapped when real files arrive
+
+Cristian will drop real `.webp` files into `/images/` when ready. Do not add the images folder to `.gitignore` once real images are added — they should be tracked.
+
+### Shared nav and footer — HTML component pattern
+
+Every page shares the same nav and footer. Since this is a static site with no templating engine, define the canonical HTML for both once in this plan and copy-paste it into every page. If the developer uses any build tool (Vite, Eleventy, etc.), they can use partials instead.
+
+**Canonical nav HTML:**
+```html
+<nav class="top-nav" aria-label="Primary">
+  <div class="container nav-inner">
+    <a href="/" class="brand" aria-label="Left home">Left</a>
+    <div class="nav-links">
+      <a href="/#features" class="nav-link">Features</a>
+      <a href="/blog/" class="nav-link">Blog</a>
+    </div>
+    <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+  </div>
+</nav>
+```
+On pages other than the homepage, add `class="top-nav top-nav--visible"` so it shows immediately without waiting for scroll.
+
+**Canonical footer HTML:**
+```html
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-counter">
+      <span class="counter-number" id="user-counter">100,000</span>
+      <span class="counter-label">people making every moment count</span>
+    </div>
+    <div class="footer-main">
+      <div class="footer-brand">
+        <span class="brand">Left</span>
+        <span class="footer-location">📍 Made in Wellington, NZ</span>
+        <span class="footer-copy">© 2026 Cristian Rus</span>
+      </div>
+      <nav class="footer-links" aria-label="Footer">
+        <a href="/privacy.html">Privacy</a>
+        <a href="/terms.html">Terms</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/support.html">Support</a>
+        <a href="/blog/">Blog</a>
+        <a href="/web.html">Try on Web</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+```
 
 ### Final file structure
 
 ```
 getleft-web/
 ├── index.html              ← new homepage (built from scratch)
-├── style.css               ← new shared design system (includes invite overrides section)
-├── oldindex.html           ← TEMP: renamed from old index.html — delete when ready
-├── oldstyle.css            ← TEMP: renamed from old style.css — delete when ready
-├── privacy.html            ← new page, shared nav + footer
-├── terms.html              ← new page, shared nav + footer
-├── contact.html            ← new contact page, shared nav + footer
-├── web.html                ← keep visual style, CSS made self-contained (see above)
-├── reviews.json            ← review data file (see Section 4.8)
-├── download/
-│   └── index.html          ← instant redirect to App Store URL
-├── ios/
-│   └── index.html          ← instant redirect to App Store URL (same as /download)
-├── web/
-│   └── index.html          ← instant redirect to /web.html
-├── android/
-│   └── index.html          ← instant redirect to /web.html
+├── style.css               ← new shared CSS (invite overrides at bottom)
+├── web.css                 ← new file for web.html only (extracted from web.html inline styles)
+├── oldindex.html           ← TEMP — delete when confident; nothing should reference it
+├── oldstyle.css            ← TEMP — delete when confident; nothing should reference it
+├── _redirects              ← DO NOT CHANGE existing entries; append new ones only
+├── privacy.html            ← new local page, shared nav + footer
+├── terms.html              ← new local page, shared nav + footer
+├── press.html              ← new press page (replaces ios-26.html; see Section 2.8)
+├── contact.html            ← update nav + footer; preserve all content
+├── support.html            ← update nav + footer; preserve and expand troubleshooting FAQ
+├── web.html                ← update <link> from style.css → web.css; remove inline <style>
+├── download.html           ← remove <link rel="stylesheet"> only; no other changes
+├── reviews.json            ← create as empty array []; Cristian fills with real reviews
 ├── blog/
-│   ├── index.html          ← blog listing, updated to new nav + footer
-│   ├── blog.css            ← update or migrate into shared style.css
-│   ├── best-countdown-widgets-iphone.html      ← rewrite (see Section 5)
-│   ├── best-habit-tracker-apps-iphone.html     ← rewrite (see Section 5)
-│   ├── how-to-add-widgets-iphone.html          ← rewrite (see Section 5)
-│   ├── habitkit-vs-left.html                   ← rewrite (see Section 5)
-│   └── [new articles]      ← add new articles (see Section 5)
+│   ├── index.html          ← update nav + footer
+│   ├── blog.css            ← migrate into style.css then delete this file
+│   ├── best-countdown-widgets-iphone.html      ← rewrite
+│   ├── best-habit-tracker-apps-iphone.html     ← rewrite
+│   ├── how-to-add-widgets-iphone.html          ← rewrite
+│   ├── habitkit-vs-left.html                   ← rewrite
+│   └── [new articles]      ← see Section 5
 ├── invite/
-│   └── index.html          ← update <link> to /style.css, remove old inline overrides
-├── TemplateLibrary.json    ← existing, used by carousel JS (read-only, do not modify)
-├── inspo/                  ← dev reference images only, not deployed
+│   └── index.html          ← change <link> to /style.css ONLY; touch nothing else
+├── public/
+│   └── invite/
+│       └── index.html      ← change <link> to /style.css ONLY; touch nothing else
+├── TemplateLibrary.json    ← read-only, used by carousel JS
+├── inspo/                  ← dev reference images — not deployed, not served
 ├── favicon/                ← unchanged
-└── images/
-    ├── [existing images]   ← keep
-    └── [named placeholders]← developer creates placeholder `<img>` tags with semantic
-                               filenames; Cristian drops real images into /images/ later
+└── images/                 ← NOT in git; developer uses named semantic img tags;
+                               Cristian drops real .webp files in when ready
+
+DELETE these files (no longer needed):
+  ios-26.html
+  ios-26-es.html
+  better2026.html
 ```
 
-### Redirect pages
+### `_redirects` — append only, preserve all existing entries
 
-Each redirect is a minimal HTML file with an immediate `<meta http-equiv="refresh">` and a `<script>window.location.href=...</script>` fallback. No CSS needed.
+The `_redirects` file manages Cloudflare Pages routing. **Do not remove or modify any existing line.** The app, invite links, and other infrastructure depend on the current rules. Only append the following new entries at the bottom:
 
 ```
-/download/  and  /ios/   →  https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884
-/web/        and  /android/  →  /web.html
+/download   https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884   302
+/ios        https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884   302
+/web        /web.html   302
+/android    /web.html   302
 ```
 
-Example (same pattern for all four):
-```html
-<!doctype html>
-<html><head>
-  <meta charset="utf-8">
-  <meta http-equiv="refresh" content="0;url=https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884">
-  <script>window.location.href="https://apps.apple.com/..."</script>
-</head><body></body></html>
+Also add a redirect for the deleted pages so existing links don't 404:
 ```
+/ios-26.html      /press.html   301
+/ios-26-es.html   /press.html   301
+/better2026.html  /             301
+```
+
+### App Store URL — canonical form
+
+Use this URL in all places across the site (nav download button, hero CTA, footer, og:image, etc.):
+
+```
+https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884
+```
+
+Define it once as a JS constant or a CSS custom property comment so it is easy to update everywhere.
 
 ---
 
@@ -119,8 +227,25 @@ Keep the current visual design and all functionality unchanged. Only change: mak
 ### 2.6 Blog — `/blog/index.html`
 Listing page for all articles. Updated to use new nav + footer from the shared design system. See Section 5 for article rewrites and new articles.
 
-### 2.7 Invite — `/invite/index.html`
-Updated to reference `/style.css`. All invite-specific styles (avatar, QR code, invite card, button states) live as the last section of `style.css`. Everything else — nav, footer, buttons, background, fonts, dark mode — is inherited from the shared system automatically.
+### 2.7 Invite — `/invite/index.html` and `/public/invite/index.html`
+Both pages keep every existing mechanic exactly as-is — all JS, routing, QR code logic, Cloudflare hooks, app deep-link handling. The only change is the `<link rel="stylesheet">` pointing to the new `style.css`. Invite-specific visual styles (avatar rings, QR code card, invite card, accept/decline states) live at the bottom of `style.css` under `/* ─── Invite page overrides ─── */`. Everything else — nav, footer, buttons, background, fonts, dark mode — is inherited from the shared system automatically.
+
+### 2.8 Press — `/press.html`
+
+New page, replaces `ios-26.html`. General press and media destination.
+
+**Content (developer writes based on BLUEPRINT.md, homepage copy, and existing `ios-26.html` as reference):**
+
+- Page headline: "Left — Press"
+- Short app description: what Left is, who it's for, what makes it different — grounded in BLUEPRINT.md section 3.5 feature descriptions
+- **Key facts** (small data grid): free download; one-time purchase, no subscription; iOS 18+; widgets for Home Screen, Lock Screen, StandBy, iPad
+- **Features summary**: one sentence per feature area — Left Time, Ahead, Since (habits + streaks), Planner, Wallpaper, Friends. Taken verbatim from how BLUEPRINT.md describes each feature.
+- **Download links**: App Store badge + URL
+- **Press kit**: link to `https://drive.google.com/file/d/1Oa22OUGiCtdCMjsEC30L5DJ8lLZcnnNp/view?usp=sharing`
+- **Contact**: `cristianrus@hey.com` for press inquiries
+- **Developer**: Cristian Rus, independent developer, Wellington, New Zealand, X: `@CristianRus4`
+
+**Style:** Shared nav + footer. Clean, information-dense layout with no scroll effects or carousels. Desktop: two columns where appropriate. Mobile: single column.
 
 ---
 
@@ -461,7 +586,13 @@ streak → flame icon or 🔥
 - Mobile: 2 columns, both slowly scroll upward (same CSS animation, different speed)
 - Cards: `--bg-surface`, 16px radius, `var(--shadow-sm)`, hairline border
 
-**Placeholder content:** Developer writes 12–15 placeholder review objects in `reviews.json` based on the app's actual features. Cristian will replace with real content.
+**Seed data:** Create `reviews.json` as an empty array. Cristian will populate it with real reviews. The developer ships the rendering code ready; the section simply renders nothing (or a placeholder state) until the file has content.
+
+```json
+[]
+```
+
+Cristian will add entries following the schema above. The renderer handles all four types automatically based on the `type` field. Build the rendering code to work with any number of entries from 0 upward.
 
 ---
 
@@ -716,11 +847,20 @@ Desktop: > 1024px
 - Minimum 4.5:1 color contrast in both modes
 - Visible focus ring on keyboard navigation
 
-### SEO
-- Keep existing Schema.org `FAQPage` and `MobileApplication` JSON-LD in index.html
-- Update FAQ answers to match final content
+### SEO and meta — preserve these exactly in new index.html
+- Keep the existing Schema.org `FAQPage` JSON-LD block (update answers to match final FAQ)
+- Keep the `MobileApplication` / `WebSite` JSON-LD block (update `ratingCount` when possible)
+- Keep the Smart App Banner: `<meta name="apple-itunes-app" content="app-id=6740155884, app-argument=...">` — this shows the native iOS banner in Safari
+- Keep Open Graph and Twitter card meta tags; update `og:image` to point to the new hero image path (`images/hero.webp`)
+- Keep `<link rel="preconnect" href="https://toolbox.marketingtools.apple.com" crossorigin>` — needed for the App Store badge to load fast
+- Keep `<meta name="robots" content="index,follow">` on all indexable pages
+- Add `<meta name="robots" content="noindex">` on: `download.html`, `ios-26.html`, `ios-26-es.html`, `better2026.html`, and any redirect page
 - Each blog article: unique `<title>`, `<meta name="description">`, `<link rel="canonical">`
-- Redirect pages: `<meta name="robots" content="noindex">` on all four
+- `theme-color` meta tags should be updated to reflect the new color scheme:
+  ```html
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)">
+  ```
 
 ### Scroll behavior
 ```css
@@ -729,40 +869,82 @@ html { scroll-behavior: smooth; }
 
 ---
 
-## 9. Open Items — Cristian to Provide
+## 9. Open Items — Cristian to Provide When Ready
 
-1. **Counter base number**: What number should the counter display today? (app has "100k+ users" on current site — use that as the floor)
-2. **Counter growth rate**: Approximately how many new users per day? This tunes the formula.
-3. **Hero copy**: Final headline and subtitle — the most important text on the site.
-4. **Scroll-text copy**: The philosophical statement for Section 4.6.
-5. **Review content**: Fill `reviews.json` with real content when ready. Developer ships it with placeholder data.
-6. **Privacy and Terms content**: Existing copy or needs drafting?
-7. **Contact email**: The email address to use on contact.html.
-8. **Hero image and feature images**: Drop real `.webp` files into `/images/` using the naming convention in Section 7.
+All structural decisions are resolved. The only things Cristian needs to provide are content and assets — the developer can build everything with placeholders first.
+
+1. **Counter base number and growth rate**: What number should the footer counter show today, and approximately how many new users per day (to tune the time-based formula)?
+
+2. **Hero headline and subtitle**: The most important copy on the site. Cristian's voice, not generic marketing.
+
+3. **Scroll-text copy**: The philosophical statement for Section 4.6.
+
+4. **Privacy.html content**: The legal privacy policy text for the local page.
+
+5. **Terms.html content**: The terms of service text for the local page.
+
+6. **Real images**: Drop `.webp` files into `/images/` using the naming convention in Section 7. Developer ships with unsplash/placeholder images until then.
+
+7. **Reviews**: Populate `reviews.json` with real content following the schema in Section 4.8.
+
+**Already known — no decisions needed:**
+
+- Contact email: `cristianrus@hey.com`
+- X handle: `@CristianRus4`
+- Press kit: `https://drive.google.com/file/d/1Oa22OUGiCtdCMjsEC30L5DJ8lLZcnnNp/view?usp=sharing`
+- App Store URL: `https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884`
+- App Store ID: `6740155884`
+- Both invite paths (`/invite/` and `/public/invite/`) are intentional and must be preserved
+- `support.html` and `contact.html` are separate pages with different content — keep both
 
 ---
 
 ## 10. Build Order (suggested)
 
+**Phase 0 — Prep (no visual changes, just file surgery)**
 1. Rename `index.html` → `oldindex.html`, `style.css` → `oldstyle.css`
-2. Make `web.html` CSS-independent (inline the base styles it needs, remove the `<link>` to style.css)
-3. Create four redirect pages: `/download/`, `/ios/`, `/web/`, `/android/`
-4. Build new `style.css`: tokens, reset, typography, nav, buttons, cards, footer
-5. Build `index.html` — nav + hero first (validate design direction)
-6. Build sections 4.3 and 4.4 (feature cards + feature grid)
-7. Build section 4.5 (bento grid with flip behavior)
-8. Build section 4.6 (scroll-text)
-9. Build section 4.7 (template carousel — wire to TemplateLibrary.json)
-10. Create `reviews.json` with placeholder data; build section 4.8 (reviews columns)
-11. Build section 4.9 (photo mosaic with placeholder images)
-12. Build section 4.10 (FAQ accordion)
-13. Build section 4.11 (download CTA)
-14. Build section 4.12 (footer + counter)
-15. Add invite overrides to `style.css`; update `/invite/index.html` to reference `/style.css`
-16. Build `privacy.html`, `terms.html`, `contact.html` with shared nav + footer
-17. Update `/blog/index.html` with new nav + footer; rewrite existing articles; add new articles
-18. QA pass: mobile responsiveness, dark mode, all redirect links, web.html isolation, performance, accessibility
-19. Delete `oldindex.html` and `oldstyle.css` when confident nothing references them
+2. Create `web.css` by extracting all styles from `web.html`'s inline `<style>` block + the 5 base rules from old `style.css`. Update `web.html` to reference `web.css`, remove inline `<style>` block, remove `<link rel="stylesheet" href="style.css">`. Confirm `web.html` still looks identical.
+3. Remove `<link rel="stylesheet" href="style.css">` from `download.html` only
+4. Append the new redirect entries to `_redirects` (do not touch existing lines)
+5. Delete `ios-26.html`, `ios-26-es.html`, `better2026.html`
+6. Create `reviews.json` as an empty array `[]`
+
+**Phase 1 — Foundation**
+7. Build new `style.css`: all design tokens, reset, typography, nav (both hidden and always-visible states), buttons, cards, glass effects, footer
+8. Build the canonical nav and footer HTML (defined once, paste into every page)
+9. Build `index.html` hero section only — validate the design direction before going further
+
+**Phase 2 — Homepage sections**
+10. Sections 4.3 + 4.4: action cards + main feature grid
+11. Section 4.5: bento grid with flip JS
+12. Section 4.6: scroll-text with IntersectionObserver
+13. Section 4.7: template carousel reading from `TemplateLibrary.json`
+14. Section 4.8: reviews columns reading from `reviews.json`
+15. Section 4.9: photo mosaic (placeholder images)
+16. Section 4.10: FAQ accordion
+17. Section 4.11: download CTA
+18. Section 4.12: footer + counter
+
+**Phase 3 — Supporting pages**
+19. Add invite overrides section to end of `style.css`; update `<link>` in both `/invite/index.html` and `/public/invite/index.html` to new `style.css` — touch nothing else in those files
+20. Build `press.html` using shared nav + footer; content from BLUEPRINT.md + existing `ios-26.html` as reference
+21. Update `contact.html` and `support.html` nav + footer; keep all content
+22. Build `privacy.html` and `terms.html` (content from Cristian)
+23. Migrate `blog/blog.css` into `style.css` then delete it; update blog listing + rewrite all articles + add new articles
+
+**Phase 4 — QA**
+24. Mobile responsiveness on all pages
+25. Dark mode on all pages
+26. All redirect links (`/download`, `/ios`, `/web`, `/android`) via `_redirects`
+27. `web.html` isolation: confirm it works with zero external CSS
+28. Performance: LCP, lazy loading, no render-blocking resources
+29. Accessibility: keyboard navigation, focus rings, contrast, ARIA
+30. All nav and footer links correct across every page
+31. Structured data (JSON-LD) updated in index.html
+
+**Phase 5 — Cleanup**
+32. Delete `oldindex.html` and `oldstyle.css` once confirmed nothing references them
+33. Confirm `_redirects` has entries for `/ios-26.html → /press.html` and `/better2026.html → /` so deleted pages don't 404
 
 ---
 

@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>The Left Wallpaper: A Lock Screen That Updates Itself — Left Blog</title>
+  <meta name="description" content="How Left Wallpaper works, how to set it up with Shortcuts, and what to put on it." />
+  <link rel="canonical" href="https://getleft.app/blog/left-wallpaper-guide.html" />
+  <meta property="og:title" content="The Left Wallpaper: A Lock Screen That Updates Itself" />
+  <meta property="og:description" content="How Left Wallpaper works, how to set it up with Shortcuts, and what to put on it." />
+  <meta property="og:type" content="article" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <a href="/#features" class="nav-link">Features</a>
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>The Left Wallpaper: A Lock Screen That Updates Itself</h1>
+<p class="article-meta">May 2026 · 5 min read</p>
+<p>iOS wallpapers are static. Widgets aren't. <strong>Left Wallpaper</strong> sits in between — it generates a wallpaper image with your live time data, then uses an Apple Shortcut to update itself.</p>
+
+<h2>What it can show</h2>
+<ul>
+  <li>Year progress</li>
+  <li>Life in weeks (a dot grid)</li>
+  <li>A countdown to a date you choose</li>
+  <li>A blend of a photo and a time view</li>
+</ul>
+
+<h2>How it actually works</h2>
+<p>Inside the app, Left's <code>WallpaperGenerator</code> writes a PNG into the App Group <code>Wallpapers/</code> directory. An App Shortcut (<code>UpdateDynamicWallpaperIntent</code>) regenerates it on demand. You wire that Shortcut into an Apple Shortcuts <em>Automation</em> — usually "every hour" or "when I unlock my iPhone" — so the wallpaper stays current without you doing anything.</p>
+
+<h2>Setup, step by step</h2>
+<ol>
+  <li>Open Left → <strong>Settings</strong> → <strong>Left Wallpaper</strong>.</li>
+  <li>Pick the view (Year, Life, Ahead, Day) and color.</li>
+  <li>Tap <strong>Save as Wallpaper</strong> to write the first version into Photos.</li>
+  <li>Open Shortcuts → Automation → <strong>+</strong> → pick a trigger (Time of Day, App Opened, etc).</li>
+  <li>Add the <strong>Update Left Wallpaper</strong> action. Save.</li>
+  <li>On your Lock Screen: Customize → choose the new wallpaper photo.</li>
+</ol>
+
+<h2>Tips</h2>
+<ul>
+  <li>iOS may delay automations when the phone is hot or in Low Power Mode — that's the OS, not Left.</li>
+  <li>Pair it with a small Lock Screen widget for redundancy.</li>
+  <li>Pre-generation runs on app launch so the wallpaper's ready when you switch to it.</li>
+</ul>
+
+<p><a href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884" target="_blank" rel="noopener">Download Left</a> and try it.</p>
+    <hr />
+    <p><a href="/blog/">← Back to blog</a></p>
+  </article>
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="brand">Left</span>
+          <span class="footer-location">Made in Wellington, NZ</span>
+          <span>© 2026 Cristian Rus</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/privacy.html">Privacy</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/support.html">Support</a>
+          <a href="/blog/">Blog</a>
+          <a href="/press.html">Press</a>
+          <a href="/web.html">Try on Web</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
