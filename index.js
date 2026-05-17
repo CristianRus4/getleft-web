@@ -132,23 +132,14 @@
     const sentenceSpans = scrollText.querySelectorAll('.scroll-sentence');
     const section = scrollText.closest('[data-stepped-section="copy"]');
     const update = () => {
-      if (section && !window.matchMedia('(max-width: 900px)').matches) {
+      if (section) {
         const rect = section.getBoundingClientRect();
         const scrollable = rect.height - window.innerHeight;
-        if (scrollable > 0 && rect.top <= 0 && rect.bottom >= window.innerHeight) {
-          const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
-          const activeIndex = Math.min(sentenceSpans.length - 1, Math.floor(progress * sentenceSpans.length));
-          sentenceSpans.forEach((sentence, index) => sentence.classList.toggle('is-lit', index <= activeIndex));
-          return;
-        }
+        const progress = scrollable > 0 ? Math.min(0.999, Math.max(0, -rect.top / scrollable)) : 0;
+        const activeIndex = Math.min(sentenceSpans.length - 1, Math.floor(progress * sentenceSpans.length));
+        sentenceSpans.forEach((sentence, index) => sentence.classList.toggle('is-lit', index <= activeIndex));
+        return;
       }
-
-      const vh = window.innerHeight;
-      sentenceSpans.forEach(sentence => {
-        const r = sentence.getBoundingClientRect();
-        const center = r.top + r.height / 2;
-        sentence.classList.toggle('is-lit', center < vh * 0.72 && center > vh * 0.12);
-      });
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -169,7 +160,7 @@
       .then(r => r.ok ? r.json() : [])
       .then(data => {
         if (!Array.isArray(data)) return;
-        const shuffled = shuffle(data).slice(0, 30);
+        const shuffled = shuffle(data);
         if (shuffled.length === 0) return;
 
         const rows = Array.from({ length: 5 }, () => []);
@@ -268,7 +259,7 @@
 
         // Distribute into 3 columns
         const cols = [[], [], []];
-        reviews.forEach((r, i) => cols[i % 3].push(r));
+        shuffle(reviews).forEach((r, i) => cols[i % 3].push(r));
 
         const renderCard = (r) => {
           const star = ((r.type === 'store' || r.type === 'app-store') && r.rating) ? `<div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>` : '';
@@ -277,7 +268,7 @@
           return `<article class="review-card">${meta}${star}${title}<div>${escapeHtml(r.description || r.text || '')}</div></article>`;
         };
 
-        const colClasses = ['reviews-col reviews-col-up', 'reviews-col reviews-col-mid', 'reviews-col reviews-col-down'];
+        const colClasses = ['reviews-col reviews-col-up', 'reviews-col reviews-col-mid', 'reviews-col reviews-col-up'];
         reviewsCols.innerHTML = cols.map((col, i) => {
           const inner = col.map(renderCard).join('') + col.map(renderCard).join(''); // duplicate for seamless scroll
           return `<div class="${colClasses[i]}">${inner}</div>`;
