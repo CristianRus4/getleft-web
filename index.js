@@ -363,6 +363,7 @@
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReduced) return;
     const heroText = document.querySelector('.hero-text');
+    const heroFloater = document.querySelector('.hero-floater');
     if (!heroText) return;
     const mqMobile = window.matchMedia('(max-width: 900px)');
 
@@ -372,13 +373,14 @@
       el.style.opacity = '';
       el.style.filter = '';
       el.style.transform = '';
+      el.style.pointerEvents = '';
     };
 
     const update = () => {
       const y = window.scrollY || 0;
-      document.body.classList.toggle('hero-scrolled', y > 4);
       if (!mqMobile.matches) {
         reset(heroText);
+        reset(heroFloater);
         return;
       }
       const start = 10, range = 220;
@@ -390,6 +392,13 @@
       heroText.style.opacity = op;
       heroText.style.filter = `blur(${blur}px)`;
       heroText.style.transform = `translateY(${parallax}px)`;
+      if (heroFloater) {
+        heroFloater.style.opacity = op;
+        heroFloater.style.filter = `blur(${blur}px)`;
+        // Keep horizontal centering while applying parallax fall
+        heroFloater.style.transform = `translate(-50%, ${parallax}px)`;
+        heroFloater.style.pointerEvents = t >= 1 ? 'none' : '';
+      }
     };
 
     let ticking = false;
