@@ -357,4 +357,56 @@
     };
     setTimeout(tick, 4000 + Math.random() * 5000);
   }
+
+  // ───────── Mobile hero parallax (fade + blur + slow scroll) ─────────
+  (() => {
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) return;
+    const heroText = document.querySelector('.hero-text');
+    const heroCta = document.querySelector('.hero-cta');
+    if (!heroText) return;
+    const mqMobile = window.matchMedia('(max-width: 900px)');
+
+    const clamp01 = (n) => Math.max(0, Math.min(1, n));
+    const reset = (el) => {
+      if (!el) return;
+      el.style.opacity = '';
+      el.style.filter = '';
+      el.style.transform = '';
+    };
+
+    const update = () => {
+      if (!mqMobile.matches) {
+        reset(heroText); reset(heroCta);
+        return;
+      }
+      const y = window.scrollY || 0;
+      const start = 10, range = 220;
+      const t = clamp01((y - start) / range);
+      const blurMax = 8;
+      const parallax = (y * 0.45).toFixed(1);
+      const op = (1 - t).toFixed(3);
+      const blur = (t * blurMax).toFixed(2);
+      if (heroText) {
+        heroText.style.opacity = op;
+        heroText.style.filter = `blur(${blur}px)`;
+        heroText.style.transform = `translateY(${parallax}px)`;
+      }
+      if (heroCta) {
+        heroCta.style.opacity = op;
+        heroCta.style.filter = `blur(${blur}px)`;
+        heroCta.style.transform = `translateY(${parallax}px)`;
+      }
+    };
+
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => { update(); ticking = false; });
+    };
+    update();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    mqMobile.addEventListener?.('change', update);
+  })();
 })();
