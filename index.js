@@ -62,6 +62,7 @@
   document.querySelectorAll('[data-actions-showcase]').forEach(showcase => {
     const buttons = [...showcase.querySelectorAll('.action-step')];
     const image = showcase.querySelector('[data-actions-preview]');
+    const mobileCopy = showcase.querySelector('[data-actions-mobile-copy]');
     if (!buttons.length || !image) return;
 
     const setActive = (button) => {
@@ -69,6 +70,11 @@
         b.classList.toggle('is-active', b === button);
         b.setAttribute('aria-selected', b === button ? 'true' : 'false');
       });
+      if (mobileCopy) {
+        const title = button.querySelector('.action-step-title')?.textContent || '';
+        const copy = button.querySelector('.action-step-copy')?.textContent || '';
+        mobileCopy.innerHTML = `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p>`;
+      }
       swapImage(image, button.dataset.actionImage, button.dataset.actionAlt);
     };
 
