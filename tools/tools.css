@@ -1,0 +1,438 @@
+/*
+  Left — styles scoped to /tools/* and /support/* pages.
+  Loaded in addition to the main style.css.
+*/
+
+/* ─────────── Tool widget card ─────────── */
+
+.tool-page {
+  max-width: 880px;
+  margin: 0 auto;
+  padding-top: calc(var(--nav-h) + 48px);
+  padding-bottom: 96px;
+}
+.tool-page h1 {
+  font-size: clamp(36px, 5vw, 56px);
+  margin-bottom: 12px;
+}
+.tool-page > .tool-lede {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-bottom: 28px;
+  max-width: 720px;
+}
+
+.tool-widget {
+  background: var(--bg-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-sm);
+  padding: clamp(20px, 3vw, 32px);
+  margin: 0 0 36px;
+}
+.tool-widget__row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+@media (max-width: 640px) {
+  .tool-widget__row { grid-template-columns: 1fr; }
+}
+.tool-widget__field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.tool-widget__field label,
+.tool-widget__label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+.tool-widget__field input,
+.tool-widget__field select,
+.tool-input {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  font-size: 16px;
+  padding: 12px 14px;
+  border: 1px solid var(--hairline);
+  border-radius: 12px;
+  background: var(--bg);
+  color: var(--text);
+  width: 100%;
+}
+.tool-widget__field input:focus,
+.tool-widget__field select:focus,
+.tool-input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: transparent;
+}
+
+/* Result big area */
+.tool-result {
+  margin-top: 8px;
+  padding-top: 20px;
+  border-top: 1px solid var(--hairline);
+}
+.tool-result-big {
+  font-size: clamp(40px, 8vw, 72px);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: var(--text);
+  font-variant-numeric: tabular-nums;
+}
+.tool-result-big .tool-result-unit {
+  font-size: 0.45em;
+  font-weight: 600;
+  color: var(--text-secondary);
+  margin-left: 8px;
+  letter-spacing: 0;
+  text-transform: lowercase;
+}
+.tool-result-sub {
+  margin-top: 8px;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+
+/* Stat row (used when "all units" view) */
+.tool-stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+@media (max-width: 520px) {
+  .tool-stat-row { grid-template-columns: repeat(4, 1fr); gap: 8px; }
+}
+.tool-stat {
+  background: var(--bg);
+  border-radius: var(--radius-cell);
+  padding: 16px 8px;
+  text-align: center;
+}
+.tool-stat-num {
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.tool-stat-label {
+  margin-top: 4px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+}
+
+/* Unit pill selector */
+.tool-units {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 18px;
+}
+.tool-units button {
+  appearance: none;
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+.tool-units button:hover { color: var(--text); }
+.tool-units button.is-active {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+/* Secondary toggle (hemisphere, gender, fasting plan, etc.) */
+.tool-toggle {
+  display: inline-flex;
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-pill);
+  padding: 4px;
+  gap: 4px;
+}
+.tool-toggle button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: var(--radius-pill);
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+.tool-toggle button.is-active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Tabs (calculation method) */
+.tool-tabs {
+  display: flex;
+  gap: 4px;
+  border-bottom: 1px solid var(--hairline);
+  margin-bottom: 20px;
+}
+.tool-tabs button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-secondary);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+}
+.tool-tabs button.is-active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+}
+
+/* Submit button (life expectancy etc.) */
+.tool-submit {
+  appearance: none;
+  background: var(--accent);
+  color: #fff;
+  border: 0;
+  border-radius: var(--radius-pill);
+  padding: 14px 22px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 12px;
+}
+.tool-submit:hover { opacity: 0.92; }
+
+.tool-fineprint {
+  margin-top: 16px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  line-height: 1.55;
+}
+
+/* Prose around the widget */
+.tool-prose {
+  max-width: 720px;
+  margin: 0 auto 40px;
+}
+.tool-prose h2 { font-size: clamp(22px, 3vw, 28px); margin: 36px 0 12px; }
+.tool-prose h3 { font-size: 18px; margin: 24px 0 8px; }
+.tool-prose p, .tool-prose li { font-size: 16px; line-height: 1.7; color: var(--text); }
+.tool-prose ul, .tool-prose ol { padding-left: 22px; }
+.tool-prose a { color: var(--accent); }
+.tool-prose a:hover { font-weight: 700; }
+
+/* Related tools (link graph) */
+.tool-related {
+  max-width: 720px;
+  margin: 24px auto 0;
+  padding: 24px;
+  background: var(--bg-muted);
+  border-radius: var(--radius-card);
+}
+.tool-related h2 {
+  font-size: 18px;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+.tool-related-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 18px;
+}
+@media (max-width: 640px) { .tool-related-items { grid-template-columns: 1fr; } }
+.tool-related-item {
+  display: block;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 15px;
+  color: var(--text);
+  transition: color 120ms ease;
+}
+.tool-related-item:hover { color: var(--accent); }
+
+/* ─────────── Shared "Start tracking what matters" download block ─────────── */
+
+.download-block {
+  margin: 64px auto 0;
+  max-width: 720px;
+  padding: 36px 28px;
+  background: var(--bg-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-card);
+  text-align: center;
+}
+.download-block h2 {
+  font-size: clamp(26px, 3.6vw, 36px);
+  margin: 0 0 10px;
+  letter-spacing: -0.02em;
+}
+.download-block p {
+  margin: 0 0 24px;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+.download-block .download-block__cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.download-block .download-block__qr {
+  display: none;
+  width: 120px;
+  height: 120px;
+  border-radius: 14px;
+  padding: 6px;
+  background: var(--bg);
+  border: 1px solid var(--hairline);
+}
+.download-block .download-block__qr .qr-mask {
+  width: 100%; height: 100%;
+  background: var(--text);
+  -webkit-mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
+          mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
+}
+.download-block .download-block__scan {
+  margin: 16px auto 0;
+  font-size: 13px;
+  color: var(--text-secondary);
+  max-width: 360px;
+}
+@media (min-width: 768px) {
+  .download-block .download-block__qr { display: block; }
+}
+
+/* ─────────── Tools index page ─────────── */
+
+.tools-index {
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-top: calc(var(--nav-h) + 48px);
+  padding-bottom: 96px;
+}
+.tools-index h1 { font-size: clamp(40px, 6vw, 64px); margin-bottom: 12px; }
+.tools-index > .tools-intro {
+  color: var(--text-secondary);
+  font-size: 18px;
+  max-width: 720px;
+  margin-bottom: 48px;
+}
+.tools-group { margin-bottom: 48px; }
+.tools-group h2 {
+  font-size: clamp(20px, 2.4vw, 26px);
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+}
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 900px) { .tools-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .tools-grid { grid-template-columns: 1fr; } }
+.tool-card {
+  display: block;
+  background: var(--bg-surface);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-cell);
+  padding: 18px 20px;
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+.tool-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent);
+}
+.tool-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+.tool-card-desc {
+  font-size: 14px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.45;
+}
+
+/* ─────────── Tutorial article ─────────── */
+
+.tutorial {
+  max-width: 720px;
+  margin: 0 auto;
+  padding-top: calc(var(--nav-h) + 48px);
+  padding-bottom: 96px;
+}
+.tutorial h1 {
+  font-size: clamp(32px, 4.5vw, 48px);
+  margin-bottom: 12px;
+  letter-spacing: -0.025em;
+}
+.tutorial .tutorial-lede {
+  color: var(--text-secondary);
+  font-size: 18px;
+  margin-bottom: 32px;
+}
+.tutorial h2 {
+  font-size: clamp(22px, 2.8vw, 28px);
+  margin: 40px 0 14px;
+  letter-spacing: -0.02em;
+}
+.tutorial h3 { font-size: 18px; margin: 24px 0 8px; }
+.tutorial p, .tutorial li { font-size: 17px; line-height: 1.7; color: var(--text); }
+.tutorial ol, .tutorial ul { padding-left: 24px; }
+.tutorial ol li, .tutorial ul li { margin-bottom: 6px; }
+.tutorial a { color: var(--accent); }
+.tutorial a:hover { font-weight: 700; }
+.tutorial figure { margin: 24px 0; }
+.tutorial figure img {
+  width: 100%;
+  border-radius: var(--radius-cell);
+  background: var(--bg-muted);
+}
+.tutorial figcaption {
+  margin-top: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  text-align: center;
+}
+.tutorial .step-block {
+  border-left: 3px solid var(--accent);
+  padding: 4px 0 4px 18px;
+  margin: 32px 0 24px;
+}
+.tutorial .step-block .step-kicker {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.tutorial .step-block h2 { margin-top: 0; }
