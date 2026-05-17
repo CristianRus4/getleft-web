@@ -358,6 +358,26 @@
     setTimeout(tick, 4000 + Math.random() * 5000);
   }
 
+  // ───────── Match QR card width to download button width (desktop) ─────────
+  (() => {
+    const sync = () => {
+      document.querySelectorAll('.hero-download-group, .download-group').forEach(group => {
+        const btn = group.querySelector('.dl-btn');
+        const qr = group.querySelector('.qr-flip');
+        if (!btn || !qr) return;
+        const w = btn.getBoundingClientRect().width;
+        if (w > 0) {
+          qr.style.width = `${w}px`;
+          qr.style.height = `${w}px`;
+          qr.style.minHeight = `${w}px`;
+        }
+      });
+    };
+    sync();
+    window.addEventListener('resize', sync, { passive: true });
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(sync);
+  })();
+
   // ───────── Mobile hero parallax (fade + blur + slow scroll) ─────────
   (() => {
     const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -393,11 +413,13 @@
       heroText.style.filter = `blur(${blur}px)`;
       heroText.style.transform = `translateY(${parallax}px)`;
       if (heroFloater) {
-        heroFloater.style.opacity = op;
-        heroFloater.style.filter = `blur(${blur}px)`;
-        // Keep horizontal centering while applying parallax fall
-        heroFloater.style.transform = `translate(-50%, ${parallax}px)`;
-        heroFloater.style.pointerEvents = t >= 1 ? 'none' : '';
+        const floaterRange = 90;
+        const tf = clamp01((y - start) / floaterRange);
+        const opF = (1 - tf).toFixed(3);
+        const fallF = (tf * 20).toFixed(1);
+        heroFloater.style.opacity = opF;
+        heroFloater.style.transform = `translate(-50%, ${fallF}px)`;
+        heroFloater.style.pointerEvents = tf >= 1 ? 'none' : '';
       }
     };
 
