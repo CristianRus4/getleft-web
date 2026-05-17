@@ -42,26 +42,67 @@
     });
   });
 
-  // ───────── Scroll-text per-word highlight ─────────
+  // ───────── Actions preview ─────────
+  document.querySelectorAll('[data-actions-showcase]').forEach(showcase => {
+    const buttons = [...showcase.querySelectorAll('.action-step')];
+    const image = showcase.querySelector('[data-actions-preview]');
+    if (!buttons.length || !image) return;
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        buttons.forEach(b => {
+          b.classList.toggle('is-active', b === button);
+          b.setAttribute('aria-selected', b === button ? 'true' : 'false');
+        });
+        swapImage(image, button.dataset.actionImage, button.dataset.actionAlt);
+      });
+    });
+  });
+
+  // ───────── Feature tag galleries ─────────
+  document.querySelectorAll('[data-feature-gallery]').forEach(gallery => {
+    const image = gallery.querySelector('.feature-image img');
+    const tags = [...gallery.querySelectorAll('.feature-tag')];
+    if (!image || !tags.length) return;
+
+    tags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        tags.forEach(t => t.classList.toggle('is-active', t === tag));
+        swapImage(image, tag.dataset.featureImage, tag.dataset.featureAlt);
+      });
+    });
+  });
+
+  function swapImage(image, src, alt) {
+    if (!src || image.getAttribute('src') === src) return;
+    image.classList.add('is-swapping');
+    window.setTimeout(() => {
+      image.src = src;
+      if (alt) image.alt = alt;
+      image.classList.remove('is-swapping');
+    }, 140);
+  }
+
+  // ───────── Scroll-text per-sentence highlight ─────────
   const scrollText = document.getElementById('scrollText');
   if (scrollText) {
     const raw = scrollText.textContent.trim();
     scrollText.textContent = '';
-    raw.split(/\s+/).forEach((w, i) => {
+    const sentences = raw.match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [raw];
+    sentences.forEach((sentence, i) => {
       const span = document.createElement('span');
-      span.className = 'scroll-word';
-      span.textContent = w + ' ';
+      span.className = 'scroll-sentence';
+      span.textContent = sentence.trim() + (i < sentences.length - 1 ? ' ' : '');
       scrollText.appendChild(span);
     });
-    const words = scrollText.querySelectorAll('.scroll-word');
+    const sentenceSpans = scrollText.querySelectorAll('.scroll-sentence');
     const update = () => {
       const vh = window.innerHeight;
-      words.forEach(w => {
-        const r = w.getBoundingClientRect();
+      sentenceSpans.forEach(sentence => {
+        const r = sentence.getBoundingClientRect();
         const center = r.top + r.height / 2;
-        // light up when the word's center is in the upper 60% of the viewport
-        if (center < vh * 0.7 && center > vh * 0.15) w.classList.add('is-lit');
-        else w.classList.remove('is-lit');
+        if (center < vh * 0.72 && center > vh * 0.12) sentence.classList.add('is-lit');
+        else sentence.classList.remove('is-lit');
       });
     };
     update();
@@ -79,26 +120,24 @@
 
   const carouselTrack = document.getElementById('carouselTrack');
   if (carouselTrack) {
-    fetch('/TemplateLibrary.json')
+    fetch('TemplateLibrary.json')
       .then(r => r.ok ? r.json() : [])
       .then(data => {
-        // Shuffle & pick ~24
-        const shuffled = [...data].sort(() => Math.random() - 0.5).slice(0, 24);
+        if (!Array.isArray(data)) return;
+        const shuffled = shuffle(data).slice(0, 30);
         if (shuffled.length === 0) return;
 
         const html = shuffled.map(item => {
           const accent = COLORS[(item.color || 'orange').toLowerCase()] || COLORS.orange;
           const symbol = SYMBOLS[item.kind] || '•';
-          // Convert Unsplash share URL → direct image URL
-          let photo = item.photo || '';
-          const m = photo.match(/photos\/([\w-]+)/);
-          const src = m ? `https://source.unsplash.com/${m[1].split('-').pop()}/400x500`
-                        : `https://source.unsplash.com/random/400x500/?${encodeURIComponent(item.category || item.kind || 'time')}`;
-          const title = (item.title || '').replace(/</g, '&lt;');
+          const src = templatePhotoUrl(item);
+          const title = escapeHtml(item.title || 'Untitled');
+          const kind = escapeHtml(labelKind(item.kind || 'Template'));
           return `<div class="carousel-card" role="listitem" style="--card-accent:${accent}">
             <img src="${src}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />
             <span class="card-accent" aria-hidden="true"></span>
-            <div class="card-meta"><span>${title}</span><span class="symbol" aria-hidden="true">${symbol}</span></div>
+            <span class="symbol" aria-hidden="true">${symbol}</span>
+            <div class="card-meta"><span class="card-kind">${kind}</span><span class="card-title">${title}</span></div>
           </div>`;
         }).join('');
 
@@ -158,6 +197,31 @@
         }).join('');
       })
       .catch(() => { /* graceful */ });
+  }
+
+  function shuffle(items) {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+  }
+
+  function labelKind(kind) {
+    return String(kind).replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  }
+
+  function templatePhotoUrl(item) {
+    const photo = String(item.photo || '');
+    const match = photo.match(/photos\/([^/?#]+)(?:[/?#]|$)/);
+    if (match) {
+      const slug = match[1];
+      const id = slug.slice(-11);
+      return `https://unsplash.com/photos/${id}/download?force=true&w=520`;
+    }
+    const query = encodeURIComponent(item.category || item.title || item.kind || 'time');
+    return `https://source.unsplash.com/520x680/?${query}`;
   }
 
   function escapeHtml(s) {
