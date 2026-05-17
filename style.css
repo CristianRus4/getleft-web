@@ -19,32 +19,6 @@
 */
 
 /* ───────────────────────────────────────────────────────────
-   0. FONTS
-   ─────────────────────────────────────────────────────────── */
-
-@font-face {
-  font-family: 'Quattro';
-  src: url('fonts/Quattro.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Quattro';
-  src: url('fonts/Quattro-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Quattro';
-  src: url('fonts/Quattro-Italic.woff') format('woff');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* ───────────────────────────────────────────────────────────
    1. TOKENS
    ─────────────────────────────────────────────────────────── */
 
@@ -65,7 +39,7 @@
 
   --accent-gradient: #FF6B24;
 
-  --max-w: 1180px;
+  --max-w: 1140px;
   --nav-h: 56px;
 
   --radius-card: 20px;
@@ -99,13 +73,14 @@
    ─────────────────────────────────────────────────────────── */
 
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; overflow-x: clip; }
 html, body { min-height: 100%; }
+body { overflow-x: clip; }
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: 'Quattro', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
@@ -316,55 +291,41 @@ p  { margin: 0 0 1em; }
 /* App Store badge — hidden, replaced by dl-btn */
 .appstore-badge { display: none !important; }
 
-/* QR code wrapper */
-.qr-wrap {
+/* QR code — CSS mask renders it in current text colour */
+.hero-qr {
   display: none;
-  background: #fff;
-  border-radius: 12px;
-  padding: 10px;
-  width: 162px;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  width: 220px;
+  height: 220px;
+  background: var(--text);
+  -webkit-mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
+          mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
+  flex-shrink: 0;
 }
-.qr-wrap img { display: block; width: 100%; height: auto; }
-@media (min-width: 768px) { .qr-wrap { display: block; } }
+.hero-qr img { display: none; }
+@media (min-width: 768px) { .hero-qr { display: block; } }
 
-/* Custom download button */
+/* Custom download button — same width as QR */
 .dl-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   gap: 10px;
-  height: 64px;
-  padding: 0 28px;
+  width: 220px;
+  height: 60px;
+  padding: 0 20px;
   background: var(--text);
   color: var(--bg);
-  border-radius: 20px;
+  border-radius: 18px;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 700;
   letter-spacing: -0.01em;
   white-space: nowrap;
   cursor: pointer;
-  transition: opacity 150ms ease;
+  transition: color 180ms ease;
 }
-.dl-btn:hover { opacity: 0.88; }
-.dl-btn-apple {
-  width: 22px; height: 22px;
-  flex-shrink: 0;
-  transition: opacity 200ms ease, transform 200ms ease;
-}
-.dl-btn-arrow {
-  position: absolute;
-  right: 28px;
-  font-size: 20px;
-  font-weight: 400;
-  opacity: 0;
-  transform: translateX(-6px);
-  transition: opacity 200ms ease, transform 200ms ease;
-}
-.dl-btn:hover .dl-btn-apple { opacity: 0; transform: translateX(-6px); }
-.dl-btn:hover .dl-btn-arrow { opacity: 1; transform: none; }
+.dl-btn:hover { color: var(--accent); }
+.dl-btn-apple { width: 20px; height: 20px; flex-shrink: 0; }
 
 .is-hidden { display: none !important; }
 

@@ -115,7 +115,7 @@
 
     const startAuto = () => {
       clearInterval(autoTimer);
-      autoTimer = setInterval(() => activate((currentIndex + 1) % tags.length), 3000);
+      autoTimer = setInterval(() => activate((currentIndex + 1) % tags.length), 8000);
     };
 
     tags.forEach((tag, i) => {
