@@ -44,12 +44,17 @@
 
   // ───────── Accordion FAQ ─────────
   document.querySelectorAll('.faq-grid').forEach(grid => {
+    let closeTimer = null;
     grid.addEventListener('toggle', (event) => {
       const opened = event.target;
       if (!(opened instanceof HTMLDetailsElement) || !opened.open) return;
+      clearTimeout(closeTimer);
       grid.querySelectorAll('details[open]').forEach(details => {
         if (details !== opened) details.open = false;
       });
+      closeTimer = setTimeout(() => {
+        opened.open = false;
+      }, 3000);
     }, true);
   });
 
@@ -189,44 +194,51 @@
           return `<div class="template-row" role="list" data-direction="${index % 2 === 0 ? 'right' : 'left'}">${cards}${cards}${cards}</div>`;
         }).join('');
 
-        const rowState = [...carouselTrack.querySelectorAll('.template-row')].map((row, index) => ({
-          row,
-          offset: index % 2 === 0 ? -row.scrollWidth / 3 : 0,
-          speed: 0.22 + index * 0.035,
-          direction: row.dataset.direction === 'right' ? 1 : -1,
-          width: row.scrollWidth / 3
-        }));
+        const rowState = [...carouselTrack.querySelectorAll('.template-row')].map((row, index) => {
+          const state = {
+            row,
+            offset: index % 2 === 0 ? -row.scrollWidth / 3 : 0,
+            speed: 0.22 + index * 0.035,
+            direction: row.dataset.direction === 'right' ? 1 : -1,
+            width: row.scrollWidth / 3,
+            dragOffset: 0,
+            pointerStartX: 0,
+            dragStartOffset: 0,
+            isDragging: false
+          };
 
-        let dragOffset = 0;
+          row.addEventListener('pointerdown', (event) => {
+            state.pointerStartX = event.clientX;
+            state.dragStartOffset = state.dragOffset;
+            state.isDragging = true;
+            paused = true;
+            wrap.classList.add('is-dragging');
+            row.setPointerCapture?.(event.pointerId);
+          });
+          row.addEventListener('pointermove', (event) => {
+            if (!state.isDragging) return;
+            state.dragOffset = state.dragStartOffset + event.clientX - state.pointerStartX;
+          });
+          const finishDrag = (event) => {
+            if (!state.isDragging) return;
+            state.isDragging = false;
+            wrap.classList.remove('is-dragging');
+            row.releasePointerCapture?.(event.pointerId);
+            paused = false;
+          };
+          row.addEventListener('pointerup', finishDrag);
+          row.addEventListener('pointercancel', finishDrag);
+          row.addEventListener('pointerleave', finishDrag);
+
+          return state;
+        });
+
         let paused = false;
         const wrap = carouselTrack.parentElement;
         wrap.addEventListener('mouseenter', () => paused = true);
         wrap.addEventListener('mouseleave', () => paused = false);
         wrap.addEventListener('focusin', () => paused = true);
         wrap.addEventListener('focusout', () => paused = false);
-
-        let pointerStartX = 0;
-        let dragStartOffset = 0;
-        wrap.addEventListener('pointerdown', (event) => {
-          pointerStartX = event.clientX;
-          dragStartOffset = dragOffset;
-          paused = true;
-          wrap.classList.add('is-dragging');
-          wrap.setPointerCapture?.(event.pointerId);
-        });
-        wrap.addEventListener('pointermove', (event) => {
-          if (!wrap.classList.contains('is-dragging')) return;
-          dragOffset = dragStartOffset + event.clientX - pointerStartX;
-        });
-        const finishDrag = (event) => {
-          if (!wrap.classList.contains('is-dragging')) return;
-          wrap.classList.remove('is-dragging');
-          wrap.releasePointerCapture?.(event.pointerId);
-          paused = false;
-        };
-        wrap.addEventListener('pointerup', finishDrag);
-        wrap.addEventListener('pointercancel', finishDrag);
-        wrap.addEventListener('pointerleave', finishDrag);
 
         const tick = () => {
           rowState.forEach(state => {
@@ -235,7 +247,7 @@
               if (state.offset > 0) state.offset -= state.width;
               if (state.offset < -state.width * 2) state.offset += state.width;
             }
-            state.row.style.transform = `translate3d(${state.offset + dragOffset}px, 0, 0)`;
+            state.row.style.transform = `translate3d(${state.offset + state.dragOffset}px, 0, 0)`;
           });
           requestAnimationFrame(tick);
         };
@@ -265,7 +277,7 @@
           return `<article class="review-card">${meta}${star}${title}<div>${escapeHtml(r.description || r.text || '')}</div></article>`;
         };
 
-        const colClasses = ['reviews-col reviews-col-up', 'reviews-col', 'reviews-col reviews-col-down'];
+        const colClasses = ['reviews-col reviews-col-up', 'reviews-col reviews-col-mid', 'reviews-col reviews-col-down'];
         reviewsCols.innerHTML = cols.map((col, i) => {
           const inner = col.map(renderCard).join('') + col.map(renderCard).join(''); // duplicate for seamless scroll
           return `<div class="${colClasses[i]}">${inner}</div>`;
