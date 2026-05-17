@@ -19,6 +19,32 @@
 */
 
 /* ───────────────────────────────────────────────────────────
+   0. FONTS
+   ─────────────────────────────────────────────────────────── */
+
+@font-face {
+  font-family: 'Quattro';
+  src: url('fonts/Quattro.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quattro';
+  src: url('fonts/Quattro-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Quattro';
+  src: url('fonts/Quattro-Italic.woff') format('woff');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ───────────────────────────────────────────────────────────
    1. TOKENS
    ─────────────────────────────────────────────────────────── */
 
@@ -79,7 +105,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Quattro', system-ui, -apple-system, 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 17px;
@@ -287,25 +313,59 @@ p  { margin: 0 0 1em; }
   color: var(--text-secondary);
 }
 
-/* App Store badge image — used in hero and download CTA */
-.appstore-badge { display: inline-block; height: 54px; }
-.appstore-badge img { height: 100%; width: auto; }
-.hero-qr {
+/* App Store badge — hidden, replaced by dl-btn */
+.appstore-badge { display: none !important; }
+
+/* QR code wrapper */
+.qr-wrap {
   display: none;
-  width: 54px;
-  height: 54px;
-  padding: 0;
-  border-radius: 0;
-  color: var(--text);
-  background: currentColor;
-  border: 0;
-  overflow: hidden;
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px;
+  width: 162px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.qr-wrap img { display: block; width: 100%; height: auto; }
+@media (min-width: 768px) { .qr-wrap { display: block; } }
+
+/* Custom download button */
+.dl-btn {
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  -webkit-mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
-          mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
+  position: relative;
+  gap: 10px;
+  height: 64px;
+  padding: 0 28px;
+  background: var(--text);
+  color: var(--bg);
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: opacity 150ms ease;
 }
-.hero-qr img { display: none; }
+.dl-btn:hover { opacity: 0.88; }
+.dl-btn-apple {
+  width: 22px; height: 22px;
+  flex-shrink: 0;
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.dl-btn-arrow {
+  position: absolute;
+  right: 28px;
+  font-size: 20px;
+  font-weight: 400;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+.dl-btn:hover .dl-btn-apple { opacity: 0; transform: translateX(-6px); }
+.dl-btn:hover .dl-btn-arrow { opacity: 1; transform: none; }
+
 .is-hidden { display: none !important; }
 
 /* ───────────────────────────────────────────────────────────
@@ -399,11 +459,6 @@ p  { margin: 0 0 1em; }
   .hero-inner { grid-template-columns: 1fr; text-align: left; }
   .hero-image-wrap { min-height: auto; margin-top: 32px; }
   .hero-image { max-height: 56vh; }
-}
-@media (min-width: 768px) {
-  .hero-qr { display: inline-flex; }
-  .hero-download-group .hero-qr { width: 162px; height: 162px; }
-  .download-group .hero-qr { width: 162px; height: 162px; }
 }
 
 /* 8.2 Actions showcase (3 core features) --------------------- */
@@ -524,15 +579,13 @@ p  { margin: 0 0 1em; }
     line-height: 1.55;
     margin: 0;
   }
-  .actions-preview { min-height: 0; }
-  .action-scroll-section { min-height: auto; }
-  .action-scroll-section > .container {
-    padding-block: clamp(40px, 6vw, 72px) clamp(20px, 3vw, 36px);
-  }
+  .actions-preview { min-height: 280px; }
+  .actions-showcase { gap: 14px; }
+  .action-step-kicker { margin-bottom: 0; }
+  .action-scroll-section { min-height: 300vh; }
   .action-sticky-wrap {
-    position: static;
-    min-height: 0;
-    padding-block: 0 clamp(40px, 6vw, 72px);
+    min-height: calc(100vh - var(--nav-h));
+    justify-content: center;
   }
 }
 
@@ -691,7 +744,8 @@ p  { margin: 0 0 1em; }
   transition: opacity 250ms ease;
 }
 .scroll-sentence.is-lit { opacity: 1; }
-.scroll-accent { color: var(--accent); font-style: normal; }
+.scroll-accent { color: inherit; font-style: normal; }
+.scroll-sentence.is-lit .scroll-accent { color: var(--accent); }
 @media (max-width: 900px) {
   .scroll-copy-section { min-height: 500vh; padding-block: 0; }
   .scroll-text { font-size: 34px; line-height: 1.28; }
@@ -855,14 +909,14 @@ p  { margin: 0 0 1em; }
 .mosaic > :nth-child(10) { grid-column: 6; grid-row: 5 / span 4; }
 @media (max-width: 900px) {
   .mosaic {
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: 96px;
-    gap: 18px;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 80px;
+    gap: 12px;
   }
   .mosaic > * { grid-column: auto !important; }
-  .mosaic > :nth-child(odd) { grid-row: span 3 !important; }
-  .mosaic > :nth-child(even) { grid-row: span 2 !important; }
-  .mosaic > :nth-child(4n) { grid-row: span 4 !important; }
+  .mosaic > :nth-child(3n+1) { grid-row: span 3 !important; }
+  .mosaic > :nth-child(3n+2) { grid-row: span 4 !important; }
+  .mosaic > :nth-child(3n)   { grid-row: span 3 !important; }
 }
 
 /* 8.9 FAQ ---------------------------------------------------- */
@@ -897,21 +951,12 @@ p  { margin: 0 0 1em; }
 }
 
 /* 8.10 Download CTA ----------------------------------------- */
-.download-cta {
-  background: var(--bg);
-  color: var(--text);
-  text-align: center;
-  padding-block: clamp(64px, 10vw, 128px);
-  position: relative;
-  overflow: hidden;
-}
-.download-cta h2 { color: var(--text); margin-bottom: 12px; }
-.download-cta p { color: var(--text-secondary); font-size: 18px; margin-bottom: 28px; }
-.download-cta .download-actions { display: flex; align-items: center; justify-content: center; gap: 20px; }
+.download-cta { background: var(--bg-muted); }
+.download-cta .download-actions { margin-top: clamp(28px, 4vw, 48px); }
 .download-group {
   display: inline-flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
 }
 

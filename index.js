@@ -85,7 +85,6 @@
     const section = showcase.closest('[data-stepped-section="actions"]');
     if (section) {
       const updateFromScroll = () => {
-        if (window.matchMedia('(max-width: 900px)').matches) return;
         const rect = section.getBoundingClientRect();
         const scrollable = rect.height - window.innerHeight;
         if (scrollable <= 0 || rect.top > 0 || rect.bottom < window.innerHeight) return;
@@ -105,12 +104,25 @@
     const tags = [...gallery.querySelectorAll('.feature-tag')];
     if (!image || !tags.length) return;
 
-    tags.forEach(tag => {
-      tag.addEventListener('click', () => {
-        tags.forEach(t => t.classList.toggle('is-active', t === tag));
-        swapImage(image, tag.dataset.featureImage, tag.dataset.featureAlt);
-      });
+    let currentIndex = 0;
+    let autoTimer = null;
+
+    const activate = (index) => {
+      currentIndex = index;
+      tags.forEach((t, i) => t.classList.toggle('is-active', i === index));
+      swapImage(image, tags[index].dataset.featureImage, tags[index].dataset.featureAlt);
+    };
+
+    const startAuto = () => {
+      clearInterval(autoTimer);
+      autoTimer = setInterval(() => activate((currentIndex + 1) % tags.length), 3000);
+    };
+
+    tags.forEach((tag, i) => {
+      tag.addEventListener('click', () => { activate(i); startAuto(); });
     });
+
+    startAuto();
   });
 
   function swapImage(image, src, alt) {
