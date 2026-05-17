@@ -42,21 +42,50 @@
     });
   });
 
+  // ───────── Accordion FAQ ─────────
+  document.querySelectorAll('.faq-grid').forEach(grid => {
+    grid.addEventListener('toggle', (event) => {
+      const opened = event.target;
+      if (!(opened instanceof HTMLDetailsElement) || !opened.open) return;
+      grid.querySelectorAll('details[open]').forEach(details => {
+        if (details !== opened) details.open = false;
+      });
+    }, true);
+  });
+
   // ───────── Actions preview ─────────
   document.querySelectorAll('[data-actions-showcase]').forEach(showcase => {
     const buttons = [...showcase.querySelectorAll('.action-step')];
     const image = showcase.querySelector('[data-actions-preview]');
     if (!buttons.length || !image) return;
 
-    buttons.forEach(button => {
-      button.addEventListener('click', () => {
-        buttons.forEach(b => {
-          b.classList.toggle('is-active', b === button);
-          b.setAttribute('aria-selected', b === button ? 'true' : 'false');
-        });
-        swapImage(image, button.dataset.actionImage, button.dataset.actionAlt);
+    const setActive = (button) => {
+      buttons.forEach(b => {
+        b.classList.toggle('is-active', b === button);
+        b.setAttribute('aria-selected', b === button ? 'true' : 'false');
       });
+      swapImage(image, button.dataset.actionImage, button.dataset.actionAlt);
+    };
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => setActive(button));
     });
+
+    const section = showcase.closest('[data-stepped-section="actions"]');
+    if (section) {
+      const updateFromScroll = () => {
+        if (window.matchMedia('(max-width: 900px)').matches) return;
+        const rect = section.getBoundingClientRect();
+        const scrollable = rect.height - window.innerHeight;
+        if (scrollable <= 0 || rect.top > 0 || rect.bottom < window.innerHeight) return;
+        const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
+        const index = Math.min(buttons.length - 1, Math.floor(progress * buttons.length));
+        setActive(buttons[index]);
+      };
+      updateFromScroll();
+      window.addEventListener('scroll', updateFromScroll, { passive: true });
+      window.addEventListener('resize', updateFromScroll);
+    }
   });
 
   // ───────── Feature tag galleries ─────────
@@ -96,13 +125,24 @@
       scrollText.appendChild(span);
     });
     const sentenceSpans = scrollText.querySelectorAll('.scroll-sentence');
+    const section = scrollText.closest('[data-stepped-section="copy"]');
     const update = () => {
+      if (section && !window.matchMedia('(max-width: 900px)').matches) {
+        const rect = section.getBoundingClientRect();
+        const scrollable = rect.height - window.innerHeight;
+        if (scrollable > 0 && rect.top <= 0 && rect.bottom >= window.innerHeight) {
+          const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
+          const activeIndex = Math.min(sentenceSpans.length - 1, Math.floor(progress * sentenceSpans.length));
+          sentenceSpans.forEach((sentence, index) => sentence.classList.toggle('is-lit', index <= activeIndex));
+          return;
+        }
+      }
+
       const vh = window.innerHeight;
       sentenceSpans.forEach(sentence => {
         const r = sentence.getBoundingClientRect();
         const center = r.top + r.height / 2;
-        if (center < vh * 0.72 && center > vh * 0.12) sentence.classList.add('is-lit');
-        else sentence.classList.remove('is-lit');
+        sentence.classList.toggle('is-lit', center < vh * 0.72 && center > vh * 0.12);
       });
     };
     update();
@@ -116,7 +156,7 @@
     purple: '#A855F7', red: '#EF4444', pink: '#EC4899',
     yellow: '#EAB308', teal: '#14B8A6', brown: '#92400E'
   };
-  const SYMBOLS = { ahead: '⏳', habit: '✓', streak: '🔥' };
+  const SYMBOLS = { ahead: 'A', habit: 'H', streak: 'S' };
 
   const carouselTrack = document.getElementById('carouselTrack');
   if (carouselTrack) {
@@ -127,26 +167,37 @@
         const shuffled = shuffle(data).slice(0, 30);
         if (shuffled.length === 0) return;
 
-        const html = shuffled.map(item => {
+        const rows = Array.from({ length: 5 }, () => []);
+        shuffled.forEach((item, index) => rows[index % rows.length].push(item));
+
+        const renderCard = item => {
           const accent = COLORS[(item.color || 'orange').toLowerCase()] || COLORS.orange;
-          const symbol = SYMBOLS[item.kind] || '•';
+          const symbol = SYMBOLS[item.kind] || 'T';
           const src = templatePhotoUrl(item);
           const title = escapeHtml(item.title || 'Untitled');
-          const kind = escapeHtml(labelKind(item.kind || 'Template'));
+          const subtitle = escapeHtml(templateSubtitle(item));
           return `<div class="carousel-card" role="listitem" style="--card-accent:${accent}">
             <img src="${src}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />
             <span class="card-accent" aria-hidden="true"></span>
             <span class="symbol" aria-hidden="true">${symbol}</span>
-            <div class="card-meta"><span class="card-kind">${kind}</span><span class="card-title">${title}</span></div>
+            <div class="card-meta"><span class="card-subtitle">${subtitle}</span><span class="card-title">${title}</span></div>
           </div>`;
+        };
+
+        carouselTrack.innerHTML = rows.map((row, index) => {
+          const cards = row.map(renderCard).join('');
+          return `<div class="template-row" role="list" data-direction="${index % 2 === 0 ? 'right' : 'left'}">${cards}${cards}${cards}</div>`;
         }).join('');
 
-        // Duplicate for infinite scroll loop
-        carouselTrack.innerHTML = html + html;
+        const rowState = [...carouselTrack.querySelectorAll('.template-row')].map((row, index) => ({
+          row,
+          offset: index % 2 === 0 ? -row.scrollWidth / 3 : 0,
+          speed: 0.22 + index * 0.035,
+          direction: row.dataset.direction === 'right' ? 1 : -1,
+          width: row.scrollWidth / 3
+        }));
 
-        // Auto-play
-        let offset = 0;
-        const speed = 0.5; // px per frame ≈ 30px/s at 60fps
+        let dragOffset = 0;
         let paused = false;
         const wrap = carouselTrack.parentElement;
         wrap.addEventListener('mouseenter', () => paused = true);
@@ -154,14 +205,38 @@
         wrap.addEventListener('focusin', () => paused = true);
         wrap.addEventListener('focusout', () => paused = false);
 
-        const halfWidth = () => carouselTrack.scrollWidth / 2;
+        let pointerStartX = 0;
+        let dragStartOffset = 0;
+        wrap.addEventListener('pointerdown', (event) => {
+          pointerStartX = event.clientX;
+          dragStartOffset = dragOffset;
+          paused = true;
+          wrap.classList.add('is-dragging');
+          wrap.setPointerCapture?.(event.pointerId);
+        });
+        wrap.addEventListener('pointermove', (event) => {
+          if (!wrap.classList.contains('is-dragging')) return;
+          dragOffset = dragStartOffset + event.clientX - pointerStartX;
+        });
+        const finishDrag = (event) => {
+          if (!wrap.classList.contains('is-dragging')) return;
+          wrap.classList.remove('is-dragging');
+          wrap.releasePointerCapture?.(event.pointerId);
+          paused = false;
+        };
+        wrap.addEventListener('pointerup', finishDrag);
+        wrap.addEventListener('pointercancel', finishDrag);
+        wrap.addEventListener('pointerleave', finishDrag);
+
         const tick = () => {
-          if (!paused) {
-            offset -= speed;
-            const hw = halfWidth();
-            if (-offset >= hw) offset += hw;
-            carouselTrack.style.transform = `translate3d(${offset}px, 0, 0)`;
-          }
+          rowState.forEach(state => {
+            if (!paused) state.offset += state.speed * state.direction;
+            if (state.width > 0) {
+              if (state.offset > 0) state.offset -= state.width;
+              if (state.offset < -state.width * 2) state.offset += state.width;
+            }
+            state.row.style.transform = `translate3d(${state.offset + dragOffset}px, 0, 0)`;
+          });
           requestAnimationFrame(tick);
         };
         requestAnimationFrame(tick);
@@ -184,10 +259,10 @@
         reviews.forEach((r, i) => cols[i % 3].push(r));
 
         const renderCard = (r) => {
-          const star = (r.type === 'app-store' && r.rating) ? `<div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>` : '';
+          const star = ((r.type === 'store' || r.type === 'app-store') && r.rating) ? `<div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>` : '';
           const meta = `<div class="review-meta">${escapeHtml(r.type)}${r.author ? ' · ' + escapeHtml(r.author) : ''}</div>`;
           const title = r.title ? `<div class="review-title">${escapeHtml(r.title)}</div>` : '';
-          return `<article class="review-card">${meta}${star}${title}<div>${escapeHtml(r.text || '')}</div></article>`;
+          return `<article class="review-card">${meta}${star}${title}<div>${escapeHtml(r.description || r.text || '')}</div></article>`;
         };
 
         const colClasses = ['reviews-col reviews-col-up', 'reviews-col', 'reviews-col reviews-col-down'];
@@ -208,8 +283,15 @@
     return copy;
   }
 
-  function labelKind(kind) {
-    return String(kind).replace(/[-_]/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+  function templateSubtitle(item) {
+    if (item.kind === 'ahead') return `in ${randomInt(5, 420)} days`;
+    if (item.kind === 'streak') return `${randomInt(7, 365)} days`;
+    if (item.kind === 'habit') return `${randomInt(3, 42)} days`;
+    return String(item.category || 'Template');
+  }
+
+  function randomInt(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
   function templatePhotoUrl(item) {
