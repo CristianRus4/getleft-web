@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Project Timeline Visualization: From Gantt to Glanceable Widgets — Left Blog</title>
+  <meta name="description" content="When to use a Gantt chart, when a roadmap, and when a countdown widget — a practical guide to visualizing project timelines without overbuilding." />
+  <link rel="canonical" href="https://getleft.app/blog/project-timeline-visualization.html" />
+  <meta property="og:title" content="Project Timeline Visualization: From Gantt to Glanceable Widgets" />
+  <meta property="og:description" content="When to use a Gantt chart, when a roadmap, and when a countdown widget." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/project-timeline-visualization.html" />
+  <meta property="og:image" content="https://getleft.app/images/blog-project-timeline.webp" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <a href="/#features" class="nav-link">Features</a>
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Project Timeline Visualization: From Gantt to Glanceable Widgets</h1>
+    <p class="article-meta">April 2026 · 9 min read</p>
+
+    <img src="/images/blog-project-timeline.webp" alt="Project timeline visualization examples" style="width:100%;border-radius:16px;margin:24px 0;" loading="lazy" />
+
+    <p>"Project timeline" can mean four very different things. A 200-line Gantt chart for a construction project. A two-column roadmap on a wall in a startup office. A progress bar in a project tool. A countdown widget on someone's phone for the launch in six weeks. They look different because they answer different questions. Picking the wrong visualization for your question is most of why project tracking falls apart.</p>
+
+    <p>This guide is a flat comparison of the four main timeline formats, when each one is the right tool, and the principle that runs through all of them — the visualization that wins is the one you can see when you most need to act on it. We'll lean on <strong>Left</strong> at the small end (countdowns and progress widgets for personal-scale projects) but the principles scale up to enterprise software.</p>
+
+    <h2>The four visualization formats</h2>
+
+    <h3>1. Gantt chart — for dependency-heavy projects</h3>
+    <p>Horizontal bars on a calendar timeline, one row per task, with dependency arrows between bars. Invented in 1910 (Henry Gantt) and still the right answer for projects where Task B literally can't start until Task A is done. Construction, large software releases, event production.</p>
+    <p>Strengths: shows the critical path; makes dependencies impossible to ignore. Weaknesses: heavyweight to maintain; nobody outside the project lead really reads them. If your project doesn't have hard dependencies, a Gantt chart is overkill — you're spending more time on the chart than the project.</p>
+
+    <h3>2. PERT chart — for unknowns</h3>
+    <p>A network diagram showing tasks as nodes and dependencies as edges, with optimistic / expected / pessimistic time estimates per task. Used when the task durations are genuinely uncertain. Most knowledge work is too fluid for PERT to be worth the math — it's mostly used now in research and large engineering projects.</p>
+    <p>Strengths: forces you to think about uncertainty. Weaknesses: the estimates are guesses dressed as math; nobody reads PERT diagrams casually.</p>
+
+    <h3>3. Roadmap — for stakeholder communication</h3>
+    <p>Big horizontal lanes by quarter or month, named themes or epics in each lane, no detail. The job of a roadmap is to tell people who don't work on the project what's happening when, without giving them enough rope to argue about specific dates. Most "roadmap tools" are this.</p>
+    <p>Strengths: gets stakeholders aligned without exposing internal detail; readable in 30 seconds. Weaknesses: it's a communication artifact, not a planning tool — don't try to manage execution from a roadmap.</p>
+
+    <h3>4. Progress bar / countdown — for accountability</h3>
+    <p>The simplest format. One bar showing "65% done" or one number showing "12 days left." This is the format that actually changes behavior, because it's the only one a normal person will look at every day. The Gantt chart sits on a server; the countdown widget sits on the back of your phone.</p>
+    <p>Strengths: cheap to maintain, always visible, motivating. Weaknesses: hides dependencies; doesn't help with planning. It's a behavior tool, not a planning tool.</p>
+
+    <h2>Match the visualization to the question</h2>
+    <p>The mistake is thinking one of these is "better." They each answer a different question:</p>
+    <ul>
+      <li><strong>"What blocks what, and when does the critical path break?"</strong> → Gantt.</li>
+      <li><strong>"How uncertain are our estimates?"</strong> → PERT.</li>
+      <li><strong>"What should we tell the board?"</strong> → Roadmap.</li>
+      <li><strong>"How do I keep this date from sneaking up on me?"</strong> → Countdown widget.</li>
+    </ul>
+    <p>A mature project uses several. Internal planning lives in a Gantt or a board; stakeholder updates use a roadmap; everyone on the team has a countdown widget on their phone for the launch date so the deadline never becomes abstract.</p>
+
+    <h2>Design principles that work at any scale</h2>
+    <p>Whatever format you pick:</p>
+    <ul>
+      <li><strong>One color per status, not per person.</strong> Color should encode "on track / at risk / blocked." Coloring by team makes the chart look like an org chart, not a status report.</li>
+      <li><strong>Hide what's done.</strong> Once a phase is complete, fade it out. The active items deserve the visual weight.</li>
+      <li><strong>Don't show tasks below a granularity threshold.</strong> If a task is less than a day, it doesn't belong on the timeline — it belongs in a checklist inside the task that owns the day.</li>
+      <li><strong>Make the today line obvious.</strong> Most charting tools forget to put "now" on the chart. The vertical "today" line is half the value of the chart.</li>
+      <li><strong>Show what's-left, not just what's-done.</strong> A 65% progress bar tells you nothing about the remaining 35% — is it the easy half or the hard half? A timeline showing the remaining named tasks is much more useful.</li>
+    </ul>
+
+    <h2>The personal-scale Gantt — using countdown widgets</h2>
+    <p>For projects you're running solo — a thesis, a launch, a wedding, a move — a full Gantt is overkill. The pattern that works at personal scale:</p>
+    <ol>
+      <li><strong>Identify the five or six major milestones</strong> between now and the end date. Not the work — the visible deliverables.</li>
+      <li><strong>Create a countdown widget for each one</strong> in <a href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Left</a> or your countdown app of choice. Put them on one Home Screen page in sequence.</li>
+      <li><strong>The next-up milestone is the only one on your Lock Screen.</strong> Once it's hit, swap to the next.</li>
+      <li><strong>One overall countdown to the end date.</strong> On the StandBy display or a Wallpaper widget. This is the "big picture" view that prevents you from optimizing for the milestone at the cost of the project.</li>
+    </ol>
+    <p>This is a Gantt chart with five rows, rendered as five widgets, no software required. We cover the per-widget add flow in our <a href="/support/widget-iphone-home-screen">Home Screen widget guide</a>.</p>
+
+    <img src="/images/blog-project-timeline-widget.webp" alt="Personal project countdown widgets" style="width:100%;border-radius:16px;margin:24px 0;" loading="lazy" />
+
+    <h2>The team-scale pattern</h2>
+    <p>For teams of 5–15 people, the right setup is usually:</p>
+    <ul>
+      <li><strong>One project tool</strong> (Linear, Asana, Jira, Notion) as the source of truth for tasks.</li>
+      <li><strong>One quarterly roadmap</strong>, kept simple, refreshed monthly, shared with stakeholders.</li>
+      <li><strong>One Joint Ahead countdown</strong> to the launch on every team member's phone. This is the part that's usually missing — a shared widget that turns the launch date from "a thing in Linear" into "a thing on my Home Screen." See our <a href="/blog/countdown-next-trip-with-friends.html">Joint Ahead walkthrough</a> for the sharing flow.</li>
+    </ul>
+
+    <h2>Common timeline mistakes</h2>
+    <ul>
+      <li><strong>Updating the chart instead of doing the work.</strong> Gantt charts attract perfectionists. If you spend more than 30 minutes a week on the chart itself, the chart has become the project.</li>
+      <li><strong>Hiding slip.</strong> Bars that quietly move right without changing color teach the team that slipping doesn't matter. Slip should be visible.</li>
+      <li><strong>Too much detail in the wrong place.</strong> Stakeholder roadmaps with task-level granularity invite micromanagement. Internal Gantt charts at quarterly granularity miss the dependency story.</li>
+      <li><strong>No daily-visible version.</strong> A chart in a shared drive is not in the team's eyeline. Add a countdown.</li>
+    </ul>
+
+    <h2>When you don't need a timeline at all</h2>
+    <p>Lots of work is genuinely flat — a backlog of small tasks with no real interdependence and no real deadline. Timelines for this kind of work are theater. A simple list, ordered by priority, beats any chart. The signal that you don't need a timeline: you can swap any two tasks without anything else having to move.</p>
+
+    <h2>How this connects to the rest of your work</h2>
+    <p>The principle that runs through all four visualization formats — Gantt, PERT, roadmap, countdown — is the same as the principle in any time-management system: the chart only works if you see it. The Gantt that lives on a shared drive doesn't beat the countdown widget on your phone. Pick the level of detail your role actually needs, then make sure that level is visible in your daily flow. For solo project tracking, our <a href="/blog/keep-track-multiple-projects.html">multiple projects guide</a> and the <a href="/blog/best-countdown-widgets-iphone.html">countdown widgets round-up</a> get into the day-to-day mechanics.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Do I need a Gantt chart for a personal project?</strong><br/>
+    Almost never. A list of milestones + countdown widgets for each major one is enough. Reach for Gantt only when dependencies between milestones actually constrain when you can start things.</p>
+
+    <p><strong>What's the difference between a roadmap and a Gantt?</strong><br/>
+    Granularity and audience. A roadmap is for outside readers, shows themes at quarterly resolution, hides detail. A Gantt is for the team running the work, shows individual tasks, exposes dependencies.</p>
+
+    <p><strong>Which tool should I use?</strong><br/>
+    For Gantt: anything works (Asana, ClickUp, OmniPlan). For roadmap: a slide, honestly. For countdowns: a countdown widget app like Left. Don't over-shop — the tool matters less than the discipline.</p>
+
+    <p><strong>How often should I update the timeline?</strong><br/>
+    Weekly for team-scale, daily for active personal projects. Less often than that and the chart drifts out of sync with reality.</p>
+
+    <p><strong>Can countdown widgets replace a project tool?</strong><br/>
+    For solo work, yes. For team work, no — you still need a place for tasks, comments, and assignments. Widgets are the always-visible <em>view</em> on top of the project tool, not a replacement.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download</span>
+          <h2>Start tracking what matters.</h2>
+          <p>Habits, countdowns, and the time that's actually left — in beautiful widgets on your Home Screen, Lock Screen, and StandBy.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+    <hr />
+    <p><a href="/blog/">← Back to blog</a></p>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="brand">Left</span>
+          <span class="footer-counter-inline"><span id="userCounter">100,000</span> people making every moment count.</span>
+          <span>Left – Coded in NZ – © 2026 cntxt</span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support.html">Support</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/press.html">Press</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/tools/">Tools</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+</body>
+</html>
