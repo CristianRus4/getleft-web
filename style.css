@@ -1003,8 +1003,8 @@ p  { margin: 0 0 1em; }
 }
 .download-block {
   width: 100%;
-  margin: 64px 0 0;
-  padding: 0;
+  margin: clamp(88px, 10vw, 128px) 0 0;
+  padding-top: clamp(20px, 3vw, 36px);
   background: transparent;
   border: 0;
   border-radius: 0;
@@ -1012,8 +1012,37 @@ p  { margin: 0 0 1em; }
 .download-block .section-head {
   margin-bottom: clamp(28px, 4vw, 48px);
 }
+.download-block .section-head h2 {
+  font-size: clamp(32px, 5vw, 56px);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+}
+.download-block .section-head p {
+  font-size: clamp(17px, 2vw, 22px);
+  line-height: 1.45;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
 .download-block .download-actions {
   margin-top: 0;
+}
+.download-block .dl-btn,
+.article .download-block .dl-btn,
+.prose .download-block .dl-btn,
+.tutorial .download-block .dl-btn,
+.tool-prose .download-block .dl-btn {
+  color: var(--bg);
+  font-weight: 700;
+  text-decoration: none;
+}
+.download-block .dl-btn:hover,
+.article .download-block .dl-btn:hover,
+.prose .download-block .dl-btn:hover,
+.tutorial .download-block .dl-btn:hover,
+.tool-prose .download-block .dl-btn:hover {
+  color: #fff;
+  font-weight: 700;
 }
 
 /* ───────────────────────────────────────────────────────────
@@ -1099,7 +1128,11 @@ p  { margin: 0 0 1em; }
 .article h2 { font-size: clamp(24px, 3vw, 32px); margin: 40px 0 12px; }
 .article h3 { font-size: 20px; margin: 28px 0 10px; }
 .article p, .article li { font-size: 17px; line-height: 1.7; color: var(--text); }
-.article ul, .article ol { padding-left: 2em; }
+.article ul, .article ol {
+  padding-inline-start: 2.25em;
+  margin-left: 0;
+  list-style-position: outside;
+}
 .article img { border-radius: var(--radius-cell); margin: 24px 0; }
 .article a { color: var(--accent); text-decoration: none; }
 .article a:hover { font-weight: 700; }
@@ -1123,15 +1156,47 @@ p  { margin: 0 0 1em; }
 .prose h2 { font-size: clamp(22px, 2.4vw, 28px); margin: 40px 0 12px; }
 .prose h3 { font-size: 18px; margin: 24px 0 8px; }
 .prose p, .prose li { font-size: 16px; line-height: 1.7; color: var(--text); }
-.prose ul, .prose ol { padding-left: 2em; }
+.prose ul, .prose ol {
+  padding-inline-start: 2.25em;
+  margin-left: 0;
+  list-style-position: outside;
+}
 .prose a { color: var(--accent); text-decoration: none; }
 .prose a:hover { font-weight: 700; }
 .prose hr { border: 0; border-top: 1px solid var(--hairline); margin: 32px 0; }
 .support-tutorial-link {
   display: block;
+  position: relative;
   padding: 16px 0;
   text-decoration: none;
   color: inherit;
+}
+.prose .support-tutorial-link,
+.prose .support-tutorial-link:hover {
+  color: inherit;
+  font-weight: inherit;
+  text-decoration: none;
+}
+.support-tutorial-link strong {
+  color: var(--text);
+  transition: color 160ms ease;
+}
+.support-tutorial-link::after {
+  content: "→";
+  position: absolute;
+  top: 16px;
+  right: 0;
+  color: var(--accent);
+  font-size: 22px;
+  line-height: 1;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 160ms ease, transform 160ms ease;
+  pointer-events: none;
+}
+.support-tutorial-link:hover::after {
+  opacity: 1;
+  transform: translateX(0);
 }
 .support-tutorial-link p {
   margin: 4px 0 0;
