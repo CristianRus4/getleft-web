@@ -38,18 +38,20 @@
     <p class="tool-lede">Enter a number of days, weeks, or months in the past and find the exact calendar date.</p>
 
     <div class="tool-widget">
-      <div class="tool-widget__row" style="gap:8px;flex-wrap:wrap;align-items:center;">
-        <input type="number" id="wwd-amount" min="1" value="30" style="width:90px;" aria-label="Amount" />
+      <div class="tool-inline-fields">
+        <div class="tool-compact-group">
+          <input type="number" id="wwd-amount" min="1" value="30" aria-label="Amount" />
+        </div>
         <select id="wwd-unit">
           <option value="days">days</option>
           <option value="weeks">weeks</option>
           <option value="months">months</option>
           <option value="years">years</option>
         </select>
-        <span style="font-size:15px;color:var(--text-secondary);">ago</span>
+        <span class="tool-meta">ago</span>
       </div>
       <div class="tool-result" id="wwd-result" aria-live="polite"></div>
-      <div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap;">
+      <div class="tool-quick-actions">
         <button class="tool-quick-btn" data-days="7">7 days ago</button>
         <button class="tool-quick-btn" data-days="14">14 days ago</button>
         <button class="tool-quick-btn" data-days="30">30 days ago</button>
@@ -151,8 +153,10 @@
       else if (unit === 'months') past = addToDate(today, { months: -n });
       else                        past = addToDate(today, { years: -n });
       result.innerHTML = `
-        <div class="tool-result-big" style="font-size:1.6rem;">${formatDateLong(past)}</div>
-        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">${n} ${unit} before today (${formatDateShort(today)})</p>`;
+        <div class="tool-result-card">
+          <div class="tool-result-big">${formatDateLong(past)}</div>
+        </div>
+        <p>${n} ${unit} before today (${formatDateShort(today)})</p>`;
     }
 
     document.querySelectorAll('.tool-quick-btn').forEach(b => {

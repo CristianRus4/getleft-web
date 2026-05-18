@@ -39,18 +39,32 @@
 
     <div class="tool-widget">
       <div class="tool-widget__row">
-        <label for="as-start">Starting date</label>
-        <input type="date" id="as-start" />
+        <div class="tool-widget__field">
+          <label for="as-start">Starting date</label>
+          <input type="date" id="as-start" />
+        </div>
       </div>
-      <div class="tool-widget__row" style="gap:8px;flex-wrap:wrap;">
-        <div class="tool-toggle" id="as-op-toggle" style="flex-shrink:0;">
+      <div class="tool-inline-fields">
+        <div class="tool-toggle" id="as-op-toggle">
           <button class="is-active" data-op="add">Add</button>
           <button data-op="sub">Subtract</button>
         </div>
-        <input type="number" id="as-years" min="0" value="0" style="width:72px;" aria-label="Years" /> <span style="align-self:center;font-size:14px;">yr</span>
-        <input type="number" id="as-months" min="0" value="0" style="width:72px;" aria-label="Months" /> <span style="align-self:center;font-size:14px;">mo</span>
-        <input type="number" id="as-weeks" min="0" value="0" style="width:72px;" aria-label="Weeks" /> <span style="align-self:center;font-size:14px;">wk</span>
-        <input type="number" id="as-days" min="0" value="30" style="width:72px;" aria-label="Days" /> <span style="align-self:center;font-size:14px;">d</span>
+        <div class="tool-compact-group">
+          <input type="number" id="as-years" min="0" value="0" aria-label="Years" />
+          <span class="tool-compact-suffix">yr</span>
+        </div>
+        <div class="tool-compact-group">
+          <input type="number" id="as-months" min="0" value="0" aria-label="Months" />
+          <span class="tool-compact-suffix">mo</span>
+        </div>
+        <div class="tool-compact-group">
+          <input type="number" id="as-weeks" min="0" value="0" aria-label="Weeks" />
+          <span class="tool-compact-suffix">wk</span>
+        </div>
+        <div class="tool-compact-group">
+          <input type="number" id="as-days" min="0" value="30" aria-label="Days" />
+          <span class="tool-compact-suffix">d</span>
+        </div>
       </div>
       <div class="tool-result" id="as-result" aria-live="polite"></div>
     </div>
@@ -162,8 +176,10 @@
       const out = addToDate(base, { years: sign*y, months: sign*mo, weeks: sign*wk, days: sign*d });
       const diff = Math.abs(Math.round((out - base) / 86400000));
       result.innerHTML = `
-        <div class="tool-result-big" style="font-size:1.6rem;">${formatDateLong(out)}</div>
-        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">${diff} days ${op === 'add' ? 'after' : 'before'} ${formatDateShort(base)}</p>`;
+        <div class="tool-result-card">
+          <div class="tool-result-big">${formatDateLong(out)}</div>
+        </div>
+        <p>${diff} days ${op === 'add' ? 'after' : 'before'} ${formatDateShort(base)}</p>`;
     }
 
     [startEl, yearsEl, monthsEl, weeksEl, daysEl].forEach(el => el.addEventListener('change', render));
