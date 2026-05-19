@@ -1,0 +1,30 @@
+<script>
+(function () {
+  try {
+    var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp || localStorage.getItem('left.lang');
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    var pick = override;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) {
+        var p = prefs[i];
+        if (SUPPORTED.indexOf(p) >= 0) { pick = p; break; }
+        if (p === 'es-MX' || p === 'es-AR' || p === 'es-CL' || p === 'es-CO' || p === 'es-PE' || p === 'es-VE' || p === 'es-UY' || p === 'es-EC' || p === 'es-BO' || p === 'es-PY' || p === 'es-GT' || p === 'es-HN' || p === 'es-NI' || p === 'es-CR' || p === 'es-PA' || p === 'es-DO' || p === 'es-SV') pick = 'es-419';
+        else if (p.indexOf('es') === 0) pick = 'es';
+        else if (p.indexOf('pt') === 0) pick = 'pt';
+        else if (p === 'zh-TW' || p === 'zh-HK' || p === 'zh-MO' || p === 'zh-Hant') pick = 'zh-Hant';
+        else if (p.indexOf('zh') === 0) pick = 'zh-Hans';
+        else { var base = p.split('-')[0]; if (SUPPORTED.indexOf(base) >= 0) pick = base; }
+      }
+    }
+    if (!pick || pick === 'en' || SUPPORTED.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    if (/^(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android)/.test(path)) return;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>

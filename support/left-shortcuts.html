@@ -3,8 +3,41 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Using the Shortcuts App with Left | Left</title>
-  <meta name="description" content="Automate Left with the iOS Shortcuts app. Create events, open Left, and build automations that work with your countdowns and habits." />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp || localStorage.getItem('left.lang');
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    var pick = override;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) {
+        var p = prefs[i];
+        if (SUPPORTED.indexOf(p) >= 0) { pick = p; break; }
+        if (p === 'es-MX' || p === 'es-AR' || p === 'es-CL' || p === 'es-CO' || p === 'es-PE' || p === 'es-VE' || p === 'es-UY' || p === 'es-EC' || p === 'es-BO' || p === 'es-PY' || p === 'es-GT' || p === 'es-HN' || p === 'es-NI' || p === 'es-CR' || p === 'es-PA' || p === 'es-DO' || p === 'es-SV') pick = 'es-419';
+        else if (p.indexOf('es') === 0) pick = 'es';
+        else if (p.indexOf('pt') === 0) pick = 'pt';
+        else if (p === 'zh-TW' || p === 'zh-HK' || p === 'zh-MO' || p === 'zh-Hant') pick = 'zh-Hant';
+        else if (p.indexOf('zh') === 0) pick = 'zh-Hans';
+        else { var base = p.split('-')[0]; if (SUPPORTED.indexOf(base) >= 0) pick = base; }
+      }
+    }
+    if (!pick || pick === 'en' || SUPPORTED.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    if (/^(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android)/.test(path)) return;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+  <title data-i18n="support_articles.left_shortcuts.meta.title">Using the Shortcuts App with Left | Left</title>
+  <meta data-i18n-attr="content:support_articles.left_shortcuts.meta.description" name="description" content="Automate Left with the iOS Shortcuts app. Create events, open Left, and build automations that work with your countdowns and habits." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -22,22 +55,24 @@
   <link rel="stylesheet" href="/style.css" />
 </head>
 <body>
-  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <nav class="top-nav top-nav--visible" aria-label="Primary">
     <div class="container nav-inner">
       <a href="/" class="brand">Left</a>
       <div class="nav-trailing">
-        <div class="nav-links"><a href="/#features" class="nav-link">Features</a></div>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+        <div class="nav-links">
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" data-i18n="common.nav.download">Download</a>
       </div>
     </div>
   </nav>
 
   <main class="container">
     <article class="article">
-      <h1>Using the Shortcuts app with Left</h1>
-      <p class="article-lede">The iOS Shortcuts app lets you automate actions and combine apps into powerful workflows. Here's how to use Shortcuts with Left to open the app quickly, build automations, and connect Left to the rest of your iPhone.</p>
+      <h1 data-i18n="support_articles.left_shortcuts.h1_1">Using the Shortcuts app with Left</h1>
+      <p class="article-lede" data-i18n="support_articles.left_shortcuts.p_1">The iOS Shortcuts app lets you automate actions and combine apps into powerful workflows. Here's how to use Shortcuts with Left to open the app quickly, build automations, and connect Left to the rest of your iPhone.</p>
 
-      <h2>What you can do with Shortcuts + Left</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_1">What you can do with Shortcuts + Left</h2>
       <ul>
         <li><strong>Open Left from anywhere</strong> — via the Action Button, a Home Screen shortcut, or Siri</li>
         <li><strong>Create a quick-launch icon</strong> — add a Shortcut to your Home Screen that opens Left with a custom icon</li>
@@ -45,32 +80,32 @@
         <li><strong>Build multi-step workflows</strong> — chain Left with other actions, like logging to a note or sending a reminder</li>
       </ul>
 
-      <h2>Step 1 — Create an "Open Left" shortcut</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_2">Step 1 — Create an "Open Left" shortcut</h2>
       <ol>
         <li>Open the <strong>Shortcuts</strong> app (built into iOS — no download needed).</li>
         <li>Tap <strong>+</strong> to create a new shortcut.</li>
         <li>Tap <strong>Add Action</strong> and search for <strong>"Open App"</strong>.</li>
         <li>Tap the <strong>App</strong> field and select <strong>Left</strong>.</li>
-        <li>Tap the shortcut name at the top to rename it — e.g., "Left" or "Check countdown".</li>
+        <li data-i18n="support_articles.left_shortcuts.li_1">Tap the shortcut name at the top to rename it — e.g., "Left" or "Check countdown".</li>
         <li>Tap <strong>Done</strong>.</li>
       </ol>
       <img src="/images/left-tutorial-shortcuts-1.webp" alt="Creating an Open Left shortcut in Shortcuts app" style="width:100%;border-radius:16px;margin:24px 0;" loading="lazy" />
 
-      <h2>Step 2 — Add it to your Home Screen</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_3">Step 2 — Add it to your Home Screen</h2>
       <ol>
-        <li>In the Shortcuts app, long-press your new shortcut.</li>
+        <li data-i18n="support_articles.left_shortcuts.li_2">In the Shortcuts app, long-press your new shortcut.</li>
         <li>Tap <strong>Details</strong>, then <strong>Add to Home Screen</strong>.</li>
-        <li>Give it a name and optionally choose a custom icon (tap the icon square to pick a photo or choose from glyphs).</li>
+        <li data-i18n="support_articles.left_shortcuts.li_3">Give it a name and optionally choose a custom icon (tap the icon square to pick a photo or choose from glyphs).</li>
         <li>Tap <strong>Add</strong>. It appears on your Home Screen as a tappable shortcut.</li>
       </ol>
 
-      <h2>Step 3 — Trigger it with Siri</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_4">Step 3 — Trigger it with Siri</h2>
       <p>Any shortcut can be triggered by voice. Just say <strong>"Hey Siri, [shortcut name]"</strong> — for example, "Hey Siri, Open Left" — and Left will launch hands-free.</p>
 
-      <h2>Step 4 — Assign to the Action Button</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_5">Step 4 — Assign to the Action Button</h2>
       <p>On iPhone 15 Pro and later, you can assign any Shortcut to the Action Button. See the <a href="/support/iphone-action-button-left">Action Button guide</a> for step-by-step instructions.</p>
 
-      <h2>Personal automations with Left</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_6">Personal automations with Left</h2>
       <p>Shortcuts' <strong>Automation</strong> tab lets you trigger shortcuts automatically based on conditions. Useful ideas:</p>
       <ul>
         <li><strong>Morning routine</strong> — open Left automatically at 8 AM so you start the day seeing your countdowns</li>
@@ -79,14 +114,14 @@
       </ul>
       <p>To set up an automation: open Shortcuts → <strong>Automation</strong> tab → tap <strong>+</strong> → choose a trigger → add the Open Left action → save.</p>
 
-      <h2>Combining Left with other apps</h2>
+      <h2 data-i18n="support_articles.left_shortcuts.h2_7">Combining Left with other apps</h2>
       <p>Shortcuts lets you chain multiple actions. For example: open Left <em>then</em> open your calendar app to review what's coming up. Or: ask for a voice input, create a reminder in Reminders, then open Left to see your deadline context. The possibilities grow as you learn Shortcuts' action library.</p>
 
       <section class="download-block">
         <div class="section-head">
           <span class="eyebrow">Download Left</span>
-          <h2>Start noticing what matters.</h2>
-          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+          <h2 data-i18n="support_articles.left_shortcuts.h2_8">Start noticing what matters.</h2>
+          <p data-i18n="support_articles.left_shortcuts.p_2">Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
         </div>
         <div class="download-actions">
           <div class="download-group">
@@ -110,24 +145,66 @@
     </article>
   </main>
 
-  <footer class="site-footer">
+    <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> people making every moment count.</span>
-          <span>Left – Coded in NZ – © 2026 cntxt</span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span data-i18n="common.footer.counter_suffix">people making every moment count.</span></span>
+          <span data-i18n="common.footer.tagline">Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="/support.html">Support</a>
-          <a href="/terms.html">Terms</a>
-          <a href="/privacy.html">Privacy</a>
-          <a href="/press.html">Press</a>
-          <a href="/contact.html">Contact</a>
-          <a href="/tools/">Tools</a>
+          <a href="/support.html" data-i18n="common.footer.support">Support</a>
+          <a href="/terms.html" data-i18n="common.footer.terms">Terms</a>
+          <a href="/privacy.html" data-i18n="common.footer.privacy">Privacy</a>
+          <a href="/press.html" data-i18n="common.footer.press">Press</a>
+          <a href="/contact.html" data-i18n="common.footer.contact">Contact</a>
+          <a href="/tools/" data-i18n="common.footer.tools">Tools</a>
         </nav>
       </div>
     </div>
-  </footer>
+  
+<!-- i18n:switcher:start -->
+<div class="lang-switcher">
+  <label for="langSwitcher" class="visually-hidden" data-i18n="common.footer.language">Language</label>
+  <select id="langSwitcher" aria-label="Language">
+    <option value="en">English</option>
+    <option value="es">Español (España)</option>
+    <option value="es-419">Español (Latinoamérica)</option>
+    <option value="de">Deutsch</option>
+    <option value="fr">Français</option>
+    <option value="it">Italiano</option>
+    <option value="pt">Português</option>
+    <option value="ja">日本語</option>
+    <option value="nl">Nederlands</option>
+    <option value="pl">Polski</option>
+    <option value="tr">Türkçe</option>
+    <option value="ru">Русский</option>
+    <option value="zh-Hans">简体中文</option>
+    <option value="zh-Hant">繁體中文</option>
+    <option value="ko">한국어</option>
+    <option value="id">Bahasa Indonesia</option>
+    <option value="ro">Română</option>
+  </select>
+</div>
+<script>
+(function () {
+  var sel = document.getElementById('langSwitcher');
+  if (!sel) return;
+  var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
+  var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
+  var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+  sel.value = current;
+  sel.addEventListener('change', function () {
+    var v = sel.value;
+    try { localStorage.setItem('left.lang', v); } catch (e) {}
+    var bare = location.pathname.replace(/^\/[a-zA-Z-]+\//, '/');
+    if (!new RegExp('^/(' + SUPPORTED.join('|') + ')(/|$)').test(location.pathname)) bare = location.pathname;
+    location.href = (v === 'en' ? '' : '/' + v) + (bare === '/' ? '/' : bare) + location.search + location.hash;
+  });
+})();
+</script>
+<!-- i18n:switcher:end -->
+</footer>
 
   <script defer src="/index.js"></script>
 </body>
