@@ -22,17 +22,6 @@
   <link rel="shortcut icon" href="/favicon/favicon.ico" />
   <link rel="stylesheet" href="/style.css" />
   <style>
-    /* Force nav visible — no hero scroll on this page */
-    .top-nav {
-      opacity: 1 !important;
-      transform: none !important;
-      pointer-events: auto !important;
-      background: transparent !important;
-      border-bottom: none !important;
-      backdrop-filter: none !important;
-      -webkit-backdrop-filter: none !important;
-    }
-
     /* Page layout */
     body {
       min-height: 100dvh;
@@ -55,33 +44,28 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1.4;
-      color: #fff;
+      color: var(--text);
       margin: 0 0 12px;
       max-width: 640px;
       position: relative;
       z-index: 1;
     }
 
-    /* Text-highlight effect: tight white band, text matches page bg */
+    /* Text-highlight effect: tight band in the page's foreground color,
+       text drops out to match the page background. */
     .invite-headline-hl {
       display: inline;
-      background: #fff;
-      color: #FF4F00; /* light mode: orange (page bg) */
+      background: var(--text);
+      color: var(--bg);
       padding: 0px 8px 2px;
       border-radius: 6px;
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .invite-headline-hl {
-        color: #131415; /* dark mode: near-black (page bg) */
-      }
-    }
-
     .invite-sub {
       font-size: clamp(15px, 2.5vw, 18px);
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text-secondary);
       margin: 0 0 56px;
       max-width: 480px;
       line-height: 1.55;
@@ -91,7 +75,7 @@
     .invite-sub--join {
       font-size: 18px;
       font-weight: 700;
-      color: rgba(255, 255, 255, 1);
+      color: var(--text);
       margin: 2px 0 36px;
       max-width: 540px;
       line-height: 1.35;
@@ -121,11 +105,11 @@
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
-      color: #fff;
+      color: var(--text);
       margin: 0;
     }
 
-    /* App Store + QR row */
+    /* QR + Download button row — mirrors .hero-download-group from the homepage */
     .invite-download-row {
       display: flex;
       align-items: center;
@@ -133,76 +117,30 @@
       gap: 16px;
     }
 
-    .invite-appstore-badge {
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .invite-appstore-badge img {
-      display: block;
-      width: 180px;
-      height: 60px;
-    }
-
-    .invite-qr {
-      display: none;
-      /* hidden on mobile */
-      flex-shrink: 0;
-      background: transparent;
-      border: 4px solid rgba(255, 255, 255, 1);
-      border-radius: 14px;
-      width: 150px;
-      height: 150px;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      padding: 6px;
-    }
-
-    .invite-qr img {
-      display: block;
-      width: 126px;
-      height: 126px;
-    }
-
-    /* On desktop: show QR large, hide App Store badge */
     @media (min-width: 768px) {
-      .invite-qr {
-        display: flex;
-      }
-
-      .invite-appstore-badge {
-        display: none;
-      }
-
-      .invite-footer {
-        display: block;
-      }
+      .invite-footer { display: block; }
     }
 
-    /* Accept button — full capsule */
+    /* Accept button — capsule, matches nav .btn-primary */
     .invite-accept-btn {
-      display: flex;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 80%;
-      padding: 16px 24px;
+      height: 48px;
+      padding: 0 28px;
       border-radius: 9999px;
-      background: rgba(255, 255, 255, 0.18);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      color: #fff;
-      font-size: 17px;
+      background: var(--text);
+      color: var(--bg);
+      font-size: 15px;
       font-weight: 600;
       text-decoration: none;
       letter-spacing: -0.01em;
-      transition: background 180ms ease, border-color 180ms ease;
-      -webkit-backdrop-filter: blur(8px);
-      backdrop-filter: blur(8px);
+      transition: background 180ms ease, color 180ms ease, transform 120ms ease;
     }
 
     .invite-accept-btn:hover {
-      background: rgba(255, 255, 255, 0.28);
-      border-color: rgba(255, 255, 255, 0.5);
+      background: var(--accent);
+      color: #fff;
     }
 
     .invite-accept-btn:active {
@@ -211,7 +149,7 @@
 
     .invite-step-note {
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.45);
+      color: var(--text-secondary);
       margin: 0;
       line-height: 1.55;
     }
@@ -229,12 +167,12 @@
     .invite-error h1 {
       font-size: 28px;
       font-weight: 800;
-      color: #fff;
+      color: var(--text);
       margin: 0;
     }
 
     .invite-error p {
-      color: rgba(255, 255, 255, 0.65);
+      color: var(--text-secondary);
       margin: 0;
     }
 
@@ -244,19 +182,19 @@
       /* hidden on mobile */
       text-align: center;
       padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      border-top: 1px solid var(--hairline);
       font-size: 13px;
-      color: rgba(255, 255, 255, 0.35);
+      color: var(--text-secondary);
       margin-top: auto;
     }
 
     .invite-footer a {
-      color: rgba(255, 255, 255, 0.45);
+      color: var(--text-secondary);
       text-decoration: none;
     }
 
     .invite-footer a:hover {
-      color: rgba(255, 255, 255, 0.7);
+      color: var(--text);
     }
 
     .invite-footer-links {
@@ -302,7 +240,7 @@
     .invite-avatar-wrap.photo-ready {
       opacity: 1;
       filter: blur(0);
-      border-color: rgba(255, 255, 255, 1);
+      border-color: var(--text);
     }
 
     .invite-avatar-wrap.is-bouncing {
@@ -329,7 +267,7 @@
       width: 8px;
       height: 8px;
       border-radius: 50%;
-      background: rgba(255, 255, 255, 0.5);
+      background: var(--text-secondary);
       animation: dot-pulse 1.2s ease-in-out infinite;
     }
 
@@ -352,13 +290,14 @@
 </head>
 
 <body>
-  <nav class="top-nav" aria-label="Primary">
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
     <div class="container nav-inner">
       <a href="/" class="brand" aria-label="Left home">Left</a>
-      <div class="nav-cta">
-        <a class="btn download-btn"
-          href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884"
-          target="_blank" rel="noopener">Get Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <a href="/#features" class="nav-link">Features</a>
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
       </div>
     </div>
   </nav>
@@ -448,13 +387,19 @@
 
           '<div class="invite-step">' +
           '<p class="invite-step-label">Download Left free</p>' +
-          '<div class="invite-download-row">' +
-          '<a class="invite-appstore-badge" href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
-          '<img src="https://toolbox.marketingtools.apple.com/api/v2/badges/download-on-the-app-store/black/en-us?releaseDate=1736726400" alt="Download on the App Store" width="180" height="60" />' +
-          '</a>' +
-          '<div class="invite-qr" aria-label="Scan to download Left">' +
-          '<img src="/invite/qr-app-link.svg" alt="QR code to download Left" width="126" height="126" />' +
+          '<div class="invite-download-row hero-download-group">' +
+          '<div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">' +
+          '<div class="bento-inner">' +
+          '<div class="bento-face qr-face-front"><div class="qr-mask"></div></div>' +
+          '<div class="bento-face bento-face-back">' +
+          '<p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search <strong>"Left"</strong> on the App Store.</p>' +
           '</div>' +
+          '</div>' +
+          '</div>' +
+          '<a class="dl-btn" href="' + appStoreLink + '" target="_blank" rel="noopener" aria-label="Download on the App Store">' +
+          '<svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>' +
+          'Download for iOS' +
+          '</a>' +
           '</div>' +
           '</div>' +
 
@@ -593,11 +538,48 @@
         });
       }
 
-      // Patch renderPage to wire the button after each render
+      // Bento flip behavior for the QR card (matches index.js)
+      function wireQrFlip() {
+        document.querySelectorAll('.qr-flip.bento-cell').forEach(function (cell) {
+          if (cell.dataset.flipWired === '1') return;
+          cell.dataset.flipWired = '1';
+          var timer = null;
+          var flip = function () {
+            cell.classList.add('is-flipped');
+            clearTimeout(timer);
+            timer = setTimeout(function () { cell.classList.remove('is-flipped'); }, 3000);
+          };
+          cell.addEventListener('click', flip);
+          cell.addEventListener('keydown', function (e) {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
+          });
+        });
+      }
+
+      // Size the QR card to match the dl-btn width (matches index.js)
+      function syncQrSize() {
+        document.querySelectorAll('.hero-download-group, .download-group').forEach(function (group) {
+          var btn = group.querySelector('.dl-btn');
+          var qr = group.querySelector('.qr-flip');
+          if (!btn || !qr) return;
+          var w = btn.getBoundingClientRect().width;
+          if (w > 0) {
+            qr.style.setProperty('width', w + 'px', 'important');
+            qr.style.setProperty('height', w + 'px', 'important');
+            qr.style.setProperty('min-height', w + 'px', 'important');
+          }
+        });
+      }
+      window.addEventListener('resize', syncQrSize, { passive: true });
+
+      // Patch renderPage to wire the button + QR after each render
       var _origRenderPage = renderPage;
       renderPage = function (inviterName, photoURL) {
         _origRenderPage(inviterName, photoURL);
         wireAcceptButton();
+        wireQrFlip();
+        syncQrSize();
+        if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncQrSize);
       };
 
       fetch(inviteDocURL)
