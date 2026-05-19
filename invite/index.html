@@ -121,10 +121,6 @@
       .invite-footer { display: block; }
     }
 
-    .invite-accept-btn {
-      min-width: 220px;
-    }
-
     .invite-step-note {
       font-size: 13px;
       color: var(--text-secondary);
@@ -548,7 +544,17 @@
           }
         });
       }
+
+      function syncInviteButtonSize() {
+        var downloadBtn = document.querySelector('.invite-download-row .dl-btn');
+        var inviteBtn = document.getElementById('invite-accept-btn');
+        if (!downloadBtn || !inviteBtn) return;
+        var w = downloadBtn.getBoundingClientRect().width;
+        if (w > 0) inviteBtn.style.setProperty('width', w + 'px', 'important');
+      }
+
       window.addEventListener('resize', syncQrSize, { passive: true });
+      window.addEventListener('resize', syncInviteButtonSize, { passive: true });
 
       // Patch renderPage to wire the button + QR after each render
       var _origRenderPage = renderPage;
@@ -557,7 +563,13 @@
         wireAcceptButton();
         wireQrFlip();
         syncQrSize();
-        if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncQrSize);
+        syncInviteButtonSize();
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () {
+            syncQrSize();
+            syncInviteButtonSize();
+          });
+        }
       };
 
       fetch(inviteDocURL)
