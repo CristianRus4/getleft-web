@@ -156,8 +156,106 @@ async function injectIntoSourcePages(pages, enData) {
     // Fill in auto-generated JSON-LD blocks for the English source as well.
     html = generateJsonLd(html, enData, enLocale, page);
 
+    // Inject TOC + related-guides into every support article.
+    if (/^support\/.+\.html$/.test(page)) {
+      html = injectSupportArticleExtras(html, page, enData);
+    }
+
     await fs.writeFile(file, html);
   }
+}
+
+// ─── Support-article scaffolding (TOC + related guides) ──────────────────────
+// Adds id="s-h2-N" to each <h2 data-i18n="…h2_N">, injects a "On this page"
+// TOC after the article lede, and injects a "Related guides" grid before the
+// download CTA. Both blocks use data-i18n so the per-locale transform pass
+// translates them automatically.
+const SUPPORT_TOC_MARK_START = '<!-- i18n:support-toc:start -->';
+const SUPPORT_TOC_MARK_END   = '<!-- i18n:support-toc:end -->';
+const SUPPORT_REL_MARK_START = '<!-- i18n:support-related:start -->';
+const SUPPORT_REL_MARK_END   = '<!-- i18n:support-related:end -->';
+
+function injectSupportArticleExtras(html, page, enData) {
+  // Strip any previous injection (idempotent rebuilds).
+  html = stripInjection(html, SUPPORT_TOC_MARK_START, SUPPORT_TOC_MARK_END);
+  html = stripInjection(html, SUPPORT_REL_MARK_START, SUPPORT_REL_MARK_END);
+
+  const currentSlug = page.replace(/^support\//, '').replace(/\.html$/, '');
+  const currentArticle = currentSlug.replace(/-/g, '_');
+
+  // 1. Add stable ids to each H2 so the TOC can link to them.
+  const h2s = [];
+  html = html.replace(
+    /<h2\b([^>]*?)\sdata-i18n="(support_articles\.[\w]+\.h2_\d+)"([^>]*)>([\s\S]*?)<\/h2>/g,
+    (full, before, key, after, inner) => {
+      const idMatch = key.match(/\.h2_(\d+)$/);
+      const id = idMatch ? `s-h2-${idMatch[1]}` : null;
+      if (!id) return full;
+      // Skip the trailing "Start noticing what matters." H2 inside the download block.
+      if (/Start noticing/.test(inner)) return full;
+      h2s.push({ id, key, fallback: inner.replace(/<[^>]+>/g, '').trim() });
+      // If id already set, leave it; otherwise add ours.
+      const merged = `${before}${after}`;
+      if (/\sid=/.test(merged)) return full;
+      return `<h2${before} id="${id}" data-i18n="${key}"${after}>${inner}</h2>`;
+    }
+  );
+
+  // 2. Build the TOC block.
+  if (h2s.length >= 2) {
+    const tocItems = h2s.map(h =>
+      `      <li><a href="#${h.id}" data-i18n="${h.key}">${escapeText(h.fallback)}</a></li>`
+    ).join('\n');
+    const tocBlock = [
+      SUPPORT_TOC_MARK_START,
+      `<nav class="article-toc" aria-label="On this page">`,
+      `    <p class="article-toc-label" data-i18n="common.support_article.toc_label">On this page</p>`,
+      `    <ol class="article-toc-list">`,
+      tocItems,
+      `    </ol>`,
+      `  </nav>`,
+      SUPPORT_TOC_MARK_END,
+    ].join('\n');
+
+    html = html.replace(
+      /(<p\s+class="article-lede"[^>]*>[\s\S]*?<\/p>)/,
+      (m) => `${m}\n  ${tocBlock}`
+    );
+  }
+
+  // 3. Build the related-guides block. Pull other articles from en.json
+  //    so titles are the same set in every build; the per-locale transform
+  //    pass will translate them via data-i18n.
+  const supportArticles = (enData && enData.support_articles) || {};
+  const others = Object.keys(supportArticles)
+    .filter(slug => slug !== currentArticle && supportArticles[slug] && supportArticles[slug].h1_1)
+    .sort();
+  if (others.length) {
+    const items = others.map(slug => {
+      const fallback = escapeText((supportArticles[slug].h1_1 || '').replace(/<[^>]+>/g, '').trim());
+      const href = `/support/${slug.replace(/_/g, '-')}`;
+      return `      <a class="support-related-item" href="${href}" data-i18n="support_articles.${slug}.h1_1">${fallback}</a>`;
+    }).join('\n');
+    const relatedBlock = [
+      SUPPORT_REL_MARK_START,
+      `<section class="support-related">`,
+      `    <h2 class="support-related-h2" data-i18n="common.support_article.related_heading">Related guides</h2>`,
+      `    <div class="support-related-items">`,
+      items,
+      `    </div>`,
+      `  </section>`,
+      SUPPORT_REL_MARK_END,
+    ].join('\n');
+
+    // Insert before the download-block section if present, else before </article>.
+    if (/<section\s+class="download-block"/.test(html)) {
+      html = html.replace(/(<section\s+class="download-block")/, `${relatedBlock}\n\n      $1`);
+    } else {
+      html = html.replace(/(<\/article>)/, `${relatedBlock}\n  $1`);
+    }
+  }
+
+  return html;
 }
 
 function upsertInjection(html, startMark, endMark, payload, anchorRegex, insertBefore = false) {
