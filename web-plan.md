@@ -242,7 +242,7 @@ New page, replaces `ios-26.html`. General press and media destination.
 - **Features summary**: one sentence per feature area — Left Time, Ahead, Since (habits + streaks), Planner, Wallpaper, Friends. Taken verbatim from how BLUEPRINT.md describes each feature.
 - **Download links**: App Store badge + URL
 - **Press kit**: link to `https://drive.google.com/file/d/1Oa22OUGiCtdCMjsEC30L5DJ8lLZcnnNp/view?usp=sharing`
-- **Contact**: `cristianrus@hey.com` for press inquiries
+- **Contact**: `info@getleft.app` for press inquiries
 - **Developer**: Cristian Rus, independent developer, Wellington, New Zealand, X: `@CristianRus4`
 
 **Style:** Shared nav + footer. Clean, information-dense layout with no scroll effects or carousels. Desktop: two columns where appropriate. Mobile: single column.
@@ -889,7 +889,7 @@ All structural decisions are resolved. The only things Cristian needs to provide
 
 **Already known — no decisions needed:**
 
-- Contact email: `cristianrus@hey.com`
+- Contact email: `info@getleft.app`
 - X handle: `@CristianRus4`
 - Press kit: `https://drive.google.com/file/d/1Oa22OUGiCtdCMjsEC30L5DJ8lLZcnnNp/view?usp=sharing`
 - App Store URL: `https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884`
