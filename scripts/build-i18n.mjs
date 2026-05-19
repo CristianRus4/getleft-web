@@ -210,9 +210,9 @@ function injectSupportArticleExtras(html, page, enData) {
       SUPPORT_TOC_MARK_START,
       `<nav class="article-toc" aria-label="On this page">`,
       `    <p class="article-toc-label" data-i18n="common.support_article.toc_label">On this page</p>`,
-      `    <ol class="article-toc-list">`,
+      `    <ul class="article-toc-list">`,
       tocItems,
-      `    </ol>`,
+      `    </ul>`,
       `  </nav>`,
       SUPPORT_TOC_MARK_END,
     ].join('\n');
