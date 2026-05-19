@@ -73,8 +73,8 @@ async function main() {
     process.exit(1);
   }
 
-  // Inject detection script + switcher into the English source pages (idempotent).
-  await injectIntoSourcePages(allPages);
+  // Inject detection script + switcher + auto-generated JSON-LD into source pages.
+  await injectIntoSourcePages(allPages, enLocale);
 
   // Build each non-English locale.
   let totalErrors = 0;
@@ -128,9 +128,10 @@ const INJECTION_MARK_END = '<!-- i18n:auto-detect:end -->';
 const SWITCHER_MARK_START = '<!-- i18n:switcher:start -->';
 const SWITCHER_MARK_END = '<!-- i18n:switcher:end -->';
 
-async function injectIntoSourcePages(pages) {
+async function injectIntoSourcePages(pages, enData) {
   const detectScript = await fs.readFile(path.join(ROOT, 'partials', 'detect.html'), 'utf8');
   const switcherHtml = await fs.readFile(path.join(ROOT, 'partials', 'switcher.html'), 'utf8');
+  const enLocale = { code: 'en', htmlLang: 'en' };
 
   for (const page of pages) {
     const file = path.join(ROOT, page);
@@ -151,6 +152,9 @@ async function injectIntoSourcePages(pages) {
     } else {
       html = html.replace(/<link\s+rel="canonical"[^>]*\/?>/i, m => `${m}\n  ${hreflangBlock}`);
     }
+
+    // Fill in auto-generated JSON-LD blocks for the English source as well.
+    html = generateJsonLd(html, enData, enLocale, page);
 
     await fs.writeFile(file, html);
   }
@@ -295,8 +299,11 @@ function transform(html, pagePath, locale, data, enData) {
   // 10. Rewrite JSON-LD blocks that have an i18n-data attribute.
   html = rewriteJsonLd(html, data, enData, missing);
 
+  // 10b. Auto-generated JSON-LD blocks (FAQPage, MobileApplication, BreadcrumbList).
+  html = generateJsonLd(html, data, locale, pagePath);
+
   // 11. Strip all data-i18n* attributes from the output (cleanup).
-  html = html.replace(/\s+data-i18n(-attr|-html|-list|-list-template)?="[^"]*"/g, '');
+  html = html.replace(/\s+data-i18n(-attr|-html|-list|-list-template|-jsonld|-jsonld-generate)?="[^"]*"/g, '');
 
   return { html, missing };
 }
@@ -433,6 +440,88 @@ function updateCustomSwitcher(html, locale) {
     }
   );
   return html;
+}
+
+// Auto-generate JSON-LD blocks marked with data-i18n-jsonld-generate="<kind>".
+// The build pulls localised strings out of the locale JSON and emits a fresh
+// JSON-LD payload per language — keeps structured data in sync with copy.
+function generateJsonLd(html, data, locale, pagePath) {
+  return html.replace(
+    /(<script\b[^>]*type="application\/ld\+json"[^>]*data-i18n-jsonld-generate="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,
+    (full, open, kind, body, close) => {
+      const obj = jsonLdGenerator(kind, data, locale, pagePath);
+      if (!obj) return full;
+      return `${open}\n${JSON.stringify(obj, null, 2)}\n${close}`;
+    }
+  );
+}
+
+function jsonLdGenerator(kind, data, locale, pagePath) {
+  const origin = SITE_ORIGIN;
+  const langPrefix = locale.code === 'en' ? '' : `/${locale.code}`;
+  const pageUrl = `${origin}${langPrefix}/${pageToUrlPath(pagePath)}`.replace(/\/$/, '/') || `${origin}/`;
+  const inLanguage = locale.htmlLang;
+
+  if (kind === 'faq') {
+    const items = (data.index && data.index.faq && Array.isArray(data.index.faq.items)) ? data.index.faq.items : [];
+    if (!items.length) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage,
+      mainEntity: items.map(it => ({
+        '@type': 'Question',
+        name: it.q,
+        acceptedAnswer: { '@type': 'Answer', text: it.a },
+      })),
+    };
+  }
+
+  if (kind === 'app') {
+    const meta = (data.index && data.index.meta) || {};
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'WebSite',
+      name: 'Left',
+      url: `${origin}${langPrefix}/`,
+      inLanguage,
+      about: {
+        '@type': 'MobileApplication',
+        name: meta.title || 'Left',
+        description: meta.description || '',
+        applicationCategory: 'UtilitiesApplication',
+        operatingSystem: 'iOS 18+',
+        downloadUrl: 'https://apps.apple.com/app/id6740155884',
+        image: `${origin}/images/hero.webp`,
+        screenshot: `${origin}/images/left-feature.webp`,
+        author: { '@type': 'Person', name: 'Cristian Rus' },
+        publisher: { '@type': 'Organization', name: 'cntxt' },
+        inLanguage,
+        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.5', ratingCount: '226' },
+      },
+    };
+  }
+
+  if (kind === 'breadcrumb') {
+    // Support article: Home → Support → <article h1>
+    const article = pagePath.replace(/^support\//, '').replace(/\.html$/, '').replace(/-/g, '_');
+    const articleData = (data.support_articles && data.support_articles[article]) || {};
+    const supportLabel = (data.common && data.common.footer && data.common.footer.support) || 'Support';
+    const homeLabel = 'Left';
+    const articleTitle = articleData.h1_1 || (articleData.meta && articleData.meta.title) || article;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: homeLabel, item: `${origin}${langPrefix}/` },
+        { '@type': 'ListItem', position: 2, name: supportLabel, item: `${origin}${langPrefix}/support.html` },
+        { '@type': 'ListItem', position: 3, name: articleTitle, item: pageUrl },
+      ],
+    };
+  }
+
+  return null;
 }
 
 function rewriteJsonLd(html, data, enData, missing) {
