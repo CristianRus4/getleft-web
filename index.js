@@ -179,7 +179,7 @@
 
   const carouselTrack = document.getElementById('carouselTrack');
   if (carouselTrack) {
-    fetch('TemplateLibrary.json')
+    fetch('/TemplateLibrary.json')
       .then(r => r.ok ? r.json() : [])
       .then(data => {
         if (!Array.isArray(data)) return;

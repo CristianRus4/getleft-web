@@ -148,51 +148,102 @@
           <a href="/fr/press.html">Press</a>
           <a href="/fr/contact.html">Contact</a>
           <a href="/fr/tools/">Tools</a>
-        </nav>
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <button class="lang-switcher__button" type="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span aria-hidden="true">&#9873;</span>
+              <span data-current-language>Français</span>
+            </button>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="true">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            var LOCALES = {
+              en: 'English',
+              es: 'Español (España)',
+              'es-419': 'Español (Latinoamérica)',
+              de: 'Deutsch',
+              fr: 'Français',
+              it: 'Italiano',
+              pt: 'Português',
+              ja: '日本語',
+              nl: 'Nederlands',
+              pl: 'Polski',
+              tr: 'Türkçe',
+              ru: 'Русский',
+              'zh-Hans': '简体中文',
+              'zh-Hant': '繁體中文',
+              ko: '한국어',
+              id: 'Bahasa Indonesia',
+              ro: 'Română'
+            };
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            label.textContent = LOCALES[current] || LOCALES.en;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function () {
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                label.textContent = LOCALES[v] || v;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/[a-zA-Z-]+\//, '/');
+                if (!new RegExp('^/(' + SUPPORTED.join('|') + ')(/|$)').test(location.pathname)) bare = location.pathname;
+                location.href = (v === 'en' ? '' : '/' + v) + (bare === '/' ? '/' : bare) + location.search + location.hash;
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
       </div>
     </div>
-  
-<!-- i18n:switcher:start -->
-<div class="lang-switcher">
-  <label for="langSwitcher" class="visually-hidden">Language</label>
-  <select id="langSwitcher" aria-label="Language">
-    <option value="en">English</option>
-    <option value="es">Español (España)</option>
-    <option value="es-419">Español (Latinoamérica)</option>
-    <option value="de">Deutsch</option>
-    <option value="fr" selected>Français</option>
-    <option value="it">Italiano</option>
-    <option value="pt">Português</option>
-    <option value="ja">日本語</option>
-    <option value="nl">Nederlands</option>
-    <option value="pl">Polski</option>
-    <option value="tr">Türkçe</option>
-    <option value="ru">Русский</option>
-    <option value="zh-Hans">简体中文</option>
-    <option value="zh-Hant">繁體中文</option>
-    <option value="ko">한국어</option>
-    <option value="id">Bahasa Indonesia</option>
-    <option value="ro">Română</option>
-  </select>
-</div>
-<script>
-(function () {
-  var sel = document.getElementById('langSwitcher');
-  if (!sel) return;
-  var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
-  var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
-  var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
-  sel.value = current;
-  sel.addEventListener('change', function () {
-    var v = sel.value;
-    try { localStorage.setItem('left.lang', v); } catch (e) {}
-    var bare = location.pathname.replace(/^\/[a-zA-Z-]+\//, '/');
-    if (!new RegExp('^/(' + SUPPORTED.join('|') + ')(/|$)').test(location.pathname)) bare = location.pathname;
-    location.href = (v === 'en' ? '' : '/' + v) + (bare === '/' ? '/' : bare) + location.search + location.hash;
-  });
-})();
-</script>
-<!-- i18n:switcher:end -->
 </footer>
 
   <script defer src="/index.js"></script>

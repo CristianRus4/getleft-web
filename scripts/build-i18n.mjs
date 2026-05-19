@@ -140,9 +140,8 @@ async function injectIntoSourcePages(pages) {
       `${INJECTION_MARK_START}\n${detectScript.trim()}\n${INJECTION_MARK_END}`,
       /<meta\s+name="viewport"[^>]*>/i);
 
-    html = upsertInjection(html, SWITCHER_MARK_START, SWITCHER_MARK_END,
-      `${SWITCHER_MARK_START}\n${switcherHtml.trim()}\n${SWITCHER_MARK_END}`,
-      /<\/footer>/i, /* insertBefore */ true);
+    html = upsertFooterSwitcher(html,
+      `${SWITCHER_MARK_START}\n${switcherHtml.trim()}\n${SWITCHER_MARK_END}`);
 
     await fs.writeFile(file, html);
   }
@@ -158,6 +157,14 @@ function upsertInjection(html, startMark, endMark, payload, anchorRegex, insertB
   if (!m) return html;
   const pos = insertBefore ? m.index : m.index + m[0].length;
   return html.slice(0, pos) + '\n' + payload + '\n' + html.slice(pos);
+}
+
+function upsertFooterSwitcher(html, payload) {
+  html = stripInjection(html, SWITCHER_MARK_START, SWITCHER_MARK_END);
+  return html.replace(
+    /(<nav\s+class="footer-links"[^>]*>[\s\S]*?)(\s*<\/nav>)/i,
+    (full, before, close) => `${before}\n          ${payload.replace(/\n/g, '\n          ')}${close}`
+  );
 }
 
 // ─── per-locale build ───
@@ -273,19 +280,8 @@ function transform(html, pagePath, locale, data, enData) {
 
   // 8. Rewrite internal links to /<lang>/...
   html = rewriteLinks(html, locale.code);
-
-  // 9. Update the switcher's selected option.
-  html = html.replace(
-    /(<select\s+id="langSwitcher"[^>]*>)([\s\S]*?)(<\/select>)/,
-    (full, open, inner, close) => {
-      const cleaned = inner.replace(/<option\s+value="([^"]+)"[^>]*>/g,
-        (m, val) => `<option value="${val}">`);
-      const withSelected = cleaned.replace(
-        new RegExp(`<option value="${escapeRegex(locale.code)}">`),
-        `<option value="${locale.code}" selected>`);
-      return open + withSelected + close;
-    }
-  );
+  html = rewriteRelativeAssetPaths(html);
+  html = updateCustomSwitcher(html, locale);
 
   // 10. Rewrite JSON-LD blocks that have an i18n-data attribute.
   html = rewriteJsonLd(html, data, enData, missing);
@@ -378,6 +374,52 @@ function rewriteLinks(html, langCode) {
     // anchor-only on home (e.g. /#features) covered by the regex above
     return `${attr}="/${langCode}${p}${qs}"`;
   });
+}
+
+function rewriteRelativeAssetPaths(html) {
+  const assetPrefixes = [
+    'images/',
+    'favicon/',
+    'left-icon/',
+    'public/',
+    'style.css',
+    'index.js',
+    'reviews.json',
+    'TemplateLibrary.json',
+    'left.webmanifest',
+    'web.css',
+    'tools/tools.css',
+    'tools/tools.js',
+  ];
+  const attrs = [
+    'href',
+    'src',
+    'content',
+    'data-final-src',
+    'data-action-image',
+    'data-feature-image',
+  ];
+  const attrPattern = attrs.join('|');
+  return html.replace(new RegExp(`\\b(${attrPattern})="([^"#?:][^"]*)"`, 'g'), (full, attr, value) => {
+    if (value.startsWith('/')) return full;
+    if (!assetPrefixes.some(prefix => value === prefix || value.startsWith(prefix))) return full;
+    return `${attr}="/${value}"`;
+  });
+}
+
+function updateCustomSwitcher(html, locale) {
+  html = html.replace(
+    /<span\s+data-current-language>[\s\S]*?<\/span>/,
+    `<span data-current-language>${escapeText(locale.name)}</span>`
+  );
+  html = html.replace(
+    /(<button\s+type="button"\s+role="option"\s+data-lang-option="([^"]+)"[^>]*)(\s+aria-selected="[^"]*")?([^>]*>)/g,
+    (full, before, code, selectedAttr, after) => {
+      const selected = code === locale.code ? ' aria-selected="true"' : ' aria-selected="false"';
+      return `${before}${selected}${after}`;
+    }
+  );
+  return html;
 }
 
 function rewriteJsonLd(html, data, enData, missing) {
