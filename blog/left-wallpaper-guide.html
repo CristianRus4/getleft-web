@@ -32,7 +32,7 @@
   </nav>
   <article class="article container">
 <h1>The Left Wallpaper: A Lock Screen That Updates Itself</h1>
-<p class="article-meta">May 2026 · 5 min read</p>
+<p class="article-meta">May 2026 · 2 min read</p>
 <p>iOS wallpapers are static. Widgets aren't. <strong>Left Wallpaper</strong> sits in between — it generates a wallpaper image with your live time data, then uses an Apple Shortcut to update itself.</p>
 
 <h2>What it can show</h2>
@@ -47,14 +47,21 @@
 <p>Inside the app, Left's <code>WallpaperGenerator</code> writes a PNG into the App Group <code>Wallpapers/</code> directory. An App Shortcut (<code>UpdateDynamicWallpaperIntent</code>) regenerates it on demand. You wire that Shortcut into an Apple Shortcuts <em>Automation</em> — usually "every hour" or "when I unlock my iPhone" — so the wallpaper stays current without you doing anything.</p>
 
 <h2>Setup, step by step</h2>
-<ol>
-  <li>Open Left → <strong>Settings</strong> → <strong>Left Wallpaper</strong>.</li>
-  <li>Pick the view (Year, Life, Ahead, Day) and color.</li>
-  <li>Tap <strong>Save as Wallpaper</strong> to write the first version into Photos.</li>
-  <li>Open Shortcuts → Automation → <strong>+</strong> → pick a trigger (Time of Day, App Opened, etc).</li>
-  <li>Add the <strong>Update Left Wallpaper</strong> action. Save.</li>
-  <li>On your Lock Screen: Customize → choose the new wallpaper photo.</li>
-</ol>
+<p>You'll build a Shortcut that asks Left to regenerate the wallpaper, then a daily Automation that runs that Shortcut. Once it's wired up, you never touch it again.</p>
+
+<h3>1. Create a new shortcut</h3>
+<p>Tap <strong>Open Shortcuts</strong> to go to the Shortcuts app. Tap <strong>+</strong> in the top-right corner to create a new shortcut.</p>
+
+<h3>2. Build the shortcut</h3>
+<p>Search the action <strong>"Left wallpaper"</strong> and tap to add it. Then search again for <strong>"Set Wallpaper Photo"</strong> and add that too. Set it up for <strong>Lock Screen</strong>, and turn off both <strong>Show Preview</strong> and <strong>Crop to Subject</strong>. Give the shortcut a name like <em>"Left Wallpaper"</em> and save.</p>
+
+<h3>3. Create the automation</h3>
+<p>Go to the <strong>Automation</strong> tab in Shortcuts. Tap <strong>+</strong> and create a new <strong>Time of Day</strong> automation. Set it to run <strong>daily</strong> at <strong>00:01</strong> (or any time you prefer). Choose <strong>Run Immediately</strong> and turn off <strong>Notify When Run</strong>.</p>
+
+<h3>4. Automate the shortcut</h3>
+<p>Tap <strong>Next</strong>, then search for the shortcut you created in step 2 and select it. Done — your Lock Screen will update itself every day from now on.</p>
+
+<p>Need more detail or screenshots? See the full walkthrough on the <a href="/support/wallpaper-shortcut">Left Wallpaper shortcut support page</a>.</p>
 
 <h2>Tips</h2>
 <ul>
@@ -63,9 +70,31 @@
   <li>Pre-generation runs on app launch so the wallpaper's ready when you switch to it.</li>
 </ul>
 
-<p><a href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884" target="_blank" rel="noopener">Download Left</a> and try it.</p>
-    <hr />
-    <p><a href="/blog/">← Back to blog</a></p>
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download</span>
+          <h2>Start tracking what matters.</h2>
+          <p>Habits, countdowns, and the time that's actually left — in beautiful widgets on your Home Screen, Lock Screen, and StandBy.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
   </article>
 
   <footer class="site-footer">
@@ -73,7 +102,7 @@
       <div class="footer-main">
         <div class="footer-brand">
           <span class="brand">Left</span>
-          <span class="footer-counter-inline"><span id="userCounter">100,000</span> people making every moment count.</span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> people making every moment count.</span>
           <span>Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">

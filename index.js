@@ -341,7 +341,7 @@
   // ───────── Footer counter ─────────
   const counter = document.getElementById('userCounter');
   if (counter) {
-    const BASE_COUNT = 100000;
+    const BASE_COUNT = 2100000;
     const BASE_DATE = new Date('2026-01-01').getTime();
     const RATE = 1 / (7 * 60 * 1000); // ~1 new user per 7 min — same formula on all devices
     const fmt = new Intl.NumberFormat('en-US');
