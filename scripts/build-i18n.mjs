@@ -19,23 +19,23 @@ const SITE_ORIGIN = 'https://getleft.app';
 
 // Order matters: switcher options follow this order.
 const LOCALES = [
-  { code: 'en',      name: 'English',                 htmlLang: 'en',      dir: 'ltr' },
-  { code: 'es',      name: 'Español (España)',        htmlLang: 'es-ES',   dir: 'ltr' },
-  { code: 'es-419',  name: 'Español (Latinoamérica)', htmlLang: 'es-419',  dir: 'ltr' },
-  { code: 'de',      name: 'Deutsch',                 htmlLang: 'de',      dir: 'ltr' },
-  { code: 'fr',      name: 'Français',                htmlLang: 'fr',      dir: 'ltr' },
-  { code: 'it',      name: 'Italiano',                htmlLang: 'it',      dir: 'ltr' },
-  { code: 'pt',      name: 'Português',               htmlLang: 'pt',      dir: 'ltr' },
-  { code: 'ja',      name: '日本語',                   htmlLang: 'ja',      dir: 'ltr' },
-  { code: 'nl',      name: 'Nederlands',              htmlLang: 'nl',      dir: 'ltr' },
-  { code: 'pl',      name: 'Polski',                  htmlLang: 'pl',      dir: 'ltr' },
-  { code: 'tr',      name: 'Türkçe',                  htmlLang: 'tr',      dir: 'ltr' },
-  { code: 'ru',      name: 'Русский',                 htmlLang: 'ru',      dir: 'ltr' },
-  { code: 'zh-Hans', name: '简体中文',                  htmlLang: 'zh-Hans', dir: 'ltr' },
-  { code: 'zh-Hant', name: '繁體中文',                  htmlLang: 'zh-Hant', dir: 'ltr' },
-  { code: 'ko',      name: '한국어',                   htmlLang: 'ko',      dir: 'ltr' },
-  { code: 'id',      name: 'Bahasa Indonesia',        htmlLang: 'id',      dir: 'ltr' },
-  { code: 'ro',      name: 'Română',                  htmlLang: 'ro',      dir: 'ltr' },
+  { code: 'en',      name: 'English',                 htmlLang: 'en',      dir: 'ltr', flag: '⚑' },
+  { code: 'es',      name: 'Español (España)',        htmlLang: 'es-ES',   dir: 'ltr', flag: '⚑' },
+  { code: 'es-419',  name: 'Español (Latinoamérica)', htmlLang: 'es-419',  dir: 'ltr', flag: '⚑' },
+  { code: 'de',      name: 'Deutsch',                 htmlLang: 'de',      dir: 'ltr', flag: '⚑' },
+  { code: 'fr',      name: 'Français',                htmlLang: 'fr',      dir: 'ltr', flag: '⚑' },
+  { code: 'it',      name: 'Italiano',                htmlLang: 'it',      dir: 'ltr', flag: '⚑' },
+  { code: 'pt',      name: 'Português',               htmlLang: 'pt',      dir: 'ltr', flag: '⚑' },
+  { code: 'ja',      name: '日本語',                   htmlLang: 'ja',      dir: 'ltr', flag: '⚑' },
+  { code: 'nl',      name: 'Nederlands',              htmlLang: 'nl',      dir: 'ltr', flag: '⚑' },
+  { code: 'pl',      name: 'Polski',                  htmlLang: 'pl',      dir: 'ltr', flag: '⚑' },
+  { code: 'tr',      name: 'Türkçe',                  htmlLang: 'tr',      dir: 'ltr', flag: '⚑' },
+  { code: 'ru',      name: 'Русский',                 htmlLang: 'ru',      dir: 'ltr', flag: '⚑' },
+  { code: 'zh-Hans', name: '简体中文',                  htmlLang: 'zh-Hans', dir: 'ltr', flag: '⚑' },
+  { code: 'zh-Hant', name: '繁體中文',                  htmlLang: 'zh-Hant', dir: 'ltr', flag: '⚑' },
+  { code: 'ko',      name: '한국어',                   htmlLang: 'ko',      dir: 'ltr', flag: '⚑' },
+  { code: 'id',      name: 'Bahasa Indonesia',        htmlLang: 'id',      dir: 'ltr', flag: '⚑' },
+  { code: 'ro',      name: 'Română',                  htmlLang: 'ro',      dir: 'ltr', flag: '⚑' },
 ];
 const NON_EN_LOCALES = LOCALES.filter(l => l.code !== 'en');
 const SUPPORTED_CODES = LOCALES.map(l => l.code);
@@ -411,6 +411,10 @@ function updateCustomSwitcher(html, locale) {
   html = html.replace(
     /<span\s+data-current-language>[\s\S]*?<\/span>/,
     `<span data-current-language>${escapeText(locale.name)}</span>`
+  );
+  html = html.replace(
+    /<span\s+[^>]*data-current-flag[^>]*>[\s\S]*?<\/span>/,
+    `<span class="lang-switcher__flag" data-current-flag>${escapeText(locale.flag)}</span>`
   );
   html = html.replace(
     /(<button\s+type="button"\s+role="option"\s+data-lang-option="([^"]+)"[^>]*)(\s+aria-selected="[^"]*")?([^>]*>)/g,

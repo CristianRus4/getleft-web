@@ -144,27 +144,27 @@
           <!-- i18n:switcher:start -->
           <div class="lang-switcher" data-lang-switcher>
             <button class="lang-switcher__button" type="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
-              <span aria-hidden="true">&#9873;</span>
+              <span class="lang-switcher__flag" data-current-flag>⚑</span>
               <span data-current-language>Русский</span>
             </button>
             <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
               <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
               <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
               <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
-              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
               <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
               <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
-              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português</button>
-              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
               <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
               <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
-              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
               <button type="button" role="option" data-lang-option="ru" aria-selected="true">Русский</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
               <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
               <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
-              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
-              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
-              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
             </div>
           </div>
           <script>
@@ -174,31 +174,34 @@
             var trigger = root.querySelector('[data-lang-switcher-button]');
             var menu = root.querySelector('[data-lang-switcher-menu]');
             var label = root.querySelector('[data-current-language]');
+            var flagLabel = root.querySelector('[data-current-flag]');
             var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
             if (!trigger || !menu || !label || !options.length) return;
             var LOCALES = {
-              en: 'English',
-              es: 'Español (España)',
-              'es-419': 'Español (Latinoamérica)',
-              de: 'Deutsch',
-              fr: 'Français',
-              it: 'Italiano',
-              pt: 'Português',
-              ja: '日本語',
-              nl: 'Nederlands',
-              pl: 'Polski',
-              tr: 'Türkçe',
-              ru: 'Русский',
-              'zh-Hans': '简体中文',
-              'zh-Hant': '繁體中文',
-              ko: '한국어',
-              id: 'Bahasa Indonesia',
-              ro: 'Română'
+              en: { name: 'English', flag: '⚑' },
+              es: { name: 'Español (España)', flag: '⚑' },
+              'es-419': { name: 'Español (Latinoamérica)', flag: '⚑' },
+              de: { name: 'Deutsch', flag: '⚑' },
+              fr: { name: 'Français', flag: '⚑' },
+              it: { name: 'Italiano', flag: '⚑' },
+              pt: { name: 'Português', flag: '⚑' },
+              ja: { name: '日本語', flag: '⚑' },
+              nl: { name: 'Nederlands', flag: '⚑' },
+              pl: { name: 'Polski', flag: '⚑' },
+              tr: { name: 'Türkçe', flag: '⚑' },
+              ru: { name: 'Русский', flag: '⚑' },
+              'zh-Hans': { name: '简体中文', flag: '⚑' },
+              'zh-Hant': { name: '繁體中文', flag: '⚑' },
+              ko: { name: '한국어', flag: '⚑' },
+              id: { name: 'Bahasa Indonesia', flag: '⚑' },
+              ro: { name: 'Română', flag: '⚑' }
             };
             var SUPPORTED = Object.keys(LOCALES);
             var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
             var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
-            label.textContent = LOCALES[current] || LOCALES.en;
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.name;
+            if (flagLabel) flagLabel.textContent = currentLoc.flag;
             options.forEach(function (option) {
               var selected = option.getAttribute('data-lang-option') === current;
               option.setAttribute('aria-selected', selected ? 'true' : 'false');
@@ -215,14 +218,14 @@
                 var v = option.getAttribute('data-lang-option');
                 if (!v) return;
                 setOpen(false);
-                label.textContent = LOCALES[v] || v;
+                var newLoc = LOCALES[v] || { name: v, flag: '' };
+                label.textContent = newLoc.name;
+                if (flagLabel) flagLabel.textContent = newLoc.flag;
                 options.forEach(function (item) {
                   item.setAttribute('aria-selected', item === option ? 'true' : 'false');
                 });
                 try { localStorage.setItem('left.lang', v); } catch (e) {}
-                var bare = location.pathname.replace(/^\/[a-zA-Z-]+\//, '/');
-                if (!new RegExp('^/(' + SUPPORTED.join('|') + ')(/|$)').test(location.pathname)) bare = location.pathname;
-                location.href = (v === 'en' ? '' : '/' + v) + (bare === '/' ? '/' : bare) + location.search + location.hash;
+                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
               });
             });
             document.addEventListener('click', function (event) {
