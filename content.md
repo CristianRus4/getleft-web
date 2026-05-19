@@ -600,7 +600,7 @@ Eyebrow:
 
 H2:
 
-> Start tracking what matters.
+> Start noticing what matters.
 
 Intro:
 

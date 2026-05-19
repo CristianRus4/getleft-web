@@ -145,8 +145,8 @@
       const span = document.createElement('span');
       span.className = 'scroll-sentence';
       const text = sentence.trim() + (i < sentences.length - 1 ? ' ' : '');
-      if (text.includes('Left makes time matter')) {
-        span.innerHTML = text.replace('Left makes time matter', '<em class="scroll-accent">Left makes time matter</em>');
+      if (text.includes('Left makes time matter.')) {
+        span.innerHTML = text.replace('Left makes time matter.', '<em class="scroll-accent">Left makes time matter.</em>');
       } else {
         span.textContent = text;
       }

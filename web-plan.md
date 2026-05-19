@@ -652,7 +652,7 @@ For development/placeholder: use `https://source.unsplash.com/random/400x500/?li
 **Concept:** Full-width section with a single purpose — download the app.
 
 **Content:**
-- Headline: "Start tracking what matters." (or Cristian's preferred copy)
+- Headline: "Start noticing what matters." (or Cristian's preferred copy)
 - Subline: "Free download. One-time purchase to unlock everything. No subscription."
 - App Store badge (existing image asset, black version)
 - QR code (small, desktop only, below the badge) — links to `/download/`
