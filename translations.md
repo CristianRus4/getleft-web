@@ -4,7 +4,16 @@ This document is for translators. Read it once, then translate one JSON file and
 
 ## 1. What you are translating
 
-The Left marketing site is built from a single source of truth in English: [i18n/locales/en.json](i18n/locales/en.json). Every other language lives in its own JSON file in the same folder, with **identical keys** to the English file. Your job is to translate every string **value** in your language's file. The keys never change.
+Only four areas of the Left website are translated. Everything else (press, tools, blog, privacy, terms) stays English-only.
+
+The translated pages are:
+
+- **Homepage** — `/` (index.html)
+- **Contact** — `/contact`
+- **Support index** — `/support`
+- **Support articles** — every page under `/support/*` (12 step-by-step guides for widgets, Shortcuts, Focus modes, etc.)
+
+The marketing site is built from a single source of truth in English: [i18n/locales/en.json](i18n/locales/en.json). Every other language lives in its own JSON file in the same folder, with **identical keys** to the English file. Your job is to translate every string **value** in your language's file. The keys never change.
 
 ```
 i18n/locales/
@@ -75,9 +84,8 @@ These are the marketing names for sections of the app. Keep them English so they
 - `Mac`, `Mission Control`, `Notification Center`
 - `Action Button`
 - `Family Sharing`
-- `Home Screen` / `Lock Screen` when capitalised as proper-noun Apple UI references
 
-> Note on `Home Screen` and `Lock Screen`: in body copy, the natural localised form (for example, *pantalla de inicio* / *pantalla bloqueada* in Spanish, *écran d'accueil* in French) reads better than keeping it English. Use the natural form in body text; keep `Home Screen` / `Lock Screen` capitalised in English only when the source is clearly naming the Apple UI element as a proper noun (for example, button labels in tutorials).
+> Note on `Home Screen` and `Lock Screen`: in body copy, the natural localised form (for example, *pantalla de inicio* / *pantalla bloqueada* in Spanish, *écran d'accueil* in French) reads better than keeping it English. Use the natural form your language's Apple localisation uses.
 
 ### Don't translate inside strings either
 - HTML tags and attributes: `<strong>`, `<a href="…">`, `<br />`, `target="_blank"`, etc. Keep the tags exactly; translate the visible text between them.
@@ -86,6 +94,7 @@ These are the marketing names for sections of the app. Keep them English so they
 - URLs and `href` targets
 - Email addresses (`info@getleft.app`)
 - Numbers, dates, app IDs in URLs
+- Names of buttons that are themselves English UI in iOS (when wrapped in `<strong>` inside an instruction list, leave the literal button name as it appears in the OS for that language — Apple translates `Add Widget` → `Añadir widget` in Spanish, for example, so use the Apple-localised form)
 
 ## 4. Tone of voice
 
@@ -99,13 +108,7 @@ Left is a time-awareness app. The copy is meant to feel:
 
 **Address the user informally** (the equivalent of "you" rather than "you, sir"): *tú* in Spanish, *du* in German, *tu* in French, casual form in Japanese/Korean, etc. — whatever is standard for consumer products in your language.
 
-Some phrasings to keep faithful:
-
-- "make every moment count" → translate the intent, not the words
-- "time left" → core concept, find the most natural rendering in your language
-- "dates to look forward to" → emotional, not transactional
-- "habits that shape who you become" → identity-focused, not productivity-focused
-- "streaks worth keeping" → about meaning, not gamification
+In the support articles (step-by-step tutorials), keep the instructional voice clear and direct. Steps should read like instructions, not marketing copy.
 
 If you are unsure about voice, read [content.md](content.md) — it documents the full message hierarchy and tone guidelines for the product.
 
@@ -165,3 +168,20 @@ If `node scripts/check-i18n.mjs` reports `missing=0  extra=0` for your file, the
 - [ ] File is valid JSON (no trailing commas, all strings closed)
 
 Thanks for translating Left.
+
+---
+
+## For maintainers / developers
+
+The pages under `/press.html` and `/tools/*` are **English-only** by design. The build script (`scripts/build-i18n.mjs`) does not generate translated copies of them, the language-detection script (`partials/detect.html`) does not redirect users away from them, and the locale JSONs do not contain keys for them. If you add a new English-only page in the future, you need to:
+
+1. **Not** include it in `SOURCE_PAGES` or `SOURCE_DIRS` in [scripts/build-i18n.mjs](scripts/build-i18n.mjs).
+2. Add its path prefix to `EXCLUDED_PATH_PREFIXES` in the same file (so internal links to it are not rewritten to `/<lang>/`).
+3. Add the same path prefix to the regex in [partials/detect.html](partials/detect.html) (so the auto-redirect leaves users on the English version).
+
+Conversely, if you add a new translatable page:
+
+1. Add it to `SOURCE_PAGES` (or, for directories of pages, add the directory to `SOURCE_DIRS`).
+2. Annotate every user-visible string in the HTML with `data-i18n="key.path"` (or `data-i18n-html`, `data-i18n-attr`).
+3. Add the corresponding key to `en.json`.
+4. Add the same key (with the same English string as a placeholder) to every other locale file so `check-i18n` stays clean — then have translators fill in their language.

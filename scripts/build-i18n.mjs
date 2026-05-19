@@ -45,16 +45,15 @@ const SOURCE_PAGES = [
   'index.html',
   'support.html',
   'contact.html',
-  'press.html',
-  'tools/index.html',
 ];
 
 // Glob-equivalents discovered at runtime.
-const SOURCE_DIRS = ['support', 'tools'];
+const SOURCE_DIRS = ['support'];
 
 // Paths that must NEVER be translated or link-rewritten.
 const EXCLUDED_PATH_PREFIXES = [
   '/privacy.html', '/terms.html', '/web.html', '/404.html',
+  '/press.html', '/tools/', '/tools',
   '/blog/', '/invite/', '/.well-known/', '/sw.js',
   '/download.html', '/download', '/ios', '/android', '/web',
 ];

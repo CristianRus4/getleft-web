@@ -3,41 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<!-- i18n:auto-detect:start -->
-<script>
-(function () {
-  try {
-    var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
-    var qp = new URLSearchParams(location.search).get('lang');
-    var override = qp || localStorage.getItem('left.lang');
-    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
-    if (override === 'en') return;
-    if (location.search.indexOf('nolang=1') >= 0) return;
-    var pick = override;
-    if (!pick) {
-      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
-      for (var i = 0; i < prefs.length && !pick; i++) {
-        var p = prefs[i];
-        if (SUPPORTED.indexOf(p) >= 0) { pick = p; break; }
-        if (p === 'es-MX' || p === 'es-AR' || p === 'es-CL' || p === 'es-CO' || p === 'es-PE' || p === 'es-VE' || p === 'es-UY' || p === 'es-EC' || p === 'es-BO' || p === 'es-PY' || p === 'es-GT' || p === 'es-HN' || p === 'es-NI' || p === 'es-CR' || p === 'es-PA' || p === 'es-DO' || p === 'es-SV') pick = 'es-419';
-        else if (p.indexOf('es') === 0) pick = 'es';
-        else if (p.indexOf('pt') === 0) pick = 'pt';
-        else if (p === 'zh-TW' || p === 'zh-HK' || p === 'zh-MO' || p === 'zh-Hant') pick = 'zh-Hant';
-        else if (p.indexOf('zh') === 0) pick = 'zh-Hans';
-        else { var base = p.split('-')[0]; if (SUPPORTED.indexOf(base) >= 0) pick = base; }
-      }
-    }
-    if (!pick || pick === 'en' || SUPPORTED.indexOf(pick) < 0) return;
-    var path = location.pathname.replace(/^\//, '');
-    if (/^(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android)/.test(path)) return;
-    location.replace('/' + pick + '/' + path + location.search + location.hash);
-  } catch (e) { /* fail open */ }
-})();
-</script>
-<!-- i18n:auto-detect:end -->
-
-  <title data-i18n="tool_pages.life_expectancy_calculator.meta.title">Life Expectancy Calculator — How Many Years Do I Have Left? | Left</title>
-  <meta data-i18n-attr="content:tool_pages.life_expectancy_calculator.meta.description" name="description" content="Estimate your life expectancy and years remaining based on WHO baselines and research-adjusted factors: age, gender, lifestyle, health, and more." />
+  <title>Life Expectancy Calculator — How Many Years Do I Have Left? | Left</title>
+  <meta name="description" content="Estimate your life expectancy and years remaining based on WHO baselines and research-adjusted factors: age, gender, lifestyle, health, and more." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -56,21 +23,19 @@
   <link rel="stylesheet" href="/tools/tools.css" />
 </head>
 <body>
-    <nav class="top-nav top-nav--visible" aria-label="Primary">
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
     <div class="container nav-inner">
       <a href="/" class="brand">Left</a>
       <div class="nav-trailing">
-        <div class="nav-links">
-          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
-        </div>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" data-i18n="common.nav.download">Download</a>
+        <div class="nav-links"><a href="/#features" class="nav-link">Features</a></div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
       </div>
     </div>
   </nav>
 
   <main class="container tool-page">
-    <h1 data-i18n="tool_pages.life_expectancy_calculator.h1_1">Life expectancy calculator</h1>
-    <p class="tool-lede" data-i18n="tool_pages.life_expectancy_calculator.p_1">A research-based estimate of your life expectancy — and how many years, months, and weeks you likely have left.</p>
+    <h1>Life expectancy calculator</h1>
+    <p class="tool-lede">A research-based estimate of your life expectancy — and how many years, months, and weeks you likely have left.</p>
 
     <div class="tool-widget">
       <div class="tool-field-grid">
@@ -157,7 +122,7 @@
           </select>
         </div>
       </div>
-      <button id="le-calc" class="tool-submit" data-i18n="tool_pages.life_expectancy_calculator.btn_1">Calculate</button>
+      <button id="le-calc" class="tool-submit">Calculate</button>
       <div class="tool-result" id="le-result" aria-live="polite"></div>
       <p class="tool-fineprint">
         <em>This is an approximation for educational purposes, based on WHO global baselines and population-level research. It is not medical advice. Individual outcomes vary widely.</em>
@@ -165,7 +130,7 @@
     </div>
 
     <div class="tool-prose">
-      <h2 data-i18n="tool_pages.life_expectancy_calculator.h2_1">How the estimate is calculated</h2>
+      <h2>How the estimate is calculated</h2>
       <p>The baseline life expectancy comes from WHO global averages: approximately <strong>73.8 years for males</strong> and <strong>79.0 years for females</strong> (2024 data). Research-based adjustments are then applied for each lifestyle and health factor:</p>
       <ul>
         <li><strong>Smoking:</strong> −10 years (current), −5 years (former) — NEJM 2013</li>
@@ -178,17 +143,17 @@
         <li><strong>Higher income (top quartile):</strong> +2 years</li>
         <li><strong>Self-rated health (Excellent):</strong> +2 years; (Poor): −5 years</li>
       </ul>
-      <p data-i18n="tool_pages.life_expectancy_calculator.p_2">Adjustments are additive and the result is capped between your current age (you can't have a negative years-left figure) and 105 years.</p>
+      <p>Adjustments are additive and the result is capped between your current age (you can't have a negative years-left figure) and 105 years.</p>
 
-      <h2 data-i18n="tool_pages.life_expectancy_calculator.h2_2">Why this matters</h2>
-      <p data-i18n="tool_pages.life_expectancy_calculator.p_3">Knowing your approximate time horizon — even as a rough estimate — is clarifying. Left is built around exactly this idea: the time you have left is finite, and seeing it clearly is the first step to using it intentionally. The life expectancy calculator gives you a number to work with. What you do with that number is up to you.</p>
+      <h2>Why this matters</h2>
+      <p>Knowing your approximate time horizon — even as a rough estimate — is clarifying. Left is built around exactly this idea: the time you have left is finite, and seeing it clearly is the first step to using it intentionally. The life expectancy calculator gives you a number to work with. What you do with that number is up to you.</p>
 
-      <h2 data-i18n="tool_pages.life_expectancy_calculator.h2_3">Limitations</h2>
-      <p data-i18n="tool_pages.life_expectancy_calculator.p_4">Population-level averages cannot predict individual outcomes. Genetics, access to healthcare, location, and countless other factors are not captured here. Treat this as a rough benchmark, not a prediction. For health decisions, consult a medical professional.</p>
+      <h2>Limitations</h2>
+      <p>Population-level averages cannot predict individual outcomes. Genetics, access to healthcare, location, and countless other factors are not captured here. Treat this as a rough benchmark, not a prediction. For health decisions, consult a medical professional.</p>
     </div>
 
     <div class="tool-related">
-      <h2 data-i18n="tool_pages.life_expectancy_calculator.h2_4">Related tools</h2>
+      <h2>Related tools</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/age-calculator">Age calculator</a>
         <a class="tool-related-item" href="/tools/percentage-year-calculator">Percentage of the year</a>
@@ -200,8 +165,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Download Left</span>
-        <h2 data-i18n="tool_pages.life_expectancy_calculator.h2_5">Start noticing what matters.</h2>
-        <p data-i18n="tool_pages.life_expectancy_calculator.p_5">Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        <h2>Start noticing what matters.</h2>
+        <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -224,118 +189,24 @@
     </section>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span data-i18n="common.footer.counter_suffix">people making every moment count.</span></span>
-          <span data-i18n="common.footer.tagline">Left – Coded in NZ – © 2026 cntxt</span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> people making every moment count.</span>
+          <span>Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="/support.html" data-i18n="common.footer.support">Support</a>
-          <a href="/press.html" data-i18n="common.footer.press">Press</a>
-          <a href="/contact.html" data-i18n="common.footer.contact">Contact</a>
-          <a href="/tools/" data-i18n="common.footer.tools">Tools</a>
-          <!-- i18n:switcher:start -->
-          <div class="lang-switcher" data-lang-switcher>
-            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
-              <span data-current-language>ENG</span>
-            </a>
-            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
-              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
-              <button type="button" role="option" data-lang-option="de">Deutsch</button>
-              <button type="button" role="option" data-lang-option="en">English</button>
-              <button type="button" role="option" data-lang-option="es">Español (España)</button>
-              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
-              <button type="button" role="option" data-lang-option="fr">Français</button>
-              <button type="button" role="option" data-lang-option="it">Italiano</button>
-              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
-              <button type="button" role="option" data-lang-option="pl">Polski</button>
-              <button type="button" role="option" data-lang-option="pt">Português</button>
-              <button type="button" role="option" data-lang-option="ro">Română</button>
-              <button type="button" role="option" data-lang-option="ru">Русский</button>
-              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
-              <button type="button" role="option" data-lang-option="ko">한국어</button>
-              <button type="button" role="option" data-lang-option="ja">日本語</button>
-              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
-              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
-            </div>
-          </div>
-          <script>
-          (function () {
-            var root = document.querySelector('[data-lang-switcher]');
-            if (!root) return;
-            var trigger = root.querySelector('[data-lang-switcher-button]');
-            var menu = root.querySelector('[data-lang-switcher-menu]');
-            var label = root.querySelector('[data-current-language]');
-            var flagLabel = root.querySelector('[data-current-flag]');
-            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
-            if (!trigger || !menu || !label || !options.length) return;
-            var LOCALES = {
-              en: { name: 'English', flag: '⚑', abbr: 'ENG' },
-              es: { name: 'Español (España)', flag: '⚑', abbr: 'ES' },
-              'es-419': { name: 'Español (Latinoamérica)', flag: '⚑', abbr: 'ES' },
-              de: { name: 'Deutsch', flag: '⚑', abbr: 'DE' },
-              fr: { name: 'Français', flag: '⚑', abbr: 'FR' },
-              it: { name: 'Italiano', flag: '⚑', abbr: 'IT' },
-              pt: { name: 'Português', flag: '⚑', abbr: 'PT' },
-              ja: { name: '日本語', flag: '⚑', abbr: 'JA' },
-              nl: { name: 'Nederlands', flag: '⚑', abbr: 'NL' },
-              pl: { name: 'Polski', flag: '⚑', abbr: 'PL' },
-              tr: { name: 'Türkçe', flag: '⚑', abbr: 'TR' },
-              ru: { name: 'Русский', flag: '⚑', abbr: 'RU' },
-              'zh-Hans': { name: '简体中文', flag: '⚑', abbr: 'ZH' },
-              'zh-Hant': { name: '繁體中文', flag: '⚑', abbr: 'ZH' },
-              ko: { name: '한국어', flag: '⚑', abbr: 'KO' },
-              id: { name: 'Bahasa Indonesia', flag: '⚑', abbr: 'ID' },
-              ro: { name: 'Română', flag: '⚑', abbr: 'RO' }
-            };
-            var SUPPORTED = Object.keys(LOCALES);
-            var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
-            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
-            var currentLoc = LOCALES[current] || LOCALES.en;
-            label.textContent = currentLoc.abbr || currentLoc.name;
-            if (flagLabel) flagLabel.textContent = currentLoc.flag;
-            options.forEach(function (option) {
-              var selected = option.getAttribute('data-lang-option') === current;
-              option.setAttribute('aria-selected', selected ? 'true' : 'false');
-            });
-            function setOpen(open) {
-              menu.hidden = !open;
-              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-            }
-            trigger.addEventListener('click', function (event) {
-              event.preventDefault();
-              setOpen(menu.hidden);
-            });
-            options.forEach(function (option) {
-              option.addEventListener('click', function (event) {
-                var v = option.getAttribute('data-lang-option');
-                if (!v) return;
-                setOpen(false);
-                var newLoc = LOCALES[v] || { name: v, flag: '', abbr: v.toUpperCase() };
-                label.textContent = newLoc.abbr || newLoc.name;
-                if (flagLabel) flagLabel.textContent = newLoc.flag;
-                options.forEach(function (item) {
-                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
-                });
-                try { localStorage.setItem('left.lang', v); } catch (e) {}
-                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
-              });
-            });
-            document.addEventListener('click', function (event) {
-              if (!root.contains(event.target)) setOpen(false);
-            });
-            document.addEventListener('keydown', function (event) {
-              if (event.key === 'Escape') setOpen(false);
-            });
-          })();
-          </script>
-          <!-- i18n:switcher:end -->
-</nav>
+          <a href="/support.html">Support</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/press.html">Press</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/tools/">Tools</a>
+        </nav>
       </div>
     </div>
-</footer>
+  </footer>
 
   <script src="/tools/tools.js"></script>
   <script>
@@ -367,7 +238,7 @@
           <div class="tool-stat"><div class="tool-stat-num">${yearsLeft.toFixed(1)}</div><div class="tool-stat-label">years left</div></div>
           <div class="tool-stat"><div class="tool-stat-num">${pctElapsed.toFixed(0)}%</div><div class="tool-stat-label">life elapsed</div></div>
         </div>
-        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);" data-i18n="tool_pages.life_expectancy_calculator.p_6">
+        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">
           ≈ ${fmtNum(weeksLeft)} weeks left &nbsp;·&nbsp; ≈ ${fmtNum(daysLeft)} days left
         </p>
         <p style="margin-top:8px;font-size:13px;color:var(--text-secondary);">

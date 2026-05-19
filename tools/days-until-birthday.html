@@ -3,41 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<!-- i18n:auto-detect:start -->
-<script>
-(function () {
-  try {
-    var SUPPORTED = ['en','es','es-419','de','fr','it','pt','ja','nl','pl','tr','ru','zh-Hans','zh-Hant','ko','id','ro'];
-    var qp = new URLSearchParams(location.search).get('lang');
-    var override = qp || localStorage.getItem('left.lang');
-    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
-    if (override === 'en') return;
-    if (location.search.indexOf('nolang=1') >= 0) return;
-    var pick = override;
-    if (!pick) {
-      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
-      for (var i = 0; i < prefs.length && !pick; i++) {
-        var p = prefs[i];
-        if (SUPPORTED.indexOf(p) >= 0) { pick = p; break; }
-        if (p === 'es-MX' || p === 'es-AR' || p === 'es-CL' || p === 'es-CO' || p === 'es-PE' || p === 'es-VE' || p === 'es-UY' || p === 'es-EC' || p === 'es-BO' || p === 'es-PY' || p === 'es-GT' || p === 'es-HN' || p === 'es-NI' || p === 'es-CR' || p === 'es-PA' || p === 'es-DO' || p === 'es-SV') pick = 'es-419';
-        else if (p.indexOf('es') === 0) pick = 'es';
-        else if (p.indexOf('pt') === 0) pick = 'pt';
-        else if (p === 'zh-TW' || p === 'zh-HK' || p === 'zh-MO' || p === 'zh-Hant') pick = 'zh-Hant';
-        else if (p.indexOf('zh') === 0) pick = 'zh-Hans';
-        else { var base = p.split('-')[0]; if (SUPPORTED.indexOf(base) >= 0) pick = base; }
-      }
-    }
-    if (!pick || pick === 'en' || SUPPORTED.indexOf(pick) < 0) return;
-    var path = location.pathname.replace(/^\//, '');
-    if (/^(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android)/.test(path)) return;
-    location.replace('/' + pick + '/' + path + location.search + location.hash);
-  } catch (e) { /* fail open */ }
-})();
-</script>
-<!-- i18n:auto-detect:end -->
-
-  <title data-i18n="tool_pages.days_until_birthday.meta.title">Days Until Your Birthday — Birthday Countdown Calculator | Left</title>
-  <meta data-i18n-attr="content:tool_pages.days_until_birthday.meta.description" name="description" content="How many days until your next birthday? Enter your birthdate and get a live countdown in days, hours, and minutes. Free birthday countdown calculator." />
+  <title>Days Until Your Birthday — Birthday Countdown Calculator | Left</title>
+  <meta name="description" content="How many days until your next birthday? Enter your birthdate and get a live countdown in days, hours, and minutes. Free birthday countdown calculator." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -56,21 +23,19 @@
   <link rel="stylesheet" href="/tools/tools.css" />
 </head>
 <body>
-    <nav class="top-nav top-nav--visible" aria-label="Primary">
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
     <div class="container nav-inner">
       <a href="/" class="brand">Left</a>
       <div class="nav-trailing">
-        <div class="nav-links">
-          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
-        </div>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" data-i18n="common.nav.download">Download</a>
+        <div class="nav-links"><a href="/#features" class="nav-link">Features</a></div>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
       </div>
     </div>
   </nav>
 
   <main class="container tool-page">
-    <h1 data-i18n="tool_pages.days_until_birthday.h1_1">Days until your birthday</h1>
-    <p class="tool-lede" data-i18n="tool_pages.days_until_birthday.p_1">Enter your birthdate and get a live countdown to your next birthday — down to the second.</p>
+    <h1>Days until your birthday</h1>
+    <p class="tool-lede">Enter your birthdate and get a live countdown to your next birthday — down to the second.</p>
 
     <div class="tool-widget">
       <div class="tool-widget__row">
@@ -80,28 +45,28 @@
       <div id="bday-age" style="font-size:14px;color:var(--text-secondary);margin-bottom:8px;"></div>
       <div id="bday-date" style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;"></div>
       <div class="tool-units" id="bday-units" role="group" aria-label="Display unit">
-        <button class="is-active" data-unit="all" data-i18n="tool_pages.days_until_birthday.btn_1">Days · Hours · Min · Sec</button>
-        <button data-unit="weeks" data-i18n="tool_pages.days_until_birthday.btn_2">Weeks</button>
-        <button data-unit="days" data-i18n="tool_pages.days_until_birthday.btn_3">Days only</button>
-        <button data-unit="hours" data-i18n="tool_pages.days_until_birthday.btn_4">Hours</button>
+        <button class="is-active" data-unit="all">Days · Hours · Min · Sec</button>
+        <button data-unit="weeks">Weeks</button>
+        <button data-unit="days">Days only</button>
+        <button data-unit="hours">Hours</button>
       </div>
       <div class="tool-result" id="bday-result" aria-live="polite"></div>
     </div>
 
     <div class="tool-prose">
-      <h2 data-i18n="tool_pages.days_until_birthday.h2_1">How the birthday countdown works</h2>
-      <p data-i18n="tool_pages.days_until_birthday.p_2">Enter your date of birth and the tool calculates the next anniversary of that date in the current or next calendar year. If today is your birthday, the countdown resets to 365 (or 366) days for next year automatically.</p>
-      <p data-i18n="tool_pages.days_until_birthday.p_3">The countdown counts to midnight at the start of your birthday — so when it hits zero, it's officially your birthday in your local time zone.</p>
+      <h2>How the birthday countdown works</h2>
+      <p>Enter your date of birth and the tool calculates the next anniversary of that date in the current or next calendar year. If today is your birthday, the countdown resets to 365 (or 366) days for next year automatically.</p>
+      <p>The countdown counts to midnight at the start of your birthday — so when it hits zero, it's officially your birthday in your local time zone.</p>
 
-      <h2 data-i18n="tool_pages.days_until_birthday.h2_2">Track someone else's birthday too</h2>
-      <p data-i18n="tool_pages.days_until_birthday.p_4">This tool works for any birthdate — not just yours. Enter a friend or family member's birthday to see how long until their next celebration. In Left, you can add multiple birthday countdowns and see them all side by side on your Home Screen.</p>
+      <h2>Track someone else's birthday too</h2>
+      <p>This tool works for any birthdate — not just yours. Enter a friend or family member's birthday to see how long until their next celebration. In Left, you can add multiple birthday countdowns and see them all side by side on your Home Screen.</p>
 
-      <h2 data-i18n="tool_pages.days_until_birthday.h2_3">Make it a tradition</h2>
-      <p data-i18n="tool_pages.days_until_birthday.p_5">Pin a birthday countdown widget to your Lock Screen and you'll naturally think about upcoming celebrations weeks in advance — giving you time to plan, book, and make it special rather than scrambling the day before.</p>
+      <h2>Make it a tradition</h2>
+      <p>Pin a birthday countdown widget to your Lock Screen and you'll naturally think about upcoming celebrations weeks in advance — giving you time to plan, book, and make it special rather than scrambling the day before.</p>
     </div>
 
     <div class="tool-related">
-      <h2 data-i18n="tool_pages.days_until_birthday.h2_4">Related tools</h2>
+      <h2>Related tools</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/age-calculator">Age calculator</a>
         <a class="tool-related-item" href="/tools/days-until-mothers-day">Days until Mother's Day</a>
@@ -113,8 +78,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Download Left</span>
-        <h2 data-i18n="tool_pages.days_until_birthday.h2_5">Start noticing what matters.</h2>
-        <p data-i18n="tool_pages.days_until_birthday.p_6">Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        <h2>Start noticing what matters.</h2>
+        <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -137,118 +102,24 @@
     </section>
   </main>
 
-    <footer class="site-footer">
+  <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span data-i18n="common.footer.counter_suffix">people making every moment count.</span></span>
-          <span data-i18n="common.footer.tagline">Left – Coded in NZ – © 2026 cntxt</span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> people making every moment count.</span>
+          <span>Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="/support.html" data-i18n="common.footer.support">Support</a>
-          <a href="/press.html" data-i18n="common.footer.press">Press</a>
-          <a href="/contact.html" data-i18n="common.footer.contact">Contact</a>
-          <a href="/tools/" data-i18n="common.footer.tools">Tools</a>
-          <!-- i18n:switcher:start -->
-          <div class="lang-switcher" data-lang-switcher>
-            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
-              <span data-current-language>ENG</span>
-            </a>
-            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
-              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
-              <button type="button" role="option" data-lang-option="de">Deutsch</button>
-              <button type="button" role="option" data-lang-option="en">English</button>
-              <button type="button" role="option" data-lang-option="es">Español (España)</button>
-              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
-              <button type="button" role="option" data-lang-option="fr">Français</button>
-              <button type="button" role="option" data-lang-option="it">Italiano</button>
-              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
-              <button type="button" role="option" data-lang-option="pl">Polski</button>
-              <button type="button" role="option" data-lang-option="pt">Português</button>
-              <button type="button" role="option" data-lang-option="ro">Română</button>
-              <button type="button" role="option" data-lang-option="ru">Русский</button>
-              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
-              <button type="button" role="option" data-lang-option="ko">한국어</button>
-              <button type="button" role="option" data-lang-option="ja">日本語</button>
-              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
-              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
-            </div>
-          </div>
-          <script>
-          (function () {
-            var root = document.querySelector('[data-lang-switcher]');
-            if (!root) return;
-            var trigger = root.querySelector('[data-lang-switcher-button]');
-            var menu = root.querySelector('[data-lang-switcher-menu]');
-            var label = root.querySelector('[data-current-language]');
-            var flagLabel = root.querySelector('[data-current-flag]');
-            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
-            if (!trigger || !menu || !label || !options.length) return;
-            var LOCALES = {
-              en: { name: 'English', flag: '⚑', abbr: 'ENG' },
-              es: { name: 'Español (España)', flag: '⚑', abbr: 'ES' },
-              'es-419': { name: 'Español (Latinoamérica)', flag: '⚑', abbr: 'ES' },
-              de: { name: 'Deutsch', flag: '⚑', abbr: 'DE' },
-              fr: { name: 'Français', flag: '⚑', abbr: 'FR' },
-              it: { name: 'Italiano', flag: '⚑', abbr: 'IT' },
-              pt: { name: 'Português', flag: '⚑', abbr: 'PT' },
-              ja: { name: '日本語', flag: '⚑', abbr: 'JA' },
-              nl: { name: 'Nederlands', flag: '⚑', abbr: 'NL' },
-              pl: { name: 'Polski', flag: '⚑', abbr: 'PL' },
-              tr: { name: 'Türkçe', flag: '⚑', abbr: 'TR' },
-              ru: { name: 'Русский', flag: '⚑', abbr: 'RU' },
-              'zh-Hans': { name: '简体中文', flag: '⚑', abbr: 'ZH' },
-              'zh-Hant': { name: '繁體中文', flag: '⚑', abbr: 'ZH' },
-              ko: { name: '한국어', flag: '⚑', abbr: 'KO' },
-              id: { name: 'Bahasa Indonesia', flag: '⚑', abbr: 'ID' },
-              ro: { name: 'Română', flag: '⚑', abbr: 'RO' }
-            };
-            var SUPPORTED = Object.keys(LOCALES);
-            var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
-            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
-            var currentLoc = LOCALES[current] || LOCALES.en;
-            label.textContent = currentLoc.abbr || currentLoc.name;
-            if (flagLabel) flagLabel.textContent = currentLoc.flag;
-            options.forEach(function (option) {
-              var selected = option.getAttribute('data-lang-option') === current;
-              option.setAttribute('aria-selected', selected ? 'true' : 'false');
-            });
-            function setOpen(open) {
-              menu.hidden = !open;
-              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
-            }
-            trigger.addEventListener('click', function (event) {
-              event.preventDefault();
-              setOpen(menu.hidden);
-            });
-            options.forEach(function (option) {
-              option.addEventListener('click', function (event) {
-                var v = option.getAttribute('data-lang-option');
-                if (!v) return;
-                setOpen(false);
-                var newLoc = LOCALES[v] || { name: v, flag: '', abbr: v.toUpperCase() };
-                label.textContent = newLoc.abbr || newLoc.name;
-                if (flagLabel) flagLabel.textContent = newLoc.flag;
-                options.forEach(function (item) {
-                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
-                });
-                try { localStorage.setItem('left.lang', v); } catch (e) {}
-                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
-              });
-            });
-            document.addEventListener('click', function (event) {
-              if (!root.contains(event.target)) setOpen(false);
-            });
-            document.addEventListener('keydown', function (event) {
-              if (event.key === 'Escape') setOpen(false);
-            });
-          })();
-          </script>
-          <!-- i18n:switcher:end -->
-</nav>
+          <a href="/support.html">Support</a>
+          <a href="/terms.html">Terms</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="/press.html">Press</a>
+          <a href="/contact.html">Contact</a>
+          <a href="/tools/">Tools</a>
+        </nav>
       </div>
     </div>
-</footer>
+  </footer>
 
   <script src="/tools/tools.js"></script>
   <script>
