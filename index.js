@@ -145,8 +145,8 @@
       const span = document.createElement('span');
       span.className = 'scroll-sentence';
       const text = sentence.trim() + (i < sentences.length - 1 ? ' ' : '');
-      if (text.includes('Left is built')) {
-        span.innerHTML = text.replace('Left is built', '<em class="scroll-accent">Left is built</em>');
+      if (text.includes('Left makes time matter')) {
+        span.innerHTML = text.replace('Left makes time matter', '<em class="scroll-accent">Left makes time matter</em>');
       } else {
         span.textContent = text;
       }
@@ -343,13 +343,12 @@
   if (counter) {
     const BASE_COUNT = 2100000;
     const BASE_DATE = new Date('2026-01-01').getTime();
-    const RATE = 1 / (7 * 60 * 1000); // ~1 new user per 7 min — same formula on all devices
+    const RATE = 1 / (7 * 60 * 1000);
     const fmt = new Intl.NumberFormat('en-US');
     let current = BASE_COUNT + Math.floor((Date.now() - BASE_DATE) * RATE);
 
     counter.textContent = fmt.format(current);
 
-    // Tick +1 every 4–9 seconds to feel live
     const tick = () => {
       current += 1;
       counter.textContent = fmt.format(current);
