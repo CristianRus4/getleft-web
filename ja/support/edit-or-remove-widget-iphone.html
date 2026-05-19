@@ -47,9 +47,9 @@
       <a href="/ja/" class="brand">Left</a>
       <div class="nav-trailing">
         <div class="nav-links">
-          <a href="/ja/#features" class="nav-link">Features</a>
+          <a href="/ja/#features" class="nav-link">機能</a>
         </div>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">ダウンロード</a>
       </div>
     </div>
   </nav>
@@ -113,25 +113,25 @@
 
       <section class="download-block">
         <div class="section-head">
-          <span class="eyebrow">Download Left</span>
+          <span class="eyebrow">Leftをダウンロード</span>
           <h2>Start noticing what matters.</h2>
           <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
         </div>
         <div class="download-actions">
           <div class="download-group">
-            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード — タップで詳細">
               <div class="bento-inner">
                 <div class="bento-face qr-face-front">
                   <div class="qr-mask"></div>
                 </div>
                 <div class="bento-face bento-face-back">
-                  <p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search <strong>"Left"</strong> on the App Store.</p>
+                  <p class="qr-face-back-text">カメラでスキャンしてApp StoreでLeftを見つけよう。またはApp Storeで<strong>「Left」</strong>を検索。</p>
                 </div>
               </div>
             </div>
-            <a class="dl-btn" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" aria-label="Download on the App Store">
+            <a class="dl-btn" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener" aria-label="App Storeでダウンロード">
               <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-              <span>Download for iOS</span>
+              <span>iOS版をダウンロード</span>
             </a>
           </div>
         </div>
@@ -143,14 +143,14 @@
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span>people making every moment count.</span></span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span>人が、一瞬一瞬を大切にしています。</span></span>
           <span>Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="/ja/support.html">Support</a>
-          <a href="/press.html">Press</a>
-          <a href="/ja/contact.html">Contact</a>
-          <a href="/tools/">Tools</a>
+          <a href="/ja/support.html">サポート</a>
+          <a href="/press.html">プレス</a>
+          <a href="/ja/contact.html">お問い合わせ</a>
+          <a href="/tools/">ツール</a>
           <!-- i18n:switcher:start -->
           <div class="lang-switcher" data-lang-switcher>
             <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
@@ -235,7 +235,15 @@
                   item.setAttribute('aria-selected', item === option ? 'true' : 'false');
                 });
                 try { localStorage.setItem('left.lang', v); } catch (e) {}
-                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
+                // Strip any existing language prefix, then re-prefix for the new language.
+                // Pages that are English-only (press, tools, privacy, terms, etc.) stay on
+                // the English path regardless of the selected language.
+                var bare = location.pathname.replace(/^\/([a-zA-Z-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                var excludedPath = /^\/(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android|press|tools)/.test(bare);
+                var newPath = (excludedPath || v === 'en') ? bare : '/' + v + bare;
+                location.href = newPath + location.search + location.hash;
               });
             });
             document.addEventListener('click', function (event) {

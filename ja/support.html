@@ -64,9 +64,9 @@
       <a href="/ja/" class="brand">Left</a>
       <div class="nav-trailing">
         <div class="nav-links">
-          <a href="/ja/#features" class="nav-link">Features</a>
+          <a href="/ja/#features" class="nav-link">機能</a>
         </div>
-        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">Download</a>
+        <a class="btn btn-primary" href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884" target="_blank" rel="noopener">ダウンロード</a>
       </div>
     </div>
   </nav>
@@ -358,14 +358,14 @@
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span>people making every moment count.</span></span>
+          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> <span>人が、一瞬一瞬を大切にしています。</span></span>
           <span>Left – Coded in NZ – © 2026 cntxt</span>
         </div>
         <nav class="footer-links" aria-label="Footer">
-          <a href="/ja/support.html">Support</a>
-          <a href="/press.html">Press</a>
-          <a href="/ja/contact.html">Contact</a>
-          <a href="/tools/">Tools</a>
+          <a href="/ja/support.html">サポート</a>
+          <a href="/press.html">プレス</a>
+          <a href="/ja/contact.html">お問い合わせ</a>
+          <a href="/tools/">ツール</a>
           <!-- i18n:switcher:start -->
           <div class="lang-switcher" data-lang-switcher>
             <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
@@ -450,7 +450,15 @@
                   item.setAttribute('aria-selected', item === option ? 'true' : 'false');
                 });
                 try { localStorage.setItem('left.lang', v); } catch (e) {}
-                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
+                // Strip any existing language prefix, then re-prefix for the new language.
+                // Pages that are English-only (press, tools, privacy, terms, etc.) stay on
+                // the English path regardless of the selected language.
+                var bare = location.pathname.replace(/^\/([a-zA-Z-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                var excludedPath = /^\/(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android|press|tools)/.test(bare);
+                var newPath = (excludedPath || v === 'en') ? bare : '/' + v + bare;
+                location.href = newPath + location.search + location.hash;
               });
             });
             document.addEventListener('click', function (event) {

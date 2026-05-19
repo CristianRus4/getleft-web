@@ -219,7 +219,15 @@
                   item.setAttribute('aria-selected', item === option ? 'true' : 'false');
                 });
                 try { localStorage.setItem('left.lang', v); } catch (e) {}
-                location.href = (v === 'en' ? '/' : '/' + v + '/') + location.search + location.hash;
+                // Strip any existing language prefix, then re-prefix for the new language.
+                // Pages that are English-only (press, tools, privacy, terms, etc.) stay on
+                // the English path regardless of the selected language.
+                var bare = location.pathname.replace(/^\/([a-zA-Z-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                var excludedPath = /^\/(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android|press|tools)/.test(bare);
+                var newPath = (excludedPath || v === 'en') ? bare : '/' + v + bare;
+                location.href = newPath + location.search + location.hash;
               });
             });
             document.addEventListener('click', function (event) {
