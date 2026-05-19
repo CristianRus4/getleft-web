@@ -36,6 +36,7 @@ const LOCALES = [
   { code: 'ko',      name: '한국어',                   htmlLang: 'ko',      dir: 'ltr', flag: '⚑', abbr: 'KO' },
   { code: 'id',      name: 'Bahasa Indonesia',        htmlLang: 'id',      dir: 'ltr', flag: '⚑', abbr: 'ID' },
   { code: 'ro',      name: 'Română',                  htmlLang: 'ro',      dir: 'ltr', flag: '⚑', abbr: 'RO' },
+  { code: 'hi',      name: 'हिन्दी',                    htmlLang: 'hi',      dir: 'ltr', flag: '⚑', abbr: 'HI' },
 ];
 const NON_EN_LOCALES = LOCALES.filter(l => l.code !== 'en');
 const SUPPORTED_CODES = LOCALES.map(l => l.code);
@@ -141,6 +142,15 @@ async function injectIntoSourcePages(pages) {
 
     html = upsertFooterSwitcher(html,
       `${SWITCHER_MARK_START}\n${switcherHtml.trim()}\n${SWITCHER_MARK_END}`);
+
+    // Insert hreflang alternates on the English source page too (so the canonical
+    // English URL also tells search engines about the translated versions).
+    const hreflangBlock = buildHreflangBlock(page);
+    if (/<!-- i18n:hreflang:start -->/.test(html)) {
+      html = html.replace(/<!-- i18n:hreflang:start -->[\s\S]*?<!-- i18n:hreflang:end -->/, hreflangBlock);
+    } else {
+      html = html.replace(/<link\s+rel="canonical"[^>]*\/?>/i, m => `${m}\n  ${hreflangBlock}`);
+    }
 
     await fs.writeFile(file, html);
   }

@@ -2,6 +2,24 @@
 
 This document is for translators. Read it once, then translate one JSON file and you are done. No code changes, no build commands required — that part is handled by the developer.
 
+## 0. Status at a glance
+
+The site is translated into **17 languages** plus English. The `_meta.status` field at the top of each locale JSON tells you where it stands:
+
+| Status | Meaning |
+|---|---|
+| `translated` | Every string in the file is translated. |
+| `partially_translated` | The homepage (`common.*` + `index.*`) is translated. The other sections (`contact.*`, `support.*`, `support_articles.*`) still hold the English source text as a placeholder. |
+| `untranslated` | The file mirrors `en.json` byte-for-byte (minus `_meta`). Waiting for a translator. |
+
+Current snapshot:
+
+- **`translated`**: `es` (Spain), `es-419` (Latin America)
+- **`partially_translated` (homepage only)**: `de`, `fr`, `it`, `pt`, `ja`, `nl`, `pl`, `tr`, `ru`, `zh-Hans`, `zh-Hant`, `ko`, `id`, `ro`, `hi`
+- **What's pending across the `partially_translated` set**: the contact page (`contact.*`), the support index (`support.*`), and the 12 support articles (`support_articles.*`). Until those keys are translated, the build emits those pages with English copy under each locale's folder.
+
+If you're picking up a language, start with whichever section in `en.json` isn't translated yet in your file. You'll know by comparing values: if the value in `xx.json` matches `en.json` verbatim, that key is still waiting.
+
 ## 1. What you are translating
 
 Only four areas of the Left website are translated. Everything else (press, tools, blog, privacy, terms) stays English-only.
@@ -18,25 +36,26 @@ The marketing site is built from a single source of truth in English: [i18n/loca
 ```
 i18n/locales/
   en.json        ← source of truth, never edit
-  es.json        ← Spain Spanish (already done)
-  es-419.json    ← Latin American Spanish (already done)
-  fr.json        ← French (your turn, for example)
-  de.json
-  it.json
-  ja.json
-  ko.json
-  nl.json
-  pl.json
-  pt.json
-  ro.json
-  ru.json
-  tr.json
-  id.json
-  zh-Hans.json
-  zh-Hant.json
+  es.json        ← Spain Spanish (fully translated)
+  es-419.json    ← Latin American Spanish (fully translated)
+  de.json        ← German (homepage only — finish the rest)
+  fr.json        ← French (homepage only)
+  it.json        ← Italian (homepage only)
+  pt.json        ← European Portuguese (homepage only)
+  ja.json        ← Japanese (homepage only)
+  nl.json        ← Dutch (homepage only)
+  pl.json        ← Polish (homepage only)
+  tr.json        ← Turkish (homepage only)
+  ru.json        ← Russian (homepage only)
+  zh-Hans.json   ← Simplified Chinese (homepage only)
+  zh-Hant.json   ← Traditional Chinese (homepage only)
+  ko.json        ← Korean (homepage only)
+  id.json        ← Indonesian (homepage only)
+  ro.json        ← Romanian (homepage only)
+  hi.json        ← Hindi (homepage only)
 ```
 
-If your language file already contains English copy, that means it has not been translated yet and is waiting for you. The `_meta.status` field will say `"untranslated"`.
+If any value in your language file matches `en.json` verbatim, that key is still waiting for translation.
 
 ## 2. How to work
 
@@ -136,6 +155,7 @@ Where regional vocabulary differs (Spain Spanish vs. Latin American Spanish, Bra
 - `pt.json` → European Portuguese
 - `zh-Hans.json` → Simplified Chinese (mainland)
 - `zh-Hant.json` → Traditional Chinese (Taiwan / Hong Kong)
+- `hi.json` → Hindi (Devanagari script, neutral register)
 
 Keep word choice consistent with how Apple localises its system UI for that region. When in doubt, check how Apple translates `Home Screen`, `Lock Screen`, `Reminders`, etc. on apple.com for that locale, and follow that convention.
 
@@ -173,15 +193,45 @@ Thanks for translating Left.
 
 ## For maintainers / developers
 
-The pages under `/press.html` and `/tools/*` are **English-only** by design. The build script (`scripts/build-i18n.mjs`) does not generate translated copies of them, the language-detection script (`partials/detect.html`) does not redirect users away from them, and the locale JSONs do not contain keys for them. If you add a new English-only page in the future, you need to:
+### English-only pages
 
-1. **Not** include it in `SOURCE_PAGES` or `SOURCE_DIRS` in [scripts/build-i18n.mjs](scripts/build-i18n.mjs).
-2. Add its path prefix to `EXCLUDED_PATH_PREFIXES` in the same file (so internal links to it are not rewritten to `/<lang>/`).
-3. Add the same path prefix to the regex in [partials/detect.html](partials/detect.html) (so the auto-redirect leaves users on the English version).
+The pages under `/press.html` and `/tools/*` are **English-only** by design. The build script ([scripts/build-i18n.mjs](scripts/build-i18n.mjs)) does not generate translated copies of them, the language-detection script ([partials/detect.html](partials/detect.html)) does not redirect users away from them, the language switcher ([partials/switcher.html](partials/switcher.html)) keeps users on the English path when they switch language from one of these pages, and the locale JSONs do not contain keys for them.
 
-Conversely, if you add a new translatable page:
+If you add a new English-only page in the future, you need to update **three** places:
+
+1. **Not** include it in `SOURCE_PAGES` or `SOURCE_DIRS` in [scripts/build-i18n.mjs](scripts/build-i18n.mjs); add its prefix to `EXCLUDED_PATH_PREFIXES` (so internal links to it are not rewritten to `/<lang>/`).
+2. Add the same path prefix to the regex in [partials/detect.html](partials/detect.html) (so the auto-redirect leaves users on the English version).
+3. Add the same path prefix to the `excludedPath` regex in [partials/switcher.html](partials/switcher.html) (so the footer switcher keeps users on the English path).
+
+### Adding a new translatable page
 
 1. Add it to `SOURCE_PAGES` (or, for directories of pages, add the directory to `SOURCE_DIRS`).
 2. Annotate every user-visible string in the HTML with `data-i18n="key.path"` (or `data-i18n-html`, `data-i18n-attr`).
 3. Add the corresponding key to `en.json`.
 4. Add the same key (with the same English string as a placeholder) to every other locale file so `check-i18n` stays clean — then have translators fill in their language.
+
+The language switcher is **dynamic**: it strips the existing language prefix from `location.pathname` and re-prefixes it with the chosen locale, so any new translatable page works automatically as long as it sits at the same path under each `/<lang>/` folder. No per-page wiring needed.
+
+### Adding a new language
+
+1. Create `i18n/locales/<code>.json` mirroring `en.json` byte-for-byte (the build's `check-i18n` script requires identical key structure). Set `_meta` to `{ language, htmlLang, dir, status: "untranslated" }`.
+2. Append the new code to **four** lists:
+   - `LOCALES` array in [scripts/build-i18n.mjs](scripts/build-i18n.mjs)
+   - `SUPPORTED` array in [partials/detect.html](partials/detect.html) (and add any regional-fallback mappings if needed — e.g. `pt-BR → pt`)
+   - The `<button data-lang-option="…">` list in [partials/switcher.html](partials/switcher.html)
+   - The `LOCALES` map inside the switcher's `<script>` block, with `name`, `flag`, and `abbr`
+3. Run `node scripts/build-i18n.mjs --allow-missing` once. This re-injects the updated switcher / detect into every source page and generates the new `/<code>/` folder.
+4. Have a translator fill in the locale JSON. They never need to touch any of the above — the footer switcher will already list their language and the build script will already know about it.
+
+### Build commands
+
+```bash
+node scripts/check-i18n.mjs              # verify every locale has the same key structure as en.json
+node scripts/build-i18n.mjs              # strict: fails on missing keys
+node scripts/build-i18n.mjs --allow-missing   # permissive: falls back to English for missing keys
+```
+
+After a successful build:
+- `/<code>/` folders are regenerated from scratch.
+- `sitemap.xml` is rewritten with hreflang alternates for every page × every locale.
+- The English source pages get an `hreflang` block injected (pointing at translated versions) and a refreshed footer language switcher.
