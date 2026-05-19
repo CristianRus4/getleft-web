@@ -343,18 +343,64 @@
   if (counter) {
     const BASE_COUNT = 2100000;
     const BASE_DATE = new Date('2026-01-01').getTime();
-    const RATE = 1 / (7 * 60 * 1000);
+    // ~600 new installs per day → 600 / (24*60*60*1000) per ms.
+    const RATE_MS = 600 / 86400000;
     const fmt = new Intl.NumberFormat('en-US');
-    let current = BASE_COUNT + Math.floor((Date.now() - BASE_DATE) * RATE);
+    const cycleRoot = counter.closest('[data-counter-cycle]');
+    const suffixEl = cycleRoot ? cycleRoot.querySelector('[data-counter-suffix]') : null;
 
-    counter.textContent = fmt.format(current);
+    const installs = () => BASE_COUNT + Math.floor((Date.now() - BASE_DATE) * RATE_MS);
+    // Multipliers approximate how each metric scales relative to total installs.
+    const modes = [
+      { mult: 1.00, text: 'people making every moment count.' },
+      { mult: 1.60, text: 'habits building better people.' },
+      { mult: 1.40, text: 'special dates ahead to be fulfilled.' },
+      { mult: 0.45, text: 'strong streaks that are kept running.' },
+      { mult: 0.12, text: 'friends sharing their goals to stay accountable.' },
+    ];
+    let mode = 0;
 
+    // Pull localised suffix strings from the inert <template> embedded in the page.
+    // The i18n build replaces each span's text per locale, so this gives us
+    // ready-made translations without any JS-side i18n bundle.
+    if (cycleRoot) {
+      const tpl = cycleRoot.querySelector('template[data-counter-suffixes]');
+      if (tpl) {
+        tpl.content.querySelectorAll('[data-counter-mode]').forEach(node => {
+          const idx = parseInt(node.getAttribute('data-counter-mode'), 10);
+          if (modes[idx] && node.textContent.trim()) modes[idx].text = node.textContent.trim();
+        });
+      }
+    }
+
+    const renderNumber = () => fmt.format(Math.floor(installs() * modes[mode].mult));
+    const renderSuffix = () => modes[mode].text;
+
+    const paint = () => {
+      counter.textContent = renderNumber();
+      if (suffixEl) suffixEl.textContent = renderSuffix();
+    };
+
+    paint();
+
+    // Tick visibly every few seconds to simulate live growth.
     const tick = () => {
-      current += 1;
-      counter.textContent = fmt.format(current);
+      paint();
       setTimeout(tick, 4000 + Math.random() * 5000);
     };
     setTimeout(tick, 4000 + Math.random() * 5000);
+
+    // Tap to cycle to the next message.
+    if (cycleRoot) {
+      cycleRoot.setAttribute('role', 'button');
+      cycleRoot.setAttribute('tabindex', '0');
+      cycleRoot.setAttribute('aria-label', 'Tap to cycle counter');
+      const advance = () => { mode = (mode + 1) % modes.length; paint(); };
+      cycleRoot.addEventListener('click', advance);
+      cycleRoot.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(); }
+      });
+    }
   }
 
   // ───────── Match QR card width to download button width (desktop) ─────────
