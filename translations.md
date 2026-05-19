@@ -1,5 +1,6 @@
 # Translating Left's website
 
+This document is for translators. Read it once, then translate one JSON file and you are done. No code changes, no build commands required — that part is handled by the developer.
 
 ## 1. What you are translating
 
