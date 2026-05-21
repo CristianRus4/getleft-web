@@ -459,6 +459,7 @@ p  { margin: 0 0 1em; }
     justify-content: flex-end;
     width: 100%;
     z-index: 0;
+    padding-right: clamp(16px, 5vw, 28px);
   }
   .hero-image-wrap::before { display: none; }
   .hero-image {
@@ -497,6 +498,25 @@ p  { margin: 0 0 1em; }
 }
 @media (min-width: 901px) {
   .hero-floater { display: none; }
+
+  /* Desktop hero: real 2-column grid so image stays inside container */
+  .hero-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    column-gap: clamp(24px, 4vw, 64px);
+  }
+  .hero-image-wrap {
+    position: relative;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    align-items: flex-start; /* image top = eyebrow text top */
+  }
+  .hero-image {
+    height: clamp(400px, 68vh, 780px);
+    width: auto;
+  }
 }
 
 /* 8.2 Actions showcase (3 core features) --------------------- */
