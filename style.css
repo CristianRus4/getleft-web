@@ -1065,6 +1065,7 @@ p  { margin: 0 0 1em; }
   width: 100%;
   padding: 0 4px;
   flex-shrink: 0;
+  margin-bottom: 10px;
 }
 .ba-phone-time > s {
   display: block;
@@ -1084,10 +1085,12 @@ p  { margin: 0 0 1em; }
   flex: 1;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-columns: repeat(10, 1fr);
+  grid-template-rows: repeat(3, auto);
   gap: 3px;
   padding: 1px 2px;
-  align-content: start;
+  align-content: end;
+  overflow: hidden;
 }
 .ba-phone-dots span {
   width: 5px; height: 5px;
@@ -1120,7 +1123,7 @@ p  { margin: 0 0 1em; }
 .ba-you-head {
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: #404040;
+  background: #565656;
 }
 .ba-you-body {
   width: 30px; height: 34px;
@@ -1147,7 +1150,7 @@ p  { margin: 0 0 1em; }
 .ba-you-row > i:first-child {
   background: #FF6B24;
   transform-origin: bottom;
-  animation: youBarGrow 3s ease-in-out infinite;
+  animation: youBarGrow 5s ease-in-out infinite;
 }
 .ba-you-row > i:last-child  { background: #565656; }
 .ba-you-row:nth-child(1) > i:first-child { height: 10px; animation-delay: 0s; }
@@ -1162,8 +1165,9 @@ p  { margin: 0 0 1em; }
 .ba-you-row:nth-child(5) > i:last-child  { height: 20px; }
 
 @keyframes youBarGrow {
-  0%, 30%   { transform: scaleY(0.15); opacity: 0.6; }
-  65%, 100% { transform: scaleY(1);    opacity: 1;   }
+  0%, 20%   { transform: scaleY(0.5); opacity: 0.75; }
+  55%, 70%  { transform: scaleY(1);   opacity: 1;    }
+  100%      { transform: scaleY(0.5); opacity: 0.75; }
 }
 
 /* ── Time Between — animated flowing dash from TODAY chip ── */
@@ -1247,36 +1251,17 @@ p  { margin: 0 0 1em; }
   border-radius: 50%;
   border: 1.5px dashed rgba(255,107,36,0.30);
 }
-/* circle */
-.ba-od1 {
-  position: absolute;
-  width: 11px; height: 11px;
-  border-radius: 50%;
-  background: #FF6B24;
-  top: calc(50% - 5.5px);
-  left: calc(50% - 5.5px);
-  animation: orbit1 7s linear infinite 0s;
-}
-/* rounded square */
-.ba-od2 {
+.ba-orbit-dot {
   position: absolute;
   width: 8px; height: 8px;
-  border-radius: 2px;
+  border-radius: 50%;
   background: #FF6B24;
   top: calc(50% - 4px);
   left: calc(50% - 4px);
-  animation: orbit2 5s linear infinite 0s;
 }
-/* triangle with rounded corners */
-.ba-od3 {
-  position: absolute;
-  width: 10px; height: 10px;
-  background: #FF6B24;
-  clip-path: polygon(50% 0%, 6.7% 100%, 93.3% 100%);
-  top: calc(50% - 5px);
-  left: calc(50% - 5px);
-  animation: orbit3 9s linear infinite 0s;
-}
+.ba-od1 { animation: orbit 6s linear infinite 0s; }
+.ba-od2 { animation: orbit 6s linear infinite -2s; }
+.ba-od3 { animation: orbit 6s linear infinite -4s; }
 
 @keyframes bentoSpin {
   from { transform: rotate(0deg); }
@@ -1286,17 +1271,9 @@ p  { margin: 0 0 1em; }
   from { transform: rotate(-12deg) scale(0.90); }
   to   { transform: rotate(12deg) scale(1.10); }
 }
-@keyframes orbit1 {
-  from { transform: rotate(0deg) translateX(44px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(44px) rotate(-360deg); }
-}
-@keyframes orbit2 {
-  from { transform: rotate(0deg) translateX(48px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(48px) rotate(-360deg); }
-}
-@keyframes orbit3 {
-  from { transform: rotate(0deg) translateX(42px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(42px) rotate(-360deg); }
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(46px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(46px) rotate(-360deg); }
 }
 
 /* 8.5 Scroll-highlighted text -------------------------------- */
