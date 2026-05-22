@@ -269,7 +269,7 @@
             var LOCALES = {
               en: { name: 'English', flag: '⚑', abbr: 'ENG' },
               es: { name: 'Español (España)', flag: '⚑', abbr: 'ES' },
-              'es-419': { name: 'Español (Latinoamérica)', flag: '⚑', abbr: 'ES' },
+              'es-419': { name: 'Español (Latinoamérica)', flag: '⚑', abbr: 'LAT' },
               de: { name: 'Deutsch', flag: '⚑', abbr: 'DE' },
               fr: { name: 'Français', flag: '⚑', abbr: 'FR' },
               it: { name: 'Italiano', flag: '⚑', abbr: 'IT' },
@@ -287,7 +287,7 @@
               hi: { name: 'हिन्दी', flag: '⚑', abbr: 'HI' }
             };
             var SUPPORTED = Object.keys(LOCALES);
-            var m = location.pathname.match(/^\/([a-zA-Z-]+)\//);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
             var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
             var currentLoc = LOCALES[current] || LOCALES.en;
             label.textContent = currentLoc.abbr || currentLoc.name;
@@ -319,7 +319,7 @@
                 // Strip any existing language prefix, then re-prefix for the new language.
                 // Pages that are English-only (press, tools, privacy, terms, etc.) stay on
                 // the English path regardless of the selected language.
-                var bare = location.pathname.replace(/^\/([a-zA-Z-]+)\//, function (match, prefix) {
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
                   return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
                 });
                 var excludedPath = /^\/(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android|press|tools)/.test(bare);
