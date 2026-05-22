@@ -753,12 +753,21 @@ p  { margin: 0 0 1em; }
   position: absolute; top: 14px; right: 14px;
   width: 24px; height: 24px;
   border-radius: 50%;
-  background: var(--bg-muted);
+  background: #FF6B24;
   display: flex; align-items: center; justify-content: center;
-  font-size: 16px; font-weight: 400; line-height: 1;
-  color: var(--text-secondary);
   pointer-events: none;
+  font-size: 0;
+  color: transparent;
 }
+.bento-plus::before,
+.bento-plus::after {
+  content: '';
+  position: absolute;
+  background: #fff;
+  border-radius: 2px;
+}
+.bento-plus::before { width: 10px; height: 2px; }
+.bento-plus::after  { width: 2px;  height: 10px; }
 .bento-wide { grid-column: span 2; }
 .bento-tall { grid-row: span 2; }
 @media (max-width: 900px) {
@@ -770,14 +779,13 @@ p  { margin: 0 0 1em; }
 /* 8.4b Bento art decorations --------------------------------- */
 .bento-art {
   position: absolute;
-  inset: 0;
-  bottom: 56px;
+  top: 52px; left: 0; right: 0; bottom: 56px;
   pointer-events: none;
   overflow: hidden;
   border-radius: inherit;
 }
 
-/* ── Widgets — 3 mini widget shapes that each flip randomly ── */
+/* ── Widgets — 3 mini shapes that bounce randomly ── */
 [data-bento="widgets"] .bento-art {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -787,81 +795,75 @@ p  { margin: 0 0 1em; }
 }
 
 .ba-w {
-  background: #1c1c1e;
+  background: #252525;
   border-radius: 14px;
   position: relative;
   overflow: hidden;
 }
 
-/* Widget 1: streak/habit — tall left column, number + text + circle */
 .ba-w1 {
   grid-row: span 2;
   display: flex;
   flex-direction: column;
   padding: 11px;
-  gap: 4px;
-  animation: wFlip 9s ease-in-out infinite 0s;
+  gap: 6px;
+  animation: wBounce 7s ease-in-out infinite 0s;
 }
 .ba-w1 > span:first-child {
-  width: 60%;
-  height: 10px;
-  background: rgba(255,255,255,0.88);
+  width: 62%;
+  height: 9px;
+  background: rgba(255,255,255,0.80);
   border-radius: 3px;
 }
 .ba-w1 > span:last-of-type {
-  width: 40%;
-  height: 7px;
-  background: rgba(255,255,255,0.38);
+  width: 44%;
+  height: 6px;
+  background: rgba(255,255,255,0.30);
   border-radius: 3px;
-  flex-grow: 1;
 }
 .ba-w1 > em {
-  width: 18px; height: 18px;
+  width: 20px; height: 20px;
   border-radius: 50%;
-  border: 2px solid rgba(255,255,255,0.6);
+  border: 2px solid rgba(255,255,255,0.45);
+  margin-top: auto;
   align-self: flex-end;
   font-style: normal;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
-  display: block;
 }
 .ba-w1 > em::after {
   content: '';
   display: block;
-  width: 8px; height: 5px;
-  border-left: 2px solid rgba(255,255,255,0.6);
-  border-bottom: 2px solid rgba(255,255,255,0.6);
-  transform: rotate(-45deg) translate(2px, -1px);
+  width: 7px; height: 4px;
+  border-left: 2px solid rgba(255,255,255,0.45);
+  border-bottom: 2px solid rgba(255,255,255,0.45);
+  transform: rotate(-45deg) translate(1px, -1px);
 }
 
-/* Widget 2: dots grid (weeks left) */
 .ba-w2 {
-  animation: wFlip 9s ease-in-out infinite 3s;
-  background-color: #1c1c1e;
-  background-image: radial-gradient(circle, rgba(255,255,255,0.85) 1.5px, transparent 1.5px);
-  background-size: 9px 9px;
-  background-position: 4px 5px;
-}
-.ba-w2::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 45% 0;
-  background: linear-gradient(to bottom, rgba(28,28,30,0.85) 0%, rgba(28,28,30,0) 100%);
+  animation: wBounce 7s ease-in-out infinite 2.3s;
+  background-color: #252525;
+  background-image: radial-gradient(circle, rgba(255,255,255,0.72) 1.5px, transparent 1.5px);
+  background-size: 8px 8px;
+  background-position: 4px 4px;
+  background-clip: padding-box;
 }
 
-/* Widget 3: progress bars */
 .ba-w3 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 7px;
+  gap: 6px;
   padding: 8px 10px;
-  animation: wFlip 9s ease-in-out infinite 6s;
+  animation: wBounce 7s ease-in-out infinite 4.6s;
 }
 .ba-w3 > i {
   display: block;
   height: 5px;
   border-radius: 3px;
-  background: rgba(255,255,255,0.14);
+  background: rgba(255,255,255,0.12);
   position: relative;
   font-style: normal;
 }
@@ -870,19 +872,20 @@ p  { margin: 0 0 1em; }
   position: absolute;
   left: 0; top: 0; bottom: 0;
   border-radius: 3px;
-  background: rgba(255,255,255,0.82);
+  background: rgba(255,255,255,0.75);
 }
 .ba-w3 > i:nth-child(1)::after { width: 64%; }
-.ba-w3 > i:nth-child(2)::after { width: 66%; }
-.ba-w3 > i:nth-child(3)::after { width: 69%; }
-.ba-w3 > i:nth-child(4)::after { width: 38%; }
+.ba-w3 > i:nth-child(2)::after { width: 72%; }
+.ba-w3 > i:nth-child(3)::after { width: 55%; }
+.ba-w3 > i:nth-child(4)::after { width: 82%; }
 
-@keyframes wFlip {
-  0%, 88%, 100% { transform: perspective(500px) rotateY(0deg); }
-  6%, 16%       { transform: perspective(500px) rotateY(180deg); }
+@keyframes wBounce {
+  0%, 15%, 100% { transform: translateY(0) scale(1); }
+  6%            { transform: translateY(-6px) scale(1.04); }
+  11%           { transform: translateY(0) scale(1); }
 }
 
-/* ── Friends — 5 overlapping avatar circles, sequential wave bounce ── */
+/* ── Friends — 5 avatar circles, sequential wave bounce ── */
 [data-bento="friends"] .bento-art {
   display: flex;
   align-items: center;
@@ -890,34 +893,44 @@ p  { margin: 0 0 1em; }
 }
 .ba-f {
   display: block;
-  width: 40px; height: 40px;
+  width: 54px; height: 54px;
   border-radius: 50%;
-  border: 2.5px solid var(--bg-surface);
-  margin-left: -10px;
+  border: 3px solid var(--bg-surface);
+  margin-left: -14px;
   flex-shrink: 0;
 }
 .ba-f:first-child { margin-left: 0; }
-.ba-f1 { background: #8BAED4; animation: fBounce 2.6s ease-in-out infinite 0s; }
-.ba-f2 { background: #85AC8F; animation: fBounce 2.6s ease-in-out infinite 0.18s; }
-.ba-f3 { background: #B89ED4; animation: fBounce 2.6s ease-in-out infinite 0.36s; }
-.ba-f4 { background: #D4A87E; animation: fBounce 2.6s ease-in-out infinite 0.54s; }
+.ba-f1 { background: #404040; animation: fBounce 2.8s ease-in-out infinite 0s; }
+.ba-f2 { background: #565656; animation: fBounce 2.8s ease-in-out infinite 0.22s; }
+.ba-f3 { background: #6c6c6c; animation: fBounce 2.8s ease-in-out infinite 0.44s; }
+.ba-f4 { background: #828282; animation: fBounce 2.8s ease-in-out infinite 0.66s; }
 .ba-fadd {
   background: #FF6B24;
-  animation: fBounce 2.6s ease-in-out infinite 0.72s;
-  display: flex; align-items: center; justify-content: center;
+  animation: fBounce 2.8s ease-in-out infinite 0.88s;
+  position: relative;
 }
 .ba-fadd::before {
   content: '';
-  display: block;
-  width: 14px; height: 2px;
+  position: absolute;
+  width: 16px; height: 2.5px;
   background: #fff;
   border-radius: 2px;
-  box-shadow: 0 -3px 0 0 #fff, 0 3px 0 0 #fff;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.ba-fadd::after {
+  content: '';
+  position: absolute;
+  width: 2.5px; height: 16px;
+  background: #fff;
+  border-radius: 2px;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes fBounce {
-  0%, 38%, 100% { transform: scale(1) translateY(0); }
-  18%           { transform: scale(1.18) translateY(-6px); }
+  0%, 40%, 100% { transform: scale(1) translateY(0); }
+  20%           { transform: scale(1.14) translateY(-8px); }
 }
 
 /* ── Live Activities — pill expands to reveal minimalist layout ── */
@@ -933,12 +946,16 @@ p  { margin: 0 0 1em; }
   border-radius: 14px;
   overflow: hidden;
   animation: liveExpand 5.5s ease-in-out infinite;
-  /* Start collapsed — content hidden by overflow */
-  padding: 0;
   width: 62px;
   height: 24px;
 }
-
+.ba-live-c {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 12px;
+  opacity: 0;
+  animation: liveContentShow 5.5s ease-in-out infinite;
+}
 .ba-live-top {
   display: flex;
   justify-content: space-between;
@@ -946,24 +963,19 @@ p  { margin: 0 0 1em; }
   margin-bottom: 8px;
   gap: 8px;
 }
-.ba-live-top > span:first-child {
-  width: 32px; height: 5px;
-  background: rgba(255,255,255,0.3);
-  border-radius: 3px;
+.ba-live-top > span {
+  width: 22px; height: 22px;
+  border-radius: 50%;
   flex-shrink: 0;
 }
-.ba-live-top > span:last-child {
-  width: 48px; height: 10px;
-  background: rgba(255,255,255,0.5);
-  border-radius: 4px;
-  flex-shrink: 0;
-}
+.ba-live-top > span:first-child { background: rgba(255,255,255,0.12); }
+.ba-live-top > span:last-child  { background: rgba(255,255,255,0.20); }
 .ba-live-text {
-  height: 8px;
-  background: rgba(255,255,255,0.72);
+  height: 7px;
+  background: rgba(255,255,255,0.65);
   border-radius: 4px;
-  width: 85%;
-  margin-bottom: 12px;
+  width: 82%;
+  margin-bottom: 10px;
 }
 .ba-live-bot {
   display: flex;
@@ -975,11 +987,12 @@ p  { margin: 0 0 1em; }
   display: flex;
   gap: 4px;
   align-items: center;
+  flex-wrap: wrap;
 }
 .ba-live-checks > b {
   width: 11px; height: 11px;
   border-radius: 50%;
-  border: 1.5px solid rgba(255,255,255,0.3);
+  border: 1.5px solid rgba(255,255,255,0.22);
   display: block;
   font-weight: normal;
   flex-shrink: 0;
@@ -988,14 +1001,14 @@ p  { margin: 0 0 1em; }
 .ba-live-checks > b:nth-child(4),
 .ba-live-checks > b:nth-child(5),
 .ba-live-checks > b:nth-child(6) {
-  background: rgba(255,255,255,0.45);
+  background: rgba(255,255,255,0.38);
   border-color: transparent;
 }
 .ba-live-btn {
-  background: rgba(160, 80, 255, 0.45);
+  background: #FF6B24;
   border-radius: 10px;
-  height: 20px;
-  width: 48px;
+  height: 22px;
+  width: 50px;
   flex-shrink: 0;
 }
 
@@ -1003,56 +1016,51 @@ p  { margin: 0 0 1em; }
   0%, 10% {
     width: 62px; height: 24px;
     border-radius: 14px;
-    padding: 0;
   }
   22%, 80% {
     width: calc(100% - 28px);
-    height: 84px;
+    height: 92px;
     border-radius: 20px;
-    padding: 11px 13px;
   }
   92%, 100% {
     width: 62px; height: 24px;
     border-radius: 14px;
-    padding: 0;
   }
 }
+@keyframes liveContentShow {
+  0%, 18%   { opacity: 0; }
+  28%, 78%  { opacity: 1; }
+  88%, 100% { opacity: 0; }
+}
 
-/* ── Wallpaper — phone outline with dimming dot grid inside ── */
+/* ── Wallpaper — phone outline with JS-driven dot grid ── */
 [data-bento="wallpaper"] .bento-art {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: none;
-  animation: none;
-  -webkit-mask-image: none;
-          mask-image: none;
 }
 
 .ba-phone {
-  width: 58px;
-  height: 100px;
-  border-radius: 14px;
+  width: 82px;
+  height: 140px;
+  border-radius: 20px;
   border: 2px solid rgba(200,200,200,0.18);
   background: #080808;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 7px 5px 5px;
-  gap: 4px;
+  padding: 8px 6px 6px;
+  gap: 5px;
   overflow: hidden;
-  position: relative;
+  flex-shrink: 0;
 }
-
 .ba-phone-top {
-  /* Dynamic Island */
-  width: 18px; height: 6px;
+  width: 22px; height: 6px;
   background: #000;
   border-radius: 4px;
   border: 1px solid rgba(255,255,255,0.08);
   flex-shrink: 0;
 }
-
 .ba-phone-time {
   display: flex;
   flex-direction: column;
@@ -1064,127 +1072,149 @@ p  { margin: 0 0 1em; }
 .ba-phone-time > s {
   display: block;
   text-decoration: none;
-  height: 0;
   border-radius: 2px;
   background: rgba(255,255,255,0.75);
 }
 .ba-phone-time > s:first-child {
-  width: 55%;
-  height: 4px;
-  align-self: center;
+  width: 50%; height: 4px;
   margin: 0 auto;
 }
 .ba-phone-time > s:last-child {
-  width: 80%;
-  height: 7px;
+  width: 75%; height: 7px;
   margin: 0 auto;
 }
-
 .ba-phone-dots {
   flex: 1;
   width: 100%;
-  position: relative;
-  /* Dimmed (past) dots — base layer */
-  background-image: radial-gradient(circle, rgba(255,255,255,0.22) 1.5px, transparent 1.5px);
-  background-size: 7px 7px;
-  background-position: 2px 2px;
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 3px;
+  padding: 1px 2px;
+  align-content: start;
 }
-.ba-phone-dots::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  /* Bright (future) dots */
-  background-image: radial-gradient(circle, rgba(255,255,255,0.92) 1.5px, transparent 1.5px);
-  background-size: 7px 7px;
-  background-position: 2px 2px;
-  /* Clip from top, leaving only bottom portion bright */
-  clip-path: inset(25% 0 0 0);
-  animation: phoneDotsDim 8s steps(8, end) infinite;
+.ba-phone-dots span {
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.82);
+  transition: opacity 0.35s ease;
+  justify-self: center;
+}
+.ba-phone-dots span.dim {
+  opacity: 0.1;
 }
 
-@keyframes phoneDotsDim {
-  0%   { clip-path: inset(18% 0 0 0); }
-  100% { clip-path: inset(60% 0 0 0); }
-}
-
-/* ── You — circular arc progress ring ── */
+/* ── You — person silhouette + bar chart ── */
 [data-bento="you"] .bento-art {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-[data-bento="you"] .bento-art::before {
-  content: '';
-  width: 80px; height: 80px;
-  border-radius: 50%;
-  background: conic-gradient(
-    #FF6B24 0% 35%,
-    color-mix(in srgb, var(--text) 12%, transparent) 35% 100%
-  );
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
-          mask: radial-gradient(farthest-side, transparent calc(100% - 10px), #000 calc(100% - 9px));
-  animation: bentoRing 4s ease-in-out infinite alternate;
+.ba-you {
+  display: flex;
+  align-items: flex-end;
+  gap: 14px;
 }
-[data-bento="you"] .bento-art::after {
-  content: '35%';
-  position: absolute;
-  font-size: 15px;
-  font-weight: 700;
-  color: #FF6B24;
-  letter-spacing: -0.02em;
-}
-@keyframes bentoRing {
-  from { background: conic-gradient(#FF6B24 0% 35%, color-mix(in srgb, var(--text) 12%, transparent) 35% 100%); }
-  to   { background: conic-gradient(#FF6B24 0% 38%, color-mix(in srgb, var(--text) 12%, transparent) 38% 100%); }
-}
-
-/* ── Time Between — dashed line with date chips ── */
-[data-bento="timebetween"] .bento-art {
+.ba-you-person {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background-image: repeating-linear-gradient(
-    to bottom,
-    transparent 0px, transparent 4px,
-    color-mix(in srgb, var(--text) 20%, transparent) 4px, color-mix(in srgb, var(--text) 20%, transparent) 8px
-  );
-  background-size: 2px 100%;
-  background-position: center;
-  background-repeat: no-repeat;
+  gap: 5px;
+  padding-bottom: 4px;
 }
-[data-bento="timebetween"] .bento-art::before {
-  content: 'TODAY';
+.ba-you-head {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.35);
+}
+.ba-you-body {
+  width: 30px; height: 34px;
+  border-radius: 15px 15px 8px 8px;
+  background: rgba(255,255,255,0.22);
+}
+.ba-you-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 5px;
+}
+.ba-you-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+.ba-you-row > i {
+  display: block;
+  width: 10px;
+  border-radius: 4px;
+  font-style: normal;
+}
+.ba-you-row > i:first-child { background: #FF6B24; }
+.ba-you-row > i:last-child  { background: #3D3D3D; }
+.ba-you-row:nth-child(1) > i:first-child { height: 10px; }
+.ba-you-row:nth-child(2) > i:first-child { height: 20px; }
+.ba-you-row:nth-child(3) > i:first-child { height: 28px; }
+.ba-you-row:nth-child(4) > i:first-child { height: 16px; }
+.ba-you-row:nth-child(5) > i:first-child { height: 8px;  }
+.ba-you-row:nth-child(1) > i:last-child  { height: 24px; }
+.ba-you-row:nth-child(2) > i:last-child  { height: 34px; }
+.ba-you-row:nth-child(3) > i:last-child  { height: 42px; }
+.ba-you-row:nth-child(4) > i:last-child  { height: 30px; }
+.ba-you-row:nth-child(5) > i:last-child  { height: 20px; }
+
+/* ── Time Between — animated flowing dash from TODAY chip ── */
+[data-bento="timebetween"] .bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-tb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+.ba-tb-from {
   font-size: 9px;
   font-weight: 800;
   letter-spacing: 0.12em;
   color: #FF6B24;
-  background: color-mix(in srgb, #FF6B24 12%, var(--bg-muted));
+  background: color-mix(in srgb, #FF6B24 18%, var(--bg-muted));
+  border: 1px solid color-mix(in srgb, #FF6B24 35%, transparent);
   border-radius: 8px;
   padding: 6px 12px;
-  position: absolute;
-  top: 28px;
 }
-[data-bento="timebetween"] .bento-art::after {
-  content: '+ 247 days';
+.ba-tb-from::before { content: 'TODAY'; }
+.ba-tb-line {
+  width: 2px;
+  height: 38px;
+  background-image: linear-gradient(to bottom, #FF6B24 50%, transparent 50%);
+  background-size: 2px 8px;
+  animation: tbFlow 0.8s linear infinite;
+}
+.ba-tb-mid {
   font-size: 9px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  background: var(--bg-muted);
+  border-radius: 6px;
+  padding: 4px 9px;
+}
+.ba-tb-mid::before { content: '+ 247 days'; }
+.ba-tb-to {
+  font-size: 9px;
+  font-weight: 700;
   color: var(--text-secondary);
   background: var(--bg-muted);
   border-radius: 8px;
   padding: 6px 12px;
-  position: absolute;
-  bottom: 68px;
-  animation: bentoDays 3s ease-in-out infinite alternate;
 }
-@keyframes bentoDays {
-  from { opacity: 0.7; }
-  to   { opacity: 1; }
+.ba-tb-to::before { content: 'DEC 31'; }
+@keyframes tbFlow {
+  to { background-position: 0 8px; }
 }
 
-/* ── Games — playful rotating squares ── */
+/* ── Games — rotating squares + orbit ring + 3 orbiting dots ── */
 [data-bento="games"] .bento-art {
   display: flex;
   align-items: center;
@@ -1192,27 +1222,52 @@ p  { margin: 0 0 1em; }
 }
 [data-bento="games"] .bento-art::before {
   content: '';
-  width: 64px; height: 64px;
-  border-radius: 18px;
-  background: linear-gradient(135deg, color-mix(in srgb, #FF6B24 18%, var(--bg-muted)) 0%, var(--bg-muted) 100%);
-  border: 2px solid color-mix(in srgb, #FF6B24 25%, var(--bg-muted));
-  animation: bentoSpin 12s linear infinite;
+  width: 52px; height: 52px;
+  border-radius: 14px;
+  background: #252525;
+  border: 2px solid rgba(255,107,36,0.35);
+  animation: bentoSpin 14s linear infinite;
+  position: relative;
+  z-index: 1;
 }
 [data-bento="games"] .bento-art::after {
   content: '';
   position: absolute;
-  width: 32px; height: 32px;
-  border-radius: 10px;
-  background: color-mix(in srgb, #FF6B24 22%, var(--bg-surface));
-  animation: bentoSpinRev 8s ease-in-out infinite alternate;
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  background: #3D3D3D;
+  animation: bentoSpinRev 9s ease-in-out infinite alternate;
+  z-index: 2;
 }
+.ba-orbit-ring {
+  position: absolute;
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(255,107,36,0.30);
+}
+.ba-orbit-dot {
+  position: absolute;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #FF6B24;
+  top: calc(50% - 4px);
+  left: calc(50% - 4px);
+}
+.ba-od1 { animation: orbit 6s linear infinite 0s; }
+.ba-od2 { animation: orbit 6s linear infinite -2s; }
+.ba-od3 { animation: orbit 6s linear infinite -4s; }
+
 @keyframes bentoSpin {
   from { transform: rotate(0deg); }
   to   { transform: rotate(360deg); }
 }
 @keyframes bentoSpinRev {
-  from { transform: rotate(-8deg) scale(0.95); }
-  to   { transform: rotate(8deg) scale(1.05); }
+  from { transform: rotate(-12deg) scale(0.90); }
+  to   { transform: rotate(12deg) scale(1.10); }
+}
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(46px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(46px) rotate(-360deg); }
 }
 
 /* 8.5 Scroll-highlighted text -------------------------------- */

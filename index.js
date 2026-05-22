@@ -484,4 +484,39 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     mqMobile.addEventListener?.('change', update);
   })();
+
+  // ───────── Phone dot scan animation ─────────
+  (() => {
+    const dotsEl = document.querySelector('.ba-phone-dots');
+    if (!dotsEl) return;
+
+    const COLS = 8, ROWS = 13;
+    const total = COLS * ROWS;
+    const dots = [];
+
+    for (let i = 0; i < total; i++) {
+      const s = document.createElement('span');
+      dotsEl.appendChild(s);
+      dots.push(s);
+    }
+
+    let idx = 0;
+    const MS_PER_DOT = 110;
+    const PAUSE_MS = 1200;
+
+    function tick() {
+      if (idx < total) {
+        dots[idx].classList.add('dim');
+        idx++;
+        setTimeout(tick, MS_PER_DOT);
+      } else {
+        setTimeout(() => {
+          dots.forEach(d => d.classList.remove('dim'));
+          idx = 0;
+          setTimeout(tick, 400);
+        }, PAUSE_MS);
+      }
+    }
+    tick();
+  })();
 })();
