@@ -512,7 +512,7 @@
     }
 
     let idx = 0;
-    const MS_PER_DOT = 110;
+    const MS_PER_DOT = 220;
     const PAUSE_MS = 1200;
 
     function tick() {
