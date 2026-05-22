@@ -289,7 +289,8 @@
           const meta = `<div class="review-meta">${escapeHtml(r.type)}${r.author ? ' · ' + escapeHtml(r.author) : ''}</div>`;
           const title = r.title ? `<div class="review-title">${escapeHtml(r.title)}</div>` : '';
           const body = `<div class="review-body">${escapeHtml(r.description || r.text || '')}</div>`;
-          const photo = r.photo ? `<img class="review-photo" src="${escapeHtml(r.photo)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : '';
+          const photoSrc = r.photo && !r.photo.startsWith('http') && !r.photo.startsWith('/') ? '/' + r.photo : r.photo;
+          const photo = photoSrc ? `<img class="review-photo" src="${escapeHtml(photoSrc)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : '';
           const inner = `${meta}${star}${title}${body}${photo}`;
           if (r.link) {
             return `<a href="${escapeHtml(r.link)}" target="_blank" rel="noopener noreferrer" class="review-card">${inner}</a>`;
