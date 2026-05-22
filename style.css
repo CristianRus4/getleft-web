@@ -897,12 +897,34 @@ p  { margin: 0 0 1em; }
   border: 3px solid var(--bg-surface);
   margin-left: -14px;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 .ba-f:first-child { margin-left: 0; }
 .ba-f1 { background: #404040; animation: fBounce 2.8s ease-in-out infinite 0s; }
 .ba-f2 { background: #565656; animation: fBounce 2.8s ease-in-out infinite 0.22s; }
 .ba-f3 { background: #6c6c6c; animation: fBounce 2.8s ease-in-out infinite 0.44s; }
 .ba-f4 { background: #828282; animation: fBounce 2.8s ease-in-out infinite 0.66s; }
+.ba-f:not(.ba-fadd)::before,
+.ba-f:not(.ba-fadd)::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  background: rgba(255,255,255,0.58);
+  transform: translateX(-50%);
+}
+.ba-f:not(.ba-fadd)::before {
+  top: 10px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+.ba-f:not(.ba-fadd)::after {
+  bottom: 8px;
+  width: 22px;
+  height: 22px;
+  border-radius: 11px 11px 6px 6px;
+}
 .ba-fadd {
   background: #FF6B24;
   animation: fBounce 2.8s ease-in-out infinite 0.88s;
@@ -935,6 +957,17 @@ p  { margin: 0 0 1em; }
 @media (max-width: 900px) {
   .ba-f { width: 36px; height: 36px; margin-left: -10px; }
   .ba-f:first-child { margin-left: 0; }
+  .ba-f:not(.ba-fadd)::before {
+    top: 7px;
+    width: 9px;
+    height: 9px;
+  }
+  .ba-f:not(.ba-fadd)::after {
+    bottom: 5px;
+    width: 15px;
+    height: 15px;
+    border-radius: 8px 8px 4px 4px;
+  }
 }
 
 /* ── Live Activities — pill expands to reveal minimalist layout ── */
@@ -1406,6 +1439,7 @@ p  { margin: 0 0 1em; }
   padding: 24px 8px;
   margin-block: -24px;
   max-height: 640px;
+  overflow: hidden;
   -webkit-mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
           mask-image: linear-gradient(180deg, transparent, #000 8%, #000 92%, transparent);
 }
@@ -1598,7 +1632,7 @@ a.review-card {
 .footer-brand { display: flex; flex-direction: column; gap: 6px; font-size: 14px; color: var(--text-secondary); }
 .footer-brand .brand { font-size: 20px; color: var(--text); margin-bottom: 4px; }
 .footer-location { display: inline-flex; align-items: center; gap: 6px; }
-.footer-counter-inline { font-size: 13px; font-weight: 400; color: var(--text-secondary); cursor: pointer; user-select: none; }
+.footer-counter-inline { font-size: 13px; font-weight: 400; color: var(--text-secondary); }
 .footer-counter-inline #userCounter { font-weight: 600; color: var(--text); font-variant-numeric: tabular-nums; }
 .footer-counter-inline [data-counter-suffix] { font-weight: 400; color: var(--text-secondary); }
 .footer-links { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: flex-end; align-content: flex-start; align-items: center; }

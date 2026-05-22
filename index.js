@@ -397,16 +397,12 @@
     };
     setTimeout(tick, 4000 + Math.random() * 5000);
 
-    // Tap to cycle to the next message.
+    // Rotate the message automatically so the footer remains passive navigation.
     if (cycleRoot) {
-      cycleRoot.setAttribute('role', 'button');
-      cycleRoot.setAttribute('tabindex', '0');
-      cycleRoot.setAttribute('aria-label', 'Tap to cycle counter');
-      const advance = () => { mode = (mode + 1) % modes.length; paint(); };
-      cycleRoot.addEventListener('click', advance);
-      cycleRoot.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); advance(); }
-      });
+      setInterval(() => {
+        mode = (mode + 1) % modes.length;
+        paint();
+      }, 12000);
     }
   }
 
