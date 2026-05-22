@@ -485,12 +485,23 @@
     mqMobile.addEventListener?.('change', update);
   })();
 
+  // ───────── Time Between: days to Dec 31 ─────────
+  (() => {
+    const midEl = document.querySelector('.ba-tb-mid');
+    if (!midEl) return;
+    const now = new Date();
+    const dec31 = new Date(now.getFullYear(), 11, 31);
+    const msPerDay = 86400000;
+    const days = Math.ceil((dec31 - now) / msPerDay);
+    midEl.textContent = '+ ' + days + ' days';
+  })();
+
   // ───────── Phone dot scan animation ─────────
   (() => {
     const dotsEl = document.querySelector('.ba-phone-dots');
     if (!dotsEl) return;
 
-    const COLS = 8, ROWS = 13;
+    const COLS = 8, ROWS = 17;
     const total = COLS * ROWS;
     const dots = [];
 
