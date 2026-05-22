@@ -502,7 +502,7 @@
     const dotsEl = document.querySelector('.ba-phone-dots');
     if (!dotsEl) return;
 
-    const COLS = 10, ROWS = 15;
+    const COLS = 10, ROWS = 20;
     const total = COLS * ROWS;
     const dots = [];
 
