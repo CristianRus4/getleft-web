@@ -794,7 +794,7 @@ p  { margin: 0 0 1em; }
 }
 
 .ba-w {
-  background: #252525;
+  background: #404040;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
@@ -836,13 +836,10 @@ p  { margin: 0 0 1em; }
 
 .ba-w2 {
   animation: wBounce 7s ease-in-out infinite 2.3s;
-  padding: 5px;
-  background-color: #252525;
+  background-color: #404040;
   background-image: radial-gradient(circle, rgba(255,255,255,0.68) 1.5px, transparent 1.5px);
   background-size: 9px 9px;
-  background-position: 0 0;
-  background-clip: content-box;
-  background-origin: content-box;
+  background-position: 4px 4px;
 }
 
 .ba-w3 {
@@ -940,7 +937,7 @@ p  { margin: 0 0 1em; }
 }
 
 .ba-live {
-  background: #111;
+  background: #404040;
   border-radius: 14px;
   overflow: hidden;
   animation: liveExpand 5.5s ease-in-out infinite;
@@ -1007,7 +1004,7 @@ p  { margin: 0 0 1em; }
 .ba-live-btn {
   background: #FF6B24;
   border-radius: 10px;
-  height: 22px;
+  height: 11px;
   width: 50px;
   flex-shrink: 0;
 }
@@ -1042,14 +1039,14 @@ p  { margin: 0 0 1em; }
 
 .ba-phone {
   width: 120px;
-  height: 200px;
+  height: 240px;
   border-radius: 16px;
   border: 2px solid rgba(200,200,200,0.18);
-  background: #080808;
+  background: #404040;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 10px 9px 8px;
+  padding: 14px 9px 12px;
   gap: 5px;
   overflow: hidden;
   flex-shrink: 0;
@@ -1109,21 +1106,6 @@ p  { margin: 0 0 1em; }
   align-items: center;
   justify-content: center;
 }
-[data-bento="you"] .bento-art::before {
-  content: 'THIS YEAR';
-  position: absolute;
-  top: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.13em;
-  color: #fff;
-  background: #FF6B24;
-  border-radius: 6px;
-  padding: 4px 9px;
-  white-space: nowrap;
-}
 .ba-you {
   display: flex;
   align-items: flex-end;
@@ -1138,12 +1120,12 @@ p  { margin: 0 0 1em; }
 .ba-you-head {
   width: 22px; height: 22px;
   border-radius: 50%;
-  background: color-mix(in srgb, var(--text) 38%, transparent);
+  background: #404040;
 }
 .ba-you-body {
   width: 30px; height: 34px;
   border-radius: 15px 15px 8px 8px;
-  background: color-mix(in srgb, var(--text) 25%, transparent);
+  background: #565656;
 }
 .ba-you-bars {
   display: flex;
@@ -1167,7 +1149,7 @@ p  { margin: 0 0 1em; }
   transform-origin: bottom;
   animation: youBarGrow 3s ease-in-out infinite;
 }
-.ba-you-row > i:last-child  { background: #3D3D3D; }
+.ba-you-row > i:last-child  { background: #565656; }
 .ba-you-row:nth-child(1) > i:first-child { height: 10px; animation-delay: 0s; }
 .ba-you-row:nth-child(2) > i:first-child { height: 20px; animation-delay: 0.15s; }
 .ba-you-row:nth-child(3) > i:first-child { height: 28px; animation-delay: 0.3s; }
@@ -1226,7 +1208,7 @@ p  { margin: 0 0 1em; }
   font-size: 9px;
   font-weight: 700;
   color: rgba(255,255,255,0.7);
-  background: #252525;
+  background: #404040;
   border-radius: 8px;
   padding: 6px 12px;
 }
@@ -1245,7 +1227,7 @@ p  { margin: 0 0 1em; }
   content: '';
   width: 52px; height: 52px;
   border-radius: 14px;
-  background: #252525;
+  background: #404040;
   animation: bentoSpin 14s linear infinite;
   position: relative;
   z-index: 1;
@@ -1265,17 +1247,36 @@ p  { margin: 0 0 1em; }
   border-radius: 50%;
   border: 1.5px dashed rgba(255,107,36,0.30);
 }
-.ba-orbit-dot {
+/* circle */
+.ba-od1 {
+  position: absolute;
+  width: 11px; height: 11px;
+  border-radius: 50%;
+  background: #FF6B24;
+  top: calc(50% - 5.5px);
+  left: calc(50% - 5.5px);
+  animation: orbit1 7s linear infinite 0s;
+}
+/* rounded square */
+.ba-od2 {
   position: absolute;
   width: 8px; height: 8px;
-  border-radius: 50%;
+  border-radius: 2px;
   background: #FF6B24;
   top: calc(50% - 4px);
   left: calc(50% - 4px);
+  animation: orbit2 5s linear infinite 0s;
 }
-.ba-od1 { animation: orbit 6s linear infinite 0s; }
-.ba-od2 { animation: orbit 6s linear infinite -2s; }
-.ba-od3 { animation: orbit 6s linear infinite -4s; }
+/* triangle with rounded corners */
+.ba-od3 {
+  position: absolute;
+  width: 10px; height: 10px;
+  background: #FF6B24;
+  clip-path: polygon(50% 0%, 6.7% 100%, 93.3% 100%);
+  top: calc(50% - 5px);
+  left: calc(50% - 5px);
+  animation: orbit3 9s linear infinite 0s;
+}
 
 @keyframes bentoSpin {
   from { transform: rotate(0deg); }
@@ -1285,9 +1286,17 @@ p  { margin: 0 0 1em; }
   from { transform: rotate(-12deg) scale(0.90); }
   to   { transform: rotate(12deg) scale(1.10); }
 }
-@keyframes orbit {
-  from { transform: rotate(0deg) translateX(46px) rotate(0deg); }
-  to   { transform: rotate(360deg) translateX(46px) rotate(-360deg); }
+@keyframes orbit1 {
+  from { transform: rotate(0deg) translateX(44px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(44px) rotate(-360deg); }
+}
+@keyframes orbit2 {
+  from { transform: rotate(0deg) translateX(48px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(48px) rotate(-360deg); }
+}
+@keyframes orbit3 {
+  from { transform: rotate(0deg) translateX(42px) rotate(0deg); }
+  to   { transform: rotate(360deg) translateX(42px) rotate(-360deg); }
 }
 
 /* 8.5 Scroll-highlighted text -------------------------------- */
