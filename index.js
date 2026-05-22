@@ -288,7 +288,13 @@
           const star = ((r.type === 'store' || r.type === 'app-store') && r.rating) ? `<div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>` : '';
           const meta = `<div class="review-meta">${escapeHtml(r.type)}${r.author ? ' · ' + escapeHtml(r.author) : ''}</div>`;
           const title = r.title ? `<div class="review-title">${escapeHtml(r.title)}</div>` : '';
-          return `<article class="review-card">${meta}${star}${title}<div>${escapeHtml(r.description || r.text || '')}</div></article>`;
+          const body = `<div class="review-body">${escapeHtml(r.description || r.text || '')}</div>`;
+          const photo = r.photo ? `<img class="review-photo" src="${escapeHtml(r.photo)}" alt="" loading="lazy" decoding="async" onerror="this.style.display='none'" />` : '';
+          const inner = `${meta}${star}${title}${body}${photo}`;
+          if (r.link) {
+            return `<a href="${escapeHtml(r.link)}" target="_blank" rel="noopener noreferrer" class="review-card">${inner}</a>`;
+          }
+          return `<article class="review-card">${inner}</article>`;
         };
 
         const colClasses = ['reviews-col reviews-col-up', 'reviews-col reviews-col-mid', 'reviews-col reviews-col-up'];
