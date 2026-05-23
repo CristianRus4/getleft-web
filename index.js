@@ -252,15 +252,16 @@
         }).join('');
 
         const trackRows = [...carouselTrack.querySelectorAll('.template-row')];
-        // Defer scrollWidth reads to next frame so layout is committed once.
+        // Defer scrollWidth reads until after layout has committed (double-rAF) so
+        // they don't force a synchronous reflow right after the innerHTML write.
         let widths = trackRows.map(() => 0);
-        requestAnimationFrame(() => {
+        requestAnimationFrame(() => requestAnimationFrame(() => {
           widths = trackRows.map(row => row.scrollWidth / 3);
           rowState.forEach((state, i) => {
             state.width = widths[i];
             if (i % 2 === 0) state.offset = -widths[i];
           });
-        });
+        }));
         const rowState = trackRows.map((row, index) => {
           const state = {
             row,
