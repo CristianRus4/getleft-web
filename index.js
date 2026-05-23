@@ -171,7 +171,7 @@
 
   // ───────── Template carousel ─────────
   const COLORS = {
-    orange: '#FF6B24', blue: '#3B82F6', green: '#22C55E',
+    orange: '#FF4F00', blue: '#3B82F6', green: '#22C55E',
     purple: '#A855F7', red: '#EF4444', pink: '#EC4899',
     yellow: '#EAB308', teal: '#14B8A6', brown: '#92400E'
   };
