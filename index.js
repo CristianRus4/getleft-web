@@ -134,7 +134,10 @@
 
     const activate = (index) => {
       currentIndex = index;
-      tags.forEach((t, i) => t.classList.toggle('is-active', i === index));
+      tags.forEach((t, i) => {
+        t.classList.toggle('is-active', i === index);
+        t.setAttribute('aria-selected', i === index ? 'true' : 'false');
+      });
       swapImage(image, tags[index].dataset.featureImage, tags[index].dataset.featureAlt, tags[index].dataset.featureImageDark);
     };
 
@@ -249,7 +252,15 @@
         }).join('');
 
         const trackRows = [...carouselTrack.querySelectorAll('.template-row')];
-        const widths = trackRows.map(row => row.scrollWidth / 3);
+        // Defer scrollWidth reads to next frame so layout is committed once.
+        let widths = trackRows.map(() => 0);
+        requestAnimationFrame(() => {
+          widths = trackRows.map(row => row.scrollWidth / 3);
+          rowState.forEach((state, i) => {
+            state.width = widths[i];
+            if (i % 2 === 0) state.offset = -widths[i];
+          });
+        });
         const rowState = trackRows.map((row, index) => {
           const state = {
             row,
