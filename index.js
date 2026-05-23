@@ -58,6 +58,10 @@
     }, true);
   });
 
+  const darkModeQuery = window.matchMedia('(prefers-color-scheme: dark)');
+  const schemeListeners = [];
+  darkModeQuery.addEventListener('change', () => schemeListeners.forEach(fn => fn()));
+
   // ───────── Actions preview ─────────
   document.querySelectorAll('[data-actions-showcase]').forEach(showcase => {
     const buttons = [...showcase.querySelectorAll('.action-step')];
@@ -65,7 +69,9 @@
     const mobileCopy = showcase.querySelector('[data-actions-mobile-copy]');
     if (!buttons.length || !image) return;
 
+    let activeButton = buttons[0];
     const setActive = (button) => {
+      activeButton = button;
       buttons.forEach(b => {
         b.classList.toggle('is-active', b === button);
         b.setAttribute('aria-selected', b === button ? 'true' : 'false');
@@ -75,12 +81,14 @@
         const copy = button.querySelector('.action-step-copy')?.textContent || '';
         mobileCopy.innerHTML = `<h3>${escapeHtml(title)}</h3><p>${escapeHtml(copy)}</p>`;
       }
-      swapImage(image, button.dataset.actionImage, button.dataset.actionAlt);
+      swapImage(image, button.dataset.actionImage, button.dataset.actionAlt, button.dataset.actionImageDark);
     };
 
     buttons.forEach(button => {
       button.addEventListener('click', () => setActive(button));
     });
+
+    schemeListeners.push(() => setActive(activeButton));
 
     const section = showcase.closest('[data-stepped-section="actions"]');
     if (section) {
@@ -110,7 +118,7 @@
     const activate = (index) => {
       currentIndex = index;
       tags.forEach((t, i) => t.classList.toggle('is-active', i === index));
-      swapImage(image, tags[index].dataset.featureImage, tags[index].dataset.featureAlt);
+      swapImage(image, tags[index].dataset.featureImage, tags[index].dataset.featureAlt, tags[index].dataset.featureImageDark);
     };
 
     const startAuto = () => {
@@ -122,14 +130,16 @@
       tag.addEventListener('click', () => { activate(i); startAuto(); });
     });
 
+    schemeListeners.push(() => activate(currentIndex));
     startAuto();
   });
 
-  function swapImage(image, src, alt) {
-    if (!src || image.getAttribute('src') === src) return;
+  function swapImage(image, src, alt, darkSrc) {
+    const finalSrc = (darkModeQuery.matches && darkSrc) ? darkSrc : src;
+    if (!finalSrc || image.getAttribute('src') === finalSrc) return;
     image.classList.add('is-swapping');
     window.setTimeout(() => {
-      image.src = src;
+      image.src = finalSrc;
       if (alt) image.alt = alt;
       image.classList.remove('is-swapping');
     }, 140);
