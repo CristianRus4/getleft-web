@@ -9,9 +9,14 @@
   // ───────── Nav scroll reveal ─────────
   const nav = document.querySelector('.top-nav');
   if (nav) {
+    let navTicking = false;
     const update = () => {
-      if (window.scrollY > 80) nav.classList.add('is-visible');
-      else nav.classList.remove('is-visible');
+      if (navTicking) return;
+      navTicking = true;
+      requestAnimationFrame(() => {
+        nav.classList.toggle('is-visible', window.scrollY > 80);
+        navTicking = false;
+      });
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -97,13 +102,20 @@
 
     const section = showcase.closest('[data-stepped-section="actions"]');
     if (section) {
+      let actionsTicking = false;
       const updateFromScroll = () => {
-        const rect = section.getBoundingClientRect();
-        const scrollable = rect.height - window.innerHeight;
-        if (scrollable <= 0 || rect.top > 0 || rect.bottom < window.innerHeight) return;
-        const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
-        const index = Math.min(buttons.length - 1, Math.floor(progress * buttons.length));
-        setActive(buttons[index]);
+        if (actionsTicking) return;
+        actionsTicking = true;
+        requestAnimationFrame(() => {
+          const rect = section.getBoundingClientRect();
+          const scrollable = rect.height - window.innerHeight;
+          if (scrollable > 0 && rect.top <= 0 && rect.bottom >= window.innerHeight) {
+            const progress = Math.min(0.999, Math.max(0, -rect.top / scrollable));
+            const index = Math.min(buttons.length - 1, Math.floor(progress * buttons.length));
+            setActive(buttons[index]);
+          }
+          actionsTicking = false;
+        });
       };
       updateFromScroll();
       window.addEventListener('scroll', updateFromScroll, { passive: true });
@@ -174,15 +186,18 @@
     });
     const sentenceSpans = scrollText.querySelectorAll('.scroll-sentence');
     const section = scrollText.closest('[data-stepped-section="copy"]');
+    let scrollTextTicking = false;
     const update = () => {
-      if (section) {
+      if (!section || scrollTextTicking) return;
+      scrollTextTicking = true;
+      requestAnimationFrame(() => {
         const rect = section.getBoundingClientRect();
         const scrollable = rect.height - window.innerHeight;
         const progress = scrollable > 0 ? Math.min(0.999, Math.max(0, -rect.top / scrollable)) : 0;
         const activeIndex = Math.min(sentenceSpans.length - 1, Math.floor(progress * sentenceSpans.length));
         sentenceSpans.forEach((sentence, index) => sentence.classList.toggle('is-lit', index <= activeIndex));
-        return;
-      }
+        scrollTextTicking = false;
+      });
     };
     update();
     window.addEventListener('scroll', update, { passive: true });
@@ -197,9 +212,14 @@
   };
   const SYMBOLS = { ahead: 'A', habit: 'H', streak: 'S' };
 
+  const whenIdle = (fn) => {
+    if (typeof requestIdleCallback === 'function') requestIdleCallback(fn, { timeout: 2000 });
+    else setTimeout(fn, 200);
+  };
+
   const carouselTrack = document.getElementById('carouselTrack');
   if (carouselTrack) {
-    fetch('/TemplateLibrary.json')
+    whenIdle(() => fetch('/TemplateLibrary.json')
       .then(r => r.ok ? r.json() : [])
       .then(data => {
         if (!Array.isArray(data)) return;
@@ -228,13 +248,15 @@
           return `<div class="template-row" role="list" data-direction="${index % 2 === 0 ? 'right' : 'left'}">${cards}${cards}${cards}</div>`;
         }).join('');
 
-        const rowState = [...carouselTrack.querySelectorAll('.template-row')].map((row, index) => {
+        const trackRows = [...carouselTrack.querySelectorAll('.template-row')];
+        const widths = trackRows.map(row => row.scrollWidth / 3);
+        const rowState = trackRows.map((row, index) => {
           const state = {
             row,
-            offset: index % 2 === 0 ? -row.scrollWidth / 3 : 0,
+            offset: index % 2 === 0 ? -widths[index] : 0,
             speed: 0.22 + index * 0.035,
             direction: row.dataset.direction === 'right' ? 1 : -1,
-            width: row.scrollWidth / 3,
+            width: widths[index],
             dragOffset: 0,
             pointerStartX: 0,
             dragStartOffset: 0,
@@ -287,14 +309,14 @@
         };
         requestAnimationFrame(tick);
       })
-      .catch(() => { /* graceful: carousel hidden */ });
+      .catch(() => { /* graceful: carousel hidden */ }));
   }
 
   // ───────── Reviews ─────────
   const reviewsSection = document.getElementById('reviewsSection');
   const reviewsCols = document.getElementById('reviewsCols');
   if (reviewsCols) {
-    fetch('/reviews.json')
+    whenIdle(() => fetch('/reviews.json')
       .then(r => r.ok ? r.json() : [])
       .then(reviews => {
         if (!Array.isArray(reviews) || reviews.length === 0) return;
@@ -324,7 +346,7 @@
           return `<div class="${colClasses[i]}">${inner}</div>`;
         }).join('');
       })
-      .catch(() => { /* graceful */ });
+      .catch(() => { /* graceful */ }));
   }
 
   function shuffle(items) {
