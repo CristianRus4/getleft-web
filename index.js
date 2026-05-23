@@ -88,6 +88,11 @@
       button.addEventListener('click', () => setActive(button));
     });
 
+    // Initialize correct dark/light src before scroll activates anything
+    const initBtn = buttons.find(b => b.classList.contains('is-active')) || buttons[0];
+    image.src = (darkModeQuery.matches && initBtn.dataset.actionImageDark) ? initBtn.dataset.actionImageDark : initBtn.dataset.actionImage;
+    if (initBtn.dataset.actionAlt) image.alt = initBtn.dataset.actionAlt;
+
     schemeListeners.push(() => setActive(activeButton));
 
     const section = showcase.closest('[data-stepped-section="actions"]');
@@ -129,6 +134,9 @@
     tags.forEach((tag, i) => {
       tag.addEventListener('click', () => { activate(i); startAuto(); });
     });
+
+    // Initialize correct dark/light src on page load
+    image.src = (darkModeQuery.matches && tags[0].dataset.featureImageDark) ? tags[0].dataset.featureImageDark : tags[0].dataset.featureImage;
 
     schemeListeners.push(() => activate(currentIndex));
     startAuto();
