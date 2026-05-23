@@ -146,11 +146,13 @@
     const finalSrc = (darkModeQuery.matches && darkSrc) ? darkSrc : src;
     if (!finalSrc || image.getAttribute('src') === finalSrc) return;
     image.classList.add('is-swapping');
-    window.setTimeout(() => {
+    const preload = new Image();
+    preload.onload = preload.onerror = () => {
       image.src = finalSrc;
       if (alt) image.alt = alt;
       image.classList.remove('is-swapping');
-    }, 140);
+    };
+    preload.src = finalSrc;
   }
 
   // ───────── Scroll-text per-sentence highlight ─────────
