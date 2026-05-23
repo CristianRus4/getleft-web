@@ -19,7 +19,7 @@ const SITE_ORIGIN = 'https://getleft.app';
 
 // Order matters: switcher options follow this order.
 const LOCALES = [
-  { code: 'en',      name: 'English',                 htmlLang: 'en',      dir: 'ltr', flag: '⚑', abbr: 'ENG' },
+  { code: 'en',      name: 'English',                 htmlLang: 'en',      dir: 'ltr', flag: '⚑', abbr: 'EN' },
   { code: 'es',      name: 'Español (España)',        htmlLang: 'es-ES',   dir: 'ltr', flag: '⚑', abbr: 'ES' },
   { code: 'es-419',  name: 'Español (Latinoamérica)', htmlLang: 'es-419',  dir: 'ltr', flag: '⚑', abbr: 'ES' },
   { code: 'de',      name: 'Deutsch',                 htmlLang: 'de',      dir: 'ltr', flag: '⚑', abbr: 'DE' },
