@@ -847,7 +847,7 @@ p  { margin: 0 0 1em; }
   content: '';
   width: calc(10 * 9px);
   height: calc(3 * 9px);
-  background-image: radial-gradient(circle, rgba(255,255,255,0.68) 1.5px, transparent 1.5px);
+  background-image: radial-gradient(circle, #FF6B24 1.5px, transparent 1.5px);
   background-size: 9px 9px;
   background-position: 0 0;
 }
@@ -1084,7 +1084,7 @@ p  { margin: 0 0 1em; }
   width: 120px;
   height: 240px;
   border-radius: 16px;
-  border: 2px solid rgba(200,200,200,0.18);
+  border: 2px solid #FF6B24;
   background: #404040;
   display: flex;
   flex-direction: column;
@@ -1274,6 +1274,8 @@ p  { margin: 0 0 1em; }
   animation: bentoSpin 14s linear infinite;
   position: relative;
   z-index: 1;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
 }
 [data-bento="games"] .bento-art::after {
   content: '';
@@ -1283,6 +1285,15 @@ p  { margin: 0 0 1em; }
   background: #FF6B24;
   animation: bentoSpinRev 9s ease-in-out infinite alternate;
   z-index: 2;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Hide the animated squares when flipped to prevent bleeding through on Safari/Chrome */
+.bento-cell[data-bento="games"].is-flipped .bento-art::before,
+.bento-cell[data-bento="games"].is-flipped .bento-art::after {
+  opacity: 0;
+  transition: opacity 150ms;
 }
 .ba-orbit-ring {
   position: absolute;
