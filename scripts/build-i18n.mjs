@@ -380,6 +380,10 @@ function transform(html, pagePath, locale, data, enData) {
   html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
     `<link rel="canonical" href="${localizedUrl}" />`);
 
+  // 6b. <meta property="og:url"> → localized URL (mirror canonical).
+  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:url" content="${localizedUrl}" />`);
+
   // 7. hreflang block — replace or insert.
   const hreflangBlock = buildHreflangBlock(pagePath);
   if (/<!-- i18n:hreflang:start -->/.test(html)) {
