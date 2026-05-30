@@ -11,6 +11,9 @@ const ROOT = path.resolve(path.dirname(__filename), '..');
 const SITE = 'https://getleft.app';
 const OG_IMAGE = `${SITE}/images/og-image.png`;
 const APP_URL = 'https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884';
+const TIME_ZONE_OPTIONS = JSON.parse(
+  await fs.readFile(path.join(ROOT, 'scripts/time-zone-options.json'), 'utf8')
+);
 
 const existingTools = [
   { slug: 'date-countdown-calculator', title: 'Date Countdown Calculator - Days, Hours & Minutes to Any Date | Left', h1: 'Date countdown calculator', desc: 'Free date countdown calculator. Pick any future date and instantly see the exact days, hours, minutes, and seconds remaining. Track it on your iPhone with Left.', cardTitle: 'Countdown to any date', cardDesc: 'Pick a target date, see days, hours, minutes, and seconds remaining.' },
@@ -853,15 +856,21 @@ const newTools = [
         <div class="tool-widget__field"><label for="tz-c">Time zone 3</label><select id="tz-c"></select></div>
       </div>
       <div class="tool-result" id="tz-result" aria-live="polite"></div>`,
-    script: `const zones = ['America/New_York','America/Los_Angeles','Europe/London','Europe/Paris','Pacific/Auckland','Australia/Sydney','Asia/Tokyo','Asia/Singapore','Asia/Dubai','UTC'];
+    script: `const zones = ${JSON.stringify(TIME_ZONE_OPTIONS)};
     const timeEl = document.getElementById('tz-time'); const selects = ['tz-a','tz-b','tz-c'].map(id => document.getElementById(id)); const result = document.getElementById('tz-result');
     const def = new Date(); def.setDate(def.getDate() + 1); def.setHours(9, 0, 0, 0); timeEl.value = toLocalInput(def);
-    selects.forEach((sel, i) => { sel.innerHTML = zones.map(z => '<option value="' + z + '">' + z.replace('_',' ') + '</option>').join(''); sel.selectedIndex = i; });
+    const defaults = ['America/New_York','Europe/London','Asia/Tokyo'];
+    function zoneLabel(z) { return z === 'UTC' ? 'UTC' : z.replace(/_/g, ' ').replace(/\\//g, ' / '); }
+    selects.forEach((sel, i) => {
+      sel.innerHTML = zones.map(z => '<option value="' + z + '">' + zoneLabel(z) + '</option>').join('');
+      sel.value = defaults[i] || zones[i] || 'UTC';
+    });
     function render() {
       const d = new Date(timeEl.value);
+      if (Number.isNaN(d.getTime())) { result.innerHTML = '<p class="tool-result-sub">Choose a meeting date and time.</p>'; return; }
       result.innerHTML = '<div class="tool-stat-row">' + selects.map(sel => {
         const fmt = new Intl.DateTimeFormat(undefined, { timeZone: sel.value, weekday: 'short', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' }).format(d);
-        return '<div class="tool-stat"><div class="tool-stat-num" style="font-size:20px;">' + fmt + '</div><div class="tool-stat-label">' + sel.value + '</div></div>';
+        return '<div class="tool-stat"><div class="tool-stat-num" style="font-size:20px;">' + fmt + '</div><div class="tool-stat-label">' + zoneLabel(sel.value) + '</div></div>';
       }).join('') + '</div>';
     }
     [timeEl, ...selects].forEach(el => el.addEventListener('change', render)); render();`,

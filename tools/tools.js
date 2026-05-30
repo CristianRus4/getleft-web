@@ -150,7 +150,7 @@ const SEASONS_N = {
 
 // season ∈ 'spring' | 'summer' | 'fall' | 'winter'; hemi ∈ 'N' | 'S'
 function nextSeasonDate(season, hemi = 'N', from = new Date()) {
-  // For Southern Hemisphere: spring↔fall, summer↔winter
+  // For Southern Hemisphere: spring/fall and summer/winter are reversed.
   const flip = { spring: 'fall', fall: 'spring', summer: 'winter', winter: 'summer' };
   const lookupSeason = hemi === 'S' ? flip[season] : season;
   let year = from.getFullYear();
