@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Sleep Calculator — Best Bedtime & Wake-Up Times | Left</title>
+  <title>Sleep Calculator - Best Bedtime &amp; Wake-Up Times | Left</title>
   <meta name="description" content="Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you feeling rested." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
@@ -14,14 +14,66 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Sleep Calculator — Best Bedtime & Wake Times | Left" />
-  <meta property="og:description" content="Find the best time to wake up or go to sleep based on 90-minute sleep cycles." />
+  <meta property="og:title" content="Sleep Calculator - Best Bedtime &amp; Wake-Up Times" />
+  <meta property="og:description" content="Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you feeling rested." />
+  <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getleft.app/tools/sleep-calculator" />
-  <meta property="og:image" content="https://getleft.app/images/hero.webp" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Left" />
   <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Sleep Calculator - Best Bedtime &amp; Wake-Up Times" />
+  <meta name="twitter:description" content="Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you feeling rested." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Sleep Calculator - Best Bedtime & Wake-Up Times",
+  "url": "https://getleft.app/tools/sleep-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you feeling rested.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Sleep calculator",
+      "item": "https://getleft.app/tools/sleep-calculator"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <nav class="top-nav top-nav--visible" aria-label="Primary">
@@ -91,9 +143,9 @@
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">
-        <a class="tool-related-item" href="/tools/end-of-fasting-calculator">End of fasting calculator</a>
+        <a class="tool-related-item" href="/tools/countdown-timer">Countdown timer</a>
         <a class="tool-related-item" href="/tools/hours-between-two-dates">Hours between two dates</a>
-        <a class="tool-related-item" href="/tools/date-countdown-calculator">Countdown to any date</a>
+        <a class="tool-related-item" href="/tools/workday-countdown">Workday countdown</a>
         <a class="tool-related-item" href="/tools/time-until-weekend">Time until the weekend</a>
       </div>
     </div>
@@ -182,7 +234,7 @@
     function renderBedtimes() {
       const wakeMins = timeToMins(wakeTimeEl.value);
       const cycles = [6, 5, 4, 3];
-      const labels = ['9 hrs (6 cycles)', '7.5 hrs (5 cycles) ✓', '6 hrs (4 cycles)', '4.5 hrs (3 cycles)'];
+      const labels = ['9 hrs (6 cycles)', '7.5 hrs (5 cycles, recommended)', '6 hrs (4 cycles)', '4.5 hrs (3 cycles)'];
       bedtimesEl.innerHTML = cycles.map((c, i) => {
         const bedMin = wakeMins - LATENCY - c * CYCLE;
         return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
@@ -194,7 +246,7 @@
     function renderWaketimes() {
       const bedMins = timeToMins(bedTimeEl.value) + LATENCY;
       const cycles = [3, 4, 5, 6];
-      const labels = ['4.5 hrs', '6 hrs', '7.5 hrs ✓', '9 hrs'];
+      const labels = ['4.5 hrs', '6 hrs', '7.5 hrs (recommended)', '9 hrs'];
       waketimesEl.innerHTML = cycles.map((c, i) => {
         const wakeMin = bedMins + c * CYCLE;
         return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">

@@ -665,15 +665,22 @@ async function writeSitemap(pages) {
     lines.push(`  </url>`);
   }
 
-  // Non-translated pages (privacy, terms, web, blog).
+  // Non-translated pages (privacy, terms, web, blog, tools).
   const englishOnly = ['privacy.html', 'terms.html', 'web.html'];
   // Blog: enumerate.
   try {
     const blogEntries = await fs.readdir(path.join(ROOT, 'blog'));
     for (const e of blogEntries) if (e.endsWith('.html')) englishOnly.push(`blog/${e}`);
   } catch {}
+  // Tools: enumerate English-only canonical URLs.
+  try {
+    const toolEntries = await fs.readdir(path.join(ROOT, 'tools'));
+    for (const e of toolEntries) if (e.endsWith('.html')) englishOnly.push(`tools/${e}`);
+  } catch {}
   for (const page of englishOnly) {
-    const urlPath = page === 'blog/index.html' ? 'blog/' : page;
+    let urlPath = page === 'blog/index.html' ? 'blog/' : page;
+    if (page === 'tools/index.html') urlPath = 'tools/';
+    else if (page.startsWith('tools/')) urlPath = page.replace(/\.html$/, '');
     lines.push(`  <url>`);
     lines.push(`    <loc>${SITE_ORIGIN}/${urlPath}</loc>`);
     lines.push(`    <lastmod>${today}</lastmod>`);
