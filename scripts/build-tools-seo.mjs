@@ -909,7 +909,74 @@ const newTools = [
   },
 ];
 
-const allTools = [...existingTools, ...newTools];
+// ─── SEO title/description overrides ──────────────────────────────────────────
+// Single source of truth for tools <title> + meta description. Titles lead with
+// the natural-language query people actually search (per Search Console data) and
+// stay ~≤60 chars; descriptions front-load the keyword, answer the question, and
+// note the free/live/iPhone-widget angle. og:/twitter: tags derive from these.
+const SEO_OVERRIDES = {
+  'date-countdown-calculator': { title: 'Date Countdown Calculator - Time to Any Date | Left', desc: 'Free date countdown calculator. Pick any future date and see the exact days, hours, minutes, and seconds remaining. Track it on your iPhone with Left widgets.' },
+  'time-left-in-year-calculator': { title: 'Time Left in the Year - Countdown to New Year | Left', desc: 'How much time is left in the year? See the exact days, hours, and minutes remaining until December 31st. Free, live, and tracked on your iPhone with Left.' },
+  'time-passed-in-year-calculator': { title: 'Time Passed in the Year - Days & Hours Elapsed | Left', desc: 'How much of the year has passed? See the exact days, hours, and minutes elapsed since January 1st. Free live year-progress tracker, no signup required.' },
+  'percentage-year-calculator': { title: 'Percentage of the Year Calculator - Year Progress | Left', desc: 'What percentage of the year has passed, and how much is left? Live year-progress calculator updated to the second. Track it on your iPhone with Left widgets.' },
+  'christmas-countdown-widget': { title: 'How Many Days Until Christmas - Live Countdown | Left', desc: 'How many days until Christmas? See the exact countdown to December 25th in days, hours, minutes, and seconds. Track it live on your iPhone with Left widgets.' },
+  'days-until-easter': { title: 'How Many Days Until Easter - Live Countdown | Left', desc: 'How many days until Easter Sunday? Live countdown to Western and Orthodox Easter in days, hours, and minutes. Free Easter countdown by Left.' },
+  'days-until-spring': { title: 'How Many Days Until Spring - Equinox Countdown | Left', desc: 'How many days until spring? Live countdown to the spring equinox for your hemisphere in days, hours, and minutes until the first day of spring.' },
+  'days-until-summer': { title: 'How Many Days Until Summer - Solstice Countdown | Left', desc: 'How many days until summer? Live countdown to the summer solstice for your hemisphere in days, hours, and minutes until the first day of summer.' },
+  'days-until-fall': { title: 'How Many Days Until Fall - Autumn Countdown | Left', desc: 'How many days until fall? Live countdown to the autumnal equinox for your hemisphere in days, hours, and minutes until the first day of autumn.' },
+  'days-until-winter': { title: 'How Many Days Until Winter - Solstice Countdown | Left', desc: 'How many days until winter? Live countdown to the winter solstice for your hemisphere in days, hours, and minutes until the first day of winter.' },
+  'days-until-new-year': { title: 'How Many Days Until New Year - Countdown 2026 | Left', desc: 'How many days until New Year? Live countdown to January 1st, 2026 in days, hours, minutes, and seconds. Track it on your iPhone with Left widgets.' },
+  'days-until-halloween': { title: 'How Many Days Until Halloween - Live Countdown | Left', desc: 'How many days until Halloween? Live countdown to October 31st in days, hours, and minutes. Track it on your iPhone Home Screen with Left widgets.' },
+  'days-until-valentines': { title: "How Many Days Until Valentine's Day - Countdown | Left", desc: "How many days until Valentine's Day? Live countdown to February 14th in days, hours, and minutes. Plan ahead and track it on your iPhone with Left." },
+  'days-until-thanksgiving': { title: 'How Many Days Until Thanksgiving - Countdown | Left', desc: 'How many days until Thanksgiving? Live countdown to the fourth Thursday of November in the US, in days, hours, and minutes until Thanksgiving Day.' },
+  'days-until-mothers-day': { title: "How Many Days Until Mother's Day - Countdown | Left", desc: "How many days until Mother's Day? Live countdown to the second Sunday of May in days, hours, and minutes. Plan ahead with Left on iPhone." },
+  'days-until-fathers-day': { title: "How Many Days Until Father's Day - Countdown | Left", desc: "How many days until Father's Day? Live countdown to the third Sunday of June in days, hours, and minutes. Plan ahead with Left on iPhone." },
+  'days-until-birthday': { title: 'How Many Days Until My Birthday - Countdown | Left', desc: 'How many days until your next birthday? Enter your birthdate for a live countdown in days, hours, and minutes. Free birthday countdown calculator.' },
+  'time-until-weekend': { title: 'How Long Until the Weekend - Countdown to Saturday | Left', desc: 'How many hours until the weekend? Live countdown to Saturday in days, hours, minutes, and seconds. See exactly how much of the work week is left.' },
+  'days-between-two-dates': { title: 'Days Between Two Dates - Exact Day Counter | Left', desc: 'Calculate the exact number of days between two dates instantly. Free, no signup. Also count weeks, months, or hours. Track events with Left widgets on iPhone.' },
+  'hours-between-two-dates': { title: 'Hours Between Two Dates - Hours Calculator | Left', desc: 'Calculate the exact number of hours between two dates and times. Free online hours calculator with a minutes and seconds breakdown.' },
+  'weeks-until-date': { title: 'How Many Weeks Until a Date - Week Countdown | Left', desc: 'How many weeks until a date? Enter any future date and get the exact number of weeks remaining. Free weeks-until countdown calculator.' },
+  'business-days-calculator': { title: 'Business Days Calculator - Working Days Between Dates | Left', desc: 'Calculate the number of business days between two dates. Free working-days calculator for deadlines, contracts, and project planning.' },
+  'add-subtract-date-calculator': { title: 'Add or Subtract Days From a Date - Date Calculator | Left', desc: 'Add or subtract days, weeks, months, or years from any date. Free date calculator - find the date N days from today or in the past.' },
+  'what-was-the-date': { title: 'What Was the Date N Days Ago - Past Date Finder | Left', desc: 'What was the date 30, 60, or 90 days ago? Enter any number of days, weeks, or months and find the exact past date. Free date calculator.' },
+  'age-calculator': { title: 'Age Calculator - How Old Am I Exactly | Left', desc: 'Calculate your exact age in years, months, days, hours, and minutes. Free age calculator - enter your birthdate and see how old you are right now.' },
+  'iso-week-number': { title: 'ISO Week Number - What Week of the Year Is It | Left', desc: 'What ISO week number is it today? Find the ISO 8601 week number for any date. Free week-number calculator showing current and past weeks.' },
+  'minutes-between-two-times': { title: 'Minutes Between Two Times Calculator | Left', desc: 'Calculate the exact number of minutes between two times. Handles same-day and overnight ranges for shifts, classes, workouts, and meetings.' },
+  'time-between-two-times': { title: 'Time Between Two Times - Hours and Minutes | Left', desc: 'Find the duration between two clock times in hours and minutes. Free time-between-times calculator with overnight support.' },
+  'days-since-date': { title: 'Days Since Date - Count Days Since an Event | Left', desc: 'Count how many days, weeks, months, hours, and minutes have passed since any date. Free days-since calculator for anniversaries, streaks, and milestones.' },
+  'hours-since-date': { title: 'Hours Since Date - Hours Since a Time Calculator | Left', desc: 'Calculate how many hours and minutes have passed since any date and time. Free hours-since calculator for shifts, fasting, projects, and milestones.' },
+  'anniversary-countdown': { title: 'Anniversary Countdown - Days Until Your Anniversary | Left', desc: 'Count down to your next anniversary from any original date. See days remaining, years completed, and the exact next anniversary date.' },
+  'sobriety-calculator': { title: 'Sobriety Calculator - Days Sober Counter | Left', desc: 'Calculate days sober from your sobriety date and see your next milestone. Free sobriety day counter for recovery tracking.' },
+  'habit-streak-calculator': { title: 'Habit Streak Calculator - Count Your Streak | Left', desc: 'Calculate how long a habit streak has lasted from a start date. See days, weeks, and months in your current streak. Free streak counter.' },
+  'business-days-from-date': { title: 'Business Days From Date - Add or Subtract Workdays | Left', desc: 'Add or subtract business days from any date. Find the date 5, 10, 30, 60, or 90 working days from today. Free workday calculator.' },
+  'working-hours-calculator': { title: 'Working Hours Calculator - Work Hours Between Dates | Left', desc: 'Calculate working hours between two dates with custom workday start, end, lunch break, and weekday rules. Free working-hours calculator.' },
+  'workday-countdown': { title: 'Workday Countdown - Time Until End of Work | Left', desc: 'How long until the end of your workday? Live countdown to your custom end-of-day time in hours, minutes, and seconds. Free workday timer.' },
+  'school-days-calculator': { title: 'School Days Calculator - Weekdays Between Dates | Left', desc: 'Count school days between two dates. Estimate weekdays in a term, semester, or school year and subtract break days manually.' },
+  'semester-countdown-calculator': { title: 'Semester Countdown - Weeks Left in the Term | Left', desc: 'Count down to the end of a semester. See weeks left, days left, percent elapsed, and percent remaining for school or university terms.' },
+  'meeting-time-calculator': { title: 'Meeting Time Calculator - Duration & Time Left | Left', desc: 'Calculate meeting duration, elapsed time, and time remaining from a start and end time. Free meeting-time calculator for back-to-back calls.' },
+  'deadline-countdown-calculator': { title: 'Deadline Countdown - Time Left Until a Deadline | Left', desc: 'Count down to any deadline in days, hours, minutes, and seconds. Free deadline countdown for projects, exams, launches, and events.' },
+  'vacation-countdown': { title: 'Vacation Countdown - Days Until Your Trip | Left', desc: 'Count down to your next vacation, holiday, or trip. See days, weeks, hours, and trip length in one free vacation countdown tool.' },
+  'wedding-countdown': { title: 'Wedding Countdown - Days Until Your Wedding | Left', desc: 'Count down to your wedding date in days, weeks, months, hours, and minutes. Free wedding countdown calculator by Left.' },
+  'retirement-countdown-calculator': { title: 'Retirement Countdown - Years Until Retirement | Left', desc: 'Calculate how many years, months, weeks, and days remain until retirement based on your current age and target retirement age.' },
+  'quarter-countdown-calculator': { title: 'Quarter Countdown - Time Left in This Quarter | Left', desc: 'How much time is left in the quarter? Count days, weeks, and percent remaining in Q1, Q2, Q3, or Q4. Free quarter-countdown calculator.' },
+  'fiscal-year-progress-calculator': { title: 'Fiscal Year Progress - Percent of Fiscal Year | Left', desc: 'Calculate how much of your fiscal year has passed and how much is left. Choose any fiscal-year start month. Free fiscal-year tracker.' },
+  'countdown-timer': { title: 'Countdown Timer - Hours, Minutes, and Seconds | Left', desc: 'Start a simple countdown timer for hours, minutes, and seconds. Free browser countdown timer for focus blocks, breaks, and tasks.' },
+  'unix-timestamp-converter': { title: 'Unix Timestamp Converter - Epoch to Human Date | Left', desc: 'Convert Unix timestamps to human-readable dates and times, or any date to a Unix epoch timestamp. Free online Unix time converter.' },
+  'unix-milliseconds-converter': { title: 'Unix Milliseconds Converter - Epoch ms to Date | Left', desc: 'Convert Unix epoch milliseconds to a human date, and any date to epoch milliseconds. Free timestamp millisecond converter for developers.' },
+  'date-units-converter': { title: 'Date Units Converter - Days, Weeks, Months, Years | Left', desc: 'Convert between days, weeks, months, years, hours, and minutes. Free time-unit converter for planning and date math.' },
+  'time-zone-meeting-planner': { title: 'Time Zone Meeting Planner - Compare Meeting Times | Left', desc: 'Compare a meeting time across multiple time zones. Plan calls for New York, London, Los Angeles, Tokyo, Sydney, and more.' },
+  'reading-time-calculator': { title: 'Reading Time Calculator - How Long to Read | Left', desc: 'Calculate how long it takes to read an article, document, book chapter, or script from word count and reading speed. Free reading-time tool.' },
+  'life-expectancy-calculator': { title: 'Life Expectancy Calculator - Years You Have Left | Left', desc: 'Estimate your life expectancy and years remaining from population baselines and research-adjusted factors: age, gender, lifestyle, health, and more.' },
+  'pregnancy-due-date-calculator': { title: 'Pregnancy Due Date Calculator - When Is My Baby Due | Left', desc: 'Calculate your pregnancy due date from your last menstrual period. See your due date, current week of pregnancy, and a live countdown.' },
+  'sleep-calculator': { title: 'Sleep Calculator - Best Bedtime & Wake-Up Times | Left', desc: 'Calculate the best time to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you rested.' },
+  'intermittent-fasting-duration-calculator': { title: 'Intermittent Fasting Calculator - 16:8, 18:6, OMAD | Left', desc: 'Calculate your intermittent fasting window. Enter when you last ate and your fasting protocol to see exactly when your fast ends.' },
+  'end-of-fasting-calculator': { title: 'End of Fasting Calculator - When Does My Fast End | Left', desc: 'Calculate exactly when your fast ends. Enter your fast start time and duration to get the precise end time and a live countdown.' },
+  'fasting-countdown': { title: 'Fasting Countdown - Live Timer Until Fast Ends | Left', desc: 'Live fasting countdown timer. Set your fast end time and watch it tick down in hours, minutes, and seconds. Free fasting timer.' },
+};
+
+const allTools = [...existingTools, ...newTools].map(
+  t => (SEO_OVERRIDES[t.slug] ? { ...t, ...SEO_OVERRIDES[t.slug] } : t)
+);
 const toolBySlug = new Map(allTools.map(t => [t.slug, t]));
 
 const relatedOverrides = {
@@ -1373,14 +1440,16 @@ async function main() {
   const toolsDir = path.join(ROOT, 'tools');
 
   for (const tool of newTools) {
-    await fs.writeFile(path.join(toolsDir, `${tool.slug}.html`), newToolPage(tool));
+    const merged = toolBySlug.get(tool.slug);
+    await fs.writeFile(path.join(toolsDir, `${tool.slug}.html`), newToolPage(merged));
   }
 
   for (const tool of existingTools) {
+    const merged = toolBySlug.get(tool.slug);
     const file = path.join(toolsDir, `${tool.slug}.html`);
     let html = await fs.readFile(file, 'utf8');
     html = normalizeExistingBody(tool.slug, html);
-    html = replaceHead(html, tool);
+    html = replaceHead(html, merged);
     await fs.writeFile(file, html);
   }
 
