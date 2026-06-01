@@ -144,6 +144,14 @@ async function injectIntoSourcePages(pages, enData) {
     html = upsertFooterSwitcher(html,
       `${SWITCHER_MARK_START}\n${switcherHtml.trim()}\n${SWITCHER_MARK_END}`);
 
+    // Update canonical and og:url to clean URL (no .html) so they match the
+    // URL Cloudflare Pages actually serves (Pretty URLs strips .html).
+    const enUrl = `${SITE_ORIGIN}/${pageToUrlPath(page)}`;
+    html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
+      `<link rel="canonical" href="${enUrl}" />`);
+    html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+      `<meta property="og:url" content="${enUrl}" />`);
+
     // Insert hreflang alternates on the English source page too (so the canonical
     // English URL also tells search engines about the translated versions).
     const hreflangBlock = buildHreflangBlock(page);
@@ -459,7 +467,7 @@ function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
 function pageToUrlPath(page) {
   if (page === 'index.html') return '';
   if (page === 'tools/index.html') return 'tools/';
-  return page;
+  return page.replace(/\.html$/, '');
 }
 
 function buildHreflangBlock(pagePath) {
@@ -617,7 +625,7 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
       '@type': 'BreadcrumbList',
       itemListElement: [
         { '@type': 'ListItem', position: 1, name: homeLabel, item: `${origin}${langPrefix}/` },
-        { '@type': 'ListItem', position: 2, name: supportLabel, item: `${origin}${langPrefix}/support.html` },
+        { '@type': 'ListItem', position: 2, name: supportLabel, item: `${origin}${langPrefix}/support` },
         { '@type': 'ListItem', position: 3, name: articleTitle, item: pageUrl },
       ],
     };
@@ -666,23 +674,28 @@ async function writeSitemap(pages) {
   }
 
   // Non-translated pages (privacy, terms, web, blog, tools).
-  const englishOnly = ['privacy.html', 'terms.html', 'web.html'];
+  const englishOnly = ['privacy', 'terms', 'web'];
   // Blog: enumerate.
   try {
     const blogEntries = await fs.readdir(path.join(ROOT, 'blog'));
-    for (const e of blogEntries) if (e.endsWith('.html')) englishOnly.push(`blog/${e}`);
+    for (const e of blogEntries) {
+      if (!e.endsWith('.html')) continue;
+      if (e === 'index.html') englishOnly.push('blog/');
+      else englishOnly.push(`blog/${e.replace(/\.html$/, '')}`);
+    }
   } catch {}
   // Tools: enumerate English-only canonical URLs.
   try {
     const toolEntries = await fs.readdir(path.join(ROOT, 'tools'));
-    for (const e of toolEntries) if (e.endsWith('.html')) englishOnly.push(`tools/${e}`);
+    for (const e of toolEntries) {
+      if (!e.endsWith('.html')) continue;
+      if (e === 'index.html') englishOnly.push('tools/');
+      else englishOnly.push(`tools/${e.replace(/\.html$/, '')}`);
+    }
   } catch {}
   for (const page of englishOnly) {
-    let urlPath = page === 'blog/index.html' ? 'blog/' : page;
-    if (page === 'tools/index.html') urlPath = 'tools/';
-    else if (page.startsWith('tools/')) urlPath = page.replace(/\.html$/, '');
     lines.push(`  <url>`);
-    lines.push(`    <loc>${SITE_ORIGIN}/${urlPath}</loc>`);
+    lines.push(`    <loc>${SITE_ORIGIN}/${page}</loc>`);
     lines.push(`    <lastmod>${today}</lastmod>`);
     lines.push(`  </url>`);
   }
