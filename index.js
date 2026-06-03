@@ -334,9 +334,12 @@
         if (!Array.isArray(reviews) || reviews.length === 0) return;
         reviewsSection.hidden = false;
 
-        // Distribute into 3 columns
+        // Distribute into 3 columns, spreading photo reviews one-per-column first
         const cols = [[], [], []];
-        shuffle(reviews).forEach((r, i) => cols[i % 3].push(r));
+        const withPhoto = shuffle(reviews.filter(r => r.photo));
+        const noPhoto = shuffle(reviews.filter(r => !r.photo));
+        withPhoto.forEach((r, i) => cols[i % 3].push(r));
+        noPhoto.forEach((r, i) => cols[i % 3].push(r));
 
         const renderCard = (r) => {
           const star = ((r.type === 'store' || r.type === 'app-store') && r.rating) ? `<div class="review-stars">${'★'.repeat(r.rating)}${'☆'.repeat(5 - r.rating)}</div>` : '';
