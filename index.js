@@ -405,10 +405,11 @@
   // ───────── Footer counter ─────────
   const counter = document.getElementById('userCounter');
   if (counter) {
-    const BASE_COUNT = 2100000;
+    const BASE_COUNT = 525000;
     const BASE_DATE = new Date('2026-01-01').getTime();
-    // ~600 new installs per day → 600 / (24*60*60*1000) per ms.
-    const RATE_MS = 600 / 86400000;
+    // Quarter-scale starting count, growing 50% faster than the proportional
+    // quarter-scale rate: 150/day × 1.5 = 225/day.
+    const RATE_MS = 225 / 86400000;
     const fmt = new Intl.NumberFormat('en-US');
     const cycleRoot = counter.closest('[data-counter-cycle]');
     const suffixEl = cycleRoot ? cycleRoot.querySelector('[data-counter-suffix]') : null;
