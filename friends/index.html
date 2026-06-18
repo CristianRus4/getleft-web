@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Better with Friends — Left</title>
+  <meta name="description"
+    content="Create your free Left account, add friends, share Ahead dates, and keep each other accountable for habits and streaks." />
+  <meta name="theme-color" content="#FF4F00" />
+  <meta name="theme-color" content="#FF4F00" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#131415" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="apple-itunes-app" content="app-id=6740155884, app-argument=https://go.getleft.app/friends" />
+  <link rel="canonical" href="https://go.getleft.app/friends" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    body {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .friends-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: calc(56px + 64px + env(safe-area-inset-top)) 24px 72px;
+      text-align: center;
+    }
+
+    .friends-icon {
+      display: grid;
+      place-items: center;
+      width: 88px;
+      height: 88px;
+      margin-bottom: -12px;
+      border: 3px solid var(--text);
+      border-radius: 20px;
+      background: var(--accent);
+      color: #fff;
+      transform: rotate(-5deg);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .friends-icon svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .friends-headline {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 0 20px;
+      color: var(--text);
+      font-size: clamp(38px, 7vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.05em;
+      line-height: 1.1;
+    }
+
+    .friends-headline-highlight {
+      display: inline;
+      padding: 1px 10px 4px;
+      border-radius: 8px;
+      background: var(--text);
+      color: var(--bg);
+      -webkit-box-decoration-break: clone;
+      box-decoration-break: clone;
+    }
+
+    .friends-subtitle {
+      max-width: 610px;
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: clamp(17px, 2.5vw, 20px);
+      line-height: 1.55;
+    }
+
+    .friends-benefits {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      width: 100%;
+      max-width: 610px;
+      margin: 36px 0 44px;
+    }
+
+    .friends-benefit {
+      padding: 18px;
+      border-radius: 18px;
+      background: var(--bg-surface);
+      box-shadow: var(--shadow-sm);
+      color: var(--text);
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .friends-benefit svg {
+      display: block;
+      width: 28px;
+      height: 28px;
+      margin: 0 auto 10px;
+      color: var(--accent);
+    }
+
+    .friends-download-label {
+      margin: 0 0 16px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .friends-download-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+
+    .friends-footer {
+      display: none;
+      margin-top: auto;
+      padding: 32px 24px calc(32px + env(safe-area-inset-bottom));
+      border-top: 1px solid var(--hairline);
+      color: var(--text-secondary);
+      font-size: 13px;
+      text-align: center;
+    }
+
+    .friends-footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 8px 20px;
+      margin-top: 8px;
+    }
+
+    .friends-footer a {
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .friends-footer a:hover {
+      color: var(--text);
+    }
+
+    @media (min-width: 768px) {
+      .friends-footer {
+        display: block;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .friends-wrap {
+        justify-content: flex-start;
+        padding-top: calc(56px + 44px + env(safe-area-inset-top));
+      }
+
+      .friends-icon {
+        width: 72px;
+        height: 72px;
+        border-radius: 17px;
+      }
+
+      .friends-icon svg {
+        width: 38px;
+        height: 38px;
+      }
+
+      .friends-benefits {
+        margin: 30px 0 36px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand" aria-label="Left home">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <a href="/#features" class="nav-link">Features</a>
+        </div>
+        <a class="btn btn-primary"
+          href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884"
+          target="_blank" rel="noopener">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="friends-wrap">
+    <div class="friends-icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+        stroke-linejoin="round">
+        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+        <circle cx="9" cy="7" r="4" />
+        <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+      </svg>
+    </div>
+    <h1 class="friends-headline"><span class="friends-headline-highlight">Better with Friends</span></h1>
+    <p class="friends-subtitle">Create your free account in Left and add friends to share Ahead dates or keep each
+      other accountable for habits and streaks.</p>
+
+    <div class="friends-benefits" aria-label="Things you can do with friends in Left">
+      <div class="friends-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v5l3 2" />
+        </svg>
+        Share Ahead dates
+      </div>
+      <div class="friends-benefit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round" aria-hidden="true">
+          <path d="m12 2 1.7 5.2H19l-4.3 3.1 1.6 5.2-4.3-3.2-4.3 3.2 1.6-5.2L5 7.2h5.3L12 2Z" />
+          <path d="M5 20h14" />
+        </svg>
+        Stay accountable
+      </div>
+    </div>
+
+    <p class="friends-download-label">Download Left free</p>
+    <div class="friends-download-row hero-download-group">
+      <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">
+        <div class="bento-inner">
+          <div class="bento-face qr-face-front"><div class="qr-mask"></div></div>
+          <div class="bento-face bento-face-back">
+            <p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search
+              <strong>“Left”</strong> on the App Store.</p>
+          </div>
+        </div>
+      </div>
+      <a class="dl-btn"
+        href="https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&amp;itsct=apps_box_badge&amp;mttnsubad=6740155884"
+        target="_blank" rel="noopener" aria-label="Download Left on the App Store">
+        <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path
+            d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701" />
+        </svg>
+        Download for iOS
+      </a>
+    </div>
+  </main>
+
+  <footer class="friends-footer">
+    <div>Left — cntxt · Coded in NZ · © 2026</div>
+    <nav class="friends-footer-links" aria-label="Footer">
+      <a href="/">Home</a>
+      <a href="/support.html">Support</a>
+      <a href="/contact.html">Contact</a>
+      <a href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download</a>
+      <a href="http://cristianrus.me/apps/left" target="_blank" rel="noopener">Privacy</a>
+    </nav>
+  </footer>
+
+  <script>
+    (function () {
+      var qr = document.querySelector('.qr-flip');
+      var timer;
+
+      function flipQr() {
+        if (!qr) return;
+        qr.classList.add('is-flipped');
+        clearTimeout(timer);
+        timer = setTimeout(function () { qr.classList.remove('is-flipped'); }, 3000);
+      }
+
+      if (qr) {
+        qr.addEventListener('click', flipQr);
+        qr.addEventListener('keydown', function (event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            flipQr();
+          }
+        });
+      }
+
+      function syncQrSize() {
+        var button = document.querySelector('.friends-download-row .dl-btn');
+        if (!qr || !button) return;
+        var width = button.getBoundingClientRect().width;
+        if (width > 0) {
+          qr.style.setProperty('width', width + 'px', 'important');
+          qr.style.setProperty('height', width + 'px', 'important');
+          qr.style.setProperty('min-height', width + 'px', 'important');
+        }
+      }
+
+      window.addEventListener('resize', syncQrSize, { passive: true });
+      syncQrSize();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(syncQrSize);
+    })();
+  </script>
+</body>
+
+</html>
