@@ -213,7 +213,7 @@
     purple: '#A855F7', red: '#EF4444', pink: '#EC4899',
     yellow: '#EAB308', teal: '#14B8A6', brown: '#92400E'
   };
-  const SYMBOLS = { ahead: 'A', habit: 'H', streak: 'S' };
+  const SYMBOLS = { ahead: 'A', habit: 'H', streak: 'S', aim: 'G' };
 
   const whenIdle = (fn) => {
     if (typeof requestIdleCallback === 'function') requestIdleCallback(fn, { timeout: 2000 });
@@ -377,6 +377,7 @@
     if (item.kind === 'ahead') return `in ${randomInt(5, 420)} days`;
     if (item.kind === 'streak') return `${randomInt(7, 365)} days`;
     if (item.kind === 'habit') return `${randomInt(3, 42)} days`;
+    if (item.kind === 'aim') return `${randomInt(12, 92)}% complete`;
     return String(item.category || 'Template');
   }
 
