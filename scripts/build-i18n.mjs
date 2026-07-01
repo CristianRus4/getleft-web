@@ -523,7 +523,9 @@ function rewriteRelativeAssetPaths(html) {
     'content',
     'data-final-src',
     'data-action-image',
+    'data-action-image-dark',
     'data-feature-image',
+    'data-feature-image-dark',
   ];
   const attrPattern = attrs.join('|');
   return html.replace(new RegExp(`\\b(${attrPattern})="([^"#?:][^"]*)"`, 'g'), (full, attr, value) => {
