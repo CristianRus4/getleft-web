@@ -592,6 +592,56 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
     };
   }
 
+  if (kind === 'support-faq') {
+    const support = (data.support && data.support.support) || {};
+    const entries = [
+      ['summary_8', ['li_18', 'li_2', 'li_3']],
+      ['summary_9', ['p_19']],
+      ['summary_3', ['li_1', 'li_12', 'li_13', 'li_14']],
+      ['summary_4', ['li_15', 'li_16', 'li_17', 'p_32']],
+      ['summary_1', ['p_15']],
+      ['summary_2', ['widget_size_home', 'widget_size_lock', 'widget_size_standby', 'widget_size_mac']],
+      ['summary_13', ['p_22']],
+      ['summary_14', ['p_33']],
+      ['summary_21', ['p_34']],
+      ['summary_22', ['p_28']],
+      ['summary_17', ['li_8', 'li_9', 'li_10', 'li_11']],
+      ['summary_23', ['p_35']],
+      ['summary_20', ['p_27']],
+      ['summary_19', ['p_26']],
+      ['summary_28', ['p_57']],
+      ['summary_29', ['p_58']],
+      ['summary_30', ['p_59']],
+      ['summary_31', ['p_60']],
+      ['summary_32', ['p_61']],
+    ];
+    const plainText = value => String(value || '')
+      .replace(/<[^>]*>/g, ' ')
+      .replace(/&nbsp;/g, ' ')
+      .replace(/&amp;/g, '&')
+      .replace(/&quot;/g, '"')
+      .replace(/&#39;/g, "'")
+      .replace(/\s+/g, ' ')
+      .trim();
+    const mainEntity = entries
+      .map(([questionKey, answerKeys]) => ({
+        '@type': 'Question',
+        name: plainText(support[questionKey]),
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: answerKeys.map(key => plainText(support[key])).filter(Boolean).join(' '),
+        },
+      }))
+      .filter(item => item.name && item.acceptedAnswer.text);
+    if (!mainEntity.length) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      inLanguage,
+      mainEntity,
+    };
+  }
+
   if (kind === 'app') {
     const meta = (data.index && data.index.meta) || {};
     return {
