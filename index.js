@@ -1,5 +1,5 @@
 /*
-  index.js — homepage interactions.
+  index.js - homepage interactions.
   Vanilla JS only. All effects are progressive enhancements.
 */
 
@@ -47,19 +47,34 @@
     });
   });
 
+  // ───────── Focus timer artwork countdown ─────────
+  const focusTimes = [...document.querySelectorAll('[data-focus-time]')];
+  const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  if (focusTimes.length && !reducedMotionQuery.matches) {
+    const cycleDuration = 26000;
+    const startedAt = performance.now();
+    let lastMinute = null;
+    const updateFocusArtwork = (now) => {
+      const elapsed = (now - startedAt) % cycleDuration;
+      const minute = Math.max(0, 25 - Math.floor(elapsed / 1000));
+      if (minute !== lastMinute) {
+        const label = `${String(minute).padStart(2, '0')}:00`;
+        focusTimes.forEach(el => { el.textContent = label; });
+        lastMinute = minute;
+      }
+      requestAnimationFrame(updateFocusArtwork);
+    };
+    requestAnimationFrame(updateFocusArtwork);
+  }
+
   // ───────── Accordion FAQ ─────────
   document.querySelectorAll('.faq-grid').forEach(grid => {
-    let closeTimer = null;
     grid.addEventListener('toggle', (event) => {
       const opened = event.target;
       if (!(opened instanceof HTMLDetailsElement) || !opened.open) return;
-      clearTimeout(closeTimer);
-      grid.querySelectorAll('details[open]').forEach(details => {
+      document.querySelectorAll('.faq-grid details[open]').forEach(details => {
         if (details !== opened) details.open = false;
       });
-      closeTimer = setTimeout(() => {
-        opened.open = false;
-      }, 3000);
     }, true);
   });
 

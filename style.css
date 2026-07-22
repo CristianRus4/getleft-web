@@ -1,5 +1,5 @@
 /*
-  Left — getleft.app shared stylesheet
+  Left - getleft.app shared stylesheet
   Used by every page except web.html (which has its own web.css).
 
   Architecture:
@@ -48,7 +48,7 @@
   --radius-cell: 16px;
   --radius-pill: 9999px;
 
-  /* App Store URL — update here, referenced via JS const elsewhere */
+  /* App Store URL - update here, referenced via JS const elsewhere */
   /* https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884?itscg=30200&itsct=apps_box_badge&mttnsubad=6740155884 */
 }
 
@@ -291,10 +291,10 @@ p  { margin: 0 0 1em; }
   color: var(--text-secondary);
 }
 
-/* App Store badge — hidden, replaced by dl-btn */
+/* App Store badge - hidden, replaced by dl-btn */
 .appstore-badge { display: none !important; }
 
-/* QR flip card — bento-style, desktop only. Width/height set in JS to match button. */
+/* QR flip card - bento-style, desktop only. Width/height set in JS to match button. */
 .qr-flip {
   display: none;
   flex-shrink: 0;
@@ -319,7 +319,7 @@ p  { margin: 0 0 1em; }
   text-align: center;
 }
 
-/* Custom download button — same width as QR */
+/* Custom download button - same width as QR */
 .dl-btn {
   display: inline-flex;
   align-items: center;
@@ -731,6 +731,10 @@ p  { margin: 0 0 1em; }
   transform-style: preserve-3d;
 }
 .bento-cell.is-flipped .bento-inner { transform: rotateY(180deg); }
+.bento-cell.is-flipped .bento-art {
+  opacity: 0;
+  visibility: hidden;
+}
 
 .bento-face {
   position: absolute; inset: 0;
@@ -770,10 +774,27 @@ p  { margin: 0 0 1em; }
 .bento-plus::after  { width: 2px;  height: 10px; }
 .bento-wide { grid-column: span 2; }
 .bento-tall { grid-row: span 2; }
+@media (min-width: 901px) {
+  .bento [data-bento="widgets"]    { grid-column: 1; grid-row: 1; }
+  .bento [data-bento="friends"]    { grid-column: 2 / span 2; grid-row: 1; }
+  .bento [data-bento="live"]       { grid-column: 4; grid-row: 1; }
+  .bento [data-bento="wallpaper"]  { grid-column: 1; grid-row: 2 / span 2; }
+  .bento [data-bento="you"]        { grid-column: 2; grid-row: 2; }
+  .bento [data-bento="timebetween"] { grid-column: 3; grid-row: 2 / span 2; }
+  .bento [data-bento="fasting"]    { grid-column: 4; grid-row: 2; }
+  .bento [data-bento="focus"]      { grid-column: 2; grid-row: 3 / span 2; }
+  .bento [data-bento="games"]      { grid-column: 4; grid-row: 3; }
+  .bento [data-bento="world-mood"] { grid-column: 1; grid-row: 4; }
+  .bento [data-bento="mood"]       { grid-column: 3 / span 2; grid-row: 4; }
+}
 @media (max-width: 900px) {
+  .bento > .bento-cell { grid-column: auto; grid-row: auto; }
   .bento-wide { grid-column: auto; }
-  .bento-tall { grid-row: span 2; }
-  .bento > :nth-child(2) { grid-row: span 2; }
+  .bento > [data-bento="friends"],
+  .bento > [data-bento="wallpaper"],
+  .bento > [data-bento="focus"],
+  .bento > [data-bento="timebetween"] { grid-row: span 2; }
+  .bento > [data-bento="mood"] { grid-column: 1 / -1; }
 }
 
 /* 8.4b Bento art decorations --------------------------------- */
@@ -785,7 +806,7 @@ p  { margin: 0 0 1em; }
   border-radius: inherit;
 }
 
-/* ── Widgets — 3 mini shapes that bounce randomly ── */
+/* ── Widgets - 3 mini shapes that bounce randomly ── */
 [data-bento="widgets"] .bento-art {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -833,7 +854,7 @@ p  { margin: 0 0 1em; }
   justify-content: center;
   flex-shrink: 0;
 }
-/* checkmark removed — em is circle only */
+/* checkmark removed - em is circle only */
 
 .ba-w2 {
   animation: wBounce 7s ease-in-out infinite 2.3s;
@@ -885,7 +906,7 @@ p  { margin: 0 0 1em; }
   11%           { transform: translateY(0) scale(1); }
 }
 
-/* ── Friends — 5 avatar circles, sequential wave bounce ── */
+/* ── Friends - 5 avatar circles, sequential wave bounce ── */
 [data-bento="friends"] .bento-art {
   display: flex;
   align-items: center;
@@ -971,7 +992,7 @@ p  { margin: 0 0 1em; }
   }
 }
 
-/* ── Live Activities — pill expands to reveal minimalist layout ── */
+/* ── Live Activities - pill expands to reveal minimalist layout ── */
 [data-bento="live"] .bento-art {
   display: flex;
   align-items: center;
@@ -1072,7 +1093,84 @@ p  { margin: 0 0 1em; }
   88%, 100% { opacity: 0; }
 }
 
-/* ── Wallpaper — phone outline with JS-driven dot grid ── */
+/* Fasting: a sun that follows the visible arc and a window that empties */
+[data-bento="fasting"] .bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-fast {
+  position: relative;
+  width: 150px;
+  height: 92px;
+}
+.ba-fast-arc {
+  position: absolute;
+  left: 25px;
+  top: 10px;
+  width: 100px;
+  height: 45px;
+  border: 2px dashed #6c6c6c;
+  border-bottom: 0;
+  border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+  opacity: 0.68;
+}
+.ba-fast-sun {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 5px color-mix(in srgb, var(--accent) 14%, transparent);
+  offset-path: path("M 25 55 C 25 30.15 47.4 10 75 10 C 102.6 10 125 30.15 125 55");
+  offset-anchor: center;
+  offset-rotate: 0deg;
+  animation: fastingSun 7s linear infinite;
+  z-index: 2;
+}
+.ba-fast-horizon {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  top: 55px;
+  height: 2px;
+  border-radius: 2px;
+  background: #565656;
+}
+.ba-fast-window {
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 7px;
+  height: 7px;
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-muted);
+}
+.ba-fast-window span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--accent);
+  transform-origin: right;
+  animation: fastingDrain 7s linear infinite;
+}
+@keyframes fastingSun {
+  0% { offset-distance: 0%; opacity: 0; }
+  4% { offset-distance: 0%; opacity: 1; }
+  90% { offset-distance: 100%; opacity: 1; }
+  94% { offset-distance: 100%; opacity: 0; }
+  94.01%, 100% { offset-distance: 0%; opacity: 0; }
+}
+@keyframes fastingDrain {
+  0%, 4% { transform: scaleX(1); }
+  90%, 100% { transform: scaleX(0); }
+}
+
+/* ── Wallpaper - phone outline with JS-driven dot grid ── */
 [data-bento="wallpaper"] .bento-art {
   display: flex;
   align-items: center;
@@ -1141,7 +1239,7 @@ p  { margin: 0 0 1em; }
   opacity: 0.1;
 }
 
-/* ── You — person silhouette + bar chart ── */
+/* ── You - person silhouette + bar chart ── */
 [data-bento="you"] .bento-art {
   display: flex;
   align-items: center;
@@ -1208,7 +1306,58 @@ p  { margin: 0 0 1em; }
   100%      { transform: scaleY(0.5); }
 }
 
-/* ── Time Between — animated flowing dash from TODAY chip ── */
+/* Focus: a clean clockwise progress ring with a countdown */
+[data-bento="focus"] .bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-focus {
+  position: relative;
+  width: 148px;
+  height: 148px;
+  display: grid;
+  place-items: center;
+}
+.ba-focus-ring {
+  position: relative;
+  width: 132px;
+  height: 132px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-focus-ring::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(var(--accent) var(--focus-progress), #565656 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px));
+  animation: focusProgress 26s linear infinite;
+}
+.ba-focus-time {
+  position: relative;
+  z-index: 1;
+  color: var(--text-secondary);
+  font-size: 26px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  font-variant-numeric: tabular-nums;
+}
+@property --focus-progress {
+  syntax: '<angle>';
+  initial-value: 0turn;
+  inherits: false;
+}
+@keyframes focusProgress {
+  0% { --focus-progress: 0turn; }
+  96.15%, 100% { --focus-progress: 1turn; }
+}
+
+/* ── Time Between - animated flowing dash from TODAY chip ── */
 [data-bento="timebetween"] .bento-art {
   display: flex;
   align-items: center;
@@ -1259,7 +1408,7 @@ p  { margin: 0 0 1em; }
   to { background-position: 0 8px; }
 }
 
-/* ── Games — rotating squares + orbit ring + 3 orbiting dots ── */
+/* ── Games - rotating squares + orbit ring + 3 orbiting dots ── */
 [data-bento="games"] .bento-art {
   display: flex;
   align-items: center;
@@ -1323,6 +1472,151 @@ p  { margin: 0 0 1em; }
 @keyframes orbit {
   from { transform: rotate(0deg) translateX(46px) rotate(0deg); }
   to   { transform: rotate(360deg) translateX(46px) rotate(-360deg); }
+}
+
+/* Mood: five vertical states with a selection that lands on each pill */
+[data-bento="mood"] .bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-mood {
+  width: 220px;
+  height: 42px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-mood-track {
+  display: flex;
+  align-items: center;
+  gap: 35px;
+  width: 200px;
+  height: 34px;
+}
+.ba-mood-track span {
+  position: relative;
+  z-index: 1;
+  width: 12px;
+  height: 34px;
+  border-radius: 999px;
+  background: #565656;
+  flex: 0 0 12px;
+}
+.ba-mood-track span:nth-child(2) { background: #636363; }
+.ba-mood-track span:nth-child(3) { background: #707070; }
+.ba-mood-track span:nth-child(4) { background: #7b7b7b; }
+.ba-mood-track span:nth-child(5) { background: #878787; }
+.ba-mood-selector {
+  position: absolute;
+  left: 10px;
+  top: 4px;
+  z-index: 3;
+  width: 12px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 16%, transparent);
+  animation: moodSelect 8s ease-in-out infinite;
+}
+.ba-mood-selector i { display: none; }
+@keyframes moodSelect {
+  0%, 12% { transform: translateX(0); }
+  20%, 32% { transform: translateX(47px); }
+  40%, 52% { transform: translateX(94px); }
+  60%, 72% { transform: translateX(141px); }
+  80%, 92% { transform: translateX(188px); }
+  100% { transform: translateX(0); }
+}
+
+/* World Mood: a compact field of anonymous locations without grid lines */
+[data-bento="world-mood"] .bento-art {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ba-globe {
+  position: relative;
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  border: 1px solid #777;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: transparent;
+}
+.ba-globe::before,
+.ba-globe::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  top: -1px;
+  bottom: -1px;
+  left: 50%;
+  border: 1px dotted #8c8c8c;
+  border-radius: 50%;
+  transform: translateX(-50%);
+}
+.ba-globe::before { width: 34px; }
+.ba-globe::after { width: 66px; }
+.ba-globe-grid {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+}
+.ba-globe-grid::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  border-left: 1px dotted #8c8c8c;
+}
+.ba-globe-grid i {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  border-top: 1px dotted #8c8c8c;
+}
+.ba-globe-grid i:nth-child(1) { top: 16px; }
+.ba-globe-grid i:nth-child(2) { top: 30px; }
+.ba-globe-grid i:nth-child(3) { top: 44px; }
+.ba-globe-grid i:nth-child(4) { top: 58px; }
+.ba-globe-grid i:nth-child(5) { top: 72px; }
+.ba-globe-pin {
+  position: absolute;
+  z-index: 1;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: globePulse 3.2s ease-in-out infinite;
+}
+.ba-globe-pin-1 { left: 12px; top: 38px; }
+.ba-globe-pin-2 { left: 31px; top: 17px; animation-delay: -0.5s; }
+.ba-globe-pin-3 { left: 70px; top: 35px; animation-delay: -1s; }
+.ba-globe-pin-4 { left: 47px; top: 28px; animation-delay: -1.5s; }
+.ba-globe-pin-5 { left: 22px; top: 66px; animation-delay: -2s; }
+.ba-globe-pin-6 { left: 58px; top: 73px; animation-delay: -2.5s; }
+.ba-globe-pin-7 { left: 64px; top: 53px; animation-delay: -3s; }
+@keyframes globePulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bento-inner,
+  .bento-art *,
+  .bento-art *::before,
+  .bento-art *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+  }
+  .ba-fast-sun { offset-distance: 50%; opacity: 1; }
+  .ba-fast-window span { transform: scaleX(0.5); }
+  .ba-focus-ring::before { --focus-progress: 0.62turn; }
+  .ba-mood-selector { transform: translateX(94px); }
 }
 
 /* 8.5 Scroll-highlighted text -------------------------------- */
@@ -1776,7 +2070,7 @@ a.review-card {
 .article a { color: var(--accent); text-decoration: none; }
 .article a:hover { font-weight: 700; }
 
-/* Article TOC — plain, no container. Sits between the lede and first H2. */
+/* Article TOC - plain, no container. Sits between the lede and first H2. */
 .article-toc {
   margin: 28px 0 40px;
   padding: 0;
@@ -1827,7 +2121,7 @@ a.review-card {
   font-weight: inherit;
 }
 
-/* Related guides — mirrors the .tool-related pattern from /tools. */
+/* Related guides - mirrors the .tool-related pattern from /tools. */
 .support-related {
   margin: 64px 0 48px;
   max-width: 920px;

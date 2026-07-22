@@ -1,6 +1,6 @@
 # getleft.app
 
-Source for [getleft.app](https://getleft.app) — the canonical website for **Left**, an iPhone app for habit tracking, countdowns, and life visualisation.
+Source for [getleft.app](https://getleft.app) - the canonical website for **Left**, an iPhone app for habit tracking, countdowns, and life visualisation.
 
 Hosted on **Cloudflare Pages**, deployed from this repo.
 
@@ -31,8 +31,8 @@ getleft.app/
 
 | Domain | Purpose |
 |---|---|
-| `getleft.app` | Main website — homepage, support, contact |
-| `go.getleft.app` | Universal Link interception domain — opens Left app |
+| `getleft.app` | Main website - homepage, support, contact |
+| `go.getleft.app` | Universal Link interception domain - opens Left app |
 
 Both domains are served from this single Cloudflare Pages project.
 
@@ -74,7 +74,7 @@ User taps invite link → getleft.app/invite?invite=CODE
         │       Step 1: Download on App Store
         │       Step 2: Tap "Accept invitation" → go.getleft.app/invite?invite=CODE
         │
-        └─ App installed → page still loads in Safari (intentional — no AASA on getleft.app)
+        └─ App installed → page still loads in Safari (intentional - no AASA on getleft.app)
                 Step 1: Tap "Accept invitation" → iOS intercepts as Universal Link → app opens
 ```
 
@@ -91,7 +91,7 @@ User taps invite link → getleft.app/invite?invite=CODE
 
 ## Local preview
 
-No build step needed — open any `.html` file directly in a browser, or use a simple static server:
+No build step needed - open any `.html` file directly in a browser, or use a simple static server:
 
 ```bash
 npx serve .

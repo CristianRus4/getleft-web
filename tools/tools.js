@@ -1,5 +1,5 @@
 /*
-  Left — shared helpers for /tools/* pages.
+  Left - shared helpers for /tools/* pages.
   Pure functions + tiny render helpers. No deps.
 */
 

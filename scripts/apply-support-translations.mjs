@@ -51,4 +51,4 @@ for (const [lang, articles] of Object.entries(data)) {
   totalFields += count;
   console.log(`[support-i18n] ${lang}: updated ${Object.keys(articles).length} articles (${count} fields)`);
 }
-console.log(`[support-i18n] done — ${totalLangs} locales, ${totalFields} fields total`);
+console.log(`[support-i18n] done - ${totalLangs} locales, ${totalFields} fields total`);

@@ -1,8 +1,8 @@
-# i18n — how it works
+# i18n - how it works
 
-The marketing site (`index.html`, `support.html`, support articles, `contact.html`, `press.html`, tools index + all 34 tool pages) is translated into 16 languages plus English. A build step reads the English source HTML, looks up translated strings from JSON locale files, and emits a per-language copy of every page under `/<lang>/`.
+The marketing site (`index.html`, `support.html`, support articles, `contact.html`, `press.html`, tools index + all 34 tool pages) is translated into 17 languages plus English. A build step reads the English source HTML, looks up translated strings from JSON locale files, and emits a per-language copy of every page under `/<lang>/`.
 
-**Single source of truth**: edit `index.html`, `en.json`, etc. once — re-run the build, all 16 translated copies regenerate. Never hand-edit anything under `/de/`, `/fr/`, etc.
+**Single source of truth**: edit `index.html`, `en.json`, etc. once - re-run the build, all 17 translated copies regenerate. Never hand-edit anything under `/de/`, `/fr/`, etc.
 
 ## Layout
 
@@ -53,7 +53,7 @@ Attributes are stripped from the generated output.
 
 ## Excluded pages
 
-These stay English-only — the build script never touches them:
+These stay English-only - the build script never touches them:
 
 - `privacy.html`, `terms.html`
 - `web.html` (the web app shell)

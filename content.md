@@ -318,7 +318,7 @@ Recommended public structure:
 
 Title:
 
-> Left — Time Left, Habits, Countdowns & Widgets for iPhone
+> Left - Time Left, Habits, Countdowns & Widgets for iPhone
 
 Meta description:
 
@@ -326,7 +326,7 @@ Meta description:
 
 Open Graph title:
 
-> Left — Make Time Visible
+> Left - Make Time Visible
 
 Open Graph description:
 

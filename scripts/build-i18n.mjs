@@ -69,7 +69,7 @@ async function main() {
 
   const enLocale = await readLocale('en');
   if (!enLocale) {
-    console.error('[i18n] ERROR: i18n/locales/en.json missing — cannot proceed.');
+    console.error('[i18n] ERROR: i18n/locales/en.json missing - cannot proceed.');
     process.exit(1);
   }
 
@@ -106,7 +106,10 @@ async function discoverPages() {
     let entries;
     try { entries = await fs.readdir(full); } catch { continue; }
     for (const e of entries) {
-      if (e.endsWith('.html')) set.add(`${dir}/${e}`);
+      if (e.endsWith('.html')) {
+        const page = `${dir}/${e}`;
+        set.add(page);
+      }
     }
   }
   return [...set];
@@ -392,7 +395,7 @@ function transform(html, pagePath, locale, data, enData) {
   html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
     `<meta property="og:url" content="${localizedUrl}" />`);
 
-  // 7. hreflang block — replace or insert.
+  // 7. hreflang block - replace or insert.
   const hreflangBlock = buildHreflangBlock(pagePath);
   if (/<!-- i18n:hreflang:start -->/.test(html)) {
     html = html.replace(/<!-- i18n:hreflang:start -->[\s\S]*?<!-- i18n:hreflang:end -->/,
@@ -556,7 +559,7 @@ function updateCustomSwitcher(html, locale) {
 
 // Auto-generate JSON-LD blocks marked with data-i18n-jsonld-generate="<kind>".
 // The build pulls localised strings out of the locale JSON and emits a fresh
-// JSON-LD payload per language — keeps structured data in sync with copy.
+// JSON-LD payload per language - keeps structured data in sync with copy.
 function generateJsonLd(html, data, locale, pagePath) {
   return html.replace(
     /(<script\b[^>]*type="application\/ld\+json"[^>]*data-i18n-jsonld-generate="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,

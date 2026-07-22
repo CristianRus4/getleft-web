@@ -13,7 +13,7 @@
   <meta name="color-scheme" content="light dark" />
   <meta name="robots" content="noindex,nofollow" />
 
-  <!-- Smart App Banner (iOS Safari) — app-argument passes the invite URL so
+  <!-- Smart App Banner (iOS Safari) - app-argument passes the invite URL so
        tapping "Open" in the banner delivers the invite code to the app via
        the Universal Link handler (FriendsManager.handleIncomingURL). -->
   <meta name="apple-itunes-app" id="smart-banner-meta" content="app-id=6740155884" />
@@ -109,7 +109,7 @@
       margin: 0;
     }
 
-    /* QR + Download button row — mirrors .hero-download-group from the homepage */
+    /* QR + Download button row - mirrors .hero-download-group from the homepage */
     .invite-download-row {
       display: flex;
       align-items: center;
@@ -179,7 +179,7 @@
       margin-top: 8px;
     }
 
-    /* Inviter avatar — completely hidden until photo loads */
+    /* Inviter avatar - completely hidden until photo loads */
     @keyframes avatar-bounce {
       0%   { transform: rotate(var(--av-r)) translateY(0px); }
       18%  { transform: rotate(var(--av-r)) translateY(-24px); }
@@ -281,7 +281,7 @@
   </main>
 
   <footer class="invite-footer">
-    <div>Left — cntxt · Coded in NZ · © 2026</div>
+    <div>Left - cntxt · Coded in NZ · © 2026</div>
     <nav class="invite-footer-links" aria-label="Footer">
       <a href="/">Home</a>
       <a href="/support.html">Support</a>
@@ -322,7 +322,7 @@
         }
       })();
 
-      // Random tilt (±10°) — set BEFORE the avatar is shown so it appears already rotated
+      // Random tilt (±10°) - set BEFORE the avatar is shown so it appears already rotated
       var avatarRotation = (Math.random() * 20 - 10).toFixed(2);
       // var avatarOffsetX = 0; // always center-aligned for now
       var isBouncing = false;
@@ -342,7 +342,7 @@
           subtitleHTML = '';
         }
 
-        // Avatar block — only rendered when a photo URL is available
+        // Avatar block - only rendered when a photo URL is available
         var avatarHTML = '';
         if (photoURL) {
           var altText = inviterName ? escapeHTML(inviterName.replace(/^@/, '')) + '\'s profile photo' : 'Inviter profile photo';
@@ -362,7 +362,7 @@
           '<div class="invite-step">' +
           '<p class="invite-step-label">Download Left free</p>' +
           '<div class="invite-download-row hero-download-group">' +
-          '<div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code — tap for instructions">' +
+          '<div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">' +
           '<div class="bento-inner">' +
           '<div class="bento-face qr-face-front"><div class="qr-mask"></div></div>' +
           '<div class="bento-face bento-face-back">' +
@@ -392,7 +392,7 @@
           if (wrap) {
             // Set rotation BEFORE the avatar becomes visible so it appears already tilted
             wrap.style.setProperty('--av-r', avatarRotation + 'deg');
-            // avatarOffsetX commented out — always center aligned
+            // avatarOffsetX commented out - always center aligned
             // wrap.style.setProperty('--av-x', avatarOffsetX + 'px');
           }
 
@@ -425,11 +425,11 @@
 
           function onPhotoLoaded() {
             if (!wrap) return;
-            // Make avatar visible — it's already at the correct rotation
+            // Make avatar visible - it's already at the correct rotation
             wrap.classList.add('photo-ready');
             // First bounce plays immediately as it fades in
             setTimeout(doBounce, 30);
-            // Periodic bounce every 7 s — rotates first each time
+            // Periodic bounce every 7 s - rotates first each time
             if (periodicTimer) clearInterval(periodicTimer);
             periodicTimer = setInterval(triggerBounceWithNewRotation, 7000);
           }
@@ -460,7 +460,7 @@
           .replace(/"/g, '&quot;');
       }
 
-      // Show a loading indicator while fetching — do NOT render until we know
+      // Show a loading indicator while fetching - do NOT render until we know
       // whether there is a username, to avoid flashing the generic fallback.
       main.innerHTML =
         '<div class="invite-loading" aria-label="Loading">' +
@@ -469,18 +469,18 @@
         '<div class="invite-loading-dot"></div>' +
         '</div>';
 
-      // friendInvites/{inviteCode} — document ID IS the invite code.
+      // friendInvites/{inviteCode} - document ID IS the invite code.
       // The app now writes inviterUsername and profilePhotoPath directly into the
       // document, so a single fetch is all we need. No auth required (rules allow get: true).
       var inviteDocURL = 'https://firestore.googleapis.com/v1/projects/' + FIREBASE_PROJECT + '/databases/(default)/documents/friendInvites/' + encodeURIComponent(inviteCode);
 
-      // custom scheme — used only as button fallback, never auto-fired
+      // custom scheme - used only as button fallback, never auto-fired
       var customSchemeLink = 'left://friends/invite?invite=' + encodeURIComponent(inviteCode);
 
       // Universal Link (go.getleft.app) is the primary mechanism.
       // When the shared URL (go.getleft.app/invite?invite=CODE) is opened from
       // Messages, Mail, Notes, etc., iOS intercepts it before Safari loads and
-      // opens the app directly — zero prompt, zero browser. That path never
+      // opens the app directly - zero prompt, zero browser. That path never
       // reaches this page at all.
       //
       // This page only loads when:
@@ -488,7 +488,7 @@
       //   b) the user opened the link from inside Safari itself.
       //
       // In case (b), we can still try to open the app via the custom scheme on
-      // button tap — the user will see an iOS confirmation prompt, which is
+      // button tap - the user will see an iOS confirmation prompt, which is
       // unavoidable when already inside Safari. There is no prompt-free way to
       // open an app from within Safari.
       //
@@ -578,14 +578,14 @@
           if (!doc || !doc.fields) { renderPage(null, null); return; }
           var fields = doc.fields;
 
-          // profilePhotoPath written by the app — convert to a public Storage URL
+          // profilePhotoPath written by the app - convert to a public Storage URL
           var photoPath = fields.profilePhotoPath && fields.profilePhotoPath.stringValue;
           var photo = storageURL(photoPath);
 
-          // inviterUsername written directly by the app — use it immediately
+          // inviterUsername written directly by the app - use it immediately
           var username = fields.inviterUsername && fields.inviterUsername.stringValue;
           if (username && username.trim()) {
-            // Pass username without @ — renderPage handles the @ in the subtitle
+            // Pass username without @ - renderPage handles the @ in the subtitle
             renderPage(username.trim(), photo);
             return;
           }
@@ -602,13 +602,13 @@
               var pf = profileDoc.fields;
               var u = pf.username && pf.username.stringValue;
               var dn = pf.userName && pf.userName.stringValue;
-              // Pass username without @ — renderPage handles the @ in the subtitle
+              // Pass username without @ - renderPage handles the @ in the subtitle
               var name = (u && u.trim()) ? u.trim() : (dn && dn.trim()) || null;
               renderPage(name || null, photo);
             });
         })
         .catch(function () {
-          // Fetch failed — show generic fallback
+          // Fetch failed - show generic fallback
           renderPage(null, null);
         });
     })();

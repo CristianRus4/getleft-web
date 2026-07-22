@@ -1337,7 +1337,7 @@ function normalizeExistingBody(slug, html) {
     .replace(/7\.5 hrs \(5 cycles\) ✓/g, '7.5 hrs (5 cycles, recommended)')
     .replace(/7\.5 hrs ✓/g, '7.5 hrs (recommended)')
     .replace('both count down to the moment 2025 ends and 2026 begins at midnight in your local time zone.', 'both count down to the moment the current year ends and the next year begins at midnight in your local time zone.')
-    .replace('In most years, Western and Orthodox Easter fall on different Sundays — sometimes just one week apart, sometimes up to five weeks apart. In some years (such as 2025 and 2028) they coincide on the same date.', 'In most years, Western and Orthodox Easter fall on different Sundays - sometimes just one week apart, sometimes up to five weeks apart. In some years they coincide on the same date.')
+    .replace('In most years, Western and Orthodox Easter fall on different Sundays - sometimes just one week apart, sometimes up to five weeks apart. In some years (such as 2025 and 2028) they coincide on the same date.', 'In most years, Western and Orthodox Easter fall on different Sundays - sometimes just one week apart, sometimes up to five weeks apart. In some years they coincide on the same date.')
     .replace('The next 53-week years after 2026 are 2032 and 2037.', 'Upcoming 53-week years include 2032 and 2037.');
 
   return replaceRelatedBlock(html, relatedOverrides[slug]);
