@@ -1141,7 +1141,7 @@ function downloadBlock() {
                 <div class="qr-mask"></div>
               </div>
               <div class="bento-face bento-face-back">
-                <p class="qr-face-back-text">Scan with your camera to find Left on the App Store. Or search <strong>"Left"</strong> on the App Store.</p>
+                <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
               </div>
             </div>
           </div>
