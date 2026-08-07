@@ -35,6 +35,12 @@
 
   // ───────── Bento flip ─────────
   document.querySelectorAll('.bento-cell').forEach(cell => {
+    if (cell.classList.contains('qr-flip')) {
+      cell.removeAttribute('tabindex');
+      cell.removeAttribute('role');
+      cell.removeAttribute('aria-label');
+      return;
+    }
     let timer = null;
     const flip = () => {
       cell.classList.add('is-flipped');
@@ -480,7 +486,7 @@
     }
   }
 
-  // ───────── Match QR card width to download button width (desktop) ─────────
+  // ───────── Match the expanded QR square to its download button width ─────────
   (() => {
     const sync = () => {
       document.querySelectorAll('.hero-download-group, .download-group').forEach(group => {
@@ -489,9 +495,7 @@
         if (!btn || !qr) return;
         const w = btn.getBoundingClientRect().width;
         if (w > 0) {
-          qr.style.setProperty('width', `${w}px`, 'important');
-          qr.style.setProperty('height', `${w}px`, 'important');
-          qr.style.setProperty('min-height', `${w}px`, 'important');
+          group.style.setProperty('--download-control-size', `${w}px`);
         }
       });
     };

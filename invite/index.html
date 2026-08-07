@@ -512,25 +512,16 @@
         });
       }
 
-      // Bento flip behavior for the QR card (matches index.js)
-      function wireQrFlip() {
+      // The QR is a visual hover reveal; keep the App Store link as the only control.
+      function prepareQrReveal() {
         document.querySelectorAll('.qr-flip.bento-cell').forEach(function (cell) {
-          if (cell.dataset.flipWired === '1') return;
-          cell.dataset.flipWired = '1';
-          var timer = null;
-          var flip = function () {
-            cell.classList.add('is-flipped');
-            clearTimeout(timer);
-            timer = setTimeout(function () { cell.classList.remove('is-flipped'); }, 3000);
-          };
-          cell.addEventListener('click', flip);
-          cell.addEventListener('keydown', function (e) {
-            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); flip(); }
-          });
+          cell.removeAttribute('tabindex');
+          cell.removeAttribute('role');
+          cell.removeAttribute('aria-label');
         });
       }
 
-      // Size the QR card to match the dl-btn width (matches index.js)
+      // Size the expanded QR square to match the dl-btn width (matches index.js)
       function syncQrSize() {
         document.querySelectorAll('.hero-download-group, .download-group').forEach(function (group) {
           var btn = group.querySelector('.dl-btn');
@@ -538,9 +529,7 @@
           if (!btn || !qr) return;
           var w = btn.getBoundingClientRect().width;
           if (w > 0) {
-            qr.style.setProperty('width', w + 'px', 'important');
-            qr.style.setProperty('height', w + 'px', 'important');
-            qr.style.setProperty('min-height', w + 'px', 'important');
+            group.style.setProperty('--download-control-size', w + 'px');
           }
         });
       }
@@ -561,7 +550,7 @@
       renderPage = function (inviterName, photoURL) {
         _origRenderPage(inviterName, photoURL);
         wireAcceptButton();
-        wireQrFlip();
+        prepareQrReveal();
         syncQrSize();
         syncInviteButtonSize();
         if (document.fonts && document.fonts.ready) {

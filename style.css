@@ -294,25 +294,94 @@ p  { margin: 0 0 1em; }
 /* App Store badge - hidden, replaced by dl-btn */
 .appstore-badge { display: none !important; }
 
-/* QR flip card - bento-style, desktop only. Width/height set in JS to match button. */
+/* Download button QR reveal - desktop only. The square grows upward so the
+   button's bottom edge stays fixed throughout the 500ms transition. */
 .qr-flip {
   display: none;
-  flex-shrink: 0;
 }
-@media (min-width: 768px) { .qr-flip { display: block; } }
 
-.qr-face-front {
+@media (min-width: 768px) and (hover: hover) and (pointer: fine) {
+  .hero-download-group,
+  .download-group {
+    --download-control-size: 154px;
+    position: relative;
+    width: max-content;
+    min-height: 48px;
+    isolation: isolate;
+  }
+  .hero-download-group::before,
+  .download-group::before {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    right: 0;
+    bottom: 0;
+    width: var(--download-control-size);
+    height: 48px;
+  }
+  .hero-download-group:hover::before,
+  .download-group:hover::before {
+    height: var(--download-control-size);
+  }
+  .hero-download-group .qr-flip,
+  .download-group .qr-flip {
+    display: block;
+    position: absolute;
+    z-index: 2;
+    right: 0;
+    bottom: 0;
+    width: var(--download-control-size) !important;
+    height: 48px !important;
+    min-height: 0 !important;
+    overflow: hidden;
+    border-radius: 14px;
+    opacity: 0;
+    pointer-events: none;
+    transform-origin: bottom center;
+    transition:
+      height 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 90ms linear;
+  }
+  .hero-download-group:hover .qr-flip,
+  .download-group:hover .qr-flip {
+    height: var(--download-control-size) !important;
+    border-radius: var(--radius-card);
+    opacity: 1;
+  }
+  .hero-download-group .dl-btn,
+  .download-group .dl-btn {
+    position: relative;
+    z-index: 1;
+    transition: opacity 90ms linear, background 180ms ease, color 180ms ease;
+  }
+  .hero-download-group:hover .dl-btn,
+  .download-group:hover .dl-btn {
+    background: var(--text);
+    opacity: 0;
+  }
+}
+
+.qr-flip .qr-face-front {
   justify-content: center;
   align-items: center;
-  padding: 6px;
+  padding: 12px;
+  background: var(--text);
+  border-radius: inherit;
+  box-shadow: var(--shadow-md);
 }
 .qr-mask {
   width: 100%;
   height: 100%;
-  background: var(--text);
+  background: var(--bg);
   -webkit-mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
           mask: url("/invite/qr-app-link.svg") center / contain no-repeat;
 }
+.qr-flip .bento-inner {
+  transform: none !important;
+  transition: none;
+}
+.qr-flip .bento-face-back { display: none; }
 .qr-face-back-text {
   font-size: 12px;
   line-height: 1.5;
@@ -1606,6 +1675,11 @@ p  { margin: 0 0 1em; }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .qr-flip,
+  .hero-download-group .dl-btn,
+  .download-group .dl-btn {
+    transition-duration: 0.001ms !important;
+  }
   .bento-inner,
   .bento-art *,
   .bento-art *::before,
