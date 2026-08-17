@@ -47,7 +47,7 @@ The `.well-known/apple-app-site-association` file at the root is served at:
 https://go.getleft.app/.well-known/apple-app-site-association
 ```
 
-This enables iOS to intercept invite/friend links and the Todoist OAuth callback on `go.getleft.app`, opening Left directly instead of Safari.
+This enables iOS to intercept invite/friend links and the Todoist OAuth callback on `go.getleft.app`, opening Left directly instead of Safari. The same AASA file also declares Left under `webcredentials`, which AuthenticationServices requires for the HTTPS Todoist callback.
 
 **Important:** `getleft.app` intentionally does NOT have Universal Links configured. The invite landing page loads in Safari (always), and only the "Accept invitation" button points to `go.getleft.app` to trigger the app.
 
@@ -72,7 +72,7 @@ Todoist discovers Left as a public OAuth client from:
 https://getleft.app/.well-known/todoist-oauth-client.json
 ```
 
-The authorization callback is `https://go.getleft.app/todoist/oauth/callback`. The AASA components above route that callback into the app. The public client uses Authorization Code with PKCE and rotating refresh tokens, so no Todoist client secret is stored in this repository or the app.
+The authorization callback is `https://go.getleft.app/todoist/oauth/callback`. The AASA components route that callback into the app and `webcredentials.apps` associates the callback domain with `5X94H5ZCD4.com.cr.left`. The app must include both `applinks:go.getleft.app` and `webcredentials:go.getleft.app` in its signed Associated Domains entitlement. The public client uses Authorization Code with PKCE and rotating refresh tokens, so no Todoist client secret is stored in this repository or the app.
 
 ---
 
