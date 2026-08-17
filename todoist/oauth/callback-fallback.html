@@ -11,12 +11,24 @@
     main { width: min(32rem, calc(100% - 3rem)); text-align: center; }
     h1 { margin: 0 0 .75rem; font-size: clamp(2rem, 8vw, 3.5rem); letter-spacing: -.04em; }
     p { margin: 0; color: color-mix(in srgb, CanvasText 65%, transparent); font-size: 1.05rem; line-height: 1.5; }
+    a { display: inline-block; margin-top: 1.5rem; padding: .8rem 1.2rem; border-radius: 999px; background: #dc4c3e; color: white; font-weight: 700; text-decoration: none; }
   </style>
 </head>
 <body>
   <main>
     <h1>Return to Left</h1>
-    <p>Open Left to finish connecting your Todoist account.</p>
+    <p>Opening Left to finish connecting your Todoist account.</p>
+    <a id="open-left" href="left://todoist/oauth/callback">Open Left</a>
   </main>
+  <script>
+    const callback = new URL("left://todoist/oauth/callback");
+    const incoming = new URLSearchParams(window.location.search);
+    for (const name of ["code", "state", "error", "error_description"]) {
+      const value = incoming.get(name);
+      if (value !== null) callback.searchParams.set(name, value);
+    }
+    document.getElementById("open-left").href = callback.href;
+    window.location.replace(callback.href);
+  </script>
 </body>
 </html>
