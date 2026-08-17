@@ -11,7 +11,8 @@ Hosted on **Cloudflare Pages**, deployed from this repo.
 ```
 getleft.app/
 ├── .well-known/
-│   └── apple-app-site-association     ← AASA for go.getleft.app Universal Links
+│   ├── apple-app-site-association     ← AASA for go.getleft.app Universal Links
+│   └── todoist-oauth-client.json      ← Todoist public OAuth client metadata
 ├── public/
 │   └── invite/
 │       └── index.html                 ← Invitation landing page (getleft.app/invite?invite=CODE)
@@ -46,7 +47,7 @@ The `.well-known/apple-app-site-association` file at the root is served at:
 https://go.getleft.app/.well-known/apple-app-site-association
 ```
 
-This enables iOS to intercept taps on `go.getleft.app/invite?invite=CODE` and open Left directly, bypassing Safari.
+This enables iOS to intercept invite/friend links and the Todoist OAuth callback on `go.getleft.app`, opening Left directly instead of Safari.
 
 **Important:** `getleft.app` intentionally does NOT have Universal Links configured. The invite landing page loads in Safari (always), and only the "Accept invitation" button points to `go.getleft.app` to trigger the app.
 
@@ -62,6 +63,16 @@ Validate after deploy:
 ```
 https://app-site-association.cdn-apple.com/a/v1/go.getleft.app
 ```
+
+### Todoist OAuth
+
+Todoist discovers Left as a public OAuth client from:
+
+```
+https://getleft.app/.well-known/todoist-oauth-client.json
+```
+
+The authorization callback is `https://go.getleft.app/todoist/oauth/callback`. The AASA components above route that callback into the app. The public client uses Authorization Code with PKCE and rotating refresh tokens, so no Todoist client secret is stored in this repository or the app.
 
 ---
 
