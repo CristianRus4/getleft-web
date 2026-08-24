@@ -6,6 +6,11 @@
 (() => {
   'use strict';
 
+  // Keep footer copyright years current without hardcoding them into page copy.
+  document.querySelectorAll('[data-current-year]').forEach((element) => {
+    element.textContent = String(new Date().getFullYear());
+  });
+
   // ───────── Nav scroll reveal ─────────
   const nav = document.querySelector('.top-nav');
   if (nav) {

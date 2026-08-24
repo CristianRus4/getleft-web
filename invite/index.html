@@ -171,6 +171,10 @@
       color: var(--text);
     }
 
+    .invite-footer-brand a:hover {
+      color: var(--accent);
+    }
+
     .invite-footer-links {
       display: flex;
       justify-content: center;
@@ -281,7 +285,7 @@
   </main>
 
   <footer class="invite-footer">
-    <div>Left - cntxt · Coded in NZ · © 2026</div>
+    <div class="invite-footer-brand">Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></div>
     <nav class="invite-footer-links" aria-label="Footer">
       <a href="/">Home</a>
       <a href="/support.html">Support</a>
@@ -293,6 +297,10 @@
 
   <script>
     (function () {
+      document.querySelectorAll('[data-current-year]').forEach(function (element) {
+        element.textContent = String(new Date().getFullYear());
+      });
+
       var FIREBASE_PROJECT = "left-app-4ebe8";
       var params = new URLSearchParams(window.location.search);
       var inviteCode = params.get('invite');
