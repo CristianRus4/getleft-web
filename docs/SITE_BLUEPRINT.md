@@ -16,6 +16,7 @@ The site serves four related jobs:
 | --- | --- | --- |
 | `getleft.app` | Marketing, support, blog, contact, press, download, invitation landing | Intentionally does not opt into Left Universal Links |
 | `go.getleft.app` | App-opening handoffs | Associated domain for invitations and HTTPS OAuth return |
+| `/app` | Generic app-opening Universal Link | Opens Left when installed; otherwise redirects directly to its App Store page |
 | `/invite?invite=<code>` | Browser-first invitation explanation | Accept action moves to `go.getleft.app` |
 | `/todoist/oauth/return` | Todoist HTTPS return | Forwards authorized parameters to the app's `left://` callback flow |
 | `/.well-known/*` | AASA and public OAuth metadata | Must be served without redirects or content rewriting |

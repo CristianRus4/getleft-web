@@ -47,7 +47,15 @@ The `.well-known/apple-app-site-association` file at the root is served at:
 https://go.getleft.app/.well-known/apple-app-site-association
 ```
 
-This enables iOS to intercept invite/friend links on `go.getleft.app`, opening Left directly instead of Safari.
+This enables iOS to intercept app, invite, and friend links on `go.getleft.app`, opening Left directly instead of Safari.
+
+Use this link when an App Store surface only needs to open Left, without navigating to a specific feature:
+
+```
+https://go.getleft.app/app
+```
+
+When Left is installed, iOS opens the app directly as a Universal Link. When it is not installed, Cloudflare redirects the visitor directly to Left on the App Store.
 
 **Important:** `getleft.app` intentionally does NOT have Universal Links configured. The invite landing page loads in Safari (always), and only the "Accept invitation" button points to `go.getleft.app` to trigger the app.
 
