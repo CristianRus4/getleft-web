@@ -91,8 +91,7 @@ catalogs must preserve:
 
 Never publish a machine-updated locale without checking page structure,
 navigation, metadata, missing tokens, and the most sensitive support flows.
-The translation workflow and Nexus extraction rules live under `i18n/` and
-`docs/nexus/`.
+The translation workflow lives under `i18n/` and `docs/`.
 
 ## Trust boundaries
 

@@ -13,8 +13,8 @@ context.
 | Marketing, support, SEO, deployment, or release QA | [Marketing and operations](MARKETING_AND_OPERATIONS.md) |
 | Product-approved website copy | [Left website content](../../../Apps/Left-app/docs/WEBSITE_CONTENT.md) |
 | Product architecture and terminology | [Left blueprint](../../../Apps/Left-app/BLUEPRINT.md) |
-| Translation implementation | [i18n README](../i18n/README.md) and [Nexus translation notes](nexus/TRANSLATIONS.md) |
-| Nexus ownership | [Nexus project](nexus/PROJECT.md) and [website operations](nexus/WEBSITE.md) |
+| Translation implementation | [i18n README](../i18n/README.md) and [translation notes](TRANSLATIONS.md) |
+| Project ownership | [project](PROJECT.md) and [website operations](WEBSITE.md) |
 
 ## Identity
 
@@ -27,7 +27,7 @@ context.
 
 `getleft-web` is the active Left website. The older `left-time` site or
 repository is not a current product surface and must not be used as the source
-for links, copy, or Nexus ownership.
+for links, copy, or Project ownership.
 
 ## Documentation contract
 
@@ -36,4 +36,4 @@ for links, copy, or Nexus ownership.
 - `Apps/Left-app/docs/WEBSITE_CONTENT.md` is the approved product-copy bridge.
 - This repository is authoritative for public pages, support articles, SEO
   metadata, legal copy, and web integration endpoints.
-- Commit and push docs to main before expecting them to appear in Nexus.
+- Commit and push docs to main before expecting Context to read them.

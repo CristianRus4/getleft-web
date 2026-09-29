@@ -75,9 +75,6 @@ Rollback is a revert and redeploy of the known-good commit. For a broken
 integration endpoint, restore the exact previous `.well-known` or redirect file
 first; avoid opportunistic content changes in the incident fix.
 
-## Nexus
+## Repository documentation
 
-`docs/nexus/manifest.json` includes the root README, translation summary, and
-all Markdown under `docs/`. The Nexus workflow runs separately from the website
-deployment. A successful site publish does not prove docs sync succeeded, and a
-successful Nexus sync does not prove Cloudflare published the site.
+Committed documentation lives in this repository and Context reads it directly.
