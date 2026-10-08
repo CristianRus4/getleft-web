@@ -1110,6 +1110,8 @@ function toolHead(tool, extraJsonLd = []) {
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
   ${jsonLd.map(jsonScript).join('\n  ')}
+  <script src="https://cdn.databuddy.cc/databuddy.js" data-client-id="cd7260be-089a-401c-a7be-a15078636583" data-track-web-vitals="true" data-track-errors="true" data-track-outgoing-links="true" crossorigin="anonymous" async></script>
+  <script src="/track.js" defer></script>
 </head>
 `;
 }
@@ -1284,6 +1286,8 @@ function toolsIndexPage() {
     description: indexTool.desc,
   })}
   ${jsonScript(itemListJsonLd())}
+  <script src="https://cdn.databuddy.cc/databuddy.js" data-client-id="cd7260be-089a-401c-a7be-a15078636583" data-track-web-vitals="true" data-track-errors="true" data-track-outgoing-links="true" crossorigin="anonymous" async></script>
+  <script src="/track.js" defer></script>
 </head>`;
 
   const sections = groups.map(group => `<section class="tools-group">
