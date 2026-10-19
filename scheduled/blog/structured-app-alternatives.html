@@ -1,0 +1,560 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>6 Best Structured App Alternatives for iPhone (2026) | Left</title>
+  <meta name="description" content="The best alternatives to the Structured daily planner for iPhone in 2026: visual planners, day views and time blockers, compared. Checked 20 October 2026." />
+  <link rel="canonical" href="https://getleft.app/blog/structured-app-alternatives" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/structured-app-alternatives" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/structured-app-alternatives" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="6 Best Structured App Alternatives for iPhone (2026)" />
+  <meta property="og:description" content="The best alternatives to the Structured daily planner for iPhone in 2026: visual planners, day views and time blockers, compared. Checked 20 October 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/structured-app-alternatives" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="6 Best Structured App Alternatives for iPhone (2026)" />
+  <meta name="twitter:description" content="The best alternatives to the Structured daily planner for iPhone in 2026: visual planners, day views and time blockers, compared. Checked 20 October 2026." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "6 Best Structured App Alternatives for iPhone in 2026",
+  "description": "The best alternatives to the Structured daily planner for iPhone in 2026: visual planners, day views and time blockers, compared. Checked 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-10-28",
+  "dateModified": "2026-10-28",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/structured-app-alternatives",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "6 Best Structured App Alternatives for iPhone in 2026",
+      "item": "https://getleft.app/blog/structured-app-alternatives"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best alternative to Structured?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on how you plan. Tiimo is the closest visual planner. Left suits you if your plans already live in Apple Calendar, Reminders or Todoist and you want them next to your habits and the time left today. Planny puts a timeline on top of Apple Reminders and Calendar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Structured free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Structured is free to download, and its App Store page lists a free version with the visual timeline, inbox, focus timer, Live Activities and widgets. Calendar and Reminders sync, routines and AI planning are part of Structured Pro."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a Structured alternative that works with Apple Reminders?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left Planner shows reminders from the Apple Reminders lists you choose and saves completions back, and Planny is built directly on Apple Reminders and Calendar. Tiimo also lists Apple Calendar and Reminders sync."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left Planner free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Planner is part of Left Premium, a subscription or lifetime purchase. On the free plan it shows a sample. Left's Time Left views and the Day, Daytime and Minutes widgets are free."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Structured alternatives work on Apple Watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tiimo, Planny, TickTick, Things 3 and Akiflow all list Apple Watch on their App Store pages. Left doesn't have an Apple Watch app."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>6 Best Structured App Alternatives for iPhone in 2026</h1>
+<p class="article-meta">Updated <time datetime="2026-10-28">October 28, 2026</time> · 9 min read</p>
+<p><em>Checked 20 October 2026.</em> Every competitor detail below comes from that app's US App Store page and Apple's public lookup data, fetched that day, plus developers' own websites where we say so. Left details come from the app itself.</p>
+<p>Structured is a visual day planner: your tasks and events sit on a drag-and-drop timeline, so you can see the shape of the day. It has 4.8 stars from 167,754 ratings on the US App Store. People look for an alternative when they want their plans to stay in Apple Calendar, Reminders or another task app, want a different price model, or want a planner that does more or less than time blocking. Here are six alternatives, starting with ours, and when each one fits.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is why, and when another app suits you better.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best if your plans already live in Apple Calendar, Reminders or Todoist, and you want to see how much of the day is left:</strong> Left.</li>
+  <li><strong>Closest like-for-like visual planner:</strong> Tiimo.</li>
+  <li><strong>Best timeline built directly on Apple Reminders and Calendar:</strong> Planny.</li>
+  <li><strong>Best for tasks, a calendar, habits and a timer in one app:</strong> TickTick.</li>
+  <li><strong>Best one-time-purchase task manager:</strong> Things 3.</li>
+  <li><strong>Best for professional calendar time blocking:</strong> Akiflow.</li>
+</ul>
+
+<h2>What Structured does well</h2>
+<p>By unorderly GmbH. Its <a href="https://apps.apple.com/us/app/id1499198946" target="_blank" rel="noopener">App Store page</a> lists, in the free version, a visual day planner with a drag-and-drop timeline, an inbox, sub-tasks with notes, a Pomodoro focus timer, Live Activities, interactive widgets and sync across iPhone, iPad, Apple Watch and Mac.</p>
+<ul>
+  <li><strong>Structured Pro:</strong> connects your calendars and Reminders, adds recurring tasks and routines, AI day planning, Replan for missed tasks and custom notifications. It's offered monthly, annually or as a lifetime purchase.</li>
+  <li><strong>Platforms:</strong> iPhone, iPad, Mac, Apple Watch and Vision Pro, and the developer's site says it's also on the web and Android.</li>
+</ul>
+<p>If you like time blocking on a timeline and the free version covers you, Structured is a strong choice. The alternatives below suit different ways of planning.</p>
+
+<h2>Comparison table</h2>
+<p>Ratings and counts are from the US App Store, checked 20 October 2026. "Not stated" means the listing doesn't mention it, not that the feature is missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>App</th><th>Approach</th><th>Price model</th><th>Apple Calendar and Reminders</th><th>Apple Watch</th><th>Rating (US)</th></tr></thead>
+  <tbody>
+    <tr><td>Structured</td><td>Drag-and-drop timeline</td><td>Free; Pro monthly, yearly or lifetime</td><td>Yes (Pro)</td><td>Yes</td><td>4.8 (167,754)</td></tr>
+    <tr><td>Left</td><td>Day view plus time left</td><td>Planner is part of Left Premium (subscription or lifetime)</td><td>Yes, plus Todoist</td><td>No</td><td>Not shown (our app)</td></tr>
+    <tr><td>Tiimo</td><td>Visual schedule with AI co-planner</td><td>Free basic planner; Tiimo Pro</td><td>Yes</td><td>Yes</td><td>4.6 (20,948)</td></tr>
+    <tr><td>Planny</td><td>Timeline on Apple Reminders and Calendar</td><td>Free; Premium monthly, annual or lifetime</td><td>Yes (built on them)</td><td>Yes</td><td>4.4 (44)</td></tr>
+    <tr><td>TickTick</td><td>Tasks, calendar, habits, timer</td><td>Free; Premium monthly or annual</td><td>Calendar integration listed; Reminders not stated</td><td>Yes</td><td>4.9 (46,468)</td></tr>
+    <tr><td>Things 3</td><td>Task manager with Today and Upcoming</td><td>$9.99 once (iPhone)</td><td>Calendar events in Today and Upcoming</td><td>Yes</td><td>4.8 (28,016)</td></tr>
+    <tr><td>Akiflow</td><td>Calendar and task time blocking</td><td>Premium weekly, monthly or yearly; no free plan (developer site)</td><td>Google Calendar, Outlook and more</td><td>Yes</td><td>4.2 (189)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Left: your whole day, and how much of it is left</h2>
+<p>Left is a time awareness app for iPhone. Its <strong>Planner</strong> is a day view that pulls together what you already use, and its Time Left views show how much of today, the week and the year remain.</p>
+<ul>
+  <li><strong>One day view:</strong> Planner shows events from the Apple Calendars you choose, reminders from the Apple Reminders lists you choose, and Todoist tasks once you connect it, next to your habits, streaks, Aims and Ahead countdowns. A summary adds the weather and sleep, steps, workouts and mindful time from Apple Health.</li>
+  <li><strong>Not read-only:</strong> tick off a reminder or a Todoist task and the change is saved back; log a habit by tapping its symbol; add a reminder or calendar event with +. <strong>View as</strong> switches between a list, a week and a month.</li>
+  <li><strong>Planner widget:</strong> small, medium and large, interactive, so you can complete a reminder or a habit from the Home Screen.</li>
+  <li><strong>Time left today:</strong> the Today view and the Day widget show the hours left today as a grid, the Daytime widget fades the parts of the day that have passed, and the Minutes widget counts down the current hour.</li>
+  <li><strong>Nudges:</strong> a habit's <strong>Get a persistent reminder</strong> shows a Live Activity an hour before a time you choose if it isn't logged, and countdowns can show a Live Activity before they start or end.</li>
+</ul>
+<p><strong>Best for:</strong> people who keep plans in Apple Calendar, Reminders or Todoist and want to see the day, their routines and the time that's left in one place, without moving everything into a new planner.</p>
+<p><strong>Price:</strong> Planner is part of Left Premium, a subscription or lifetime purchase; on the free plan it shows a sample. Time Left, the Day, Daytime and Minutes widgets, and 2 each of habits, streaks, Aims and countdowns are free. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> uses your existing calendars, reminders and Todoist instead of a separate task list; habits and countdowns in the same view; an interactive Planner widget; free time-left widgets.</p>
+<p><strong>Cons:</strong> not a time-blocking timeline: there's no drag-and-drop scheduling, inbox or AI day planning; Planner needs Left Premium, while Structured has a free version; no Apple Watch app; iPhone only, with iOS 26 or later.</p>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-planner-feature-1-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-planner-feature-1-light.webp" alt="Left Planner day view with a summary of weather, sleep, steps, a run and mindful time, followed by a birthday, a work off-site, reminders and a standup meeting" width="560" height="1272" loading="lazy" decoding="async" /></picture><figcaption>Left Planner: the day's summary, events and reminders in one view.</figcaption></figure>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Try Left Planner</a></p>
+
+<h2>2. Tiimo</h2>
+<p>By tiimo ApS. Its <a href="https://apps.apple.com/us/app/id1480220328" target="_blank" rel="noopener">App Store page</a> lists an AI co-planner, a color-coded visual schedule with drag-and-drop tasks, a to-do list with AI priority grouping, a focus timer, sync with Apple Calendar and Reminders, and widgets for the Home Screen and Lock Screen. It describes itself as designed with neurodivergent people in mind.</p>
+<p><strong>Best for:</strong> people who want a visual timeline like Structured's, with AI help to plan the day.</p>
+<p><strong>Price:</strong> free version with a basic planner, limited AI chats and 1 profile. Tiimo Pro unlocks the full features and the web version, with a 7-day trial on the yearly plan.</p>
+<p><strong>Pros:</strong> Apple Watch, iPad and Mac; Apple Calendar and Reminders sync; Tiimo's site says it's also on Android and the web.</p>
+<p><strong>Cons:</strong> the free version is limited; its privacy label lists identifiers used to track you.</p>
+
+<h2>3. Planny</h2>
+<p>By Kevin Reutter. Its <a href="https://apps.apple.com/us/app/id6692634891" target="_blank" rel="noopener">App Store page</a> describes one chronological timeline of tasks and events, built directly on Apple Reminders and Calendar with no account, a focus timer "with a Live Activity on the Lock Screen and in the Dynamic Island", habits with streaks, Home Screen and Lock Screen widgets and an Apple Watch app with complications.</p>
+<p><strong>Best for:</strong> Apple Reminders and Calendar users who want a timeline view on top of them.</p>
+<p><strong>Price:</strong> "Everything essential is free." Planny Premium, monthly, yearly, lifetime or family, extends Planny Intelligence, statistics ranges, habits, attachments and wallpapers.</p>
+<p><strong>Pros:</strong> no separate account or database; Live Activity focus timer; Apple Watch; updated in October 2026.</p>
+<p><strong>Cons:</strong> only 44 ratings so far; requires iOS 26 or later, like Left.</p>
+
+<h2>4. TickTick</h2>
+<p>By Appest Limited. Its <a href="https://apps.apple.com/us/app/id626144601" target="_blank" rel="noopener">App Store page</a> describes a to-do list with calendar views, multiple reminders, a Pomo timer, habits, countdowns and Siri. Recent release notes add extra-large widgets, Live Activities in landscape and StandBy, and an AI assistant.</p>
+<p><strong>Best for:</strong> one app for tasks, a calendar view, habits and focus sessions.</p>
+<p><strong>Price:</strong> "TickTick is always free"; Premium, monthly or annual, raises limits such as lists, tasks per list and reminders per task, and adds calendar subscriptions and more than 5 habits and countdowns.</p>
+<p><strong>Pros:</strong> 4.9 from 46,468 ratings; Apple Watch; widgets and Live Activities; around since 2013.</p>
+<p><strong>Cons:</strong> it's task-list-first rather than a timeline planner; its privacy label lists contact info, user content, identifiers and diagnostics as linked to you.</p>
+
+<h2>5. Things 3</h2>
+<p>By Cultured Code GmbH &amp; Co. KG. Its <a href="https://apps.apple.com/us/app/id904237743" target="_blank" rel="noopener">App Store page</a> describes to-dos, projects and areas, Today and Upcoming lists that show your to-dos alongside calendar events, This Evening, reminders, repeating to-dos, Home Screen and Lock Screen widgets and an Apple Watch app.</p>
+<p><strong>Best for:</strong> people who want a calm, polished task manager they pay for once.</p>
+<p><strong>Price:</strong> $9.99 on iPhone, with no in-app purchases. The developer's site sells the Mac, iPad and Vision Pro versions separately.</p>
+<p><strong>Pros:</strong> no subscription; 4.8 from 28,016 ratings; calendar events next to your to-dos; Apple Watch.</p>
+<p><strong>Cons:</strong> no timeline time blocking is described; other devices are separate purchases; Apple platforms only, like Left.</p>
+
+<h2>6. Akiflow</h2>
+<p>By Akiflow Inc. Its <a href="https://apps.apple.com/us/app/id1621279084" target="_blank" rel="noopener">App Store page</a> describes calendar, tasks and agenda in one, syncing with Google Calendar and Outlook, connections to "3,000+ Tools &amp; Apps", and an Apple Watch app with quick capture and complications.</p>
+<p><strong>Best for:</strong> professionals who time-block their work calendar across many tools.</p>
+<p><strong>Price:</strong> Premium is listed weekly, monthly and yearly. The developer's pricing page says "Akiflow has no free plan", with a 7-day trial.</p>
+<p><strong>Pros:</strong> deep calendar and integration support; Apple Watch; available on iPhone, web and desktop, per the listing.</p>
+<p><strong>Cons:</strong> no free plan; 4.2 from 189 ratings; its privacy label lists contact info, user content, identifiers, usage data and diagnostics as linked to you.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>Starting point:</strong> apps often named as Structured alternatives, checked on the US App Store on 20 October 2026.</li>
+  <li><strong>Kept:</strong> iPhone apps updated in the last few months that plan the day: visual planners, calendar-based time blockers and task managers with a day view.</li>
+  <li><strong>Left out:</strong> mobile apps that the developers describe as companions to a desktop app, apps not updated in over a year, and pure calendar apps.</li>
+  <li><strong>Sources:</strong> each app's own App Store page and Apple's lookup data, plus Structured's, Tiimo's, Akiflow's and Cultured Code's websites where noted. No paid placements, and no developer reviewed this page.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>Your plans live in Apple Calendar, Reminders or Todoist and you want them next to your habits and the time left today: <strong>Left</strong>.</li>
+  <li>You want Structured's visual style with AI planning: <strong>Tiimo</strong>.</li>
+  <li>You want a timeline on top of Apple Reminders: <strong>Planny</strong>.</li>
+  <li>You want tasks, habits and a timer in one app: <strong>TickTick</strong>.</li>
+  <li>You want to pay once: <strong>Things 3</strong>.</li>
+  <li>You time-block a busy work calendar: <strong>Akiflow</strong>.</li>
+</ul>
+<p>For more on Left's day view, read the <a href="/blog/left-planner-guide">Left Planner guide</a>. If seeing time pass is the real goal, our guide to <a href="/blog/time-management-best-practices">time management best practices</a> and the <a href="/blog/best-productivity-apps-adhd">productivity apps roundup</a> may help.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best alternative to Structured?</h3>
+<p>It depends on how you plan. Tiimo is the closest visual planner. Left suits you if your plans already live in Apple Calendar, Reminders or Todoist and you want them next to your habits and the time left today. Planny puts a timeline on top of Apple Reminders and Calendar.</p>
+<h3>Is Structured free?</h3>
+<p>Structured is free to download, and its App Store page lists a free version with the visual timeline, inbox, focus timer, Live Activities and widgets. Calendar and Reminders sync, routines and AI planning are part of Structured Pro.</p>
+<h3>Is there a Structured alternative that works with Apple Reminders?</h3>
+<p>Yes. Left Planner shows reminders from the Apple Reminders lists you choose and saves completions back, and Planny is built directly on Apple Reminders and Calendar. Tiimo also lists Apple Calendar and Reminders sync.</p>
+<h3>Is Left Planner free?</h3>
+<p>No. Planner is part of Left Premium, a subscription or lifetime purchase. On the free plan it shows a sample. Left's Time Left views and the Day, Daytime and Minutes widgets are free.</p>
+<h3>Which Structured alternatives work on Apple Watch?</h3>
+<p>Tiimo, Planny, TickTick, Things 3 and Akiflow all list Apple Watch on their App Store pages. Left doesn't have an Apple Watch app.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
