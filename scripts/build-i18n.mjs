@@ -11,6 +11,9 @@
 //     hashFamilyMinCoverage, so no locale URL serves mostly-English content.
 // Every page's hreflang, language switcher and detect script list only the
 // locales that actually have that page. The build also writes sitemap.xml.
+// Drip publishing (scripts/lib/publish.mjs): a hash-family locale copy is also held
+// until i18n/publish-schedule.json gives its "<family>/<locale>" release a date on or
+// before the build date. Pages waiting in scheduled/ are not in any family yet.
 //
 // Usage:
 //   node scripts/build-i18n.mjs                  # strict: fail on missing keys in "keys" families
@@ -22,10 +25,12 @@ import {
   ROOT, SITE_ORIGIN, SOURCE_LOCALE, LOCALES, TARGET_LOCALES, LOCALE_CODES, FAMILIES, HASH_MIN_COVERAGE,
   listFamilyPages, pageToUrlPath, pageUrl, hreflangBlock, lastModified, escapeText, escapeAttr, readJson,
 } from './lib/site.mjs';
+import { buildDate, isReleased, writeCalendar } from './lib/publish.mjs';
 
 const args = new Set(process.argv.slice(2));
 const ALLOW_MISSING = args.has('--allow-missing');
 const VERBOSE = args.has('--verbose');
+const DATE = buildDate();
 
 const annotateModule = (!process.env.LEFT_SKIP_ANNOTATE && existsSync(path.join(ROOT, 'scripts/lib/annotate.mjs'))) ? await import('./lib/annotate.mjs') : null;
 const appstore = (!process.env.LEFT_SKIP_APPSTORE && existsSync(path.join(ROOT, 'scripts/lib/appstore.mjs'))) ? await import('./lib/appstore.mjs') : null;
@@ -97,6 +102,7 @@ async function main() {
 
   // 3. Which locales have which page.
   const availability = new Map(); // page → Set(locale codes)
+  const ready = new Map(); // "<family>/<loc>" → pages at or above the threshold, released or not
   const coverageReport = [];
   for (const page of allPages) {
     const f = pageFamily.get(page);
@@ -108,12 +114,19 @@ async function main() {
       const tree = data.get(loc.code);
       const done = a.keys.filter(k => typeof lookupRaw(tree, k) === 'string' && lookupRaw(tree, k).trim()).length;
       const ratio = done / a.keys.length;
-      if (ratio >= HASH_MIN_COVERAGE) set.add(loc.code);
+      if (ratio >= HASH_MIN_COVERAGE) {
+        const key = `${f.id}/${loc.code}`;
+        ready.set(key, (ready.get(key) || 0) + 1);
+        if (isReleased(f.id, loc.code, DATE)) set.add(loc.code);
+      }
       if (done > 0) coverageReport.push(`${loc.code} ${page} ${(ratio * 100).toFixed(0)}%`);
     }
     availability.set(page, set);
   }
   if (VERBOSE && coverageReport.length) console.log(`[i18n] Hash-family coverage:\n  ${coverageReport.join('\n  ')}`);
+  const held = [...ready].filter(([k]) => !isReleased(...k.split('/'), DATE));
+  if (held.length) console.log(`[i18n] Held until scheduled (${DATE}): ${held.map(([k, n]) => `${k} ${n}`).join(', ')}`);
+  await writeCalendar(DATE, ready);
 
   const urlToPage = new Map();
   for (const page of allPages) urlToPage.set('/' + pageToUrlPath(page), page);
@@ -685,6 +698,7 @@ async function writeSitemap(allPages, availability, pageFamily) {
     const family = pageFamily.get(page);
     for (const loc of LOCALES) {
       if (!available.has(loc.code)) continue;
+      if (family.mode === 'hash' && loc.code !== SOURCE_LOCALE && !isReleased(family.id, loc.code, DATE)) continue;
       const sources = [page];
       if (loc.code !== SOURCE_LOCALE) {
         sources.push(`i18n/locales/${loc.code}.json`);

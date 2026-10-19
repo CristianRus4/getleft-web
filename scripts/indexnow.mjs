@@ -5,6 +5,8 @@
 //   node scripts/indexnow.mjs            pages changed on origin/main since the last submission
 //   node scripts/indexnow.mjs --all      every URL in sitemap.xml
 //   node scripts/indexnow.mjs --dry-run  list the URLs without submitting
+//   node scripts/indexnow.mjs --since <sha>  pages changed between <sha> and HEAD (the daily
+//                                            publish workflow; leaves the local ref alone)
 //
 // Run it after each push to main. The last submitted commit is stored in the local ref
 // refs/indexnow/submitted, which every worktree of this repo shares, so whoever runs it
@@ -19,6 +21,8 @@ const REF = 'refs/indexnow/submitted';
 const ENDPOINT = 'https://api.indexnow.org/indexnow';
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has('--dry-run');
+const sinceIdx = process.argv.indexOf('--since');
+const since = sinceIdx >= 0 ? process.argv[sinceIdx + 1] : null;
 
 const git = (...a) => execFileSync('git', a, { cwd: ROOT, encoding: 'utf8', maxBuffer: 256 * 1024 * 1024 }).trim();
 const tryGit = (...a) => { try { return git(...a); } catch { return null; } };
@@ -44,9 +48,16 @@ async function main() {
   const { indexNowKey: key } = (await readJson('site.config.json', {})) || {};
   if (!key) throw new Error('site.config.json has no indexNowKey');
 
-  tryGit('fetch', '-q', 'origin', 'main');
-  const target = git('rev-parse', 'origin/main');
-  const base = tryGit('rev-parse', '-q', '--verify', REF);
+  if (sinceIdx >= 0 && !since) throw new Error('--since needs a commit');
+  let target, base;
+  if (since) {
+    target = git('rev-parse', 'HEAD');
+    base = git('rev-parse', '--verify', `${since}^{commit}`);
+  } else {
+    tryGit('fetch', '-q', 'origin', 'main');
+    target = git('rev-parse', 'origin/main');
+    base = tryGit('rev-parse', '-q', '--verify', REF);
+  }
   const live = sitemapUrls(git('show', `${target}:sitemap.xml`));
 
   let urls;
@@ -68,7 +79,7 @@ async function main() {
 
   if (!urls.length) {
     console.log('[indexnow] no indexable pages changed.');
-    if (!dryRun) git('update-ref', REF, target);
+    if (!dryRun && !since) git('update-ref', REF, target);
     return;
   }
   if (dryRun) {
@@ -94,7 +105,7 @@ async function main() {
       throw new Error(`IndexNow answered ${res.status}: ${(await res.text()).slice(0, 200)}`);
     }
   }
-  git('update-ref', REF, target);
+  if (!since) git('update-ref', REF, target);
   console.log(`[indexnow] submitted ${urls.length} URL(s) up to ${target.slice(0, 8)}.`);
 }
 

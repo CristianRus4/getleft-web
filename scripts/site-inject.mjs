@@ -33,7 +33,8 @@ const NO_ANALYTICS = new Set([
   'friends',
 ]);
 
-const SKIP_DIRS = new Set(['partials', 'templates-photos', 'node_modules', 'scripts', 'docs', 'i18n', 'functions', 'images', 'fonts', 'favicon', 'left-icon', '.well-known', '.git', '.claude']);
+// scheduled/ holds English pages that are not published yet (scripts/lib/publish.mjs).
+const SKIP_DIRS = new Set(['scheduled', 'partials', 'templates-photos', 'node_modules', 'scripts', 'docs', 'i18n', 'functions', 'images', 'fonts', 'favicon', 'left-icon', '.well-known', '.git', '.claude']);
 
 export async function englishPages() {
   const registry = await readJson('i18n/locales.json');
