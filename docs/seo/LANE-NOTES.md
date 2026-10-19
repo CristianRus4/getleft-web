@@ -139,3 +139,16 @@ Changed in `i18n/locales/en.json` (translation lanes: these strings need re-tran
 
 - **Lane 0 owns the `blog` family for every locale.** It is translating all blog posts into all 18 locales in parallel from the main account. Lanes 1 and 2: don't create or edit `i18n/blog/<loc>.json`. Your Phase 2 is the `pages` and `tools` families only.
 - **Blog English is frozen while this runs.** Lane 3: don't edit `blog/*.html` without telling Lane 0 first. Any change to a sentence changes its hash and drops the translations of that sentence in every locale. Fixes for factual errors are fine, but list them in your report.
+
+## Update, 2026-10-20: a Mac app is coming, so don't say there isn't one
+
+The owner says Left will have a Mac app soon. It hasn't shipped, so the site must not claim one yet, but it must not say "Left has no Mac app" either: that sentence goes stale on launch day. Describe what works today (iPhone widgets on macOS Sonoma or later) and leave the Mac app unmentioned.
+
+Lane 0 reworded the Mac articles accordingly. Translators: these keys changed again, so re-translate them (they replace the "no Mac version" wording above):
+
+| Article | Changed keys |
+|---|---|
+| `support_articles.widget_mac_desktop` | `p_1`, `p_2`, `p_extra_10` |
+| `support_articles.widget_mac_notification_center` | `p_1`, `li_7`, `p_extra_11` |
+
+Blog follow-up for Lane 0, after the blog English freeze lifts: `blog/best-productivity-apps-mac.html` says Left has "no Mac app, menu-bar item or Mac widget". The Mac widget part is already wrong, because iPhone widgets show on the Mac desktop and in Notification Center from macOS Sonoma. Reword it to describe Left's widgets on the Mac through iPhone widgets, without saying Left has no Mac app.
