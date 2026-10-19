@@ -1,0 +1,574 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>7 Best Streaks App Alternatives for iPhone (2026) | Left</title>
+  <meta name="description" content="The best alternatives to the Streaks habit tracker for iPhone in 2026, compared on price, free plans, Apple Watch, widgets and Apple Health. Checked 20 October 2026." />
+  <link rel="canonical" href="https://getleft.app/blog/streaks-app-alternatives" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/streaks-app-alternatives" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/streaks-app-alternatives" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="7 Best Streaks App Alternatives for iPhone (2026)" />
+  <meta property="og:description" content="The best alternatives to the Streaks habit tracker for iPhone in 2026, compared on price, free plans, Apple Watch, widgets and Apple Health. Checked 20 October 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/streaks-app-alternatives" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="7 Best Streaks App Alternatives for iPhone (2026)" />
+  <meta name="twitter:description" content="The best alternatives to the Streaks habit tracker for iPhone in 2026, compared on price, free plans, Apple Watch, widgets and Apple Health. Checked 20 October 2026." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "7 Best Streaks App Alternatives for iPhone in 2026",
+  "description": "The best alternatives to the Streaks habit tracker for iPhone in 2026, compared on price, free plans, Apple Watch, widgets and Apple Health. Checked 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-10-26",
+  "dateModified": "2026-10-26",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/streaks-app-alternatives",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "7 Best Streaks App Alternatives for iPhone in 2026",
+      "item": "https://getleft.app/blog/streaks-app-alternatives"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the Streaks app free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Streaks costs $5.99 to download on the US App Store (checked 20 October 2026), with no in-app purchases listed and no subscription."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many habits can you track in Streaks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Up to 24 tasks a day, according to its App Store page. If you need more, HabitKit Pro, Habitify Plus, Strides Plus and Left Premium list unlimited habits or trackers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best free alternative to Streaks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HabitKit is free for up to four habits, and Left is free for 2 habits and 2 streaks with free Home Screen and Lock Screen widgets. Awesome Habits, Habit Tracker by Inner Grow, Habitify and Strides are also free to download with paid upgrades."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Streaks alternatives have an Apple Watch app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Awesome Habits, Habit Tracker by Inner Grow, Habitify, Strides and Atoms all list Apple Watch on their App Store pages. Left doesn't have an Apple Watch app, and HabitKit doesn't list Apple Watch in its compatibility."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I quit a bad habit with these apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Streaks has negative tasks, HabitKit and Habit Tracker by Inner Grow have quit habits, and Left uses streaks, which count up from the day you started and keep your restarts, average streak and longest streak."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>7 Best Streaks App Alternatives for iPhone in 2026</h1>
+<p class="article-meta">Updated <time datetime="2026-10-26">October 26, 2026</time> · 9 min read</p>
+<p><em>Checked 20 October 2026.</em> Every competitor detail below comes from that app's US App Store page and Apple's public lookup data, fetched that day. Left details come from the app itself.</p>
+<p>Streaks by Crunchy Bagel is one of the best-known habit trackers on the iPhone: an Apple Design Award winner, with 4.8 stars from 27,353 ratings on the US App Store. It's a polished app that you pay for once. People look for an alternative when they want to try a habit tracker for free first, track more than 24 things, or have their habits sit next to other parts of their life. Here are six alternatives and when each one is the better choice.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is why, and when another app suits you better.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best alternative if you want habits, streaks and countdowns in one app, with free widgets:</strong> Left.</li>
+  <li><strong>Best for Apple Watch, Lock Screen widgets and Live Activities, free to start:</strong> Awesome Habits.</li>
+  <li><strong>Best for a contribution-style grid per habit:</strong> HabitKit.</li>
+  <li><strong>Best for friends, groups and the most ratings:</strong> Habit Tracker by Inner Grow.</li>
+  <li><strong>Best for automatic logging from other apps:</strong> Habitify.</li>
+  <li><strong>Best for habits plus numeric goals:</strong> Strides.</li>
+  <li><strong>Best for readers of <em>Atomic Habits</em>:</strong> Atoms.</li>
+</ul>
+
+<h2>What Streaks does well</h2>
+<p>By Crunchy Bagel Pty Ltd. Its <a href="https://apps.apple.com/us/app/id963034692" target="_blank" rel="noopener">App Store page</a> says you can "Track up to 24 tasks you want to complete each day". Tasks linked to the Health app can complete automatically, negative tasks help you break habits, and timed tasks, daily notes, automatic reminders, 78 color themes and over 600 icons are included. You can share tasks with other Streaks users, and iCloud syncs everything.</p>
+<ul>
+  <li><strong>Price:</strong> $5.99 to download, with no in-app purchases listed and no subscription.</li>
+  <li><strong>Platforms:</strong> iPhone, iPad, Apple Watch, Mac and Vision Pro. The Apple Watch app includes Health integration, complications and rich notifications.</li>
+  <li><strong>Widgets:</strong> Home Screen widgets, including one to view and complete tasks.</li>
+</ul>
+<p>If you want a paid-once habit tracker with a highly rated Apple Watch app and 24 tasks is enough, Streaks is hard to beat. The alternatives below make sense when your needs are different.</p>
+
+<h2>Comparison table</h2>
+<p>Ratings and counts are from the US App Store, checked 20 October 2026. "Not stated" means the listing doesn't mention it, not that the feature is missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>App</th><th>Price model</th><th>Free to start</th><th>Apple Watch</th><th>Lock Screen widgets</th><th>Apple Health</th><th>Rating (US)</th></tr></thead>
+  <tbody>
+    <tr><td>Streaks</td><td>$5.99 once</td><td>No</td><td>Yes</td><td>Not stated</td><td>Yes</td><td>4.8 (27,353)</td></tr>
+    <tr><td>Left</td><td>Free, 2 habits and 2 streaks; Left Premium subscription or lifetime</td><td>Yes</td><td>No</td><td>Yes</td><td>Yes (Left Premium)</td><td>Not shown (our app)</td></tr>
+    <tr><td>Awesome Habits</td><td>Free; Premium monthly, yearly or lifetime</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>4.8 (940)</td></tr>
+    <tr><td>HabitKit</td><td>Free, 4 habits; Pro monthly, yearly or lifetime</td><td>Yes</td><td>Not listed</td><td>Not stated</td><td>Not stated</td><td>4.8 (2,492)</td></tr>
+    <tr><td>Habit Tracker (Inner Grow)</td><td>Free; Premium monthly, yearly or lifetime</td><td>Yes</td><td>Yes</td><td>Yes</td><td>Yes</td><td>4.8 (148,034)</td></tr>
+    <tr><td>Habitify</td><td>Free; Plus or Pro, with a 7-day Pro trial</td><td>Yes</td><td>Yes</td><td>Not stated</td><td>Yes (Pro)</td><td>4.6 (7,142)</td></tr>
+    <tr><td>Strides</td><td>Free; Strides Plus monthly, annual or lifetime</td><td>Yes</td><td>Yes</td><td>Not stated</td><td>Yes</td><td>4.8 (19,242)</td></tr>
+    <tr><td>Atoms</td><td>Free; Pro monthly or annual</td><td>Yes</td><td>Yes</td><td>Not stated</td><td>Not stated</td><td>4.8 (10,749)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Left: habits next to the rest of your time</h2>
+<p>Left is a time awareness app for iPhone. Habits, streaks and Aims live in <strong>Since</strong>, next to countdowns in Ahead and year and life progress in Time Left, so your habits sit inside a view of how much of the week, month and year is left.</p>
+<ul>
+  <li><strong>Habits:</strong> set a goal per day, week or month and how many times. Schedules include every day, weekdays, weekends, specific days or a number of days per week. Each habit can have up to 4 reminders, and <strong>Get a persistent reminder</strong> shows a Live Activity an hour before a time you choose if the habit still isn't logged.</li>
+  <li><strong>Streaks:</strong> for quitting something or keeping a run going. A streak counts up automatically from <strong>Started on...</strong> until you restart it, and keeps your restarts, average streak and longest streak. It does the job of a negative task in Streaks.</li>
+  <li><strong>Aims:</strong> count up or down toward a target, with a unit and an optional deadline.</li>
+  <li><strong>Widgets:</strong> the Habit widget is interactive: tap today's symbol to log it from the Home Screen. It also works as a rectangular Lock Screen widget. The Habits list widget shows 4 or 8 habits, and Streak, Streaks list, Aim and Aims list widgets cover the rest. These widgets are free.</li>
+  <li><strong>Left Premium extras:</strong> unlimited habits, streaks and Aims; Apple Health tracking, where a habit completes when you meet its goal; and friends, who can follow your habits and streaks for accountability.</li>
+</ul>
+<p><strong>Best for:</strong> people who want habits, quit streaks and goals alongside countdowns and a sense of time left, with widgets on the Home Screen and Lock Screen.</p>
+<p><strong>Price:</strong> free to download. The free plan includes 2 habits, 2 streaks, 2 Aims and 2 countdowns, and the count includes every item you've ever created, so deleting one doesn't free a slot. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> free to start; an interactive habit widget; Lock Screen widgets and a habit Live Activity; quit streaks with restart history; countdowns and time left views in the same app.</p>
+<p><strong>Cons:</strong> only 2 free habits and 2 free streaks, far fewer than Streaks' 24 tasks; no Apple Watch app, which Streaks has; Apple Health tracking needs Left Premium; iPhone only, with iOS 26 or later.</p>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-since-feature-1-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-since-feature-1-light.webp" alt="A habit in Left on a 16-day streak, with the last seven days ticked and a completion grid below" width="560" height="1272" loading="lazy" decoding="async" /></picture><figcaption>A Left habit with its completion grid.</figcaption></figure>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get the Left habit tracker</a></p>
+
+<h2>2. Awesome Habits: Habit Tracker</h2>
+<p>By Michal Tuma. Its <a href="https://apps.apple.com/us/app/id1514915737" target="_blank" rel="noopener">App Store page</a> lists daily, weekly and monthly goals, timed goals, heatmaps and statistics, Health app integration, reminders and alarms, interactive widgets for the Home Screen, Lock Screen and StandBy, interactive Live Activities and the Dynamic Island, Control Center widgets, Apple Watch complications and a Smart Stack widget, Siri Shortcuts, iCloud sync and CSV export.</p>
+<p><strong>Best for:</strong> people who want Lock Screen and StandBy widgets, Live Activities and Apple Watch complications in a tracker that's free to start.</p>
+<p><strong>Price:</strong> free to download, with Premium monthly, yearly or lifetime. The listing doesn't say what the free version includes.</p>
+<p><strong>Pros:</strong> Lock Screen, StandBy and Control Center widgets, Live Activities and Apple Watch complications; privacy label says Data Not Collected.</p>
+<p><strong>Cons:</strong> requires iOS 18 or later; free limits aren't stated; fewer ratings (940) than the bigger names.</p>
+
+<h2>3. HabitKit</h2>
+<p>By Sebastian Roehl. Its <a href="https://apps.apple.com/us/app/id6443918070" target="_blank" rel="noopener">App Store page</a> describes a grid of tiles per habit, "like a contribution graph", for building or quitting habits, with yes/no, count or unit goals, flexible schedules, streak goals and notes on any day. It needs no account and works offline.</p>
+<p><strong>Best for:</strong> people who are motivated by watching a grid fill in.</p>
+<p><strong>Price:</strong> free for up to four habits, including streaks, statistics, notes and reminders. HabitKit Pro, monthly, yearly or lifetime, unlocks unlimited habits, Home Screen widgets, restoring archived habits and more reminders.</p>
+<p><strong>Pros:</strong> a clear free tier; no account, no ads; 4.8 from 2,492 ratings; daily iCloud backup.</p>
+<p><strong>Cons:</strong> Home Screen widgets are part of Pro; Apple Watch isn't in its compatibility list. Our <a href="/blog/habitkit-vs-left">HabitKit vs Left comparison</a> goes deeper.</p>
+
+<h2>4. Habit Tracker by Inner Grow</h2>
+<p>By InnerGrow (Inner Grow Limited). Its <a href="https://apps.apple.com/us/app/id1438388363" target="_blank" rel="noopener">App Store page</a> lists Apple Health sync for water, steps, sleep, exercise and calories, build and quit habits, unit goals, group habits and friendly competition with friends, reports, mood tracking, a habit diary, a focus timer, time or location reminders, Home Screen and Lock Screen widgets, cloud sync and Face ID lock.</p>
+<p><strong>Best for:</strong> a free-to-start tracker with social features and the largest review base here.</p>
+<p><strong>Price:</strong> free to download, with monthly, yearly and lifetime options in its in-app purchases.</p>
+<p><strong>Pros:</strong> 4.8 from 148,034 ratings; Apple Watch; group habits with friends; location-based reminders.</p>
+<p><strong>Cons:</strong> the long feature list doesn't say which parts are free; it does a lot, which can feel busy next to Streaks' simplicity.</p>
+
+<h2>5. Habitify: Habit Tracker</h2>
+<p>By Unstatic Ltd Co. Its <a href="https://apps.apple.com/us/app/id1111447047" target="_blank" rel="noopener">App Store page</a> lists automatic logging from Apple Health, Google Health, Fitbit, Strava, Screen Time and RescueTime, an API, MCP and App Intents, an AI assistant, streaks and charts, smart reminders, notes, mood tracking, a timer and friendly challenges, synced across iPhone, iPad, Mac and Apple Watch.</p>
+<p><strong>Best for:</strong> people who want habits logged for them from the apps and devices they already use.</p>
+<p><strong>Price:</strong> free to download. Habitify Plus adds unlimited habits, smart reminders and custom areas; Habitify Pro, with a 7-day free trial, adds the automatic integrations and advanced timers.</p>
+<p><strong>Pros:</strong> the widest set of integrations; Apple Watch and Mac; first released in 2016 and still updated.</p>
+<p><strong>Cons:</strong> automatic logging needs Pro; the listing doesn't state how many habits are free, and mentions Home Screen widgets only in its release notes.</p>
+
+<h2>6. Strides: Habit Tracker + Goals</h2>
+<p>By Goals LLC. Its <a href="https://apps.apple.com/us/app/id672401817" target="_blank" rel="noopener">App Store page</a> describes four tracker types (streak, milestone, average and target), 150+ templates, progress reports, charts, unlimited reminders, Apple Health integration and notes.</p>
+<p><strong>Best for:</strong> people who track numbers and deadlines as well as daily habits.</p>
+<p><strong>Price:</strong> free to download. Strides Plus, monthly, annual or lifetime, unlocks unlimited trackers, sync between iPhone, iPad and Mac, tags and filters, data export and more.</p>
+<p><strong>Pros:</strong> flexible tracker types for goals as well as habits; Apple Watch; 4.8 from 19,242 ratings; around since 2013.</p>
+<p><strong>Cons:</strong> sync between devices needs Plus; widgets appear only in a release note and aren't described.</p>
+
+<h2>7. Atoms - from Atomic Habits</h2>
+<p>By Atomic Development Inc. Its <a href="https://apps.apple.com/us/app/id6474421906" target="_blank" rel="noopener">App Store page</a> describes guided habit creation based on James Clear's book, bite-sized lessons, "Five Good Minutes", smart reminders, progress insights and an Apple Watch app.</p>
+<p><strong>Best for:</strong> people who want lessons and coaching from <em>Atomic Habits</em> alongside the tracking.</p>
+<p><strong>Price:</strong> free to download, with Atoms Pro monthly or annual.</p>
+<p><strong>Pros:</strong> 4.8 from 10,749 ratings; guided setup based on the book; Apple Watch.</p>
+<p><strong>Cons:</strong> last updated in February 2026; Apple Health isn't mentioned and widgets appear only in a release note; its privacy label lists contact info, identifiers, usage data and user content as linked to you.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>Starting point:</strong> the apps most often suggested as Streaks alternatives, plus a US App Store search for habit trackers on 20 October 2026.</li>
+  <li><strong>Kept:</strong> habit trackers updated in the last 12 months with thousands of ratings or a feature set close to Streaks, and a free way to start.</li>
+  <li><strong>Left out:</strong> apps with only a handful of ratings, and apps whose listings describe a narrower job.</li>
+  <li><strong>Sources:</strong> each app's own App Store page and Apple's lookup data. No paid placements, and no developer reviewed this page.</li>
+  <li><strong>Fair cons:</strong> where a listing doesn't mention a feature we say so instead of assuming it's missing. Check the App Store page before you buy, because plans change.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>You want habits, quit streaks and countdowns together, with widgets on the Lock Screen: <strong>Left</strong>.</li>
+  <li>You want Lock Screen widgets, Live Activities and Apple Watch, free to start: <strong>Awesome Habits</strong>.</li>
+  <li>You love the grid look: <strong>HabitKit</strong>.</li>
+  <li>You want friends and groups: <strong>Habit Tracker by Inner Grow</strong>.</li>
+  <li>You want habits logged automatically: <strong>Habitify</strong>.</li>
+  <li>You track goals with numbers: <strong>Strides</strong>.</li>
+  <li>You want coaching from the book: <strong>Atoms</strong>.</li>
+  <li>You want a paid-once habit tracker with a highly rated Apple Watch app: stay with <strong>Streaks</strong>.</li>
+</ul>
+<p>For more options, see our <a href="/blog/best-habit-tracker-apps-iphone">best habit tracker apps for iPhone</a>. Not sure whether you need a habit or a streak? The <a href="/support/streaks-vs-habits">streaks vs habits guide</a> explains the difference, and <a href="/blog/how-to-build-a-streak">how to build a streak</a> covers keeping one going. The <a href="/tools/habit-streak-calculator">habit streak calculator</a> works in your browser.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+<p>See more on the <a href="/habit-tracker">Left habit tracker page</a>.</p>
+
+<h2>Questions</h2>
+<h3>Is the Streaks app free?</h3>
+<p>No. Streaks costs $5.99 to download on the US App Store (checked 20 October 2026), with no in-app purchases listed and no subscription.</p>
+<h3>How many habits can you track in Streaks?</h3>
+<p>Up to 24 tasks a day, according to its App Store page. If you need more, HabitKit Pro, Habitify Plus, Strides Plus and Left Premium list unlimited habits or trackers.</p>
+<h3>What is the best free alternative to Streaks?</h3>
+<p>HabitKit is free for up to four habits, and Left is free for 2 habits and 2 streaks with free Home Screen and Lock Screen widgets. Awesome Habits, Habit Tracker by Inner Grow, Habitify and Strides are also free to download with paid upgrades.</p>
+<h3>Which Streaks alternatives have an Apple Watch app?</h3>
+<p>Awesome Habits, Habit Tracker by Inner Grow, Habitify, Strides and Atoms all list Apple Watch on their App Store pages. Left doesn't have an Apple Watch app, and HabitKit doesn't list Apple Watch in its compatibility.</p>
+<h3>Can I quit a bad habit with these apps?</h3>
+<p>Yes. Streaks has negative tasks, HabitKit and Habit Tracker by Inner Grow have quit habits, and Left uses streaks, which count up from the day you started and keep your restarts, average streak and longest streak.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
