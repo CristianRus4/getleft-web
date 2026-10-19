@@ -1,0 +1,971 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="left:content-type" content="home" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+
+  <title>Left: contagem regressiva, hábitos e widgets no iPhone</title>
+  <meta name="description" content="Quantos dias faltam para as férias, o casamento ou o Natal? Contagem regressiva, contador de dias, hábitos e sequências em widgets no iPhone."  />
+
+  <!-- Smart App Banner (iOS Safari) -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, app-argument=https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884" />
+
+  <!-- Theme/UI colors - match new design system -->
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+  <!-- Open Graph / Twitter -->
+  <meta property="og:title" content="Left: deixe seu tempo visível"  />
+  <meta property="og:description" content="Contagens regressivas, hábitos, sequências e widgets de tempo restante para a Tela de Início e a Tela Bloqueada do iPhone."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/pt-BR/" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left: deixe seu tempo visível"  />
+  <meta name="twitter:description" content="Contagens regressivas, hábitos, sequências e widgets de tempo restante para a Tela de Início e a Tela Bloqueada do iPhone."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+
+  <link rel="canonical" href="https://getleft.app/pt-BR/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="shortcut icon" href="/favicon/favicon.ico" />
+  <link rel="preload" as="image" href="/images/left-hero-light-mobile.webp" media="(max-width: 900px) and (prefers-color-scheme: light)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/left-hero-dark-mobile.webp"  media="(max-width: 900px) and (prefers-color-scheme: dark)"  fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/left-hero-light.webp"        media="(min-width: 901px) and (prefers-color-scheme: light)" fetchpriority="high" />
+  <link rel="preload" as="image" href="/images/left-hero-dark.webp"         media="(min-width: 901px) and (prefers-color-scheme: dark)"  fetchpriority="high" />
+  <meta name="robots" content="index,follow" />
+
+  <link rel="stylesheet" href="/style.css" />
+
+  <!-- Auto-generated per locale by scripts/build-i18n.mjs from index.faq.items + index.meta -->
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "inLanguage": "pt-BR",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "O Left é de graça?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Você pode baixar o Left de graça. O Left Premium libera tudo, incluindo contagens regressivas, hábitos, sequências e objetivos ilimitados, Planejador, jejum, acompanhamento com o Apple Health, amigos e jogos. O que está incluído de graça e os preços atuais aparecem no app antes de você comprar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como funciona o Left Premium?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Left Premium está disponível como assinatura, pelo tempo que você quiser usar, ou como compra vitalícia que libera o app para sempre. Os preços aparecem no app antes de você comprar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Por que o Left calcula o meu tempo restante?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Porque o tempo é mais fácil de ignorar quando continua abstrato. O Left transforma anos, meses, semanas, dias, horas, minutos e o progresso da vida em símbolos visíveis para você ver o que passou e o que resta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que são datas Ahead?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Datas Ahead são contagens regressivas para momentos futuros: viagens, aniversários, feriados, aniversários de casamento, prazos, aposentadoria ou qualquer outra coisa que você queira esperar. Você pode importar datas do Calendário da Apple e compartilhar contagens regressivas com amigos."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Qual é a diferença entre hábito e sequência?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Uma sequência conta há quanto tempo algo continua desde uma data de início ou reinício. Um hábito pede que você cumpra algo em uma frequência: diária, várias vezes por dia, semanal, mensal ou personalizada. Os dois ficam em Since."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso usar o Left com amigos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Adicione amigos pelo nome de usuário para compartilhar datas Ahead, hábitos e sequências. Seus amigos podem ajudar você a manter sequências e hábitos, ou compartilhar e participar juntos de uma data especial à frente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como o Planejador ajuda no meu dia?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Planejador reúne o seu dia em uma só tela: Lembretes da Apple, eventos do calendário, hábitos, sequências, clima, sono, treinos e mais."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O Left sincroniza entre os meus dispositivos?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O Left sincroniza automaticamente entre os seus dispositivos iOS. Contagens regressivas, hábitos, sequências e amigos são sincronizados pela sua conta gratuita do Left."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que é um objetivo no Left?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O objetivo é um acompanhamento flexível para metas medidas em números. Você pode acompanhar dinheiro guardado, livros lidos, distância corrida, dívida reduzida, horas de estudo, peso perdido ou qualquer alvo personalizado."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Posso ver o Left na Tela Bloqueada?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. Os widgets da Tela Bloqueada mostram seu ano, mês, dia, vida e Você, além de hábitos, sequências, objetivos e jejum. As Atividades ao Vivo mantêm uma contagem regressiva, hábito, jejum ou sessão de foco ativos na Tela Bloqueada e na Dynamic Island."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como funciona o acompanhamento automático com o Apple Health?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ao criar ou editar um hábito, sequência ou objetivo, escolha Apple Health em vez de acompanhamento manual. Escolha uma métrica e uma meta, e o Left atualiza o item com seus dados de Saúde. Um hábito é concluído quando a meta é atingida, uma sequência é reiniciada quando um período termina sem atingir a meta, e o progresso do objetivo é preenchido automaticamente."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "O que posso acompanhar com o Jejum?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Jejum permite iniciar um jejum aberto ou usar janelas automáticas, noturnas, do nascer ao pôr do sol ou personalizadas. Acompanhe o tempo restante, receba alertas, use widgets e Atividades ao Vivo e veja histórico e estatísticas. O Jejum está disponível com o Left Premium e não é aconselhamento médico."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como funciona o timer Pomodoro do Foco?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "O Foco começa com uma sessão de 25 minutos, pausas curtas de 5 minutos e uma pausa longa de 20 minutos após quatro sessões. Você pode alterar todas as durações, receber notificações, usar Atividades ao Vivo, ver o histórico e continuar a partir de um widget. O Foco está disponível com o Left Premium."
+      }
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Left",
+  "url": "https://getleft.app/pt-BR/",
+  "inLanguage": "pt-BR",
+  "about": {
+    "@type": "MobileApplication",
+    "name": "Left",
+    "description": "Quantos dias faltam para as férias, o casamento ou o Natal? Contagem regressiva, contador de dias, hábitos e sequências em widgets no iPhone.",
+    "applicationCategory": "ProductivityApplication",
+    "operatingSystem": "iOS 26.0 or later",
+    "downloadUrl": "https://apps.apple.com/app/id6740155884",
+    "image": "https://getleft.app/images/hero.webp",
+    "screenshot": "https://getleft.app/images/left-feature.webp",
+    "author": {
+      "@type": "Person",
+      "name": "Cristian Rus"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Cntxt Labs"
+    },
+    "inLanguage": "pt-BR",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.5",
+      "ratingCount": "226"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://getleft.app/#organization",
+  "name": "Left",
+  "url": "https://getleft.app/",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://getleft.app/left-icon/android-chrome-512x512.png",
+    "width": 512,
+    "height": 512
+  },
+  "image": "https://getleft.app/images/og-image.png",
+  "description": "Left is an iPhone app that makes time visible: time-left widgets, countdowns, habits, streaks, Apple Health tracking, fasting, focus and a daily Planner.",
+  "founder": {
+    "@type": "Person",
+    "name": "Cristian Rus",
+    "sameAs": ["https://x.com/CristianRus4"]
+  },
+  "parentOrganization": {
+    "@type": "Organization",
+    "name": "cntxt"
+  },
+  "sameAs": [
+    "https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884"
+  ],
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "contactType": "customer support",
+    "url": "https://getleft.app/contact"
+  }
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/pt-BR/" class="brand" aria-label="Left home">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="#features" class="nav-link">Recursos</a>
+          <a href="/tools/" class="nav-link">Ferramentas</a>
+          <a href="/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Baixar</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Floating download button (mobile only, pinned to viewport bottom) -->
+  <div class="hero-floater">
+    <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Baixar na App Store" data-cta="float">
+      <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+      <span>Baixar para iOS</span>
+    </a>
+  </div>
+
+  <!-- ─────── HERO ─────── -->
+  <header class="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <span class="hero-eyebrow">Faça cada momento valer.</span>
+        <h1>Veja o tempo que resta e faça-o valer</h1>
+        <p class="hero-sub">O Left mostra o tempo que você ainda tem e ajuda a aproveitá-lo com hábitos, sequências, contagens regressivas e um planejador para o seu dia.</p>
+        <div class="hero-cta">
+          <div class="hero-download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - toque para ver as instruções">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escaneie ou busque <strong>“Left”</strong> na App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Baixar na App Store" data-cta="hero">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span>Baixar para iOS</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="hero-image-wrap">
+        <picture>
+          <source srcset="/images/left-hero-dark-mobile.webp" media="(max-width: 900px) and (prefers-color-scheme: dark)" />
+          <source srcset="/images/left-hero-light-mobile.webp" media="(max-width: 900px)" />
+          <source srcset="/images/left-hero-dark.webp" media="(prefers-color-scheme: dark)" />
+          <img src="/images/left-hero-light.webp" alt="App Left mostrando widgets de hábito, contagem regressiva, progresso do ano e vida em semanas na Tela de Início do iPhone" class="hero-image" fetchpriority="high" decoding="async" width="900" height="1100"  />
+        </picture>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ─────── §4.3 Three Actions ─────── -->
+    <section class="section section-tight action-scroll-section" id="features" data-stepped-section="actions">
+      <div class="action-sticky-wrap">
+        <div class="container">
+          <div class="section-head">
+            <span class="eyebrow">Você no seu melhor</span>
+            <h2>Note. Aja. Torne-se.</h2>
+            <p>O tempo que você tem, as datas que espera, os hábitos que constrói e a pessoa que está se tornando; tudo com o Left.</p>
+          </div>
+          <div class="actions-showcase" data-actions-showcase>
+            <div class="actions-list" role="tablist" aria-label="Left actions">
+              <button class="action-step is-active" type="button" role="tab" aria-selected="true" data-action-image="/images/left-steps-light-1.webp" data-action-image-dark="/images/left-steps-dark-1.webp" data-action-alt="Left widgets showing time remaining across year, month, week, and day">
+                <span class="action-step-kicker">Note.</span>
+                <span class="action-step-title">Torne o tempo visível.</span>
+                <span class="action-step-copy">Veja o ano, o mês, a semana, o dia, a hora, o minuto e a sua vida como símbolos que vão escurecendo conforme o tempo passa.</span>
+              </button>
+              <button class="action-step" type="button" role="tab" aria-selected="false" data-action-image="/images/left-steps-light-2.webp" data-action-image-dark="/images/left-steps-dark-2.webp" data-action-alt="Ahead countdown widgets showing dates worth looking forward to">
+                <span class="action-step-kicker">Aja.</span>
+                <span class="action-step-title">Dê sentido a ele.</span>
+                <span class="action-step-copy">Conte os dias para o que vem pela frente, mantenha os hábitos à vista e proteja as sequências que importam.</span>
+              </button>
+              <button class="action-step" type="button" role="tab" aria-selected="false" data-action-image="/images/left-steps-light-3.webp" data-action-image-dark="/images/left-steps-dark-3.webp" data-action-alt="Left habit and streak widgets showing completed actions">
+                <span class="action-step-kicker">Torne-se.</span>
+                <span class="action-step-title">Continue se tornando você.</span>
+                <span class="action-step-copy">Use hábitos, sequências, contagens regressivas e a ajuda de amigos para seguir em direção à pessoa que você quer ser.</span>
+              </button>
+            </div>
+            <div class="actions-mobile-copy" aria-live="polite" data-actions-mobile-copy>
+              <h3>Torne o tempo visível.</h3>
+              <p>Veja o ano, o mês, a semana, o dia, a hora, o minuto e a sua vida como símbolos que vão escurecendo conforme o tempo passa.</p>
+            </div>
+            <div class="actions-preview" aria-live="polite">
+              <img src="/images/left-steps-light-1.webp" alt="Left widgets showing time remaining across year, month, week, and day" data-actions-preview loading="lazy" decoding="async" width="1200" height="2000" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.4 Main Features Grid ─────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">O que resta</span>
+          <h2>Tudo o que você precisa para fazer o tempo valer.</h2>
+          <p>Veja o que resta, construa os hábitos que importam, conte os dias para o que vem pela frente e planeje o dia que está diante de você.</p>
+        </div>
+
+        <article class="feature-row reveal" data-feature-gallery>
+          <div class="feature-text">
+            <span class="chip">Tempo restante</span>
+            <h2>Seu tempo, visível.</h2>
+            <p>Veja o ano, o mês, a semana, o dia, a hora, o minuto e a sua vida como grades de símbolos. O passado escurece. O que resta continua visível na Tela de Início, na Tela Bloqueada e em Em Espera.</p>
+            <div class="feature-tags" role="tablist" aria-label="Time Left examples">
+              <button class="feature-tag is-active" type="button" role="tab" aria-selected="true" data-feature-image="/images/left-time-feature-1-light.webp" data-feature-image-dark="/images/left-time-feature-1-dark.webp" data-feature-alt="Time Left widgets for year, month, week, and day">Vida em semanas</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-time-feature-2-light.webp" data-feature-image-dark="/images/left-time-feature-2-dark.webp" data-feature-alt="Left year progress widget examples">Progresso do ano</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-time-feature-3-light.webp" data-feature-image-dark="/images/left-time-feature-3-dark.webp" data-feature-alt="Left daily time widgets on iPhone">Linha do tempo do dia</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-time-feature-4-light.webp" data-feature-image-dark="/images/left-time-feature-4-dark.webp" data-feature-alt="Left hour view widgets on iPhone">Tudo o que resta</button>
+            </div>
+          </div>
+          <div class="feature-image"><img src="/images/left-time-feature-1-light.webp" alt="Time Left widgets for year, month, week, and day" loading="lazy" decoding="async" width="1200" height="2000" /></div>
+        </article>
+
+        <article class="feature-row reveal" data-feature-gallery>
+          <div class="feature-text">
+            <span class="chip">Hábitos, sequências e objetivos</span>
+            <h2>Crie hábitos, proteja sequências e alcance cada objetivo.</h2>
+            <p>Hábitos, sequências e objetivos trabalham juntos para fazer você avançar. Registre manualmente ou deixe o Apple Health atualizar o progresso automaticamente. Crie hábitos no seu ritmo, proteja as sequências que importam para você e use objetivos para qualquer meta mensurável, de juntar dinheiro e ler livros a horas de estudo e redução de dívidas.</p>
+            <div class="feature-tags" role="tablist" aria-label="Habits and streaks examples">
+              <button class="feature-tag is-active" type="button" role="tab" aria-selected="true" data-feature-image="/images/left-since-feature-1-light.webp" data-feature-image-dark="/images/left-since-feature-1-dark.webp" data-feature-alt="Habit tracker widgets in Left">Controle de hábitos</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-since-feature-2-light.webp" data-feature-image-dark="/images/left-since-feature-2-dark.webp" data-feature-alt="Streak counter widgets in Left">Contador de sequências</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-since-feature-3-light.webp" data-feature-image-dark="/images/left-since-feature-3-dark.webp" data-feature-alt="Aim goal tracker in Left">Controle de objetivos</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-since-feature-4-light.webp" data-feature-image-dark="/images/left-since-feature-4-dark.webp" data-feature-alt="Shared streaks with friends in Left">Progresso compartilhado</button>
+            </div>
+          </div>
+          <div class="feature-image"><img src="/images/left-since-feature-1-light.webp" alt="Habit tracker widgets in Left" loading="lazy" decoding="async" width="1200" height="2000" /></div>
+        </article>
+
+        <!-- AIM section temporarily hidden - will be restored when aim launches
+        <article class="feature-row reveal" data-feature-gallery>
+          <div class="feature-text">
+            <span class="chip">objetivo</span>
+            <h2>Acompanhe qualquer objetivo que você possa contar.</h2>
+            <p>O objetivo transforma metas numéricas em acompanhamentos de progresso bonitos. Junte dinheiro, leia livros, corra quilômetros, estude horas, reduza dívidas, perca peso, conclua uma carga de trabalho ou avance rumo a qualquer meta mensurável. Defina um alvo, escolha uma unidade, adicione um prazo opcional e registre o progresso com um toque.</p>
+            <div class="feature-tags" role="tablist" aria-label="aim examples">
+              <button class="feature-tag is-active" type="button" role="tab" aria-selected="true" data-feature-image="/images/left-aim-feature-1-light.webp" data-feature-image-dark="/images/left-aim-feature-1-light.webp" data-feature-alt="aim goals shown in the Since grid in Left">Contagem crescente</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-aim-feature-2-light.webp" data-feature-image-dark="/images/left-aim-feature-2-light.webp" data-feature-alt="Savings aim progress details in Left">Contagem regressiva</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-aim-feature-3-light.webp" data-feature-image-dark="/images/left-aim-feature-3-light.webp" data-feature-alt="Reading aim progress details in Left">Alvos</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-aim-feature-4-light.webp" data-feature-image-dark="/images/left-aim-feature-4-light.webp" data-feature-alt="aim progress history and activity in Left">Histórico de progresso</button>
+            </div>
+          </div>
+          <div class="feature-image"><img src="/images/left-aim-feature-1-light.webp" alt="aim goals shown in the Since grid in Left" loading="lazy" decoding="async" width="1200" height="2000" /></div>
+        </article>
+        -->
+
+        <article class="feature-row reveal" data-feature-gallery>
+          <div class="feature-text">
+            <span class="chip">Ahead</span>
+            <h2>Dê a si mesmo algo para esperar com ansiedade.</h2>
+            <p>Adicione as datas que puxam você para a frente: viagens, aniversários, feriados, aniversários de casamento, prazos ou qualquer outra coisa que valha a contagem regressiva. Deixe tudo em widgets, importe do Calendário e convide amigos para datas especiais em conjunto.</p>
+            <div class="feature-tags" role="tablist" aria-label="Ahead examples">
+              <button class="feature-tag is-active" type="button" role="tab" aria-selected="true" data-feature-image="/images/left-ahead-feature-1-light.webp" data-feature-image-dark="/images/left-ahead-feature-1-dark.webp" data-feature-alt="Ahead countdown widget for a custom date">Datas personalizadas</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-ahead-feature-2-light.webp" data-feature-image-dark="/images/left-ahead-feature-2-dark.webp" data-feature-alt="Joint countdown widgets shared with friends">Contagens em conjunto</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-ahead-feature-3-light.webp" data-feature-image-dark="/images/left-ahead-feature-3-dark.webp" data-feature-alt="Live Activity countdown in Left">Atividades ao Vivo</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-ahead-feature-4-light.webp" data-feature-image-dark="/images/left-ahead-feature-4-dark.webp" data-feature-alt="Calendar events imported into Left countdowns">Importação do Calendário</button>
+            </div>
+          </div>
+          <div class="feature-image"><img src="/images/left-ahead-feature-1-light.webp" alt="Ahead countdown widget for a custom date" loading="lazy" decoding="async" width="1200" height="2000" /></div>
+        </article>
+
+        <article class="feature-row reveal" data-feature-gallery>
+          <div class="feature-text">
+            <span class="chip">Planejador</span>
+            <h2>Organize o dia que está diante de você.</h2>
+            <p>O Planejador reúne o seu dia em uma só tela: Lembretes da Apple, eventos do calendário, hábitos, sequências, clima, sono, treinos e mais.</p>
+            <div class="feature-tags" role="tablist" aria-label="Planner examples">
+              <button class="feature-tag is-active" type="button" role="tab" aria-selected="true" data-feature-image="/images/left-planner-feature-1-light.webp" data-feature-image-dark="/images/left-planner-feature-1-dark.webp" data-feature-alt="Planner timeline in Left">Linha do tempo do dia</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-planner-feature-2-light.webp" data-feature-image-dark="/images/left-planner-feature-2-dark.webp" data-feature-alt="Calendar and reminders inside Left Planner">Calendário e Lembretes</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-planner-feature-3-light.webp" data-feature-image-dark="/images/left-planner-feature-3-dark.webp" data-feature-alt="Health and weather summary in Left Planner">Saúde e clima</button>
+              <button class="feature-tag" type="button" role="tab" aria-selected="false" data-feature-image="/images/left-planner-feature-4-light.webp" data-feature-image-dark="/images/left-planner-feature-4-dark.webp" data-feature-alt="Planner widget on iPhone Home Screen">Widget do Planejador</button>
+            </div>
+          </div>
+          <div class="feature-image"><img src="/images/left-planner-feature-1-light.webp" alt="Planner timeline in Left" loading="lazy" decoding="async" width="1200" height="2000" /></div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ─────── §4.5 Bento Grid ─────── -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Mais para explorar</span>
+          <h2>Mais jeitos de acompanhar o que importa.</h2>
+          <p>Acompanhe jejuns e sessões de foco, compartilhe o progresso com amigos, transforme o tempo em papel de parede e explore as ferramentas menores dentro do Left.</p>
+        </div>
+        <div class="bento reveal" id="bento">
+          <div class="bento-cell" data-bento="widgets" tabindex="0" role="button" aria-label="Mais de 20 widgets">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-w ba-w1"><span></span><span></span><em></em></div>
+                  <div class="ba-w ba-w2"></div>
+                  <div class="ba-w ba-w3"><i></i><i></i><i></i><i></i></div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Mais de 20 widgets</div>
+              </div>
+              <div class="bento-face bento-face-back">Tela de Início, Tela Bloqueada, Em Espera e widgets de tempo restante, objetivos, hábitos, sequências, contagens regressivas, Planejador, Você, notas e mais.</div>
+            </div>
+          </div>
+          <div class="bento-cell bento-wide" data-bento="friends" tabindex="0" role="button" aria-label="Amigos">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <span class="ba-f ba-f1"></span>
+                  <span class="ba-f ba-f2"></span>
+                  <span class="ba-f ba-f3"></span>
+                  <span class="ba-f ba-f4"></span>
+                  <span class="ba-f ba-fadd"></span>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Amigos</div>
+              </div>
+              <div class="bento-face bento-face-back">Compartilhe contagens regressivas, hábitos e sequências com as pessoas certas. Envie parabéns e incentivo para manter seus amigos no caminho.</div>
+            </div>
+          </div>
+          <div class="bento-cell" data-bento="live" tabindex="0" role="button" aria-label="Atividades ao Vivo">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-live">
+                    <div class="ba-live-c">
+                      <div class="ba-live-top"><span></span><span></span></div>
+                      <div class="ba-live-text"></div>
+                      <div class="ba-live-bot">
+                        <div class="ba-live-checks"><b></b><b></b><b></b><b></b><b></b><b></b><b></b></div>
+                        <div class="ba-live-btn"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Atividades ao Vivo</div>
+              </div>
+              <div class="bento-face bento-face-back">Receba um lembrete persistente de quatro horas para hábitos não concluídos perto do fim do dia, ou acompanhe uma contagem regressiva final ou o progresso de um hábito na Tela Bloqueada e na Dynamic Island.</div>
+            </div>
+          </div>
+          <div class="bento-cell" data-bento="fasting" tabindex="0" role="button" aria-label="Jejum">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-fast">
+                    <div class="ba-fast-arc"></div>
+                    <div class="ba-fast-sun"></div>
+                    <div class="ba-fast-horizon"></div>
+                    <div class="ba-fast-window"><span></span></div>
+                  </div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Jejum</div>
+              </div>
+              <div class="bento-face bento-face-back">Planeje janelas de jejum, acompanhe o tempo restante, registre jejuns passados e veja seu histórico no Left, nos widgets e nas Atividades ao Vivo.</div>
+            </div>
+          </div>
+          <div class="bento-cell bento-tall" data-bento="wallpaper" tabindex="0" role="button" aria-label="Papel de parede do Left">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-phone">
+                    <div class="ba-phone-top"></div>
+                    <div class="ba-phone-time"><s></s><s></s></div>
+                    <div class="ba-phone-dots"></div>
+                  </div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Papel de parede do Left</div>
+              </div>
+              <div class="bento-face bento-face-back">Transforme a grade de tempo restante em um papel de parede da Tela Bloqueada que se atualiza sozinho pelo app Atalhos da Apple.</div>
+            </div>
+          </div>
+          <div class="bento-cell" data-bento="you" tabindex="0" role="button" aria-label="Você">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-you">
+                    <div class="ba-you-person"><div class="ba-you-head"></div><div class="ba-you-body"></div></div>
+                    <div class="ba-you-bars">
+                      <div class="ba-you-row"><i></i><i></i></div>
+                      <div class="ba-you-row"><i></i><i></i></div>
+                      <div class="ba-you-row"><i></i><i></i></div>
+                      <div class="ba-you-row"><i></i><i></i></div>
+                      <div class="ba-you-row ba-you-row--long"><i></i><i></i></div>
+                    </div>
+                  </div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Você</div>
+              </div>
+              <div class="bento-face bento-face-back">Veja o progresso da vida, a idade, os hábitos, as contagens regressivas e os padrões pessoais de tempo em uma só tela de perfil.</div>
+            </div>
+          </div>
+          <div class="bento-cell bento-tall" data-bento="focus" tabindex="0" role="button" aria-label="Timer de foco">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-focus">
+                    <div class="ba-focus-ring"><div class="ba-focus-time" data-focus-time>25:00</div></div>
+                  </div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Timer de foco</div>
+              </div>
+              <div class="bento-face bento-face-back">Use sessões de foco e pausa no estilo Pomodoro com durações personalizadas, histórico, notificações, Atividades ao Vivo e widgets.</div>
+            </div>
+          </div>
+          <div class="bento-cell bento-wide" data-bento="games" tabindex="0" role="button" aria-label="Jogos &amp;amp; extras">
+            <div class="bento-inner">
+              <div class="bento-face">
+                <div class="bento-art" aria-hidden="true">
+                  <div class="ba-orbit-ring"></div>
+                  <div class="ba-orbit-dot ba-od1"></div>
+                  <div class="ba-orbit-dot ba-od2"></div>
+                  <div class="ba-orbit-dot ba-od3"></div>
+                </div>
+                <span class="bento-plus" aria-hidden="true">+</span><div class="bento-title">Jogos &amp; extras</div>
+              </div>
+              <div class="bento-face bento-face-back">Pequenos jogos e extras embutidos dão ao Left mais para explorar sem atrapalhar.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.6 Scroll-Highlighted Text ─────── -->
+    <section class="section scroll-copy-section" data-stepped-section="copy">
+      <div class="container">
+        <p class="scroll-text" id="scrollText">O seu tempo restante é limitado. Esteja ciente dele. O Left faz o tempo importar. As datas à frente importam. Os hábitos que você mantém importam. As sequências que você protege importam. A pessoa que você quer se tornar também.</p>
+      </div>
+    </section>
+
+    <!-- ─────── §4.7 Template Carousel ─────── -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Centenas de ideias</span>
+          <h2>Comece por algo que vale a pena manter.</h2>
+          <p>Objetivos, hábitos, sequências e contagens regressivas prontos para o que vale a pena manter à vista.</p>
+        </div>
+      </div>
+      <div class="carousel" aria-label="Template gallery">
+        <div class="carousel-track" id="carouselTrack"></div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.8 Reviews ─────── -->
+    <section class="section" id="reviewsSection" hidden>
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">De quem usa</span>
+          <h2>O que as pessoas dizem sobre o Left.</h2>
+          <p>O que dizem as pessoas que usam o Left para manter hábitos, contagens regressivas e o tempo visíveis na tela.</p>
+        </div>
+        <div class="reviews-cols" id="reviewsCols"></div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.9 Photo Mosaic ─────── -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">A vida está fora do app</span>
+          <h2>Para o tempo que você realmente vive.</h2>
+          <p>Viagens, corridas, manhãs, pausas, prazos, aniversários de namoro, dias comuns e planos acontecem fora do Left. Aproveite ao máximo.</p>
+        </div>
+        <div class="mosaic reveal">
+          <img src="/images/people-01.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-02.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-03.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-04.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-05.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-06.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-07.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-08.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-09.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+          <img src="/images/people-10.webp" alt="" loading="lazy" decoding="async" width="1000" height="1500" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.95 From the blog ─────── -->
+    <section class="section home-guides">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Do blog</span>
+          <h2>Guias para ver e usar o seu tempo.</h2>
+          <p>Guias práticos sobre contagens regressivas, sequências, progresso do ano, widgets e como lidar com o TDAH.</p>
+        </div>
+        <div class="home-guides-grid reveal">
+          <a class="home-guide" href="/blog/what-is-year-progress">O que é o progresso do ano e por que acompanhá-lo</a>
+          <a class="home-guide" href="/blog/how-to-build-a-streak">Como criar uma sequência no iPhone</a>
+          <a class="home-guide" href="/blog/adhd-time-blindness-iphone">Cegueira do tempo no TDAH e como os widgets ajudam</a>
+          <a class="home-guide" href="/blog/best-countdown-widgets-iphone">Os melhores widgets de contagem regressiva para iPhone</a>
+          <a class="home-guide" href="/blog/how-to-add-widgets-iphone">Como adicionar widgets no iPhone, no iPad e em Em Espera</a>
+          <a class="home-guide" href="/blog/smart-goals-guide">Um guia prático de metas SMART</a>
+        </div>
+        <p class="home-guides-all"><a href="/blog/">Todos os artigos</a></p>
+      </div>
+    </section>
+
+    <!-- ─────── §4.10 FAQ ─────── -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Perguntas frequentes</span>
+          <h2>Perguntas respondidas.</h2>
+          <p>Tem dúvidas? Aqui estão respostas rápidas. Você sempre pode explorar o app ou falar com a gente se precisar de ajuda.</p>
+        </div>
+        <div class="faq-grid reveal">
+          <details class="faq-item"><summary>O Left é de graça?</summary><div class="faq-answer">Você pode baixar o Left de graça. O Left Premium libera tudo, incluindo contagens regressivas, hábitos, sequências e objetivos ilimitados, Planejador, jejum, acompanhamento com o Apple Health, amigos e jogos. O que está incluído de graça e os preços atuais aparecem no app antes de você comprar.</div></details>
+          <details class="faq-item"><summary>Como funciona o Left Premium?</summary><div class="faq-answer">O Left Premium está disponível como assinatura, pelo tempo que você quiser usar, ou como compra vitalícia que libera o app para sempre. Os preços aparecem no app antes de você comprar.</div></details>
+          <details class="faq-item"><summary>Por que o Left calcula o meu tempo restante?</summary><div class="faq-answer">Porque o tempo é mais fácil de ignorar quando continua abstrato. O Left transforma anos, meses, semanas, dias, horas, minutos e o progresso da vida em símbolos visíveis para você ver o que passou e o que resta.</div></details>
+          <details class="faq-item"><summary>O que são datas Ahead?</summary><div class="faq-answer">Datas Ahead são contagens regressivas para momentos futuros: viagens, aniversários, feriados, aniversários de casamento, prazos, aposentadoria ou qualquer outra coisa que você queira esperar. Você pode importar datas do Calendário da Apple e compartilhar contagens regressivas com amigos.</div></details>
+          <details class="faq-item"><summary>Qual é a diferença entre hábito e sequência?</summary><div class="faq-answer">Uma sequência conta há quanto tempo algo continua desde uma data de início ou reinício. Um hábito pede que você cumpra algo em uma frequência: diária, várias vezes por dia, semanal, mensal ou personalizada. Os dois ficam em Since.</div></details>
+          <details class="faq-item"><summary>Posso usar o Left com amigos?</summary><div class="faq-answer">Sim. Adicione amigos pelo nome de usuário para compartilhar datas Ahead, hábitos e sequências. Seus amigos podem ajudar você a manter sequências e hábitos, ou compartilhar e participar juntos de uma data especial à frente.</div></details>
+          <details class="faq-item"><summary>Como o Planejador ajuda no meu dia?</summary><div class="faq-answer">O Planejador reúne o seu dia em uma só tela: Lembretes da Apple, eventos do calendário, hábitos, sequências, clima, sono, treinos e mais.</div></details>
+          <details class="faq-item"><summary>O Left sincroniza entre os meus dispositivos?</summary><div class="faq-answer">Sim. O Left sincroniza automaticamente entre os seus dispositivos iOS. Contagens regressivas, hábitos, sequências e amigos são sincronizados pela sua conta gratuita do Left.</div></details>
+          <details class="faq-item"><summary>O que é um objetivo no Left?</summary><div class="faq-answer">O objetivo é um acompanhamento flexível para metas medidas em números. Você pode acompanhar dinheiro guardado, livros lidos, distância corrida, dívida reduzida, horas de estudo, peso perdido ou qualquer alvo personalizado.</div></details>
+          <details class="faq-item"><summary>Posso ver o Left na Tela Bloqueada?</summary><div class="faq-answer">Sim. Os widgets da Tela Bloqueada mostram seu ano, mês, dia, vida e Você, além de hábitos, sequências, objetivos e jejum. As Atividades ao Vivo mantêm uma contagem regressiva, hábito, jejum ou sessão de foco ativos na Tela Bloqueada e na Dynamic Island.</div></details>
+          <details class="faq-item"><summary>Como funciona o acompanhamento automático com o Apple Health?</summary><div class="faq-answer">Ao criar ou editar um hábito, sequência ou objetivo, escolha Apple Health em vez de acompanhamento manual. Escolha uma métrica e uma meta, e o Left atualiza o item com seus dados de Saúde. Um hábito é concluído quando a meta é atingida, uma sequência é reiniciada quando um período termina sem atingir a meta, e o progresso do objetivo é preenchido automaticamente.</div></details>
+          <details class="faq-item"><summary>O que posso acompanhar com o Jejum?</summary><div class="faq-answer">O Jejum permite iniciar um jejum aberto ou usar janelas automáticas, noturnas, do nascer ao pôr do sol ou personalizadas. Acompanhe o tempo restante, receba alertas, use widgets e Atividades ao Vivo e veja histórico e estatísticas. O Jejum está disponível com o Left Premium e não é aconselhamento médico.</div></details>
+          <details class="faq-item"><summary>Como funciona o timer Pomodoro do Foco?</summary><div class="faq-answer">O Foco começa com uma sessão de 25 minutos, pausas curtas de 5 minutos e uma pausa longa de 20 minutos após quatro sessões. Você pode alterar todas as durações, receber notificações, usar Atividades ao Vivo, ver o histórico e continuar a partir de um widget. O Foco está disponível com o Left Premium.</div></details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─────── §4.11 Download CTA ─────── -->
+    <section class="section download-cta">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Baixe o Left</span>
+          <h2>Comece a notar o que importa.</h2>
+          <p>Baixe o Left no seu iPhone para ver o tempo que resta, as datas que você espera, criar os hábitos que quer manter e se tornar uma versão melhor de si mesmo.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - toque para ver as instruções">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escaneie ou busque <strong>“Left”</strong> na App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Baixar na App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span>Baixar para iOS</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ─────── §4.12 Footer ─────── -->
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline" data-counter-cycle><span id="userCounter">525,000</span> <span data-counter-suffix>pessoas fazendo cada momento valer.</span><template data-counter-suffixes><span data-counter-mode="0">pessoas fazendo cada momento valer.</span><span data-counter-mode="1">hábitos construindo pessoas melhores.</span><span data-counter-mode="2">datas especiais à frente, prontas para acontecer.</span><span data-counter-mode="3">sequências fortes que seguem firmes.</span><span data-counter-mode="4">amigos compartilhando seus objetivos para manter o compromisso.</span></template></span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/pt-BR/support">Suporte</a>
+          <a href="/press">Imprensa</a>
+          <a href="/pt-BR/contact">Contato</a>
+          <a href="/tools/">Ferramentas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">Blog</a>
+          <a href="#" data-consent-open>Configurações de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>BR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="true">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+</footer>
+
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimento de cookies">
+  <p class="left-consent__text">Usamos o Google Analytics para entender quais páginas ajudam as pessoas. Sem anúncios e sem rastreamento entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir análises</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Agora não</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidade</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
