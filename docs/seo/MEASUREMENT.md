@@ -257,10 +257,16 @@ with any change shipped that week, so changes can be read against them.
 
 ## 11. Bing and IndexNow
 
-- **Bing Webmaster Tools.** getleft.app was added on 2026-10-20 by importing it
-  from Google Search Console. The import verifies the site and brings in the
-  sitemap. Re-import or resubmit `https://getleft.app/sitemap.xml` there if the
-  sitemap URL count drifts.
+- **Bing Webmaster Tools.** getleft.app (and left-time.app) were added on
+  2026-10-20 by importing them from Google Search Console under the owner's
+  Google account. The import verified the sites but brought in no sitemaps, so
+  `https://getleft.app/sitemap.xml` was submitted by hand the same day. Don't
+  submit a sitemap for left-time.app: it is being redirected. Once that
+  redirect is live, run Bing's **Site Move** tool from left-time.app to
+  getleft.app, as with Search Console's Change of Address.
+- **First IndexNow run.** All 637 sitemap URLs were submitted on 2026-10-20.
+  A brand-new key first returns `403 SiteVerificationNotCompleted` until Bing
+  has checked the key file; retry a little later.
 - **IndexNow.** The key is `indexNowKey` in `site.config.json`, and the key file
   `/<key>.txt` sits at the site root. After each push to main, run
   `node scripts/indexnow.mjs`. It submits the pages changed since the last
