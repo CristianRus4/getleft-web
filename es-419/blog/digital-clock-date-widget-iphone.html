@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="es-419">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Widget de reloj digital y fecha en iPhone (2026) | Left</title>
+  <meta name="description" content="Guía práctica: un widget de reloj digital y fecha en la pantalla de inicio, la pantalla bloqueada y En espera del iPhone, sin el reloj de siempre."  />
+  <link rel="canonical" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Widget de reloj digital y fecha en iPhone (2026)"  />
+  <meta property="og:description" content="Guía práctica para configurar un widget de reloj digital y fecha en la pantalla de inicio, la pantalla bloqueada y el modo En espera de tu iPhone."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <meta property="og:locale" content="es_LA" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Set Up a Digital Clock and Date Widget on iPhone (2026)",
+  "description": "A practical guide to setting up a digital clock and date widget on your iPhone Home Screen, Lock Screen, and StandBy - without the default-clock fatigue.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/digital-clock-date-widget-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Set Up a Digital Clock and Date Widget on iPhone (2026)",
+      "item": "https://getleft.app/blog/digital-clock-date-widget-iphone"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es-419/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es-419/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es-419/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Cómo configurar un widget de reloj digital y fecha en iPhone (2026)</h1>
+    <p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 8 min de lectura</p>
+
+    <p>La hora y la fecha son los dos datos que más revisas en tu teléfono. iOS muestra ambos de forma predeterminada, pero en un lugar pequeño, fijo y visualmente idéntico al de todos los demás. Un widget de reloj digital y fecha en la pantalla de inicio, la pantalla bloqueada o el modo En espera lo reemplaza por algo que de verdad quieres mirar: números más grandes, tu tipografía, tu color y, si lo configuras bien, un poco más de contexto que solo horas y minutos.</p>
+
+    <p>Esta es una guía de configuración, no una lista de todas las apps. Explica qué poner en un widget de reloj y fecha, cómo agregarlo en cada superficie de iOS y cómo resolver los problemas más comunes. Usaremos <strong>Left</strong> como ejemplo porque incluye un widget de reloj digital que combina hora, fecha y vistas de tiempo restante en un mismo espacio, pero los principios aplican tanto si usas Left como los widgets integrados de Apple u otra app.</p>
+
+    <h2>¿Para qué reemplazar el reloj predeterminado?</h2>
+    <p>El reloj de la barra de estado de Apple es diminuto y vive en la zona superior de la muesca. El reloj predeterminado de la pantalla bloqueada es más grande, pero casi no se puede personalizar y no muestra la fecha de forma destacada. La galería de widgets existe justo para los casos en que la pantalla integrada no da suficiente información para cómo usas realmente tu teléfono.</p>
+    <p>La prueba honesta para decidir si agregar un widget es si te ahorra tiempo al echar un vistazo. Si hoy <em>desbloqueas el teléfono para ver qué día es</em>, gana un widget en la pantalla bloqueada que muestre la fecha. Si dejas tu iPhone en En espera en el buró y entrecierras los ojos para verlo desde el otro lado del cuarto, un widget de reloj grande en En espera es una mejora real. Si usas el widget de decoración y no notarías que ya no está, no lo necesitas.</p>
+
+    <h2>Qué poner en un widget de reloj y fecha</h2>
+    <p>Un widget de reloj ocupa poco espacio, así que cada elemento tiene que ganarse su lugar. Las cuatro cosas que vale la pena mostrar, por orden de prioridad:</p>
+    <ul>
+      <li><strong>Horas y minutos.</strong> Grandes, con mucho contraste: el ancla obvia.</li>
+      <li><strong>Día de la semana.</strong> “Martes” te dice más de un vistazo que “12 ago”. Casi nadie recuerda la fecha de hoy, pero siempre sabe qué día de la semana es.</li>
+      <li><strong>Fecha.</strong> En formato corto: “12 ago” o “ago 12”. El año casi nunca hace falta en el dispositivo que tienes en la mano ahora mismo.</li>
+      <li><strong>Un dato de contexto.</strong> Opcional: el porcentaje de progreso del año, el tiempo que queda del día o una cuenta regresiva hasta tu próxima fecha límite. Aquí es donde una app de widgets como Left o Pretty Progress se gana su lugar frente al reloj nativo: el widget nativo no puede mostrarte “queda el 63 % del año” junto a la hora.</li>
+    </ul>
+    <p>Los segundos, el a. m./p. m. y las etiquetas de huso horario casi nunca se ganan su lugar en el tamaño pequeño. Quítalos.</p>
+
+    <h2>Paso 1: agrega un widget de reloj y fecha a la pantalla de inicio</h2>
+    <p>Esto funciona con cualquier app de widgets, incluida Left:</p>
+    <ol>
+      <li>Mantén presionada un área vacía de la pantalla de inicio hasta que los íconos empiecen a moverse.</li>
+      <li>Toca el botón <strong>+</strong> de la esquina superior izquierda.</li>
+      <li>Busca la app de widgets (por ejemplo, “Left”) o recorre la lista.</li>
+      <li>Desliza entre los tamaños pequeño, mediano y grande, y toca <strong>Agregar widget</strong> en el que quieras. Del pequeño caben cuatro por fila y sirve para mostrar solo la hora. El mediano deja espacio para hora + fecha + una línea de contexto.</li>
+      <li>Arrastra el widget a donde lo quieras y toca <strong>Listo</strong>.</li>
+      <li>Vuelve a mantener presionado el widget y toca <strong>Editar widget</strong> para elegir el estilo (reloj, porcentaje, cuenta regresiva o una vista combinada) y un color.</li>
+    </ol>
+    <p>El paso a paso completo con capturas está en nuestra <a href="/es-419/support/widget-iphone-home-screen">guía de widgets para la pantalla de inicio del iPhone</a>.</p>
+
+    <h2>Paso 2: agrega un widget de reloj a la pantalla bloqueada</h2>
+    <p>Los widgets de la pantalla bloqueada son más pequeños (bloques en línea o rectangulares encima del reloj). Son la superficie que más rinde para un widget de fecha, porque ves la pantalla bloqueada cada vez que levantas el teléfono, sin desbloquearlo.</p>
+    <ol>
+      <li>Mantén presionada la pantalla bloqueada y toca <strong>Personalizar</strong> y después <strong>Pantalla bloqueada</strong>.</li>
+      <li>Toca el área de widgets que está debajo de la hora.</li>
+      <li>Busca tu app de widgets y elige un widget de pantalla bloqueada que muestre el día, la fecha o un porcentaje.</li>
+      <li>Toca <strong>Listo</strong> dos veces.</li>
+    </ol>
+    <p>El reloj de Apple que está encima del widget ya muestra la hora, así que en la pantalla bloqueada el widget debería mostrar información <em>complementaria</em>: la fecha, el día de la semana o el porcentaje de progreso del año. El recorrido completo de configuración está en nuestra <a href="/es-419/support/widget-iphone-lock-screen">guía de widgets para la pantalla bloqueada</a>.</p>
+
+    <h2>Paso 3: agrega un widget de reloj a En espera</h2>
+    <p>En espera es el modo de buró, con el teléfono cargando de lado, que llegó con iOS 17. Convierte tu iPhone en una pantalla para ver de un vistazo cuando se carga en horizontal. Un widget de reloj digital en En espera es lo que la mayoría termina usando como reloj de la recámara.</p>
+    <ol>
+      <li>Conecta tu iPhone a un cargador y colócalo de lado (un soporte MagSafe es ideal).</li>
+      <li>Desliza hacia la derecha en la pantalla de En espera para llegar a la vista de widgets.</li>
+      <li>Mantén presionado el widget del lado izquierdo o derecho y autentícate con Face ID.</li>
+      <li>Toca <strong>+</strong> y elige tu app de widgets y luego el tamaño.</li>
+      <li>Agrega un widget de reloj a un lado y un widget de cuenta regresiva o de progreso del año al otro. Es una pantalla de buró completa: la hora a la izquierda y lo que queda a la derecha.</li>
+    </ol>
+    <p>Recorrido detallado: <a href="/es-419/support/widget-iphone-standby">configuración de widgets en En espera</a>.</p>
+
+    <h2>Decisiones de diseño que de verdad importan</h2>
+    <p>La gente personaliza de más sus widgets. Eligen tres tipografías y cuatro colores, y terminan con algo más difícil de leer que el predeterminado. Algunos principios, más o menos por orden de importancia:</p>
+    <ul>
+      <li><strong>Primero, el contraste.</strong> Texto oscuro sobre un widget claro o texto claro sobre un widget oscuro. Los tonos medios sobre tonos medios se ven refinados en capturas e ilegibles en la vida real.</li>
+      <li><strong>Un solo estilo tipográfico.</strong> Si la hora está en una monoespaciada numérica, pon la fecha en la misma familia. Mezclar una slab serif con una sans redondeada solo por variar se lee como ruido visual.</li>
+      <li><strong>El color sigue al fondo de pantalla, no al estado de ánimo.</strong> Si tu fondo está muy cargado, elige un fondo de widget sólido y plano. Si es un degradado limpio, funciona un widget translúcido.</li>
+      <li><strong>Olvídate de los segundos.</strong> Los segundos son una señal de estrés. El widget se actualiza según el calendario de iOS, no en tiempo real, así que unos segundos en pantalla se van a atrasar a la vista: parecerá roto en lugar de preciso.</li>
+      <li><strong>Usa el formato de tu región.</strong> El reloj de 24 horas se lee más rápido para quien está acostumbrado a él. El de 12 horas con a. m./p. m. es mejor para quien no. Elige uno a conciencia en vez de heredar el predeterminado de la app.</li>
+    </ul>
+
+    <h2>Agregar lo que queda junto a la hora</h2>
+    <p>Aquí es donde Left se diferencia de una app que solo es un reloj. Un reloj digital por sí solo responde “qué hora es”. Un widget de reloj y fecha combinado con una vista de “tiempo restante” responde “cuánto me queda de hoy, de esta semana o de este año”, que es una pregunta mucho más útil. Tres combinaciones que vale la pena probar:</p>
+    <ul>
+      <li><strong>Hora + progreso del año.</strong> El reloj muestra el momento; el <a href="/year-progress-widget">widget de progreso del año</a> da el marco más amplio. Escribimos sobre por qué esta pequeña visualización cambia tu forma de planear en <a href="/es-419/blog/what-is-year-progress">Qué es el progreso del año y por qué deberías seguirlo</a>.</li>
+      <li><strong>Hora + próxima fecha límite.</strong> Un reloj a la izquierda y una cuenta regresiva de Ahead (por ejemplo, “12 días para el lanzamiento”) a la derecha. El reloj te mantiene con los pies en el hoy; la cuenta regresiva te obliga a ser realista con el futuro.</li>
+      <li><strong>Hora + racha de un hábito.</strong> El reloj + tu racha activa más larga. Útil a primera hora de la mañana, sobre todo para hábitos que haces a una hora concreta del día. Nuestra <a href="/es-419/blog/how-to-build-a-streak">guía para construir rachas</a> cubre la parte del horario.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Obtén el widget de reloj digital</a></p>
+
+    <h2>Cómo resolver los problemas más comunes</h2>
+    <p><strong>El widget muestra la hora equivocada después de un viaje.</strong> iOS toma la hora de la red celular. Si cruzaste husos horarios y el widget sigue en el anterior, abre <em>Configuración → General → Fecha y hora</em>, desactiva <em>Ajustar automáticamente</em> y vuelve a activarlo. Cierra a la fuerza la app del widget, espera un minuto y vuelve a revisar.</p>
+    <p><strong>El widget lleva horas sin actualizarse.</strong> iOS limita mucho la actualización de widgets para ahorrar batería. Tocar el widget (que abre la app) suele forzar una actualización al volver. Si sigue atrasándose, puede que la app esté castigada por Apple en la actualización en segundo plano: activa y desactiva <em>Configuración → [App] → Actualización en segundo plano</em>.</p>
+    <p><strong>Se ve distinto a la vista previa.</strong> La galería de widgets los muestra sobre un gris neutro. Tu fondo de pantalla, el modo oscuro o claro y los ajustes de accesibilidad (texto en negritas, texto más grande) cambian cómo se ve el mismo widget en su lugar. Pon el dispositivo en el modo exacto en el que vas a usar el widget y vuelve a elegir.</p>
+    <p><strong>Elegí una tipografía y volvió a la anterior.</strong> Algunas apps reservan la elección de tipografía para un plan de pago; otras incluyen pocas tipografías en la versión gratis. Revisa la configuración de la app: si la tipografía vuelve a la anterior después de reabrirla, es un tema del plan, no un error.</p>
+
+    <h2>Dónde encaja el reloj digital en tu configuración de widgets</h2>
+    <p>Un widget de reloj y fecha es el widget más permanente de tu teléfono. Cambias los widgets de hábitos cuando cambian tus hábitos; cambias los widgets de cuenta regresiva cuando pasa la fecha; el reloj no lo cambias. Esa permanencia es justo la razón por la que vale la pena configurarlo bien una vez. Combínalo con unos pocos widgets que sí cambian (una cuenta regresiva para la próxima gran fecha, un hábito que estés siguiendo ahora, una vista del progreso del año) y tendrás una pantalla de inicio que te dice casi todo lo que necesitas saber sin abrir ninguna app.</p>
+
+    <p>Si quieres un recorrido guiado por todas las superficies de widgets de iOS (pantalla de inicio, pantalla bloqueada y En espera), hicimos uno: <a href="/es-419/blog/how-to-add-widgets-iphone">Cómo agregar widgets en iPhone</a>.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Basta con el widget de reloj nativo de iOS?</strong><br/>
+    Para la hora sola, sí. El reloj nativo es confiable y está bien diseñado. Necesitas un widget de terceros cuando quieres combinar la hora con la fecha, el progreso del año o una cuenta regresiva en el mismo recuadro, o cuando quieres cambiar la tipografía.</p>
+
+    <p><strong>¿Formato de 12 o de 24 horas?</strong><br/>
+    El que leas más rápido. Si tienes que hacer una conversión mental (“las 17 son las 5 p. m.”), al cambiar ahorrarás fracciones de segundo en cada vistazo durante años. La mayoría de los usuarios fuera de EE. UU. prefiere el de 24 horas; la mayoría en EE. UU., el de 12.</p>
+
+    <p><strong>¿Un widget de reloj digital me gasta la batería?</strong><br/>
+    No. iOS controla cada cuánto se actualizan los widgets y los mantiene muy por debajo del umbral en el que se nota en la batería. El presupuesto de actualización del widget de reloj es el mismo que el de cualquier otro widget.</p>
+
+    <p><strong>¿Puedo tener widgets de reloj distintos en distintas páginas de la pantalla de inicio?</strong><br/>
+    Sí. Cada página de la pantalla de inicio es un lienzo propio. Una configuración común es una página completa de widgets con un reloj grande + fecha + progreso del año, y después una cuadrícula de apps más convencional en las demás páginas.</p>
+
+    <p><strong>¿Left funciona en iPad y Mac?</strong><br/>
+    No. Left es una app para iPhone (iOS 26 o posterior). Su widget Reloj digital funciona en la pantalla de inicio, en la pantalla bloqueada y en En espera, lo que convierte un iPhone cargando en el buró en un buen reloj.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarga Left</span>
+          <h2>Empieza a darte cuenta de lo que importa.</h2>
+          <p>Descarga Left en tu iPhone para ver el tiempo que te queda, esperar con ilusión las fechas que importan, crear los hábitos que quieres mantener y convertirte en una mejor versión de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - tócalo para ver las instrucciones">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escanea o busca <strong>“Left”</strong> en el App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Descargar Left en el App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descargar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es-419/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es-419/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es-419/blog/">Blog</a>
+          <a href="#" data-consent-open>Configuración de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>LAT</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="true">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para entender qué páginas le sirven a la gente. Sin anuncios ni rastreo entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analíticas</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
