@@ -14,7 +14,7 @@ denied; Google signals and ad personalisation off.
 | Key | Meaning | Today |
 |---|---|---|
 | `appId` | App Store ID shared with the app (release contract) | `6740155884` |
-| `ga4MeasurementId` | GA4 web stream ID, `G-XXXXXXXXXX` | empty: no analytics, no banner, no footer link |
+| `ga4MeasurementId` | GA4 web stream ID | `G-YJKL80Z8DP` (live since 2026-10-19) |
 | `appStoreProviderToken` | App Store Connect provider token (`pt`) | empty: clean, untagged App Store links |
 | `campaignPrefix` | First segment of every website campaign token | `w` |
 | `analyticsHost` | The only hostname that may send data | `getleft.app` |
@@ -28,8 +28,19 @@ ID into `ga4MeasurementId`, run the site build, deploy.
 
 ## 2. GA4 property
 
-- Property: **Left website** (ID: `G-__________`, fill in when created).
-  One web stream for `https://getleft.app`.
+- Property: **getleft.app** in account CristianRus4 (44324492), property ID `559550454`,
+  web stream `16156543586` for `https://getleft.app`, measurement ID `G-YJKL80Z8DP`.
+  Reporting time zone New Zealand, currency USD. Created 2026-10-19.
+- Status on 2026-10-19: Google signals off (never turned on); event data retention set to
+  14 months; enhanced measurement keeps page views (page loads only), scrolls, outbound
+  clicks, video and file downloads, with site search, form interactions and history-based
+  page changes off; custom dimensions `placement`, `locale`, `content_type` created;
+  Search Console (`sc-domain:getleft.app`) linked. `download_click` is marked as a key
+  event once GA has received it (the new GA4 admin only stars events it has seen).
+- No Google Ads link exists, so the ads-personalisation panel stays inactive; the tag
+  also sends `allow_ad_personalization_signals: false` and denies every ad signal.
+- Cloudflare also injects its own Web Analytics beacon (`static.cloudflareinsights.com`)
+  into browser responses. That comes from a Cloudflare dashboard setting, not this repo.
 - Admin → Data collection: Google signals **off**. Leave granular location and
   device data collection at its default (the privacy policy discloses
   approximate location and device type).
