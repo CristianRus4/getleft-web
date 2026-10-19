@@ -134,3 +134,8 @@ Changed in `i18n/locales/en.json` (translation lanes: these strings need re-tran
 - `support_articles.widget_mac_desktop` and `widget_mac_notification_center`: rewritten. Left has no Mac app (no Mac target, Mac Catalyst off), so the articles now describe Sonoma+ "Use iPhone widgets" (same Apple Account, iPhone nearby). Keys: `meta.description`, `h2_2`, `p_1`, `li_extra_1`, `li_extra_2`, `li_extra_9`, `p_extra_10`/`p_extra_11`, plus `h2_7`/`p_2`/`li_5`/`li_6` (desktop) and `li_1`, `li_3`, `li_7`, `li_8` (Notification Center). Also `og_description`/`p_9` (desktop), the Notification Center meta description, `widget_size_mac`.
 - `support_articles.widget_iphone_standby`: `li_extra_1` (iOS 26), `p_extra_11` (no "iOS 17").
 - Account sync copy no longer says "and Mac": the Sign in with Apple meta description, `og_description` and `p_47`.
+
+## Update, 2026-10-20: Lane 0 translates the blog
+
+- **Lane 0 owns the `blog` family for every locale.** It is translating all blog posts into all 18 locales in parallel from the main account. Lanes 1 and 2: don't create or edit `i18n/blog/<loc>.json`. Your Phase 2 is the `pages` and `tools` families only.
+- **Blog English is frozen while this runs.** Lane 3: don't edit `blog/*.html` without telling Lane 0 first. Any change to a sentence changes its hash and drops the translations of that sentence in every locale. Fixes for factual errors are fine, but list them in your report.
