@@ -204,3 +204,52 @@ When nothing changed it commits nothing, so a second run on the same day is harm
 **Tests.** `node scripts/check-publish.mjs --selftest` builds a throwaway copy of the repo on three fixture dates (release held, release live, new page live) and checks files, sitemap, hreflang and links. Run it after touching `scripts/lib/publish.mjs`, `build-i18n.mjs` or the workflow.
 
 Never run a `BUILD_DATE=…` build in your worktree: it moves scheduled pages into place. Use the self-test.
+
+## English copy changed in `i18n/locales/en.json` (content audit, 2026-10-20)
+
+Lane 3 corrected factual errors in `support.html` and `support/*.html` (details in `docs/seo/content-audit-2026-10.md`). Translators: these keys now have new English, so the existing translations are stale and must be redone.
+
+Changed values:
+- `support.support.li_10`
+- `support.support.li_11`
+- `support.support.li_2`
+- `support.support.li_8`
+- `support.support.li_9`
+- `support.support.p_13`
+- `support.support.p_16`
+- `support.support.p_17`
+- `support.support.p_19`
+- `support.support.p_24`
+- `support.support.p_28`
+- `support.support.p_33`
+- `support.support.p_35`
+- `support.support.p_37`
+- `support.support.p_47`
+- `support.support.summary_17`
+- `support.support.widget_size_home`
+- `support.support.widget_size_lock`
+- `support_articles.account_and_sync.p_1`
+- `support_articles.account_and_sync.p_7`
+- `support_articles.accountability_with_friends.li_extra_6`
+- `support_articles.accountability_with_friends.li_extra_7`
+- `support_articles.accountability_with_friends.li_extra_8`
+- `support_articles.choose_your_tools.li_extra_7`
+- `support_articles.choose_your_tools.p_extra_1`
+- `support_articles.joint_ahead_dates.li_extra_1`
+- `support_articles.streaks_vs_habits.li_extra_1`
+- `support_articles.wallpaper_shortcut.li_extra_10`
+- `support_articles.wallpaper_shortcut.li_extra_11`
+- `support_articles.wallpaper_shortcut.li_extra_12`
+- `support_articles.wallpaper_shortcut.li_extra_2`
+- `support_articles.wallpaper_shortcut.li_extra_6`
+- `support_articles.widget_ipad_home_screen.li_extra_1`
+
+New keys (Premium notes and one tool):
+- `support_articles.accountability_with_friends.p_premium`
+- `support_articles.add_friends.p_premium`
+- `support_articles.choose_your_tools.li_extra_8`
+- `support_articles.joint_ahead_dates.p_premium`
+- `support_articles.set_up_your_lifespan.p_premium`
+
+Removed from the HTML but still present as keys in `en.json` (safe to delete): `support_articles.set_up_your_lifespan.li_4`, `support_articles.set_up_your_lifespan.li_extra_4`, `support_articles.iphone_action_button_left.h2_5`, `support_articles.iphone_action_button_left.p_extra_14`, `support.support.widget_size_mac`.
+Not in `en.json` (hand-written English in the page, translated through the pages catalog): the `press.html` widget sentence.
