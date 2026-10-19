@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>人生日曆 App：在 iPhone 以週看人生 | Left</title>
+  <meta name="description" content="在 iPhone 上以週、月或年看見你的人生。Left 的人生日曆會淡化已走過的週數，顯示還剩多少，並提供免費小工具。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/life-calendar" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/life-calendar" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/life-calendar" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/life-calendar" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/life-calendar" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/life-calendar" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/life-calendar" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/life-calendar" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 人生日曆"  />
+  <meta property="og:description" content="在 iPhone 上以週、月或年看見你的人生。Left 的人生日曆會淡化已走過的週數，顯示還剩多少，並提供免費小工具。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/life-calendar" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 人生日曆"  />
+  <meta name="twitter:description" content="在 iPhone 上以週、月或年看見你的人生。Left 的人生日曆會淡化已走過的週數，顯示還剩多少，並提供免費小工具。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Life calendar",
+        "item": "https://getleft.app/life-calendar"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left shows your life in weeks, months or years, along with the year, month, week and day, with free widgets and a Lock Screen wallpaper.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a life calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A life calendar is a grid of every week in a typical lifespan, usually 52 boxes per row and one row per year, with the weeks you have lived filled in. It makes the time you have left visible at a glance."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many weeks are in a lifetime?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An 80-year life is about 4,160 weeks (80 × 52). Left uses your birthday and lifespan to work out how many of those you have lived and how many are left."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left’s life calendar free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The life view, the Life and You widgets and the life wallpaper are free with Left’s 80-year default lifespan. Setting a custom lifespan needs Left Premium."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see my life in weeks on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left Wallpaper has a Life mode that draws your life in weeks, months or years as your Lock Screen wallpaper, and the You widget can show your weeks left as a number on the Lock Screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the lifespan a prediction?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Whether you use the 80-year default, the calculator or a number you choose, it is an approximation for reflection, not medical advice or a forecast."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/tools/" class="nav-link">工具</a>
+          <a href="/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/zh-Hant/">Left</a> / 人生日曆</p>
+      <h1>iPhone 人生日曆：以週呈現你的人生</h1>
+      <p class="article-lede">人生日曆把一整個人生畫成格子，每週一格，並把已經度過的週數填滿。這聽起來很殘酷，但目的是讓人看得更清楚。Left 把這個想法變成 iPhone 上一個活的畫面，搭配小工具和鎖定畫面桌布，隨著每一週過去而更新。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 以週為單位看見你的人生"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+以週看見你的人生</a>
+        <p>預設 80 歲壽命下免費。適用於 iOS 26 或更新版本的 iPhone。</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-time-feature-1-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-time-feature-1-light.webp" alt="Left 的「你的人生」畫面：數千個小點，每週一個，已過的週數變淡，頂端顯示還剩 2,715 週" width="560" height="1262" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>你的人生，以週呈現。每個點是一週，已過的週數會淡出。</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="本頁內容">
+        <p class="article-toc-label">本頁內容</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">什麼是人生日曆</a></li>
+          <li><a href="#why">為什麼大家會留著它</a></li>
+          <li><a href="#setup">如何在 Left 設定人生日曆</a></li>
+          <li><a href="#widgets">人生小工具與人生桌布</a></li>
+          <li><a href="#free">哪些免費，哪些需要 Left Premium</a></li>
+          <li><a href="#faq">常見問題</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">什麼是人生日曆</h2>
+        <p>取一個一般的壽命，比方說 80 歲，把它畫成每列 52 格、每年一列的格子。大約是 4,160 週，一頁就放得下。把已經度過的週數塗上顏色，剩下的時間就變成你真的看得見的東西。這種形式因 Tim Urban 在 Wait But Why 發表的〈Your Life in Weeks〉一文而廣為人知，也呼應一個古老得多的想法：<em>memento mori</em>，斯多噶學派提醒自己時間有限、好讓人有意識地度過每一天的習慣。</p>
+        <p>紙本圖表是靜態的。在 Left 裡，格子會自己更新：每過一週，就有一格變淡。</p>
+
+        <h2 id="why">為什麼大家會留著它</h2>
+        <p>大多數人使用人生日曆，不是為了心情低落，而是為了找到視角。看見一週雖小，卻是整體中看得見的一部分，會讓你更容易對不重要的事說不，對那趟旅行、那通電話或一再拖延的專案說好。它也讓平凡的一週不那麼容易被隨手浪費。</p>
+        <p>如果以週來看太沉重，可以把畫面切換成月或年，感覺會溫和一些，或乾脆把人生畫面從主畫面隱藏。重點是覺察，不是壓力。</p>
+
+        <h2 id="setup">如何在 Left 設定人生日曆</h2>
+        <ol>
+          <li>打開 Left，前往<strong>設定</strong>並打開<strong>你的壽命</strong>。</li>
+          <li>設定你的<strong>生日</strong>。它讓 Left 知道你的時間軸從哪裡開始；沒有它，Left 就無法顯示人生進度。</li>
+          <li>在<strong>人生顯示單位</strong>下，選擇<strong>週數</strong>。月和年也在選項裡。</li>
+          <li>回到<strong>剩餘時間</strong>，切換到人生畫面，標示為<strong>你的人生</strong>（如果你加了名字，則是你的名字）。你會看到格子、你還剩下的週數，以及你目前的年份和年齡。</li>
+          <li>選用：如果你不想每次打開 App 都看到它，可以開啟<strong>在 Left 檢視中隱藏人生</strong>。你的設定都會保留。</li>
+        </ol>
+        <h3>關於壽命數字</h3>
+        <p>Left 預設使用 80 歲的壽命。有了 Left Premium，你可以更改它：<strong>計算你的壽命</strong>會依出生國家、運動、吸菸、飲酒、飲食、睡眠和壓力等大方向的因素估算一個數字，<strong>手動設定你的壽命</strong>則讓你自己選數字。無論哪一種，它都只是供你反思的概略數字，不是醫療預測。更改後，每個人生畫面、小工具和桌布都會重新換算。<a href="/zh-Hant/support/set-up-your-lifespan">壽命設定指南</a>涵蓋了所有選項。</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得 Left，開始你的人生日曆"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+在 Left 開始你的人生日曆</a>
+        </div>
+
+        <h2 id="widgets">人生小工具與人生桌布</h2>
+        <p>打開 App 是一種選擇，小工具或桌布卻一直都在，所以很多人把人生日曆放在整天都看得到的畫面上。</p>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>選項</th><th>顯示內容</th><th>位置</th></tr></thead>
+          <tbody>
+            <tr><td><strong>人生小工具</strong></td><td>壽命中的每一年一個符號，顯示剩餘年數或剩餘百分比，也可以加上你的名字</td><td>主畫面：小型、中型、大型。鎖定畫面：圓形、矩形、單行</td></tr>
+            <tr><td><strong>「你」小工具</strong></td><td>已度過和剩餘的時間，以年、月、週、日或小時顯示，並附進度條</td><td>主畫面：小型、中型、大型。鎖定畫面：圓形、矩形、單行</td></tr>
+            <tr><td><strong>Left 桌布，「人生」模式</strong></td><td>把你的整個人生畫成以週、月或年組成的格子，當作鎖定畫面桌布</td><td>鎖定畫面，由捷徑自動化更新</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>想加入小工具，長按主畫面，點<strong>編輯</strong>，再點<strong>加入小工具</strong>，搜尋 <strong>Left</strong>，選擇<strong>人生</strong>或<strong>你</strong>。鎖定畫面的話，長按它，點<strong>自訂</strong>，選擇<strong>鎖定畫面</strong>，再點小工具區域。桌布是手機上最接近紙本人生日曆的東西，設定方式請見<a href="/zh-Hant/days-left-wallpaper">剩餘天數桌布</a>頁面。</p>
+
+        <h2 id="free">哪些免費，哪些需要 Left Premium</h2>
+        <p>使用預設的 80 歲時，人生畫面、「人生」和「你」小工具，以及 Left 桌布都免費。自訂壽命，不論是計算或手動設定，都需要 Left Premium；它也同時解除倒數日、習慣、連續紀錄和目標的數量限制，並加入規劃等功能。價格會在你購買前顯示於 App 中。</p>
+        <p>安裝前想先看看？免費的<a href="/tools/life-expectancy-calculator">預期壽命計算機</a>和<a href="/tools/age-calculator">年齡計算機</a>在瀏覽器就能使用。Left 本身僅提供 iPhone 版，需要 iOS 26 或更新版本。</p>
+
+        <h2 id="faq">常見問題</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>什麼是人生日曆？</summary>
+            <div class="faq-answer"><p>人生日曆是把一般壽命中的每一週畫成格子，通常每列 52 格、每年一列，已經度過的週數會被填滿。它讓你一眼就看見剩下的時間。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>一生有多少週？</summary>
+            <div class="faq-answer"><p>80 歲的人生約有 4,160 週（80 × 52）。Left 會根據你的生日和壽命，算出其中已經過了多少、還剩多少。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Left 的人生日曆免費嗎？</summary>
+            <div class="faq-answer"><p>免費。使用 Left 預設 80 歲壽命時，人生畫面、「人生」和「你」小工具，以及人生桌布都免費。自訂壽命則需要 Left Premium。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以在鎖定畫面看到我的人生週數嗎？</summary>
+            <div class="faq-answer"><p>可以。Left 桌布有「人生」模式，會把你的人生以週、月或年畫成鎖定畫面的背景，「你」小工具也能在鎖定畫面以數字顯示你還剩幾週。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>壽命數字是預測嗎？</summary>
+            <div class="faq-answer"><p>不是。無論你使用預設的 80 歲、計算機算出的數字，或自己選的數字，它都只是供你反思的概略數字，不是醫療建議，也不是預測。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">延伸閱讀</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hant/support/set-up-your-lifespan">如何在 Left 設定你的壽命</a>
+          <a class="support-related-item" href="/zh-Hant/days-left-wallpaper">鎖定畫面的剩餘天數桌布</a>
+          <a class="support-related-item" href="/zh-Hant/year-progress-widget">iPhone 年度進度小工具</a>
+          <a class="support-related-item" href="/tools/life-expectancy-calculator">預期壽命計算機</a>
+          <a class="support-related-item" href="/tools/age-calculator">年齡計算機</a>
+          <a class="support-related-item" href="/blog/adhd-time-blindness-iphone">時間盲目與小工具如何幫上忙</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>讓每一週都有意義。</h2>
+          <p>下載 Left，加入你的生日，在 iPhone 上以週看見你的人生。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 以週為單位看見你的人生"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+以週看見你的人生</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

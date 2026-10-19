@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>已過天數小工具：iPhone 主畫面與鎖定畫面 | Left</title>
+  <meta name="description" content="在 iPhone 主畫面或鎖定畫面顯示「已經幾天」。在 Left 建立連續紀錄，選擇小工具尺寸，數字就會自己往上長。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/days-since-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/days-since-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/days-since-widget" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 已過天數小工具"  />
+  <meta property="og:description" content="在 iPhone 主畫面或鎖定畫面顯示「已經幾天」。在 Left 建立連續紀錄，選擇小工具尺寸，數字就會自己往上長。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/days-since-widget" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 已過天數小工具"  />
+  <meta name="twitter:description" content="在 iPhone 主畫面或鎖定畫面顯示「已經幾天」。在 Left 建立連續紀錄，選擇小工具尺寸，數字就會自己往上長。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Days since widget",
+        "item": "https://getleft.app/days-since-widget"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left counts the days since any date with streaks you can show in Home Screen and Lock Screen widgets.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a free days since widget for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left’s widgets are free, and the free plan lets you create 2 streaks to show in them. Deleting a streak does not free up a slot. For more streaks, Left Premium removes the limit; prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I start counting from a date in the past?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Set Started on... to any past date and time, and the widget shows the full count straight away. Future dates are not allowed for streaks; use an Ahead countdown for those."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the widget show weeks, months or years instead of days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Touch and hold the Streak widget, tap Edit Widget, and choose to show the streak in hours, days, weeks, months or years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put a days since counter on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Streak widget has a rectangular Lock Screen version. Touch and hold the Lock Screen, tap Customize, choose Lock Screen, tap the widget area and add Left’s Streak widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when I reset a streak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tap Restart on the streak and choose when you restarted. The counter starts again from that moment, and Left keeps your restart history, average streak and longest streak."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/tools/" class="nav-link">工具</a>
+          <a href="/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/zh-Hant/">Left</a> / 已過天數小工具</p>
+      <h1>iPhone 已過天數小工具</h1>
+      <p class="article-lede">有些數字值得每天看見：戒酒的天數、搬家後的天數、開始做一件重要的事之後的天數。在 Left 裡，這種計數器叫做<strong>連續紀錄</strong>。它從你選的任何日期開始往上算，你可以把它放在主畫面或鎖定畫面。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得已過天數小工具"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+取得已過天數小工具</a>
+        <p>適用於 iOS 26 或更新版本的 iPhone。免費方案可建立 2 條連續紀錄。</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-since-feature-2-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-since-feature-2-light.webp" alt="Left 的連續紀錄從 2026 年 4 月 9 日起累計 44 天，計數器下方顯示重新開始次數、平均連續紀錄和最長連續紀錄" width="560" height="1272" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>連續紀錄有自己的歷史：重新開始次數、平均和最長紀錄。</figcaption>
+        </figure>
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-steps-3-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-steps-3-light.webp" alt="Left 的「事件」畫面，以顏色區分連續紀錄，例如戒酒 62 天、不吃加工零食 24 天" width="560" height="1159" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>所有連續紀錄和習慣都在「事件」裡。</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="本頁內容">
+        <p class="article-toc-label">本頁內容</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">已過天數計數器能做什麼</a></li>
+          <li><a href="#why">為什麼要放在螢幕上</a></li>
+          <li><a href="#setup">如何在 Left 設定已過天數小工具</a></li>
+          <li><a href="#sizes">小工具尺寸與鎖定畫面選項</a></li>
+          <li><a href="#restart">連續紀錄中斷時</a></li>
+          <li><a href="#free">哪些免費，哪些需要 Left Premium</a></li>
+          <li><a href="#faq">常見問題</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">已過天數計數器能做什麼</h2>
+        <p>倒數日告訴你距離某件事發生還有多久。已過天數計數器則相反：它衡量從某個對你有意義的時刻到現在過了多久，不用你做任何事，數字每天都會變大。</p>
+        <p>大家用它來記錄各式各樣的事：</p>
+        <ul>
+          <li><strong>戒掉某件事：</strong>不喝酒、不抽菸、不吃糖或不再滑手機的天數。</li>
+          <li><strong>人生里程碑：</strong>搬到新城市、開始一份工作、結婚或領養一隻狗之後的天數。</li>
+          <li><strong>復原與健康：</strong>受傷、手術後，或你記下的上一次偏頭痛之後的天數。</li>
+          <li><strong>上一次做某件事：</strong>距離上次打電話給奶奶、洗車或備份筆電已經幾天。</li>
+        </ul>
+        <p>在 Left 裡，連續紀錄正是這樣的計數器。你為它取名並設定開始日期，它就會一直往上算，直到你重新開始。</p>
+
+        <h2 id="why">為什麼要放在螢幕上</h2>
+        <p>藏在 App 裡的計數器很容易被忘記，每次解鎖手機都看得到的計數器，效果就不一樣。一個已經累積到 62 的數字，你會多想一下再決定要不要歸零；100 天或一週年這樣的里程碑，看著它一步步靠近，也不再那麼抽象。</p>
+        <p>反過來用也可以。「距離上次打電話給媽媽已經幾天」這樣的計數器，是溫和又誠實的提醒，不需要任何通知。</p>
+
+        <h2 id="setup">如何在 Left 設定已過天數小工具</h2>
+        <h3>1. 建立連續紀錄</h3>
+        <ol>
+          <li>打開 Left，前往<strong>事件</strong>。</li>
+          <li>點 <strong>+</strong>。在<strong>從頭建立</strong>下，選擇<strong>連續紀錄</strong>（「會自動增加，除非你重新開始」）。你也可以在搜尋欄輸入文字，從現成的範本開始。</li>
+          <li>幫它取個名字，例如<em>不喝酒</em>或<em>搬到里斯本</em>。</li>
+          <li>把<strong>開始於...</strong>設為它開始的日期和時間。過去的日期可以用，所以你能把已經累積的天數帶進來。未來的日期則不行，請改用<a href="/zh-Hant/countdown-widget">倒數日</a>。</li>
+          <li>你也可以視需要加入目標、用<strong>有結束日期</strong>設定結束日期，或設定提醒，包括在經過一定天數後提醒你的已過時間提醒。</li>
+          <li>儲存。連續紀錄會出現在「事件」，並立刻開始計算。</li>
+        </ol>
+        <h3>2. 把小工具加到主畫面</h3>
+        <ol>
+          <li>長按主畫面的空白處，直到 App 開始晃動，再點左上角的<strong>編輯</strong>，選擇<strong>加入小工具</strong>。</li>
+          <li>搜尋 <strong>Left</strong>，選擇<strong>連續紀錄</strong>來顯示一個計數器，或選擇<strong>連續紀錄列表</strong>來顯示多個。</li>
+          <li>滑動到你想要的尺寸，點<strong>加入小工具</strong>，再點<strong>完成</strong>。</li>
+          <li>長按新加入的小工具，點<strong>編輯小工具</strong>，選擇你的連續紀錄。你也可以選擇以小時、天、週、月或年顯示數字，顯示或隱藏開始日期，並把連續紀錄的照片當作背景。</li>
+        </ol>
+        <h3>3. 或放在鎖定畫面</h3>
+        <ol>
+          <li>長按鎖定畫面，點<strong>自訂</strong>，再選擇<strong>鎖定畫面</strong>。</li>
+          <li>點小工具區域，找到 <strong>Left</strong>，加入<strong>連續紀錄</strong>小工具。</li>
+          <li>點小工具來選擇它要顯示哪一條連續紀錄，再點<strong>完成</strong>。</li>
+        </ol>
+        <p>更詳細的逐步指南：<a href="/zh-Hant/support/widget-iphone-home-screen">主畫面小工具</a>、<a href="/zh-Hant/support/widget-iphone-lock-screen">鎖定畫面小工具</a>和<a href="/zh-Hant/support/edit-or-remove-widget-iphone">編輯或調整小工具大小</a>。</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得 Left，開始記錄已過天數的連續紀錄"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+在 Left 開始記錄已過天數</a>
+        </div>
+
+        <h2 id="sizes">小工具尺寸與鎖定畫面選項</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>小工具</th><th>主畫面尺寸</th><th>鎖定畫面</th></tr></thead>
+          <tbody>
+            <tr><td><strong>連續紀錄</strong>：一個計數器，可加上照片和開始日期</td><td>小型、中型、大型</td><td>矩形</td></tr>
+            <tr><td><strong>連續紀錄列表</strong>：最多 7 條連續紀錄（中型為 3 條），各自使用自己的單位</td><td>中型、大型</td><td>不提供</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>和任何 iPhone 小工具一樣，Left 小工具也可以在手機橫放充電時，放進<a href="/zh-Hant/support/widget-iphone-standby">待機模式</a>的小工具堆疊。小工具何時更新由 iOS 決定，所以想看精確到分鐘的天數，請在 Left 打開該連續紀錄。</p>
+
+        <h2 id="restart">連續紀錄中斷時</h2>
+        <p>偶爾會中斷。打開該連續紀錄，點<strong>重新開始</strong>。Left 會問你是什麼時候重新開始的，所以你可以選真實的時間，而不是「現在」。計數器會從那一刻重新算起，而且什麼都不會被丟掉：連續紀錄會保留重新開始的歷史、平均連續紀錄和你的最長連續紀錄，所以重設不會抹去你已經累積的進步。</p>
+        <p>如果你想追蹤的事需要你主動去做，例如每週跑步三次，連續紀錄就不是合適的工具，請改用習慣；兩者的差別請見<a href="/zh-Hant/habit-tracker">習慣打卡小工具</a>和<a href="/zh-Hant/support/streaks-vs-habits">連續紀錄與習慣</a>。</p>
+
+        <h2 id="free">哪些免費，哪些需要 Left Premium</h2>
+        <p>Left 可免費下載，小工具也免費。免費方案可建立 <strong>2 條連續紀錄</strong>，以及 2 個習慣、2 個倒數日和 2 個目標。上限計算的是你建立過的每一個，所以刪除連續紀錄並不會把名額還給你。</p>
+        <p><strong>Left Premium</strong> 解除數量限制，並加入更多功能，例如用 Apple Health 自動追蹤，以及和朋友分享連續紀錄，讓他們督促你。價格會在你購買前顯示於 App 中。</p>
+        <p>只想查一次數字？免費的<a href="/tools/days-since-date">已過天數計算機</a>在瀏覽器就能使用，<a href="/tools/hours-since-date">已過小時計算機</a>和<a href="/tools/sobriety-calculator">戒癮天數計算機</a>也是。</p>
+
+        <h2 id="faq">常見問題</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>iPhone 有免費的已過天數小工具嗎？</summary>
+            <div class="faq-answer"><p>可以。Left 的小工具免費，免費方案可建立 2 條連續紀錄，顯示在小工具中。刪除連續紀錄並不會空出名額。想建立更多連續紀錄，Left Premium 可解除數量限制；價格會在你購買前顯示於 App 中。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以從過去的某個日期開始算嗎？</summary>
+            <div class="faq-answer"><p>可以。把「開始於...」設為任何過去的日期和時間，小工具就會立刻顯示完整的天數。連續紀錄不能設定未來的日期，未來的日期請用「即將到來」倒數日。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>小工具可以顯示週、月或年，而不只是天嗎？</summary>
+            <div class="faq-answer"><p>可以。長按「連續紀錄」小工具，點「編輯小工具」，再選擇以小時、天、週、月或年顯示連續紀錄。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以把已過天數的計數器放在鎖定畫面嗎？</summary>
+            <div class="faq-answer"><p>可以。「連續紀錄」小工具有矩形的鎖定畫面版本。長按鎖定畫面，點「自訂」，選擇「鎖定畫面」，點小工具區域並加入 Left 的「連續紀錄」小工具。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>重設連續紀錄會怎樣？</summary>
+            <div class="faq-answer"><p>在連續紀錄上點「重新開始」，並選擇你重新開始的時間。計數器會從那一刻重新算起，Left 也會保留你的重新開始紀錄、平均連續紀錄和最長連續紀錄。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">延伸閱讀</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hant/habit-tracker">習慣打卡與連續紀錄小工具</a>
+          <a class="support-related-item" href="/zh-Hant/countdown-widget">iPhone 倒數日小工具</a>
+          <a class="support-related-item" href="/zh-Hant/support/streaks-vs-habits">Left 中的連續紀錄與習慣</a>
+          <a class="support-related-item" href="/zh-Hant/support/widget-iphone-lock-screen">如何把 Left 小工具加到鎖定畫面</a>
+          <a class="support-related-item" href="/blog/how-to-build-a-streak">如何在 iPhone 建立連續紀錄</a>
+          <a class="support-related-item" href="/tools/days-since-date">已過天數計算機</a>
+          <a class="support-related-item" href="/tools/habit-streak-calculator">習慣連續紀錄計算機</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>看著天數一天天累積。</h2>
+          <p>下載 Left，從任何日期建立連續紀錄，讓天數一直顯示在主畫面或鎖定畫面。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得已過天數小工具"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+取得已過天數小工具</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

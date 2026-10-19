@@ -1,0 +1,557 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>iPhoneのカウントダウンウィジェット・あと何日 | Left</title>
+  <meta name="description" content="iPhoneのホーム画面とロック画面に、あと何日かのカウントダウンを。Leftに日付を追加してウィジェットを選ぶだけで、日・週・時間が減っていきます。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/ja/countdown-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/countdown-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/countdown-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/countdown-widget" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/countdown-widget" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/countdown-widget" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/countdown-widget" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/countdown-widget" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone用のカウントダウンウィジェット"  />
+  <meta property="og:description" content="iPhoneのホーム画面とロック画面に、あと何日かのカウントダウンを。Leftに日付を追加してウィジェットを選ぶだけで、日・週・時間が減っていきます。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ja/countdown-widget" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone用のカウントダウンウィジェット"  />
+  <meta name="twitter:description" content="iPhoneのホーム画面とロック画面に、あと何日かのカウントダウンを。Leftに日付を追加してウィジェットを選ぶだけで、日・週・時間が減っていきます。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Countdown widget",
+        "item": "https://getleft.app/countdown-widget"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left counts down to trips, birthdays, deadlines and any other date, with Home Screen widgets, Lock Screen widgets and Live Activities.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I make a countdown widget on my iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Add the date in Left’s Ahead section, then touch and hold your Home Screen, tap Edit, choose Add Widget, search for Left and add the Ahead widget. Touch and hold the widget, tap Edit Widget and pick your date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free countdown widget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left’s widgets are free and the free plan lets you create 2 countdowns. Deleting a countdown does not free up a slot. Left Premium removes the limit; prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a countdown repeat every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Set Repeat to yearly, which suits birthdays and anniversaries. Weekly, fortnightly and monthly repeats are available too, as long as the event is shorter than the repeat interval."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it show hours or weeks instead of days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Each date has a Show as... setting for hours, days, weeks, months or years, and the Time Ahead list widget lets each date use its own unit."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see a countdown on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add Left’s Ahead widget in its circular or rectangular Lock Screen size. For the final hours, turn on Get ready for the start to show a Live Activity on the Lock Screen and in the Dynamic Island before the date begins, or Get the final countdown for the hours before it ends."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I import dates from my calendar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. When you add a date, choose From calendar to import the date and time of an existing calendar event."
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/tools/" class="nav-link">ツール</a>
+          <a href="/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/ja/">Left</a> / カウントダウンウィジェット</p>
+      <h1>あと何日かが一目でわかる、iPhoneのカウントダウンウィジェット</h1>
+      <p class="article-lede">旅行、誕生日、締め切り、受験が終わる日。近づいてくるのが見えるほうが楽しい日があります。Leftでは、こうしたカウントダウンを「<strong>これから</strong>」の日付と呼びます。日付を一度追加すれば、ホーム画面やロック画面のウィジェットが、その日までの残り日数を表示します。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="App Storeでカウントダウンウィジェットを入手">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          カウントダウンウィジェットを入手
+        </a>
+        <p>iOS 26以降のiPhoneに対応。無料プランではカウントダウンを2つ使えます。</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-steps-2-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-steps-2-light.webp" alt="カウントダウンを一覧表示したLeftの「これから」画面。婚約記念旅行まで4日、ジム会員の更新まで6日、レース当日まで278時間が、それぞれ写真つきで並んでいる" width="560" height="1159" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>「これから」のカウントダウンをすべて、日数または時間で表示。</figcaption>
+        </figure>
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-ahead-feature-1-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-ahead-feature-1-light.webp" alt="Leftの「これから」にあるカウントダウン。森のハイキングまで15日で、写真、進捗バー、開始日と終了日が表示されている" width="560" height="1262" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>それぞれの日付まであとどれくらいかを、進捗バーで表示します。</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="このページの内容">
+        <p class="article-toc-label">このページの内容</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">カウントダウンウィジェットの使いみち</a></li>
+          <li><a href="#why">画面にカウントダウンがあると役立つ理由</a></li>
+          <li><a href="#setup">iPhoneでカウントダウンウィジェットを作る方法</a></li>
+          <li><a href="#sizes">カウントダウンウィジェットのサイズ</a></li>
+          <li><a href="#more">共有、並べ替え、整理のコツ</a></li>
+          <li><a href="#free">無料でできることと、Left Premiumが必要なこと</a></li>
+          <li><a href="#faq">よくある質問</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">カウントダウンウィジェットの使いみち</h2>
+        <p>カウントダウンウィジェットは、大切な日までの残り時間を、ホーム画面やロック画面にそのまま表示します。アプリを開く必要も、計算する必要もありません。数字が目の前にあって、毎日小さくなっていきます。</p>
+        <p>人はいろいろなものをカウントダウンします。休暇や旅行、誕生日や記念日、結婚式、出産予定日、試験、引っ越し、レース、製品の発売日、契約が終わる日。わくわくする日もあれば、忘れたくない締め切りもあります。どちらも、残りの日数が見えているほうがうまくいきます。</p>
+
+        <h2 id="why">画面にカウントダウンがあると役立つ理由</h2>
+        <p>何かを楽しみに待つ時間は、それ自体が喜びの一部で、カウントダウンはそれを長く味わわせてくれます。締め切りでは逆の働きをします。カレンダー上の日付より「あと12日」のほうが重く響くので、早めに動き出せます。そして誰かと共有する日なら、カウントダウンが見えることで、みんなの気持ちがそろいます。</p>
+
+        <h2 id="setup">iPhoneでカウントダウンウィジェットを作る方法</h2>
+        <h3>1. Leftに日付を追加する</h3>
+        <ol>
+          <li>Leftを開いて「<strong>これから</strong>」に移動します。</li>
+          <li>「<strong>これからに日付を追加</strong>」（または「<strong>+</strong>」）をタップします。用意された日付から探すか、名前を入力するか、「<strong>新しい日付</strong>」でゼロから作ります。既存のイベントを取り込むには、「<strong>カレンダーから</strong>」を選んでカレンダーから選択します。</li>
+          <li>名前を付けて、「<strong>始まります</strong>」に開始する日付と時刻を設定します。旅行のように続くものは、「<strong>それまで</strong>」に終わる日時を設定します。</li>
+          <li>繰り返し訪れる日付には「<strong>繰り返し</strong>」を使います。毎週、隔週、毎月、毎年から選べます。誕生日や記念日には毎年が最適です。</li>
+          <li>「<strong>その他のオプション</strong>」の「<strong>として表示...</strong>」で単位（時間、日、週、月、年）を選べます。シンボル、色、背景写真も、ライブラリまたはUnsplashから選べます。</li>
+          <li>保存します。カウントダウンが「これから」に表示されます。</li>
+        </ol>
+        <h3>2. ウィジェットを追加する</h3>
+        <ol>
+          <li>ホーム画面の何もない場所を長押しし、左上の「<strong>編集</strong>」をタップして、「<strong>ウィジェットを追加</strong>」をタップします。</li>
+          <li><strong>Left</strong>を検索して、カウントダウンのウィジェットを選びます。「<strong>これから</strong>」「<strong>これからのバー</strong>」「<strong>これからの円</strong>」「<strong>これからの時間リスト</strong>」から選べます。</li>
+          <li>サイズを選んで「<strong>ウィジェットを追加</strong>」をタップし、「<strong>完了</strong>」をタップします。</li>
+          <li>ウィジェットを長押しして「<strong>ウィジェットを編集</strong>」をタップし、日付を選びます。「これから」ウィジェットでは、写真、パーセント、残り時間のシンボルグリッドも表示できます。</li>
+        </ol>
+        <h3>3. ロック画面に置く</h3>
+        <p>ロック画面を長押しして「<strong>カスタマイズ</strong>」をタップし、「<strong>ロック画面</strong>」を選びます。ウィジェット欄をタップしてLeftの「<strong>これから</strong>」ウィジェットを追加し、もう一度タップして日付を選びます。</p>
+        <p>いよいよという最後の時間には、Leftで日付を開き、リマインダーの「<strong>開始に備える</strong>」をオンにします。日付が始まる数時間前から、ロック画面とDynamic Islandにライブアクティビティが表示されます。「<strong>ファイナルカウントダウンを取得する</strong>」は、終了する時間（「<strong>それまで</strong>」の時刻）に向けて、同じように表示します。ライブアクティビティは、閉じない限り最大4時間表示されます。通常のリマインダーも、1か月前から1日前までの間で設定できます。</p>
+        <div class="lp-shots">
+          <figure class="lp-shot">
+                  <picture>
+                    <source srcset="/images/lp-ahead-feature-3-dark.webp" media="(prefers-color-scheme: dark)" />
+                    <img src="/images/lp-ahead-feature-3-light.webp" alt="運転免許の試験までカウントダウンするLeftのライブアクティビティを表示したiPhoneのロック画面。残り2:13:40" width="560" height="1262" loading="lazy" decoding="async"  />
+                  </picture>
+                  <figcaption>最後の数時間は、ロック画面のライブアクティビティで。</figcaption>
+                </figure>
+        </div>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="App StoreでLeftを開いて、最初のカウントダウンを始める">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  Leftで最初のカウントダウンを始める
+                </a>
+        </div>
+
+        <h2 id="sizes">カウントダウンウィジェットのサイズ</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>ウィジェット</th><th>表示内容</th><th>ホーム画面</th><th>ロック画面</th></tr></thead>
+          <tbody>
+            <tr><td><strong>これから</strong></td><td>ひとつの日付：残り時間。写真、詳細、パーセント、シンボルのグリッドも表示可能</td><td>小、中、大</td><td>円形、長方形</td></tr>
+            <tr><td><strong>これからのバー</strong></td><td>ひとつの日付までの進み具合をバーで表示</td><td>小、中、大</td><td>非対応</td></tr>
+            <tr><td><strong>これからの円</strong></td><td>ひとつの日付までの進み具合を円で表示</td><td>小、中、大</td><td>非対応</td></tr>
+            <tr><td><strong>これからの時間リスト</strong></td><td>最大7件の日付（中サイズは3件）を、それぞれの単位で表示</td><td>中、大</td><td>非対応</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Leftのウィジェットは<a href="/ja/support/widget-iphone-standby">スタンバイ</a>でも使えます。ウィジェットがいつ更新されるかはiOSが決めるため、秒単位のカウントダウンを見るには、Leftで日付を開くか、ライブアクティビティを使ってください。</p>
+
+        <h2 id="more">共有、並べ替え、整理のコツ</h2>
+        <p>Left Premiumなら、日付を友達と共有して、みんなで一緒にカウントダウンできます。詳しくは<a href="/ja/support/joint-ahead-dates">共同の「これから」の日付</a>をご覧ください。「これから」は、近い順、遠い順、名前順（昇順・降順）に並べ替えられます（<a href="/ja/support/organise-ahead-since">「これから」の整理方法</a>）。過ぎた日付は、削除せずにアーカイブできます。</p>
+
+        <h2 id="free">無料でできることと、Left Premiumが必要なこと</h2>
+        <p>Leftはダウンロード無料で、ウィジェットも無料です。無料プランでは<strong>カウントダウンを2つ</strong>作れるほか、習慣2つ、ストリーク2つ、目標2つも使えます。上限は作成したカウントダウンの総数で数えるため、削除しても枠は戻りません。Left Premiumでは上限がなくなり、友達との日付の共有、プランナーなども使えます。価格は購入前にアプリ内で表示されます。</p>
+        <p>日付を確認するだけなら、無料の<a href="/ja/tools/date-countdown-calculator">日付カウントダウン計算ツール</a>、<a href="/tools/days-until-birthday">誕生日まであと何日</a>、<a href="/tools/vacation-countdown">休暇カウントダウン</a>、<a href="/tools/christmas-countdown-widget">クリスマスカウントダウン</a>のツールをブラウザで使えます。</p>
+
+        <h2 id="faq">よくある質問</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>iPhoneでカウントダウンウィジェットを作るには？</summary>
+            <div class="faq-answer"><p>Leftの「これから」に日付を追加し、ホーム画面の何もない場所を長押しして「編集」をタップし、「ウィジェットを追加」でLeftを検索して「これから」ウィジェットを追加します。ウィジェットを長押しして「ウィジェットを編集」をタップし、日付を選びます。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>無料のカウントダウンウィジェットはある？</summary>
+            <div class="faq-answer"><p>はい。Leftのウィジェットは無料で、無料プランではカウントダウンを2つ作れます。カウントダウンを削除しても枠は空きません。Left Premiumで上限がなくなります。価格は購入前にアプリ内で表示されます。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>カウントダウンを毎年繰り返せる？</summary>
+            <div class="faq-answer"><p>はい。「繰り返し」を毎年にすると、誕生日や記念日にぴったりです。毎週、隔週、毎月の繰り返しも使えます。ただし、イベントの期間は繰り返しの間隔より短くしてください。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>日数ではなく、時間や週で表示できる？</summary>
+            <div class="faq-answer"><p>はい。各日付には、時間・日・週・月・年から選べる「として表示...」の設定があり、「これからの時間リスト」ウィジェットなら日付ごとに別の単位で表示できます。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>ロック画面にカウントダウンを表示できる？</summary>
+            <div class="faq-answer"><p>はい。Leftの「これから」ウィジェットを、ロック画面の円形または長方形サイズで追加します。最後の数時間は、「開始に備える」をオンにすると、日付が始まる前にロック画面とDynamic Islandにライブアクティビティが表示されます。終わるまでの数時間なら「ファイナルカウントダウンを取得する」を使います。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>カレンダーの日付を読み込める？</summary>
+            <div class="faq-answer"><p>はい。日付を追加するときに「カレンダーから」を選ぶと、既存のカレンダーイベントの日付と時刻を読み込めます。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">あわせて読む</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/blog/best-countdown-widgets-iphone">iPhoneのおすすめカウントダウンウィジェット</a>
+          <a class="support-related-item" href="/blog/home-screen-timer-iphone">ホーム画面にカウントダウンタイマーを置く方法</a>
+          <a class="support-related-item" href="/ja/support/joint-ahead-dates">共同の「これから」の日付の仕組み</a>
+          <a class="support-related-item" href="/ja/days-since-widget">iPhone用の経過日数ウィジェット</a>
+          <a class="support-related-item" href="/ja/tools/date-countdown-calculator">日付カウントダウン計算ツール</a>
+          <a class="support-related-item" href="/tools/days-until-birthday">誕生日まであと何日</a>
+          <a class="support-related-item" href="/ja/support/widget-iphone-home-screen">ホーム画面にLeftのウィジェットを追加する方法</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>楽しみな日を、待ちわびるために。</h2>
+          <p>Leftをダウンロードして、待っている日付を追加し、ホーム画面やロック画面にカウントダウンを置きましょう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="App Storeでカウントダウンウィジェットを入手">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          カウントダウンウィジェットを入手
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

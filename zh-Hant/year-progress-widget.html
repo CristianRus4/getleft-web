@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>年度進度小工具：iPhone 今年剩幾天、剩幾 % | Left</title>
+  <meta name="description" content="一眼看出今年還剩多少。Left 免費的「年份」小工具，在 iPhone 主畫面和鎖定畫面顯示剩餘天數或百分比。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/year-progress-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/year-progress-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/year-progress-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/year-progress-widget" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/year-progress-widget" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/year-progress-widget" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/year-progress-widget" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/year-progress-widget" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 年度進度小工具"  />
+  <meta property="og:description" content="一眼看出今年還剩多少。Left 免費的「年份」小工具，在 iPhone 主畫面和鎖定畫面顯示剩餘天數或百分比。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/year-progress-widget" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 年度進度小工具"  />
+  <meta name="twitter:description" content="一眼看出今年還剩多少。Left 免費的「年份」小工具，在 iPhone 主畫面和鎖定畫面顯示剩餘天數或百分比。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Year progress widget",
+        "item": "https://getleft.app/year-progress-widget"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left shows the year, month, week, day and your life as grids of symbols, with free Home Screen and Lock Screen widgets.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is the year progress widget free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left’s Year widget and the other Time Left widgets are free, with no limit on how many you add. You do not need Left Premium for them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can it show a percentage instead of days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Touch and hold the widget, tap Edit Widget, and set Time left to percentage. The widget then shows the share of the year that is left."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put year progress on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Year widget has circular, rectangular and inline Lock Screen versions. Touch and hold the Lock Screen, tap Customize, choose Lock Screen and add Left’s Year widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the widget show the day of the year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It shows what is left (days, weeks, months, hours or minutes) rather than numbering the day. The free percentage of the year calculator on this site shows the days passed and the days left if you need exact figures."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I show weeks left in the year instead of days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In Edit Widget, change Show time as to weeks. The grid then has one symbol per week, and the text shows weeks left."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/tools/" class="nav-link">工具</a>
+          <a href="/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/zh-Hant/">Left</a> / 年度進度小工具</p>
+      <h1>iPhone 年度進度小工具</h1>
+      <p class="article-lede">一月的時候，一年看起來沒有盡頭；到了十月，幾乎就要用完了。年度進度小工具讓你一直看得見這件事：整年是一個格子，已經用掉的日子變淡，旁邊是剩餘的天數或百分比。Left 的<strong>年份</strong>小工具免費，可以放在主畫面和鎖定畫面。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得年度進度小工具"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+取得年度進度小工具</a>
+        <p>免費，沒有限制。適用於 iOS 26 或更新版本的 iPhone。</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-steps-1-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-steps-1-light.webp" alt="Left 2026 年的「年份」畫面：每天一個點，過去的日子變淡，還剩 222 天" width="560" height="1159" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>每天一個符號。過去的日子變淡，還剩下的維持深色。</figcaption>
+        </figure>
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-time-feature-3-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-time-feature-3-light.webp" alt="Left 的「今天」畫面，星期六還剩 7 小時，以小點格呈現" width="560" height="1262" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>同樣的概念也適用於月、週和日。</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="本頁內容">
+        <p class="article-toc-label">本頁內容</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">年度進度小工具會顯示什麼</a></li>
+          <li><a href="#why">為什麼有幫助</a></li>
+          <li><a href="#setup">如何加入「年份」小工具</a></li>
+          <li><a href="#sizes">小工具尺寸與相關小工具</a></li>
+          <li><a href="#free">哪些免費</a></li>
+          <li><a href="#faq">常見問題</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">年度進度小工具會顯示什麼</h2>
+        <p>年度進度小工具回答一個問題：今年還剩多少？有些用進度條或百分比顯示。Left 把一整年呈現成格子。每個符號是一天（你也可以選一週或一個月），已經過去的日子會淡出，還在前方的則保持實心。</p>
+        <p>格子下方可以顯示年份，以及剩餘時間（例如<em>剩 73 天</em>）或剩餘百分比（例如<em>剩 20%</em>）。你也可以隱藏文字，只留下格子。</p>
+        <p>如果你在找「今天是一年中的第幾天」的小工具：Left 計算的是還剩多少，而不是今天的編號。想看精確數字，免費的<a href="/tools/percentage-year-calculator">今年進度百分比計算機</a>會顯示已過天數、剩餘天數，以及精確到小數點後四位的百分比。</p>
+
+        <h2 id="why">為什麼有幫助</h2>
+        <p>沒有去衡量的時間，感覺像是用不完。一個每天少一個點的格子，會讓一整年變得具體：你會注意到一季已經過去，會在夏天過半之前就規劃好旅行，也會在三月就開始那個專案，而不是打算十一月再做。它是一個平靜的提醒，不是鬧鐘，放在你一天會看很多次的地方效果最好。</p>
+        <p>它很適合搭配通往目標的<a href="/zh-Hant/countdown-widget">倒數日</a>，以及把剩下的日子化為行動的<a href="/zh-Hant/habit-tracker">習慣</a>。更多想法請見<a href="/blog/what-is-year-progress">什麼是年度進度，為什麼要追蹤它</a>。</p>
+
+        <h2 id="setup">如何加入「年份」小工具</h2>
+        <p>不需要先建立任何東西。「剩餘時間」內建在 Left 裡，App 一安裝好，小工具就能使用。</p>
+        <h3>在你的主畫面</h3>
+        <ol>
+          <li>安裝 Left，並打開一次。</li>
+          <li>長按主畫面的空白處，直到 App 開始晃動，點左上角的<strong>編輯</strong>，再選擇<strong>加入小工具</strong>。</li>
+          <li>搜尋 <strong>Left</strong>，選擇<strong>年份</strong>。</li>
+          <li>選擇小型、中型或大型，點<strong>加入小工具</strong>，再點<strong>完成</strong>。</li>
+          <li>想自訂的話，長按小工具並點<strong>編輯小工具</strong>。</li>
+        </ol>
+        <h3>可以調整的項目</h3>
+        <ul>
+          <li><strong>顯示時間為：</strong>天、週、月、小時或分鐘。</li>
+          <li><strong>剩餘時間：</strong>顯示剩餘的數量、剩餘的百分比，或什麼都不顯示。</li>
+          <li><strong>符號：</strong>圓點、方塊、星星、愛心、火焰、葉子、月亮等等。</li>
+          <li><strong>背景與主題：</strong>跟隨裝置、淺色、深色、黑色，或選一種顏色。</li>
+          <li>是否顯示年份標籤。</li>
+        </ul>
+        <h3>在你的鎖定畫面</h3>
+        <ol>
+          <li>長按鎖定畫面，點<strong>自訂</strong>，再選擇<strong>鎖定畫面</strong>。</li>
+          <li>點小工具區域並選擇 <strong>Left</strong>，再選擇<strong>年份</strong>。圓形版本把剩餘的數字或百分比放在中間；矩形版本空間更大；單行版本則放在時間上方的那一行文字中。</li>
+          <li>點<strong>完成</strong>。</li>
+        </ol>
+        <p>更詳細、附截圖的說明：<a href="/zh-Hant/support/widget-iphone-home-screen">主畫面小工具</a>、<a href="/zh-Hant/support/widget-iphone-lock-screen">鎖定畫面小工具</a>和<a href="/zh-Hant/support/widget-transparent-iphone">讓小工具融入背景圖片</a>。</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 加入年度進度小工具"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+加入年度進度小工具</a>
+        </div>
+
+        <h2 id="sizes">小工具尺寸與相關小工具</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>小工具</th><th>顯示內容</th><th>主畫面</th><th>鎖定畫面</th></tr></thead>
+          <tbody>
+            <tr><td><strong>年份</strong></td><td>今年還剩的天數（或週、月、小時、分鐘）</td><td>小型、中型、大型</td><td>圓形、矩形、單行</td></tr>
+            <tr><td><strong>全年月份</strong></td><td>十二個月，過去的月份會變淡</td><td>小型、中型、大型</td><td>不提供</td></tr>
+            <tr><td><strong>月份</strong>、<strong>週</strong>、<strong>日</strong></td><td>本月或本週還剩幾天；今天還剩幾小時</td><td>小型、中型、大型</td><td>圓形、矩形、單行</td></tr>
+            <tr><td><strong>一切</strong></td><td>日、週、月和年的進度，一次看完</td><td>中型</td><td>不提供</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>在 App 裡，同樣的格子位於「剩餘時間」，分頁包括你的人生、今年、本月、本週、今天和目前這一小時。Left 小工具和其他小工具一樣，也能在<a href="/zh-Hant/support/widget-iphone-standby">待機模式</a>使用。如果你想把年度格子當成鎖定畫面的背景，請見<a href="/zh-Hant/days-left-wallpaper">剩餘天數桌布</a>。</p>
+
+        <h2 id="free">哪些免費</h2>
+        <p>全部都免費。「剩餘時間」及其小工具，包括年份、全年月份、月份、週、日和一切，都免費，加入幾個都不限。只有無限量的倒數日和習慣、規劃和斷食等額外功能，才需要 Left Premium；價格會在你購買前顯示於 App 中。</p>
+        <p>兩個誠實的限制：Left 是需要 iOS 26 或更新版本的 iPhone App；而且小工具何時更新由 iOS 決定，所以小工具偶爾會比 App 慢一點點。</p>
+        <p>想不安裝任何東西就看到數字？試試<a href="/tools/time-left-in-year-calculator">今年剩餘時間計算機</a>、<a href="/tools/time-passed-in-year-calculator">今年已過時間計算機</a>或<a href="/tools/days-until-new-year">距離新年天數倒數</a>。</p>
+
+        <h2 id="faq">常見問題</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>年度進度小工具免費嗎？</summary>
+            <div class="faq-answer"><p>免費。Left 的「年份」小工具和其他「剩餘時間」小工具都免費，加入幾個都不限，不需要 Left Premium。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以顯示百分比而不是天數嗎？</summary>
+            <div class="faq-answer"><p>可以。長按小工具，點「編輯小工具」，把「剩餘時間」設為百分比。小工具就會顯示今年還剩下的比例。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以把年度進度放在鎖定畫面嗎？</summary>
+            <div class="faq-answer"><p>可以。「年份」小工具有圓形、矩形和單行的鎖定畫面版本。長按鎖定畫面，點「自訂」，選擇「鎖定畫面」，再加入 Left 的「年份」小工具。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>小工具會顯示今天是一年中的第幾天嗎？</summary>
+            <div class="faq-answer"><p>它顯示的是還剩多少（天、週、月、小時或分鐘），而不是今天的編號。如果需要精確的數字，本站免費的「今年進度百分比計算機」可以算出已過天數和剩餘天數。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>可以顯示今年還剩幾週，而不是幾天嗎？</summary>
+            <div class="faq-answer"><p>可以。在「編輯小工具」中，把「顯示時間為」改成週。格子會變成每週一個符號，文字則顯示剩餘週數。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">延伸閱讀</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/blog/what-is-year-progress">什麼是年度進度，為什麼要追蹤它</a>
+          <a class="support-related-item" href="/zh-Hant/life-calendar">人生日曆：以週呈現你的人生</a>
+          <a class="support-related-item" href="/zh-Hant/days-left-wallpaper">鎖定畫面的剩餘天數桌布</a>
+          <a class="support-related-item" href="/tools/percentage-year-calculator">今年進度百分比計算機</a>
+          <a class="support-related-item" href="/tools/time-left-in-year-calculator">今年剩餘時間計算機</a>
+          <a class="support-related-item" href="/zh-Hant/support/widget-iphone-lock-screen">如何把 Left 小工具加到鎖定畫面</a>
+          <a class="support-related-item" href="/blog/adhd-time-blindness-iphone">時間盲目與小工具如何幫上忙</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>讓這一年一直在視線裡。</h2>
+          <p>下載 Left，不到一分鐘就能把免費的「年份」小工具加到主畫面或鎖定畫面。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="在 App Store 取得年度進度小工具"><svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+取得年度進度小工具</a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
