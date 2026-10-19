@@ -274,3 +274,23 @@ with any change shipped that week, so changes can be read against them.
   to `api.indexnow.org`. That one endpoint reaches Bing, Yandex, Naver and
   Seznam. `--all` resubmits the whole sitemap, and `--dry-run` only lists URLs.
   Google does not use IndexNow; Search Console's sitemap covers it.
+
+## 12. Drip publishing
+
+New pages and translation releases go live on dated days, not all at once (see the drip
+publishing section in `LANE-NOTES.md`). That makes each launch readable on its own.
+
+- **When something went live.** `docs/seo/publish-schedule.md` lists every English page and
+  translation release with its New Zealand date. Each daily publish is also a commit on main
+  by `github-actions[bot]` named `Daily publish <date>: <items>`, for example
+  `Daily publish 2026-10-21: blog/fr`. Releases dated 2026-10-20 are the pages that were
+  already live when the schedule started.
+- **Reading a release.** In Search Console, filter the page path to the locale folder (for
+  example `/fr/blog/`) and compare impressions and clicks from the release date on. In GA4,
+  use the `locale` and `content_type` dimensions on `page_view` and `download_click`. Give a
+  release two to four weeks before judging it.
+- **Recording.** In the weekly pull (section 10), list the pages and releases that went live
+  that week next to the numbers.
+- **Crawling.** The daily workflow submits the changed URLs to IndexNow itself
+  (`scripts/indexnow.mjs --since <previous main>`), so there is no manual run for those
+  pushes. New URLs enter `sitemap.xml` on their day, with `lastmod` set to that commit's date.

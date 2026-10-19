@@ -78,7 +78,7 @@ git push origin HEAD:main
 node scripts/indexnow.mjs     # tells Bing about the pages you changed
 ```
 
-On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/*.html`, `i18n/*/en.json`), take upstream, finish the rebase, rerun the build and commit.
+On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/*.html`, `i18n/*/en.json`, `docs/seo/publish-schedule.md`), take upstream, finish the rebase, rerun the build and commit.
 
 ## Update, 2026-10-19 20:45: Apple Watch hidden, Focus stays
 
@@ -154,3 +154,53 @@ Lane 0 reworded the Mac articles accordingly. Translators: these keys changed ag
 Blog follow-up for Lane 0, after the blog English freeze lifts: `blog/best-productivity-apps-mac.html` says Left has "no Mac app, menu-bar item or Mac widget". The Mac widget part is already wrong, because iPhone widgets show on the Mac desktop and in Notification Center from macOS Sonoma. Reword it to describe Left's widgets on the Mac through iPhone widgets, without saying Left has no Mac app.
 
 **Mac app (owner says it is coming):** the Mac articles (`widget_mac_desktop`, `widget_mac_notification_center`) describe iPhone widgets on Mac because Left has no Mac app yet. When the Mac app ships, rewrite them for the native app, and restore "one purchase covers iPhone, iPad and Mac" copy only once it is true.
+
+## Update, 2026-10-20: drip publishing
+
+New content now goes live gradually instead of all at once. The owner's policy:
+- at most **one new English page** a day, highest search value first;
+- translations go out in **releases**, one language of one family (for example "blog in French"), at most **one release** a day;
+- updates and fixes to pages that are already live are never throttled, including translation fixes;
+- dates are New Zealand dates.
+
+**The calendar.** `i18n/publish-schedule.json` is the single source of truth. **Only Lane 0 edits it.** The build turns it into `docs/seo/publish-schedule.md`, which shows every dated item as scheduled or live and lists the translations that are ready but held.
+
+```json
+{
+  "pages":    { "blog/new-article.html": "2026-10-23" },
+  "releases": { "blog/fr": "2026-10-21", "tools/ja": "2026-10-24" }
+}
+```
+
+**Translation lanes: push finished translations whenever you like.**
+- A locale copy of a `blog`, `tools` or `pages` page is published only when it is at least 90% translated **and** its release (`<family>/<locale>`) has a date on or before today.
+- With no date, the family/locale is **held**: no URL, no sitemap entry, no hreflang, no switcher entry, no links. It is held until Lane 0 schedules it, so pushing it is safe. Your report should say which family/locales are ready.
+- Already released: `blog/de`, `blog/es`, `blog/es-419`, `pages/ja`, `pages/zh-Hant`, `tools/ja` (dated 2026-10-20, the pages that were live when this started).
+- Fixes to a released family/locale publish with your next push, as before.
+- Once a family/locale is released, further pages of it that reach 90% also publish with the next build. To drip them, finish a family/locale before Lane 0 releases it.
+- The `site` family (home, support, contact) is never scheduled.
+
+**New English pages go in `scheduled/`.**
+- Put the page at `scheduled/<path>`, the same relative path it will have (`scheduled/blog/new-article.html`). Lane 0 then adds `"blog/new-article.html": "<date>"` to `pages`.
+- The build and the checks skip `scheduled/`, and the live site returns 404 for `/scheduled/*`. On or after the date, the build moves the page to `<path>`, and the normal pipeline takes over: canonical, nav, analytics, sitemap and translation extraction.
+- **Don't link to a scheduled page from a live page** (including `blog/index.html` cards, related links and `llms.txt`). The build fails with `<file> links to <url>, which is scheduled for <date>`. Add the links on or after the page's date. Links between scheduled pages are fine.
+- A new landing page still needs its entry in the `pages` family of `i18n/locales.json`. It can go in before the date, because missing files are ignored.
+- Tool pages come from `scripts/build-tools-seo.mjs` and can't wait in `scheduled/`. Add a new tool to the generator on its publish day.
+
+**Lane 0: scheduling.**
+- Release: add `"<family>/<locale>": "YYYY-MM-DD"` to `releases`, run the build, push.
+- New page: add `"<path>": "YYYY-MM-DD"` to `pages` once the file is in `scheduled/`, run the build, push.
+- A date of today publishes on that push. A future date publishes on the day, through the workflow below.
+- The check fails if two future releases, or two future pages, share a day. It also fails if a future page is missing from `scheduled/` or already sits at its live path.
+
+**The daily publish.** `.github/workflows/daily-publish.yml` runs at 07:15 NZ time (18:15 UTC) and can be started by hand (`gh workflow run daily-publish.yml --repo CristianRus4/getleft-web`). It:
+1. runs the scheduler self-test;
+2. builds `main` with `LEFT_SKIP_I18N_GATE=1`, which skips only the translation-engine gate, because the engine is not in CI;
+3. commits any changes as `github-actions[bot]` (`Daily publish 2026-10-21: blog/fr`) and pushes to main, where Cloudflare deploys it;
+4. submits the changed URLs to IndexNow.
+
+When nothing changed it commits nothing, so a second run on the same day is harmless. Whoever builds first on a publish day publishes the due items, the workflow or a lane, and either is fine. If a page fails the checks on its day, the run fails and nothing is pushed; GitHub emails the owner.
+
+**Tests.** `node scripts/check-publish.mjs --selftest` builds a throwaway copy of the repo on three fixture dates (release held, release live, new page live) and checks files, sitemap, hreflang and links. Run it after touching `scripts/lib/publish.mjs`, `build-i18n.mjs` or the workflow.
+
+Never run a `BUILD_DATE=…` build in your worktree: it moves scheduled pages into place. Use the self-test.
