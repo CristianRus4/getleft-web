@@ -152,3 +152,5 @@ Lane 0 reworded the Mac articles accordingly. Translators: these keys changed ag
 | `support_articles.widget_mac_notification_center` | `p_1`, `li_7`, `p_extra_11` |
 
 Blog follow-up for Lane 0, after the blog English freeze lifts: `blog/best-productivity-apps-mac.html` says Left has "no Mac app, menu-bar item or Mac widget". The Mac widget part is already wrong, because iPhone widgets show on the Mac desktop and in Notification Center from macOS Sonoma. Reword it to describe Left's widgets on the Mac through iPhone widgets, without saying Left has no Mac app.
+
+**Mac app (owner says it is coming):** the Mac articles (`widget_mac_desktop`, `widget_mac_notification_center`) describe iPhone widgets on Mac because Left has no Mac app yet. When the Mac app ships, rewrite them for the native app, and restore "one purchase covers iPhone, iPad and Mac" copy only once it is true.
