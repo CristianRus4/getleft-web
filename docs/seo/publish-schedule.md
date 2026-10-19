@@ -20,6 +20,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-27 | `blog/best-birthday-countdown-apps-iphone.html` | English page | scheduled |
 | 2026-10-28 | `blog/structured-app-alternatives.html` | English page | scheduled |
 | 2026-10-29 | `blog/tiimo-alternatives.html` | English page | scheduled |
+| 2026-10-31 | `blog/best-fasting-tracker-apps-iphone.html` | English page | scheduled |
 
 ## Held translations
 
