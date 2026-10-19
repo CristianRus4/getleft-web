@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>7 Best Widgetsmith Alternatives for iPhone (2026) | Left</title>
+  <meta name="description" content="The best Widgetsmith alternatives for iPhone in 2026: time and countdown widgets, widget designers, themes and launchers, compared. Checked 20 October 2026." />
+  <link rel="canonical" href="https://getleft.app/blog/widgetsmith-alternatives" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/widgetsmith-alternatives" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/widgetsmith-alternatives" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="7 Best Widgetsmith Alternatives for iPhone (2026)" />
+  <meta property="og:description" content="The best Widgetsmith alternatives for iPhone in 2026: time and countdown widgets, widget designers, themes and launchers, compared. Checked 20 October 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/widgetsmith-alternatives" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="7 Best Widgetsmith Alternatives for iPhone (2026)" />
+  <meta name="twitter:description" content="The best Widgetsmith alternatives for iPhone in 2026: time and countdown widgets, widget designers, themes and launchers, compared. Checked 20 October 2026." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "7 Best Widgetsmith Alternatives for iPhone in 2026",
+  "description": "The best Widgetsmith alternatives for iPhone in 2026: time and countdown widgets, widget designers, themes and launchers, compared. Checked 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-10-22",
+  "dateModified": "2026-10-22",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/widgetsmith-alternatives",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "7 Best Widgetsmith Alternatives for iPhone in 2026",
+      "item": "https://getleft.app/blog/widgetsmith-alternatives"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best alternative to Widgetsmith?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on what you use Widgetsmith for. For clocks, dates, countdowns and year progress, Left has dedicated widgets that are free (the free plan includes 2 countdowns). For designing widgets from scratch, Widgy is the closest match, and for full themes with icons and wallpapers, Color Widgets or Themify."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Widgetsmith free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Widgetsmith is free to download. Its App Store page says weather and tide data needs Widgetsmith Premium, an optional subscription billed monthly or annually."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free widget app like Widgetsmith?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left's widgets are free, apart from the Planner and Fasting widgets, which belong to Left Premium features. Most theme apps such as Color Widgets, iScreen and Themify are free to download with paid subscriptions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Widgetsmith alternatives work on Apple Watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Widgy Widgets, Photo Widget: Theme Wallpapers and Launcher with Multiple Widgets all list Apple Watch support on their App Store pages. Left doesn't have an Apple Watch app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put a countdown widget on my iPhone Lock Screen without Widgetsmith?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left's Ahead widget works on the Lock Screen as a circular or rectangular widget, and Photo Widget: Theme Wallpapers lists a D-Day countdown widget for the Lock Screen."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>7 Best Widgetsmith Alternatives for iPhone in 2026</h1>
+<p class="article-meta">Updated <time datetime="2026-10-22">October 22, 2026</time> · 9 min read</p>
+<p><em>Checked 20 October 2026.</em> Every competitor detail below comes from that app's US App Store page and Apple's public lookup data, fetched that day, plus Widgetsmith's own website where we say so. Left details come from the app itself.</p>
+<p>Widgetsmith is one of the most popular widget apps on the iPhone, with 4.6 stars from 776,423 ratings on the US App Store. It's a general-purpose widget designer: photos, clocks, dates, countdowns, weather, tides, activity and more. People look for an alternative for different reasons. Some want widgets that do one job better, such as time and countdowns. Some want full themes with icons and wallpapers, a layer-by-layer editor, or an Apple Watch app. Here are seven alternatives and when each one makes sense.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is why, and when another app suits you better.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best alternative for time, date and countdown widgets:</strong> Left.</li>
+  <li><strong>Best for designing your own widgets from scratch:</strong> Widgy Widgets.</li>
+  <li><strong>Best for a full aesthetic makeover from one theme library:</strong> Color Widgets.</li>
+  <li><strong>Best for photo widgets and countdowns, with Apple Watch faces:</strong> Photo Widget: Theme Wallpapers.</li>
+  <li><strong>Best for Dynamic Island effects and interactive extras:</strong> iScreen.</li>
+  <li><strong>Best for ready-made themes that include StandBy:</strong> Themify.</li>
+  <li><strong>Best for launching apps and contacts from widgets:</strong> Launcher with Multiple Widgets.</li>
+</ul>
+
+<h2>What Widgetsmith does well</h2>
+<p>By Cross Forward Consulting, LLC. Its <a href="https://apps.apple.com/us/app/id1523682319" target="_blank" rel="noopener">App Store page</a> lists photo and photo gallery widgets, customizable date and time clocks, activity and step counting, countdown timers, solar and lunar trackers, weather, a time zone tracker and action widgets that launch apps or run Shortcuts. You can schedule a different widget for different times of day, and customize the Lock Screen too.</p>
+<ul>
+  <li><strong>Price:</strong> free to download, with an optional Widgetsmith Premium subscription, billed monthly or annually. The listing says weather and tide data is only available to Premium subscribers. Widgetsmith's website adds interactive widgets, premium themes and fonts, custom app icons and an ad-free experience to Premium, with a 7-day free trial.</li>
+  <li><strong>Platforms:</strong> iPhone, iPad, Apple silicon Macs and Apple Vision. Apple Watch isn't in the listing's compatibility section; the same developer makes a separate watch app, Watchsmith.</li>
+</ul>
+<p>If you use Widgetsmith for weather, tides and photos and you're happy with it, there may be no reason to switch. The alternatives below each do one part of that job differently.</p>
+
+<h2>Comparison table</h2>
+<p>Ratings and counts are from the US App Store, checked 20 October 2026. "Not stated" means the listing doesn't mention it, not that the feature is missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>App</th><th>Best at</th><th>Price model</th><th>Lock Screen</th><th>Apple Watch</th><th>Rating (US)</th></tr></thead>
+  <tbody>
+    <tr><td>Widgetsmith</td><td>General widget designer, weather and tides</td><td>Free; Premium monthly or annual</td><td>Yes</td><td>Not listed</td><td>4.6 (776,423)</td></tr>
+    <tr><td>Left</td><td>Time, progress, countdown and habit widgets</td><td>Free widgets; Left Premium for more items and features</td><td>Yes</td><td>No</td><td>Not shown (our app)</td></tr>
+    <tr><td>Widgy Widgets</td><td>Layer-by-layer widget editor</td><td>Free; paid widget slots and tips</td><td>Yes</td><td>Yes</td><td>4.6 (26,131)</td></tr>
+    <tr><td>Color Widgets</td><td>Widgets, themes, icons and wallpapers</td><td>Free; Pro subscription with 3-day trial</td><td>Yes</td><td>Not listed</td><td>4.6 (526,929)</td></tr>
+    <tr><td>Photo Widget: Theme Wallpapers</td><td>Photo and D-Day countdown widgets</td><td>Free; subscription and theme purchases</td><td>Yes</td><td>Yes</td><td>4.6 (168,847)</td></tr>
+    <tr><td>iScreen</td><td>Dynamic Island and interactive widgets</td><td>Free; VIP subscriptions or a permanent purchase</td><td>Yes (lock screen styles)</td><td>Not listed</td><td>4.7 (153,086)</td></tr>
+    <tr><td>Themify</td><td>Ready-made 3-in-1 themes</td><td>Free; Premium subscription</td><td>Yes</td><td>Not listed</td><td>4.6 (344,900)</td></tr>
+    <tr><td>Launcher with Multiple Widgets</td><td>App, contact and action launchers</td><td>Free; Pro, Premium or yearly options</td><td>Yes</td><td>Yes</td><td>4.5 (3,377)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Left: widgets built for time</h2>
+<p>Left is a time awareness app for iPhone, and its widgets are its main surface. If what you built in Widgetsmith was mostly clocks, dates and countdowns, Left gives you dedicated versions of each.</p>
+<ul>
+  <li><strong>Time progress:</strong> the Year widget shows what's left as a grid of symbols with the amount or percentage left, with 14 symbols, light, dark, black or colored backgrounds, and units from days to minutes; Month, Week and Day widgets do the same for shorter spans. The Everything widget shows day, week, month and year progress together, and the Life widget shows your life in years.</li>
+  <li><strong>Countdowns:</strong> the Ahead widget shows one date with a photo, a percentage or a grid of symbols. Ahead Bars and Ahead Circle show progress toward a date, and the Time Ahead list shows up to 7 dates.</li>
+  <li><strong>Habits and streaks:</strong> the Habit widget is interactive, so you tap today's symbol to log it. Streak, Streaks list, Aim and Aims list widgets cover the rest.</li>
+  <li><strong>Clocks and notes:</strong> Digital Clock, Analog Clock, Dynamic Time, Calendar, and a Special note widget for up to 500 characters of text.</li>
+  <li><strong>Lock Screen and StandBy:</strong> many of these come in circular, rectangular or inline Lock Screen versions, and they work in StandBy.</li>
+  <li><strong>Beyond widgets:</strong> Live Activities for countdowns and habits on the Lock Screen and in the Dynamic Island, and Left Wallpaper, a Lock Screen wallpaper of your year, month or life that updates itself every day through Shortcuts.</li>
+</ul>
+<p><strong>Best for:</strong> anyone whose Home Screen is really about time: what's coming up, how much of the year is left, and which habits are on track.</p>
+<p><strong>Price:</strong> free to download, and the widgets are free, apart from the Planner and Fasting widgets, which belong to Left Premium features. The free plan includes 2 each of countdowns, habits, streaks and Aims, counted over everything you've ever created. Left Premium, a subscription or lifetime purchase, unlocks unlimited items, Planner, fasting and more. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> dozens of time-focused widgets at no cost; Lock Screen versions of many; an interactive habit widget; Live Activities; a self-updating wallpaper.</p>
+<p><strong>Cons:</strong> not a free-form widget designer, so there's no layer editor, photo gallery widget, app icon themes or tides; weather only appears inside Planner, which is Premium; only 2 free countdowns; iPhone only, with iOS 26 or later; no Apple Watch app.</p>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-ahead-feature-1-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-ahead-feature-1-light.webp" alt="Left Ahead date called Forest hiking, 15 days away, with a forest photo, a progress bar and its start and until dates" width="560" height="1262" loading="lazy" decoding="async" /></picture><figcaption>An Ahead date in Left. The Ahead widget shows the same date on the Home Screen or Lock Screen.</figcaption></figure>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get Left's widgets</a></p>
+
+<h2>2. Widgy Widgets</h2>
+<p>By Woodsign. Its <a href="https://apps.apple.com/us/app/id1524540481" target="_blank" rel="noopener">App Store page</a> describes a layered editor for text, photos, symbols, shapes, charts and gauges, with clocks, weather, calendars, countdowns, reminders and activity data, plus community designs, shared by QR code, link or file.</p>
+<p><strong>Best for:</strong> power users who want to design every pixel of a widget.</p>
+<p><strong>Price:</strong> free to try. Optional in-app purchases unlock more widget slots (Home Screen, Lock Screen, Apple Watch and XL) and tips.</p>
+<p><strong>Pros:</strong> Home Screen, Lock Screen and Apple Watch widgets; Live Activities and Dynamic Island layouts on supported devices; privacy label says Data Not Collected; iCloud sync of widget libraries.</p>
+<p><strong>Cons:</strong> a blank-canvas editor means more setup than a template app; the listing doesn't say whether the slot purchases are one-time or recurring.</p>
+
+<h2>3. Color Widgets</h2>
+<p>By Digital Charms, Inc. Its <a href="https://apps.apple.com/us/app/id1531594277" target="_blank" rel="noopener">App Store page</a> lists thousands of predesigned widgets plus a customizer, with photo, time and date, battery, countdown, weather, music, calendar, quote, activity and moon phase widgets, alongside more than 15,000 themes and wallpapers, plus icon packs.</p>
+<p><strong>Best for:</strong> a complete aesthetic Home Screen from one library.</p>
+<p><strong>Price:</strong> free, with an optional Color Widgets Pro subscription that starts with a 3-day free trial.</p>
+<p><strong>Pros:</strong> a huge design library; Home Screen and Lock Screen widgets; Apple Health activity widgets; recent support for iOS 27's extra-large widget size.</p>
+<p><strong>Cons:</strong> the listing doesn't say what the free version includes; its privacy label lists identifiers used to track you.</p>
+
+<h2>4. Photo Widget: Theme Wallpapers</h2>
+<p>By Photo Widget Inc. Its <a href="https://apps.apple.com/us/app/id1530149106" target="_blank" rel="noopener">App Store page</a> lists photo, D-Day countdown, quote, calendar, clock, memo, to-do and shortcut widgets on the Home Screen, and many of the same on the Lock Screen. The D-Day widget has reminders and a date calculator.</p>
+<p><strong>Best for:</strong> photo-first widgets with countdowns, if you also want something on an Apple Watch face.</p>
+<p><strong>Price:</strong> free, with monthly or annual subscriptions, plus separate theme and item purchases.</p>
+<p><strong>Pros:</strong> listed for Apple Watch (watchOS 9 or later), iPad and Apple silicon Macs; themes, app icons and an AI wallpaper generator.</p>
+<p><strong>Cons:</strong> free limits aren't stated; its privacy label lists usage data used to track you.</p>
+
+<h2>5. iScreen - Widgets &amp; Wallpaper</h2>
+<p>By Xiamen ShenZhuo Information Technology Co., Ltd. Its <a href="https://apps.apple.com/us/app/id1534704608" target="_blank" rel="noopener">App Store page</a> lists Liquid Glass widgets and themes, an iOS 27 extra-large widget, interactive widgets such as to-do check-ins and games, Dynamic Island features, Control Center customization, couple widgets and DIY wallpapers.</p>
+<p><strong>Best for:</strong> people who want the most going on: Dynamic Island effects, charging animations and interactive extras.</p>
+<p><strong>Price:</strong> free, with weekly, monthly, quarterly and yearly VIP subscriptions or a Permanent VIP purchase.</p>
+<p><strong>Pros:</strong> 4.7 from 153,086 ratings; a very wide feature set; updated in October 2026.</p>
+<p><strong>Cons:</strong> ten VIP purchase options to compare, four of them monthly; Mac and Apple Watch aren't listed; its privacy label lists identifiers used to track you.</p>
+
+<h2>6. Themify - Widget &amp; Icon Themes</h2>
+<p>By AIBY Incorporated. Its <a href="https://apps.apple.com/us/app/id1534126062" target="_blank" rel="noopener">App Store page</a> lists thousands of themes, widgets, icon packs, wallpapers and Lock Screen themes, a widget maker for steps, sleep, water, weather, clocks, calendars, photos and quotes, and widgets for the Home Screen, Lock Screen and StandBy.</p>
+<p><strong>Best for:</strong> applying a matching wallpaper, widget set and icons in one go.</p>
+<p><strong>Price:</strong> free, with a Premium subscription.</p>
+<p><strong>Pros:</strong> its description names StandBy widgets alongside Home Screen and Lock Screen ones; Apple Health sync for steps, sleep, water and activity; extra-large widgets for iOS 27.</p>
+<p><strong>Cons:</strong> listed for iPhone only; its privacy label lists several data types used to track you and linked to you, including location.</p>
+
+<h2>7. Launcher with Multiple Widgets</h2>
+<p>By Cromulent Labs, Inc. Its <a href="https://apps.apple.com/us/app/id905099592" target="_blank" rel="noopener">App Store page</a> describes widgets that launch apps, contacts and actions from the Home Screen, the Lock Screen, the Dynamic Island and Apple Watch, with a Quick Widget for iOS 27.</p>
+<p><strong>Best for:</strong> people who used Widgetsmith's action widgets and want shortcuts first, decoration second.</p>
+<p><strong>Price:</strong> free, with Pro, Premium and yearly options in its in-app purchases.</p>
+<p><strong>Pros:</strong> around since 2014 and still updated; Apple Watch support; a Live Activity launcher in the Dynamic Island.</p>
+<p><strong>Cons:</strong> it's a launcher, not a widget designer, so photos, weather and themes aren't the point; fewer ratings than the theme apps.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>Starting point:</strong> we looked at the apps most often named as Widgetsmith alternatives and searched the US App Store for widget makers on 20 October 2026.</li>
+  <li><strong>Kept:</strong> apps updated in the last few months that replace at least one of Widgetsmith's main jobs: designing widgets, theming the Home Screen, photos, countdowns or actions.</li>
+  <li><strong>Left out:</strong> apps not updated in over a year, apps with only a handful of ratings, and social widget apps for couples and friends, which do a different job.</li>
+  <li><strong>Sources:</strong> each app's own App Store page and Apple's lookup data, and Widgetsmith's website for its Premium details. No paid placements, and no developer reviewed this page.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>Your widgets are mostly clocks, dates, countdowns and progress: <strong>Left</strong>.</li>
+  <li>You want to design your own widgets layer by layer: <strong>Widgy</strong>.</li>
+  <li>You want a whole theme with icons and wallpapers: <strong>Color Widgets</strong> or <strong>Themify</strong>.</li>
+  <li>You want photos and an Apple Watch: <strong>Photo Widget: Theme Wallpapers</strong>.</li>
+  <li>You want the Dynamic Island and interactive extras: <strong>iScreen</strong>.</li>
+  <li>You want widgets that launch things: <strong>Launcher</strong>.</li>
+</ul>
+<p>For more ideas, see our roundups of the <a href="/blog/best-home-screen-widgets-iphone">best Home Screen widgets</a> and the <a href="/blog/best-free-widget-apps-iphone">best free widget apps</a>, and the <a href="/blog/iphone-aesthetic-widgets-guide">aesthetic widgets guide</a>. New to widgets? <a href="/support/widget-iphone-home-screen">Add a widget to the Home Screen</a> or <a href="/support/widget-iphone-lock-screen">to the Lock Screen</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+<p>See Left's countdown widgets on the <a href="/countdown-widget">countdown widget page</a>.</p>
+
+<h2>Questions</h2>
+<h3>What is the best alternative to Widgetsmith?</h3>
+<p>It depends on what you use Widgetsmith for. For clocks, dates, countdowns and year progress, Left has dedicated widgets that are free (the free plan includes 2 countdowns). For designing widgets from scratch, Widgy is the closest match, and for full themes with icons and wallpapers, Color Widgets or Themify.</p>
+<h3>Is Widgetsmith free?</h3>
+<p>Widgetsmith is free to download. Its App Store page says weather and tide data needs Widgetsmith Premium, an optional subscription billed monthly or annually.</p>
+<h3>Is there a free widget app like Widgetsmith?</h3>
+<p>Left's widgets are free, apart from the Planner and Fasting widgets, which belong to Left Premium features. Most theme apps such as Color Widgets, iScreen and Themify are free to download with paid subscriptions.</p>
+<h3>Which Widgetsmith alternatives work on Apple Watch?</h3>
+<p>Widgy Widgets, Photo Widget: Theme Wallpapers and Launcher with Multiple Widgets all list Apple Watch support on their App Store pages. Left doesn't have an Apple Watch app.</p>
+<h3>Can I put a countdown widget on my iPhone Lock Screen without Widgetsmith?</h3>
+<p>Yes. Left's Ahead widget works on the Lock Screen as a circular or rectangular widget, and Photo Widget: Theme Wallpapers lists a D-Day countdown widget for the Lock Screen.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
