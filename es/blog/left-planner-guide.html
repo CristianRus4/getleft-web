@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Agenda de Left: calendario, recordatorios y hábitos | Left</title>
+  <meta name="description" content="Todo lo que reúne la Agenda de Left en una vista del día: eventos del calendario, Recordatorios de Apple, hábitos y rachas, y cómo configurarla."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/left-planner-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/left-planner-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Agenda de Left: calendario, recordatorios y hábitos en un solo sitio"  />
+  <meta property="og:description" content="Todo lo que reúne la Agenda de Left en una vista del día: eventos del calendario, Recordatorios de Apple, hábitos y rachas, y cómo configurarla."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/left-planner-guide" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Agenda de Left: calendario, recordatorios y hábitos en un solo sitio"  />
+  <meta name="twitter:description" content="Todo lo que reúne la Agenda de Left en una vista del día: eventos del calendario, Recordatorios de Apple, hábitos y rachas, y cómo configurarla."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Left Planner: Your Day in One View",
+  "description": "What Left Planner brings together in one day view: calendar events, Apple Reminders, habits and streaks, plus how to set it up.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/left-planner-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Left Planner: Your Day in One View",
+      "item": "https://getleft.app/blog/left-planner-guide"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Left Planner free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Planner is part of Left Premium. On the free plan, Planner shows a sample so you can see how it looks. Left Premium is available as a subscription or a lifetime purchase, and prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I complete reminders from Planner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tap the square next to a reminder in Planner to tick it off, and the change is saved to Apple Reminders. The Planner widget is interactive too: tap a reminder's or habit's symbol to complete it from the Home Screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Left Planner work with Todoist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Go to Settings, open Planner and tap Set up Todoist to connect your account. Todoist tasks then appear in Planner, where you can tick them off, and you can add them to the Planner widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Apple Health data does Planner show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Apple Health access, the Summary shows sleep, steps, workouts and mindful time for the day you're viewing. You can turn each one on or off in the Planner section of Settings."
+      }
+    }
+  ],
+  "inLanguage": "es-ES"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Agenda de Left: tu día en una sola vista</h1>
+<p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 5 min de lectura</p>
+<p>La Agenda es la vista del día de Left. Reúne en un solo sitio los eventos de tu calendario, los Recordatorios de Apple, las tareas de Todoist y un breve resumen diario con el tiempo y datos de Apple Health, junto a los hábitos, las rachas, los objetivos y las fechas de Ahead que ya sigues en Left. Está pensada para que el día se vea, no para convertirse en otro sistema de tareas.</p>
+<p><strong>La Agenda forma parte de Left Premium.</strong> En el plan gratuito, al abrir la Agenda verás un ejemplo («Así es la Agenda») para que veas cómo funciona antes de pasarte a Premium. Los precios se muestran en la app antes de comprar.</p>
+
+<h2>Qué puede mostrar la Agenda</h2>
+<p>Cada fuente se puede activar o desactivar, así que la Agenda muestra tanto o tan poco como quieras:</p>
+<ul>
+  <li><strong>Calendarios de Apple</strong>: eventos de los calendarios que elijas.</li>
+  <li><strong>Recordatorios de Apple</strong>: recordatorios de las listas que elijas.</li>
+  <li><strong>Todoist</strong>: tareas de tu cuenta de Todoist, una vez que la conectes.</li>
+  <li><strong>Hábitos</strong>, <strong>Rachas</strong>, <strong>Objetivos</strong> y <strong>fechas de Ahead</strong> de Left.</li>
+  <li><strong>Resumen</strong>: el tiempo del día que estás viendo, además del sueño, los pasos, los entrenamientos y el tiempo de mindfulness de Apple Health, y el ayuno si lo usas.</li>
+</ul>
+<p>Puedes pasar de un día a otro, saltar a cualquier fecha y usar <strong>Ver como</strong> para cambiar entre una vista de lista, de semana y de mes.</p>
+
+<h2>Más que una vista</h2>
+<p>La Agenda no es solo de lectura. Desde la vista del día puedes:</p>
+<ul>
+  <li>Marcar un recordatorio de Apple o una tarea de Todoist. El cambio se guarda en Recordatorios o en Todoist.</li>
+  <li>Registrar un hábito tocando su símbolo. Los hábitos que se registran automáticamente con Apple Health se completan solos.</li>
+  <li>Añadir un recordatorio o un evento del calendario nuevo con el botón +.</li>
+  <li>Abrir cualquier elemento para ver sus detalles.</li>
+</ul>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-since-feature-1-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-since-feature-1-light.webp" alt="Hábito de Left con una racha de 16 días, los últimos 7 días marcados y una cuadrícula de registros" width="560" height="1272" loading="lazy" decoding="async"  /></picture><figcaption>Los hábitos que sigues en Since pueden aparecer en la Agenda, para que los registres junto a tus eventos y recordatorios.</figcaption></figure>
+
+<h2>Cómo configurar la Agenda</h2>
+<p>La primera vez que abres la Agenda, una tarjeta <strong>Configura tu Agenda</strong> te permite elegir cómo se ve la Agenda, qué muestra y qué servicios puede usar.</p>
+<ol>
+  <li>Abre <strong>Agenda</strong>. Si no está en el menú inferior, está tras el botón de herramientas. Puedes fijarla o hacer que sea la herramienta que Left abre primero con <a href="/es/support/choose-your-tools">Elige tus herramientas</a>.</li>
+  <li>En <strong>Conectar servicios</strong>, permite o rechaza cada uno: Calendarios, Recordatorios, Apple Health, Ubicación y Todoist. iOS solo te pide cada permiso cuando decides permitirlo.</li>
+  <li>En <strong>Mostrar en la Agenda</strong>, elige qué aparece: Resumen, Calendarios, Recordatorios, Todoist, Hábitos, Rachas, Objetivos y Ahead.</li>
+  <li>Toca <strong>Empezar a usar la Agenda</strong>.</li>
+</ol>
+<p>Para qué sirve cada permiso:</p>
+<ul>
+  <li><strong>Calendarios</strong> muestra tus eventos. También permite que Left guarde las fechas de Ahead en tu calendario.</li>
+  <li><strong>Recordatorios</strong> muestra tus recordatorios de Apple.</li>
+  <li><strong>Apple Health</strong> muestra los entrenamientos, los pasos, el sueño y el mindfulness de cada día.</li>
+  <li><strong>Ubicación</strong> muestra el tiempo de los días que ves.</li>
+</ul>
+<p>Si rechazas algo, la Agenda funciona con lo que hayas permitido. Puedes activar el acceso más tarde en la app Ajustes de iOS.</p>
+
+<h3>Afínala en los ajustes</h3>
+<p>En los ajustes de Left, la sección Agenda te permite ajustar los detalles:</p>
+<ul>
+  <li><strong>Configurar calendarios</strong> y <strong>Configurar recordatorios</strong> eligen qué calendarios y listas aparecen. Útil para dejar las reuniones de trabajo fuera de una Agenda personal.</li>
+  <li><strong>Configurar Todoist</strong> conecta tu cuenta de Todoist. Para ello, Left abre la página de inicio de sesión de Todoist.</li>
+  <li><strong>Orden de tarjetas</strong> fija el orden de las secciones Resumen, Horario, Hábitos, Rachas, Objetivos y fechas de Ahead.</li>
+  <li>Los interruptores del Resumen activan o desactivan <strong>Clima</strong>, <strong>Sueño</strong>, <strong>Pasos</strong>, <strong>Entrenamientos</strong>, <strong>Tiempo de mindfulness</strong> y <strong>Ayuno</strong>.</li>
+  <li><strong>Formato de hora</strong> cambia entre horas relativas y absolutas, y puedes mostrar u ocultar <strong>Elementos completados</strong> y <strong>Detalles adicionales</strong>.</li>
+  <li><strong>Globo con elementos restantes</strong> muestra lo que te queda hoy en el icono de la app de Left.</li>
+</ul>
+
+<h2>El widget de la Agenda</h2>
+<p>El widget de la Agenda está disponible en tamaño pequeño, mediano y grande, y muestra los eventos y recordatorios de hoy. Edita el widget para añadir tareas de Todoist, hábitos, rachas y objetivos, y para elegir si aparecen los eventos y recordatorios de todo el día, si los elementos completados siguen visibles y si muestra el número de elementos restantes.</p>
+<p>El widget es interactivo: toca el símbolo de un recordatorio o de un hábito para completarlo directamente desde la pantalla de inicio. Toca una fila para abrir ese elemento en la Agenda. Para configurarlo en la pantalla de inicio, consulta la <a href="/es/support/widget-iphone-home-screen">guía de widgets</a>.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Prueba la Agenda en Left</a></p>
+
+<h2>Consejos</h2>
+<ul>
+  <li>Usa Recordatorios de Apple o Todoist para las tareas y Calendario de Apple para todo lo que tenga hora. La Agenda pone ambos junto a tus hábitos, así ves el día entero de una vez.</li>
+  <li>Empieza poco a poco. Activa las fuentes que de verdad consultas y añade más si las echas de menos.</li>
+  <li>Si abres Left sobre todo para planificar el día, pon la Agenda como herramienta predeterminada en Elige tus herramientas.</li>
+  <li>Combina el widget de la Agenda con un <a href="/countdown-widget">widget de cuenta atrás</a> para las fechas hacia las que trabajas, o usa los widgets de <a href="/habit-tracker">seguimiento de hábitos</a> de Left para las rutinas que quieres mantener.</li>
+</ul>
+
+<h2>Preguntas</h2>
+<h3>¿La Agenda de Left es gratis?</h3>
+<p>No. La Agenda forma parte de Left Premium. En el plan gratuito, la Agenda muestra un ejemplo para que veas cómo es. Left Premium está disponible como suscripción o como compra de por vida, y los precios se muestran en la app antes de comprar.</p>
+<h3>¿Puedo completar recordatorios desde la Agenda?</h3>
+<p>Sí. Toca el cuadrado que hay junto a un recordatorio en la Agenda para marcarlo, y el cambio se guarda en Recordatorios de Apple. El widget de la Agenda también es interactivo: toca el símbolo de un recordatorio o de un hábito para completarlo desde la pantalla de inicio.</p>
+<h3>¿La Agenda de Left funciona con Todoist?</h3>
+<p>Sí. Ve a Ajustes, abre Agenda y toca <strong>Configurar Todoist</strong> para conectar tu cuenta. Las tareas de Todoist aparecen entonces en la Agenda, donde puedes marcarlas, y puedes añadirlas al widget de la Agenda.</p>
+<h3>¿Qué datos de Apple Health muestra la Agenda?</h3>
+<p>Con acceso a Apple Health, el Resumen muestra el sueño, los pasos, los entrenamientos y el tiempo de mindfulness del día que estás viendo. Puedes activar o desactivar cada uno en la sección Agenda de los ajustes.</p>
+
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

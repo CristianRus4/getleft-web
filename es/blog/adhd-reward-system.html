@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Sistema de recompensas sostenible para el TDAH (2026) | Left</title>
+  <meta name="description" content="Guía práctica y con base científica para un sistema de recompensas para el TDAH que dure: respuesta visual inmediata, pequeños logros y buenos widgets."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/adhd-reward-system" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-reward-system" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-reward-system" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-reward-system" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/adhd-reward-system" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/adhd-reward-system" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Cómo crear un sistema de recompensas sostenible para el TDAH (2026)"  />
+  <meta property="og:description" content="Guía práctica para diseñar un sistema de recompensas para el TDAH que dure de verdad."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/adhd-reward-system" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a Sustainable ADHD Reward System",
+  "description": "A practical, science-informed guide to designing an ADHD reward system that actually sticks - using immediate visual feedback, small wins, and the right widgets.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-reward-system",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Build a Sustainable ADHD Reward System",
+      "item": "https://getleft.app/blog/adhd-reward-system"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Cómo crear un sistema de recompensas sostenible para el TDAH</h1>
+    <p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 8 min de lectura</p>
+
+    <p>Los sistemas de recompensas tradicionales se diseñaron para cerebros que responden bien a la gratificación aplazada. Un cerebro con TDAH no lo hace. No es un defecto moral: es la forma en que está configurado el circuito de la dopamina. Una «recompensa» que llega al final de la semana, o al alcanzar alguna meta abstracta, se percibe prácticamente como si no fuera a llegar. La recompensa tiene que llegar mientras la acción aún está caliente.</p>
+
+    <p>Esta guía explica cómo diseñar un sistema de recompensas que respete esa limitación en lugar de luchar contra ella. Veremos por qué fallan la mayoría de las tablas de recompensas, qué funciona en su lugar y cómo montar el ciclo en tu iPhone de forma que no dependa de que te acuerdes de celebrarlo. Cuando venga al caso hablaremos de <strong>Left</strong>, que creamos justo para este patrón (una respuesta pequeña, visible e inmediata para hábitos y objetivos), pero los principios sirven con o sin una app concreta.</p>
+
+    <h2>Por qué la mayoría de los sistemas de recompensas fallan con el TDAH</h2>
+    <p>El modelo clásico de «hazlo durante una semana y luego date un premio» da por hecho un cerebro capaz de mantener en mente un incentivo abstracto durante días. A los cerebros con TDAH eso se les da mal. Se repiten tres patrones de fallo concretos:</p>
+    <ul>
+      <li><strong>La recompensa está demasiado lejos.</strong> Para cuando llega el viernes, la conexión entre la tarea del lunes y la recompensa del viernes se ha disuelto. La recompensa no parece ligada a ninguna conducta concreta.</li>
+      <li><strong>La recompensa es demasiado grande.</strong> Ahorrar para un gran capricho que depende de una racha larga significa que saltarte un solo día echa abajo toda la estructura. El pensamiento de todo o nada se come el sistema.</li>
+      <li><strong>La recompensa no se ve mientras trabajas.</strong> Si la única señal de progreso está en una libreta que abres el domingo por la noche, la recompensa no refuerza la acción: es un ritual de domingo por la noche.</li>
+    </ul>
+    <p>Lo que funciona en su lugar: pequeños logros inmediatos y repetidos, más una estructura visual que puedas ver <em>mientras</em> haces la tarea.</p>
+
+    <h2>Los tres principios de un ciclo de recompensas adaptado al TDAH</h2>
+
+    <h3>1. Recompensa la acción, no el resultado</h3>
+    <p>«Me compraré algo cuando pierda 5 kilos» recompensa un resultado que no controlas directamente. «Puedo marcar el día cada vez que hago ejercicio» recompensa una acción que controlas por completo. Las recompensas por acción llegan de forma fiable; las recompensas por resultado llegan pocas veces o nunca. Los cerebros que necesitan chutes de dopamina constantes para mantener la motivación necesitan recompensas por acción.</p>
+
+    <h3>2. Haz que la recompensa sea instantánea y visible</h3>
+    <p>La recompensa tiene que notarse a los pocos segundos de completar la acción. Un widget de racha que sube en cuanto marcas el día de hoy como hecho está haciendo el trabajo de un sistema de recompensas. Una hoja de cálculo que tienes que abrir, no. Aquí es donde los widgets de hábitos demuestran lo que valen: te dan una respuesta visible en el lugar donde la verás la próxima vez que cojas el móvil.</p>
+
+    <h3>3. Haz que el ciclo perdone los fallos</h3>
+    <p>Monta el sistema dando por hecho que te saltarás días. Un sistema de recompensas que castiga el fallo con más fuerza de la que premia el acierto enseña a tu cerebro a asociar el sistema con la vergüenza, y la vergüenza es una forma estupenda de conseguir que alguien no vuelva a abrir la app. La versión que perdona: un día perdido rompe el recuento de la racha, pero los datos se conservan, el hábito sigue ahí y el registro del día siguiente es idéntico al de cualquier otro.</p>
+
+    <h2>Cómo montar el ciclo en la práctica</h2>
+    <p>Un ejemplo concreto. Elige un hábito que llevas tiempo intentando instaurar sin éxito, por ejemplo, 10 minutos de estiramientos por la mañana. El enfoque antiguo: «Estiraré cada mañana durante un mes y luego me compraré algo». Eso es una recompensa por resultado situada a un mes de distancia. La versión adaptada al TDAH:</p>
+    <ol>
+      <li><strong>Define la acción como la unidad más pequeña posible.</strong> «Estirar al menos un minuto» es mejor que «estirar 10 minutos». Un mínimo de un minuto hace que el listón siempre se pueda superar, incluso en los días malos.</li>
+      <li><strong>Mete la recompensa dentro de la acción.</strong> La recompensa es el gesto de marcarlo como hecho. Una casilla de hábito que se vuelve verde, un número de racha que sube: esos son los chutes de dopamina, no la estrella dorada que te das a final de mes.</li>
+      <li><strong>Haz que se vea sin abrir la app.</strong> Un widget en la pantalla de inicio que muestra el hábito de hoy y la racha actual hace que la recompensa esté en tu móvil todo el día. La ves cuando miras la hora. La ves cuando dejas el móvil bocarriba en la mesa.</li>
+      <li><strong>Date una recompensa algo mayor y neutra al llegar a los 7 días y otra a los 30.</strong> No hagas que la recompensa de los 30 días sea grande: algo de 20 $ es más que suficiente. Si es grande, crea una presión que los cerebros con TDAH convierten en evitación. La recompensa mayor sirve para marcar una transición, no para ser el premio.</li>
+      <li><strong>Ten un guion de una línea para «me he saltado un día».</strong> Decide de antemano qué haces después de un fallo. El mío es «el día siguiente es solo el día siguiente: vuelve a empezar, no lo arregles». Dejarlo escrito antes significa que no tienes que negociar contigo en el momento.</li>
+    </ol>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Consigue el widget de hábitos</a></p>
+
+    <h2>La configuración de widgets que trabaja por ti</h2>
+    <p>Tres widgets es la cantidad justa. Con más, dejas de fijarte en ellos; con menos, no ves el ciclo de recompensas completo.</p>
+    <ul>
+      <li><strong>Un widget de hábitos para las acciones de hoy.</strong> En la pantalla de inicio, lo bastante grande para leerlo de un vistazo, mostrando qué hábitos faltan por marcar. Con el widget Hábito en el diseño Texto, el gesto de tocar para marcarlo como hecho <em>es</em> el chute de dopamina. Consulta la página de la <a href="/habit-tracker">app de hábitos</a> para ver cómo funciona. Nuestra <a href="/es/blog/how-to-build-a-streak">guía para crear una racha</a> explica la configuración en detalle.</li>
+      <li><strong>Un widget de racha con tu racha actual.</strong> El número que crece. Pequeño, en una esquina de la pantalla de inicio. No hace falta que lo mires todo el rato: le echarás un vistazo una o dos veces al día y con eso basta.</li>
+      <li><strong>Un widget compartido con una persona de confianza que te ayude a cumplir.</strong> No siempre hace falta, pero cuando sí, es muy eficaz. Con los amigos de Left (una función de Left Premium), alguien de tus amigos puede seguir tu racha en su móvil. La recompensa es en parte la racha visible; lo que evita que todo se venga abajo es saber que otra persona también la ve. Hablamos de la parte social en <a href="/es/blog/adhd-body-doubling-apps">apps de body doubling y de compromiso</a>.</li>
+    </ul>
+    <p>Los pasos completos para añadir cada tipo de widget están en nuestras guías de <a href="/es/support/widget-iphone-home-screen">widgets para la pantalla de inicio</a>, <a href="/es/support/widget-iphone-lock-screen">widgets para la pantalla de bloqueo</a> y <a href="/es/support/widget-iphone-standby">widgets para En reposo</a>.</p>
+
+    <h2>Variantes según la edad</h2>
+
+    <h3>Para niños</h3>
+    <p>Lo visual lo es todo. Una tabla física en la nevera más un pequeño widget en el móvil del padre o la madre funciona mejor que una app que los niños gestionan a solas. La recompensa de cada logro puede ser literalmente una pegatina o una canica en un bote. No hagas que el premio al final de la tabla sea una compra grande: que sea una experiencia (más tiempo de pantalla, elegir la cena, una salida al parque), para que la recompensa no consista en acumular cosas.</p>
+
+    <h3>Para adolescentes</h3>
+    <p>La autonomía importa. Diseñad el sistema juntos en lugar de imponerlo. Que sea el propio adolescente quien elija el hábito, el ritmo de las recompensas y el estilo del widget. Tu papel como padre o madre es mantener el sistema estable, no vigilarlo. La visibilidad compartida (con algo como Joint Ahead o una lista familiar compartida) sustituye el control directo por una conciencia discreta.</p>
+
+    <h3>Para adultos</h3>
+    <p>La mayor trampa es que el sistema de recompensas parezca una tabla de logros del trabajo. El sistema debe ser privado, sin mucho en juego y un poco absurdo. La «recompensa» puede ser tan pequeña como un paseo de cinco minutos al aire libre o el siguiente episodio de una serie que estás guardando. Si lo complicas demasiado, tu cerebro lo reducirá a «otra hoja de cálculo» y dejará de implicarse.</p>
+
+    <h2>Cuando el sistema deja de funcionar</h2>
+    <p>Todos los sistemas de recompensas se desgastan. Tres patrones habituales y qué hacer:</p>
+    <ul>
+      <li><strong>La racha se ha hecho demasiado larga como para arriesgarla.</strong> Cuando empiezas a evitar el sistema porque romper la racha te parece peor que seguirla, el sistema ha dejado de ser una recompensa y se ha convertido en una deuda. Reiníciala a propósito: elige un domingo, archiva la racha antigua y empieza de cero con un alcance más pequeño.</li>
+      <li><strong>Has dejado de fijarte en el widget.</strong> Es la habituación. Cambia el widget de página, cambia su color o pásate a otro tamaño. Un pequeño cambio visual vuelve a captar la atención.</li>
+      <li><strong>La recompensa de los 30 días te supo a poco.</strong> La próxima vez, baja el listón. Recompénsate a los 7 días. Lo que importa de la recompensa mayor no es la recompensa en sí, sino la pausa que marca. Pausas más pequeñas y frecuentes funcionan mejor que el equivalente a una celebración al mes.</li>
+    </ul>
+
+    <h2>Qué tiene que ver con la ceguera temporal</h2>
+    <p>Los sistemas de recompensas para el TDAH fallan en parte por un problema relacionado: la ceguera temporal. La recompensa al final de la semana no parece real porque el final de la semana no parece un futuro real. Las cuentas atrás visibles ayudan directamente en esto: ver «5 días para desbloquear la recompensa» en la pantalla de bloqueo convierte una fecha abstracta en algo concreto. Hablamos de este ciclo en <a href="/es/blog/adhd-time-blindness-iphone">la ceguera temporal en el TDAH y lo que los widgets pueden hacer al respecto</a>.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Cómo de pequeña debería ser la recompensa de los 7 días?</strong><br/>
+    Lo bastante pequeña como para que te la des sin falta. Un café con leche. Una lista de reproducción nueva. Veinte minutos de móvil sin culpa. El tamaño da igual: lo que importa es que llegue de verdad el séptimo día, no «pronto».</p>
+
+    <p><strong>¿Y si me salto un día a mitad de una racha?</strong><br/>
+    Reinicia el recuento. No lo rellenes a posteriori. No te fustigues. El día siguiente es el día siguiente. Un sistema de recompensas que exige días perfectos no es un sistema de recompensas: es un examen de perfección, y lo vas a suspender.</p>
+
+    <p><strong>¿La gamificación es un sistema de recompensas?</strong><br/>
+    Más o menos, pero solo cuando está ligada a acciones que de verdad haces fuera de la pantalla. Las apps que gamifican su propia moneda interna (abre la app y gana puntos) te entrenan para abrir la app, no para hacer las cosas en el mundo real. Busca sistemas que cuenten acciones del mundo real.</p>
+
+    <p><strong>¿Puedo compartir una racha con alguien para comprometerme más?</strong><br/>
+    Sí. Los amigos de Left (incluidos en Left Premium) permiten que alguien de tus amigos siga tu racha de un hábito en su propio móvil. Vale la pena para uno o dos hábitos clave, no para todos; si compartes todos los hábitos, acabarás temiendo esa visibilidad y evitando la app.</p>
+
+    <p><strong>¿Y si mi TDAH es tan intenso que ni las pequeñas recompensas funcionan?</strong><br/>
+    Un sistema de recompensas es una herramienta, no la única. Si has probado a estructurar las recompensas y las acciones siguen sin llegar, eso es información: habla con un profesional sanitario sobre medicación o terapia. El ciclo de una app no es un plan de tratamiento.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarga Left</span>
+          <h2>Empieza a fijarte en lo que importa.</h2>
+          <p>Descarga Left en tu iPhone para ver el tiempo que te queda y las fechas que esperas con ilusión, crear los hábitos que quieres mantener y convertirte en una mejor versión de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - toca para ver las instrucciones">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escanea o busca <strong>«Left»</strong> en el App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Descargar Left en el App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descargar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

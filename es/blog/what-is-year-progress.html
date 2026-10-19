@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>¿Qué es el progreso del año? Cómo se calcula y se usa | Left</title>
+  <meta name="description" content="Qué muestra un widget de progreso del año, cómo se calcula el porcentaje y cómo ver el año como una barra cambia tu forma de planificar."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/what-is-year-progress" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/what-is-year-progress" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="¿Qué es el progreso del año? Cómo se calcula y se usa"  />
+  <meta property="og:description" content="Qué muestra un widget de progreso del año, cómo se calcula el porcentaje y cómo ver el año como una barra cambia tu forma de planificar."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/what-is-year-progress" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="¿Qué es el progreso del año? Cómo se calcula y se usa"  />
+  <meta name="twitter:description" content="Qué muestra un widget de progreso del año, cómo se calcula el porcentaje y cómo ver el año como una barra cambia tu forma de planificar."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is Year Progress, and Why You Should Track It",
+  "description": "What a year progress widget shows, how the percentage is calculated, and how seeing the year as a bar changes the way you plan.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/what-is-year-progress",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What is Year Progress, and Why You Should Track It",
+      "item": "https://getleft.app/blog/what-is-year-progress"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you calculate the percentage of the year that has passed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the number of days that have passed by the number of days in the year, then multiply by 100. For example, 19 October 2026 is day 292, and 292 ÷ 365 × 100 = 80%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a leap year change year progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, slightly. A leap year has 366 days instead of 365, so each day is a slightly smaller share of the year. On 1 July in a leap year you are exactly halfway; in a normal year you reach halfway at midday on 2 July."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days are left in the year on 1 July?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a normal year, 1 July is day 182, which leaves 183 days if you count 1 July as used. In a leap year, 1 July is day 183, which also leaves 183 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Year widget in Left free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Time Left, the Year widget and the other time widgets, and Left Wallpaper are all free. Left Premium adds things like unlimited countdowns and habits, Planner and friends."
+      }
+    }
+  ],
+  "inLanguage": "es-ES"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>¿Qué es el progreso del año y por qué deberías seguirlo?</h1>
+<p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 6 min de lectura</p>
+<p>El progreso del año es la parte del año en curso que ya ha pasado, normalmente expresada como porcentaje. El 1 de enero marca un 0 %. El 31 de diciembre roza el 100 %. Entre medias, responde sin rodeos a una pregunta que casi todos evitamos: ¿cuánto queda realmente de este año?</p>
+
+
+<h2>Cómo se calcula el progreso del año</h2>
+<p>La fórmula es sencilla: progreso del año (%) = días transcurridos ÷ días del año × 100.</p>
+<p>Un año normal tiene 365 días. Un año bisiesto tiene 366, porque febrero gana un día 29. Los años bisiestos son divisibles entre 4, salvo los años de fin de siglo que no son divisibles entre 400, así que 2028 es bisiesto y 2100 no lo será.</p>
+
+<h3>Ejemplos prácticos</h3>
+<ul>
+  <li>El 15 de mayo de 2026 es el día 135 de un año de 365 días. 135 ÷ 365 = 37,0 % transcurrido, con 230 días restantes.</li>
+  <li>El 1 de julio de 2026 es el día 182. 182 ÷ 365 = 49,9 % transcurrido, con 183 días restantes.</li>
+  <li>El 19 de octubre de 2026 es el día 292. 292 ÷ 365 = 80,0 % transcurrido, con 73 días restantes.</li>
+  <li>En el año bisiesto 2028, el 1 de julio es el día 183. 183 ÷ 366 = exactamente el 50 %.</li>
+</ul>
+
+<h3>Cómo se relacionan los días restantes con el porcentaje</h3>
+<p>Los días que quedan son la otra cara del mismo número: los días del año menos el día en el que estás. El porcentaje restante es simplemente el 100 % menos el progreso. Left cuenta el día actual como ya usado, así que el 1 de julio de 2026 su widget Año marca 183 días restantes, o un 50 % restante.</p>
+<p>Las calculadoras que miden hasta el segundo, como la <a href="/tools/percentage-year-calculator">calculadora del porcentaje del año</a>, solo cuentan las horas que ya han pasado hoy. Por la mañana su cifra queda un poco por debajo del recuento por días completos y lo alcanza a medianoche.</p>
+<p>Para comprobar cualquier fecha, usa la <a href="/tools/time-passed-in-year-calculator">calculadora del tiempo transcurrido del año</a> o la <a href="/tools/time-left-in-year-calculator">calculadora del tiempo que queda del año</a>.</p>
+
+<h3>Fechas clave que conviene conocer</h3>
+<p>En un año de 365 días, el final de marzo es el día 90 (24,7 %), el final de junio es el día 181 (49,6 %) y el final de septiembre es el día 273 (74,8 %). La mitad exacta llega a mediodía del 2 de julio.</p>
+
+<h2>Por qué verlo cambia tu forma de planificar</h2>
+<p>Un año parece largo en enero y corto en noviembre. Es en la mitad donde se escapa, porque nada la marca. «Todavía hay tiempo» es cierto durante casi todo el año, hasta que deja de serlo.</p>
+<p>Tener el número a la vista ayuda de varias formas prácticas:</p>
+<ul>
+  <li><strong>Divide el año en trimestres.</strong> Al 25 % puedes ver si el plan que hiciste en enero ya ha arrancado.</li>
+  <li><strong>Elimina el plazo difuso.</strong> «Este año» suena a algo sin final. «Ha pasado el 80 %, quedan 73 días» no.</li>
+  <li><strong>Hace concretas las decisiones.</strong> 73 días desde el 19 de octubre son unos diez fines de semana. Con ese número sí puedes planificar.</li>
+
+</ul>
+
+<h2>Formas de mostrar el progreso del año</h2>
+<p>El formato cambia cómo se percibe el mismo número:</p>
+<ul>
+  <li><strong>Porcentaje.</strong> Lo más compacto. Una línea como «80 %» cabe incluso sobre el reloj en la pantalla de bloqueo.</li>
+  <li><strong>Barra o anillo de progreso.</strong> Fácil de leer de un vistazo, pero más difícil de valorar con precisión.</li>
+  <li><strong>Una cuadrícula de 365 días.</strong> Un símbolo por día, con los días pasados atenuados y los que quedan en sólido. El año se convierte en un conjunto de días en lugar de una fracción.</li>
+  <li><strong>Semanas o meses.</strong> 52 semanas o 12 meses es menos detallado y más tranquilo, y funciona bien en widgets pequeños.</li>
+  <li><strong>Días restantes.</strong> Una cuenta atrás en lugar de un porcentaje.</li>
+</ul>
+
+<h2>Cómo configurar el progreso del año en Left</h2>
+<p>La función <strong>Tiempo restante</strong> de Left muestra tu año como una cuadrícula de símbolos, junto a tu vida, el mes, la semana y el día. El widget Año lleva esa cuadrícula a la pantalla de inicio, la pantalla de bloqueo y el modo En reposo. Tiempo restante y los widgets son gratis.</p>
+<figure class="post-shot"><picture><source srcset="/images/lp-time-feature-2-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-time-feature-2-light.webp" alt="Vista Año de Left con 2026 como una cuadrícula de puntos, los días pasados atenuados y 222 días restantes" width="560" height="1159" loading="lazy" decoding="async"  /></picture><figcaption>La vista Año de Left: un punto por día, con los días pasados atenuados.</figcaption></figure>
+
+<h3>Añade el widget Año a la pantalla de inicio</h3>
+<ol>
+  <li>Instala Left y ábrelo una vez.</li>
+  <li>Mantén pulsada una zona vacía de la pantalla de inicio hasta que las apps se muevan, toca Editar y luego Añadir widget.</li>
+  <li>Busca Left, desliza hasta el widget Año, elige pequeño, mediano o grande y toca Añadir widget. Toca OK.</li>
+  <li>Mantén pulsado el widget y toca Editar widget. Las opciones principales:</li>
+</ol>
+<ul>
+  <li><strong>Mostrar tiempo como</strong>: días, semanas, meses, horas o minutos. Con días tienes la cuadrícula de 365 símbolos.</li>
+  <li><strong>Tiempo restante</strong>: <strong>Mostrar como tiempo</strong> (por ejemplo, «quedan 73 días»), <strong>Mostrar como porcentaje</strong> («queda un 20 %») u <strong>Oculto</strong>.</li>
+  <li><strong>Símbolo</strong>: 14 formas, entre ellas puntos, cuadrados, estrellas, corazones, hojas y hexágonos.</li>
+  <li><strong>Fondo</strong> y <strong>Tema</strong>: adapta el widget a tu fondo de pantalla.</li>
+</ul>
+<p>Tienes más detalles en <a href="/es/support/widget-iphone-home-screen">cómo añadir un widget de Left a la pantalla de inicio</a>.</p>
+
+<h3>Ponlo en la pantalla de bloqueo</h3>
+<p>El widget Año está disponible en las tres formas de la pantalla de bloqueo: en línea (una línea de texto sobre la hora), circular y rectangular.</p>
+<ol>
+  <li>Mantén pulsada la pantalla de bloqueo, toca Personalizar y elige Pantalla de bloqueo.</li>
+  <li>Toca la fecha que hay sobre la hora para un widget en línea, o la zona de widgets bajo la hora para los widgets circulares y rectangulares.</li>
+  <li>Elige Left, luego el widget Año, y toca OK.</li>
+</ol>
+<p>Los widgets de la pantalla de bloqueo se dibujan en un solo tono que coincide con el reloj. Consulta <a href="/es/support/widget-iphone-lock-screen">la guía de la pantalla de bloqueo</a> para saber más.</p>
+
+<h3>Ve el día, la semana, el mes y el año a la vez</h3>
+<p>El widget <strong>Todo</strong> (tamaño mediano) muestra el progreso del día, la semana, el mes y el año en un solo lugar.</p>
+
+<h3>Conviértelo en tu fondo de pantalla</h3>
+<p>El fondo de pantalla de Left tiene un modo <strong>Año</strong> que dibuja el año en días, semanas o meses, con una leyenda opcional como «quedan 73 días». Una automatización de Atajos lo actualiza cada mañana, así que la cuadrícula siempre está al día. Configúralo con la <a href="/es/support/wallpaper-shortcut">guía del atajo del fondo de pantalla</a> o lee más sobre el <a href="/days-left-wallpaper">fondo de pantalla de días restantes</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Consigue el widget de progreso del año</a></p>
+
+<h2>Con qué combinarlo</h2>
+<p>El progreso del año por sí solo es un recordatorio. Junto a unos pocos detalles concretos, se convierte en un espacio de planificación en una sola página de la pantalla de inicio:</p>
+<ul>
+  <li><strong>Una cuenta atrás</strong> para aquello por lo que trabajas, con una fecha de <strong>Ahead</strong> y el <a href="/countdown-widget">widget de cuenta atrás</a>.</li>
+  <li><strong>Un hábito o dos</strong> en <strong>Since</strong>, para que el paso del tiempo tenga acciones concretas al lado. Consulta el <a href="/habit-tracker">seguimiento de hábitos</a>.</li>
+  <li><strong>El widget Mes o Semana</strong>, para un horizonte más corto cuando el año parece demasiado abstracto.</li>
+</ul>
+<p>Mira todos los estilos en la página del <a href="/year-progress-widget">widget de progreso del año</a>.</p>
+
+<h2>Preguntas</h2>
+<h3>¿Cómo se calcula el porcentaje del año que ha pasado?</h3>
+<p>Divide el número de días que han pasado entre el número de días del año y multiplica por 100. Por ejemplo, el 19 de octubre de 2026 es el día 292, y 292 ÷ 365 × 100 = 80 %.</p>
+<h3>¿Un año bisiesto cambia el progreso del año?</h3>
+<p>Sí, un poco. Un año bisiesto tiene 366 días en lugar de 365, así que cada día es una parte algo menor del año. El 1 de julio de un año bisiesto estás justo a la mitad; en un año normal llegas a la mitad a mediodía del 2 de julio.</p>
+<h3>¿Cuántos días quedan del año el 1 de julio?</h3>
+<p>En un año normal, el 1 de julio es el día 182, así que quedan 183 días si cuentas el 1 de julio como ya usado. En un año bisiesto, el 1 de julio es el día 183, y también quedan 183 días.</p>
+<h3>¿El widget Año de Left es gratis?</h3>
+<p>Sí. Tiempo restante, el widget Año y los demás widgets de tiempo, y el fondo de pantalla de Left son gratis. Left Premium añade cosas como cuentas atrás y hábitos ilimitados, la Agenda y los amigos.</p>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

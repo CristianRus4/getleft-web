@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Widgets estéticos para iPhone: guía práctica 2026 | Left</title>
+  <meta name="description" content="Cómo diseñar una pantalla de inicio y de bloqueo estéticas en el iPhone con widgets útiles: temas, tipografía, color y la trampa del widget decorativo."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Widgets estéticos para iPhone: guía práctica 2026"  />
+  <meta property="og:description" content="Cómo diseñar un iPhone estético con widgets que de verdad sirven para algo."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+  "description": "How to design an aesthetic iPhone Home and Lock Screen with functional widgets - themes, typography, color, and the trap of widgets-as-decoration.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/iphone-aesthetic-widgets-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+      "item": "https://getleft.app/blog/iphone-aesthetic-widgets-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Widgets estéticos para iPhone: guía práctica 2026</h1>
+    <p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 5 min de lectura</p>
+
+    <p>Las pantallas de inicio estéticas fueron uno de los regalos inesperados de la llegada de los widgets en iOS 14. En menos de una semana, personalizar el iPhone pasó de ser «iconos en una cuadrícula» a una práctica creativa. Lo malo: la mitad de las pantallas de inicio estéticas de las redes sociales son preciosas en la captura e inútiles en la vida real; un muro de iconos que no abren nada que quieras y widgets que quedan genial pero muestran datos falsos.</p>
+
+    <p>Esta guía sirve para diseñar un iPhone estético que además sea funcional. Empieza por el ambiente, elige las herramientas adecuadas, crea widgets que hagan algo y evita las trampas que hacen que las pantallas de inicio bonitas decepcionen en la segunda semana. Usaremos los widgets de <strong>Left</strong> como una de las piezas: se pueden ajustar lo suficiente para encajar en casi cualquier estética sin dejar de mostrar datos reales (cuentas atrás, progreso del año, rachas de hábitos).</p>
+
+    <h2>Empieza por el ambiente, no por las apps</h2>
+    <p>El error: abrir Widgetsmith y elegir widgets por separado. El resultado es un collage. La solución: define primero el ambiente.</p>
+    <ul>
+      <li><strong>Elige una paleta</strong> (3–5 colores). El fondo de pantalla debería salir de esta paleta, y los widgets, del fondo de pantalla.</li>
+      <li><strong>Elige un estilo tipográfico</strong>: serif, sans o monoespaciada. No mezcles más de dos familias tipográficas.</li>
+      <li><strong>Elige un ambiente</strong>: minimalista, retro, cottagecore, brutalista, anime. El ambiente acota tus opciones y facilita la coherencia.</li>
+    </ul>
+
+    <h2>Las apps de widgets que importan para la estética</h2>
+    <ul>
+      <li><strong>Widgetsmith</strong> para widgets tipográficos (reloj, fecha, tiempo).</li>
+      <li><strong>Widgy</strong> para widgets personalizados al píxel.</li>
+      <li><strong>ScreenKit</strong> para temas completos, iconos incluidos.</li>
+      <li><strong>Color Widgets</strong> para recuadros estéticos ya hechos y rápidos.</li>
+      <li><strong>Left</strong> para widgets funcionales que encajan con tu estética: cuentas atrás, progreso del año y rachas de hábitos con los colores de tu paleta.</li>
+      <li><strong>App Atajos</strong> para iconos personalizados: atajos que abren apps con la imagen que elijas.</li>
+    </ul>
+    <p>No necesitas todas. Con una app de widgets tipográficos, Left y unos iconos personalizados con Atajos tienes casi todo hecho.</p>
+
+    <h2>Cómo crear tu primera pantalla de inicio estética</h2>
+    <ol>
+      <li><strong>Elige el fondo de pantalla.</strong> Todo lo demás parte de ahí. Un color liso, un degradado suave o una foto tranquila funcionan mejor que los estampados recargados.</li>
+      <li><strong>Prepara la paleta.</strong> Apunta 3–5 colores en tu app de notas como referencia.</li>
+      <li><strong>Diseña 2–3 widgets en la app de widgets que prefieras.</strong> Un widget de hora o fecha, uno funcional (cuenta atrás, hábito) y uno decorativo (foto, frase).</li>
+      <li><strong>Sustituye de 5 a 10 iconos de apps por atajos.</strong> No intentes rehacer todos los iconos; elige los que más usas.</li>
+      <li><strong>Pruébala una semana.</strong> Las pantallas de inicio estéticas quedan preciosas el primer día y dejan ver sus problemas de uso hacia el cuarto. Ajusta.</li>
+    </ol>
+
+    <h2>Principios de composición</h2>
+    <ul>
+      <li><strong>Un widget protagonista.</strong> Un widget grande que ancla la página. Todo lo demás lo acompaña.</li>
+      <li><strong>Equilibrio asimétrico.</strong> La simetría aburre; una asimetría intencionada crea ritmo.</li>
+      <li><strong>Espacio negativo.</strong> Las filas o columnas vacías dejan descansar la vista. Llenarlo todo de iconos de borde a borde queda recargado.</li>
+      <li><strong>Una página, un propósito.</strong> Una página de «mañana» con la fecha, el tiempo y el hábito del día. Una página de «concentración» con la cuenta atrás hasta la próxima fecha límite. Una página estética aparte con widgets de fotos.</li>
+    </ul>
+
+    <h2>La pantalla de bloqueo estética</h2>
+    <p>La personalización de la pantalla de bloqueo de iOS 16 y posteriores amplió muchísimo las opciones estéticas. Tres esquemas que siempre quedan bien:</p>
+    <ul>
+      <li><strong>Foto con efecto de profundidad</strong> con la hora asomando detrás del sujeto.</li>
+      <li><strong>Fondo liso con un reloj tipográfico</strong> en una fuente cuidada (se elige con el selector de fuentes del reloj de Apple).</li>
+      <li><strong>Fondo de pantalla de astronomía o tiempo</strong> con un widget pequeño que muestre la fecha o una cuenta atrás.</li>
+    </ul>
+    <p>Combínalo con los modos de concentración para que se activen estéticas distintas en momentos distintos: minimalista o de trabajo en horario laboral, más decorativa por la tarde.</p>
+
+    <h2>La trampa del widget decorativo</h2>
+    <p>El mayor fallo de las pantallas de inicio estéticas: widgets que están ahí para quedar bonitos pero no muestran datos que de verdad uses. Un widget del «tiempo» que nunca miras, un widget «cuentapasos» cuando otra app ya registra tus pasos, un widget de «frase del día» que has dejado de leer.</p>
+    <p>Regla general: cada widget tiene que pasar la prueba de «¿lo he mirado y he hecho algo por él esta semana?». Si no recuerdas haber hecho nada por un widget, cámbialo por uno que sí te mueva a actuar.</p>
+
+    <h2>Widgets estéticos y funcionales recomendados</h2>
+    <ul>
+      <li><strong>El widget de cuenta atrás de Left</strong> en el color de tu paleta: precioso y te avisa de cuándo importa algo.</li>
+      <li><strong>El <a href="/year-progress-widget">widget de progreso del año</a> de Left</strong> como un pequeño recuadro geométrico: el recuadro de «queda un 63 %» es a la vez visualmente limpio y significativo.</li>
+      <li><strong>Calendario de Widgetsmith</strong> con el próximo evento: un widget de calendario que además es bonito tipográficamente.</li>
+      <li><strong>Un acceso de Atajos</strong> con un icono personalizado: abre la app que de verdad usas y queda intencionado.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Consigue el widget de progreso del año</a></p>
+
+    <h2>Personalizar los widgets de Left</h2>
+    <p>Los estilos de los widgets de Left están pensados para ajustarse. Abre los ajustes del widget y podrás elegir:</p>
+    <ul>
+      <li>Color (a juego con tu paleta).</li>
+      <li>Fondo (dispositivo, claro, oscuro, negro o un color).</li>
+      <li>Símbolo, desde puntos y cuadrados hasta estrellas, hojas, llamas y corazones.</li>
+      <li>Texto: la cantidad restante, el porcentaje restante u oculto.</li>
+    </ul>
+    <p>Esto es lo que hace que Left funcione en una configuración estética: los datos son reales (la cuenta atrás para tu viaje) y el diseño es tuyo. Frente a Widgetsmith, que se centra sobre todo en fecha, reloj y tiempo, Left cubre los widgets de «qué se acerca» y «qué estoy haciendo» con el mismo lenguaje visual.</p>
+
+    <h2>Cuando la estética estorba</h2>
+    <p>Las pantallas de inicio estéticas tienen que adaptarse al uso real. Tres conflictos habituales:</p>
+    <ul>
+      <li><strong>Los iconos personalizados con Atajos añaden un retraso al abrir.</strong> Un toque → se abre Atajos → se abre la app real. En las apps que abres decenas de veces al día, ese retraso se acumula.</li>
+      <li><strong>Las fuentes bonitas pueden costar de leer de un vistazo.</strong> Si tienes que forzar la vista, se pierde la función.</li>
+      <li><strong>Los temas que cuesta una hora configurar acabarán rehaciéndose cada mes por aburrimiento.</strong> Mantén la configuración del tema por debajo de 30 minutos para que las renovaciones trimestrales no den pereza.</li>
+    </ul>
+
+    <h2>Para los cambios de estación</h2>
+    <p>Renueva la estética 2–4 veces al año. No lo rehagas todo: ajusta la paleta un 10–20 %, cambia el fondo de pantalla y el tono de los widgets. El cambio visual vuelve a captar tu atención; el esqueleto (qué widget va dónde y para qué) se mantiene.</p>
+
+    <h2>Lecturas relacionadas</h2>
+    <p>Para el repaso general de widgets: <a href="/es/blog/best-home-screen-widgets-iphone">los mejores widgets para la pantalla de inicio del iPhone</a>. Para apps de widgets gratuitas en concreto: <a href="/es/blog/best-free-widget-apps-iphone">las mejores apps de widgets gratis</a>. Para el lado del diseño: <a href="/es/blog/countdown-clock-graphic-guide">guía de diseño de relojes de cuenta atrás</a>. Para la función de fondo de pantalla de Left: <a href="/es/blog/left-wallpaper-guide">guía del fondo de pantalla de Left</a> y la página del <a href="/days-left-wallpaper">fondo de pantalla de días restantes</a>.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Cuántos widgets por página?</strong><br/>
+    De dos a cuatro funciona para la mayoría de las estéticas. Con cinco queda recargado; con uno parece vacía.</p>
+
+    <p><strong>¿Los iconos personalizados con Atajos gastan batería?</strong><br/>
+    No de forma apreciable. El único inconveniente es el pequeño retraso al abrir.</p>
+
+    <p><strong>¿Qué tamaño de widget queda más estético?</strong><br/>
+    Combina tamaños. Un widget grande protagonista + dos pequeños se ve mejor que cuatro medianos.</p>
+
+    <p><strong>¿Cómo evito que los widgets cambien a un contenido «equivocado»?</strong><br/>
+    Mantén pulsado el widget, toca Editar widget y elige la cuenta atrás o el hábito concreto que quieres que muestre.</p>
+
+    <p><strong>¿Cómo encaja Left en una configuración estética?</strong><br/>
+    Colores, fondos, símbolos y texto ajustables en cada widget. El widget combina con tu paleta sin dejar de mostrar datos reales de tiempo.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarga Left</span>
+          <h2>Empieza a fijarte en lo que importa.</h2>
+          <p>Descarga Left en tu iPhone para ver el tiempo que te queda y las fechas que esperas con ilusión, crear los hábitos que quieres mantener y convertirte en una mejor versión de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - toca para ver las instrucciones">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escanea o busca <strong>«Left»</strong> en el App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Descargar Left en el App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descargar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

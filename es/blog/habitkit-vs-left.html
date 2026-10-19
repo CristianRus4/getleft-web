@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>HabitKit vs Left: una comparativa sincera (2026) | Left</title>
+  <meta name="description" content="HabitKit y Left son dos buenas apps de hábitos para iPhone con filosofías distintas. Dónde gana cada una, comparadas el 20 de octubre de 2026."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/habitkit-vs-left" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/habitkit-vs-left" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/habitkit-vs-left" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/habitkit-vs-left" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/habitkit-vs-left" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/habitkit-vs-left" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="HabitKit vs Left: una comparativa sincera (2026)"  />
+  <meta property="og:description" content="HabitKit y Left son dos buenas apps de hábitos para iPhone con filosofías distintas. Dónde gana cada una, comparadas el 20 de octubre de 2026."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/habitkit-vs-left" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="HabitKit vs Left: una comparativa sincera (2026)"  />
+  <meta name="twitter:description" content="HabitKit y Left son dos buenas apps de hábitos para iPhone con filosofías distintas. Dónde gana cada una, comparadas el 20 de octubre de 2026."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "HabitKit vs Left: An Honest Comparison",
+  "description": "HabitKit and Left are two strong iPhone habit trackers with different philosophies. Where each wins, compared on 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/habitkit-vs-left",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "HabitKit vs Left: An Honest Comparison",
+      "item": "https://getleft.app/blog/habitkit-vs-left"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is HabitKit free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "HabitKit is free to download. Its App Store page (checked 20 October 2026) says the free version covers up to four habits, with streaks, statistics, notes and reminders."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Left have an Apple Watch app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Left is an iPhone app for iOS 26 or later, with widgets for the Home Screen, Lock Screen and StandBy. HabitKit's App Store page doesn't list Apple Watch either."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which app is better for quitting a bad habit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both handle it. HabitKit has quit habits that count clean days until you log a slip. Left uses streaks, which count up automatically from the day you started and keep your restarts, average streak and longest streak."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can either app track habits with Apple Health?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left can, with Left Premium: choose Apple Health instead of Manual and the habit completes when you meet the goal. HabitKit's App Store page doesn't mention Apple Health."
+      }
+    }
+  ],
+  "inLanguage": "es-ES"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>HabitKit vs Left: una comparativa sincera</h1>
+<p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 5 min de lectura</p>
+<p><em>Comparadas el 20 de octubre de 2026.</em> Los datos de HabitKit proceden únicamente de su <a href="https://apps.apple.com/us/app/habit-tracker-habitkit/id6443918070" target="_blank" rel="noopener">página del App Store</a>, consultada ese día. Los datos de Left proceden de la propia app.</p>
+<p>HabitKit y Left te ayudan a crear hábitos en el iPhone, pero parten de ideas distintas. HabitKit es una app dedicada a los hábitos, construida en torno a una cuadrícula de casillas diarias. Left es una app de conciencia del tiempo: los hábitos y las rachas conviven con cuentas atrás, el progreso del año y de la vida, y una agenda del día.</p>
+
+<h2>Veredicto rápido</h2>
+<ul>
+  <li><strong>Elige HabitKit</strong> si quieres una app centrada en los hábitos, con una cuadrícula al estilo de contribuciones, hábitos contados y medidos, notas diarias y sin cuenta.</li>
+  <li><strong>Elige Left</strong> si quieres hábitos y rachas junto a cuentas atrás, vistas de tiempo restante, un fondo de pantalla de bloqueo que se actualiza solo y muchos widgets, o si quieres que tus amigos te ayuden a cumplir.</li>
+</ul>
+
+<h2>HabitKit de un vistazo</h2>
+<p>Según la página del App Store de «Habit Tracker - HabitKit», de Sebastian Roehl (consultada el 20 de octubre de 2026):</p>
+<ul>
+  <li><strong>Plataformas:</strong> iPhone, iOS 15 o posterior. También aparece para Mac con Apple silicon y para Apple Vision Pro como app diseñada para iPhone. No aparecen ni el iPad ni el Apple Watch.</li>
+  <li><strong>Seguimiento:</strong> crea hábitos o déjalos; los hábitos para dejar cuentan los días limpios hasta que registras una recaída. Los hábitos pueden ser de sí o no, recuentos o mediciones con unidades propias, y se programan a diario, a intervalos o un número de veces por semana o por mes.</li>
+  <li><strong>Progreso:</strong> una cuadrícula por hábito con una casilla por cada día que cumples, rachas actual y mejor, objetivos de racha, estadísticas de cumplimiento, gráficas mensuales y notas en cualquier día.</li>
+  <li><strong>Widgets:</strong> widgets pequeños, medianos y de varios hábitos para la pantalla de inicio, incluidos en HabitKit Pro.</li>
+  <li><strong>Privacidad:</strong> sin cuenta ni registro, los datos se quedan en el dispositivo, la app funciona sin conexión y los hábitos se copian en iCloud una vez al día.</li>
+  <li><strong>Modelo de precios:</strong> gratis para hasta cuatro hábitos, con rachas, estadísticas, notas y recordatorios. HabitKit Pro añade hábitos ilimitados, widgets para la pantalla de inicio, la restauración de hábitos archivados y hasta tres recordatorios por hábito, con pago mensual, anual o único para acceso de por vida.</li>
+</ul>
+
+<h2>Left de un vistazo</h2>
+<ul>
+  <li><strong>Plataformas:</strong> solo iPhone, iOS 26 o posterior. No hay app para Apple Watch.</li>
+  <li><strong>Hábitos:</strong> un objetivo por día, semana o mes, con cuántas veces. La programación incluye días laborables, fines de semana, días concretos o un número de días por semana. Hasta 4 recordatorios por hábito, además de <strong>Recibir un recordatorio persistente</strong>, una actividad en directo que aparece una hora antes de la hora que elijas si el hábito aún no está registrado.</li>
+  <li><strong>Rachas:</strong> para dejar algo o mantener una serie. Una racha cuenta automáticamente desde <strong>Comenzó el...</strong> hasta que la reinicias, y guarda tus reinicios, tu racha media y tu racha más larga.</li>
+  <li><strong>Objetivos:</strong> cuenta hacia arriba o hacia abajo hasta una meta, con una unidad y una fecha límite opcional.</li>
+  <li><strong>Widgets:</strong> Hábito, Lista de hábitos, Racha, Lista de rachas, Objetivo y Lista de objetivos en la pantalla de inicio, y Hábito, Lista de hábitos, Racha y Objetivo también en la pantalla de bloqueo. El widget Hábito es interactivo: toca el símbolo de hoy para registrarlo.</li>
+  <li><strong>Más allá de los hábitos:</strong> Tiempo restante, cuentas atrás de <strong>Ahead</strong> con actividades en directo, el fondo de pantalla de Left y la Agenda (Left Premium).</li>
+</ul>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-since-feature-2-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-since-feature-2-light.webp" alt="Racha de Left llamada «Sin móvil durante las comidas» con 44 días, sus reinicios, la racha media y la racha más larga" width="560" height="1272" loading="lazy" decoding="async"  /></picture><figcaption>Una racha de Left guarda sus reinicios, su media y su serie más larga.</figcaption></figure>
+
+<h2>Cara a cara</h2>
+<p>En las celdas de HabitKit pone «No se indica» cuando su página del App Store no menciona la función. Eso no significa que no exista, solo que la ficha no lo dice.</p>
+<table>
+  <thead><tr><th>Función</th><th>HabitKit</th><th>Left</th></tr></thead>
+  <tbody>
+    <tr><td>Plataformas</td><td>iPhone; también Mac con Apple silicon y Apple Vision Pro como app de iPhone</td><td>Solo iPhone (iOS 26 o posterior)</td></tr>
+    <tr><td>Plan gratuito</td><td>Hasta 4 hábitos</td><td>2 hábitos, 2 rachas, 2 objetivos, 2 cuentas atrás</td></tr>
+    <tr><td>Plan de pago</td><td>HabitKit Pro: mensual, anual o de por vida</td><td>Left Premium: suscripción o de por vida</td></tr>
+    <tr><td>Veces por semana o por mes</td><td>Sí</td><td>Sí</td></tr>
+    <tr><td>Dejar un hábito</td><td>Sí (hábitos para dejar)</td><td>Sí (rachas)</td></tr>
+    <tr><td>Objetivos contados o medidos</td><td>Sí (recuentos, unidades propias)</td><td>Sí (objetivos, con unidad)</td></tr>
+    <tr><td>Widgets de la pantalla de inicio</td><td>Sí (Pro)</td><td>Sí (gratis)</td></tr>
+    <tr><td>Widgets para la pantalla de bloqueo</td><td>No se indica</td><td>Sí</td></tr>
+    <tr><td>Registrar un hábito desde un widget</td><td>No se indica</td><td>Sí (widget Hábito)</td></tr>
+    <tr><td>Actividad en directo de hábitos</td><td>No se indica</td><td>Sí</td></tr>
+    <tr><td>Registro automático con Apple Health</td><td>No se indica</td><td>Sí (Left Premium)</td></tr>
+    <tr><td>Compartir</td><td>Capturas de progreso para compartir</td><td>Tus amigos pueden ver tus hábitos y rachas, y compartir cuentas atrás (Left Premium)</td></tr>
+    <tr><td>Cuenta</td><td>No hace falta cuenta</td><td>Necesaria para Amigos</td></tr>
+    <tr><td>App para Apple Watch</td><td>No se indica</td><td>No</td></tr>
+    <tr><td>Cuentas atrás y vistas de tiempo restante</td><td>No se indica</td><td>Sí</td></tr>
+  </tbody>
+</table>
+
+<h2>Precio</h2>
+<p>Las dos apps tienen versión gratuita. Left se descarga gratis, y lo que incluye gratis se muestra en la app. Left Premium desbloquea funciones más avanzadas de hábitos, rachas, fechas especiales y planificación mediante una suscripción o una compra de por vida.</p>
+<p>El plan gratuito de Left incluye 2 hábitos, 2 rachas, 2 objetivos y 2 cuentas atrás, y eliminar un elemento no libera su hueco. Left Premium añade elementos ilimitados, el registro con Apple Health, Amigos y la Agenda. La versión gratuita de HabitKit, según su página del App Store, cubre hasta cuatro hábitos.</p>
+
+<h2>Cuál elegir según tu caso</h2>
+<h3>HabitKit te encaja si</h3>
+<ul>
+  <li>Quieres una app que solo haga seguimiento de hábitos y nada más.</li>
+  <li>Lo que te motiva es la cuadrícula de casillas y te gusta ver cómo se va llenando cada día.</li>
+  <li>Registras cantidades y quieres notas en días concretos.</li>
+  <li>Prefieres no tener que crear ninguna cuenta.</li>
+  <li>Quieres más de dos hábitos sin pagar.</li>
+</ul>
+<h3>Left te encaja si</h3>
+<ul>
+  <li>Quieres hábitos, rachas y objetivos junto a cuentas atrás y una idea de cuánto te queda del año o de la vida.</li>
+  <li>Quieres registrar hábitos directamente desde un widget de la pantalla de inicio o recibir un aviso en una actividad en directo antes de que acabe el día.</li>
+  <li>Quieres que Apple Health complete los hábitos por ti o que tus amigos vean tu progreso (ambas cosas con Left Premium).</li>
+  <li>Te gusta tener un fondo de pantalla de bloqueo que se actualiza solo.</li>
+</ul>
+<p>Para ver más opciones, consulta nuestra selección de las <a href="/es/blog/best-habit-tracker-apps-iphone">mejores apps de hábitos para iPhone</a> y la <a href="/es/support/streaks-vs-habits">guía de rachas frente a hábitos</a> si no tienes claro cuál necesitas.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Consigue la app de hábitos de Left</a></p>
+<p>Más información en la <a href="/habit-tracker">página de la app de hábitos de Left</a>.</p>
+
+<h2>Preguntas</h2>
+<h3>¿HabitKit es gratis?</h3>
+<p>HabitKit se descarga gratis. Su página del App Store (consultada el 20 de octubre de 2026) indica que la versión gratuita cubre hasta cuatro hábitos, con rachas, estadísticas, notas y recordatorios.</p>
+<h3>¿Left tiene app para Apple Watch?</h3>
+<p>No. Left es una app para iPhone con iOS 26 o posterior, con widgets para la pantalla de inicio, la pantalla de bloqueo y En reposo. La página de HabitKit en el App Store tampoco menciona el Apple Watch.</p>
+<h3>¿Qué app es mejor para dejar un mal hábito?</h3>
+<p>Las dos sirven. HabitKit tiene hábitos para dejar que cuentan los días limpios hasta que registras una recaída. Left usa rachas, que cuentan automáticamente desde el día en que empezaste y guardan tus reinicios, tu racha media y tu racha más larga.</p>
+<h3>¿Alguna de las dos puede registrar hábitos con Apple Health?</h3>
+<p>Left sí, con Left Premium: elige Apple Health en lugar de Manual y el hábito se completa cuando alcanzas el objetivo. La página de HabitKit en el App Store no menciona Apple Health.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarga Left</span>
+          <h2>Empieza a fijarte en lo que importa.</h2>
+          <p>Descarga Left en tu iPhone para ver el tiempo que te queda y las fechas que esperas con ilusión, crear los hábitos que quieres mantener y convertirte en una mejor versión de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - toca para ver las instrucciones">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escanea o busca <strong>«Left»</strong> en el App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Descargar Left en el App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descargar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

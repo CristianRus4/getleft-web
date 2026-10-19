@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="es-ES">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Herramientas de productividad: por qué lo visual gana | Left</title>
+  <meta name="description" content="Por qué los widgets visibles ganan a las apps de productividad recargadas: cuatro estilos de seguimiento visual y un sistema que sustituye a cinco apps."  />
+  <link rel="canonical" href="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Herramientas de productividad: por qué lo visual gana"  />
+  <meta property="og:description" content="Por qué los widgets visibles ganan a las apps de productividad cargadas de funciones."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <meta property="og:locale" content="es_ES" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Productivity Tools: Why Visual Beats Feature-Heavy",
+  "description": "Why visible widgets beat feature-heavy productivity apps - the four visual tracking styles that work, and the unified setup that replaces five apps.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/productivity-tools-visual-focus",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Productivity Tools: Why Visual Beats Feature-Heavy",
+      "item": "https://getleft.app/blog/productivity-tools-visual-focus"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/es/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/es/#features" class="nav-link">Funciones</a>
+          <a href="/tools/" class="nav-link">Herramientas</a>
+          <a href="/es/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Descargar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Herramientas de productividad: por qué lo visual gana</h1>
+    <p class="article-meta">Actualizado el <time datetime="2026-10-20">20 de octubre de 2026</time> · 5 min de lectura</p>
+
+    <p>La mayoría de las apps de productividad fracasan igual: cargadas de funciones, configuradas una vez y abandonadas hacia la tercera semana. El patrón es tan constante que sugiere que el problema no es la app, sino la categoría. Una app que tienes que abrir no puede ayudarte en los momentos en que no la abres. La categoría que no tiene este problema: los widgets. Se ven sin que tengas que hacer nada, se actualizan solos y están en tu visión periférica.</p>
+
+    <p>Esta guía trata de elegir un seguimiento visible frente a la complejidad de funciones. Los cuatro estilos visuales que funcionan, la configuración unificada que sustituye cinco apps por una sola superficie de widgets y las reglas de mantenimiento que evitan que se vuelva invisible. Usaremos <strong>Left</strong> como ejemplo práctico porque su conjunto de widgets cubre los cuatro estilos visuales en una sola app.</p>
+
+    <h2>Por qué fracasan las apps de productividad cargadas de funciones</h2>
+    <ul>
+      <li><strong>Las funciones dejan de usarse.</strong> Configuras cinco vistas, usas una y las otras cuatro son ruido visual en la interfaz.</li>
+      <li><strong>Hay que abrir la app para que aporte algo.</strong> Abrirla requiere intención. La mayoría de los momentos productivos no la tienen.</li>
+      <li><strong>La configuración compite con el uso.</strong> Horas de configuración que deberían haber sido horas de trabajo.</li>
+      <li><strong>Dejas de fiarte de ella.</strong> Un sistema complejo configurado a medias no es una fuente de verdad fiable, y lo sabes.</li>
+    </ul>
+    <p>La alternativa no es ninguna app, sino una app visible. Los widgets triunfan donde las funciones fracasan porque no requieren que hagas nada.</p>
+
+    <h2>Cuatro estilos de seguimiento visual</h2>
+
+    <h3>1. Control de fechas límite</h3>
+    <p>Un widget de cuenta atrás hasta una fecha. Ideal para eventos con un final fijo: lanzamientos, fechas límite, viajes, exámenes. El número que baja genera una presión que ninguna entrada del calendario consigue.</p>
+
+    <h3>2. Barra de hábitos</h3>
+    <p>Un contador de racha para una acción recurrente. Ideal para hábitos diarios o semanales en los que el objetivo es la constancia: ejercicio, escritura, estudio, práctica. La racha que sube es el circuito de recompensa.</p>
+
+    <h3>3. Hoja de ruta de objetivos</h3>
+    <p>Una secuencia de hitos con la posición actual marcada. Ideal para proyectos con varias etapas: trabajos académicos, planes de entrenamiento, lanzamientos de producto. El «estamos aquí» visible responde a «¿dónde estoy?».</p>
+
+    <h3>4. Cuenta atrás de eventos</h3>
+    <p>La misma forma que un control de fechas límite, pero pensada para la ilusión en lugar de la presión. Ideal para viajes, aniversarios y cumpleaños señalados. Colores más cálidos, un enfoque más amable.</p>
+
+    <p>Los cuatro son widgets. Ninguno exige abrir una app para sacarle partido.</p>
+
+    <h2>La configuración unificada</h2>
+    <p>Una app con widgets en varias superficies gana a cinco apps con los suyos propios. Una configuración unificada con Left:</p>
+    <ul>
+      <li><strong>Pantalla de bloqueo:</strong> cuenta atrás hasta la próxima fecha límite y la fecha.</li>
+      <li><strong>Pantalla de inicio (principal):</strong> un widget de hábitos, un widget de cuenta atrás y el progreso del año.</li>
+      <li><strong>Pantalla de inicio (secundaria):</strong> cuentas atrás apiladas para todo lo demás que se acerca.</li>
+      <li><strong>En reposo:</strong> reloj y cuenta atrás activa.</li>
+    </ul>
+    <p>Cinco widgets, una app y los cuatro estilos de seguimiento. A mucha gente le sustituye la app de cuenta atrás y la de hábitos por separado, y convive con tu calendario y tu gestor de tareas.</p>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Consigue el widget de cuenta atrás</a></p>
+
+    <h2>Combinaciones de ejemplo según el uso</h2>
+
+    <h3>La combinación del estudiante para el semestre</h3>
+    <ul>
+      <li>Pantalla de bloqueo: cuenta atrás hasta el próximo examen o trabajo.</li>
+      <li>Pantalla de inicio: racha de estudio, una fecha de Ahead que abarca todo el semestre (del inicio de las clases al final de los exámenes) y el <a href="/year-progress-widget">progreso del año</a>.</li>
+      <li>Secundaria: fechas límite apiladas de todas las entregas pendientes.</li>
+    </ul>
+    <p>Consulta la <a href="/es/blog/time-management-tips-students">gestión del tiempo para estudiantes</a> para ver el panorama completo.</p>
+
+    <h3>El panel profesional</h3>
+    <ul>
+      <li>Pantalla de bloqueo: cuenta atrás hasta la próxima entrega.</li>
+      <li>Pantalla de inicio: racha del hábito de escritura o trabajo y el progreso del año, más una fecha de Ahead que va del inicio al final del trimestre.</li>
+      <li>En reposo en el escritorio: reloj y cuenta atrás hasta la entrega.</li>
+    </ul>
+    <p>Consulta los <a href="/es/blog/workplace-productivity-habits">hábitos de productividad en el trabajo</a>.</p>
+
+    <h3>La cadena de hábitos</h3>
+    <ul>
+      <li>Pantalla de inicio: de 3 a 5 widgets de hábitos (uno por hábito) con la racha de cada uno.</li>
+      <li>Pantalla de bloqueo: un único resumen de «todos los hábitos de hoy».</li>
+    </ul>
+    <p>Consulta <a href="/es/blog/how-to-build-a-streak">cómo crear una racha</a>.</p>
+
+    <h2>Reglas de mantenimiento</h2>
+    <p>Los widgets visibles se desvanecen si no se mantienen. Reglas para que sigan funcionando:</p>
+    <ul>
+      <li><strong>Cambia la colocación cada 4 a 6 semanas.</strong> Mueve los widgets a otras posiciones o páginas para recuperar la atención.</li>
+      <li><strong>Quita las cuentas atrás terminadas.</strong> No dejes ahí las que ya han llegado a cero.</li>
+      <li><strong>Revísalos cada trimestre.</strong> ¿Siguen siendo útiles estos widgets? Quita los que no lo sean.</li>
+      <li><strong>Un foco principal por trimestre.</strong> El widget más visible es aquello hacia lo que de verdad estás trabajando.</li>
+    </ul>
+
+    <h2>El problema de «se funde con el fondo»</h2>
+    <p>Hasta los mejores widgets se desvanecen. La solución es la regla de rotación de arriba, más una prueba sincera: cuando miras el widget, ¿sientes el dato? Si no, cambia algo (la posición, el color, el formato) hasta que lo sientas.</p>
+
+    <h2>Lo que los widgets visuales no pueden sustituir</h2>
+    <ul>
+      <li><strong>Jerarquías de tareas profundas.</strong> Si necesitas proyectos con subproyectos y subtareas, necesitas un gestor de tareas (Things, Todoist) además de los widgets.</li>
+      <li><strong>Calendario con eventos compartidos.</strong> Calendario de Apple o Fantastical para las reuniones de verdad.</li>
+      <li><strong>Notas extensas.</strong> La app Notas u Obsidian.</li>
+    </ul>
+    <p>Los widgets visibles son la capa siempre activa; las herramientas más completas son la capa de trabajo a fondo periódico. Las dos tienen su papel.</p>
+
+    <h2>Lecturas relacionadas</h2>
+    <p>Para el contexto general de productividad: <a href="/es/blog/time-management-best-practices">mejores prácticas de gestión del tiempo</a> y <a href="/es/blog/best-home-screen-widgets-iphone">los mejores widgets para la pantalla de inicio</a>. Para la parte de objetivos visuales: <a href="/es/blog/visual-goals-track-on-screens">objetivos visuales en todas tus pantallas</a>. Para el TDAH en concreto: <a href="/es/blog/best-productivity-apps-adhd">las mejores apps de productividad para el TDAH</a>.</p>
+
+    <h2>Preguntas frecuentes</h2>
+    <p><strong>¿Los widgets sustituirán a mi gestor de tareas?</strong><br/>
+    Para listas de tareas sencillas, sí. Para jerarquías de proyectos profundas, no: los widgets y un gestor de tareas se complementan, no se sustituyen.</p>
+
+    <p><strong>¿Cuántos widgets son los adecuados?</strong><br/>
+    Seis en total entre todas las superficies es el límite superior de lo útil. Más que eso se convierte en decorado.</p>
+
+    <p><strong>¿Necesito varias apps de widgets?</strong><br/>
+    La mayoría de la gente no. Basta con una app de widgets que cubra cuentas atrás, hábitos y el progreso del año (como Left) más Calendario y Recordatorios del sistema.</p>
+
+    <p><strong>¿En qué se diferencia esto de las notificaciones?</strong><br/>
+    Las notificaciones interrumpen. Los widgets están ahí. Las notificaciones se descartan con un gesto; los widgets se miran de un vistazo. Son tipos de atención distintos.</p>
+
+    <p><strong>¿Qué ofrece Left en estos cuatro estilos de seguimiento?</strong><br/>
+    Ahead (fechas límite y cuentas atrás de eventos), Since (rachas de hábitos) y Progreso del año (hojas de ruta de objetivos mediante porcentajes), todo en un mismo conjunto de widgets para la pantalla de inicio, la pantalla de bloqueo y En reposo del iPhone.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarga Left</span>
+          <h2>Empieza a fijarte en lo que importa.</h2>
+          <p>Descarga Left en tu iPhone para ver el tiempo que te queda y las fechas que esperas con ilusión, crear los hábitos que quieres mantener y convertirte en una mejor versión de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - toca para ver las instrucciones">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escanea o busca <strong>«Left»</strong> en el App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Descargar Left en el App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descargar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> personas haciendo que cada momento cuente.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pie de página">
+          <a href="/es/support">Soporte</a>
+          <a href="/terms">Términos</a>
+          <a href="/privacy">Privacidad</a>
+          <a href="/press">Prensa</a>
+          <a href="/es/contact">Contacto</a>
+          <a href="/tools/">Herramientas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/es/blog/">Blog</a>
+          <a href="#" data-consent-open>Ajustes de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ES</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="true">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimiento de cookies">
+  <p class="left-consent__text">Usamos Google Analytics para saber qué páginas ayudan a la gente. Sin anuncios ni seguimiento entre sitios.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir analítica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>No, gracias</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Privacidad</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
