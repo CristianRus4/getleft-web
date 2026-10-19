@@ -310,8 +310,8 @@ const SUPPORT_TOC_MARK_START = '<!-- i18n:support-toc:start -->';
 const SUPPORT_TOC_MARK_END = '<!-- i18n:support-toc:end -->';
 const SUPPORT_REL_MARK_START = '<!-- i18n:support-related:start -->';
 const SUPPORT_REL_MARK_END = '<!-- i18n:support-related:end -->';
-// Hidden in production builds of the app: not offered as related reading.
-const UNLISTED_SUPPORT = new Set(['mood_tracker_in_left', 'world_mood_globe']);
+// Not shipped yet (Mood hidden in production, Apple Watch planned): not offered as related reading.
+const UNLISTED_SUPPORT = new Set(['mood_tracker_in_left', 'world_mood_globe', 'apple_watch_app']);
 
 function injectSupportArticleExtras(html, page, enData) {
   html = stripInjection(html, SUPPORT_TOC_MARK_START, SUPPORT_TOC_MARK_END);

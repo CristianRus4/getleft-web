@@ -8,7 +8,8 @@ import { promises as fs, existsSync } from 'node:fs';
 import path from 'node:path';
 import { ROOT, SITE_ORIGIN, FAMILIES, listFamilyPages, pageToUrlPath, readJson } from './lib/site.mjs';
 
-// Pages that must never be indexed. Mood is hidden in production builds of the app.
+// Pages that must never be indexed. Mood and the Apple Watch app are not shipped yet
+// (Apple Watch is planned, Mood is hidden in production builds); restore them when they ship.
 const NOINDEX = new Set([
   'terms.html',
   'download.html',
@@ -19,6 +20,8 @@ const NOINDEX = new Set([
   'todoist/oauth/callback-fallback.html',
   'support/mood-tracker-in-left.html',
   'support/world-mood-globe.html',
+  'support/apple-watch-app.html',
+  'blog/left-apple-watch-app.html',
 ]);
 
 // Pages that load the site chrome but must not carry analytics (invite codes,

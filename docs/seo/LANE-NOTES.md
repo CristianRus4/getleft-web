@@ -78,3 +78,30 @@ git push origin HEAD:main
 ```
 
 On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/*.html`, `i18n/*/en.json`), take upstream, finish the rebase, rerun the build and commit.
+
+## Update, 2026-10-19 20:45: Apple Watch hidden, Focus stays
+
+The owner confirmed today:
+- **Apple Watch is not ready.** The website must not claim a Left Apple Watch app or complications until it ships.
+- **Mood stays hidden.**
+- **Focus ships in v2026.11** (about 2 November) and stays visible.
+
+What Lane 0 changed:
+- **Noindexed:** `support/apple-watch-app` and `blog/left-apple-watch-app` (URLs stay live).
+- **Unlisted:** the watch support article is out of the "Related guides" lists.
+- **Home:** the Apple Watch feature row is gone.
+- **`llms.txt`:** watch claims removed.
+- **`i18n/locales/en.json`:** watch mentions removed from these keys. Translators: update them in every locale; `check-i18n --verbose` lists them as stale.
+
+| Change | Keys |
+|---|---|
+| Changed | `index.meta.description`, `index.meta.og_description`, `index.bento.items.{widgets,fasting,focus}.body`, `index.faq.items[9]` (now "Can I see Left on my Lock Screen?"), `index.faq.items[11].a`, `index.faq.items[12].a`, `support_articles.aims_in_left.{h2_7,p_12}`, `support_articles.apple_health_automatic_tracking.p_5`, `support_articles.fasting_in_left.{h2_4,p_6}`, `support_articles.focus_timer_in_left.{meta.description,p_1,h2_5,p_7}`, `support.support.{p_58,p_59}` |
+| Removed | `index.features.watch.*`, `support.support.{tutorial_title_24,p_51}` |
+
+The `support_articles.apple_watch_app.*` keys stay, because the noindexed page still exists. Translating them is lowest priority.
+
+Lane 3 (Ava), in the blog and your landing pages:
+1. Remove every claim that Left has an Apple Watch app, works on the wrist, or has watch complications. Saying that other apps have watch apps is fine.
+2. In `blog/best-apple-watch-apps-adhd.html`, drop Left from the list if it is presented as a watch app.
+3. Remove the `left-apple-watch-app` card from `blog/index.html`.
+4. Write the landing pages without Apple Watch.

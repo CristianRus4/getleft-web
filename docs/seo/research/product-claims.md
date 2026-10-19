@@ -11,14 +11,13 @@ Source: the Left app repo (`/Users/cristian/Developer/Apps/Left-app`, read-only)
 - Free tier: **2 each** of Ahead dates, habits, streaks and Aims (lifetime creations). Paid tiers are unlimited.
 - Widgets (free): Home Screen and Lock Screen widgets, StandBy through system widgets. Say "dozens of widgets"
   or "35+ widgets and Live Activities" (29 widget kinds + 6 Live Activities). The home page's existing "20+" stays.
-- Live Activities for habits, countdowns and fasting.
+- Live Activities for habits, countdowns, fasting and focus.
 - Left Wallpaper through the Shortcuts app (a lock screen wallpaper that updates itself). Free.
-- Apple Watch app and complications (configurable in the watch face editor).
 - Siri, Shortcuts and App Intents for habits, streaks, Aims, Ahead and the wallpaper.
 - Paid (Left Premium): Planner (Premium level), fasting, Apple Health automatic tracking, friends and shared
   dates (Joint Ahead, Shared Since), custom lifespan, alternative icons, games.
 - Planner can connect Todoist.
-- Requires iOS 26 and watchOS 26.
+- Requires iOS 26 (iPhone).
 - Languages: the app ships 41 locales.
 
 ## Never claim
@@ -33,7 +32,13 @@ Source: the Left app repo (`/Users/cristian/Developer/Apps/Left-app`, read-only)
 - Any user count, download count or revenue figure that is not already on the site (existing stats stay untouched).
 - New testimonials or reviews of any kind.
 - Android availability (Left is iPhone-only; there is a web version at /web).
-- Focus: keep existing wording, add no new Focus promises until the owner confirms it ships in 2026.10.
+- An Apple Watch app or complications. The owner confirmed on 2026-10-19 that the watch app is not ready;
+  claims return when it ships. Mentioning that other apps have watch apps is fine.
+
+## Focus
+
+- Focus ships in v2026.11 (about 2 November 2026, owner, 2026-10-19). Keep Focus visible and describe it as a
+  shipped feature (Pomodoro-style focus and break sessions, Live Activity, widget).
 
 ## Brand and terms
 
