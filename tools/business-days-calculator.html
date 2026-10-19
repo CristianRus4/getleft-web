@@ -204,25 +204,110 @@
     </div>
 
     <div class="tool-prose">
-      <h2>What counts as a business day?</h2>
-      <p>This calculator defines business days as <strong>Monday through Friday</strong>, excluding Saturdays and Sundays. It does not account for public holidays, which vary by country and region - you'll need to subtract those manually based on your location.</p>
-
-      <h2>How it's calculated</h2>
-      <p>The algorithm walks day by day from the start date to the end date and increments a counter for every weekday it encounters. This gives an exact count rather than the approximate formula (total days × 5/7), which can be off by one or two days near week boundaries.</p>
-      <p>The start date is included in the count; the end date is not (similar to how you'd count working days on a calendar - "from Monday to Monday" is 5 days, not 6).</p>
-
+      <h2>How this business day count works</h2>
+      <p>The calculator counts <strong>Monday to Friday</strong> and skips Saturdays and Sundays. It includes the start date and stops before the end date, the way you would count working days on a calendar: from Monday, November 2, 2026 to Monday, November 30, 2026 is exactly four working weeks, so the result is 20 business days. If you enter the dates the other way round, it swaps them for you, and it also shows the calendar days and weekend days in the range.</p>
+      <p>It walks through the range one day at a time instead of using the rough "days × 5 ÷ 7" shortcut, which can be off by a day or two depending on where the weekends fall.</p>
+      <h2>Business days in each month of 2027</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Month</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Weekdays (Mon to Fri)</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">January</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">February</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">20</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">March</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">23</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">April</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">May</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">June</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">July</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">August</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">September</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">October</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">November</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">December</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">23</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);"><strong>Total</strong></td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);"><strong>261</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>These are weekdays before public holidays. A month always has between 20 and 23 of them, and a whole year has 260, 261 or 262, depending on the weekday it starts on and whether it is a leap year.</p>
+      <h2>Public holidays</h2>
+      <p>Holidays differ by country, state and employer, so the calculator does not remove them. Subtract the ones that fall on weekdays in your range. For example, in the US the range above contains two federal holidays, Veterans Day on Wednesday, November 11 and Thanksgiving on Thursday, November 26, which leaves 18 working days.</p>
+      <h2>Going the other way</h2>
+      <p>If you know the number of business days and need the date, use the <a href="/tools/business-days-from-date">business days from a date</a> tool. For example, 30 business days after Monday, October 19, 2026 is Monday, November 30, 2026, before any holidays.</p>
       <h2>Common uses</h2>
       <ul>
-        <li><strong>Legal &amp; contract deadlines</strong> - "within 30 business days" is a common contract clause</li>
-        <li><strong>Shipping &amp; delivery estimates</strong> - most couriers quote business day ETAs</li>
-        <li><strong>Project planning</strong> - convert total calendar days into working days for accurate estimates</li>
-        <li><strong>Notice periods</strong> - employment and tenancy notice periods are often expressed in business days</li>
+        <li><strong>Contracts and legal deadlines:</strong> "within 30 business days" is a common clause.</li>
+        <li><strong>Shipping estimates:</strong> most couriers quote delivery in business days.</li>
+        <li><strong>Project planning:</strong> turn calendar time into the working days you actually have.</li>
+        <li><strong>Notice periods:</strong> some employment and tenancy notices are counted in working days.</li>
       </ul>
-
-      <h2>Public holidays</h2>
-      <p>To account for public holidays, subtract them from the result. For example, if you have 22 business days but there are 2 public holidays in that range, the effective working days are 20. The exact holidays depend on your country - use a public holiday calendar for your region.</p>
+      <h2>Keep the deadline in view</h2>
+      <p>Once you know the date, add it to Left as an <a href="/countdown-widget">Ahead countdown</a> and put it on your Home Screen or Lock Screen, so the remaining days are always visible.</p>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Count down to your deadline in Left
+        </a>
+      </p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Does the business days calculator include the start and end dates?</summary>
+          <div class="faq-answer"><p>It includes the start date and excludes the end date. From one Monday to the next Monday counts as 5 business days.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it count public holidays?</summary>
+          <div class="faq-answer"><p>No. It counts every Monday to Friday. Subtract any public holidays that fall on weekdays in your range, since they differ by country and region.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many business days are in a year?</summary>
+          <div class="faq-answer"><p>Between 260 and 262 weekdays, before public holidays. 2027 has 261.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many business days are in a month?</summary>
+          <div class="faq-answer"><p>Between 20 and 23 weekdays, depending on the length of the month and the weekday it starts on.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the business days calculator include the start and end dates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It includes the start date and excludes the end date. From one Monday to the next Monday counts as 5 business days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it count public holidays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It counts every Monday to Friday. Subtract any public holidays that fall on weekdays in your range, since they differ by country and region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many business days are in a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Between 260 and 262 weekdays, before public holidays. 2027 has 261."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many business days are in a month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Between 20 and 23 weekdays, depending on the length of the month and the weekday it starts on."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">

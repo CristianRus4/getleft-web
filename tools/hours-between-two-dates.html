@@ -204,23 +204,94 @@
     </div>
 
     <div class="tool-prose">
-      <h2>How to calculate hours between two dates</h2>
-      <p>The formula is simple: subtract the start timestamp from the end timestamp to get a duration in milliseconds, then divide by 3,600,000 (the number of milliseconds in an hour). The result is the total number of hours elapsed.</p>
-      <p>For example, from Friday at 9:00 AM to Monday at 5:00 PM is 80 hours - three full days (72 hours) plus 8 more hours. This tool handles the arithmetic instantly for any pair of dates you enter.</p>
-
-      <h2>Common uses</h2>
-      <ul>
-        <li><strong>Timesheet calculations</strong> - total hours worked across a project or period</li>
-        <li><strong>Travel planning</strong> - hours between departure and arrival across time zones</li>
-        <li><strong>Billing</strong> - exact hours for hourly-rate invoices</li>
-        <li><strong>Fasting &amp; health</strong> - hours since a meal or start of a fast</li>
-        <li><strong>Event planning</strong> - hours until a deadline or milestone</li>
-      </ul>
-
-      <h2>Hours vs. business hours</h2>
-      <p>This calculator counts all hours - including nights, weekends, and holidays. If you need only working hours, use the <a href="/tools/business-days-calculator">business days calculator</a> instead (it counts Mon–Fri days, which you can multiply by your hours-per-day).</p>
+      <h2>How the hours are calculated</h2>
+      <p>The tool subtracts the start time from the end time and divides by 3,600,000, the number of milliseconds in an hour. You get the whole hours, the leftover minutes and seconds, and the same span in total minutes and days. If the end is before the start, it shows the absolute difference and tells you.</p>
+      <p>For example, from Friday at 9:00 AM to Monday at 5:00 PM is 80 hours: three full days of 24 hours, plus 8 more.</p>
+      <h2>Daylight saving time and time zones</h2>
+      <p>Both times are read in your device’s time zone, and the result is the real time that passes. That matters on the nights clocks change: a span that crosses the start of daylight saving time is one hour shorter than the calendar suggests, and one that crosses the end is one hour longer. If your two times are in different time zones, convert one of them first; the <a href="/tools/time-zone-meeting-planner">time zone meeting planner</a> helps.</p>
+      <h2>Common spans in hours</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Span</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Hours</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1 day</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">24</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1 week</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">168</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">30 days</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">720</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">A 365-day year</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">8,760</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">A 366-day leap year</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">8,784</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Hours for timesheets</h2>
+      <p>Timesheets and invoices often need decimal hours. Divide the minutes by 60: 7 hours 45 minutes is 7.75 hours, and 20 minutes is about 0.33 hours. This tool counts every hour, including nights and weekends; for working time only, use the <a href="/tools/working-hours-calculator">working hours calculator</a> or the <a href="/tools/business-days-calculator">business days calculator</a>.</p>
+      <h2>Count down the hours</h2>
+      <p>For a deadline, a flight or an exam, Left can show an <a href="/countdown-widget">Ahead countdown</a> in hours instead of days, on your Home Screen or Lock Screen.</p>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Count down the hours in Left
+        </a>
+      </p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How many hours are in a week?</summary>
+          <div class="faq-answer"><p>A week has 168 hours (7 × 24). A 30-day month has 720 hours and a 365-day year has 8,760.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it account for daylight saving time?</summary>
+          <div class="faq-answer"><p>Yes. It measures the real time that passes in your device’s time zone, so a span that crosses a clock change is one hour shorter or longer than the calendar suggests.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I convert minutes to decimal hours?</summary>
+          <div class="faq-answer"><p>Divide the minutes by 60. For example, 45 minutes is 0.75 hours, so 7 hours 45 minutes is 7.75 hours.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I calculate hours between two time zones?</summary>
+          <div class="faq-answer"><p>Convert both times to the same time zone first, then enter them. The tool reads both times in your device’s time zone.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many hours are in a week?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A week has 168 hours (7 × 24). A 30-day month has 720 hours and a 365-day year has 8,760."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it account for daylight saving time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It measures the real time that passes in your device’s time zone, so a span that crosses a clock change is one hour shorter or longer than the calendar suggests."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert minutes to decimal hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the minutes by 60. For example, 45 minutes is 0.75 hours, so 7 hours 45 minutes is 7.75 hours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I calculate hours between two time zones?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Convert both times to the same time zone first, then enter them. The tool reads both times in your device’s time zone."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">

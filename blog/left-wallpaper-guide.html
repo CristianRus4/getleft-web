@@ -93,7 +93,7 @@
   <meta name="apple-itunes-app" content="app-id=6740155884" />
 <!-- left:smart-banner:end -->
   <meta name="left:content-type" content="blog" />
-  <title>The Left Wallpaper: A Lock Screen That Updates Itself - Left Blog</title>
+  <title>The Left Wallpaper: A Lock Screen That Updates Itself | Left</title>
   <meta name="description" content="How Left Wallpaper works, how to set it up with Shortcuts, and what to put on it." />
   <link rel="canonical" href="https://getleft.app/blog/left-wallpaper-guide" />
   <!-- i18n:hreflang:start -->
@@ -121,6 +121,71 @@
   <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
   <link rel="manifest" href="../favicon/site.webmanifest" />
   <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Left Wallpaper: A Lock Screen That Updates Itself",
+  "description": "How Left Wallpaper works, how to set it up with Shortcuts, and what to put on it.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/left-wallpaper-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Left Wallpaper: A Lock Screen That Updates Itself",
+      "item": "https://getleft.app/blog/left-wallpaper-guide"
+    }
+  ]
+}
+  </script>
 </head>
 <body>
   <nav class="top-nav top-nav--visible" aria-label="Primary">
@@ -140,42 +205,42 @@
   </nav>
   <article class="article container">
 <h1>The Left Wallpaper: A Lock Screen That Updates Itself</h1>
-<p class="article-meta">May 2026 · 2 min read</p>
-<p>iOS wallpapers are static. Widgets aren't. <strong>Left Wallpaper</strong> sits in between - it generates a wallpaper image with your live time data, then uses an Apple Shortcut to update itself.</p>
+<p class="article-meta">Updated <time datetime="2026-10-20">October 20, 2026</time> · 2 min read</p>
+<p>iOS wallpapers are static. Widgets aren't. <strong>Left Wallpaper</strong> sits in between - it generates a wallpaper image with your live time data, then uses an Apple Shortcut to update itself. It is free to use. See the <a href="/days-left-wallpaper">days left wallpaper</a> page for examples.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get the days left wallpaper</a></p>
 
 <h2>What it can show</h2>
 <ul>
-  <li>Year progress</li>
-  <li>Life in weeks (a dot grid)</li>
-  <li>A countdown to a date you choose</li>
-  <li>A blend of a photo and a time view</li>
+  <li>Your year (in days, weeks or months), month, or a calendar view</li>
+  <li>Your life in years, months or weeks (a grid of symbols)</li>
+  <li>A countdown to any Ahead date you choose (Special Date)</li>
+  <li>A photo background, from My photos or Unsplash, with a blur, under any of these</li>
 </ul>
 
 <h2>How it actually works</h2>
-<p>Inside the app, Left's <code>WallpaperGenerator</code> writes a PNG into the App Group <code>Wallpapers/</code> directory. An App Shortcut (<code>UpdateDynamicWallpaperIntent</code>) regenerates it on demand. You wire that Shortcut into an Apple Shortcuts <em>Automation</em> - usually "every hour" or "when I unlock my iPhone" - so the wallpaper stays current without you doing anything.</p>
+<p>In Left, you choose a mode, a symbol, light or dark appearance, a theme color and whether to show the legend (text like "73 days left"). Left then offers a wallpaper action in Apple Shortcuts. You wire that action into a Shortcuts <em>Automation</em> that runs every day, so the wallpaper stays current without you doing anything.</p>
 
 <h2>Setup, step by step</h2>
 <p>You'll build a Shortcut that asks Left to regenerate the wallpaper, then a daily Automation that runs that Shortcut. Once it's wired up, you never touch it again.</p>
 
 <h3>1. Create a new shortcut</h3>
-<p>Tap <strong>Open Shortcuts</strong> to go to the Shortcuts app. Tap <strong>+</strong> in the top-right corner to create a new shortcut.</p>
+<p>Set up the wallpaper you want in Left first. Then tap <strong>Open Shortcuts</strong> to go to the Shortcuts app, and tap <strong>+</strong> to create a new shortcut.</p>
 
 <h3>2. Build the shortcut</h3>
-<p>Search the action <strong>"Left wallpaper"</strong> and tap to add it. Then search again for <strong>"Set Wallpaper Photo"</strong> and add that too. Set it up for <strong>Lock Screen</strong>, and turn off both <strong>Show Preview</strong> and <strong>Crop to Subject</strong>. Give the shortcut a name like <em>"Left Wallpaper"</em> and save.</p>
+<p>Search for <strong>Wallpaper</strong> and tap the action with Left's icon. Then add <strong>Set Wallpaper Photo</strong>, tap its arrow, and turn off <strong>Show Preview</strong>, <strong>Crop to Subject</strong> and <strong>Legibility Blur</strong>. Give the shortcut a name like <em>"Left Wallpaper"</em>.</p>
 
 <h3>3. Create the automation</h3>
-<p>Go to the <strong>Automation</strong> tab in Shortcuts. Tap <strong>+</strong> and create a new <strong>Time of Day</strong> automation. Set it to run <strong>daily</strong> at <strong>00:01</strong> (or any time you prefer). Choose <strong>Run Immediately</strong> and turn off <strong>Notify When Run</strong>.</p>
+<p>Tap <strong>Automation</strong> under the search field in Shortcuts and create a new <strong>Time of Day</strong> automation. Set it to <strong>12:01 AM</strong> (or any time you prefer) and repeat <strong>Every Day</strong>. Turn <strong>Notify</strong> off.</p>
 
 <h3>4. Automate the shortcut</h3>
-<p>Tap <strong>Next</strong>, then search for the shortcut you created in step 2 and select it. Done - your Lock Screen will update itself every day from now on.</p>
+<p>Choose the shortcut you created in step 2 as the action to run. Tap the play button to test it, then use the back arrow to save. Done - your Lock Screen will update itself every day from now on.</p>
 
 <p>Need more detail or screenshots? See the full walkthrough on the <a href="/support/wallpaper-shortcut">Left Wallpaper shortcut support page</a>.</p>
 
 <h2>Tips</h2>
 <ul>
   <li>iOS may delay automations when the phone is hot or in Low Power Mode - that's the OS, not Left.</li>
-  <li>Pair it with a small Lock Screen widget for redundancy.</li>
-  <li>Pre-generation runs on app launch so the wallpaper's ready when you switch to it.</li>
+  <li>Pair it with a small Lock Screen widget, such as the <a href="/year-progress-widget">year progress widget</a>, for redundancy.</li>
 </ul>
 
       <section class="download-block">
