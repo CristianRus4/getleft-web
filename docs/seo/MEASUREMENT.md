@@ -247,5 +247,24 @@ Once a week (Monday, covering the previous 7 and 28 days):
    group by placement and locale from the token segments and compare with
    GA4's `download_click` for the same window (click-to-download rate).
 
+5. **Bing Webmaster Tools** (getleft.app, imported from Search Console):
+   Search Performance clicks, impressions and top queries, plus Sitemaps and
+   IndexNow submission status. Bing also feeds DuckDuckGo, Yahoo, Ecosia,
+   ChatGPT search and Copilot. It is large in Japan (about 31% of searches).
+
 Record the week's numbers next to the GSC export (same dated folder) together
 with any change shipped that week, so changes can be read against them.
+
+## 11. Bing and IndexNow
+
+- **Bing Webmaster Tools.** getleft.app was added on 2026-10-20 by importing it
+  from Google Search Console. The import verifies the site and brings in the
+  sitemap. Re-import or resubmit `https://getleft.app/sitemap.xml` there if the
+  sitemap URL count drifts.
+- **IndexNow.** The key is `indexNowKey` in `site.config.json`, and the key file
+  `/<key>.txt` sits at the site root. After each push to main, run
+  `node scripts/indexnow.mjs`. It submits the pages changed since the last
+  submission, which is tracked in the shared local ref `refs/indexnow/submitted`,
+  to `api.indexnow.org`. That one endpoint reaches Bing, Yandex, Naver and
+  Seznam. `--all` resubmits the whole sitemap, and `--dry-run` only lists URLs.
+  Google does not use IndexNow; Search Console's sitemap covers it.

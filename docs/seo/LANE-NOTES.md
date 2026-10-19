@@ -75,6 +75,7 @@ git fetch origin && git rebase origin/main
 node scripts/build.mjs        # must end with "✓ build passed"
 git add -A && git commit
 git push origin HEAD:main
+node scripts/indexnow.mjs     # tells Bing about the pages you changed
 ```
 
 On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/*.html`, `i18n/*/en.json`), take upstream, finish the rebase, rerun the build and commit.
@@ -105,3 +106,7 @@ Lane 3 (Ava), in the blog and your landing pages:
 2. In `blog/best-apple-watch-apps-adhd.html`, drop Left from the list if it is presented as a watch app.
 3. Remove the `left-apple-watch-app` card from `blog/index.html`.
 4. Write the landing pages without Apple Watch.
+
+## Update, 2026-10-20: Bing and IndexNow
+
+getleft.app is now in Bing Webmaster Tools. After every push to main, run `node scripts/indexnow.mjs`; it is now the last line of the push loop above. It tells Bing (and Yandex, Naver and Seznam) which pages changed, so new locale pages are crawled within minutes. It is safe to run from any worktree: it works out the changed pages from `origin/main` itself. If it fails, mention it in your report and carry on.
