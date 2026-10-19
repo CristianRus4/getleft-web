@@ -477,11 +477,11 @@
     function render() {
       const now = new Date();
       const w = nextEaster(now);
-      wDate.textContent = 'Next Western Easter: ' + formatDateLong(w);
+      wDate.textContent = toolT('next.westernEaster', { date: formatDateLong(w) });
       renderCountdown(wResult, w - now, unit);
       const oThis = orthodoxEasterDate(now.getFullYear());
       const o = oThis > now ? oThis : orthodoxEasterDate(now.getFullYear() + 1);
-      oDate.textContent = 'Next Orthodox Easter: ' + formatDateLong(o);
+      oDate.textContent = toolT('next.orthodoxEaster', { date: formatDateLong(o) });
       const msO = o - now;
       const bO = breakdown(msO);
       oResult.innerHTML = `<div class="tool-result-big">${fmtNum(bO.totalDay)} <span class="tool-result-unit">days</span></div>`;

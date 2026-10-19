@@ -376,13 +376,13 @@
     function render() {
       const now = new Date();
       const startOfYear = new Date(now.getFullYear(), 0, 1, 0, 0, 0, 0);
-      label.textContent = 'Since January 1, ' + now.getFullYear() + ' at midnight';
+      label.textContent = toolT('result.sinceJan1', { year: now.getFullYear() });
       const ms = now - startOfYear;
       const b2 = breakdown(ms);
       if (unit === 'all') {
         result.innerHTML = `<div class="tool-stat-row">
-          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(b2.days)}</div><div class="tool-stat-label">days</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${pad(b2.hours)}</div><div class="tool-stat-label">hours</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(b2.days)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.days'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${pad(b2.hours)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.hours'))}</div></div>
           <div class="tool-stat"><div class="tool-stat-num">${pad(b2.minutes)}</div><div class="tool-stat-label">min</div></div>
           <div class="tool-stat"><div class="tool-stat-num">${pad(b2.seconds)}</div><div class="tool-stat-label">sec</div></div>
         </div>`;

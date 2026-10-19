@@ -369,12 +369,12 @@
       const now = new Date();
       const day = now.getDay();
       if (day === 0 || day === 6) {
-        statusEl.textContent = "It's the weekend! Enjoy it.";
-        result.innerHTML = '<div class="tool-result-big">Weekend!</div>';
+        statusEl.textContent = toolT('result.itsWeekend');
+        result.innerHTML = '<div class="tool-result-big">' + toolEscape(toolT('result.weekend')) + '</div>';
         return;
       }
       const sat = nextWeekend(now);
-      statusEl.textContent = 'Next Saturday: ' + formatDateLong(sat);
+      statusEl.textContent = toolT('next.saturday', { date: formatDateLong(sat) });
       renderCountdown(result, sat - now, unit);
     }
     document.getElementById('wknd-units').addEventListener('click', () => setTimeout(render, 0));

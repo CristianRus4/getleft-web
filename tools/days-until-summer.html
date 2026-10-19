@@ -455,7 +455,7 @@
       b.addEventListener('click', () => { hemibtns.forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); hemi = b.dataset.hemi; render(); });
     });
     unitBtns.forEach(b => b.addEventListener('click', () => { unitBtns.forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); unit = b.dataset.unit; }));
-    function render() { const d = nextSeasonDate('summer', hemi); if (!d) return; dateEl.textContent = 'Next summer solstice: ' + formatDateLong(d); renderCountdown(result, d - Date.now(), unit); }
+    function render() { const d = nextSeasonDate('summer', hemi); if (!d) return; dateEl.textContent = toolT('next.summer', { date: formatDateLong(d) }); renderCountdown(result, d - Date.now(), unit); }
     document.getElementById('summer-units').addEventListener('click', () => setTimeout(render, 0));
     tickEvery(1000, render);
   </script>

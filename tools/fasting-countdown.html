@@ -393,7 +393,7 @@
       const ms = end - Date.now();
 
       if (ms <= 0) {
-        result.innerHTML = `<div class="tool-result-big">Fast complete!</div>`;
+        result.innerHTML = `<div class="tool-result-big">${toolEscape(toolT('result.fastComplete'))}</div>`;
         progressEl.textContent = 'Your fast has ended. Time to eat!';
         return;
       }
@@ -403,7 +403,7 @@
         const totalHrs = b.days * 24 + b.hours;
         result.innerHTML = `
           <div class="tool-stat-row">
-            <div class="tool-stat"><div class="tool-stat-num">${totalHrs}</div><div class="tool-stat-label">hours</div></div>
+            <div class="tool-stat"><div class="tool-stat-num">${totalHrs}</div><div class="tool-stat-label">${toolEscape(toolT('stat.hours'))}</div></div>
             <div class="tool-stat"><div class="tool-stat-num">${pad(b.minutes)}</div><div class="tool-stat-label">min</div></div>
             <div class="tool-stat"><div class="tool-stat-num">${pad(b.seconds)}</div><div class="tool-stat-label">sec</div></div>
           </div>`;
@@ -412,7 +412,7 @@
       } else {
         result.innerHTML = `<div class="tool-result-big">${fmtNum(b.totalMin)} <span class="tool-result-unit">minutes</span></div>`;
       }
-      progressEl.textContent = `Fast ends: ${formatDateTime(end)}`;
+      progressEl.textContent = toolT('result.fastEnds', { date: formatDateTime(end) });
     }
 
     document.getElementById('fc-units').addEventListener('click', () => setTimeout(render, 0));

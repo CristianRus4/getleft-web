@@ -453,7 +453,7 @@
     const unitBtns = document.querySelectorAll('#vd-units button');
     let unit = 'all';
     unitBtns.forEach(b => b.addEventListener('click', () => { unitBtns.forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); unit = b.dataset.unit; }));
-    function render() { const d = nextValentines(); dateEl.textContent = 'Next Valentine\'s Day: ' + formatDateLong(d); renderCountdown(result, d - Date.now(), unit); }
+    function render() { const d = nextValentines(); dateEl.textContent = toolT('next.valentines', { date: formatDateLong(d) }); renderCountdown(result, d - Date.now(), unit); }
     document.getElementById('vd-units').addEventListener('click', () => setTimeout(render, 0));
     tickEvery(1000, render);
   </script>

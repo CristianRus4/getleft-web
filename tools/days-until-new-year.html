@@ -457,7 +457,7 @@
     unitBtns.forEach(b => b.addEventListener('click', () => { unitBtns.forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); unit = b.dataset.unit; }));
     function render() {
       const d = nextNewYear();
-      dateEl.textContent = 'Next New Year: ' + formatDateLong(d);
+      dateEl.textContent = toolT('next.newYear', { date: formatDateLong(d) });
       renderCountdown(result, d - Date.now(), unit);
     }
     document.getElementById('ny-units').addEventListener('click', () => setTimeout(render, 0));

@@ -466,8 +466,8 @@
       if (isNaN(dob)) return;
       const next = nextBirthdayFrom(dob);
       const age = ymdBetween(dob, new Date());
-      ageEl.textContent = `Current age: ${age.years} years, ${age.months} months, ${age.days} days`;
-      dateEl.textContent = 'Next birthday: ' + formatDateLong(next);
+      ageEl.textContent = toolT('result.currentAge', { years: age.years, months: age.months, days: age.days });
+      dateEl.textContent = toolT('next.birthday', { date: formatDateLong(next) });
       renderCountdown(result, next - Date.now(), unit);
     }
 

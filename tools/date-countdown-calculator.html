@@ -405,11 +405,11 @@
     function render() {
       const target = new Date(input.value);
       if (!input.value || isNaN(target)) {
-        result.innerHTML = '<p style="color:var(--text-secondary);font-size:16px;">Choose a target date above.</p>';
+        result.innerHTML = '<p style="color:var(--text-secondary);font-size:16px;">' + toolEscape(toolT('result.chooseTarget')) + '</p>';
         return;
       }
       const ms = target - Date.now();
-      if (ms <= 0) { result.innerHTML = '<div class="tool-result-big" style="color:var(--accent);">That date has passed.</div>'; return; }
+      if (ms <= 0) { result.innerHTML = '<div class="tool-result-big" style="color:var(--accent);">' + toolEscape(toolT('result.datePassed')) + '</div>'; return; }
       renderCountdown(result, ms, unit);
     }
 

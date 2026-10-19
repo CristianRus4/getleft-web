@@ -390,12 +390,12 @@
       const b = breakdown(ms);
       const next = nextBirthdayFrom(dob);
       const daysUntil = Math.ceil((next - now) / 86400000);
-      nextBdayEl.textContent = `Next birthday: ${formatDateLong(next)} (${daysUntil} days away)`;
+      nextBdayEl.textContent = toolPlural('next.birthdayAway', daysUntil, { date: formatDateLong(next) });
       result.innerHTML = `
         <div class="tool-stat-row">
           <div class="tool-stat"><div class="tool-stat-num">${years}</div><div class="tool-stat-label">years</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${months}</div><div class="tool-stat-label">months</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${days}</div><div class="tool-stat-label">days</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${months}</div><div class="tool-stat-label">${toolEscape(toolT('stat.months'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${days}</div><div class="tool-stat-label">${toolEscape(toolT('stat.days'))}</div></div>
         </div>
         <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">
           = ${fmtNum(b.totalDay)} total days &nbsp;·&nbsp; ${fmtNum(b.totalHour)} hours &nbsp;·&nbsp; ${fmtNum(b.totalMin)} minutes

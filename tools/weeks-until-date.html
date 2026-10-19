@@ -448,7 +448,7 @@
       now.setHours(0,0,0,0);
       const ms = target - now;
       if (ms < 0) {
-        result.innerHTML = '<div class="tool-result-big" style="font-size:1.2rem;color:var(--text-secondary)">That date has passed.</div>';
+        result.innerHTML = '<div class="tool-result-big" style="font-size:1.2rem;color:var(--text-secondary)">' + toolEscape(toolT('result.datePassed')) + '</div>';
         return;
       }
       const totalDays = Math.floor(ms / 86400000);
@@ -456,8 +456,8 @@
       const days = totalDays % 7;
       result.innerHTML = `
         <div class="tool-stat-row">
-          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(weeks)}</div><div class="tool-stat-label">weeks</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${days}</div><div class="tool-stat-label">days</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(weeks)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.weeks'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${days}</div><div class="tool-stat-label">${toolEscape(toolT('stat.days'))}</div></div>
         </div>
         <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">= ${fmtNum(totalDays)} total days &nbsp;·&nbsp; ${formatDateLong(target)}</p>`;
     }

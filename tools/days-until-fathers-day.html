@@ -456,10 +456,10 @@
     unitBtns.forEach(b => b.addEventListener('click', () => { unitBtns.forEach(x => x.classList.remove('is-active')); b.classList.add('is-active'); unit = b.dataset.unit; }));
     function render() {
       const d = nextFathersDay();
-      dateEl.textContent = "Next Father's Day: " + formatDateLong(d);
+      dateEl.textContent = toolT('next.fathersDay', { date: formatDateLong(d) });
       const yr = new Date().getFullYear();
       const years = [yr, yr+1, yr+2].map(y => `${y}: ${formatDateShort(fathersDayDate(y))}`).join(' · ');
-      nextYearsEl.textContent = 'Upcoming: ' + years;
+      nextYearsEl.textContent = toolT('result.upcoming', { dates: years });
       renderCountdown(result, d - Date.now(), unit);
     }
     document.getElementById('fd-units').addEventListener('click', () => setTimeout(render, 0));

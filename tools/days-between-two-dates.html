@@ -387,7 +387,7 @@
     function render() {
       const a = new Date(fromEl.value + 'T00:00:00');
       const b = new Date(toEl.value   + 'T00:00:00');
-      if (isNaN(a) || isNaN(b)) { result.innerHTML = '<p style="color:var(--text-secondary)">Select both dates.</p>'; return; }
+      if (isNaN(a) || isNaN(b)) { result.innerHTML = '<p style="color:var(--text-secondary)">' + toolEscape(toolT('result.selectBoth')) + '</p>'; return; }
       const days = Math.abs(Math.round((b - a) / MS_DAY));
       const weeks = Math.floor(days / 7);
       const rem = days % 7;
