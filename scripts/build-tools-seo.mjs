@@ -1159,8 +1159,8 @@ function footer() {
     <div class="container footer-inner">
       <div class="footer-main">
         <div class="footer-brand">
-          <span class="footer-counter-inline"><span id="userCounter">2,100,000</span> people making every moment count.</span>
-          <span>Left &ndash; Coded in NZ &ndash; &copy; 2026 cntxt</span>
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
         </div>
         <nav class="footer-links" aria-label="Footer">
           <a href="/support.html">Support</a>
@@ -1344,9 +1344,9 @@ function normalizeExistingBody(slug, html) {
 }
 
 function supportUrlFor(file) {
-  if (file === 'support.html') return `${SITE}/support.html`;
+  if (file === 'support.html') return `${SITE}/support`;
   const slug = path.basename(file, '.html');
-  return `${SITE}/support/${slug}.html`;
+  return `${SITE}/support/${slug}`;
 }
 
 function ensureTagAfter(html, testRegex, tag, afterRegex) {

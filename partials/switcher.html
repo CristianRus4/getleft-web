@@ -3,24 +3,7 @@
     <span data-current-language>EN</span>
   </a>
   <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
-    <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
-    <button type="button" role="option" data-lang-option="de">Deutsch</button>
-    <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
-    <button type="button" role="option" data-lang-option="en">English</button>
-    <button type="button" role="option" data-lang-option="es">Español (España)</button>
-    <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
-    <button type="button" role="option" data-lang-option="fr">Français</button>
-    <button type="button" role="option" data-lang-option="it">Italiano</button>
-    <button type="button" role="option" data-lang-option="nl">Nederlands</button>
-    <button type="button" role="option" data-lang-option="pl">Polski</button>
-    <button type="button" role="option" data-lang-option="pt">Português</button>
-    <button type="button" role="option" data-lang-option="ro">Română</button>
-    <button type="button" role="option" data-lang-option="ru">Русский</button>
-    <button type="button" role="option" data-lang-option="tr">Türkçe</button>
-    <button type="button" role="option" data-lang-option="ko">한국어</button>
-    <button type="button" role="option" data-lang-option="ja">日本語</button>
-    <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
-    <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+__SWITCHER_OPTIONS__
   </div>
 </div>
 <script>
@@ -30,35 +13,16 @@
   var trigger = root.querySelector('[data-lang-switcher-button]');
   var menu = root.querySelector('[data-lang-switcher-menu]');
   var label = root.querySelector('[data-current-language]');
-  var flagLabel = root.querySelector('[data-current-flag]');
   var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
   if (!trigger || !menu || !label || !options.length) return;
-  var LOCALES = {
-    en: { name: 'English', flag: '⚑', abbr: 'EN' },
-    es: { name: 'Español (España)', flag: '⚑', abbr: 'ES' },
-    'es-419': { name: 'Español (Latinoamérica)', flag: '⚑', abbr: 'LAT' },
-    de: { name: 'Deutsch', flag: '⚑', abbr: 'DE' },
-    fr: { name: 'Français', flag: '⚑', abbr: 'FR' },
-    it: { name: 'Italiano', flag: '⚑', abbr: 'IT' },
-    pt: { name: 'Português', flag: '⚑', abbr: 'PT' },
-    ja: { name: '日本語', flag: '⚑', abbr: 'JA' },
-    nl: { name: 'Nederlands', flag: '⚑', abbr: 'NL' },
-    pl: { name: 'Polski', flag: '⚑', abbr: 'PL' },
-    tr: { name: 'Türkçe', flag: '⚑', abbr: 'TR' },
-    ru: { name: 'Русский', flag: '⚑', abbr: 'RU' },
-    'zh-Hans': { name: '简体中文', flag: '⚑', abbr: 'ZH' },
-    'zh-Hant': { name: '繁體中文', flag: '⚑', abbr: 'ZH' },
-    ko: { name: '한국어', flag: '⚑', abbr: 'KO' },
-    id: { name: 'Bahasa Indonesia', flag: '⚑', abbr: 'ID' },
-    ro: { name: 'Română', flag: '⚑', abbr: 'RO' },
-    hi: { name: 'हिन्दी', flag: '⚑', abbr: 'HI' }
-  };
+  // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+  var LOCALES = __LOCALES_JSON__;
+  var AVAILABLE = __AVAILABLE__;
   var SUPPORTED = Object.keys(LOCALES);
   var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
   var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
   var currentLoc = LOCALES[current] || LOCALES.en;
   label.textContent = currentLoc.abbr || currentLoc.name;
-  if (flagLabel) flagLabel.textContent = currentLoc.flag;
   options.forEach(function (option) {
     var selected = option.getAttribute('data-lang-option') === current;
     option.setAttribute('aria-selected', selected ? 'true' : 'false');
@@ -72,26 +36,22 @@
     setOpen(menu.hidden);
   });
   options.forEach(function (option) {
-    option.addEventListener('click', function (event) {
+    option.addEventListener('click', function () {
       var v = option.getAttribute('data-lang-option');
       if (!v) return;
       setOpen(false);
-      var newLoc = LOCALES[v] || { name: v, flag: '', abbr: v.toUpperCase() };
+      var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
       label.textContent = newLoc.abbr || newLoc.name;
-      if (flagLabel) flagLabel.textContent = newLoc.flag;
       options.forEach(function (item) {
         item.setAttribute('aria-selected', item === option ? 'true' : 'false');
       });
       try { localStorage.setItem('left.lang', v); } catch (e) {}
-      // Strip any existing language prefix, then re-prefix for the new language.
-      // Pages that are English-only (press, tools, privacy, terms, etc.) stay on
-      // the English path regardless of the selected language.
       var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
         return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
       });
-      var excludedPath = /^\/(privacy|terms|web|404|invite|blog|\.well-known|download|ios|android|press|tools)/.test(bare);
-      var newPath = (excludedPath || v === 'en') ? bare : '/' + v + bare;
-      location.href = newPath + location.search + location.hash;
+      // A page that has no version in the chosen language opens that language's home page.
+      var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+      location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
     });
   });
   document.addEventListener('click', function (event) {

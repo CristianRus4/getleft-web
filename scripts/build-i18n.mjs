@@ -1,200 +1,325 @@
 #!/usr/bin/env node
-// Build per-language copies of the marketing site.
-// Reads English source HTML files annotated with data-i18n* attributes,
-// looks up locale strings from i18n/locales/<lang>.json,
-// emits translated copies under /<lang>/<path>.
+// Build per-language copies of the site from the English source pages.
+//
+// Locales, hreflang codes and page families come from i18n/locales.json.
+//   - "keys" families (home, support, contact) are annotated by hand with
+//     data-i18n* attributes and read i18n/locales/<lang>.json.
+//   - "hash" families (blog, tools, standalone pages) stay unannotated on disk;
+//     scripts/lib/annotate.mjs annotates them in memory with content-hash keys,
+//     the English units are written to i18n/<family>/en.json, and a locale copy
+//     is emitted only once that page's translation coverage reaches
+//     hashFamilyMinCoverage, so no locale URL serves mostly-English content.
+// Every page's hreflang, language switcher and detect script list only the
+// locales that actually have that page. The build also writes sitemap.xml.
 //
 // Usage:
-//   node scripts/build-i18n.mjs            # strict: fail on missing keys
-//   node scripts/build-i18n.mjs --allow-missing   # fallback to English
+//   node scripts/build-i18n.mjs                  # strict: fail on missing keys in "keys" families
+//   node scripts/build-i18n.mjs --allow-missing  # English fallback for missing keys
 
-import { promises as fs } from 'node:fs';
+import { promises as fs, existsSync } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
-
-const __filename = fileURLToPath(import.meta.url);
-const ROOT = path.resolve(path.dirname(__filename), '..');
-
-const SITE_ORIGIN = 'https://getleft.app';
-
-// Order matters: switcher options follow this order.
-const LOCALES = [
-  { code: 'en',      name: 'English',                 htmlLang: 'en',      dir: 'ltr', flag: '⚑', abbr: 'EN' },
-  { code: 'es',      name: 'Español (España)',        htmlLang: 'es-ES',   dir: 'ltr', flag: '⚑', abbr: 'ES' },
-  { code: 'es-419',  name: 'Español (Latinoamérica)', htmlLang: 'es-419',  dir: 'ltr', flag: '⚑', abbr: 'ES' },
-  { code: 'de',      name: 'Deutsch',                 htmlLang: 'de',      dir: 'ltr', flag: '⚑', abbr: 'DE' },
-  { code: 'fr',      name: 'Français',                htmlLang: 'fr',      dir: 'ltr', flag: '⚑', abbr: 'FR' },
-  { code: 'it',      name: 'Italiano',                htmlLang: 'it',      dir: 'ltr', flag: '⚑', abbr: 'IT' },
-  { code: 'pt',      name: 'Português',               htmlLang: 'pt',      dir: 'ltr', flag: '⚑', abbr: 'PT' },
-  { code: 'ja',      name: '日本語',                   htmlLang: 'ja',      dir: 'ltr', flag: '⚑', abbr: 'JA' },
-  { code: 'nl',      name: 'Nederlands',              htmlLang: 'nl',      dir: 'ltr', flag: '⚑', abbr: 'NL' },
-  { code: 'pl',      name: 'Polski',                  htmlLang: 'pl',      dir: 'ltr', flag: '⚑', abbr: 'PL' },
-  { code: 'tr',      name: 'Türkçe',                  htmlLang: 'tr',      dir: 'ltr', flag: '⚑', abbr: 'TR' },
-  { code: 'ru',      name: 'Русский',                 htmlLang: 'ru',      dir: 'ltr', flag: '⚑', abbr: 'RU' },
-  { code: 'zh-Hans', name: '简体中文',                  htmlLang: 'zh-Hans', dir: 'ltr', flag: '⚑', abbr: 'ZH' },
-  { code: 'zh-Hant', name: '繁體中文',                  htmlLang: 'zh-Hant', dir: 'ltr', flag: '⚑', abbr: 'ZH' },
-  { code: 'ko',      name: '한국어',                   htmlLang: 'ko',      dir: 'ltr', flag: '⚑', abbr: 'KO' },
-  { code: 'id',      name: 'Bahasa Indonesia',        htmlLang: 'id',      dir: 'ltr', flag: '⚑', abbr: 'ID' },
-  { code: 'ro',      name: 'Română',                  htmlLang: 'ro',      dir: 'ltr', flag: '⚑', abbr: 'RO' },
-  { code: 'hi',      name: 'हिन्दी',                    htmlLang: 'hi',      dir: 'ltr', flag: '⚑', abbr: 'HI' },
-];
-const NON_EN_LOCALES = LOCALES.filter(l => l.code !== 'en');
-const SUPPORTED_CODES = LOCALES.map(l => l.code);
-
-// Pages to translate. Anything not in this list stays English-only.
-const SOURCE_PAGES = [
-  'index.html',
-  'support.html',
-  'contact.html',
-];
-
-// Glob-equivalents discovered at runtime.
-const SOURCE_DIRS = ['support'];
-
-// Paths that must NEVER be translated or link-rewritten.
-const EXCLUDED_PATH_PREFIXES = [
-  '/privacy.html', '/terms.html', '/web.html', '/404.html',
-  '/press.html', '/tools/', '/tools',
-  '/blog/', '/invite/', '/.well-known/', '/sw.js',
-  '/download.html', '/download', '/ios', '/android', '/web',
-];
+import {
+  ROOT, SITE_ORIGIN, SOURCE_LOCALE, LOCALES, TARGET_LOCALES, LOCALE_CODES, FAMILIES, HASH_MIN_COVERAGE,
+  listFamilyPages, pageToUrlPath, pageUrl, hreflangBlock, lastModified, escapeText, escapeAttr, readJson,
+} from './lib/site.mjs';
 
 const args = new Set(process.argv.slice(2));
 const ALLOW_MISSING = args.has('--allow-missing');
+const VERBOSE = args.has('--verbose');
 
-async function main() {
-  const allPages = await discoverPages();
-  console.log(`[i18n] Source pages: ${allPages.length}`);
-  console.log(`[i18n] Locales: ${LOCALES.length} (${NON_EN_LOCALES.length} translations + en source)`);
+const annotateModule = (!process.env.LEFT_SKIP_ANNOTATE && existsSync(path.join(ROOT, 'scripts/lib/annotate.mjs'))) ? await import('./lib/annotate.mjs') : null;
+const appstore = (!process.env.LEFT_SKIP_APPSTORE && existsSync(path.join(ROOT, 'scripts/lib/appstore.mjs'))) ? await import('./lib/appstore.mjs') : null;
+const { ctaFamily } = await import('./site-inject.mjs');
 
-  const enLocale = await readLocale('en');
-  if (!enLocale) {
-    console.error('[i18n] ERROR: i18n/locales/en.json missing - cannot proceed.');
-    process.exit(1);
-  }
-
-  // Inject detection script + switcher + auto-generated JSON-LD into source pages.
-  await injectIntoSourcePages(allPages, enLocale);
-
-  // Build each non-English locale.
-  let totalErrors = 0;
-  for (const locale of NON_EN_LOCALES) {
-    const data = await readLocale(locale.code);
-    if (!data) {
-      console.warn(`[i18n] skip ${locale.code}: locale file missing`);
-      continue;
-    }
-    const errors = await buildLocale(locale, data, enLocale, allPages);
-    totalErrors += errors;
-  }
-
-  // Regenerate sitemap.xml.
-  await writeSitemap(allPages);
-
-  if (totalErrors > 0 && !ALLOW_MISSING) {
-    console.error(`[i18n] BUILD FAILED: ${totalErrors} missing-key errors. Re-run with --allow-missing to permit English fallback.`);
-    process.exit(2);
-  }
-  console.log(`[i18n] Done. ${totalErrors} missing-key warning(s).`);
-}
-
-// ─── discover all .html files under the source dirs + the named root pages ───
-async function discoverPages() {
-  const set = new Set(SOURCE_PAGES);
-  for (const dir of SOURCE_DIRS) {
-    const full = path.join(ROOT, dir);
-    let entries;
-    try { entries = await fs.readdir(full); } catch { continue; }
-    for (const e of entries) {
-      if (e.endsWith('.html')) {
-        const page = `${dir}/${e}`;
-        set.add(page);
-      }
-    }
-  }
-  return [...set];
-}
-
-async function readLocale(code) {
-  try {
-    const file = path.join(ROOT, 'i18n', 'locales', `${code}.json`);
-    return JSON.parse(await fs.readFile(file, 'utf8'));
-  } catch (err) {
-    if (err.code === 'ENOENT') return null;
-    throw err;
-  }
-}
-
-// ─── inject detection + switcher into the source (English) HTML ───
 const INJECTION_MARK_START = '<!-- i18n:auto-detect:start -->';
 const INJECTION_MARK_END = '<!-- i18n:auto-detect:end -->';
 const SWITCHER_MARK_START = '<!-- i18n:switcher:start -->';
 const SWITCHER_MARK_END = '<!-- i18n:switcher:end -->';
 
-async function injectIntoSourcePages(pages, enData) {
-  const detectScript = await fs.readFile(path.join(ROOT, 'partials', 'detect.html'), 'utf8');
-  const switcherHtml = await fs.readFile(path.join(ROOT, 'partials', 'switcher.html'), 'utf8');
-  const enLocale = { code: 'en', htmlLang: 'en' };
+// English-only pages that are still indexable and belong in the sitemap.
+const ENGLISH_ONLY_INDEXABLE = ['web.html'];
 
-  for (const page of pages) {
-    const file = path.join(ROOT, page);
-    let html = await fs.readFile(file, 'utf8');
+// Locale catalogs can keep FAQ items English has dropped; never publish more than English has.
+let EN_FAQ_COUNT = Infinity;
 
-    html = upsertInjection(html, INJECTION_MARK_START, INJECTION_MARK_END,
-      `${INJECTION_MARK_START}\n${detectScript.trim()}\n${INJECTION_MARK_END}`,
-      /<meta\s+name="viewport"[^>]*>/i);
-
-    html = upsertFooterSwitcher(html,
-      `${SWITCHER_MARK_START}\n${switcherHtml.trim()}\n${SWITCHER_MARK_END}`);
-
-    // Update canonical and og:url to clean URL (no .html) so they match the
-    // URL Cloudflare Pages actually serves (Pretty URLs strips .html).
-    const enUrl = `${SITE_ORIGIN}/${pageToUrlPath(page)}`;
-    html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
-      `<link rel="canonical" href="${enUrl}" />`);
-    html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
-      `<meta property="og:url" content="${enUrl}" />`);
-
-    // Insert hreflang alternates on the English source page too (so the canonical
-    // English URL also tells search engines about the translated versions).
-    const hreflangBlock = buildHreflangBlock(page);
-    if (/<!-- i18n:hreflang:start -->/.test(html)) {
-      html = html.replace(/<!-- i18n:hreflang:start -->[\s\S]*?<!-- i18n:hreflang:end -->/, hreflangBlock);
-    } else {
-      html = html.replace(/<link\s+rel="canonical"[^>]*\/?>/i, m => `${m}\n  ${hreflangBlock}`);
-    }
-
-    // Fill in auto-generated JSON-LD blocks for the English source as well.
-    html = generateJsonLd(html, enData, enLocale, page);
-
-    // Inject TOC + related-guides into every support article.
-    if (/^support\/.+\.html$/.test(page)) {
-      html = injectSupportArticleExtras(html, page, enData);
-    }
-
-    await fs.writeFile(file, html);
+async function main() {
+  const families = [];
+  for (const f of FAMILIES) {
+    const pages = await listFamilyPages(f);
+    families.push({ ...f, pages });
   }
+  const pageFamily = new Map();
+  for (const f of families) for (const p of f.pages) pageFamily.set(p, f);
+  const allPages = families.flatMap(f => f.pages);
+
+  console.log(`[i18n] Families: ${families.map(f => `${f.id}=${f.pages.length}`).join(', ')}`);
+  console.log(`[i18n] Locales: ${LOCALES.length} (${TARGET_LOCALES.map(l => l.code).join(' ')})`);
+
+  const enSite = await readJson('i18n/locales/en.json');
+  if (!enSite) {
+    console.error('[i18n] ERROR: i18n/locales/en.json missing - cannot proceed.');
+    process.exit(1);
+  }
+  EN_FAQ_COUNT = (enSite.index && enSite.index.faq && enSite.index.faq.items || []).length;
+
+  // 1. Annotate hash-family pages in memory and write their English catalogs.
+  const annotated = new Map(); // page → { html, keys: string[] }
+  for (const f of families.filter(f => f.mode === 'hash')) {
+    const catalog = {};
+    if (!annotateModule) {
+      console.warn(`[i18n] scripts/lib/annotate.mjs missing: ${f.id} pages stay English-only.`);
+      continue;
+    }
+    for (const page of f.pages) {
+      const src = await fs.readFile(path.join(ROOT, page), 'utf8');
+      const prefix = `${f.id}.${hashSlug(page)}`;
+      const { html, entries } = annotateModule.annotateHash(src, prefix);
+      catalog[hashSlug(page)] = sortObject(entries);
+      annotated.set(page, { html, keys: Object.keys(entries).map(k => `${prefix}.${k}`) });
+    }
+    const extra = f.id === 'tools' ? await readJson('i18n/tools-runtime/en.json') : null;
+    const doc = { [f.id]: sortObject(catalog) };
+    if (extra) doc[f.id].runtime = extra;
+    await writeJsonIfChanged(path.join(f.catalogDir, 'en.json'), doc);
+  }
+
+  // 2. Load every locale's catalogs, merged into one lookup tree per locale.
+  const data = new Map();
+  for (const loc of LOCALES) {
+    const tree = loc.code === SOURCE_LOCALE ? structuredClone(enSite) : (await readJson(`i18n/locales/${loc.code}.json`)) || {};
+    for (const f of families.filter(f => f.mode === 'hash')) {
+      const cat = await readJson(`${f.catalogDir}/${loc.code}.json`);
+      if (cat && cat[f.id]) tree[f.id] = cat[f.id];
+    }
+    data.set(loc.code, tree);
+  }
+  const enData = data.get(SOURCE_LOCALE);
+
+  // 3. Which locales have which page.
+  const availability = new Map(); // page → Set(locale codes)
+  const coverageReport = [];
+  for (const page of allPages) {
+    const f = pageFamily.get(page);
+    const set = new Set([SOURCE_LOCALE]);
+    for (const loc of TARGET_LOCALES) {
+      if (f.mode === 'keys') { set.add(loc.code); continue; }
+      const a = annotated.get(page);
+      if (!a || !a.keys.length) continue;
+      const tree = data.get(loc.code);
+      const done = a.keys.filter(k => typeof lookupRaw(tree, k) === 'string' && lookupRaw(tree, k).trim()).length;
+      const ratio = done / a.keys.length;
+      if (ratio >= HASH_MIN_COVERAGE) set.add(loc.code);
+      if (done > 0) coverageReport.push(`${loc.code} ${page} ${(ratio * 100).toFixed(0)}%`);
+    }
+    availability.set(page, set);
+  }
+  if (VERBOSE && coverageReport.length) console.log(`[i18n] Hash-family coverage:\n  ${coverageReport.join('\n  ')}`);
+
+  const urlToPage = new Map();
+  for (const page of allPages) urlToPage.set('/' + pageToUrlPath(page), page);
+
+  // 4. English sources: detect script, switcher, hreflang and generated JSON-LD.
+  const detectTpl = await fs.readFile(path.join(ROOT, 'partials', 'detect.html'), 'utf8');
+  const switcherTpl = await fs.readFile(path.join(ROOT, 'partials', 'switcher.html'), 'utf8');
+  const enLocale = LOCALES.find(l => l.code === SOURCE_LOCALE);
+  for (const page of allPages) {
+    const file = path.join(ROOT, page);
+    const before = await fs.readFile(file, 'utf8');
+    const available = availability.get(page);
+    let html = before;
+    // The language redirect only matters where a translated copy exists.
+    html = available.size > 1
+      ? upsertInjection(html, INJECTION_MARK_START, INJECTION_MARK_END,
+        `${INJECTION_MARK_START}\n${fillDetect(detectTpl, available)}\n${INJECTION_MARK_END}`,
+        /<meta\s+name="viewport"[^>]*>/i)
+      : stripInjection(html, INJECTION_MARK_START, INJECTION_MARK_END);
+    html = upsertFooterSwitcher(html, `${SWITCHER_MARK_START}\n${fillSwitcher(switcherTpl, available)}\n${SWITCHER_MARK_END}`);
+    html = setHreflang(html, page, available);
+    html = setOgLocale(html, enLocale, available, page);
+    if (pageFamily.get(page).mode === 'keys') {
+      html = syncEnglishFromCatalog(html, enData);
+      html = generateJsonLd(html, enData, enLocale, page);
+      if (/^support\/.+\.html$/.test(page)) html = injectSupportArticleExtras(html, page, enData);
+    }
+    if (html !== before) await fs.writeFile(file, html);
+  }
+
+  // 5. Locale copies.
+  let totalErrors = 0;
+  for (const loc of TARGET_LOCALES) {
+    const localeDir = path.join(ROOT, loc.code);
+    await fs.rm(localeDir, { recursive: true, force: true });
+    const tree = data.get(loc.code);
+    let written = 0;
+    for (const page of allPages) {
+      if (!availability.get(page).has(loc.code)) continue;
+      const f = pageFamily.get(page);
+      const src = f.mode === 'hash' ? annotated.get(page).html : await fs.readFile(path.join(ROOT, page), 'utf8');
+      const { html, missing } = transform(src, page, loc, tree, enData, { availability, urlToPage, family: f, switcherTpl });
+      if (f.mode === 'keys') {
+        totalErrors += missing.length;
+        if (missing.length && VERBOSE) console.warn(`[i18n] ${loc.code} ${page}: ${missing.length} missing key(s): ${missing.slice(0, 5).join(', ')}${missing.length > 5 ? '…' : ''}`);
+      }
+      const dst = path.join(localeDir, page);
+      await fs.mkdir(path.dirname(dst), { recursive: true });
+      await fs.writeFile(dst, html);
+      written++;
+    }
+    if (VERBOSE) console.log(`[i18n] ${loc.code}: ${written} pages`);
+  }
+
+  // 6. Sitemap.
+  await writeSitemap(allPages, availability, pageFamily);
+
+  if (totalErrors > 0 && !ALLOW_MISSING) {
+    console.error(`[i18n] BUILD FAILED: ${totalErrors} missing-key errors. Re-run with --allow-missing to permit English fallback.`);
+    process.exit(2);
+  }
+  const translatedHash = [...availability.entries()].filter(([p]) => pageFamily.get(p).mode === 'hash').reduce((n, [, s]) => n + s.size - 1, 0);
+  console.log(`[i18n] Done. ${totalErrors} missing site key(s) fell back to English; ${translatedHash} translated blog/tool/page copies.`);
 }
 
-// ─── Support-article scaffolding (TOC + related guides) ──────────────────────
-// Adds id="s-h2-N" to each <h2 data-i18n="…h2_N">, injects a "On this page"
-// TOC after the article lede, and injects a "Related guides" grid before the
-// download CTA. Both blocks use data-i18n so the per-locale transform pass
-// translates them automatically.
+// ─── helpers ───
+
+function hashSlug(page) {
+  return page.replace(/^[^/]+\//, '').replace(/\.html$/, '').replace(/\//g, '~');
+}
+
+function sortObject(obj) {
+  return Object.fromEntries(Object.keys(obj).sort().map(k => [k, obj[k]]));
+}
+
+async function writeJsonIfChanged(rel, obj) {
+  const file = path.join(ROOT, rel);
+  const next = JSON.stringify(obj, null, 2) + '\n';
+  let prev = null;
+  try { prev = await fs.readFile(file, 'utf8'); } catch {}
+  if (prev === next) return;
+  await fs.mkdir(path.dirname(file), { recursive: true });
+  await fs.writeFile(file, next);
+}
+
+function aliasMap() {
+  const map = {};
+  for (const loc of LOCALES) {
+    for (const tag of [loc.code, ...(loc.detect || [])]) {
+      const t = tag.toLowerCase();
+      if (!map[t]) map[t] = loc.code;
+    }
+  }
+  return map;
+}
+
+function fillDetect(tpl, available) {
+  return tpl.trim()
+    .replace('__LOCALE_ALIASES__', JSON.stringify(aliasMap()))
+    .replace('__AVAILABLE__', JSON.stringify(LOCALE_CODES.filter(c => available.has(c))));
+}
+
+function fillSwitcher(tpl, available) {
+  const sorted = [...LOCALES].sort((a, b) => a.name.localeCompare(b.name, 'en'));
+  const options = sorted.map(l => `    <button type="button" role="option" data-lang-option="${l.code}">${escapeText(l.name)}</button>`).join('\n');
+  const json = Object.fromEntries(LOCALES.map(l => [l.code, { name: l.name, abbr: l.abbr }]));
+  return tpl.trim()
+    .replace('__SWITCHER_OPTIONS__', options)
+    .replace('__LOCALES_JSON__', JSON.stringify(json))
+    .replace('__AVAILABLE__', JSON.stringify(LOCALE_CODES.filter(c => available.has(c))));
+}
+
+function setHreflang(html, page, available) {
+  const block = hreflangBlock(page, available);
+  if (/<!-- i18n:hreflang:start -->/.test(html)) {
+    return html.replace(/<!-- i18n:hreflang:start -->[\s\S]*?<!-- i18n:hreflang:end -->/, block);
+  }
+  return html.replace(/<link\s+rel="canonical"[^>]*\/?>/i, m => `${m}\n  ${block}`);
+}
+
+function setOgLocale(html, loc, available, page) {
+  html = html.replace(/\s*<meta\s+property="og:locale(?::alternate)?"[^>]*>/gi, '');
+  const alternates = LOCALES.filter(l => l.code !== loc.code && available.has(l.code))
+    .map(l => `\n  <meta property="og:locale:alternate" content="${l.ogLocale}" />`).join('');
+  const tag = `<meta property="og:locale" content="${loc.ogLocale}" />${alternates}`;
+  if (/<meta\s+property="og:url"[^>]*>/i.test(html)) return html.replace(/(<meta\s+property="og:url"[^>]*>)/i, `$1\n  ${tag}`);
+  if (/<meta\s+property="og:title"[^>]*>/i.test(html)) return html.replace(/(<meta\s+property="og:title"[^>]*>)/i, `$1\n  ${tag}`);
+  return html;
+}
+
+function upsertInjection(html, startMark, endMark, payload, anchorRegex) {
+  const startIdx = html.indexOf(startMark);
+  const endIdx = html.indexOf(endMark);
+  if (startIdx !== -1 && endIdx !== -1) {
+    return html.slice(0, startIdx) + payload + html.slice(endIdx + endMark.length);
+  }
+  const m = anchorRegex.exec(html);
+  if (!m) return html;
+  const pos = m.index + m[0].length;
+  return html.slice(0, pos) + '\n' + payload + '\n' + html.slice(pos);
+}
+
+function upsertFooterSwitcher(html, payload) {
+  html = stripInjection(html, SWITCHER_MARK_START, SWITCHER_MARK_END);
+  return html.replace(
+    /(<nav\s+class="footer-links"[^>]*>[\s\S]*?)(\s*<\/nav>)/i,
+    (full, before, close) => `${before}\n          ${payload.replace(/\n/g, '\n          ')}${close}`
+  );
+}
+
+function stripInjection(html, startMark, endMark) {
+  const startIdx = html.indexOf(startMark);
+  const endIdx = html.indexOf(endMark);
+  if (startIdx === -1 || endIdx === -1) return html;
+  const before = html.slice(0, startIdx);
+  const after = html.slice(endIdx + endMark.length);
+  return (before.replace(/\s+$/, '') + '\n' + after.replace(/^\s+/, ''));
+}
+
+// en.json is the source of the English copy for hand-annotated pages: rewrite the
+// inline English text and attributes from it, keeping the data-i18n* attributes.
+function syncEnglishFromCatalog(html, enData) {
+  const value = key => {
+    const v = lookupRaw(enData, key);
+    return typeof v === 'string' && v !== '' ? v : null;
+  };
+  html = html.replace(/<([a-zA-Z][\w-]*)([^>]*?)(\s)data-i18n="([^"]+)"([^>]*?)>([\s\S]*?)<\/\1>/g,
+    (full, tag, before, ws, key, after, inner) => {
+      const v = value(key);
+      return v == null ? full : `<${tag}${before}${ws}data-i18n="${key}"${after}>${escapeText(v)}</${tag}>`;
+    });
+  html = html.replace(/<([a-zA-Z][\w-]*)([^>]*?)(\s)data-i18n-html="([^"]+)"([^>]*?)>([\s\S]*?)<\/\1>/g,
+    (full, tag, before, ws, key, after, inner) => {
+      const v = value(key);
+      return v == null ? full : `<${tag}${before}${ws}data-i18n-html="${key}"${after}>${v}</${tag}>`;
+    });
+  html = html.replace(/<([a-zA-Z][\w-]*)\b([^>]*?\sdata-i18n-attr="([^"]+)"[^>]*?)(\/?)>/g, (full, tag, attrs, spec, slash) => {
+    let out = attrs;
+    for (const pair of spec.split(',')) {
+      const idx = pair.indexOf(':');
+      const attr = pair.slice(0, idx).trim();
+      const v = value(pair.slice(idx + 1).trim());
+      if (!attr || v == null) continue;
+      const re = new RegExp(`(\\s${attr}=")[^"]*(")`, 'i');
+      if (re.test(out)) out = out.replace(re, `$1${escapeAttr(v)}$2`);
+    }
+    return `<${tag}${out}${slash}>`;
+  });
+  return html;
+}
+
+// ─── Support-article scaffolding (TOC + related guides) ───
 const SUPPORT_TOC_MARK_START = '<!-- i18n:support-toc:start -->';
-const SUPPORT_TOC_MARK_END   = '<!-- i18n:support-toc:end -->';
+const SUPPORT_TOC_MARK_END = '<!-- i18n:support-toc:end -->';
 const SUPPORT_REL_MARK_START = '<!-- i18n:support-related:start -->';
-const SUPPORT_REL_MARK_END   = '<!-- i18n:support-related:end -->';
+const SUPPORT_REL_MARK_END = '<!-- i18n:support-related:end -->';
+// Hidden in production builds of the app: not offered as related reading.
+const UNLISTED_SUPPORT = new Set(['mood_tracker_in_left', 'world_mood_globe']);
 
 function injectSupportArticleExtras(html, page, enData) {
-  // Strip any previous injection (idempotent rebuilds).
   html = stripInjection(html, SUPPORT_TOC_MARK_START, SUPPORT_TOC_MARK_END);
   html = stripInjection(html, SUPPORT_REL_MARK_START, SUPPORT_REL_MARK_END);
 
   const currentSlug = page.replace(/^support\//, '').replace(/\.html$/, '');
   const currentArticle = currentSlug.replace(/-/g, '_');
 
-  // 1. Add stable ids to each H2 so the TOC can link to them.
   const h2s = [];
   html = html.replace(
     /<h2\b([^>]*?)\sdata-i18n="(support_articles\.[\w]+\.h2_\d+)"([^>]*)>([\s\S]*?)<\/h2>/g,
@@ -202,17 +327,14 @@ function injectSupportArticleExtras(html, page, enData) {
       const idMatch = key.match(/\.h2_(\d+)$/);
       const id = idMatch ? `s-h2-${idMatch[1]}` : null;
       if (!id) return full;
-      // Skip the trailing "Start noticing what matters." H2 inside the download block.
       if (/Start noticing/.test(inner)) return full;
       h2s.push({ id, key, fallback: inner.replace(/<[^>]+>/g, '').trim() });
-      // If id already set, leave it; otherwise add ours.
       const merged = `${before}${after}`;
       if (/\sid=/.test(merged)) return full;
       return `<h2${before} id="${id}" data-i18n="${key}"${after}>${inner}</h2>`;
     }
   );
 
-  // 2. Build the TOC block.
   if (h2s.length >= 2) {
     const tocItems = h2s.map(h =>
       `      <li><a href="#${h.id}" data-i18n="${h.key}">${escapeText(h.fallback)}</a></li>`
@@ -227,19 +349,12 @@ function injectSupportArticleExtras(html, page, enData) {
       `  </nav>`,
       SUPPORT_TOC_MARK_END,
     ].join('\n');
-
-    html = html.replace(
-      /(<p\s+class="article-lede"[^>]*>[\s\S]*?<\/p>)/,
-      (m) => `${m}\n  ${tocBlock}`
-    );
+    html = html.replace(/(<p\s+class="article-lede"[^>]*>[\s\S]*?<\/p>)/, (m) => `${m}\n  ${tocBlock}`);
   }
 
-  // 3. Build the related-guides block. Pull other articles from en.json
-  //    so titles are the same set in every build; the per-locale transform
-  //    pass will translate them via data-i18n.
   const supportArticles = (enData && enData.support_articles) || {};
   const others = Object.keys(supportArticles)
-    .filter(slug => slug !== currentArticle && supportArticles[slug] && supportArticles[slug].h1_1)
+    .filter(slug => slug !== currentArticle && !UNLISTED_SUPPORT.has(slug) && supportArticles[slug] && supportArticles[slug].h1_1)
     .sort();
   if (others.length) {
     const items = others.map(slug => {
@@ -257,281 +372,167 @@ function injectSupportArticleExtras(html, page, enData) {
       `  </section>`,
       SUPPORT_REL_MARK_END,
     ].join('\n');
-
-    // Insert before the download-block section if present, else before </article>.
     if (/<section\s+class="download-block"/.test(html)) {
       html = html.replace(/(<section\s+class="download-block")/, `${relatedBlock}\n\n      $1`);
     } else {
       html = html.replace(/(<\/article>)/, `${relatedBlock}\n  $1`);
     }
   }
-
   return html;
 }
 
-function upsertInjection(html, startMark, endMark, payload, anchorRegex, insertBefore = false) {
-  const startIdx = html.indexOf(startMark);
-  const endIdx = html.indexOf(endMark);
-  if (startIdx !== -1 && endIdx !== -1) {
-    return html.slice(0, startIdx) + payload + html.slice(endIdx + endMark.length);
-  }
-  const m = anchorRegex.exec(html);
-  if (!m) return html;
-  const pos = insertBefore ? m.index : m.index + m[0].length;
-  return html.slice(0, pos) + '\n' + payload + '\n' + html.slice(pos);
-}
-
-function upsertFooterSwitcher(html, payload) {
-  html = stripInjection(html, SWITCHER_MARK_START, SWITCHER_MARK_END);
-  return html.replace(
-    /(<nav\s+class="footer-links"[^>]*>[\s\S]*?)(\s*<\/nav>)/i,
-    (full, before, close) => `${before}\n          ${payload.replace(/\n/g, '\n          ')}${close}`
-  );
-}
-
-// ─── per-locale build ───
-async function buildLocale(locale, data, enData, pages) {
-  const localeDir = path.join(ROOT, locale.code);
-  await fs.rm(localeDir, { recursive: true, force: true });
-
-  let errorCount = 0;
-  for (const page of pages) {
-    const srcFile = path.join(ROOT, page);
-    const dstFile = path.join(localeDir, page);
-    await fs.mkdir(path.dirname(dstFile), { recursive: true });
-    const srcHtml = await fs.readFile(srcFile, 'utf8');
-    const { html, missing } = transform(srcHtml, page, locale, data, enData);
-    errorCount += missing.length;
-    if (missing.length) {
-      console.warn(`[i18n] ${locale.code} ${page}: ${missing.length} missing key(s):`, missing.slice(0, 5).join(', ') + (missing.length > 5 ? '…' : ''));
-    }
-    await fs.writeFile(dstFile, html);
-  }
-  return errorCount;
-}
-
-// ─── HTML transform ───
-function transform(html, pagePath, locale, data, enData) {
+// ─── HTML transform for one locale copy ───
+function transform(html, pagePath, locale, data, enData, ctx) {
   const missing = [];
 
-  // Remove the auto-detect injection on translated pages (no loops).
   html = stripInjection(html, INJECTION_MARK_START, INJECTION_MARK_END);
 
-  // 1. Replace text content: <tag data-i18n="key">…</tag>
   html = html.replace(
     /<([a-zA-Z][\w-]*)([^>]*?)\sdata-i18n="([^"]+)"([^>]*?)>([\s\S]*?)<\/\1>/g,
-    (full, tag, before, key, after, inner) => {
+    (full, tag, before, key, after) => {
       const value = lookup(data, key, enData, missing);
       const cleanedAttrs = `${before}${after}`.replace(/\s+/g, ' ').trim();
-      const attrs = cleanedAttrs ? ' ' + cleanedAttrs : '';
-      return `<${tag}${attrs}>${escapeText(value)}</${tag}>`;
+      return `<${tag}${cleanedAttrs ? ' ' + cleanedAttrs : ''}>${escapeText(value)}</${tag}>`;
     }
   );
 
-  // 2. Replace HTML content (allows <strong>, <a> etc): data-i18n-html="key"
   html = html.replace(
     /<([a-zA-Z][\w-]*)([^>]*?)\sdata-i18n-html="([^"]+)"([^>]*?)>([\s\S]*?)<\/\1>/g,
-    (full, tag, before, key, after, inner) => {
+    (full, tag, before, key, after) => {
       const value = lookup(data, key, enData, missing);
       const cleanedAttrs = `${before}${after}`.replace(/\s+/g, ' ').trim();
-      const attrs = cleanedAttrs ? ' ' + cleanedAttrs : '';
-      return `<${tag}${attrs}>${value}</${tag}>`;
+      return `<${tag}${cleanedAttrs ? ' ' + cleanedAttrs : ''}>${value}</${tag}>`;
     }
   );
 
-  // 3. Self-closing meta/link: <meta data-i18n-attr="content:key" content="…" />
+  const replaceAttrs = (combined, spec) => {
+    for (const pair of spec.split(',')) {
+      const idx = pair.indexOf(':');
+      const attr = pair.slice(0, idx).trim();
+      const key = pair.slice(idx + 1).trim();
+      if (!attr || !key) continue;
+      const value = lookup(data, key, enData, missing);
+      const attrRegex = new RegExp(`\\s${attr}="[^"]*"`, 'i');
+      if (attrRegex.test(combined)) combined = combined.replace(attrRegex, ` ${attr}="${escapeAttr(value)}"`);
+      else combined += ` ${attr}="${escapeAttr(value)}"`;
+    }
+    return combined;
+  };
+
   html = html.replace(
     /<(meta|link|img|input)\b([^>]*?)\sdata-i18n-attr="([^"]+)"([^>]*?)\/?>/gi,
     (full, tag, before, spec, after) => {
-      let combined = `${before}${after}`;
-      for (const pair of spec.split(',')) {
-        const [attr, key] = pair.split(':').map(s => s.trim());
-        if (!attr || !key) continue;
-        const value = lookup(data, key, enData, missing);
-        const attrRegex = new RegExp(`\\s${attr}="[^"]*"`, 'i');
-        if (attrRegex.test(combined)) {
-          combined = combined.replace(attrRegex, ` ${attr}="${escapeAttr(value)}"`);
-        } else {
-          combined += ` ${attr}="${escapeAttr(value)}"`;
-        }
-      }
-      const self = full.endsWith('/>') ? ' />' : '>';
-      return `<${tag}${combined}${self}`;
+      const combined = replaceAttrs(`${before}${after}`, spec);
+      return `<${tag}${combined}${full.endsWith('/>') ? ' />' : '>'}`;
     }
   );
-
-  // 4. Same as #3 but for non-self-closing elements that wrap content (rare;
-  //     covers <a data-i18n-attr="aria-label:key"> etc.)
   html = html.replace(
     /<([a-zA-Z][\w-]*)\b([^>]*?)\sdata-i18n-attr="([^"]+)"([^>]*?)>/g,
     (full, tag, before, spec, after) => {
-      if (/^(meta|link|img|input)$/i.test(tag)) return full; // handled above
-      let combined = `${before}${after}`;
-      for (const pair of spec.split(',')) {
-        const [attr, key] = pair.split(':').map(s => s.trim());
-        if (!attr || !key) continue;
-        const value = lookup(data, key, enData, missing);
-        const attrRegex = new RegExp(`\\s${attr}="[^"]*"`, 'i');
-        if (attrRegex.test(combined)) {
-          combined = combined.replace(attrRegex, ` ${attr}="${escapeAttr(value)}"`);
-        } else {
-          combined += ` ${attr}="${escapeAttr(value)}"`;
-        }
-      }
-      return `<${tag}${combined}>`;
+      if (/^(meta|link|img|input)$/i.test(tag)) return full;
+      return `<${tag}${replaceAttrs(`${before}${after}`, spec)}>`;
     }
   );
 
-  // 5. <html lang="…">
-  html = html.replace(/<html\b([^>]*)\blang="[^"]*"([^>]*)>/i,
-    `<html$1 lang="${locale.htmlLang}"$2${locale.dir === 'rtl' ? ' dir="rtl"' : ''}>`);
+  html = html.replace(/<html\b([^>]*?)\s*\blang="[^"]*"([^>]*)>/i,
+    (m, a, b) => `<html${a} lang="${locale.htmlLang}"${b}${locale.dir === 'rtl' ? ' dir="rtl"' : ''}>`);
 
-  // 6. <link rel="canonical"> → localized URL
-  const localizedUrl = `${SITE_ORIGIN}/${locale.code}/${pageToUrlPath(pagePath)}`;
-  html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i,
-    `<link rel="canonical" href="${localizedUrl}" />`);
+  const localizedUrl = pageUrl(pagePath, locale.code);
+  html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/i, `<link rel="canonical" href="${localizedUrl}" />`);
+  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i, `<meta property="og:url" content="${localizedUrl}" />`);
 
-  // 6b. <meta property="og:url"> → localized URL (mirror canonical).
-  html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
-    `<meta property="og:url" content="${localizedUrl}" />`);
+  const available = ctx.availability.get(pagePath);
+  html = setHreflang(html, pagePath, available);
+  html = setOgLocale(html, locale, available, pagePath);
 
-  // 7. hreflang block - replace or insert.
-  const hreflangBlock = buildHreflangBlock(pagePath);
-  if (/<!-- i18n:hreflang:start -->/.test(html)) {
-    html = html.replace(/<!-- i18n:hreflang:start -->[\s\S]*?<!-- i18n:hreflang:end -->/,
-      hreflangBlock);
-  } else {
-    html = html.replace(/<link\s+rel="canonical"[^>]*\/?>/i, m => `${m}\n  ${hreflangBlock}`);
-  }
-
-  // 8. Rewrite internal links to /<lang>/...
-  html = rewriteLinks(html, locale.code);
+  html = upsertFooterSwitcher(html, `${SWITCHER_MARK_START}\n${fillSwitcher(ctx.switcherTpl, available)}\n${SWITCHER_MARK_END}`);
+  html = rewriteLinks(html, locale.code, ctx);
   html = rewriteRelativeAssetPaths(html);
   html = updateCustomSwitcher(html, locale);
 
-  // 10. Rewrite JSON-LD blocks that have an i18n-data attribute.
   html = rewriteJsonLd(html, data, enData, missing);
-
-  // 10b. Auto-generated JSON-LD blocks (FAQPage, MobileApplication, BreadcrumbList).
   html = generateJsonLd(html, data, locale, pagePath);
+  if (annotateModule?.translateJsonLd) {
+    html = html.replace(
+      /(<script\b[^>]*type="application\/ld\+json"[^>]*\sdata-i18n-ld="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,
+      (full, open, prefix, body, close) => {
+        const out = annotateModule.translateJsonLd(body, suffix => {
+          const v = lookupRaw(data, `${prefix}.${suffix}`);
+          return typeof v === 'string' && v.trim() ? v : null;
+        });
+        return `${open}\n${out.trim()}\n${close}`;
+      }
+    );
+    html = html.replace(/(<script\b[^>]*type="application\/ld\+json"[^>]*>)([\s\S]*?)(<\/script>)/g, (full, open, body, close) => {
+      if (/"inLanguage"/.test(body) || !/"@context"/.test(body)) return full;
+      try {
+        const obj = JSON.parse(body);
+        if (obj && typeof obj === 'object' && !Array.isArray(obj) && /Article|WebPage|WebApplication|FAQPage|HowTo|Blog/.test(String(obj['@type']))) {
+          obj.inLanguage = locale.htmlLang;
+          return `${open}\n${JSON.stringify(obj, null, 2)}\n${close}`;
+        }
+      } catch {}
+      return full;
+    });
+  }
 
-  // 11. Strip all data-i18n* attributes from the output (cleanup).
-  html = html.replace(/\s+data-i18n(-attr|-html|-list|-list-template|-jsonld|-jsonld-generate)?="[^"]*"/g, '');
+  if (ctx.family.id === 'tools') html = injectToolRuntime(html, data);
 
+  if (appstore?.rewriteAppStoreLinks) {
+    html = appstore.rewriteAppStoreLinks(html, { family: ctaFamily(pagePath), locale: locale.code });
+  }
+
+  html = html.replace(/\s+data-i18n(-attr|-html|-list|-list-template|-jsonld|-jsonld-generate|-ld)?="[^"]*"/g, '');
   return { html, missing };
 }
 
-function stripInjection(html, startMark, endMark) {
-  const startIdx = html.indexOf(startMark);
-  const endIdx = html.indexOf(endMark);
-  if (startIdx === -1 || endIdx === -1) return html;
-  const before = html.slice(0, startIdx);
-  const after = html.slice(endIdx + endMark.length);
-  return (before.replace(/\s+$/, '') + '\n' + after.replace(/^\s+/, ''));
+function injectToolRuntime(html, data) {
+  const runtime = data.tools && data.tools.runtime;
+  if (!runtime || typeof runtime !== 'object') return html;
+  const payload = `<script>window.LEFT_TOOL_I18N=${JSON.stringify(runtime).replace(/</g, '\\u003c')};</script>`;
+  return html.replace(/(<script\s+src="\/tools\/tools\.js"[^>]*><\/script>)/, `${payload}\n  $1`);
+}
+
+function lookupRaw(data, key) {
+  let cur = data;
+  for (const p of splitKey(key)) {
+    if (cur == null) return undefined;
+    cur = cur[p];
+  }
+  return cur;
 }
 
 function lookup(data, key, fallback, missing) {
-  const parts = splitKey(key);
-  let cur = data;
-  for (const p of parts) {
-    if (cur == null) break;
-    cur = cur[p];
-  }
-  if (typeof cur === 'string') return cur;
-  // fall back to English
-  let fb = fallback;
-  for (const p of parts) {
-    if (fb == null) break;
-    fb = fb[p];
-  }
-  if (typeof fb === 'string') {
-    missing.push(key);
-    return fb;
-  }
+  const cur = lookupRaw(data, key);
+  if (typeof cur === 'string' && cur !== '') return cur;
+  const fb = lookupRaw(fallback, key);
   missing.push(key);
+  if (typeof fb === 'string') return fb;
   return `[[${key}]]`;
 }
 
 function splitKey(key) {
-  // 'index.faq.items[2].q' → ['index','faq','items','2','q']
   return key.replace(/\[(\d+)\]/g, '.$1').split('.');
 }
 
-function escapeText(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-}
-
-function escapeAttr(s) {
-  return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
-}
-
-function escapeRegex(s) { return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-
-function pageToUrlPath(page) {
-  if (page === 'index.html') return '';
-  if (page === 'tools/index.html') return 'tools/';
-  return page.replace(/\.html$/, '');
-}
-
-function buildHreflangBlock(pagePath) {
-  const urlPath = pageToUrlPath(pagePath);
-  const lines = [`<!-- i18n:hreflang:start -->`];
-  // x-default → English (root, no prefix)
-  lines.push(`  <link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/${urlPath}" />`);
-  for (const loc of LOCALES) {
-    const prefix = loc.code === 'en' ? '' : `${loc.code}/`;
-    lines.push(`  <link rel="alternate" hreflang="${loc.htmlLang}" href="${SITE_ORIGIN}/${prefix}${urlPath}" />`);
-  }
-  lines.push(`  <!-- i18n:hreflang:end -->`);
-  return lines.join('\n');
-}
-
-function rewriteLinks(html, langCode) {
-  return html.replace(/(href|src)="(\/[^"#?]*)([?#][^"]*)?"/g, (full, attr, p, qs) => {
-    if (attr === 'src') return full; // never rewrite asset paths
+function rewriteLinks(html, langCode, ctx) {
+  return html.replace(/href="(\/[^"#?]*)([?#][^"]*)?"/g, (full, p, qs) => {
     qs = qs || '';
-    // exclude paths
-    if (EXCLUDED_PATH_PREFIXES.some(prefix => p === prefix || p.startsWith(prefix))) return full;
-    // already a locale-prefixed path → leave
-    if (new RegExp(`^/(${SUPPORTED_CODES.join('|')})(/|$)`).test(p)) return full;
-    // common assets stay (images, css, js, favicon, manifest)
-    if (/^\/(images|favicon|left-icon|public|style\.css|tools\/tools\.css|tools\/tools\.js|index\.js|reviews\.json|TemplateLibrary\.json|web\.css|left\.webmanifest)/.test(p)) {
-      return full;
-    }
-    // bare '/' (homepage)
-    if (p === '/') return `${attr}="/${langCode}/${qs}"`;
-    // anchor-only on home (e.g. /#features) covered by the regex above
-    return `${attr}="/${langCode}${p}${qs}"`;
+    const clean = p === '/' ? '/' : p.replace(/\.html$/, '').replace(/\/index$/, '/');
+    if (/^\/(images|favicon|left-icon|public|templates-photos|fonts)\//.test(clean)) return full;
+    const page = ctx.urlToPage.get(clean);
+    if (!page) return full; // not a translatable page: keep the English URL
+    if (!ctx.availability.get(page).has(langCode)) return `href="${clean}${qs}"`;
+    if (clean === '/') return `href="/${langCode}/${qs}"`;
+    return `href="/${langCode}${clean}${qs}"`;
   });
 }
 
 function rewriteRelativeAssetPaths(html) {
-  const assetPrefixes = [
-    'images/',
-    'favicon/',
-    'left-icon/',
-    'public/',
-    'style.css',
-    'index.js',
-    'reviews.json',
-    'TemplateLibrary.json',
-    'left.webmanifest',
-    'web.css',
-    'tools/tools.css',
-    'tools/tools.js',
-  ];
-  const attrs = [
-    'href',
-    'src',
-    'content',
-    'data-final-src',
-    'data-action-image',
-    'data-action-image-dark',
-    'data-feature-image',
-    'data-feature-image-dark',
-  ];
-  const attrPattern = attrs.join('|');
-  return html.replace(new RegExp(`\\b(${attrPattern})="([^"#?:][^"]*)"`, 'g'), (full, attr, value) => {
+  const assetPrefixes = ['images/', 'favicon/', 'left-icon/', 'public/', 'style.css', 'index.js', 'reviews.json',
+    'TemplateLibrary.json', 'left.webmanifest', 'web.css', 'tools/tools.css', 'tools/tools.js', 'analytics.js'];
+  const attrs = ['href', 'src', 'content', 'data-final-src', 'data-action-image', 'data-action-image-dark', 'data-feature-image', 'data-feature-image-dark'];
+  return html.replace(new RegExp(`\\b(${attrs.join('|')})="([^"#?:][^"]*)"`, 'g'), (full, attr, value) => {
     if (value.startsWith('/')) return full;
     if (!assetPrefixes.some(prefix => value === prefix || value.startsWith(prefix))) return full;
     return `${attr}="/${value}"`;
@@ -539,43 +540,35 @@ function rewriteRelativeAssetPaths(html) {
 }
 
 function updateCustomSwitcher(html, locale) {
-  html = html.replace(
-    /<span\s+data-current-language>[\s\S]*?<\/span>/,
-    `<span data-current-language>${escapeText(locale.abbr || locale.name)}</span>`
-  );
-  html = html.replace(
-    /<span\s+[^>]*data-current-flag[^>]*>[\s\S]*?<\/span>/,
-    `<span class="lang-switcher__flag" data-current-flag>${escapeText(locale.flag)}</span>`
-  );
+  html = html.replace(/<span\s+data-current-language>[\s\S]*?<\/span>/,
+    `<span data-current-language>${escapeText(locale.abbr || locale.name)}</span>`);
   html = html.replace(
     /(<button\s+type="button"\s+role="option"\s+data-lang-option="([^"]+)"[^>]*)(\s+aria-selected="[^"]*")?([^>]*>)/g,
-    (full, before, code, selectedAttr, after) => {
-      const selected = code === locale.code ? ' aria-selected="true"' : ' aria-selected="false"';
-      return `${before}${selected}${after}`;
-    }
+    (full, before, code, selectedAttr, after) => `${before}${code === locale.code ? ' aria-selected="true"' : ' aria-selected="false"'}${after}`
   );
   return html;
 }
 
-// Auto-generate JSON-LD blocks marked with data-i18n-jsonld-generate="<kind>".
-// The build pulls localised strings out of the locale JSON and emits a fresh
-// JSON-LD payload per language - keeps structured data in sync with copy.
+// ─── JSON-LD ───
 function generateJsonLd(html, data, locale, pagePath) {
   return html.replace(
     /(<script\b[^>]*type="application\/ld\+json"[^>]*data-i18n-jsonld-generate="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,
-    (full, open, kind, body, close) => {
+    (full, open, kind) => {
       const obj = jsonLdGenerator(kind, data, locale, pagePath);
       if (!obj) return full;
-      return `${open}\n${JSON.stringify(obj, null, 2)}\n${close}`;
+      return `${open}\n${JSON.stringify(obj, null, 2)}\n</script>`;
     }
   );
 }
 
 function jsonLdGenerator(kind, data, locale, pagePath) {
   const origin = SITE_ORIGIN;
-  const langPrefix = locale.code === 'en' ? '' : `/${locale.code}`;
-  const pageUrl = `${origin}${langPrefix}/${pageToUrlPath(pagePath)}`.replace(/\/$/, '/') || `${origin}/`;
+  const langPrefix = locale.code === SOURCE_LOCALE ? '' : `/${locale.code}`;
+  const pageUrlValue = pageUrl(pagePath, locale.code);
   const inLanguage = locale.htmlLang;
+  const plainText = value => String(value || '')
+    .replace(/<[^>]*>/g, ' ').replace(/&nbsp;/g, ' ').replace(/&amp;/g, '&')
+    .replace(/&quot;/g, '"').replace(/&#39;/g, "'").replace(/\s+/g, ' ').trim();
 
   if (kind === 'faq') {
     const items = (data.index && data.index.faq && Array.isArray(data.index.faq.items)) ? data.index.faq.items : [];
@@ -584,10 +577,10 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
       '@context': 'https://schema.org',
       '@type': 'FAQPage',
       inLanguage,
-      mainEntity: items.map(it => ({
+      mainEntity: items.slice(0, EN_FAQ_COUNT).filter(it => it && it.q && it.a).map(it => ({
         '@type': 'Question',
-        name: it.q,
-        acceptedAnswer: { '@type': 'Answer', text: it.a },
+        name: plainText(it.q),
+        acceptedAnswer: { '@type': 'Answer', text: plainText(it.a) },
       })),
     };
   }
@@ -595,51 +588,23 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
   if (kind === 'support-faq') {
     const support = (data.support && data.support.support) || {};
     const entries = [
-      ['summary_8', ['li_18', 'li_2', 'li_3']],
-      ['summary_9', ['p_19']],
-      ['summary_3', ['li_1', 'li_12', 'li_13', 'li_14']],
-      ['summary_4', ['li_15', 'li_16', 'li_17', 'p_32']],
-      ['summary_1', ['p_15']],
+      ['summary_8', ['li_18', 'li_2', 'li_3']], ['summary_9', ['p_19']], ['summary_3', ['li_1', 'li_12', 'li_13', 'li_14']],
+      ['summary_4', ['li_15', 'li_16', 'li_17', 'p_32']], ['summary_1', ['p_15']],
       ['summary_2', ['widget_size_home', 'widget_size_lock', 'widget_size_standby', 'widget_size_mac']],
-      ['summary_13', ['p_22']],
-      ['summary_14', ['p_33']],
-      ['summary_21', ['p_34']],
-      ['summary_22', ['p_28']],
-      ['summary_17', ['li_8', 'li_9', 'li_10', 'li_11']],
-      ['summary_23', ['p_35']],
-      ['summary_20', ['p_27']],
-      ['summary_19', ['p_26']],
-      ['summary_28', ['p_57']],
-      ['summary_29', ['p_58']],
-      ['summary_30', ['p_59']],
-      ['summary_31', ['p_60']],
-      ['summary_32', ['p_61']],
+      ['summary_13', ['p_22']], ['summary_14', ['p_33']], ['summary_21', ['p_34']], ['summary_22', ['p_28']],
+      ['summary_17', ['li_8', 'li_9', 'li_10', 'li_11']], ['summary_23', ['p_35']], ['summary_20', ['p_27']],
+      ['summary_19', ['p_26']], ['summary_28', ['p_57']], ['summary_29', ['p_58']], ['summary_30', ['p_59']],
+      ['summary_31', ['p_60']], ['summary_32', ['p_61']],
     ];
-    const plainText = value => String(value || '')
-      .replace(/<[^>]*>/g, ' ')
-      .replace(/&nbsp;/g, ' ')
-      .replace(/&amp;/g, '&')
-      .replace(/&quot;/g, '"')
-      .replace(/&#39;/g, "'")
-      .replace(/\s+/g, ' ')
-      .trim();
     const mainEntity = entries
-      .map(([questionKey, answerKeys]) => ({
+      .map(([q, as]) => ({
         '@type': 'Question',
-        name: plainText(support[questionKey]),
-        acceptedAnswer: {
-          '@type': 'Answer',
-          text: answerKeys.map(key => plainText(support[key])).filter(Boolean).join(' '),
-        },
+        name: plainText(support[q]),
+        acceptedAnswer: { '@type': 'Answer', text: as.map(k => plainText(support[k])).filter(Boolean).join(' ') },
       }))
       .filter(item => item.name && item.acceptedAnswer.text);
     if (!mainEntity.length) return null;
-    return {
-      '@context': 'https://schema.org',
-      '@type': 'FAQPage',
-      inLanguage,
-      mainEntity,
-    };
+    return { '@context': 'https://schema.org', '@type': 'FAQPage', inLanguage, mainEntity };
   }
 
   if (kind === 'app') {
@@ -652,15 +617,15 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
       inLanguage,
       about: {
         '@type': 'MobileApplication',
-        name: meta.title || 'Left',
+        name: 'Left',
         description: meta.description || '',
-        applicationCategory: 'UtilitiesApplication',
-        operatingSystem: 'iOS 18+',
+        applicationCategory: 'ProductivityApplication',
+        operatingSystem: 'iOS 26.0 or later',
         downloadUrl: 'https://apps.apple.com/app/id6740155884',
         image: `${origin}/images/hero.webp`,
         screenshot: `${origin}/images/left-feature.webp`,
         author: { '@type': 'Person', name: 'Cristian Rus' },
-        publisher: { '@type': 'Organization', name: 'cntxt' },
+        publisher: { '@type': 'Organization', name: 'Cntxt Labs' },
         inLanguage,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.5', ratingCount: '226' },
@@ -669,36 +634,32 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
   }
 
   if (kind === 'breadcrumb') {
-    // Support article: Home → Support → <article h1>
     const article = pagePath.replace(/^support\//, '').replace(/\.html$/, '').replace(/-/g, '_');
     const articleData = (data.support_articles && data.support_articles[article]) || {};
     const supportLabel = (data.common && data.common.footer && data.common.footer.support) || 'Support';
-    const homeLabel = 'Left';
     const articleTitle = articleData.h1_1 || (articleData.meta && articleData.meta.title) || article;
     return {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
       itemListElement: [
-        { '@type': 'ListItem', position: 1, name: homeLabel, item: `${origin}${langPrefix}/` },
-        { '@type': 'ListItem', position: 2, name: supportLabel, item: `${origin}${langPrefix}/support` },
-        { '@type': 'ListItem', position: 3, name: articleTitle, item: pageUrl },
+        { '@type': 'ListItem', position: 1, name: 'Left', item: `${origin}${langPrefix}/` },
+        { '@type': 'ListItem', position: 2, name: plainText(supportLabel), item: `${origin}${langPrefix}/support` },
+        { '@type': 'ListItem', position: 3, name: plainText(articleTitle), item: pageUrlValue },
       ],
     };
   }
-
   return null;
 }
 
 function rewriteJsonLd(html, data, enData, missing) {
   return html.replace(
     /(<script\b[^>]*type="application\/ld\+json"[^>]*data-i18n-jsonld="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,
-    (full, open, key, body, close) => {
-      const translated = lookup(data, key, enData, missing);
-      if (typeof translated !== 'object' && typeof translated !== 'string') return full;
-      if (typeof translated === 'string' && translated.startsWith('[[')) return full;
+    (full, open, key) => {
+      const translated = lookupRaw(data, key) ?? lookupRaw(enData, key);
+      if (translated == null) return full;
       try {
-        const obj = (typeof translated === 'string') ? JSON.parse(translated) : translated;
-        return `${open}\n${JSON.stringify(obj, null, 2)}\n${close}`;
+        const obj = typeof translated === 'string' ? JSON.parse(translated) : translated;
+        return `${open}\n${JSON.stringify(obj, null, 2)}\n</script>`;
       } catch {
         return full;
       }
@@ -707,57 +668,50 @@ function rewriteJsonLd(html, data, enData, missing) {
 }
 
 // ─── sitemap.xml ───
-async function writeSitemap(pages) {
+async function writeSitemap(allPages, availability, pageFamily) {
   const lines = [
     `<?xml version="1.0" encoding="UTF-8"?>`,
     `<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"`,
     `        xmlns:xhtml="http://www.w3.org/1999/xhtml">`,
   ];
-  const today = new Date().toISOString().slice(0, 10);
-
-  for (const page of pages) {
-    const urlPath = pageToUrlPath(page);
-    lines.push(`  <url>`);
-    lines.push(`    <loc>${SITE_ORIGIN}/${urlPath}</loc>`);
-    lines.push(`    <lastmod>${today}</lastmod>`);
+  let count = 0;
+  const isNoindex = async (file) => {
+    try { return /<meta\s+name="robots"\s+content="[^"]*noindex/i.test(await fs.readFile(path.join(ROOT, file), 'utf8')); }
+    catch { return true; }
+  };
+  for (const page of allPages) {
+    if (await isNoindex(page)) continue;
+    const available = availability.get(page);
+    const family = pageFamily.get(page);
     for (const loc of LOCALES) {
-      const prefix = loc.code === 'en' ? '' : `${loc.code}/`;
-      lines.push(`    <xhtml:link rel="alternate" hreflang="${loc.htmlLang}" href="${SITE_ORIGIN}/${prefix}${urlPath}" />`);
+      if (!available.has(loc.code)) continue;
+      const sources = [page];
+      if (loc.code !== SOURCE_LOCALE) {
+        sources.push(`i18n/locales/${loc.code}.json`);
+        if (family.mode === 'hash') sources.push(`${family.catalogDir}/${loc.code}.json`);
+      }
+      lines.push(`  <url>`);
+      lines.push(`    <loc>${pageUrl(page, loc.code)}</loc>`);
+      lines.push(`    <lastmod>${lastModified(sources)}</lastmod>`);
+      if (available.size > 1) {
+        lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${pageUrl(page, SOURCE_LOCALE)}" />`);
+        for (const alt of LOCALES) {
+          if (!available.has(alt.code)) continue;
+          for (const code of alt.hreflang) lines.push(`    <xhtml:link rel="alternate" hreflang="${code}" href="${pageUrl(page, alt.code)}" />`);
+        }
+      }
+      lines.push(`  </url>`);
+      count++;
     }
-    lines.push(`    <xhtml:link rel="alternate" hreflang="x-default" href="${SITE_ORIGIN}/${urlPath}" />`);
-    lines.push(`  </url>`);
   }
-
-  // Non-translated pages (privacy, terms, web, blog, tools).
-  const englishOnly = ['privacy', 'terms', 'web'];
-  // Blog: enumerate.
-  try {
-    const blogEntries = await fs.readdir(path.join(ROOT, 'blog'));
-    for (const e of blogEntries) {
-      if (!e.endsWith('.html')) continue;
-      if (e === 'index.html') englishOnly.push('blog/');
-      else englishOnly.push(`blog/${e.replace(/\.html$/, '')}`);
-    }
-  } catch {}
-  // Tools: enumerate English-only canonical URLs.
-  try {
-    const toolEntries = await fs.readdir(path.join(ROOT, 'tools'));
-    for (const e of toolEntries) {
-      if (!e.endsWith('.html')) continue;
-      if (e === 'index.html') englishOnly.push('tools/');
-      else englishOnly.push(`tools/${e.replace(/\.html$/, '')}`);
-    }
-  } catch {}
-  for (const page of englishOnly) {
-    lines.push(`  <url>`);
-    lines.push(`    <loc>${SITE_ORIGIN}/${page}</loc>`);
-    lines.push(`    <lastmod>${today}</lastmod>`);
-    lines.push(`  </url>`);
+  for (const page of ENGLISH_ONLY_INDEXABLE) {
+    if (!existsSync(path.join(ROOT, page)) || await isNoindex(page)) continue;
+    lines.push(`  <url>`, `    <loc>${pageUrl(page)}</loc>`, `    <lastmod>${lastModified([page])}</lastmod>`, `  </url>`);
+    count++;
   }
-
   lines.push(`</urlset>`);
   await fs.writeFile(path.join(ROOT, 'sitemap.xml'), lines.join('\n') + '\n');
-  console.log(`[i18n] sitemap.xml written (${pages.length * LOCALES.length} translated URLs + ${englishOnly.length} English-only).`);
+  console.log(`[i18n] sitemap.xml written (${count} URLs).`);
 }
 
 main().catch(err => { console.error(err); process.exit(1); });

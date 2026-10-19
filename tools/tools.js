@@ -234,19 +234,112 @@ function nextWeekend(from = new Date()) {
   return x;
 }
 
+/* ─────────── Localization ─────────── */
+
+// English source strings. Translated pages get window.LEFT_TOOL_I18N (same
+// shape, injected by the build before this script); any key missing there
+// falls back to these. Must stay identical to i18n/tools-runtime/en.json.
+// Plural entries are objects keyed by Intl.PluralRules category.
+const LEFT_TOOL_STRINGS_EN = {
+  result: {
+    arrived: "It's here.",
+  },
+  stat: {
+    days: 'days',
+    hours: 'hours',
+    min: 'min',
+    sec: 'sec',
+  },
+  unit: {
+    months:  { one: 'month',  other: 'months' },
+    weeks:   { one: 'week',   other: 'weeks' },
+    days:    { one: 'day',    other: 'days' },
+    hours:   { one: 'hour',   other: 'hours' },
+    minutes: { one: 'minute', other: 'minutes' },
+    seconds: { one: 'second', other: 'seconds' },
+  },
+};
+
+const LEFT_TOOL_RUNTIME = { lang: null, plural: null, number: null };
+
+function toolLang() {
+  if (!LEFT_TOOL_RUNTIME.lang) {
+    let lang = (document.documentElement && document.documentElement.lang) || 'en';
+    try { lang = Intl.getCanonicalLocales(lang)[0] || 'en'; } catch { lang = 'en'; }
+    LEFT_TOOL_RUNTIME.lang = lang;
+  }
+  return LEFT_TOOL_RUNTIME.lang;
+}
+
+// English pages keep the visitor's own number/date conventions (the original
+// behaviour); translated pages format for the page language.
+function toolFormatLocale() {
+  const lang = toolLang();
+  return /^en(-|$)/i.test(lang) ? undefined : lang;
+}
+
+function toolLookup(table, key) {
+  if (!table || typeof table !== 'object') return undefined;
+  if (Object.prototype.hasOwnProperty.call(table, key)) return table[key];
+  let cur = table;
+  for (const part of key.split('.')) {
+    if (cur == null || typeof cur !== 'object') return undefined;
+    cur = cur[part];
+  }
+  return cur;
+}
+
+function toolInterpolate(str, vars) {
+  if (!vars) return str;
+  return str.replace(/\{(\w+)\}/g, (m, name) => (name in vars ? String(vars[name]) : m));
+}
+
+// Translated string for `key`, with {name} placeholders filled from `vars`.
+function toolT(key, vars) {
+  const tr = toolLookup(typeof window !== 'undefined' ? window.LEFT_TOOL_I18N : null, key);
+  const value = typeof tr === 'string' ? tr : toolLookup(LEFT_TOOL_STRINGS_EN, key);
+  return toolInterpolate(typeof value === 'string' ? value : key, vars);
+}
+
+// Count-dependent string for `key` (an object of plural categories).
+function toolPlural(key, n, vars) {
+  if (!LEFT_TOOL_RUNTIME.plural) {
+    try { LEFT_TOOL_RUNTIME.plural = new Intl.PluralRules(toolLang()); }
+    catch { LEFT_TOOL_RUNTIME.plural = new Intl.PluralRules('en'); }
+  }
+  const category = LEFT_TOOL_RUNTIME.plural.select(n);
+  const tr = toolLookup(typeof window !== 'undefined' ? window.LEFT_TOOL_I18N : null, key);
+  const en = toolLookup(LEFT_TOOL_STRINGS_EN, key);
+  let value;
+  if (tr && typeof tr === 'object') value = tr[category] ?? tr.other;
+  else if (typeof tr === 'string') value = tr;
+  if (typeof value !== 'string' && en && typeof en === 'object') value = en[category] ?? en.other;
+  return toolInterpolate(typeof value === 'string' ? value : key, Object.assign({ count: fmtNum(n) }, vars));
+}
+
+function toolEscape(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
 /* ─────────── Formatters ─────────── */
 
 const pad = n => String(n).padStart(2, '0');
-const fmtNum = n => n.toLocaleString();
+function fmtNum(n) {
+  if (!LEFT_TOOL_RUNTIME.number) {
+    try { LEFT_TOOL_RUNTIME.number = new Intl.NumberFormat(toolFormatLocale()); }
+    catch { LEFT_TOOL_RUNTIME.number = new Intl.NumberFormat(); }
+  }
+  return LEFT_TOOL_RUNTIME.number.format(n);
+}
 
 function formatDateLong(d) {
-  return d.toLocaleDateString(undefined, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+  return d.toLocaleDateString(toolFormatLocale(), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 function formatDateShort(d) {
-  return d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  return d.toLocaleDateString(toolFormatLocale(), { year: 'numeric', month: 'short', day: 'numeric' });
 }
 function formatDateTime(d) {
-  return d.toLocaleString(undefined, { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
+  return d.toLocaleString(toolFormatLocale(), { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
 }
 
 /* ─────────── Tiny DOM helpers ─────────── */
@@ -266,28 +359,29 @@ function toLocalDateInput(d) {
 // units: 'all' | 'months' | 'weeks' | 'days' | 'hours' | 'minutes' | 'seconds'
 function renderCountdown(target, ms, units = 'all') {
   if (!target) return;
-  if (ms <= 0) { target.innerHTML = `<div class="tool-result-big">It's here.</div>`; return; }
+  if (ms <= 0) { target.innerHTML = `<div class="tool-result-big">${toolEscape(toolT('result.arrived'))}</div>`; return; }
   const b = breakdown(ms);
   if (units === 'all') {
     target.innerHTML = `
       <div class="tool-stat-row">
-        <div class="tool-stat"><div class="tool-stat-num">${fmtNum(b.days)}</div><div class="tool-stat-label">days</div></div>
-        <div class="tool-stat"><div class="tool-stat-num">${pad(b.hours)}</div><div class="tool-stat-label">hours</div></div>
-        <div class="tool-stat"><div class="tool-stat-num">${pad(b.minutes)}</div><div class="tool-stat-label">min</div></div>
-        <div class="tool-stat"><div class="tool-stat-num">${pad(b.seconds)}</div><div class="tool-stat-label">sec</div></div>
+        <div class="tool-stat"><div class="tool-stat-num">${fmtNum(b.days)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.days'))}</div></div>
+        <div class="tool-stat"><div class="tool-stat-num">${pad(b.hours)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.hours'))}</div></div>
+        <div class="tool-stat"><div class="tool-stat-num">${pad(b.minutes)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.min'))}</div></div>
+        <div class="tool-stat"><div class="tool-stat-num">${pad(b.seconds)}</div><div class="tool-stat-label">${toolEscape(toolT('stat.sec'))}</div></div>
       </div>`;
     return;
   }
   const map = {
-    months: [b.totalMonth, 'months'],
-    weeks:  [b.totalWeek,  'weeks'],
-    days:   [b.totalDay,   'days'],
-    hours:  [b.totalHour,  'hours'],
-    minutes:[b.totalMin,   'minutes'],
-    seconds:[b.totalSec,   'seconds'],
+    months: b.totalMonth,
+    weeks:  b.totalWeek,
+    days:   b.totalDay,
+    hours:  b.totalHour,
+    minutes:b.totalMin,
+    seconds:b.totalSec,
   };
-  const [n, label] = map[units] || map.days;
-  target.innerHTML = `<div class="tool-result-big">${fmtNum(n)} <span class="tool-result-unit">${label}</span></div>`;
+  const key = Object.prototype.hasOwnProperty.call(map, units) ? units : 'days';
+  const n = map[key];
+  target.innerHTML = `<div class="tool-result-big">${fmtNum(n)} <span class="tool-result-unit">${toolEscape(toolPlural('unit.' + key, n))}</span></div>`;
 }
 
 // Keep an interval-driven render going. Returns a cancel fn.

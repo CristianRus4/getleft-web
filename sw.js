@@ -1,13 +1,13 @@
-const CACHE_NAME = 'left-cache-v3';
+const CACHE_NAME = 'left-cache-v4';
 const ASSETS = [
-  '/web.html',
-	'/left.webmanifest',
-	'/style.css',
-	'/favicon/android-chrome-192x192.png',
-	'/favicon/android-chrome-512x512.png',
-	'/favicon/apple-touch-icon.png',
-	'/favicon/favicon-32x32.png',
-	'/favicon/favicon-16x16.png'
+  '/web',
+  '/left.webmanifest',
+  '/style.css',
+  '/favicon/android-chrome-192x192.png',
+  '/favicon/android-chrome-512x512.png',
+  '/favicon/apple-touch-icon.png',
+  '/favicon/favicon-32x32.png',
+  '/favicon/favicon-16x16.png'
 ];
 
 self.addEventListener('install', (event) => {
@@ -22,21 +22,35 @@ self.addEventListener('activate', (event) => {
   );
 });
 
-// Network-first for HTML, cache-first for static assets
+// The worker exists for the offline web app at /web. Its scope is the whole site,
+// so every other request is left to the network untouched.
 self.addEventListener('fetch', (event) => {
   const { request } = event;
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin || request.method !== 'GET') return;
+  const isWebApp = url.pathname === '/web' || url.pathname === '/web.html';
   if (request.mode === 'navigate') {
+    if (!isWebApp) return;
     event.respondWith(
       fetch(request).then((res) => {
-        const copy = res.clone();
-        caches.open(CACHE_NAME).then((c) => c.put('/web.html', copy));
+        if (res.ok && !res.redirected) {
+          const copy = res.clone();
+          caches.open(CACHE_NAME).then((c) => c.put('/web', copy));
+        }
         return res;
-      }).catch(() => caches.match('/web.html'))
+      }).catch(() => caches.match('/web'))
     );
     return;
   }
+  if (!ASSETS.includes(url.pathname)) return;
   event.respondWith(
-    caches.match(request).then((cached) => cached || fetch(request))
+    fetch(request).then((res) => {
+      if (res.ok) {
+        const copy = res.clone();
+        caches.open(CACHE_NAME).then((c) => c.put(request, copy));
+      }
+      return res;
+    }).catch(() => caches.match(request))
   );
 });
 
@@ -48,12 +62,12 @@ self.addEventListener('notificationclick', (event) => {
     for (const client of allClients) {
       try {
         const url = new URL(client.url);
-        if (url.pathname.endsWith('/web.html') || url.pathname === '/' ) {
+        if (url.pathname === '/web' || url.pathname.endsWith('/web.html') || url.pathname === '/') {
           client.focus();
           return;
         }
       } catch(_) {}
     }
-    await clients.openWindow('/web.html');
+    await clients.openWindow('/web');
   })());
 });
