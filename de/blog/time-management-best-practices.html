@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Zeitmanagement: 10 Methoden, die funktionieren (2026) | Left</title>
+  <meta name="description" content="Zehn Zeitmanagement-Methoden, die sich lohnen – Pomodoro, Timeblocking, Eisenhower, Eat the Frog – und das Setup, das sie dauerhaft sichtbar hält."  />
+  <link rel="canonical" href="https://getleft.app/de/blog/time-management-best-practices" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/time-management-best-practices" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/time-management-best-practices" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/time-management-best-practices" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Zeitmanagement: 10 Methoden, die funktionieren (2026)"  />
+  <meta property="og:description" content="Zehn Zeitmanagement-Methoden, die sich lohnen, plus das Setup, das sie dauerhaft sichtbar hält."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/de/blog/time-management-best-practices" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "10 Time Management Best Practices That Actually Work",
+  "description": "Ten time management techniques worth the effort to learn - Pomodoro, time blocking, Eisenhower, eat the frog, and the visible-time setup that keeps them stuck.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/time-management-best-practices",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "10 Time Management Best Practices That Actually Work",
+      "item": "https://getleft.app/blog/time-management-best-practices"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Zeitmanagement: 10 Methoden, die wirklich funktionieren</h1>
+    <p class="article-meta">Aktualisiert <time datetime="2026-10-20">20. Oktober 2026</time> · 7 Min. Lesezeit</p>
+
+    <p>Zeitmanagement-Tipps haben ein Glaubwürdigkeitsproblem. Die meisten Artikel zählen dieselben acht Methoden auf (Pomodoro, Timeblocking, Eisenhower-Matrix), ohne zu erklären, warum sie alle nach der zweiten Woche nicht mehr funktionieren. Sie hören auf zu funktionieren, weil sie unsichtbar sind – du siehst die Methode genau in den Momenten nicht, in denen sie dir helfen würde. Die Lösung ist keine bessere Methode, sondern ein sichtbarer Hinweis, der die Methode präsent hält.</p>
+
+    <p>Diese Liste umfasst zehn Methoden, die sich zu lernen lohnen, plus das immer sichtbare Widget-Setup, das sie dauerhaft macht. Wo es hilft, verweisen wir auf <strong>Left</strong> – nicht als Methode, sondern als die Ebene, die die Methode in deinem Blickfeld hält. Die Methoden selbst sind frei verfügbar, jahrzehntealt und kostenlos.</p>
+
+    <h2>1. Pomodoro – kurze Sprints, echte Pausen</h2>
+    <p>Fünfundzwanzig Minuten Konzentration, fünf Minuten Pause, wiederholen. Es geht nicht um das genaue Verhältnis von 25/5, sondern darum, dass die Arbeit einen Anfang, ein Ende und eine erzwungene Pause hat. Pomodoro scheitert, wenn man Pausen auslässt („Ich bin gerade so gut drin“) oder wenn der Timer in einer App versteckt ist, die man vergisst. Lass den Timer als Live-Aktivität oder Widget auf dem Sperrbildschirm laufen, damit der Countdown immer sichtbar ist.</p>
+    <p>Ideal für: Aufgaben, bei denen du mitten im Absatz immer wieder abgelenkt wirst. Ungeeignet für: tiefe kreative Arbeit, die längere Anlaufzeiten braucht (probier stattdessen 90-Minuten-Blöcke). Das Prinzip lässt sich übertragen: Varianten findest du unter <a href="/de/blog/timer-interval-app-iphone">Intervall-Timer jenseits von Pomodoro</a>.</p>
+
+    <h2>2. Timeblocking – plane die Arbeit ein, nicht nur die Meetings</h2>
+    <p>In den meisten Kalendern steht nur, was andere Leute eingetragen haben. Beim Timeblocking kommt <em>deine</em> Arbeit in denselben Kalender: ein 90-Minuten-Block für den Bericht am Dienstagvormittag, ein 30-Minuten-Block für E-Mails nach dem Mittagessen. Der Block muss nicht genau sein – er ist eine Reservierung, die sich gegen das Meeting wehrt, das genau diesen Platz will.</p>
+    <p>Ideal für: alle, deren Kalender bis 11 Uhr voll ist, wenn sie es zulassen. Ungeeignet für: Jobs, in denen der Tag zu reaktiv ist, um ihn zu planen. Kombiniere es mit einem sichtbaren Countdown-Widget für das nächste große Ergebnis, damit für den Block etwas auf dem Spiel steht.</p>
+
+    <h2>3. Eisenhower-Matrix – nach Dringlichkeit und Wichtigkeit sortieren</h2>
+    <p>Vier Quadranten: dringend + wichtig (sofort erledigen), wichtig, aber nicht dringend (einplanen), dringend, aber nicht wichtig (delegieren), keins von beidem (streichen). Der Wert der Matrix liegt nicht im Diagramm, sondern in dem Moment, in dem du fragst: „Ist das wirklich wichtig oder nur laut?“ Geh sie einmal pro Woche mit einer Liste deiner offenen Punkte durch, nicht in Echtzeit.</p>
+    <p>Ideal für: die Wochenplanung, nicht für die tägliche Sortierung von Aufgaben. Ungeeignet für: Jobs mit vielen dringenden Dingen – du verbringst mehr Zeit mit Sortieren als mit Erledigen.</p>
+
+    <h2>4. Eat the Frog – die schwierigste Aufgabe zuerst</h2>
+    <p>Brian Tracys Fassung eines Satzes von Mark Twain: Erledige die unangenehmste Aufgabe des Tages, bevor du irgendetwas anderes machst. Die Wissenschaft dahinter ist real – Willenskraft ist begrenzt und die Qualität deiner Entscheidungen lässt im Lauf des Tages nach, also nutze die erste klare Stunde für das, was du sonst aufschieben würdest.</p>
+    <p>Ideal für: alle, die unangenehme Aufgaben den ganzen Tag vor sich herschieben. Ungeeignet für: Meetings am Morgen – beginnt dein Tag mit einem Stand-up um 9 Uhr, ist der Frosch eben am späten Vormittag dran. Stell dir jeden Morgen einen kleinen Countdown zur „Frosch-Deadline“, um ihn zu verankern.</p>
+
+    <h2>5. Die Zwei-Minuten-Regel – Kleinkram sofort erledigen</h2>
+    <p>Aus David Allens GTD: Wenn eine Aufgabe weniger als zwei Minuten dauert, erledige sie sofort, statt sie aufzuschreiben. Der geistige Aufwand, sie zu notieren, wieder zu lesen und einzuplanen, ist größer als die zwei Minuten, die die Aufgabe dauern würde. Eine E-Mail mit einem Satz beantworten, den Mantel aufhängen, eine Antwort einplanen – los.</p>
+    <p>Ideal für: den Kopf von vielen kleinen offenen Punkten zu befreien. Ungeeignet für: alle, die es als Ausrede nutzen, um die eigentliche dreistündige Aufgabe auf ihrem Tisch zu ignorieren.</p>
+
+    <h2>6. Die 80/20-Regel – finde die 20 %, die etwas bewegen</h2>
+    <p>Das Pareto-Prinzip: Etwa 80 % der Ergebnisse entstehen aus 20 % des Aufwands. Finde die 20 % deiner Aufgaben, die wirklich etwas bewirken, und gib ihnen Vorrang; streich oder delegiere den Rest konsequent. Die Falle: „80/20“ als magische Ausrede zu nutzen, um Arbeit auszulassen. Die Regel ist kein Freibrief zum Faulenzen, sondern ein Fokusfilter, den du jede Woche anwendest.</p>
+    <p>Ideal für: Wissensarbeit, bei der das Ergebnis je nach Auswahl der Aufgaben um das Zehnfache schwankt. Ungeeignet für: Prozessarbeit, bei der jeder Schritt gleich wichtig ist.</p>
+
+    <h2>7. SMART-Ziele – Ziele so konkret machen, dass man sie verfolgen kann</h2>
+    <p>Spezifisch, messbar, erreichbar, relevant, terminiert. Das Modell ist eine Generation alt und noch immer das günstigste Upgrade für vage Vorsätze. „Fitter werden“ ist ein Wunsch; „bis Ende März dreimal pro Woche laufen“ ist ein Ziel. Sobald es SMART ist, kannst du es in ein Gewohnheits-Widget und einen Countdown packen – siehe <a href="/de/blog/smart-goals-guide">unsere Anleitung für SMART-Ziele</a>.</p>
+    <p>Ideal für: persönliche Ziele, die eine Deadline brauchen, um sich echt anzufühlen. Ungeeignet für: offene kreative Arbeit, die sich nicht in Zeitfenster pressen lässt.</p>
+
+    <h2>8. Energiemanagement – nach Leistungsfähigkeit planen, nicht nur nach Zeit</h2>
+    <p>Zeit ist gleichförmig, deine Leistungsfähigkeit nicht. Die meisten Menschen haben pro Tag ein oder zwei Phasen hoher Konzentration. Wenn du deine schwierigste Arbeit in diese Phasen legst, verdoppelt sich das Ergebnis, ohne dass du mehr Stunden arbeitest. Beobachte eine Woche lang deine Konzentration – notiere, wann du am klarsten bist – und richte den Kalender danach aus.</p>
+    <p>Ideal für: alle, die selbst entscheiden können, wann sie welche Arbeit erledigen. Ungeeignet für: Zeitpläne, die von außen minutengenau vorgegeben sind. Kombiniere es mit einem Widget für den Jahresfortschritt oder die verbleibende Zeit, das dich daran erinnert, dass die Arbeit in die Zeit passen muss, die du tatsächlich hast.</p>
+
+    <h2>9. Feste Entscheidungsregeln – leg dich vorab fest</h2>
+    <p>Entscheidungsmüdigkeit frisst deinen Tag. Die Lösung: Leg dich vorab auf Regeln fest. „Ich nehme vor 10 Uhr keine Meetings an“, „Ich lese E-Mails zweimal am Tag, um 11 und um 16 Uhr“, „Freitags sage ich zu nichts Neuem Ja.“ Es geht nicht um die konkreten Regeln, sondern darum, dass du sie nicht jeden Tag neu verhandelst. Einmal entschieden ist entschieden.</p>
+    <p>Ideal für: alle, deren Kalender sich mit wenig wertvollen Verpflichtungen füllt. Ungeeignet für: Jobs mit viel Zusammenarbeit, in denen starre Regeln Reibung erzeugen.</p>
+
+    <h2>10. Sichtbare Zeit – die Methode unter den Methoden</h2>
+    <p>Diese Methode ist unsere. Keine der Methoden oben übersteht eine normale Arbeitswoche, wenn sie unsichtbar ist. Ein Timer in der Uhr-App, ein Kalenderblock versteckt in der Ansicht von morgen, ein Ziel in einem Notizbuch im Regal – diese Methoden können nicht greifen, weil man sie nicht sieht. Die versteckte beste Methode: Leg deine aktuelle Methode dorthin, wo deine Augen ohnehin hinschauen.</p>
+    <ul>
+      <li>Ein Widget auf dem Sperrbildschirm mit dem <a href="/year-progress-widget">Jahresfortschritt</a> oder deiner wichtigsten laufenden Deadline.</li>
+      <li>Ein Widget auf dem Home-Bildschirm für die Gewohnheit, die zu deinem aktuellen Ziel gehört.</li>
+      <li>Eine Live-Aktivität für den laufenden Pomodoro oder Block.</li>
+      <li>Eine Standby-Anzeige auf deinem Schreibtisch mit Uhrzeit + Countdown + der Gewohnheit des Tages.</li>
+    </ul>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Jahresfortschritt-Widget laden</a></p>
+    <p>Wo Widgets überall hinkommen und wie du sie einrichtest, erklärt <a href="/de/blog/how-to-add-widgets-iphone">unser Widget-Leitfaden</a>. Das Prinzip ist wichtiger als die App: Mach die Methode unmöglich zu vergessen.</p>
+
+    <h2>So wählst du wirklich eine Methode aus</h2>
+    <p>Übernimm nicht alle zehn. Such dir eine aus und konzentrier dich einen Monat lang darauf. Sinnvolle Startpunkte, je nachdem, woran es bei dir gerade hakt:</p>
+    <ul>
+      <li><strong>„Ich arbeite, bis ich ausbrenne.“</strong> Pomodoro.</li>
+      <li><strong>„Mein Tag verschwindet in Meetings.“</strong> Timeblocking.</li>
+      <li><strong>„Ich bin beschäftigt, aber nichts geht voran.“</strong> Eisenhower + 80/20.</li>
+      <li><strong>„Ich schiebe eine große Sache ständig vor mir her.“</strong> Eat the Frog.</li>
+      <li><strong>„Ich habe ein Ziel, aber keinen echten Plan.“</strong> SMART-Ziele + ein sichtbarer Countdown.</li>
+      <li><strong>„Ich verbringe den ganzen Tag mit Kleinkram.“</strong> Zwei-Minuten-Regel + feste Entscheidungsregeln.</li>
+      <li><strong>„Ich arbeite immer gleich lang und schaffe völlig unterschiedlich viel.“</strong> Energiemanagement.</li>
+    </ul>
+    <p>Was du auch wählst: Richte eine sichtbare Erinnerung ein – ein Widget, einen Countdown, eine Standby-Anzeige. Erst das macht aus einer Produktivitätsmethode eine Produktivitätsgewohnheit.</p>
+
+    <h2>Die ehrliche Wahrheit über Produktivitätsmethoden</h2>
+    <p>Methoden sind ein Gerüst. Sie machen die Arbeit nicht leichter, sondern die Entscheidungen über die Arbeit. Die eigentliche Arbeit bleibt die eigentliche Arbeit. Ein perfektes Pomodoro-Setup macht das Schreiben eines schwierigen Berichts nicht leichter – es hält dich nur die ersten 25 Minuten auf dem Stuhl. Das reicht. Wer etwas schaffen will, muss vor allem lange genug dranbleiben, bis es ins Rollen kommt.</p>
+    <p>Lesenswert dazu: unser Überblick über <a href="/de/blog/workplace-productivity-habits">Produktivitätsgewohnheiten im Job</a> und <a href="/de/blog/time-management-tips-students">Zeitmanagement-Tipps für Studierende</a> – dieselben Methoden, anderer Kontext.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Welche Methode funktioniert bei ADHS am besten?</strong><br/>
+    Timeblocking mit lockeren Blöcken (Vormittag / Nachmittag / Abend, keine 25-Minuten-Fenster) plus Pomodoro für die eigentlichen Arbeitsphasen. Die Kombination gibt Struktur ohne Starrheit. Mehr dazu unter <a href="/de/blog/how-to-focus-adhd">Konzentration mit ADHS</a>.</p>
+
+    <p><strong>Wie lange sollte ich eine Methode ausprobieren, bevor ich wechsle?</strong><br/>
+    Zwei Wochen ehrliche Nutzung. Nicht „Ich hab’s zweimal versucht“. Zwei Wochen. Passt sie danach nicht, ist die Methode falsch für dich, nicht du falsch für die Methode.</p>
+
+    <p><strong>Kann ich Methoden kombinieren?</strong><br/>
+    Ja – so machen es die meisten mit Erfahrung. Ein typisches ausgereiftes Setup: Timeblocking für den Kalender, Pomodoro innerhalb der Blöcke, eine wöchentliche Eisenhower-Durchsicht am Sonntag. Übernimm aber eine nach der anderen und bau nicht am ersten Tag das ganze System auf.</p>
+
+    <p><strong>Warum scheitert meine Methode immer nach ein paar Wochen?</strong><br/>
+    Meist, weil dich nichts sichtbar an sie erinnert. Die Methode greift nur, wenn du sie siehst. Leg den Timer, den Block oder das Ziel dorthin, wo du hinschaust – Home-Bildschirm, Sperrbildschirm, Standby.</p>
+
+    <p><strong>Wie hilft Left beim Zeitmanagement?</strong><br/>
+    Left übernimmt die Ebene der sichtbaren Zeit: Countdowns zu Deadlines, den Jahresfortschritt als Rahmen, Serien für Gewohnheiten bei wiederkehrender Arbeit. Es ist nicht die Methode, sondern der Teil deines Handys, der verhindert, dass die Methode unsichtbar wird.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left laden</span>
+          <h2>Fang an wahrzunehmen, was zählt.</h2>
+          <p>Lade Left auf dein iPhone: Sieh die Zeit, die dir bleibt, und die Tage, auf die du dich freust, bau Gewohnheiten auf, die bleiben sollen, und werde eine bessere Version von dir.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – für eine Anleitung tippen">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanne oder suche im App Store nach <strong>„Left“</strong>.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Für iOS laden
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die das Beste aus jedem Moment machen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußbereich">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/privacy">Datenschutz</a>
+          <a href="/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

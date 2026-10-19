@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Homeoffice mit ADHS: ein Setup mit Widgets, das wirkt | Left</title>
+  <meta name="description" content="Ein Homeoffice-Setup für Erwachsene mit ADHS: Standby auf dem iPhone, sichtbare Deep-Work-Blöcke und ein Tagesrhythmus, der auch nach Mittwoch noch hält."  />
+  <link rel="canonical" href="https://getleft.app/de/blog/adhd-work-from-home-setup" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-work-from-home-setup" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Homeoffice mit ADHS: ein Setup mit Widgets, das wirkt"  />
+  <meta property="og:description" content="Ein Homeoffice-Setup für Erwachsene mit ADHS: Standby auf dem iPhone, sichtbare Deep-Work-Blöcke und ein Tagesrhythmus, der auch nach Mittwoch noch hält."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/de/blog/adhd-work-from-home-setup" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Work From Home: A Widget-Driven Setup That Works",
+  "description": "A working-from-home setup for ADHD adults: iPhone StandBy, visible deep-work blocks, and a daily rhythm that holds up past Wednesday.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-work-from-home-setup",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Work From Home: A Widget-Driven Setup That Works",
+      "item": "https://getleft.app/blog/adhd-work-from-home-setup"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Homeoffice mit ADHS: ein Setup mit Widgets, das wirkt</h1>
+    <p class="article-meta">Aktualisiert <time datetime="2026-10-20">20. Oktober 2026</time> · 5 Min. Lesezeit</p>
+
+    <p>Homeoffice ist für Erwachsene mit ADHS schwerer, als Produktivitätsblogs zugeben. Im Büro gab es Body Doubling ganz nebenbei, Kolleginnen und Kollegen in Sichtweite, eine künstliche Trennung zwischen Arbeit und Erholung und eine Führungskraft, der aufgefallen wäre, wenn du nicht da bist. Im Homeoffice fällt das alles weg. Übrig bleibt Willenskraft gegen eine Umgebung, die nicht für konzentriertes Arbeiten gemacht ist, und Willenskraft ist bei ADHS nicht das richtige Werkzeug für diesen Kampf.</p>
+
+    <p>Dieser Leitfaden ist die praxistaugliche Version eines ADHS-freundlichen Homeoffice-Setups: Gestaltung der Umgebung, die Widget-Konfiguration, die die Struktur nach außen verlagert, die früher das Büro geliefert hat, Tagesrhythmen, die Mittwoche überstehen, und die ehrlichen Grenzen jedes Setups. Für die sichtbare Struktur nutzen wir die Widgets von <strong>Left</strong> auf dem Home-Bildschirm, dem Sperrbildschirm und im Standby des iPhone.</p>
+
+    <h2>Was dir das Büro gegeben hat (und was du ersetzen musst)</h2>
+    <ul>
+      <li><strong>Ein selbstverständlicher Arbeitsbeginn.</strong> Durch die Tür zu gehen, markierte den Start des Tages. Zu Hause verschwimmt der Start.</li>
+      <li><strong>Body Doubling.</strong> Andere Menschen, die arbeiten, sorgten nebenbei für Verbindlichkeit.</li>
+      <li><strong>Bewegung, die sich von selbst ergibt.</strong> Arbeitsweg, der Weg zu Meetings, Kaffee holen. Tage im Homeoffice können ganz ohne Bewegung vergehen.</li>
+      <li><strong>Trennung von Arbeit und Erholung.</strong> Zwei verschiedene Gebäude. Zu Hause steht der Schreibtisch zwei Meter vom Sofa entfernt.</li>
+      <li><strong>Eine Zeitstruktur von außen.</strong> Mittagessen um zwölf, weil alle gegangen sind. Zu Hause gibt es Mittagessen um 16 Uhr oder gar nicht.</li>
+    </ul>
+    <p>Jedes davon musst du bewusst neu schaffen. Das Widget-Setup ist ein Teil, die Gestaltung der Umgebung ein anderer.</p>
+
+    <h2>Das räumliche Setup</h2>
+    <ul>
+      <li><strong>Ein fester Arbeitsplatz, nicht „wo es sich gerade richtig anfühlt“.</strong> Das Gehirn gewöhnt sich an „Hier arbeite ich“. Wenn du kein eigenes Zimmer dafür hast, nimm einen festen Stuhl.</li>
+      <li><strong>Außer Sichtweite des Betts.</strong> Mit dem Bett im Blick zu arbeiten, verschlechtert den Fokus und zugleich den Schlaf.</li>
+      <li><strong>iPhone in Sichtweite auf einem Ständer im Standby.</strong> Nicht in der Hand. Die Standby-Anzeige zeigt die Uhrzeit, das nächste Meeting und den laufenden Countdown, ohne dass du das iPhone in die Hand nimmst.</li>
+      <li><strong>Ein Bildschirm für die Arbeit, einer für den Hintergrund (optional).</strong> Wenn du ein Tablet übrig hast, nutze es als Bildschirm für Meetings und Slack, damit der Arbeitsbildschirm aufgeräumt bleibt.</li>
+      <li><strong>Richtige Kopfhörer für Fokusblöcke.</strong> Ein Signal an dein Gehirn (und an alle anderen im Haushalt), dass jetzt Zeit für Deep Work ist.</li>
+    </ul>
+
+    <h2>Die Widget-Konfiguration</h2>
+
+    <h3>Sperrbildschirm des iPhone</h3>
+    <p>Ein Countdown in Kommende: die nächste Deadline oder das nächste wichtige Meeting. Sichtbar bei jedem Blick weg von der Arbeit.</p>
+
+    <h3>Home-Bildschirm des iPhone</h3>
+    <p>Ein Gewohnheits-Widget (im Textlayout, damit du per Tippen abhaken kannst): „Heute mit Deep Work angefangen“, mit Serie. Ein kleines <a href="/year-progress-widget">Jahresfortschritt-Widget</a>. Ein kleiner Countdown bis zum Ende des Arbeitstags (damit sich Tage im Homeoffice nicht ausdehnen).</p>
+
+    <h3>Standby-Anzeige auf dem Schreibtisch</h3>
+    <p>Uhr + laufender Countdown + heutige Gewohnheitsserie. Die „Büro-Uhr“, die du nicht mehr hast.</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Countdown-Widget laden</a></p>
+
+    <h2>Der Tagesrhythmus</h2>
+    <ul>
+      <li><strong>Fester Arbeitsbeginn.</strong> Leg eine Uhrzeit fest (9:00, 9:30, was auch immer). Stell auf dem Sperrbildschirm einen Countdown in Kommende darauf. Der Countdown verlagert den Start nach außen, damit du ihn nicht innerlich entscheiden musst.</li>
+      <li><strong>Erster Block: Body Doubling.</strong> Focusmate, eine Freundin oder ein Freund per FaceTime oder eine virtuelle Coworking-Session. Die ersten 50 Minuten sind der schwerste Start des Tages. Lagere ihn an die Anwesenheit eines anderen Menschen aus.</li>
+      <li><strong>Vormittag: ein Deep-Work-Block.</strong> 90 Minuten. iPhone im Fokus, Timer als Live-Aktivität läuft. Hier passiert die eigentliche Arbeit.</li>
+      <li><strong>Mittagspause: Mach sie wirklich.</strong> Wenn möglich draußen. Bewegung ist Pflicht, nicht optional.</li>
+      <li><strong>Nachmittag: leichte Aufgaben, Meetings, asynchrone Arbeit.</strong> Bei ADHS ist der Fokus nachmittags meist schwächer. Kämpf nicht dagegen an. Nutze den Nachmittag für das, was passt.</li>
+      <li><strong>Fester Feierabend.</strong> Leg eine Uhrzeit fest. Stell einen Countdown als Live-Aktivität darauf. Wenn er bei null ankommt, klapp den Laptop zu. Das Ende des Tages ist so wichtig wie der Anfang.</li>
+    </ul>
+
+    <h2>Der Meeting-Tribut</h2>
+    <p>Tage im Homeoffice mit ADHS gehen an zu vielen Meetings zugrunde. Jedes Meeting:</p>
+    <ul>
+      <li>Frisst die Zeit des Meetings.</li>
+      <li>Frisst die 5–10 Minuten davor (das Warten darauf zehrt an der Energie).</li>
+      <li>Frisst die 10–20 Minuten danach (Erholung vom Kontextwechsel).</li>
+    </ul>
+    <p>Ein „30-Minuten-Meeting“ kostet 55–60 Minuten konzentrierte Arbeit. Drei davon, und der Tag ist weg. Schutzmaßnahmen: meetingfreie Zonen von 90 Minuten im Kalender blocken, Meetings ohne klare Agenda absagen und Meetings nach Möglichkeit auf ein oder zwei Tage pro Woche bündeln.</p>
+
+    <h2>Die Slack- und E-Mail-Falle</h2>
+    <p>Ständige Nachfragen sind die Homeoffice-Version der Unterbrechungen im Büro, nur schlimmer: Sie haben nicht die sozialen Kosten, die Unterbrechungen vor Ort begrenzen. Taktiken:</p>
+    <ul>
+      <li><strong>Zwei Zeitfenster pro Tag für Slack und E-Mail.</strong> Zum Beispiel um 11 und um 15 Uhr. Außerhalb davon bleiben sie geschlossen.</li>
+      <li><strong>Ein Fokus schaltet sie stumm</strong>, solange die Deep-Work-Blöcke laufen.</li>
+      <li><strong>Statusmeldungen, die dir Zeit verschaffen.</strong> „Bis 11 Uhr konzentriert am Arbeiten“ setzt Erwartungen.</li>
+    </ul>
+
+    <h2>Das Ritual am Ende des Tages</h2>
+    <p>Tage im Homeoffice enden nicht von selbst. Bau dir das Ende:</p>
+    <ul>
+      <li><strong>Schreib die drei Prioritäten für morgen auf</strong>, bevor du den Laptop zuklappst. (Dasselbe Ritual mit drei Prioritäten wie in der <a href="/de/blog/adhd-morning-routine-iphone">Morgenroutine bei ADHS</a>, nur am Ende des Tages, damit der Morgen einen Vorsprung hat.)</li>
+      <li><strong>Hak „Heute gearbeitet“ im Gewohnheits-Widget ab.</strong> Eine sichtbare Belohnung für die Mühe des Tages.</li>
+      <li><strong>Schließ die Arbeits-Apps ganz bewusst.</strong> Beende Slack. Schließ die Browserfenster für die Arbeit. Die Handlung markiert den Übergang.</li>
+      <li><strong>Verlass den Schreibtisch für mindestens 15 Minuten.</strong> Ein Spaziergang, eine Besorgung, alles, was eine räumliche Trennung zwischen Arbeit und Zuhause schafft.</li>
+    </ul>
+
+    <h2>Wenn das Homeoffice nicht funktioniert</h2>
+    <p>Drei ehrliche Signale, die du beachten solltest:</p>
+    <ul>
+      <li><strong>Du arbeitest 10 Stunden am Tag, schaffst aber, was du früher in 6 geschafft hast.</strong> Der Tag dehnt sich aus, ohne produktiver zu werden.</li>
+      <li><strong>Du hast die Wohnung seit drei Tagen nicht verlassen.</strong> Bewegung ist nicht verhandelbar. Fehlt sie, ist das ein Zeichen, dass das System versagt.</li>
+      <li><strong>Du arbeitest entweder ständig oder gar nicht.</strong> Das Scheitern in zwei Extremen: Homeoffice mit ADHS pendelt oft zwischen Hyperfokus-Marathons und völligem Vermeiden.</li>
+    </ul>
+    <p>Die Lösungen reichen von mehr Struktur (ein Coworking-Tag pro Woche) bis zu einem Jobwechsel (manche Erwachsene mit ADHS brauchen tatsächlich Büro oder ein hybrides Modell). Sei ehrlich, was nötig ist.</p>
+
+    <h2>Weiterlesen</h2>
+    <p>Für Fokustechniken im Lauf des Tages: <a href="/de/blog/how-to-focus-adhd">Konzentrieren mit ADHS</a>. Fürs Anfangen an schweren Tagen: <a href="/de/blog/adhd-task-initiation-strategies">Aufgaben anfangen mit ADHS</a>. Zum Body Doubling: <a href="/de/blog/adhd-body-doubling-apps">Body-Doubling-Apps bei ADHS</a>. Für das gesamte App-Setup: <a href="/de/blog/best-productivity-apps-adhd">die besten Produktivitäts-Apps bei ADHS</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Ist Homeoffice gut oder schlecht bei ADHS?</strong><br/>
+    Beides. Die Flexibilität ist großartig, die fehlende Struktur von außen ist schwer. Mit einem bewussten Setup kann Homeoffice unterm Strich ein Gewinn sein. Ohne oft ein Verlust.</p>
+
+    <p><strong>Wie viele Deep-Work-Blöcke pro Tag?</strong><br/>
+    Ein echter reicht. Zwei sind ein großartiger Tag. Drei sind selten.</p>
+
+    <p><strong>Und Coworking-Spaces?</strong><br/>
+    Lohnen sich oft, selbst an ein oder zwei Tagen pro Woche. Sie bringen das Body Doubling zurück und zwingen dich aus dem Haus.</p>
+
+    <p><strong>Soll ich meinem Arbeitgeber von meinem ADHS erzählen?</strong><br/>
+    Das hängt von der Unternehmenskultur und den nötigen Anpassungen ab. Mit einer Fachperson über Anpassungen am Arbeitsplatz zu sprechen, lohnt sich in jedem Fall: So kennst du deine Möglichkeiten, bevor du entscheidest, ob du es offenlegst.</p>
+
+    <p><strong>Wie hilft Left bei ADHS im Homeoffice?</strong><br/>
+    Es verlagert den Arbeitsbeginn (Countdown auf dem Sperrbildschirm), das Arbeitsende (Countdown bis zum festen Feierabend) und den laufenden Block (Live-Aktivität) nach außen und gibt dir mit Serien eine sichtbare Belohnung, alles auf dem Home-Bildschirm, dem Sperrbildschirm und im Standby deines iPhone.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left laden</span>
+          <h2>Fang an wahrzunehmen, was zählt.</h2>
+          <p>Lade Left auf dein iPhone: Sieh die Zeit, die dir bleibt, und die Tage, auf die du dich freust, bau Gewohnheiten auf, die bleiben sollen, und werde eine bessere Version von dir.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – für eine Anleitung tippen">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanne oder suche im App Store nach <strong>„Left“</strong>.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Für iOS laden
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die das Beste aus jedem Moment machen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußbereich">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/privacy">Datenschutz</a>
+          <a href="/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
