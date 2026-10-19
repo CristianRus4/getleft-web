@@ -110,3 +110,20 @@ Lane 3 (Ava), in the blog and your landing pages:
 ## Update, 2026-10-20: Bing and IndexNow
 
 getleft.app is now in Bing Webmaster Tools. After every push to main, run `node scripts/indexnow.mjs`; it is now the last line of the push loop above. It tells Bing (and Yandex, Naver and Seznam) which pages changed, so new locale pages are crawled within minutes. It is safe to run from any worktree: it works out the changed pages from `origin/main` itself. If it fails, mention it in your report and carry on.
+
+## Update, 2026-10-20: iPhone widget support articles corrected
+
+Lane 0 rewrote the English in the iPhone Home Screen and Lock Screen widget articles so every claim matches the app source and Apple's iOS 26 guide. What it fixed: the "Smart" picker (it does not exist; widgets have a **Select date** parameter); "iOS 16" and "iPhone 8" (Left needs iOS 26); circular widgets "above the clock" (only one single-line widget fits in the date line; circular and rectangular widgets go in the row below the clock); the old "+" button (iOS 26 uses **Edit → Add Widget**); per-size content claims; resizing in place.
+
+Translators: update these keys in every locale; `check-i18n --verbose` lists them as stale.
+
+| Article | Changed keys |
+|---|---|
+| `support_articles.widget_iphone_home_screen` | `li_1`, `li_extra_2`, `li_extra_3`, `li_extra_5`, `li_extra_7`, `li_extra_10`, `li_extra_11`, `li_extra_12`, `li_extra_13`, `p_3`, `p_4` |
+| `support_articles.widget_iphone_lock_screen` | `p_1`, `li_1`, `li_3`, `li_4`, `li_extra_2`, `li_extra_3`, `li_extra_6`, `li_extra_7`, `li_extra_10`, `li_extra_12`, `li_extra_13`, `p_extra_14` |
+
+Keep the app's UI labels as the app shows them in your language: **Ahead**, **Since**, **Select date**, **Text**/**Grid**, and the widget names Ahead, Habit, Streak, Aim, Year, Month, Week, Day, Time Ahead list, Streaks list. Use Apple's own iOS wording for **Edit**, **Add Widget**, **Add Widgets** and **Done** in your language.
+
+**Broken images removed.** The 19 `left-tutorial-*.webp` images were deleted earlier and returned 404 on 11 support pages. The Home Screen article's Step 1 image now uses `images/left-steps-light-2.webp`; the other 18 `<img>` lines are gone. No catalog keys changed for this.
+
+**Still open (not changed here):** the iPad Home Screen, iPad Lock Screen, Mac desktop and Mac Notification Center articles still mention a "Smart" option (`widget_ipad_home_screen.li_extra_11`, `widget_ipad_lock_screen.li_extra_10`, `widget_mac_desktop.li_extra_9`, `widget_mac_notification_center.li_extra_9`). Don't translate those four strings yet; Lane 0 will correct the English first.
