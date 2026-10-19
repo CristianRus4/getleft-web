@@ -17,6 +17,8 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-24 | `blog/best-countdown-wallpaper-apps-iphone.html` | English page | scheduled |
 | 2026-10-25 | `blog/best-year-progress-apps-iphone.html` | English page | scheduled |
 | 2026-10-26 | `blog/streaks-app-alternatives.html` | English page | scheduled |
+| 2026-10-27 | `blog/best-birthday-countdown-apps-iphone.html` | English page | scheduled |
+| 2026-10-28 | `blog/structured-app-alternatives.html` | English page | scheduled |
 
 ## Held translations
 
