@@ -49,12 +49,30 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 
 | Release key | Language | Pages ready |
 |---|---|---|
+| `pages/de` | Deutsch | 9 |
+| `pages/es` | Español (España) | 9 |
+| `pages/es-419` | Español (Latinoamérica) | 9 |
+| `pages/fr` | Français | 9 |
 | `pages/id` | Bahasa Indonesia | 9 |
+| `pages/it` | Italiano | 9 |
 | `pages/ko` | 한국어 | 9 |
+| `pages/nl` | Nederlands | 9 |
+| `pages/pl` | Polski | 9 |
+| `pages/pt` | Português (Portugal) | 9 |
+| `pages/pt-BR` | Português (Brasil) | 9 |
 | `pages/ro` | Română | 9 |
 | `pages/ru` | Русский | 9 |
 | `pages/tr` | Türkçe | 9 |
 | `pages/zh-Hans` | 简体中文 | 9 |
+| `tools/de` | Deutsch | 17 |
+| `tools/es` | Español (España) | 17 |
+| `tools/es-419` | Español (Latinoamérica) | 17 |
+| `tools/fr` | Français | 17 |
+| `tools/it` | Italiano | 17 |
+| `tools/nl` | Nederlands | 17 |
+| `tools/pl` | Polski | 17 |
+| `tools/pt` | Português (Portugal) | 17 |
+| `tools/pt-BR` | Português (Brasil) | 17 |
 
 ## Undated pages in `scheduled/`
 
