@@ -18,7 +18,7 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/habitkit-alternatives | Paico Oficial | https://unsplash.com/photos/text-eaeKesI3TJQ |
 | blog/best-fasting-tracker-apps-iphone | Viktoria Slowikowska | https://www.pexels.com/photo/knife-and-fork-on-a-ceramic-plate-surrounded-by-assorted-vegetables-5677621/ |
 | blog/habitify-alternatives | Estée Janssens | https://unsplash.com/photos/white-ceramic-teacup-with-beverage-beside-pink-marker-on-pritner-p-pe-A65Gqv38pYo |
-| blog/best-sobriety-counter-apps-iphone | Divani | https://unsplash.com/photos/clear-wine-glass-with-sliced-lemon-nStE_e4JXPU |
+| blog/best-sobriety-counter-apps-iphone | Aimee Giles | https://unsplash.com/photos/steaming-mug-on-wooden-table-u1QfqxhsrXQ |
 | blog/countdown-star-alternatives | Towfiqu barbhuiya | https://unsplash.com/photos/a-calendar-with-red-push-buttons-pinned-to-it-bwOAixLG0uc |
 | blog/best-streak-counter-apps-iphone | Towfiqu Barbhuiya | https://www.pexels.com/photo/a-marker-near-checked-circles-on-white-paper-11412596/ |
 | blog/best-lock-screen-widget-apps-iphone | Surja Sen Das Raj | https://unsplash.com/photos/a-white-clock-sitting-on-top-of-a-white-table-KsiVfg5_B0g |
@@ -32,7 +32,7 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/way-of-life-alternatives | Isaac Smith | https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18 |
 | birthday-countdown-widget | Jess Bailey | https://unsplash.com/photos/brown-gift-box-with-pink-ribbon-f94JPVrDbnY |
 | relationship-counter | Natalie Kinnear | https://unsplash.com/photos/a-bouquet-of-pink-roses-next-to-a-block-spelling-love-you-3urS4-8kGQg |
-| exam-countdown | Towfiqu barbhuiya | https://unsplash.com/photos/a-calendar-with-red-push-buttons-pinned-to-it-bwOAixLG0uc |
+| exam-countdown | Gilmer Diaz Estela | https://www.pexels.com/photo/close-up-shot-of-stack-of-books-5535288/ |
 | lock-screen-countdown | Kailun Zhang | https://unsplash.com/photos/flip-clock-showing-845-on-a-shelf-JFrN7-3wXPE |
 | time-left-today | bady abbas | https://unsplash.com/photos/minimalist-white-wall-clock-on-a-plain-white-background-qP1AadsDwzE |
 | month-progress-widget | 2H Media | https://unsplash.com/photos/a-planner-with-two-pens-sitting-on-top-of-it-cdDDWLezAJ0 |
