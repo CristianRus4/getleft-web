@@ -30,6 +30,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
+| 2026-11-24 | `time-left-today.html` | English page | scheduled |
 
 ## Held translations
 
