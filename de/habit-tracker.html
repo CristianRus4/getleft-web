@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>Gewohnheitstracker-Widget fürs iPhone | Left</title>
+  <meta name="description" content="Verfolge Gewohnheiten und Serien auf dem Home-Bildschirm deines iPhone. Mit den Left-Widgets hakst du heute mit einem Tipp ab und siehst jede Serie."  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/de/habit-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/habit-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/habit-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/habit-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/habit-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/habit-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/habit-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/habit-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Ein Gewohnheitstracker und Serienzähler fürs iPhone"  />
+  <meta property="og:description" content="Verfolge Gewohnheiten und Serien auf dem Home-Bildschirm deines iPhone. Mit den Left-Widgets hakst du heute mit einem Tipp ab und siehst jede Serie."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/habit-tracker" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ein Gewohnheitstracker und Serienzähler fürs iPhone"  />
+  <meta name="twitter:description" content="Verfolge Gewohnheiten und Serien auf dem Home-Bildschirm deines iPhone. Mit den Left-Widgets hakst du heute mit einem Tipp ab und siehst jede Serie."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Habit tracker",
+        "item": "https://getleft.app/habit-tracker"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left tracks habits, streaks and countable goals, with Home Screen and Lock Screen widgets including a habit widget you can log from.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can I check off a habit from the widget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Set Left’s Habit widget to its Text layout (touch and hold it, tap Edit Widget, then Layout) and tap today’s circle to log the habit without opening the app. Tap again to undo; habits with several daily completions fill up first."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left a free habit tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left is free to download and its widgets are free. The free plan lets you create 2 habits and 2 streaks; deleting one does not free up a slot. Left Premium removes the limit, and prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between a habit and a streak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A habit is something you complete on a schedule and tick off. A streak counts time since a start date and keeps going until you restart it. Both live in Left’s Since section."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a habit be weekly or several times a day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Choose a day, week or month period and how many times. Daily habits can be every day, weekdays, weekends, specific days or a number of days per week."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Will Left remind me before I break my streak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add up to 4 reminders per habit. Get a persistent reminder also shows a Live Activity an hour before the time you choose if the habit is still not logged."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/de/">Left</a> / Gewohnheitstracker</p>
+      <h1>Ein Gewohnheitstracker und Serienzähler für deinen Home-Bildschirm</h1>
+      <p class="article-lede">Der beste Gewohnheitstracker ist der, den du wirklich ansiehst. Left legt deine Gewohnheiten auf Home-Bildschirm und Sperrbildschirm, lässt dich heute per Home-Bildschirm-Widget abhaken und zählt die Serie weiter, damit du die Kette siehst, die du aufbaust.</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Das Gewohnheitstracker-Widget im App Store laden">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Das Gewohnheitstracker-Widget holen
+        </a>
+        <p>Für iPhone mit iOS 26 oder neuer. Der kostenlose Tarif enthält 2 Gewohnheiten und 2 Serien.</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-since-feature-1-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-since-feature-1-light.webp" alt="Eine Gewohnheit in Left mit einer 16-Tage-Serie, den letzten sieben abgehakten Tagen, einem Raster vergangener Erledigungen und einer Taste „Heute erfassen“" width="560" height="1272" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>Erfasse eine Gewohnheit in der App oder über ihr Widget.</figcaption>
+        </figure>
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-steps-3-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-steps-3-light.webp" alt="Der Bildschirm „Seit“ in Left mit Gewohnheiten wie Laufen, 20 Minuten lesen und Schlafmeditation, jeweils mit einem farbigen Raster der Erledigungen" width="560" height="1159" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>Gewohnheiten und Serien nebeneinander, jeweils in einer eigenen Farbe.</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="Auf dieser Seite">
+        <p class="article-toc-label">Auf dieser Seite</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">Gewohnheiten, Serien und Ziele: drei Arten zu verfolgen</a></li>
+          <li><a href="#why">Warum du Gewohnheiten auf dem Home-Bildschirm verfolgen solltest</a></li>
+          <li><a href="#setup">So richtest du ein Gewohnheitstracker-Widget ein</a></li>
+          <li><a href="#sizes">Größen der Gewohnheits- und Serien-Widgets</a></li>
+          <li><a href="#progress">Deinen Fortschritt sehen</a></li>
+          <li><a href="#free">Was kostenlos ist und was Left Premium braucht</a></li>
+          <li><a href="#faq">Fragen</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">Gewohnheiten, Serien und Ziele: drei Arten zu verfolgen</h2>
+        <p>Der Bereich <strong>Seit</strong> in Left enthält drei Arten von Trackern, weil nicht jedes Ziel gleich funktioniert:</p>
+        <ul>
+          <li><strong>Gewohnheit:</strong> etwas, das du nach einem Rhythmus tust und abhakst. „Laufen gehen“, „20 Minuten lesen“, „4-mal am Tag Wasser trinken“. Sie „wird erledigt, wenn du sie tust“, und deine Serie wächst jedes Mal, wenn du den Rhythmus einhältst.</li>
+          <li><strong>Serie:</strong> ein Zähler, der von selbst weiterläuft, bis du ihn neu startest. „Kein Alkohol“, „Kein Handy beim Essen“. Er „zählt automatisch hoch, solange du nicht neu startest“. Mehr dazu auf der Seite zum <a href="/de/days-since-widget">Tage-seit-Widget</a>.</li>
+          <li><strong>Ziel:</strong> eine Zahl, die du hoch- oder herunterzählen willst, etwa gelesene Bücher, gelaufene Kilometer oder gespartes Geld. Siehe <a href="/de/support/aims-in-left">So funktionieren Ziele</a>.</li>
+        </ul>
+        <p>Wenn du nicht sicher bist, was du nehmen sollst, gehen <a href="/de/support/streaks-vs-habits">Serien und Gewohnheiten</a> Beispiele durch.</p>
+
+        <h2 id="why">Warum du Gewohnheiten auf dem Home-Bildschirm verfolgen solltest</h2>
+        <p>Gewohnheits-Apps scheitern leise: Du öffnest sie nicht mehr, und die Gewohnheit verschwindet mit ihnen. Ein Widget dreht das um. Bei jedem Entsperren siehst du, was heute ansteht und wie lang deine Serie ist, und Abhaken geht mit einem Tipp, ohne etwas zu öffnen. Diese kleine, ständige Sichtbarkeit hält eine Gewohnheit auch an einem vollen Tag am Laufen.</p>
+
+        <h2 id="setup">So richtest du ein Gewohnheitstracker-Widget ein</h2>
+        <h3>1. Die Gewohnheit anlegen</h3>
+        <ol>
+          <li>Öffne Left und geh zu <strong>Seit</strong>. Tippe auf <strong>+</strong>.</li>
+          <li>Tipp, was du vorhast, um eine fertige Vorlage zu finden, oder wähle unter <strong>Von Grund auf erstellen</strong> die Option <strong>Gewohnheit</strong>.</li>
+          <li>Gib einen Namen ein und, wenn du magst, ein Ziel („Was ist dein Ziel dabei?“).</li>
+          <li>Wähle den Zeitraum (Tag, Woche oder Monat) und wie oft. Tägliche Gewohnheiten können jeden Tag, an Wochentagen, am Wochenende, an bestimmten Wochentagen oder an einer Anzahl von Tagen pro Woche gelten. Wöchentliche und monatliche Gewohnheiten kannst du an jedem Tag des Zeitraums erledigen, auch an verschiedenen Tagen.</li>
+          <li>Schalte <strong>Erinnerungen erhalten</strong> ein und füge bis zu 4 Erinnerungen mit eigenen Tagen und Uhrzeiten hinzu. Für einen letzten Anstoß schaltest du <strong>Dauerhafte Erinnerung erhalten</strong> ein und wählst <strong>Vor welcher Zeit?</strong>: Ist die Gewohnheit dann noch nicht erfasst, erscheint eine Stunde vor dieser Uhrzeit eine Live-Aktivität.</li>
+          <li>Sichern.</li>
+        </ol>
+        <h3>2. Widget hinzufügen</h3>
+        <ol>
+          <li>Halte eine leere Stelle auf deinem Home-Bildschirm gedrückt, tippe auf <strong>Bearbeiten</strong> und dann auf <strong>Widget hinzufügen</strong>.</li>
+          <li>Such nach <strong>Left</strong>. Wähle <strong>Gewohnheit</strong> für eine Gewohnheit oder <strong>Gewohnheitsliste</strong>, um mehrere Gewohnheiten und ihren Fortschritt zu sehen (bis zu 4 in Klein und Mittel, 8 in Groß).</li>
+          <li>Wähle eine Größe, tippe auf <strong>Widget hinzufügen</strong> und dann auf <strong>Fertig</strong>. Halte das Widget gedrückt, tippe auf <strong>Widget bearbeiten</strong> und wähle, welche Gewohnheit(en) es zeigt.</li>
+        </ol>
+        <h3>3. Abhaken</h3>
+        <p>Um direkt vom Home-Bildschirm zu erfassen, halte das Gewohnheit-Widget gedrückt, tippe auf <strong>Widget bearbeiten</strong> und stell <strong>Layout</strong> auf <strong>Text</strong>. Tippe dann auf den Kreis für heute, um die Gewohnheit zu erfassen, ohne Left zu öffnen; Gewohnheiten mit mehreren Erledigungen füllen sich mit jedem Tippen. In der App öffnest du die Gewohnheit und tippst auf <strong>Erfassen</strong>; wenn du versehentlich getippt hast, kannst du es rückgängig machen.</p>
+        <p>Für einen Serienzähler, der kein Abhaken braucht, füge zusätzlich das <strong>Serie</strong>-Widget hinzu. Mehr zu Widgets findest du unter <a href="/de/support/widget-iphone-home-screen">Widgets auf dem Home-Bildschirm</a> und <a href="/de/support/widget-iphone-lock-screen">Widgets auf dem Sperrbildschirm</a>.</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Verfolge eine Gewohnheit in Left aus dem App Store">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  Verfolge eine Gewohnheit in Left
+                </a>
+        </div>
+
+        <h2 id="sizes">Größen der Gewohnheits- und Serien-Widgets</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>Widget</th><th>Was es zeigt</th><th>Home-Bildschirm</th><th>Sperrbildschirm</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Gewohnheit</strong></td><td>Eine Gewohnheit; im Layout „Text“ tippst du, um heute zu erfassen</td><td>Klein, Mittel</td><td>Rechteckig</td></tr>
+            <tr><td><strong>Gewohnheitsliste</strong></td><td>Bis zu 8 Gewohnheiten mit ihrem Fortschritt (4 in Klein und Mittel)</td><td>Klein, Mittel, Groß</td><td>Rund, Rechteckig</td></tr>
+            <tr><td><strong>Serie</strong></td><td>Ein Serienzähler</td><td>Klein, Mittel, Groß</td><td>Rechteckig</td></tr>
+            <tr><td><strong>Serienliste</strong></td><td>Bis zu 7 Serien (3 in Mittel)</td><td>Mittel, Groß</td><td>Nicht verfügbar</td></tr>
+          </tbody>
+        </table>
+        </div>
+
+        <h2 id="progress">Deinen Fortschritt sehen</h2>
+        <p>Jede Gewohnheit führt ihren eigenen Verlauf: die aktuelle Serie, erledigte und verpasste Tage, deine längste Serie und ein Raster vergangener Erledigungen, damit Lücken leicht auffallen. Die Gewohnheitsstärke zeigt, wie beständig die Gewohnheit geworden ist, und ist nachsichtiger als eine einzelne Zahl, die nach einem verpassten Tag auf null fällt. Wenn du eine Pause brauchst, archiviere die Gewohnheit: Sie wird in „Seit“ und in Widgets ausgeblendet, und die archivierten Tage zählen als übersprungen. Du kannst Gewohnheiten auch mit Siri und der <a href="/de/support/left-shortcuts">Kurzbefehle-App</a> erfassen.</p>
+
+        <h2 id="free">Was kostenlos ist und was Left Premium braucht</h2>
+        <p>Left kannst du kostenlos laden, und die Widgets sind kostenlos. Der kostenlose Tarif erlaubt dir <strong>2 Gewohnheiten</strong> und <strong>2 Serien</strong>, dazu 2 Countdowns und 2 Ziele. Das Limit zählt jede, die du erstellst, deshalb gibt das Löschen einer Gewohnheit den Platz nicht zurück.</p>
+        <p><strong>Left Premium</strong> hebt das Limit auf und ergänzt die <a href="/de/support/apple-health-automatic-tracking">automatische Erfassung mit Apple Health</a>, damit eine Gewohnheit wie „10.000 Schritte“ von selbst erledigt wird, dazu <a href="/de/support/accountability-with-friends">Freunde, die dich dranhalten</a>, und den Planer, der die heutigen Gewohnheiten neben deinem Kalender zeigt. Die Preise siehst du in der App, bevor du kaufst.</p>
+        <p>Neugierig, wie lang deine aktuelle Serie ist? Probiere den kostenlosen <a href="/tools/habit-streak-calculator">Serienrechner für Gewohnheiten</a>.</p>
+
+        <h2 id="faq">Fragen</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>Kann ich eine Gewohnheit im Widget abhaken?</summary>
+            <div class="faq-answer"><p>Ja. Stell das Gewohnheit-Widget von Left auf das Layout „Text“ (gedrückt halten, auf „Widget bearbeiten“ tippen, dann „Layout“) und tippe auf den Kreis für heute, um die Gewohnheit zu erfassen, ohne die App zu öffnen. Tippe erneut, um es rückgängig zu machen; Gewohnheiten mit mehreren Erledigungen pro Tag füllen sich zuerst.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Ist Left ein kostenloser Gewohnheitstracker?</summary>
+            <div class="faq-answer"><p>Left kannst du kostenlos laden, und die Widgets sind kostenlos. Der kostenlose Tarif erlaubt dir 2 Gewohnheiten und 2 Serien; das Löschen macht keinen Platz frei. Left Premium hebt das Limit auf, und die Preise siehst du in der App, bevor du kaufst.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Was ist der Unterschied zwischen einer Gewohnheit und einer Serie?</summary>
+            <div class="faq-answer"><p>Eine Gewohnheit erledigst du nach einem Rhythmus und hakst sie ab. Eine Serie zählt die Zeit ab einem Startdatum und läuft weiter, bis du sie neu startest. Beides findest du in Left im Bereich „Seit“.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Kann eine Gewohnheit wöchentlich oder mehrmals am Tag sein?</summary>
+            <div class="faq-answer"><p>Ja. Wähle einen Zeitraum aus Tag, Woche oder Monat und wie oft. Tägliche Gewohnheiten können jeden Tag, an Wochentagen, am Wochenende, an bestimmten Tagen oder an einer Anzahl von Tagen pro Woche gelten.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Erinnert mich Left, bevor meine Serie reißt?</summary>
+            <div class="faq-answer"><p>Ja. Du kannst bis zu 4 Erinnerungen pro Gewohnheit hinzufügen. „Dauerhafte Erinnerung erhalten“ zeigt außerdem eine Live-Aktivität eine Stunde vor der gewählten Uhrzeit, wenn die Gewohnheit noch nicht erfasst ist.</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">Weiterlesen</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/de/support/streaks-vs-habits">Serien und Gewohnheiten in Left</a>
+          <a class="support-related-item" href="/de/days-since-widget">Tage-seit-Widget fürs iPhone</a>
+          <a class="support-related-item" href="/de/blog/how-to-build-a-streak">So baust du eine Serie auf deinem iPhone auf</a>
+          <a class="support-related-item" href="/de/blog/best-habit-tracker-apps-iphone">Die besten Gewohnheitstracker-Apps fürs iPhone</a>
+          <a class="support-related-item" href="/de/blog/stay-consistent-with-goals">So bleibst du bei deinen Zielen dran</a>
+          <a class="support-related-item" href="/de/support/aims-in-left">So funktionieren Ziele in Left</a>
+          <a class="support-related-item" href="/tools/habit-streak-calculator">Serienrechner für Gewohnheiten</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left laden</span>
+          <h2>Halte die Kette am Laufen.</h2>
+          <p>Lade Left, füge eine Gewohnheit hinzu und hake sie auf deinem Home-Bildschirm ab.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Das Gewohnheitstracker-Widget im App Store laden">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Das Gewohnheitstracker-Widget holen
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

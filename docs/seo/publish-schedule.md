@@ -11,8 +11,8 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 18 pages | Translation release | live |
-| 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | scheduled |
-| 2026-10-21 | `pages/de`: pages in Deutsch, 9 pages | Translation release | scheduled |
+| 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | live |
+| 2026-10-21 | `pages/de`: pages in Deutsch, 9 pages | Translation release | live |
 | 2026-10-22 | `blog/widgetsmith-alternatives.html` | English page | scheduled |
 | 2026-10-22 | `pages/es-419`: pages in Español (Latinoamérica), 9 pages | Translation release | scheduled |
 | 2026-10-23 | `blog/best-life-calendar-apps-iphone.html` | English page | scheduled |
@@ -74,7 +74,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 47 pages | Translation release | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
 | 2026-11-24 | `time-left-today.html` | English page | scheduled |
+| 2026-11-24 | `tools/zh-Hant`: tools in 繁體中文, 17 pages | Translation release | scheduled |
 | 2026-11-25 | `month-progress-widget.html` | English page | scheduled |
+| 2026-11-25 | `tools/hi`: tools in हिन्दी, 17 pages | Translation release | scheduled |
 | 2026-11-26 | `retirement-countdown.html` | English page | scheduled |
 
 ## Held translations
@@ -83,8 +85,7 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 
 | Release key | Language | Pages ready |
 |---|---|---|
-| `tools/hi` | हिन्दी | 17 |
-| `tools/zh-Hant` | 繁體中文 | 17 |
+| `tools/id` | Bahasa Indonesia | 17 |
 
 ## Undated pages in `scheduled/`
 

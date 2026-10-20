@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="landing" />
+  <title>Tage-seit-Widget fürs iPhone | Left</title>
+  <meta name="description" content="Zähle die Tage seit einem Datum auf Home- oder Sperrbildschirm deines iPhone: Serie in Left anlegen, Widget-Größe wählen, die Zahl wächst von selbst."  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/de/days-since-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/days-since-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/days-since-widget" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/days-since-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/days-since-widget" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/days-since-widget" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Ein Tage-seit-Widget für dein iPhone"  />
+  <meta property="og:description" content="Zähle die Tage seit einem Datum auf Home- oder Sperrbildschirm deines iPhone: Serie in Left anlegen, Widget-Größe wählen, die Zahl wächst von selbst."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/days-since-widget" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ein Tage-seit-Widget für dein iPhone"  />
+  <meta name="twitter:description" content="Zähle die Tage seit einem Datum auf Home- oder Sperrbildschirm deines iPhone: Serie in Left anlegen, Widget-Größe wählen, die Zahl wächst von selbst."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Left",
+        "item": "https://getleft.app/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Days since widget",
+        "item": "https://getleft.app/days-since-widget"
+      }
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MobileApplication",
+    "name": "Left",
+    "operatingSystem": "iOS 26 or later",
+    "applicationCategory": "ProductivityApplication",
+    "url": "https://getleft.app/",
+    "installUrl": "https://apps.apple.com/app/id6740155884",
+    "description": "Left counts the days since any date with streaks you can show in Home Screen and Lock Screen widgets.",
+    "publisher": {
+      "@id": "https://getleft.app/#organization"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is there a free days since widget for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left’s widgets are free, and the free plan lets you create 2 streaks to show in them. Deleting a streak does not free up a slot. For more streaks, Left Premium removes the limit; prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I start counting from a date in the past?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Set Started on... to any past date and time, and the widget shows the full count straight away. Future dates are not allowed for streaks; use an Ahead countdown for those."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can the widget show weeks, months or years instead of days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Touch and hold the Streak widget, tap Edit Widget, and choose to show the streak in hours, days, weeks, months or years."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put a days since counter on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Streak widget has a rectangular Lock Screen version. Touch and hold the Lock Screen, tap Customize, choose Lock Screen, tap the widget area and add Left’s Streak widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens when I reset a streak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tap Restart on the streak and choose when you restarted. The counter starts again from that moment, and Left keeps your restart history, average streak and longest streak."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/de/">Left</a> / Tage-seit-Widget</p>
+      <h1>Ein Tage-seit-Widget für dein iPhone</h1>
+      <p class="article-lede">Manche Zahlen will man jeden Tag sehen: Tage ohne Alkohol, Tage seit dem Umzug, Tage seit dem Beginn von etwas, das dir wichtig ist. In Left heißt dieser Zähler <strong>Serie</strong>. Er zählt ab einem Datum deiner Wahl hoch, und du kannst ihn auf deinem Home-Bildschirm oder Sperrbildschirm behalten.</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Das Tage-seit-Widget im App Store laden">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Das Tage-seit-Widget holen
+        </a>
+        <p>Für iPhone mit iOS 26 oder neuer. Der kostenlose Tarif enthält 2 Serien.</p>
+      </div>
+      <div class="lp-shots">
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-since-feature-2-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-since-feature-2-light.webp" alt="Eine Left-Serie, die 44 Tage seit dem 9. April 2026 zählt, mit Neustarts, durchschnittlicher und längster Serie unter dem Zähler" width="560" height="1272" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>Eine Serie führt ihren eigenen Verlauf: Neustarts, Durchschnitt und längste Serie.</figcaption>
+        </figure>
+        <figure class="lp-shot">
+          <picture>
+            <source srcset="/images/lp-steps-3-dark.webp" media="(prefers-color-scheme: dark)" />
+            <img src="/images/lp-steps-3-light.webp" alt="Der Bildschirm „Seit“ in Left mit farbcodierten Serien wie „Nicht trinken“ bei 62 Tagen und „Keine verarbeiteten Snacks“ bei 24 Tagen" width="560" height="1159" loading="lazy" decoding="async"  />
+          </picture>
+          <figcaption>Jede Serie und jede Gewohnheit steckt unter „Seit“.</figcaption>
+        </figure>
+      </div>
+      <nav class="article-toc" aria-label="Auf dieser Seite">
+        <p class="article-toc-label">Auf dieser Seite</p>
+        <ul class="article-toc-list">
+          <li><a href="#what">Was ein Tage-seit-Zähler leistet</a></li>
+          <li><a href="#why">Warum du ihn auf dem Bildschirm behalten solltest</a></li>
+          <li><a href="#setup">So richtest du ein Tage-seit-Widget in Left ein</a></li>
+          <li><a href="#sizes">Widget-Größen und Optionen für den Sperrbildschirm</a></li>
+          <li><a href="#restart">Wenn eine Serie reißt</a></li>
+          <li><a href="#free">Was kostenlos ist und was Left Premium braucht</a></li>
+          <li><a href="#faq">Fragen</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="what">Was ein Tage-seit-Zähler leistet</h2>
+        <p>Ein Countdown sagt dir, wie lange es bis zu etwas dauert. Ein Tage-seit-Zähler macht das Gegenteil: Er misst, wie viel Zeit seit einem Moment vergangen ist, der dir wichtig ist, und die Zahl wird jeden Tag größer, ohne dass du etwas tun musst.</p>
+        <p>Menschen nutzen so einen Zähler für ganz unterschiedliche Dinge:</p>
+        <ul>
+          <li><strong>Etwas aufgeben:</strong> Tage ohne Alkohol, Zigaretten, Zucker oder endloses Scrollen.</li>
+          <li><strong>Meilensteine:</strong> Tage seit dem Umzug in eine andere Stadt, dem Jobbeginn, der Hochzeit oder seit ein Hund bei dir lebt.</li>
+          <li><strong>Erholung und Gesundheit:</strong> Tage seit einer Verletzung, einer Operation oder der letzten Migräne, die du notiert hast.</li>
+          <li><strong>Das letzte Mal, dass du etwas getan hast:</strong> Tage, seit du deine Oma angerufen, das Auto geputzt oder dein Notebook gesichert hast.</li>
+        </ul>
+        <p>In Left ist eine Serie genau so ein Zähler. Du gibst ihr einen Namen und ein Startdatum, und sie zählt weiter, bis du sie neu startest.</p>
+
+        <h2 id="why">Warum du ihn auf dem Bildschirm behalten solltest</h2>
+        <p>Ein Zähler, der in einer App vergraben ist, gerät leicht in Vergessenheit. Einer, den du bei jedem Entsperren siehst, wirkt anders. Bei einer Zahl, die auf 62 geklettert ist, überlegst du es dir zweimal, sie zurückzusetzen, und ein Meilenstein wie 100 Tage oder ein Jahr wird greifbar, wenn du zusehen kannst, wie er näher rückt.</p>
+        <p>Es funktioniert auch andersherum. Ein Zähler für „Tage, seit ich Mama zuletzt angerufen habe“ ist ein sanfter, ehrlicher Anstoß, ganz ohne Mitteilung.</p>
+
+        <h2 id="setup">So richtest du ein Tage-seit-Widget in Left ein</h2>
+        <h3>1. Die Serie anlegen</h3>
+        <ol>
+          <li>Öffne Left und geh zu <strong>Seit</strong>.</li>
+          <li>Tippe auf <strong>+</strong>. Wähle unter <strong>Von Grund auf erstellen</strong> die Option <strong>Serie</strong> („Zählt automatisch hoch, solange du nicht neu startest“). Du kannst auch im Suchfeld tippen, um mit einer fertigen Vorlage zu beginnen.</li>
+          <li>Gib ihr einen Namen, zum Beispiel <em>Kein Alkohol</em> oder <em>Nach Lissabon gezogen</em>.</li>
+          <li>Stell <strong>Begonnen am...</strong> auf Datum und Uhrzeit des Beginns. Vergangene Daten funktionieren, du kannst also einen bestehenden Stand mitbringen. Zukünftige nicht; nutze dafür einen <a href="/de/countdown-widget">Countdown</a>.</li>
+          <li>Wenn du magst, füge ein Ziel, ein Enddatum mit <strong>Hat ein Enddatum</strong> oder Erinnerungen hinzu, auch Erinnerungen nach verstrichener Zeit, die dich nach einer bestimmten Anzahl von Tagen anstupsen.</li>
+          <li>Sichern. Die Serie erscheint unter „Seit“ und zählt sofort los.</li>
+        </ol>
+        <h3>2. Das Widget zum Home-Bildschirm hinzufügen</h3>
+        <ol>
+          <li>Halte eine leere Stelle auf deinem Home-Bildschirm gedrückt, bis die Apps wackeln, tippe oben links auf <strong>Bearbeiten</strong> und wähle <strong>Widget hinzufügen</strong>.</li>
+          <li>Such nach <strong>Left</strong> und wähle <strong>Serie</strong> für einen Zähler oder <strong>Serienliste</strong> für mehrere.</li>
+          <li>Wische zur gewünschten Größe, tippe auf <strong>Widget hinzufügen</strong> und dann auf <strong>Fertig</strong>.</li>
+          <li>Halte das neue Widget gedrückt, tippe auf <strong>Widget bearbeiten</strong> und wähle deine Serie. Du kannst auch festlegen, dass der Stand in Stunden, Tagen, Wochen, Monaten oder Jahren angezeigt wird, das Startdatum ein- oder ausblenden und das Foto der Serie als Hintergrund nutzen.</li>
+        </ol>
+        <h3>3. Oder auf den Sperrbildschirm legen</h3>
+        <ol>
+          <li>Halte deinen Sperrbildschirm gedrückt, tippe auf <strong>Anpassen</strong> und wähle dann <strong>Sperrbildschirm</strong>.</li>
+          <li>Tippe auf den Widget-Bereich, such <strong>Left</strong> und füge das <strong>Serie</strong>-Widget hinzu.</li>
+          <li>Tippe auf das Widget, um zu wählen, welche Serie es zeigt, und dann auf <strong>Fertig</strong>.</li>
+        </ol>
+        <p>Ausführlichere Schritt-für-Schritt-Anleitungen: <a href="/de/support/widget-iphone-home-screen">Widgets auf dem Home-Bildschirm</a>, <a href="/de/support/widget-iphone-lock-screen">Widgets auf dem Sperrbildschirm</a> und <a href="/de/support/edit-or-remove-widget-iphone">Widget bearbeiten oder in der Größe ändern</a>.</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Starte eine Tage-seit-Serie in Left aus dem App Store">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  Starte eine Tage-seit-Serie in Left
+                </a>
+        </div>
+
+        <h2 id="sizes">Widget-Größen und Optionen für den Sperrbildschirm</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>Widget</th><th>Größen für den Home-Bildschirm</th><th>Sperrbildschirm</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Serie</strong>: ein Zähler, mit optionalem Foto und Startdatum</td><td>Klein, Mittel, Groß</td><td>Rechteckig</td></tr>
+            <tr><td><strong>Serienliste</strong>: bis zu 7 Serien (3 in Mittel), jede in ihrer eigenen Einheit</td><td>Mittel, Groß</td><td>Nicht verfügbar</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Wie jedes iPhone-Widget kann auch ein Left-Widget in einem Widget-Stapel im <a href="/de/support/widget-iphone-standby">Standby</a> liegen, während dein Handy quer auf dem Ladegerät steht. iOS entscheidet, wann genau Widgets aktualisiert werden. Wenn du den Stand auf die Minute willst, öffne die Serie in Left.</p>
+
+        <h2 id="restart">Wenn eine Serie reißt</h2>
+        <p>Ausrutscher passieren. Öffne die Serie und tippe auf <strong>Neustart</strong>. Left fragt, wann du neu gestartet hast, sodass du den echten Zeitpunkt statt „jetzt“ wählen kannst. Der Zähler beginnt ab diesem Punkt von vorn, und nichts geht verloren: Die Serie behält ihren Neustart-Verlauf, ihre durchschnittliche Serie und deine längste Serie, ein Zurücksetzen löscht also nicht, was du erreicht hast.</p>
+        <p>Wenn das, was du verfolgen willst, eine Handlung von dir braucht, etwa dreimal pro Woche laufen zu gehen, ist eine Serie das falsche Werkzeug. Nimm stattdessen eine Gewohnheit; den Unterschied erklären <a href="/de/habit-tracker">Gewohnheits-Widgets</a> und <a href="/de/support/streaks-vs-habits">Serien und Gewohnheiten</a>.</p>
+
+        <h2 id="free">Was kostenlos ist und was Left Premium braucht</h2>
+        <p>Left kannst du kostenlos laden, und die Widgets sind kostenlos. Der kostenlose Tarif erlaubt dir <strong>2 Serien</strong>, dazu 2 Gewohnheiten, 2 Countdowns und 2 Ziele. Das Limit zählt jede, die du erstellst, deshalb gibt das Löschen einer Serie den Platz nicht zurück.</p>
+        <p><strong>Left Premium</strong> hebt das Limit auf und ergänzt Extras wie die automatische Erfassung mit Apple Health und das Teilen von Serien mit Freunden, damit sie dich dranhalten. Die Preise siehst du in der App, bevor du kaufst.</p>
+        <p>Du brauchst die Zahl nur einmal? Der kostenlose <a href="/tools/days-since-date">Tage-seit-Datum-Rechner</a> läuft in deinem Browser, ebenso der <a href="/tools/hours-since-date">Stunden-seit-Rechner</a> und der <a href="/tools/sobriety-calculator">Abstinenzrechner</a>.</p>
+
+        <h2 id="faq">Fragen</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>Gibt es ein kostenloses Tage-seit-Widget fürs iPhone?</summary>
+            <div class="faq-answer"><p>Ja. Die Widgets von Left sind kostenlos, und der kostenlose Tarif erlaubt dir 2 Serien, die du darin anzeigen kannst. Das Löschen einer Serie macht keinen Platz frei. Für mehr Serien hebt Left Premium das Limit auf; die Preise siehst du in der App, bevor du kaufst.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Kann ich ab einem Datum in der Vergangenheit zählen?</summary>
+            <div class="faq-answer"><p>Ja. Stell „Begonnen am...“ auf ein beliebiges vergangenes Datum samt Uhrzeit, und das Widget zeigt sofort den vollen Stand. Zukünftige Daten sind bei Serien nicht erlaubt; nutze dafür einen Countdown unter „Kommende“.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Kann das Widget Wochen, Monate oder Jahre statt Tage zeigen?</summary>
+            <div class="faq-answer"><p>Ja. Halte das Serie-Widget gedrückt, tippe auf „Widget bearbeiten“ und wähle, ob die Serie in Stunden, Tagen, Wochen, Monaten oder Jahren angezeigt wird.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Kann ich einen Tage-seit-Zähler auf meinen Sperrbildschirm legen?</summary>
+            <div class="faq-answer"><p>Ja. Das Serie-Widget gibt es als rechteckige Version für den Sperrbildschirm. Halte den Sperrbildschirm gedrückt, tippe auf „Anpassen“, wähle „Sperrbildschirm“, tippe auf den Widget-Bereich und füge das Serie-Widget von Left hinzu.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Was passiert, wenn ich eine Serie zurücksetze?</summary>
+            <div class="faq-answer"><p>Tippe bei der Serie auf „Neustart“ und wähle, wann du neu gestartet hast. Der Zähler beginnt ab diesem Moment von vorn, und Left behält deinen Neustart-Verlauf, deine durchschnittliche und deine längste Serie.</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">Weiterlesen</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/de/habit-tracker">Widgets für Gewohnheitstracker und Serienzähler</a>
+          <a class="support-related-item" href="/de/countdown-widget">Countdown-Widget fürs iPhone</a>
+          <a class="support-related-item" href="/de/support/streaks-vs-habits">Serien und Gewohnheiten in Left</a>
+          <a class="support-related-item" href="/de/support/widget-iphone-lock-screen">So fügst du ein Left-Widget zu deinem Sperrbildschirm hinzu</a>
+          <a class="support-related-item" href="/de/blog/how-to-build-a-streak">So baust du eine Serie auf deinem iPhone auf</a>
+          <a class="support-related-item" href="/tools/days-since-date">Tage-seit-Datum-Rechner</a>
+          <a class="support-related-item" href="/tools/habit-streak-calculator">Serienrechner für Gewohnheiten</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left laden</span>
+          <h2>Sieh zu, wie sich die Tage summieren.</h2>
+          <p>Lade Left, leg eine Serie ab einem beliebigen Datum an und behalte den Stand auf deinem Home-Bildschirm oder Sperrbildschirm.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Das Tage-seit-Widget im App Store laden">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Das Tage-seit-Widget holen
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
