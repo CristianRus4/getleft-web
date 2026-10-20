@@ -393,19 +393,19 @@
       const val = tsIn.value.trim();
       if (!val) { tsResult.textContent = ''; return; }
       let n = parseInt(val);
-      if (isNaN(n)) { tsResult.textContent = 'Invalid timestamp.'; return; }
+      if (isNaN(n)) { tsResult.textContent = toolT('result.invalidTimestamp'); return; }
       // Auto-detect milliseconds (13+ digits)
       if (Math.abs(n) > 1e12) n = Math.floor(n / 1000);
       const d = new Date(n * 1000);
-      tsResult.innerHTML = `<strong>${formatDateTime(d)}</strong> (local) &nbsp;·&nbsp; ${d.toUTCString()}`;
+      tsResult.innerHTML = `<strong>${formatDateTime(d)}</strong> (${toolEscape(toolT('result.local'))}) &nbsp;·&nbsp; ${d.toUTCString()}`;
     }
 
     function renderDt() {
       if (!dtIn.value) { dtResult.textContent = ''; return; }
       const d = new Date(dtIn.value);
-      if (isNaN(d)) { dtResult.textContent = 'Invalid date.'; return; }
+      if (isNaN(d)) { dtResult.textContent = toolT('result.invalidDate'); return; }
       const ts = Math.floor(d.getTime() / 1000);
-      dtResult.innerHTML = `<strong>${ts.toLocaleString()}</strong> seconds &nbsp;·&nbsp; ${(ts * 1000).toLocaleString()} ms`;
+      dtResult.innerHTML = `<strong>${ts.toLocaleString()}</strong> ${toolEscape(toolPlural('unit.seconds', ts))} &nbsp;·&nbsp; ${(ts * 1000).toLocaleString()} ms`;
     }
 
     tsIn.addEventListener('input', renderTs);

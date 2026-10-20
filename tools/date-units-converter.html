@@ -441,13 +441,13 @@
     const fromEl = document.getElementById('duc-from');
     const toEl = document.getElementById('duc-to');
     const result = document.getElementById('duc-result');
-    fromEl.innerHTML = labels.map(u => '<option value="' + u + '">' + u + '</option>').join('');
-    toEl.innerHTML = labels.map(u => '<option value="' + u + '"' + (u === 'weeks' ? ' selected' : '') + '>' + u + '</option>').join('');
+    fromEl.innerHTML = labels.map(u => '<option value="' + u + '">' + toolEscape(toolPlural('unit.' + u, 2)) + '</option>').join('');
+    toEl.innerHTML = labels.map(u => '<option value="' + u + '"' + (u === 'weeks' ? ' selected' : '') + '>' + toolEscape(toolPlural('unit.' + u, 2)) + '</option>').join('');
     function render() {
       const amount = parseFloat(amountEl.value) || 0;
       const days = amount * units[fromEl.value];
       const converted = days / units[toEl.value];
-      result.innerHTML = '<div class="tool-result-big">' + converted.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' <span class="tool-result-unit">' + toEl.value + '</span></div><p class="tool-result-sub">' + amount + ' ' + fromEl.value + ' equals about ' + converted.toFixed(4) + ' ' + toEl.value + '</p>';
+      result.innerHTML = '<div class="tool-result-big">' + converted.toLocaleString(undefined, { maximumFractionDigits: 4 }) + ' <span class="tool-result-unit">' + toolEscape(toolPlural('unit.' + toEl.value, converted)) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.unitEquals', { amount: amount, from: toolPlural('unit.' + fromEl.value, amount), value: converted.toFixed(4), to: toolPlural('unit.' + toEl.value, converted) })) + '</p>';
     }
     [amountEl, fromEl, toEl].forEach(el => el.addEventListener('change', render)); render();
   </script>

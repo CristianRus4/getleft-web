@@ -388,13 +388,13 @@
       const weeksUntilDue = Math.floor(daysUntilDue / 7);
 
       let trimester = '';
-      if (daysPregnant <= 84) trimester = 'First trimester';
-      else if (daysPregnant <= 182) trimester = 'Second trimester';
-      else trimester = 'Third trimester';
-      trimEl.textContent = trimester + (daysPregnant < 280 ? ` · Week ${weeksPregnant + 1}, Day ${daysMod + 1}` : '');
+      if (daysPregnant <= 84) trimester = toolT('result.pregFirst');
+      else if (daysPregnant <= 182) trimester = toolT('result.pregSecond');
+      else trimester = toolT('result.pregThird');
+      trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { week: weeksPregnant + 1, day: daysMod + 1 }) : '');
 
       if (daysUntilDue <= 0) {
-        result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">Due date was ${formatDateShort(due)} - congratulations!</div>`;
+        result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">${toolEscape(toolT('result.dueWas', { date: formatDateShort(due) }))}</div>`;
         return;
       }
 

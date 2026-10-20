@@ -423,7 +423,7 @@
     function renderBedtimes() {
       const wakeMins = timeToMins(wakeTimeEl.value);
       const cycles = [6, 5, 4, 3];
-      const labels = ['9 hrs (6 cycles)', '7.5 hrs (5 cycles, recommended)', '6 hrs (4 cycles)', '4.5 hrs (3 cycles)'];
+      const labels = [toolT('sleep.bed9'), toolT('sleep.bed75'), toolT('sleep.bed6'), toolT('sleep.bed45')];
       bedtimesEl.innerHTML = cycles.map((c, i) => {
         const bedMin = wakeMins - LATENCY - c * CYCLE;
         return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
@@ -435,7 +435,7 @@
     function renderWaketimes() {
       const bedMins = timeToMins(bedTimeEl.value) + LATENCY;
       const cycles = [3, 4, 5, 6];
-      const labels = ['4.5 hrs', '6 hrs', '7.5 hrs (recommended)', '9 hrs'];
+      const labels = [toolT('sleep.wake45'), toolT('sleep.wake6'), toolT('sleep.wake75'), toolT('sleep.wake9')];
       waketimesEl.innerHTML = cycles.map((c, i) => {
         const wakeMin = bedMins + c * CYCLE;
         return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">

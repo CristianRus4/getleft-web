@@ -289,3 +289,9 @@ Changed value (existing translations stale): `support_articles.account_and_sync.
 New keys (free-plan lines): `support_articles.aims_in_left.p_free`, `support_articles.streaks_vs_habits.p_free`, `support_articles.organise_ahead_since.p_free`.
 
 New tool runtime keys in `i18n/tools-runtime/en.json` (also mirrored in `tools/tools.js`): `result.hoursAndMinutes`, `result.minutesExtra`, `result.readingDetail`, `result.workdaysAt`, `result.minutesSince`, `result.schoolDays`, `result.weekdaysMinusBreaks`, `result.businessAfter`, `result.businessBefore`, `result.futureTime`.
+
+## English copy changed in `i18n/locales/en.json` (content audit fixes, batch 4)
+
+New keys: `support.support.summary_android`, `support.support.p_android` (FAQ "Is there an Android app for Left?", links `/android`).
+
+New tool runtime keys in `i18n/tools-runtime/en.json` (mirrored in `tools/tools.js`): `unit.years` (plural), `result.unitEquals`, `result.invalidTimestamp`, `result.invalidDate`, `result.local`, `result.pregFirst`, `result.pregSecond`, `result.pregThird`, `result.pregWeekDay`, `result.dueWas`, `result.yearDays`, `result.easterDates`, and the group `sleep.bed9`, `sleep.bed75`, `sleep.bed6`, `sleep.bed45`, `sleep.wake45`, `sleep.wake6`, `sleep.wake75`, `sleep.wake9`.

@@ -280,6 +280,17 @@ const LEFT_TOOL_STRINGS_EN = {
     businessAfter: '{count} business days after {date}',
     businessBefore: '{count} business days before {date}',
     futureTime: 'That time is in the future.',
+    unitEquals: '{amount} {from} equals about {value} {to}',
+    invalidTimestamp: 'Invalid timestamp.',
+    invalidDate: 'Invalid date.',
+    local: 'local',
+    pregFirst: 'First trimester',
+    pregSecond: 'Second trimester',
+    pregThird: 'Third trimester',
+    pregWeekDay: 'Week {week}, Day {day}',
+    dueWas: 'Due date was {date} - congratulations!',
+    yearDays: 'Year {year} - {days} days total',
+    easterDates: 'Western - {western}; Orthodox - {orthodox}',
   },
   stat: {
     days: 'days',
@@ -317,6 +328,7 @@ const LEFT_TOOL_STRINGS_EN = {
     hours: { one: 'hour', other: 'hours' },
     minutes: { one: 'minute', other: 'minutes' },
     seconds: { one: 'second', other: 'seconds' },
+    years: { one: 'year', other: 'years' },
   },
   next: {
     christmas: 'Next Christmas: {date}',
@@ -336,6 +348,16 @@ const LEFT_TOOL_STRINGS_EN = {
     anniversary: 'Next anniversary: {date}',
     saturday: 'Next Saturday: {date}',
     birthdayAway: { one: 'Next birthday: {date} ({count} day away)', other: 'Next birthday: {date} ({count} days away)' },
+  },
+  sleep: {
+    bed9: '9 hrs (6 cycles)',
+    bed75: '7.5 hrs (5 cycles, recommended)',
+    bed6: '6 hrs (4 cycles)',
+    bed45: '4.5 hrs (3 cycles)',
+    wake45: '4.5 hrs',
+    wake6: '6 hrs',
+    wake75: '7.5 hrs (recommended)',
+    wake9: '9 hrs',
   },
 };
 
