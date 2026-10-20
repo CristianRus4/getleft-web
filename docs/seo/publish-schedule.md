@@ -29,6 +29,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-05 | `blog/best-lock-screen-widget-apps-iphone.html` | English page | scheduled |
 | 2026-11-06 | `blog/widgy-alternatives.html` | English page | scheduled |
 | 2026-11-07 | `blog/best-relationship-counter-apps-iphone.html` | English page | scheduled |
+| 2026-11-08 | `blog/best-exam-countdown-apps-iphone.html` | English page | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
@@ -47,4 +48,4 @@ None.
 
 These wait until they get a date in `pages`.
 
-None.
+- `scheduled/blog/best-day-counter-apps-iphone.html`

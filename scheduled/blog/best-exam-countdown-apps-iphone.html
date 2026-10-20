@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Best Exam Countdown Apps for iPhone (2026): 7 Compared | Left</title>
+  <meta name="description" content="The best exam countdown apps for students on iPhone in 2026, compared on Lock Screen widgets, ads and price. Checked 20 October 2026." />
+  <link rel="canonical" href="https://getleft.app/blog/best-exam-countdown-apps-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/best-exam-countdown-apps-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/best-exam-countdown-apps-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Best Exam Countdown Apps for iPhone (2026): 7 Compared" />
+  <meta property="og:description" content="The best exam countdown apps for students on iPhone in 2026, compared on Lock Screen widgets, ads and price. Checked 20 October 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/best-exam-countdown-apps-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Exam Countdown Apps for iPhone (2026): 7 Compared" />
+  <meta name="twitter:description" content="The best exam countdown apps for students on iPhone in 2026, compared on Lock Screen widgets, ads and price. Checked 20 October 2026." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Exam Countdown Apps for iPhone in 2026: 7 Compared for Students",
+  "description": "The best exam countdown apps for students on iPhone in 2026, compared on Lock Screen widgets, ads and price. Checked 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-08",
+  "dateModified": "2026-11-08",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/best-exam-countdown-apps-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Best Exam Countdown Apps for iPhone in 2026: 7 Compared for Students",
+      "item": "https://getleft.app/blog/best-exam-countdown-apps-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best exam countdown app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Exam Countdown - School & Uni is the most-rated app built only for exams that we found, with unlimited free countdowns. Left suits you if you want your next exam on the Lock Screen with free widgets and a Live Activity on exam day. If you also need classes, homework and grades, a planner such as My Study Life or Power Planner fits better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I put an exam countdown on my iPhone Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use an app with Lock Screen widgets. In Left, add the exam in Ahead, then touch and hold the Lock Screen, tap Customize, tap Add Widgets and choose Left's Ahead widget. Countdown by Find Appiness offers Lock Screen widgets with its paid upgrade; Exam Countdown lists Lock Screen widgets, with the full widget collection in Premium; Pretty Progress and Power Planner list them too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there free exam countdown apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Exam Countdown and Countdown by Find Appiness let you add unlimited countdowns for free, with ads. Left's widgets are free with no ads, but the free plan includes 2 countdowns. School Assistant and Power Planner are free, ad-free planners that hold exam dates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I see a countdown to my exam in the Dynamic Island?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left's Get ready for the start and Get the final countdown show a Live Activity on the Lock Screen and in the Dynamic Island in the hours before an exam. Exam Countdown offers Live Activities with Premium, and Pretty Progress's App Store page lists Live Activities and Dynamic Island support."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days until my exam?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use our date countdown calculator to see the days, weeks and hours until any date, then add the exam to a countdown app so you don't have to check again."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Best Exam Countdown Apps for iPhone in 2026: 7 Compared for Students</h1>
+<p class="article-meta">Updated <time datetime="2026-11-08">November 8, 2026</time> · 9 min read</p>
+<p><em>Checked 20 October 2026.</em> Every competitor detail below comes from that app's US App Store page and Apple's public lookup data, fetched that day. Left details come from the app itself.</p>
+<p>An exam countdown keeps the date in front of you: how many days until the first paper, which exam comes next, how much of the term is left. Some apps do only that; others are full student planners where exams sit next to classes, homework and grades. Here are seven worth comparing on iPhone, and what each one is best at.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is why, and when another app suits you better.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best for your next exam on the Lock Screen, with free widgets and a Live Activity on the day:</strong> Left.</li>
+  <li><strong>Best dedicated exam countdown:</strong> Exam Countdown - School &amp; Uni.</li>
+  <li><strong>Best general countdown app with Apple Watch:</strong> Countdown by Find Appiness.</li>
+  <li><strong>Best for "how much of the term is left" widgets:</strong> Countdown - Pretty Progress.</li>
+  <li><strong>Best all-in-one student planner:</strong> My Study Life.</li>
+  <li><strong>Best free planner with no ads:</strong> School Assistant.</li>
+  <li><strong>Best for exams next to grades and GPA:</strong> Power Planner.</li>
+</ul>
+
+<h2>Comparison table</h2>
+<p>Ratings and counts are from the US App Store, checked 20 October 2026. "Not stated" means the listing doesn't mention it, not that the feature is missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>App</th><th>Type</th><th>Price model</th><th>Lock Screen widget</th><th>Ads in free version</th><th>Rating (US)</th></tr></thead>
+  <tbody>
+    <tr><td>Left</td><td>Countdowns and time awareness</td><td>Free, 2 countdowns; Left Premium unlimited</td><td>Yes (free)</td><td>No</td><td>Not shown (our app)</td></tr>
+    <tr><td>Exam Countdown - School &amp; Uni</td><td>Exam countdown</td><td>Free, unlimited exams; Premium yearly, 3 months or lifetime</td><td>Yes (full collection is Premium)</td><td>Yes</td><td>4.7 (1,662)</td></tr>
+    <tr><td>Countdown (Find Appiness)</td><td>General countdown</td><td>Free, unlimited events; widget unlock purchase</td><td>Yes (Premium)</td><td>Yes</td><td>4.8 (189,110)</td></tr>
+    <tr><td>Countdown - Pretty Progress</td><td>Progress widgets</td><td>Free, 4 custom widgets; Pro weekly to lifetime</td><td>Yes</td><td>Not stated</td><td>4.7 (3,109)</td></tr>
+    <tr><td>My Study Life</td><td>Student planner</td><td>Free; MyStudyLife+ subscriptions</td><td>Not stated</td><td>Yes</td><td>4.5 (6,233)</td></tr>
+    <tr><td>School Assistant</td><td>Student planner</td><td>Free, tip jar only</td><td>iPad only stated</td><td>No</td><td>4.8 (4,732)</td></tr>
+    <tr><td>Power Planner</td><td>Student planner</td><td>Free; one Premium (Lifetime) purchase</td><td>Yes</td><td>No</td><td>4.8 (1,731)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Left: your next exam where you'll see it</h2>
+<p>Left is a time awareness app for iPhone. Exams go in <strong>Ahead</strong>, its countdown list, next to habits in <strong>Since</strong> and the time left in the week, month and year in <strong>Time Left</strong>.</p>
+<ul>
+  <li><strong>Add an exam:</strong> tap <strong>Add a date ahead</strong>, type the subject or import it with <strong>From calendar</strong>, and set <strong>Starts</strong> to the exam's date and time. For a whole exam season, set <strong>Until</strong> to the last paper and Left shows how much of it is done.</li>
+  <li><strong>Count it your way:</strong> <strong>Show as...</strong> counts in hours, days, weeks, months or years; tap the preview card to add a symbol, a color and a photo.</li>
+  <li><strong>Reminders:</strong> 1 month, 2 weeks, 1 week, 2 days or 1 day before, at a time you choose.</li>
+  <li><strong>On exam day:</strong> <strong>Get ready for the start</strong> shows a live countdown on the Lock Screen and in the Dynamic Island in the 4 hours before the exam starts, and <strong>Get the final countdown</strong> does the same before <strong>Until</strong>.</li>
+  <li><strong>Widgets:</strong> the Ahead widget on the Home Screen and as a circular or rectangular Lock Screen widget, and the Time Ahead list for up to 3 exams (medium) or 7 (large). The Month and Week widgets show how much of the month or week is left.</li>
+  <li><strong>Revision habits:</strong> a habit such as "Revise for 30 minutes" with an interactive widget you tap to log, and its completion grid.</li>
+  <li><strong>Left Premium extras:</strong> unlimited countdowns and habits, and the Focus timer for study sessions with breaks.</li>
+</ul>
+<p><strong>Best for:</strong> a few big exams you want to see every time you pick up your phone, without ads.</p>
+<p><strong>Price:</strong> free to download, with no ads. The free plan includes 2 countdowns (plus 2 habits, 2 streaks and 2 Aims), counted over every item you've ever created, so deleting one doesn't free a slot. A full exam timetable needs Left Premium, a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> free Lock Screen and Home Screen countdown widgets; exam-day Live Activities; exams, revision habits and a progress bar for the whole exam season in one app.</p>
+<p><strong>Cons:</strong> only 2 free countdowns, so a full timetable needs Premium; a general countdown app, not made only for exams; no class timetable, homework or grades; iPhone only, with iOS 26 or later.</p>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-ahead-feature-3-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-ahead-feature-3-light.webp" alt="iPhone Lock Screen with a Left Live Activity counting down to a driver's test" width="560" height="1262" loading="lazy" decoding="async" /></picture><figcaption>A Left countdown to a test as a Live Activity on the Lock Screen.</figcaption></figure>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Count down to your exams</a></p>
+
+<h2>2. Exam Countdown - School &amp; Uni</h2>
+<p>By ROOT38 LIMITED. Its <a href="https://apps.apple.com/us/app/id873279955" target="_blank" rel="noopener">App Store page</a> offers "Unlimited exam countdowns, all in one place", counting in years down to seconds, color-coded exams, 400 icons, notes, notifications before every exam and sharing with friends and family. It lists Next Exam, Upcoming Exams and Lock Screen widgets. Premium adds "the full widget collection, including the second by second Live Countdown", Live Activities, a Calendar View, subject categories, exam results and sync; the listing doesn't say which widgets are free.</p>
+<p><strong>Best for:</strong> students who want an app built only for exams.</p>
+<p><strong>Price:</strong> free with ads. Premium is offered yearly, for 3 months or as a lifetime purchase, and is "Ad free".</p>
+<p><strong>Pros:</strong> made for exams, with unlimited countdowns free; Live Activities and a term calendar with Premium; iPhone, iPad and Apple silicon Macs; updated in September 2026.</p>
+<p><strong>Cons:</strong> the full widget collection, Live Activities and sync need Premium; ads in the free version; its privacy label lists identifiers and usage data used to track you.</p>
+
+<h2>3. Countdown by Find Appiness</h2>
+<p>By Find Appiness LLC. Its <a href="https://apps.apple.com/us/app/id1403367428" target="_blank" rel="noopener">App Store page</a> lets you "Create as many events as you'd like", with tags, notes, reminders 1 day or 1 week before, a working-days-only count, iCloud sync and an Apple Watch app. Lock Screen, StandBy and Home Screen widgets are each marked "Premium feature".</p>
+<p><strong>Best for:</strong> exams alongside every other countdown in your life, with your Watch.</p>
+<p><strong>Price:</strong> free with ads; widgets come with a Countdown Widget purchase.</p>
+<p><strong>Pros:</strong> 4.8 from 189,110 ratings; Apple Watch; iCloud sync; updated in October 2026.</p>
+<p><strong>Cons:</strong> not built for exams, so there are no subjects or exam fields in the listing; widgets need the paid unlock; its privacy label lists identifiers used to track you.</p>
+
+<h2>4. Countdown - Pretty Progress</h2>
+<p>By keinois OU. Its <a href="https://apps.apple.com/us/app/id1597616326" target="_blank" rel="noopener">App Store page</a> suggests uses such as "Countdown to that important exam" and "Percentage of the academic year left", with six templates for the Home Screen, Lock Screen, StandBy and Apple Watch complications, Calendar and Reminders import, and iCloud sync.</p>
+<p><strong>Best for:</strong> seeing the term or the run-up to an exam as a progress bar or percentage.</p>
+<p><strong>Price:</strong> "The free version of Pretty Progress includes four custom countdown widgets with two designs". Pro is offered weekly, monthly, yearly or as a lifetime purchase.</p>
+<p><strong>Pros:</strong> widgets for the Home Screen, Lock Screen, StandBy and Apple Watch; Live Activities and Dynamic Island support; progress-style designs; its privacy label lists no data linked to you.</p>
+<p><strong>Cons:</strong> a widget app rather than an exam planner, with no subjects or exam fields listed; Pro is needed for more than four custom widgets.</p>
+
+<h2>5. My Study Life</h2>
+<p>By My Study Life Ltd. Its <a href="https://apps.apple.com/us/app/id910639339" target="_blank" rel="noopener">App Store page</a> describes a school planner with an "EXAM TRACKER &amp; STUDY PLANNER" to "Plan ahead for exams with study schedules and reminders", plus class timetables, including rotating weeks, homework, grades and GPA, a focus timer, an AI study coach and Home Screen widgets for upcoming classes and deadlines.</p>
+<p><strong>Best for:</strong> students who want exams, classes and homework in one planner.</p>
+<p><strong>Price:</strong> "Free to download. Optional auto-renewing subscriptions unlock premium features", including family plans for parents. The listing doesn't say which features are paid.</p>
+<p><strong>Pros:</strong> classes, homework, grades and exams in one app; sync across devices; scan your timetable from a photo.</p>
+<p><strong>Cons:</strong> no countdown view or Lock Screen widget is described; ads in the free version; its privacy label lists location, user content and identifiers used to track you.</p>
+
+<h2>6. School Assistant</h2>
+<p>By Sun Apps, LLC. Its <a href="https://apps.apple.com/us/app/id1465687472" target="_blank" rel="noopener">App Store page</a> covers assignments and tests with due dates, reminders and subtasks, a class schedule with A/B weeks, Home Screen widgets showing how many assignments and tests are coming up, an Apple Watch app and iCloud sync. Its latest version can show due dates as a countdown. It says: "School Assistant is 100% free: no subscriptions, no paywalls, no premium features, and no ads!"</p>
+<p><strong>Best for:</strong> a free, private planner where tests are part of your schoolwork list.</p>
+<p><strong>Price:</strong> free, with an optional tip jar.</p>
+<p><strong>Pros:</strong> everything free with no ads; privacy label says Data Not Collected; Apple Watch, iPad and Mac.</p>
+<p><strong>Cons:</strong> tests are one kind of schoolwork rather than a dedicated exam list; due dates can show as a countdown in the app, but no countdown widget is described; Lock Screen widgets are mentioned only for iPad.</p>
+
+<h2>7. Power Planner</h2>
+<p>By BareBones Dev, LLC. Its <a href="https://apps.apple.com/us/app/id1278178608" target="_blank" rel="noopener">App Store page</a> lists "Assignments &amp; Exams" with automatic reminders, class schedules, a grade and GPA calculator, optional cross-platform sync and widgets for your "home or lock screen". It says it is "fully featured, ad-free, and 100% functional for free".</p>
+<p><strong>Best for:</strong> students who want exams next to their grades and GPA.</p>
+<p><strong>Price:</strong> free; a single Premium (Lifetime) purchase adds more than 5 grades per class and unlimited semesters.</p>
+<p><strong>Pros:</strong> ad-free; Lock Screen widgets; one lifetime upgrade instead of a subscription; updated in October 2026.</p>
+<p><strong>Cons:</strong> no exam countdown is described; the free version limits grades per class and semesters; its privacy label lists identifiers, usage data and diagnostics linked to you.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>Search first:</strong> we searched the US App Store for exam countdown, study planner and school planner apps on 20 October 2026 and read what ranks for "exam countdown app".</li>
+  <li><strong>Kept:</strong> apps updated in the last 12 months with at least a thousand ratings that either count down to exams or hold exam dates in a student planner. Left is included because we make it.</li>
+  <li><strong>Also considered:</strong> ROOT38's general Countdown: Event Countdown (the same developer as Exam Countdown, with Lock Screen and StandBy widgets in Premium), Smart Timetable (a class timetable; exam dates aren't mentioned), and two new exam apps, Exam Countdown &amp; Study Planner and examday, which had one rating each. myHomework, Egenda, iStudiez and Sigma Planner were left out because they haven't been updated in over a year.</li>
+  <li><strong>Sources:</strong> each app's own App Store page, including release notes, privacy labels and age-rating notes, and Apple's lookup data. No paid placements, and no developer reviewed this page.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>You want your next exam on the Lock Screen and a live countdown on the day: <strong>Left</strong>.</li>
+  <li>You want an app made only for exams: <strong>Exam Countdown</strong>.</li>
+  <li>You want exams next to all your other countdowns, on your Watch: <strong>Countdown by Find Appiness</strong>.</li>
+  <li>You want a progress bar for the term: <strong>Pretty Progress</strong>.</li>
+  <li>You want a full planner for classes, homework and exams: <strong>My Study Life</strong>.</li>
+  <li>You want a free planner with no ads: <strong>School Assistant</strong>.</li>
+  <li>You want exams with grades and GPA: <strong>Power Planner</strong>.</li>
+</ul>
+<p>To work out the days until an exam right now, try the <a href="/tools/date-countdown-calculator">date countdown calculator</a> or the <a href="/tools/semester-countdown-calculator">semester countdown calculator</a>. For study tips, see <a href="/blog/time-management-tips-students">time management tips for students</a> and <a href="/blog/adhd-students-study-tools-iphone">study tools for students with ADHD</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+<p>See more examples on the <a href="/countdown-widget">Left countdown widget page</a>.</p>
+
+<h2>Questions</h2>
+<h3>What is the best exam countdown app?</h3>
+<p>Exam Countdown - School & Uni is the most-rated app built only for exams that we found, with unlimited free countdowns. Left suits you if you want your next exam on the Lock Screen with free widgets and a Live Activity on exam day. If you also need classes, homework and grades, a planner such as My Study Life or Power Planner fits better.</p>
+<h3>How do I put an exam countdown on my iPhone Lock Screen?</h3>
+<p>Use an app with Lock Screen widgets. In Left, add the exam in Ahead, then touch and hold the Lock Screen, tap Customize, tap Add Widgets and choose Left's Ahead widget. Countdown by Find Appiness offers Lock Screen widgets with its paid upgrade; Exam Countdown lists Lock Screen widgets, with the full widget collection in Premium; Pretty Progress and Power Planner list them too.</p>
+<h3>Are there free exam countdown apps?</h3>
+<p>Yes. Exam Countdown and Countdown by Find Appiness let you add unlimited countdowns for free, with ads. Left's widgets are free with no ads, but the free plan includes 2 countdowns. School Assistant and Power Planner are free, ad-free planners that hold exam dates.</p>
+<h3>Can I see a countdown to my exam in the Dynamic Island?</h3>
+<p>Yes. Left's Get ready for the start and Get the final countdown show a Live Activity on the Lock Screen and in the Dynamic Island in the hours before an exam. Exam Countdown offers Live Activities with Premium, and Pretty Progress's App Store page lists Live Activities and Dynamic Island support.</p>
+<h3>How many days until my exam?</h3>
+<p>Use our <a href="/tools/date-countdown-calculator">date countdown calculator</a> to see the days, weeks and hours until any date, then add the exam to a countdown app so you don't have to check again.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
