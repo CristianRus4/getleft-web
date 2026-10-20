@@ -641,7 +641,6 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
         publisher: { '@type': 'Organization', name: 'Cntxt Labs' },
         inLanguage,
         offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-        aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.5', ratingCount: '226' },
       },
     };
   }

@@ -295,3 +295,9 @@ New tool runtime keys in `i18n/tools-runtime/en.json` (also mirrored in `tools/t
 New keys: `support.support.summary_android`, `support.support.p_android` (FAQ "Is there an Android app for Left?", links `/android`).
 
 New tool runtime keys in `i18n/tools-runtime/en.json` (mirrored in `tools/tools.js`): `unit.years` (plural), `result.unitEquals`, `result.invalidTimestamp`, `result.invalidDate`, `result.local`, `result.pregFirst`, `result.pregSecond`, `result.pregThird`, `result.pregWeekDay`, `result.dueWas`, `result.yearDays`, `result.easterDates`, and the group `sleep.bed9`, `sleep.bed75`, `sleep.bed6`, `sleep.bed45`, `sleep.wake45`, `sleep.wake6`, `sleep.wake75`, `sleep.wake9`.
+
+## English copy changed in `i18n/locales/en.json` (content audit fixes, batch 5)
+
+New keys on the home page (a "Widgets" section linking the six landing pages, plus an Android line): `index.widgets.eyebrow`, `index.widgets.h2`, `index.widgets.p`, `index.widgets.links.{countdown_widget,days_since,year_progress,life_calendar,habit_tracker,wallpaper}`, `index.widgets.android`.
+
+Also removed `aggregateRating` (4.5 from 226 ratings) from the home page MobileApplication JSON-LD in `scripts/build-i18n.mjs`: the rating was not shown on the page and the brief bans ratings. Restore it only if the numbers are current and visible.
