@@ -83,6 +83,7 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 
 | Release key | Language | Pages ready |
 |---|---|---|
+| `tools/hi` | हिन्दी | 17 |
 | `tools/zh-Hant` | 繁體中文 | 17 |
 
 ## Undated pages in `scheduled/`
