@@ -17,11 +17,11 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/tiimo-alternatives | Anna Shvets | https://www.pexels.com/photo/sticky-notes-with-to-do-list-on-the-white-wall-4586902/ |
 | blog/habitkit-alternatives | Ngo Ngoc Khai Huyen | https://unsplash.com/photos/a-bullet-book-with-a-planner-and-markers-tx-1GY0nERY |
 | blog/best-fasting-tracker-apps-iphone | Sasun Bughdaryan | https://unsplash.com/photos/alarm-clock-on-a-plate-with-cutlery-a1hU8-woqFA |
-| blog/habitify-alternatives | Patrick Perkins | https://unsplash.com/photos/colorful-sticky-notes-pinned-to-board-ETRPjvb0KM0 |
-| blog/best-sobriety-counter-apps-iphone | Neil Thomas | https://unsplash.com/photos/mountain-near-body-of-water-during-daytime-dGyshquBzOc |
-| blog/countdown-star-alternatives | Tyler Clemmensen | https://unsplash.com/photos/DQ_KYf1LF6E |
-| blog/best-streak-counter-apps-iphone | Jeremy Thomas | https://unsplash.com/photos/stack-rock-on-seashore-FO7bKvgETgQ |
-| blog/best-lock-screen-widget-apps-iphone | Aimee Giles | https://unsplash.com/photos/steaming-mug-on-wooden-table-u1QfqxhsrXQ |
+| blog/habitify-alternatives | Solen Feyissa | https://unsplash.com/photos/person-wearing-silver-aluminum-case-apple-watch-with-white-sport-band-15v6smjHVHQ |
+| blog/best-sobriety-counter-apps-iphone | Polina Kuzovkova | https://unsplash.com/photos/mug-of-coffee-on-rumpled-white-bedding-EB9YW7VUZW8 |
+| blog/countdown-star-alternatives | Arnel Hasanovic | https://unsplash.com/photos/clothing-items-and-pair-of-shoes-in-luggage-Nl-SXO4FAHw |
+| blog/best-streak-counter-apps-iphone | Huckster | https://unsplash.com/photos/two-men-running-at-park-V62UrdknDCA |
+| blog/best-lock-screen-widget-apps-iphone | sarah b | https://unsplash.com/photos/a-hand-holding-a-smartphone-6AR-O4LDJCI |
 | blog/widgy-alternatives | Dmytro Yarish | https://unsplash.com/photos/colorful-geometric-cube-pattern-in-yellow-blue-and-teal-pw8SuaO9NUo |
 | blog/best-relationship-counter-apps-iphone | engin akyurt | https://unsplash.com/photos/two-cups-of-coffee-on-a-white-table-t16HUOz9fjI |
 | blog/best-exam-countdown-apps-iphone | Debby Hudson | https://unsplash.com/photos/pile-of-books-beside-white-printer-paper-and-black-ballpoint-pen-asviIGR3CPE |
