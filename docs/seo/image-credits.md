@@ -1,22 +1,22 @@
 # Image credits
 
-Hero photos on the scheduled pages come from Unsplash and are used under the [Unsplash License](https://unsplash.com/license) (free photos only, never Unsplash+). Each photo is downloaded from images.unsplash.com as a 1200 px wide webp into `images/blog/<slug>-hero.webp`. Each page shows a "Photo: <name> on Unsplash" credit linked to the photo page.
+Hero photos on the scheduled pages come from Unsplash (used under the [Unsplash License](https://unsplash.com/license), free photos only, never Unsplash+) or Pexels (used under the [Pexels License](https://www.pexels.com/license/)). Each photo is saved as a 1200 × 675 webp in `images/blog/<slug>-hero.webp`. Each page shows a "Photo: <name> on Unsplash" or "Photo: <name> on Pexels" credit linked to the photo page.
 
 App icons on the best-of and alternatives pages are the official App Store icons from Apple's lookup API (`artworkUrl512`, fetched at 128 px), saved in `images/apps/` and shown unmodified except for CSS rounded corners.
 
-| Page | Photographer | Unsplash photo |
+| Page | Photographer | Photo page |
 |---|---|---|
 | blog/best-days-since-apps-iphone | Adam Tinworth | https://unsplash.com/photos/2018-december-calendar-with-crossout-marks-OJWivczp3aY |
 | blog/widgetsmith-alternatives | Mihael Stojčević | https://unsplash.com/photos/a-person-holding-a-cell-phone-in-their-hand-t8SwiCU_JXE |
 | blog/best-life-calendar-apps-iphone | Seljan Salim | https://unsplash.com/photos/family-walking-on-path-with-trees-at-sunset-El0yVRiFbxs |
 | blog/best-countdown-wallpaper-apps-iphone | Oliur | https://unsplash.com/photos/person-holding-space-gray-iphone-x-_8S9nEmCZK0 |
-| blog/best-year-progress-apps-iphone | Ngo Ngoc Khai Huyen | https://unsplash.com/photos/a-bullet-book-with-a-planner-and-markers-tx-1GY0nERY |
+| blog/best-year-progress-apps-iphone | Alexas Fotos | https://www.pexels.com/photo/a-white-wooden-perpetual-calendar-10667530/ |
 | blog/streaks-app-alternatives | Jakub Żerdzicki | https://unsplash.com/photos/hand-checking-off-items-on-a-to-do-list-fXlL5I0IvK0 |
-| blog/best-birthday-countdown-apps-iphone | Duncan Kidd | https://unsplash.com/photos/chocolate-birthday-cake-with-lit-candles-qSPxjNn7Uy8 |
-| blog/structured-app-alternatives | 2H Media | https://unsplash.com/photos/cdDDWLezAJ0 |
-| blog/tiimo-alternatives | Nathan Dumlao | https://unsplash.com/photos/clear-hour-glass-5Hl5reICevY |
-| blog/habitkit-alternatives | Prophsee Journals | https://unsplash.com/photos/an-open-notebook-sitting-on-top-of-a-wooden-table-mtKV-bjjaGk |
-| blog/best-fasting-tracker-apps-iphone | manu schwendener | https://unsplash.com/photos/clear-drinking-glass-filled-with-water-zFEY4DP4h6c |
+| blog/best-birthday-countdown-apps-iphone | Phil Hearing | https://unsplash.com/photos/lit-candles-on-chocolate-cake-cvBFYkbmQZY |
+| blog/structured-app-alternatives | RDNE Stock project | https://www.pexels.com/photo/person-writing-on-paper-calendar-6170652/ |
+| blog/tiimo-alternatives | Anna Shvets | https://www.pexels.com/photo/sticky-notes-with-to-do-list-on-the-white-wall-4586902/ |
+| blog/habitkit-alternatives | Ngo Ngoc Khai Huyen | https://unsplash.com/photos/a-bullet-book-with-a-planner-and-markers-tx-1GY0nERY |
+| blog/best-fasting-tracker-apps-iphone | Sasun Bughdaryan | https://unsplash.com/photos/alarm-clock-on-a-plate-with-cutlery-a1hU8-woqFA |
 | blog/habitify-alternatives | Patrick Perkins | https://unsplash.com/photos/colorful-sticky-notes-pinned-to-board-ETRPjvb0KM0 |
 | blog/best-sobriety-counter-apps-iphone | Neil Thomas | https://unsplash.com/photos/mountain-near-body-of-water-during-daytime-dGyshquBzOc |
 | blog/countdown-star-alternatives | Tyler Clemmensen | https://unsplash.com/photos/DQ_KYf1LF6E |
