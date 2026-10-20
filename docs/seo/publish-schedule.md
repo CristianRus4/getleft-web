@@ -46,4 +46,4 @@ None.
 
 These wait until they get a date in `pages`.
 
-- `scheduled/blog/widgy-alternatives.html`
+None.
