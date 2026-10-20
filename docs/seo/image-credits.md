@@ -30,3 +30,10 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/color-widgets-alternatives | Codioful (Formerly Gradienta) | https://unsplash.com/photos/diagonal-stripes-in-pastel-colors-7brhZmwXn08 |
 | blog/productive-app-alternatives | David Mao | https://unsplash.com/photos/green-ceramic-mug-on-wooden-desk-m0l5J8Lqnzo |
 | blog/way-of-life-alternatives | Patrick Fore | https://unsplash.com/photos/pathway-between-trees-74TufExdP3Y |
+| birthday-countdown-widget | phoebe lynch | https://unsplash.com/photos/a-slice-of-cake-with-a-lit-candle-and-raspberries-rqveXu8orCA |
+| relationship-counter | Amin Zabardast | https://unsplash.com/photos/two-white-cups-of-coffee-on-a-table-W8gsO9yfgug |
+| exam-countdown | Chris Vasquez | https://unsplash.com/photos/a-desk-with-a-plant-and-a-book-on-it-ib4VRerGeDA |
+| lock-screen-countdown | Shahraiz Tabassam | https://unsplash.com/photos/a-dimly-lit-bedside-lamp-illuminates-a-rumpled-white-duvet-e-CP5e8EgC4 |
+| time-left-today | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
+| month-progress-widget | Behnam Norouzi | https://unsplash.com/photos/june-calendar-2_l3lUpn4vE |
+| retirement-countdown | Mateo Krossler | https://unsplash.com/photos/pebble-beach-with-a-solitary-chair-and-clear-blue-ocean-mXGIQPLAIY0 |
