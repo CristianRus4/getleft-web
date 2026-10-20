@@ -85,6 +85,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 47 pages | Translation release | scheduled |
 | 2026-12-01 | `blog/ko`: blog in 한국어, 47 pages | Translation release | scheduled |
 | 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 47 pages | Translation release | scheduled |
+| 2026-12-03 | `blog/ru`: blog in Русский, 47 pages | Translation release | scheduled |
 
 ## Held translations
 
