@@ -27,11 +27,11 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/best-exam-countdown-apps-iphone | Vitaly Gariev | https://unsplash.com/photos/woman-working-at-a-desk-with-a-laptop-and-notebook-Ad2TAPEhliE |
 | blog/best-day-counter-apps-iphone | Brooke Lark | https://unsplash.com/photos/person-holding-calendar-at-january-BRBjShcA8D4 |
 | blog/best-retirement-countdown-apps-iphone | Hector Reyes | https://unsplash.com/photos/older-couple-walking-down-road-GrSfB6-OPoY |
-| blog/color-widgets-alternatives | Codioful (Formerly Gradienta) | https://unsplash.com/photos/diagonal-stripes-in-pastel-colors-7brhZmwXn08 |
-| blog/productive-app-alternatives | David Mao | https://unsplash.com/photos/green-ceramic-mug-on-wooden-desk-m0l5J8Lqnzo |
-| blog/way-of-life-alternatives | Patrick Fore | https://unsplash.com/photos/pathway-between-trees-74TufExdP3Y |
-| birthday-countdown-widget | phoebe lynch | https://unsplash.com/photos/a-slice-of-cake-with-a-lit-candle-and-raspberries-rqveXu8orCA |
-| relationship-counter | Amin Zabardast | https://unsplash.com/photos/two-white-cups-of-coffee-on-a-table-W8gsO9yfgug |
+| blog/color-widgets-alternatives | Amanz | https://unsplash.com/photos/a-person-holding-a-cell-phone-in-their-hand-S-AG6X2T0IU |
+| blog/productive-app-alternatives | Andrea Stuart | https://unsplash.com/photos/yoga-mat-weights-and-a-towel-ready-for-a-workout-zBYG9kzN-8s |
+| blog/way-of-life-alternatives | Cathryn Lavery | https://unsplash.com/photos/person-writing-on-a-book-fMD_Cru6OTk |
+| birthday-countdown-widget | Jess Bailey | https://unsplash.com/photos/gift-wrapping-with-scissors-ribbon-and-paper-XEJ5OJHPkog |
+| relationship-counter | Hanna Lazar | https://unsplash.com/photos/couple-dancing-in-a-kitchen-doorway-1Nm3DpE8g-o |
 | exam-countdown | Chris Vasquez | https://unsplash.com/photos/a-desk-with-a-plant-and-a-book-on-it-ib4VRerGeDA |
 | lock-screen-countdown | Shahraiz Tabassam | https://unsplash.com/photos/a-dimly-lit-bedside-lamp-illuminates-a-rumpled-white-duvet-e-CP5e8EgC4 |
 | time-left-today | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
