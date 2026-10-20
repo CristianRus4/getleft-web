@@ -7,11 +7,11 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | Page | Photographer | Photo page |
 |---|---|---|
 | blog/best-days-since-apps-iphone | Adam Tinworth | https://unsplash.com/photos/2018-december-calendar-with-crossout-marks-OJWivczp3aY |
-| blog/widgetsmith-alternatives | Mihael Stojčević | https://unsplash.com/photos/a-person-holding-a-cell-phone-in-their-hand-t8SwiCU_JXE |
-| blog/best-life-calendar-apps-iphone | Seljan Salim | https://unsplash.com/photos/family-walking-on-path-with-trees-at-sunset-El0yVRiFbxs |
-| blog/best-countdown-wallpaper-apps-iphone | Oliur | https://unsplash.com/photos/person-holding-space-gray-iphone-x-_8S9nEmCZK0 |
-| blog/best-year-progress-apps-iphone | Alexas Fotos | https://www.pexels.com/photo/a-white-wooden-perpetual-calendar-10667530/ |
-| blog/streaks-app-alternatives | Jakub Żerdzicki | https://unsplash.com/photos/hand-checking-off-items-on-a-to-do-list-fXlL5I0IvK0 |
+| blog/widgetsmith-alternatives | Andy Brown | https://unsplash.com/photos/a-circle-of-color-swatches-on-a-white-surface-9bC6YPVk0Ts |
+| blog/best-life-calendar-apps-iphone | Ngo Ngoc Khai Huyen | https://unsplash.com/photos/a-bullet-book-with-a-planner-and-markers-tx-1GY0nERY |
+| blog/best-countdown-wallpaper-apps-iphone | Alan Jiang | https://unsplash.com/photos/a-calendar-displays-the-month-of-may-xTML755FSJ0 |
+| blog/best-year-progress-apps-iphone | NORTHFOLK | https://unsplash.com/photos/flat-lay-photography-of-book-and-teacup-b_Qt9f2egBM |
+| blog/streaks-app-alternatives | Ivan Lopatin | https://unsplash.com/photos/a-pair-of-white-sneakers-sitting-on-top-of-a-wooden-floor-hMUXfutBIQY |
 | blog/best-birthday-countdown-apps-iphone | Phil Hearing | https://unsplash.com/photos/lit-candles-on-chocolate-cake-cvBFYkbmQZY |
 | blog/structured-app-alternatives | RDNE Stock project | https://www.pexels.com/photo/person-writing-on-paper-calendar-6170652/ |
 | blog/tiimo-alternatives | Anna Shvets | https://www.pexels.com/photo/sticky-notes-with-to-do-list-on-the-white-wall-4586902/ |
