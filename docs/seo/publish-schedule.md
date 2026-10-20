@@ -64,8 +64,12 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-16 | `blog/nl`: blog in Nederlands, 47 pages | Translation release | scheduled |
 | 2026-11-17 | `blog/pl`: blog in Polski, 47 pages | Translation release | scheduled |
 | 2026-11-18 | `blog/pt`: blog in Português (Portugal), 47 pages | Translation release | scheduled |
+| 2026-11-19 | `pages/hi`: pages in हिन्दी, 9 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
+| 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
+| 2026-11-21 | `tools/zh-Hans`: tools in 简体中文, 18 pages | Translation release | scheduled |
+| 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 47 pages | Translation release | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
 | 2026-11-24 | `time-left-today.html` | English page | scheduled |
@@ -76,11 +80,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 Pages translated to at least 90% whose family/locale has no release date yet. They are not published.
 
-| Release key | Language | Pages ready |
-|---|---|---|
-| `pages/hi` | हिन्दी | 9 |
-| `tools/ko` | 한국어 | 18 |
-| `tools/zh-Hans` | 简体中文 | 18 |
+None.
 
 ## Undated pages in `scheduled/`
 
