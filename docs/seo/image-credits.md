@@ -12,3 +12,9 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/best-countdown-wallpaper-apps-iphone | Ahmet Yüksek | https://unsplash.com/photos/silhouetted-mountain-peaks-against-a-warm-sunset-sky-mybaeBtxOj8 |
 | blog/best-year-progress-apps-iphone | Anna Evans | https://unsplash.com/photos/planner-with-calendar-and-grid-notebooks-qYZDTv0iUDY |
 | blog/streaks-app-alternatives | Yaqing Wei | https://unsplash.com/photos/stepping-stones-cross-a-flowing-river-in-a-park-M-mhtyeDku4 |
+| blog/best-birthday-countdown-apps-iphone | Duncan Kidd | https://unsplash.com/photos/chocolate-birthday-cake-with-lit-candles-qSPxjNn7Uy8 |
+| blog/structured-app-alternatives | 2H Media | https://unsplash.com/photos/cdDDWLezAJ0 |
+| blog/tiimo-alternatives | Nathan Dumlao | https://unsplash.com/photos/clear-hour-glass-5Hl5reICevY |
+| blog/habitkit-alternatives | Prophsee Journals | https://unsplash.com/photos/an-open-notebook-sitting-on-top-of-a-wooden-table-mtKV-bjjaGk |
+| blog/best-fasting-tracker-apps-iphone | manu schwendener | https://unsplash.com/photos/clear-drinking-glass-filled-with-water-zFEY4DP4h6c |
+| blog/habitify-alternatives | Patrick Perkins | https://unsplash.com/photos/colorful-sticky-notes-pinned-to-board-ETRPjvb0KM0 |
