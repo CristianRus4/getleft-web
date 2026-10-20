@@ -71,6 +71,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-21 | `tools/zh-Hans`: tools in 简体中文, 18 pages | Translation release | scheduled |
 | 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 47 pages | Translation release | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
+| 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 47 pages | Translation release | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
 | 2026-11-24 | `time-left-today.html` | English page | scheduled |
 | 2026-11-25 | `month-progress-widget.html` | English page | scheduled |
