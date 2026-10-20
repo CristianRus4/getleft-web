@@ -8,8 +8,8 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-20 | `blog/de`: blog in Deutsch, 47 pages | Translation release | live |
 | 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 47 pages | Translation release | live |
 | 2026-10-20 | `blog/es`: blog in Español (España), 47 pages | Translation release | live |
-| 2026-10-20 | `pages/ja`: pages in 日本語, 8 pages | Translation release | live |
-| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 8 pages | Translation release | live |
+| 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
+| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 6 pages | Translation release | live |
 | 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | scheduled |
 | 2026-10-22 | `blog/widgetsmith-alternatives.html` | English page | scheduled |
@@ -49,9 +49,11 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 
 | Release key | Language | Pages ready |
 |---|---|---|
-| `pages/id` | Bahasa Indonesia | 8 |
-| `pages/ko` | 한국어 | 8 |
-| `pages/tr` | Türkçe | 8 |
+| `pages/id` | Bahasa Indonesia | 9 |
+| `pages/ko` | 한국어 | 9 |
+| `pages/ro` | Română | 9 |
+| `pages/ru` | Русский | 9 |
+| `pages/tr` | Türkçe | 9 |
 
 ## Undated pages in `scheduled/`
 
