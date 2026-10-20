@@ -94,7 +94,9 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 
 | Release key | Language | Pages ready |
 |---|---|---|
+| `tools/ro` | Română | 17 |
 | `tools/ru` | Русский | 17 |
+| `tools/tr` | Türkçe | 17 |
 
 ## Undated pages in `scheduled/`
 
