@@ -76,7 +76,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 Pages translated to at least 90% whose family/locale has no release date yet. They are not published.
 
-None.
+| Release key | Language | Pages ready |
+|---|---|---|
+| `pages/hi` | हिन्दी | 9 |
 
 ## Undated pages in `scheduled/`
 
