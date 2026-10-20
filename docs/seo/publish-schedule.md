@@ -54,6 +54,7 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 | `pages/ro` | Română | 9 |
 | `pages/ru` | Русский | 9 |
 | `pages/tr` | Türkçe | 9 |
+| `pages/zh-Hans` | 简体中文 | 9 |
 
 ## Undated pages in `scheduled/`
 
