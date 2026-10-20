@@ -80,14 +80,14 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-26 | `blog/hi`: blog in हिन्दी, 47 pages | Translation release | scheduled |
 | 2026-11-26 | `retirement-countdown.html` | English page | scheduled |
 | 2026-11-27 | `blog/tr`: blog in Türkçe, 47 pages | Translation release | scheduled |
+| 2026-11-28 | `tools/id`: tools in Bahasa Indonesia, 17 pages | Translation release | scheduled |
+| 2026-11-29 | `blog/ja`: blog in 日本語, 47 pages | Translation release | scheduled |
 
 ## Held translations
 
 Pages translated to at least 90% whose family/locale has no release date yet. They are not published.
 
-| Release key | Language | Pages ready |
-|---|---|---|
-| `tools/id` | Bahasa Indonesia | 17 |
+None.
 
 ## Undated pages in `scheduled/`
 
