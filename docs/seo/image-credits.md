@@ -22,11 +22,11 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/countdown-star-alternatives | Arnel Hasanovic | https://unsplash.com/photos/clothing-items-and-pair-of-shoes-in-luggage-Nl-SXO4FAHw |
 | blog/best-streak-counter-apps-iphone | Huckster | https://unsplash.com/photos/two-men-running-at-park-V62UrdknDCA |
 | blog/best-lock-screen-widget-apps-iphone | sarah b | https://unsplash.com/photos/a-hand-holding-a-smartphone-6AR-O4LDJCI |
-| blog/widgy-alternatives | Dmytro Yarish | https://unsplash.com/photos/colorful-geometric-cube-pattern-in-yellow-blue-and-teal-pw8SuaO9NUo |
-| blog/best-relationship-counter-apps-iphone | engin akyurt | https://unsplash.com/photos/two-cups-of-coffee-on-a-white-table-t16HUOz9fjI |
-| blog/best-exam-countdown-apps-iphone | Debby Hudson | https://unsplash.com/photos/pile-of-books-beside-white-printer-paper-and-black-ballpoint-pen-asviIGR3CPE |
-| blog/best-day-counter-apps-iphone | Claudio Schwarz | https://unsplash.com/photos/a-piece-of-concrete-with-a-line-drawn-on-it-I5CJeVUmVsg |
-| blog/best-retirement-countdown-apps-iphone | Aaron Burden | https://unsplash.com/photos/two-blue-beach-chairs-near-body-of-water-cEukkv42O40 |
+| blog/widgy-alternatives | Soliman Cifuentes | https://unsplash.com/photos/a-cell-phone-sitting-on-top-of-a-desk-next-to-a-keyboard-MTtEIs_QvZg |
+| blog/best-relationship-counter-apps-iphone | Toa Heftiba | https://unsplash.com/photos/man-and-woman-reading-book-on-bed-a4p6EY3me4s |
+| blog/best-exam-countdown-apps-iphone | Vitaly Gariev | https://unsplash.com/photos/woman-working-at-a-desk-with-a-laptop-and-notebook-Ad2TAPEhliE |
+| blog/best-day-counter-apps-iphone | Brooke Lark | https://unsplash.com/photos/person-holding-calendar-at-january-BRBjShcA8D4 |
+| blog/best-retirement-countdown-apps-iphone | Hector Reyes | https://unsplash.com/photos/older-couple-walking-down-road-GrSfB6-OPoY |
 | blog/color-widgets-alternatives | Codioful (Formerly Gradienta) | https://unsplash.com/photos/diagonal-stripes-in-pastel-colors-7brhZmwXn08 |
 | blog/productive-app-alternatives | David Mao | https://unsplash.com/photos/green-ceramic-mug-on-wooden-desk-m0l5J8Lqnzo |
 | blog/way-of-life-alternatives | Patrick Fore | https://unsplash.com/photos/pathway-between-trees-74TufExdP3Y |
