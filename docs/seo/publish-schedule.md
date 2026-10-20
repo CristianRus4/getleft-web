@@ -79,6 +79,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-25 | `tools/hi`: tools in हिन्दी, 17 pages | Translation release | scheduled |
 | 2026-11-26 | `blog/hi`: blog in हिन्दी, 47 pages | Translation release | scheduled |
 | 2026-11-26 | `retirement-countdown.html` | English page | scheduled |
+| 2026-11-27 | `blog/tr`: blog in Türkçe, 47 pages | Translation release | scheduled |
 
 ## Held translations
 
