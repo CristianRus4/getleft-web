@@ -6,8 +6,13 @@ name: Daily publish
 # Safe to run more than once a day: when nothing changed it commits nothing.
 
 on:
+  # GitHub runs scheduled workflows on a best-effort basis and sometimes drops a run (21 Oct 2026 never
+  # fired). The job is idempotent, so the later times are backups that commit nothing once the day is done.
   schedule:
-    - cron: "15 18 * * *" # 07:15 NZDT (06:15 NZST)
+    - cron: "17 18 * * *" # 07:17 NZDT (06:17 NZST)
+    - cron: "7 20 * * *" # 09:07 NZDT backup
+    - cron: "7 22 * * *" # 11:07 NZDT backup
+    - cron: "47 1 * * *" # 14:47 NZDT backup
   workflow_dispatch:
 
 permissions:
