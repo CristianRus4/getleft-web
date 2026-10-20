@@ -6,12 +6,12 @@ App icons on the best-of and alternatives pages are the official App Store icons
 
 | Page | Photographer | Unsplash photo |
 |---|---|---|
-| blog/best-days-since-apps-iphone | Waldemar Brandt | https://unsplash.com/photos/black-and-white-calendar-on-white-wall-W4i2FOIdyXk (cropped from the bottom to remove a printed email address) |
-| blog/widgetsmith-alternatives | Jess Bailey | https://unsplash.com/photos/flat-lay-of-a-desk-with-coffee-and-art-supplies-xHMmSxmKfIU |
-| blog/best-life-calendar-apps-iphone | Holden Baxter | https://unsplash.com/photos/empty-curved-road-oxQ0egaQMfU |
-| blog/best-countdown-wallpaper-apps-iphone | Ahmet Yüksek | https://unsplash.com/photos/silhouetted-mountain-peaks-against-a-warm-sunset-sky-mybaeBtxOj8 |
-| blog/best-year-progress-apps-iphone | Anna Evans | https://unsplash.com/photos/planner-with-calendar-and-grid-notebooks-qYZDTv0iUDY |
-| blog/streaks-app-alternatives | Yaqing Wei | https://unsplash.com/photos/stepping-stones-cross-a-flowing-river-in-a-park-M-mhtyeDku4 |
+| blog/best-days-since-apps-iphone | Adam Tinworth | https://unsplash.com/photos/2018-december-calendar-with-crossout-marks-OJWivczp3aY |
+| blog/widgetsmith-alternatives | Mihael Stojčević | https://unsplash.com/photos/a-person-holding-a-cell-phone-in-their-hand-t8SwiCU_JXE |
+| blog/best-life-calendar-apps-iphone | Seljan Salim | https://unsplash.com/photos/family-walking-on-path-with-trees-at-sunset-El0yVRiFbxs |
+| blog/best-countdown-wallpaper-apps-iphone | Oliur | https://unsplash.com/photos/person-holding-space-gray-iphone-x-_8S9nEmCZK0 |
+| blog/best-year-progress-apps-iphone | Ngo Ngoc Khai Huyen | https://unsplash.com/photos/a-bullet-book-with-a-planner-and-markers-tx-1GY0nERY |
+| blog/streaks-app-alternatives | Jakub Żerdzicki | https://unsplash.com/photos/hand-checking-off-items-on-a-to-do-list-fXlL5I0IvK0 |
 | blog/best-birthday-countdown-apps-iphone | Duncan Kidd | https://unsplash.com/photos/chocolate-birthday-cake-with-lit-candles-qSPxjNn7Uy8 |
 | blog/structured-app-alternatives | 2H Media | https://unsplash.com/photos/cdDDWLezAJ0 |
 | blog/tiimo-alternatives | Nathan Dumlao | https://unsplash.com/photos/clear-hour-glass-5Hl5reICevY |
