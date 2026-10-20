@@ -32,8 +32,8 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/way-of-life-alternatives | Cathryn Lavery | https://unsplash.com/photos/person-writing-on-a-book-fMD_Cru6OTk |
 | birthday-countdown-widget | Jess Bailey | https://unsplash.com/photos/gift-wrapping-with-scissors-ribbon-and-paper-XEJ5OJHPkog |
 | relationship-counter | Hanna Lazar | https://unsplash.com/photos/couple-dancing-in-a-kitchen-doorway-1Nm3DpE8g-o |
-| exam-countdown | Chris Vasquez | https://unsplash.com/photos/a-desk-with-a-plant-and-a-book-on-it-ib4VRerGeDA |
-| lock-screen-countdown | Shahraiz Tabassam | https://unsplash.com/photos/a-dimly-lit-bedside-lamp-illuminates-a-rumpled-white-duvet-e-CP5e8EgC4 |
-| time-left-today | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
-| month-progress-widget | Behnam Norouzi | https://unsplash.com/photos/june-calendar-2_l3lUpn4vE |
-| retirement-countdown | Mateo Krossler | https://unsplash.com/photos/pebble-beach-with-a-solitary-chair-and-clear-blue-ocean-mXGIQPLAIY0 |
+| exam-countdown | Kyle Gregory Devaras | https://unsplash.com/photos/woman-writing-on-book-6RTM8EsD1T8 |
+| lock-screen-countdown | Quinn Battick | https://unsplash.com/photos/graphical-user-interface-0t1CM2u7NBk |
+| time-left-today | Robert Bye | https://unsplash.com/photos/a-phone-pad-and-pen-sit-on-a-wooden-desk--PRUXZmu0EA |
+| month-progress-widget | Eric Rothermel | https://unsplash.com/photos/open-monthly-planner-on-wooden-desk-FoKO4DpXamQ |
+| retirement-countdown | James Hose Jr | https://unsplash.com/photos/man-and-woman-sitting-on-bench-in-front-of-beach-6D58t6uZT5M |
