@@ -8,9 +8,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-20 | `blog/de`: blog in Deutsch, 47 pages | Translation release | live |
 | 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 47 pages | Translation release | live |
 | 2026-10-20 | `blog/es`: blog in Español (España), 47 pages | Translation release | live |
-| 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
-| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
-| 2026-10-20 | `tools/ja`: tools in 日本語, 7 pages | Translation release | live |
+| 2026-10-20 | `pages/ja`: pages in 日本語, 8 pages | Translation release | live |
+| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 8 pages | Translation release | live |
+| 2026-10-20 | `tools/ja`: tools in 日本語, 6 pages | Translation release | live |
 | 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | scheduled |
 | 2026-10-22 | `blog/widgetsmith-alternatives.html` | English page | scheduled |
 | 2026-10-23 | `blog/best-life-calendar-apps-iphone.html` | English page | scheduled |

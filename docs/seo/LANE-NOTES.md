@@ -253,3 +253,31 @@ New keys (Premium notes and one tool):
 
 Removed from the HTML but still present as keys in `en.json` (safe to delete): `support_articles.set_up_your_lifespan.li_4`, `support_articles.set_up_your_lifespan.li_extra_4`, `support_articles.iphone_action_button_left.h2_5`, `support_articles.iphone_action_button_left.p_extra_14`, `support.support.widget_size_mac`.
 Not in `en.json` (hand-written English in the page, translated through the pages catalog): the `press.html` widget sentence.
+
+## English copy changed in `i18n/locales/en.json` (content audit fixes, batch 2)
+
+New English, so existing translations of these keys are stale. Titles of `contact.html` and `support.html` changed in the HTML as well; `press.html` and `web.html` titles and `tools/*` copy are not in `en.json`.
+
+Changed values:
+- `contact.meta.title`
+- `support.support.meta.title`
+- `index.blog.links.add_widgets`
+
+New keys ("See also" lines linking landing pages from support articles):
+- `support_articles.widget_iphone_home_screen.p_landing`
+- `support_articles.widget_iphone_lock_screen.p_landing`
+- `support_articles.widget_iphone_standby.p_landing`
+- `support_articles.edit_or_remove_widget_iphone.p_landing`
+- `support_articles.widget_transparent_iphone.p_landing`
+- `support_articles.streaks_vs_habits.p_landing`
+- `support_articles.aims_in_left.p_landing`
+- `support_articles.organise_ahead_since.p_landing`
+- `support_articles.joint_ahead_dates.p_landing`
+- `support_articles.add_friends.p_landing`
+- `support_articles.accountability_with_friends.p_landing`
+- `support_articles.wallpaper_shortcut.p_landing`
+- `support_articles.set_up_your_lifespan.p_landing`
+- `support_articles.apple_health_automatic_tracking.p_landing`
+- `support_articles.left_shortcuts.p_landing`
+- `support_articles.focus_modes_with_left.p_landing`
+- `support_articles.choose_your_tools.p_landing`

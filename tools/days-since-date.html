@@ -393,7 +393,7 @@
           })();
           </script>
           <!-- i18n:switcher:end -->
-        </nav>
+</nav>
       </div>
     </div>
   </footer>
@@ -410,15 +410,15 @@
       const start = new Date(dateEl.value + 'T' + (timeEl.value || '00:00'));
       const now = new Date();
       const ms = now - start;
-      if (isNaN(start)) { result.innerHTML = '<p>Select a valid date.</p>'; return; }
-      if (ms < 0) { result.innerHTML = '<div class="tool-result-big">Not yet</div><p class="tool-result-sub">That date is in the future.</p>'; return; }
+      if (isNaN(start)) { result.innerHTML = '<p>' + toolEscape(toolT('result.selectDate')) + '</p>'; return; }
+      if (ms < 0) { result.innerHTML = '<div class="tool-result-big">' + toolEscape(toolT('result.notYet')) + '</div><p class="tool-result-sub">' + toolEscape(toolT('result.futureDate')) + '</p>'; return; }
       const b = breakdown(ms);
       result.innerHTML = '<div class="tool-stat-row">' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalDay) + '</div><div class="tool-stat-label">days since</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalWeek) + '</div><div class="tool-stat-label">weeks</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalMonth) + '</div><div class="tool-stat-label">months</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalHour) + '</div><div class="tool-stat-label">hours</div></div>' +
-      '</div><p class="tool-result-sub">Since ' + formatDateTime(start) + '</p>';
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalDay) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.daysSince')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalWeek) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.weeks')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalMonth) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.months')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(b.totalHour) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.hours')) + '</div></div>' +
+      '</div><p class="tool-result-sub">' + toolEscape(toolT('result.since', { date: formatDateTime(start) })) + '</p>';
     }
     dateEl.addEventListener('change', render); timeEl.addEventListener('change', render); tickEvery(60000, render);
   </script>

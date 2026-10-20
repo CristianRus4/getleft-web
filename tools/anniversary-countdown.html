@@ -3,40 +3,6 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<!-- i18n:auto-detect:start -->
-<script>
-(function () {
-  try {
-    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
-    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
-    var AVAILABLE = ["en","ja"];
-    var qp = new URLSearchParams(location.search).get('lang');
-    var override = qp;
-    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
-    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
-    if (override === 'en') return;
-    if (location.search.indexOf('nolang=1') >= 0) return;
-    function resolve(tag) {
-      if (!tag) return null;
-      var t = String(tag).toLowerCase();
-      if (ALIASES[t]) return ALIASES[t];
-      var base = t.split('-')[0];
-      return ALIASES[base] || null;
-    }
-    var pick = override ? resolve(override) : null;
-    if (!pick) {
-      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
-      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
-    }
-    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
-    var path = location.pathname.replace(/^\//, '');
-    window.__leftLangRedirect = true;
-    location.replace('/' + pick + '/' + path + location.search + location.hash);
-  } catch (e) { /* fail open */ }
-})();
-</script>
-<!-- i18n:auto-detect:end -->
-
 <!-- left:analytics:start -->
 <script>
 (function () {
@@ -136,7 +102,6 @@
   <!-- i18n:hreflang:start -->
   <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/anniversary-countdown" />
   <link rel="alternate" hreflang="en" href="https://getleft.app/tools/anniversary-countdown" />
-  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/anniversary-countdown" />
   <!-- i18n:hreflang:end -->
   <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
@@ -148,7 +113,6 @@
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getleft.app/tools/anniversary-countdown" />
   <meta property="og:locale" content="en_US" />
-  <meta property="og:locale:alternate" content="ja_JP" />
   <meta property="og:image" content="https://getleft.app/images/og-image.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
@@ -232,19 +196,104 @@
         <div class="tool-widget__field"><label for="ann-date">Original date</label><input type="date" id="ann-date" /></div>
       </div>
       <div class="tool-result" id="ann-result" aria-live="polite"></div>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Put this countdown on your Home Screen
+        </a>
+      </p>
     </div>
 
     <div class="tool-prose">
-      <h2>Find the next anniversary</h2>
-      <p>Enter the original date and the calculator finds the next yearly anniversary from today. It also shows which anniversary year is coming up.</p>
-
-      <h2>Useful anniversary types</h2>
-      <p>Use it for weddings, relationships, sobriety dates, launches, work anniversaries, birthdays, memorials, and personal milestones.</p>
-
-      <h2>Since and ahead together</h2>
-      <p>Anniversaries combine elapsed time and future countdowns. Left supports both patterns: Since for how long it has been, Ahead for the next anniversary.</p>
+      <h2>How the anniversary countdown works</h2>
+      <p>Enter the original date: the day you met, married, started a job or moved in. The tool finds the next time that month and day comes around, counts the days until it, and tells you which anniversary it will be. If this year’s date has already passed, it moves to next year. On the day itself the counter shows 0 days.</p>
+      <p>For an original date of February 29, the tool shows March 1 in years that are not leap years, because February 29 does not exist in them.</p>
+      <h2>Traditional anniversary themes</h2>
+      <p>If you want an idea for each milestone, these are the common traditional themes, though they vary by country:</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Year</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Traditional theme</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1st</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Paper</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">5th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Wood</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">10th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Tin or aluminum</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">15th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Crystal</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">20th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">China</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">25th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Silver</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">50th</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Gold</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Beyond weddings</h2>
+      <p>The same count works for any yearly date: a first date, a business founding day, a sobriety date, a pet’s adoption day. Pick the day, and the tool does the rest.</p>
+      <h2>Put it on your Home Screen, repeating every year</h2>
+      <ol>
+        <li>Install Left on your iPhone, open <strong>Ahead</strong> and tap <strong>Add a date ahead</strong>, then <strong>New date</strong>.</li>
+        <li>Name it and set <strong>Starts</strong> to the date of the next anniversary.</li>
+        <li>Set <strong>Repeat</strong> to <strong>Yearly</strong>, so the countdown comes back every year without being re-created.</li>
+        <li>Save, then add Left’s <strong>Ahead</strong> widget to your Home Screen or Lock Screen and pick the date in <strong>Edit Widget</strong>.</li>
+      </ol>
+      <p>The free plan includes 2 countdowns. To count the years and days since the date, use the <a href="/tools/days-since-date">days since a date</a> tool.</p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How many days until our anniversary?</summary>
+          <div class="faq-answer"><p>Enter the original date above. The counter shows the days until the next time that month and day occurs.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What if my anniversary is on February 29?</summary>
+          <div class="faq-answer"><p>In years that are not leap years, the tool shows March 1 for the next anniversary.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it show which anniversary it is?</summary>
+          <div class="faq-answer"><p>Yes. It shows the number of years between the original date and the next anniversary.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I make the countdown repeat every year on my iPhone?</summary>
+          <div class="faq-answer"><p>In Left, set the date’s Repeat option to Yearly. The free plan includes 2 countdowns.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many days until our anniversary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter the original date above. The counter shows the days until the next time that month and day occurs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my anniversary is on February 29?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In years that are not leap years, the tool shows March 1 for the next anniversary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show which anniversary it is?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It shows the number of years between the original date and the next anniversary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make the countdown repeat every year on my iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Left, set the date’s Repeat option to Yearly. The free plan includes 2 countdowns."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">
@@ -338,7 +387,7 @@
             if (!trigger || !menu || !label || !options.length) return;
             // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
             var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
-            var AVAILABLE = ["en","ja"];
+            var AVAILABLE = ["en"];
             var SUPPORTED = Object.keys(LOCALES);
             var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
             var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
@@ -384,7 +433,7 @@
           })();
           </script>
           <!-- i18n:switcher:end -->
-        </nav>
+</nav>
       </div>
     </div>
   </footer>
@@ -400,9 +449,9 @@
       const years = next.getFullYear() - original.getFullYear();
       const days = Math.ceil((next - now) / MS_DAY);
       result.innerHTML = '<div class="tool-stat-row">' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(days) + '</div><div class="tool-stat-label">days until</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + years + '</div><div class="tool-stat-label">year anniversary</div></div>' +
-      '</div><p class="tool-result-sub">Next anniversary: ' + formatDateLong(next) + '</p>';
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(days) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.daysUntil')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + years + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.yearAnniversary')) + '</div></div>' +
+      '</div><p class="tool-result-sub">' + toolEscape(toolT('next.anniversary', { date: formatDateLong(next) })) + '</p>';
     }
     dateEl.addEventListener('change', render); render();
   </script>

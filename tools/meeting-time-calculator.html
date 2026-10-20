@@ -216,7 +216,7 @@
         <a class="tool-related-item" href="/tools/time-between-two-times">Time between two times</a>
         <a class="tool-related-item" href="/tools/minutes-between-two-times">Minutes between times</a>
         <a class="tool-related-item" href="/tools/working-hours-calculator">Working hours calculator</a>
-        <a class="tool-related-item" href="/tools/countdown-timer">Countdown timer</a>
+        <a class="tool-related-item" href="/tools/reading-time-calculator">Reading time calculator</a>
       </div>
     </div>
 
@@ -349,7 +349,7 @@
           })();
           </script>
           <!-- i18n:switcher:end -->
-        </nav>
+</nav>
       </div>
     </div>
   </footer>
@@ -362,9 +362,9 @@
       const start = new Date(startEl.value); const end = new Date(endEl.value); const now = new Date(); const dur = Math.max(0, end - start); const elapsed = Math.max(0, Math.min(dur, now - start)); const left = Math.max(0, end - now);
       const bDur = breakdown(dur); const bLeft = breakdown(left);
       result.innerHTML = '<div class="tool-stat-row">' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + bDur.totalMin + '</div><div class="tool-stat-label">duration min</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + Math.floor(elapsed / MS_MIN) + '</div><div class="tool-stat-label">elapsed min</div></div>' +
-        '<div class="tool-stat"><div class="tool-stat-num">' + bLeft.totalMin + '</div><div class="tool-stat-label">minutes left</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + bDur.totalMin + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.durationMin')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + Math.floor(elapsed / MS_MIN) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.elapsedMin')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + bLeft.totalMin + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.minutesLeft')) + '</div></div>' +
       '</div>';
     }
     [startEl, endEl].forEach(el => el.addEventListener('change', render)); tickEvery(60000, render);

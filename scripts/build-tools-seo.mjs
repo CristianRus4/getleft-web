@@ -985,16 +985,16 @@ const relatedOverrides = {
   'hours-between-two-dates': ['hours-since-date', 'working-hours-calculator', 'meeting-time-calculator', 'minutes-between-two-times'],
   'business-days-calculator': ['business-days-from-date', 'working-hours-calculator', 'school-days-calculator', 'deadline-countdown-calculator'],
   'add-subtract-date-calculator': ['business-days-from-date', 'what-was-the-date', 'date-units-converter', 'date-countdown-calculator'],
-  'what-was-the-date': ['days-since-date', 'add-subtract-date-calculator', 'days-between-two-dates', 'anniversary-countdown'],
+  'what-was-the-date': ['days-since-date', 'add-subtract-date-calculator', 'days-between-two-dates', 'iso-week-number'],
   'age-calculator': ['retirement-countdown-calculator', 'life-expectancy-calculator', 'days-until-birthday', 'days-since-date'],
   'unix-timestamp-converter': ['unix-milliseconds-converter', 'time-zone-meeting-planner', 'hours-between-two-dates', 'date-countdown-calculator'],
   'sleep-calculator': ['countdown-timer', 'hours-between-two-dates', 'workday-countdown', 'time-until-weekend'],
   'time-until-weekend': ['workday-countdown', 'business-days-calculator', 'working-hours-calculator', 'time-left-in-year-calculator'],
   'time-left-in-year-calculator': ['quarter-countdown-calculator', 'fiscal-year-progress-calculator', 'percentage-year-calculator', 'days-until-new-year'],
   'percentage-year-calculator': ['fiscal-year-progress-calculator', 'quarter-countdown-calculator', 'time-left-in-year-calculator', 'life-expectancy-calculator'],
-  'weeks-until-date': ['semester-countdown-calculator', 'vacation-countdown', 'deadline-countdown-calculator', 'pregnancy-due-date-calculator'],
+  'weeks-until-date': ['semester-countdown-calculator', 'vacation-countdown', 'pregnancy-due-date-calculator', 'iso-week-number'],
   'life-expectancy-calculator': ['retirement-countdown-calculator', 'age-calculator', 'percentage-year-calculator', 'date-countdown-calculator'],
-  'fasting-countdown': ['hours-since-date', 'end-of-fasting-calculator', 'intermittent-fasting-duration-calculator', 'countdown-timer'],
+  'fasting-countdown': ['hours-since-date', 'end-of-fasting-calculator', 'intermittent-fasting-duration-calculator', 'sleep-calculator'],
   'end-of-fasting-calculator': ['fasting-countdown', 'hours-since-date', 'intermittent-fasting-duration-calculator', 'countdown-timer'],
 };
 
@@ -1242,7 +1242,7 @@ function itemListJsonLd() {
 function toolsIndexPage() {
   const indexTool = {
     slug: '',
-    title: 'Free Time Tools - Countdowns, Date Calculators & Time Left | Left',
+    title: 'Free Time Tools: Countdowns and Date Calculators | Left',
     h1: 'Free time tools',
     desc: 'Free online tools by Left for countdowns, date calculators, days since, workdays, school days, sleep, fasting, year progress, time zones, Unix timestamps, and more.',
   };
@@ -1439,12 +1439,19 @@ async function updateLlms() {
 async function main() {
   const toolsDir = path.join(ROOT, 'tools');
 
+  // A new tool is generated once. After that its page is edited by hand (copy,
+  // inline script, toolT() strings) and treated like an existing tool, so a
+  // rebuild only refreshes its head and related block.
+  const handMaintained = [];
   for (const tool of newTools) {
     const merged = toolBySlug.get(tool.slug);
-    await fs.writeFile(path.join(toolsDir, `${tool.slug}.html`), newToolPage(merged));
+    const file = path.join(toolsDir, `${tool.slug}.html`);
+    const exists = await fs.access(file).then(() => true, () => false);
+    if (exists) handMaintained.push(tool);
+    else await fs.writeFile(file, newToolPage(merged));
   }
 
-  for (const tool of existingTools) {
+  for (const tool of [...handMaintained, ...existingTools]) {
     const merged = toolBySlug.get(tool.slug);
     const file = path.join(toolsDir, `${tool.slug}.html`);
     let html = await fs.readFile(file, 'utf8');
@@ -1463,7 +1470,7 @@ async function main() {
   }
 
   await updateLlms();
-  console.log(`[tools-seo] wrote ${newTools.length} new tools, normalized ${existingTools.length} existing tools, updated support metadata and llms.txt`);
+  console.log(`[tools-seo] wrote ${newTools.length - handMaintained.length} new tools, normalized ${existingTools.length + handMaintained.length} existing tools, updated support metadata and llms.txt`);
 }
 
 main().catch(err => {
