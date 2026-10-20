@@ -87,16 +87,15 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 47 pages | Translation release | scheduled |
 | 2026-12-03 | `blog/ru`: blog in Русский, 47 pages | Translation release | scheduled |
 | 2026-12-04 | `blog/ro`: blog in Română, 47 pages | Translation release | scheduled |
+| 2026-12-05 | `tools/ru`: tools in Русский, 17 pages | Translation release | scheduled |
+| 2026-12-06 | `tools/tr`: tools in Türkçe, 17 pages | Translation release | scheduled |
+| 2026-12-07 | `tools/ro`: tools in Română, 17 pages | Translation release | scheduled |
 
 ## Held translations
 
 Pages translated to at least 90% whose family/locale has no release date yet. They are not published.
 
-| Release key | Language | Pages ready |
-|---|---|---|
-| `tools/ro` | Română | 17 |
-| `tools/ru` | Русский | 17 |
-| `tools/tr` | Türkçe | 17 |
+None.
 
 ## Undated pages in `scheduled/`
 
