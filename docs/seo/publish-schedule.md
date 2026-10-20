@@ -80,6 +80,7 @@ Pages translated to at least 90% whose family/locale has no release date yet. Th
 |---|---|---|
 | `pages/hi` | हिन्दी | 9 |
 | `tools/ko` | 한국어 | 18 |
+| `tools/zh-Hans` | 简体中文 | 18 |
 
 ## Undated pages in `scheduled/`
 
