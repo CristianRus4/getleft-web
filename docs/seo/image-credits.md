@@ -18,3 +18,9 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/habitkit-alternatives | Prophsee Journals | https://unsplash.com/photos/an-open-notebook-sitting-on-top-of-a-wooden-table-mtKV-bjjaGk |
 | blog/best-fasting-tracker-apps-iphone | manu schwendener | https://unsplash.com/photos/clear-drinking-glass-filled-with-water-zFEY4DP4h6c |
 | blog/habitify-alternatives | Patrick Perkins | https://unsplash.com/photos/colorful-sticky-notes-pinned-to-board-ETRPjvb0KM0 |
+| blog/best-sobriety-counter-apps-iphone | Neil Thomas | https://unsplash.com/photos/mountain-near-body-of-water-during-daytime-dGyshquBzOc |
+| blog/countdown-star-alternatives | Tyler Clemmensen | https://unsplash.com/photos/DQ_KYf1LF6E |
+| blog/best-streak-counter-apps-iphone | Jeremy Thomas | https://unsplash.com/photos/stack-rock-on-seashore-FO7bKvgETgQ |
+| blog/best-lock-screen-widget-apps-iphone | Aimee Giles | https://unsplash.com/photos/steaming-mug-on-wooden-table-u1QfqxhsrXQ |
+| blog/widgy-alternatives | Dmytro Yarish | https://unsplash.com/photos/colorful-geometric-cube-pattern-in-yellow-blue-and-teal-pw8SuaO9NUo |
+| blog/best-relationship-counter-apps-iphone | engin akyurt | https://unsplash.com/photos/two-cups-of-coffee-on-a-white-table-t16HUOz9fjI |
