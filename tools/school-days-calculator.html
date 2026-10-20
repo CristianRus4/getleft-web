@@ -447,7 +447,7 @@
       const weekdays = businessDaysBetween(a, b) + (b.getDay() !== 0 && b.getDay() !== 6 ? 1 : 0);
       const breaks = parseInt(breakEl.value, 10) || 0;
       const school = Math.max(0, weekdays - breaks);
-      result.innerHTML = '<div class="tool-result-big">' + fmtNum(school) + ' <span class="tool-result-unit">school days</span></div><p class="tool-result-sub">' + weekdays + ' weekdays minus ' + breaks + ' break days</p>';
+      result.innerHTML = '<div class="tool-result-big">' + fmtNum(school) + ' <span class="tool-result-unit">' + toolEscape(toolT('result.schoolDays')) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.weekdaysMinusBreaks', { weekdays: weekdays, breaks: breaks })) + '</p>';
     }
     [startEl, endEl, breakEl].forEach(el => el.addEventListener('change', render)); render();
   </script>

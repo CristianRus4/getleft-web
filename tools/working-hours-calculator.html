@@ -203,16 +203,93 @@
     </div>
 
     <div class="tool-prose">
-      <h2>Working hours vs calendar hours</h2>
-      <p>Calendar hours count every hour on the clock. Working hours count only the hours inside your workday schedule, usually Monday through Friday. That makes the result better for capacity planning, consulting estimates, and sprint planning.</p>
-
-      <h2>Breaks and schedules</h2>
-      <p>Set your workday start and end time, then subtract a daily break. The calculator multiplies that net workday by the number of weekdays in the range.</p>
-
-      <h2>Use it for deadlines</h2>
-      <p>A deadline that is 80 working hours away feels different from one that is 14 calendar days away. Convert the schedule into a real number, then track the final date in Left.</p>
+      <h2>How the working hours calculator works</h2>
+      <p>Enter a start date, an end date, your daily start and end times, and your daily break. The tool counts every Monday to Friday from the start date to the end date, including both dates, and multiplies that number of workdays by the hours in each day. The hours per day are the end time minus the start time minus the break. If the end date is before the start date, it swaps them.</p>
+      <p>It does not remove public holidays or leave days. Subtract those yourself: take the hours per day shown in the result and multiply by the days off.</p>
+      <h2>Examples</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Range</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Workdays</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Day</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Break</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Total</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Two weeks, Monday to Friday</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">10</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">9:00 to 17:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">30 minutes</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">75.0 hours</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Four weeks, Monday to Friday</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">20</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">8:00 to 16:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">None</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">160.0 hours</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">One week, Monday to Friday</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">5</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">9:00 to 17:30</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">60 minutes</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">37.5 hours</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Useful for</h2>
+      <ul>
+        <li><strong>Freelancers</strong> estimating the hours in a contract or invoice period.</li>
+        <li><strong>Managers</strong> planning capacity for a sprint or project.</li>
+        <li><strong>Employees</strong> checking the hours in a pay period.</li>
+      </ul>
+      <p>To count only the working days, use the <a href="/tools/business-days-calculator">business days calculator</a>. To convert minutes to decimal hours, divide by 60. For the time between two clock times, use <a href="/tools/time-between-two-times">time between two times</a>.</p>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Count down to the deadline in Left
+        </a>
+      </p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How are working hours calculated?</summary>
+          <div class="faq-answer"><p>Workdays between the two dates, counting Monday to Friday, times the hours per day after the break.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Are both the start and end dates counted?</summary>
+          <div class="faq-answer"><p>Yes, both are included when they fall on a weekday.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it exclude public holidays?</summary>
+          <div class="faq-answer"><p>No. Subtract holidays yourself by multiplying the hours per day by the number of days off.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can I include weekends?</summary>
+          <div class="faq-answer"><p>No. It counts Monday to Friday only.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How are working hours calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Workdays between the two dates, counting Monday to Friday, times the hours per day after the break."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are both the start and end dates counted?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, both are included when they fall on a weekday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it exclude public holidays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Subtract holidays yourself by multiplying the hours per day by the number of days off."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I include weekends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It counts Monday to Friday only."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">
@@ -374,7 +451,7 @@
       const cur = new Date(a);
       while (cur <= b) { const day = cur.getDay(); if (day !== 0 && day !== 6) days++; cur.setDate(cur.getDate() + 1); }
       const totalMin = days * perDay;
-      result.innerHTML = '<div class="tool-result-big">' + (totalMin / 60).toFixed(1) + ' <span class="tool-result-unit">hours</span></div><p class="tool-result-sub">' + days + ' workdays at ' + (perDay / 60).toFixed(2) + ' hours per day</p>';
+      result.innerHTML = '<div class="tool-result-big">' + (totalMin / 60).toFixed(1) + ' <span class="tool-result-unit">' + toolEscape(toolT('stat.hours')) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.workdaysAt', { days: days, hours: (perDay / 60).toFixed(2) })) + '</p>';
     }
     Object.values(els).forEach(el => el.addEventListener('change', render)); render();
   </script>

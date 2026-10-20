@@ -448,9 +448,9 @@
       const now = new Date();
       if (isNaN(start)) { result.innerHTML = ''; return; }
       const ms = now - start;
-      if (ms < 0) { result.innerHTML = '<div class="tool-result-big">0 <span class="tool-result-unit">hours</span></div><p class="tool-result-sub">That time is in the future.</p>'; return; }
+      if (ms < 0) { result.innerHTML = '<div class="tool-result-big">0 <span class="tool-result-unit">' + toolEscape(toolPlural('unit.hours', 0)) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.futureTime')) + '</p>'; return; }
       const b = breakdown(ms);
-      result.innerHTML = '<div class="tool-result-big">' + fmtNum(b.totalHour) + ' <span class="tool-result-unit">hours</span></div><p class="tool-result-sub">' + fmtNum(b.totalMin) + ' total minutes since ' + formatDateTime(start) + '</p>';
+      result.innerHTML = '<div class="tool-result-big">' + fmtNum(b.totalHour) + ' <span class="tool-result-unit">' + toolEscape(toolPlural('unit.hours', b.totalHour)) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.minutesSince', { minutes: fmtNum(b.totalMin), date: formatDateTime(start) })) + '</p>';
     }
     startEl.addEventListener('change', render); tickEvery(60000, render);
   </script>

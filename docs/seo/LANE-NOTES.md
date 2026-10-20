@@ -281,3 +281,11 @@ New keys ("See also" lines linking landing pages from support articles):
 - `support_articles.left_shortcuts.p_landing`
 - `support_articles.focus_modes_with_left.p_landing`
 - `support_articles.choose_your_tools.p_landing`
+
+## English copy changed in `i18n/locales/en.json` (content audit fixes, batch 3)
+
+Changed value (existing translations stale): `support_articles.account_and_sync.li_7`.
+
+New keys (free-plan lines): `support_articles.aims_in_left.p_free`, `support_articles.streaks_vs_habits.p_free`, `support_articles.organise_ahead_since.p_free`.
+
+New tool runtime keys in `i18n/tools-runtime/en.json` (also mirrored in `tools/tools.js`): `result.hoursAndMinutes`, `result.minutesExtra`, `result.readingDetail`, `result.workdaysAt`, `result.minutesSince`, `result.schoolDays`, `result.weekdaysMinusBreaks`, `result.businessAfter`, `result.businessBefore`, `result.futureTime`.

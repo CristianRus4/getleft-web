@@ -467,7 +467,7 @@
       const amount = parseInt(countEl.value, 10) || 0;
       const dir = opEl.value === 'subtract' ? -1 : 1;
       const target = addBiz(start, amount, dir);
-      result.innerHTML = '<div class="tool-result-big" style="font-size:clamp(32px,5vw,56px);">' + formatDateShort(target) + '</div><p class="tool-result-sub">' + amount + ' business days ' + (dir > 0 ? 'after' : 'before') + ' ' + formatDateShort(start) + '</p>';
+      result.innerHTML = '<div class="tool-result-big" style="font-size:clamp(32px,5vw,56px);">' + formatDateShort(target) + '</div><p class="tool-result-sub">' + toolEscape(toolT(dir > 0 ? 'result.businessAfter' : 'result.businessBefore', { count: amount, date: formatDateShort(start) })) + '</p>';
     }
     [startEl, countEl, opEl].forEach(el => el.addEventListener('change', render)); render();
   </script>

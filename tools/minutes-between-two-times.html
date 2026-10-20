@@ -214,16 +214,99 @@
     </div>
 
     <div class="tool-prose">
-      <h2>Why calculate minutes between times?</h2>
-      <p>Minutes are the cleanest unit for short durations: meetings, classes, workouts, commute windows, cooking timers, and billable blocks. This calculator turns two clock times into one exact minute count.</p>
-
-      <h2>Overnight time ranges</h2>
-      <p>If the end time is earlier than the start time, the auto setting treats it as an overnight range. For example, 10:00 PM to 2:00 AM becomes 240 minutes, not zero.</p>
-
-      <h2>From minutes to planning</h2>
-      <p>Once you have the duration, you can compare it with a deadline or use Left to keep the next important time visible on your Home Screen.</p>
+      <h2>How this calculator works</h2>
+      <p>Enter a start time and an end time. The tool converts each to minutes after midnight and subtracts. The range type controls what happens when the end time is earlier than the start time:</p>
+      <ul>
+        <li><strong>Auto-detect overnight</strong> assumes the end is on the next day, so 22:00 to 06:00 is 480 minutes.</li>
+        <li><strong>Same day only</strong> does not cross midnight, so an end before the start gives 0 minutes.</li>
+        <li><strong>Force overnight</strong> always adds a day, so 12:00 to 12:00 is 1,440 minutes.</li>
+      </ul>
+      <p>The calculator works with clock times only. It does not know about dates, so it ignores daylight saving changes. For real elapsed time across dates, use <a href="/tools/hours-between-two-dates">hours between two dates</a>.</p>
+      <h2>Examples</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Start</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">End</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Range type</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Result</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">09:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">17:30</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Auto-detect</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">510 minutes (8 hours 30 minutes)</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">13:15</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">14:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Auto-detect</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">45 minutes</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">06:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Auto-detect</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">480 minutes (8 hours)</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">06:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Same day only</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">0 minutes</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">12:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">12:00</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Force overnight</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1,440 minutes (24 hours)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Good for</h2>
+      <ul>
+        <li><strong>Timesheets and shifts</strong> where you need minutes. Divide by 60 for decimal hours: 510 minutes is 8.5 hours.</li>
+        <li><strong>Sleep and nap length</strong> across midnight. The <a href="/tools/sleep-calculator">sleep calculator</a> suggests bedtimes and wake times.</li>
+        <li><strong>Lessons, calls and classes</strong> where you only know the clock times.</li>
+      </ul>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Get the countdown widget
+        </a>
+      </p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How many minutes are there between two times?</summary>
+          <div class="faq-answer"><p>Enter both times above. The tool shows the total minutes and the same span in hours and minutes.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it handle overnight ranges?</summary>
+          <div class="faq-answer"><p>Yes. Auto-detect adds a day when the end is earlier than the start. You can also force or forbid it.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does it account for daylight saving time?</summary>
+          <div class="faq-answer"><p>No. It only uses clock times. Use hours between two dates for exact elapsed time across a clock change.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I convert the result to decimal hours?</summary>
+          <div class="faq-answer"><p>Divide the minutes by 60. For example, 450 minutes is 7.5 hours.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many minutes are there between two times?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter both times above. The tool shows the total minutes and the same span in hours and minutes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it handle overnight ranges?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Auto-detect adds a day when the end is earlier than the start. You can also force or forbid it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it account for daylight saving time?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It only uses clock times. Use hours between two dates for exact elapsed time across a clock change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert the result to decimal hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the minutes by 60. For example, 450 minutes is 7.5 hours."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">
@@ -383,7 +466,7 @@
       const diff = Math.max(0, end - start);
       const hours = Math.floor(diff / 60);
       const minutes = diff % 60;
-      result.innerHTML = '<div class="tool-result-big">' + fmtNum(diff) + ' <span class="tool-result-unit">minutes</span></div><p class="tool-result-sub">' + hours + ' hours and ' + minutes + ' minutes</p>';
+      result.innerHTML = '<div class="tool-result-big">' + fmtNum(diff) + ' <span class="tool-result-unit">' + toolEscape(toolPlural('unit.minutes', diff)) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.hoursAndMinutes', { hours: hours, minutes: minutes })) + '</p>';
     }
     [startEl, endEl, modeEl].forEach(el => el.addEventListener('change', render)); render();
   </script>

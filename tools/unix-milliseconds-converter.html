@@ -200,16 +200,88 @@
     </div>
 
     <div class="tool-prose">
-      <h2>Seconds vs milliseconds</h2>
-      <p>Unix time is often stored in seconds, but JavaScript and many APIs use milliseconds. A millisecond timestamp is 1,000 times larger than a Unix seconds timestamp.</p>
-
-      <h2>Developer-friendly conversion</h2>
-      <p>Use this tool when debugging API payloads, logs, analytics events, database records, or browser timestamps that store time as epoch milliseconds.</p>
-
-      <h2>Local display</h2>
-      <p>The converted date is shown in your local browser time zone. The millisecond number itself represents an absolute moment in time.</p>
+      <h2>What Unix milliseconds are</h2>
+      <p>A Unix timestamp in milliseconds is the number of milliseconds since January 1, 1970, 00:00:00 UTC, which is called the Unix epoch. It is what JavaScript’s <code>Date.now()</code> and many databases, APIs and logs return. Today’s values have 13 digits. A timestamp in seconds, which has 10 digits, is the same number divided by 1,000.</p>
+      <h2>How this converter works</h2>
+      <p>Type milliseconds to see the date and time, or pick a date and time to see the milliseconds. The date and time are shown in your device’s time zone, while the timestamp itself is always in UTC. The tool does not count leap seconds, which Unix time ignores.</p>
+      <h2>Reference points</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Milliseconds</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Date and time (UTC)</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">0</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">January 1, 1970, 00:00:00</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1,000,000,000,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">September 9, 2001, 01:46:40</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1,700,000,000,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">November 14, 2023, 22:13:20</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2,000,000,000,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">May 18, 2033, 03:33:20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Common mistakes</h2>
+      <ul>
+        <li><strong>Seconds vs milliseconds.</strong> A 10-digit number is seconds. Pasting it here gives a date in January 1970. Use the <a href="/tools/unix-timestamp-converter">Unix timestamp converter</a> for seconds, or multiply by 1,000.</li>
+        <li><strong>Time zones.</strong> The same timestamp shows different local times in different zones. Compare zones with the <a href="/tools/time-zone-meeting-planner">time zone meeting planner</a>.</li>
+        <li><strong>Counting days.</strong> One day is 86,400,000 milliseconds.</li>
+      </ul>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>What is a Unix timestamp in milliseconds?</summary>
+          <div class="faq-answer"><p>The number of milliseconds since January 1, 1970, 00:00:00 UTC.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I convert seconds to milliseconds?</summary>
+          <div class="faq-answer"><p>Multiply by 1,000. To go the other way, divide by 1,000.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why does my date show January 1970?</summary>
+          <div class="faq-answer"><p>The number is probably in seconds, not milliseconds. Multiply it by 1,000 first, or use the Unix timestamp converter.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is the result in UTC or my time zone?</summary>
+          <div class="faq-answer"><p>The timestamp is UTC. The date and time shown are in your device’s time zone.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a Unix timestamp in milliseconds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The number of milliseconds since January 1, 1970, 00:00:00 UTC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert seconds to milliseconds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Multiply by 1,000. To go the other way, divide by 1,000."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does my date show January 1970?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The number is probably in seconds, not milliseconds. Multiply it by 1,000 first, or use the Unix timestamp converter."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the result in UTC or my time zone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The timestamp is UTC. The date and time shown are in your device’s time zone."
+      }
+    }
+  ]
+}
+      </script>
     </div>
-
     <div class="tool-related">
       <h2>Related tools</h2>
       <div class="tool-related-items">
