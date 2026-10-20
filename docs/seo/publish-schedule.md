@@ -24,6 +24,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-31 | `blog/best-fasting-tracker-apps-iphone.html` | English page | scheduled |
 | 2026-11-01 | `blog/habitify-alternatives.html` | English page | scheduled |
 | 2026-11-02 | `blog/best-sobriety-counter-apps-iphone.html` | English page | scheduled |
+| 2026-11-03 | `blog/countdown-star-alternatives.html` | English page | scheduled |
 
 ## Held translations
 
