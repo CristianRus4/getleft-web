@@ -28,6 +28,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-04 | `blog/best-streak-counter-apps-iphone.html` | English page | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
+| 2026-11-22 | `exam-countdown.html` | English page | scheduled |
 
 ## Held translations
 
