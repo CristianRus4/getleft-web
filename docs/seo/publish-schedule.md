@@ -10,7 +10,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-20 | `blog/es`: blog in Español (España), 47 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
-| 2026-10-20 | `tools/ja`: tools in 日本語, 6 pages | Translation release | live |
+| 2026-10-20 | `tools/ja`: tools in 日本語, 18 pages | Translation release | live |
 | 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | scheduled |
 | 2026-10-21 | `pages/de`: pages in Deutsch, 9 pages | Translation release | scheduled |
 | 2026-10-22 | `blog/widgetsmith-alternatives.html` | English page | scheduled |

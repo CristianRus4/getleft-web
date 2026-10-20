@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="tool" />
+  <title>クリスマスまであと何日？ カウントダウン | Left</title>
+  <meta name="description" content="クリスマスまであと何日？ 12月25日までを日、時間、分、秒でリアルタイムに表示します。今後5年間のクリスマスの日付と曜日もわかります。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/ja/tools/christmas-countdown-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/christmas-countdown-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/christmas-countdown-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/christmas-countdown-widget" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="クリスマスまであと何日？ リアルタイムカウントダウン"  />
+  <meta property="og:description" content="クリスマスまであと何日？ 12月25日までを日、時間、分、秒でリアルタイムに表示します。今後5年間のクリスマスの日付と曜日もわかります。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ja/tools/christmas-countdown-widget" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="クリスマスまであと何日？ リアルタイムカウントダウン"  />
+  <meta name="twitter:description" content="クリスマスまであと何日？ 12月25日までを日、時間、分、秒でリアルタイムに表示します。今後5年間のクリスマスの日付と曜日もわかります。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "How Many Days Until Christmas? Live Countdown",
+  "url": "https://getleft.app/tools/christmas-countdown-widget",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "How many days until Christmas? A live countdown to December 25 in days, hours, minutes and seconds, plus Christmas dates for the next five years.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "ja"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Christmas countdown",
+      "item": "https://getleft.app/tools/christmas-countdown-widget"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>クリスマスまであと何日</h1>
+    <p class="tool-lede">クリスマスまであと何日？ 12月25日までの正確な時間を、好きな単位でリアルタイムに表示します。</p>
+
+    <div class="tool-widget">
+      <div id="xmas-date-display" style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;"></div>
+      <div class="tool-units" id="xmas-units" role="group" aria-label="表示単位">
+        <button class="is-active" data-unit="all">日・時間・分・秒</button>
+        <button data-unit="months">か月</button>
+        <button data-unit="weeks">週</button>
+        <button data-unit="days">日のみ</button>
+        <button data-unit="hours">時間</button>
+        <button data-unit="minutes">分</button>
+        <button data-unit="seconds">秒</button>
+      </div>
+      <div class="tool-result" id="xmas-result" aria-live="polite"></div>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          このカウントダウンをホーム画面に置く
+        </a>
+      </p>
+    </div>
+
+    <div class="tool-prose">
+      <h2>クリスマスカウントダウンのしくみ</h2>
+      <p>クリスマスは毎年必ず<strong>12月25日</strong>です。上のカウンターは、お使いの端末の時計とタイムゾーンで、その日の始まりである12月25日の0時まで数えます。そのため、シドニーにいる人はニューヨークにいる人より何時間も早くゼロになります。クリスマスが始まった瞬間にカウンターは来年のクリスマスに切り替わるので、このページには常に次のクリスマスが表示されます。</p>
+      <p>単位を切り替えると、同じ長さを違う見え方で確かめられます。年の初めは月や週、秋は日、クリスマスイブは時間や秒がしっくりきます。</p>
+      <h2>今後5年間のクリスマスの日付</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">年</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">日付</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">曜日</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2026</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2026年12月25日</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">金曜日</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2027</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2027年12月25日</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">土曜日</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2028</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2028年12月25日</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">月曜日</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2029</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2029年12月25日</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">火曜日</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2030</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2030年12月25日</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">水曜日</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>曜日によって祝日の扱いが変わり、ルールは国ごとに違います。米国では、土曜日にあたる連邦の祝日は前の金曜日に、日曜日にあたる祝日は翌月曜日に振り替えられます。英国では、クリスマスが週末なら次の平日が代休の祝日になります。旅行を予約する前に、勤務先や学校のカレンダーを確認してください。</p>
+      <h2>クリスマス準備のかんたんなスケジュール</h2>
+      <ul>
+        <li><strong>6〜8週間前：</strong>プレゼントの予算とリストを決め、遠出するなら旅行を予約します。</li>
+        <li><strong>3〜4週間前：</strong>海外から届く品物を注文し、郵便サービスが毎年発表する最終受付日を調べます。</li>
+        <li><strong>1〜2週間前：</strong>食事の計画を立て、カードを書き、届いたプレゼントから包みます。</li>
+        <li><strong>クリスマスイブ：</strong>生鮮食品を買い、最後の包装をして、このカウンターを時間表示に切り替えます。</li>
+      </ul>
+      <p>当日よりも配送の締め切りが大切なら、<a href="/ja/tools/date-countdown-calculator">どんな日付までもカウントダウン</a>ツールで別に管理しましょう。</p>
+      <h2>クリスマスのカウントダウンをホーム画面に</h2>
+      <ol>
+        <li>iPhoneにLeftをインストールして、<strong>これから</strong>を開きます。</li>
+        <li><strong>これからに日付を追加</strong>をタップして、<strong>クリスマス</strong>を検索します。用意された日付は12月25日に設定され、毎年繰り返し、1週間前にリマインダーが届きます。このリマインダーは変更できます。</li>
+        <li>保存したら、Leftの<strong>これから</strong>ウィジェットをホーム画面かロック画面に追加し、長押しして<strong>ウィジェットを編集</strong>をタップし、クリスマスを選びます。</li>
+      </ol>
+      <p>Leftのウィジェットは無料で、無料プランではカウントダウンを2つまで作れます。サイズ、ロック画面での表示、ライブアクティビティについては<a href="/ja/countdown-widget">カウントダウンウィジェット</a>のページをご覧ください。</p>
+      <h2>よくある質問</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>クリスマスまであと何日？</summary>
+          <div class="faq-answer"><p>このページ上部のリアルタイムカウンターで、お使いのタイムゾーンでの正確な数がわかります。目安として、クリスマスまで100日になるのは9月16日、50日になるのは11月5日です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>カウントダウンは自分のタイムゾーンで動きますか？</summary>
+          <div class="faq-answer"><p>はい。お使いの端末の時計とタイムゾーンで12月25日の0時まで数えるので、どこにいてもクリスマスの始まりにゼロになります。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>2026年のクリスマスは何曜日？</summary>
+          <div class="faq-answer"><p>2026年のクリスマスは金曜日です。2027年は土曜日、2028年は月曜日です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>iPhoneでクリスマスのカウントダウンウィジェットは使えますか？</summary>
+          <div class="faq-answer"><p>はい。Leftの「これから」で、あらかじめ用意されたクリスマスの日付を追加します。毎年繰り返され、ホーム画面やロック画面の「これから」ウィジェットに表示できます。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many days until Christmas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The live counter at the top of this page shows the exact number for your time zone. As a rule of thumb, Christmas is 100 days away on September 16 and 50 days away on November 5."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the countdown use my time zone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It counts to 00:00 on December 25 using your device’s clock and time zone, so it reaches zero at the start of Christmas Day wherever you are."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What day of the week is Christmas 2026?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Christmas 2026 is on a Friday. Christmas 2027 is on a Saturday and Christmas 2028 is on a Monday."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get a Christmas countdown widget on my iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In Left, add the ready-made Christmas date from Ahead. It repeats every year, and you can show it in an Ahead widget on your Home Screen or Lock Screen."
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+    </div>
+    <div class="tool-related">
+      <h2>関連ツール</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/days-until-easter">イースターまであと何日</a>
+        <a class="tool-related-item" href="/tools/days-until-halloween">ハロウィンまであと何日</a>
+        <a class="tool-related-item" href="/ja/tools/days-until-new-year">お正月まであと何日</a>
+        <a class="tool-related-item" href="/ja/tools/time-left-in-year-calculator">今年の残り時間</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Leftをダウンロード</span>
+        <h2>大切なことに、気づきはじめよう。</h2>
+        <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="App StoreでLeftをダウンロード" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            iOS版をダウンロード
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","ja"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{week}週{day}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"連続日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const result = document.getElementById('xmas-result');
+    const dateDisplay = document.getElementById('xmas-date-display');
+    const unitBtns = document.querySelectorAll('#xmas-units button');
+    let unit = 'all';
+
+    unitBtns.forEach(b => b.addEventListener('click', () => {
+      unitBtns.forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      unit = b.dataset.unit;
+    }));
+
+    function render() {
+      const xmas = nextChristmas();
+      dateDisplay.textContent = toolT('next.christmas', { date: formatDateLong(xmas) });
+      renderCountdown(result, xmas - Date.now(), unit);
+    }
+
+    document.getElementById('xmas-units').addEventListener('click', () => setTimeout(render, 0));
+    tickEvery(1000, render);
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
