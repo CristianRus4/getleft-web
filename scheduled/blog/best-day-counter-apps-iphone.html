@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Best Day Counter Apps for iPhone (2026): 7 Compared | Left</title>
+  <meta name="description" content="The best day counter apps for iPhone in 2026 that count days until and days since, compared on widgets, Apple Watch, ads and price. Checked 20 October 2026." />
+  <link rel="canonical" href="https://getleft.app/blog/best-day-counter-apps-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/best-day-counter-apps-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/best-day-counter-apps-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Best Day Counter Apps for iPhone (2026): 7 Compared" />
+  <meta property="og:description" content="The best day counter apps for iPhone in 2026 that count days until and days since, compared on widgets, Apple Watch, ads and price. Checked 20 October 2026." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/best-day-counter-apps-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Day Counter Apps for iPhone (2026): 7 Compared" />
+  <meta name="twitter:description" content="The best day counter apps for iPhone in 2026 that count days until and days since, compared on widgets, Apple Watch, ads and price. Checked 20 October 2026." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Day Counter Apps for iPhone in 2026: 7 Compared",
+  "description": "The best day counter apps for iPhone in 2026 that count days until and days since, compared on widgets, Apple Watch, ads and price. Checked 20 October 2026.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/best-day-counter-apps-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Best Day Counter Apps for iPhone in 2026: 7 Compared",
+      "item": "https://getleft.app/blog/best-day-counter-apps-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best day counter app for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "DayCount is the most rated of the apps we compared and has a detailed widget builder. Left suits you if you want a few counters on the Lock Screen with free widgets and no ads. Countdown Days Since & Until is the pick if you want counters on your Apple Watch."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a free day counter app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Countdown & Count Up Timer lists no purchases at all, and Countdown Days Since & Until lists unlimited events without marking them as paid; both show ads. Left is free with no ads, but its free plan includes 2 countdowns and 2 streaks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a day counter app show on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left, DayCount, Countdown Days Since & Until and Countdown & Count Up Timer all list Lock Screen widgets. In Left, the Ahead widget shows days until and the Streak widget shows days since."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between a day counter and a days since app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A day counter usually counts both ways: days until a date and days since a date. A days since app only counts up, often with a reset button for habits or chores. See our best days since apps for count-up-only apps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I count the days since a date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use our days since a date calculator for a one-off answer. To keep counting, add it to a day counter app with a widget, such as a Left streak started on that date."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Best Day Counter Apps for iPhone in 2026: 7 Compared</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 9 min read</p>
+<p><em>Checked 20 October 2026.</em> Every competitor detail below comes from that app's US App Store page and Apple's public lookup data, fetched that day. Left details come from the app itself.</p>
+<p>A day counter does two jobs: it counts down the days until something and counts up the days since something. The best ones put both on a widget, so the number is there without opening an app. Here are seven day counter apps for iPhone that count in both directions, and what each one is best at.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is why, and when another app suits you better.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best for days until and days since on the Lock Screen, with free widgets and no ads:</strong> Left.</li>
+  <li><strong>Best for widget styling, with streaks in the same app:</strong> DayCount.</li>
+  <li><strong>Best with an Apple Watch app and a small privacy label:</strong> Countdown Days Since &amp; Until.</li>
+  <li><strong>Best with no purchases at all:</strong> Countdown &amp; Count Up Timer.</li>
+  <li><strong>Best literal "day counter" with two modes:</strong> Day Counter by BITSENS.</li>
+  <li><strong>Best low-cost lifetime unlock with no data collected:</strong> Day Counter . by Inner Grow.</li>
+  <li><strong>Best photo-led countdowns with StandBy widgets:</strong> Big Days.</li>
+</ul>
+
+<h2>Comparison table</h2>
+<p>Ratings and counts are from the US App Store, checked 20 October 2026. "Not stated" means the listing doesn't mention it, not that the feature is missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>App</th><th>Price model</th><th>Ads</th><th>Lock Screen widget</th><th>Apple Watch</th><th>Rating (US)</th></tr></thead>
+  <tbody>
+    <tr><td>Left</td><td>Free, 2 countdowns and 2 streaks; Left Premium unlimited</td><td>No</td><td>Yes (free)</td><td>No</td><td>Not shown (our app)</td></tr>
+    <tr><td>DayCount</td><td>Free; Premium yearly or lifetime</td><td>Not stated</td><td>Yes</td><td>Not listed</td><td>4.7 (26,262)</td></tr>
+    <tr><td>Countdown Days Since &amp; Until</td><td>Free, unlimited events; Unlock All and Remove Ads purchases</td><td>Yes</td><td>Yes</td><td>Yes, with complications</td><td>4.8 (2,522)</td></tr>
+    <tr><td>Countdown &amp; Count Up Timer</td><td>Free, unlimited events; no purchases listed</td><td>Yes</td><td>Yes</td><td>Not listed</td><td>4.7 (2,317)</td></tr>
+    <tr><td>Day Counter (BITSENS)</td><td>Free; many separate unlocks</td><td>Yes</td><td>Not stated</td><td>Not listed</td><td>4.7 (455)</td></tr>
+    <tr><td>Day Counter . (Inner Grow)</td><td>Free; Lifetime Premium or a subscription</td><td>Not stated</td><td>Not stated</td><td>Not listed</td><td>4.8 (1,606)</td></tr>
+    <tr><td>Big Days</td><td>Free; Big Days Pro and Widget Pack purchases</td><td>Yes</td><td>Not stated</td><td>Not listed</td><td>4.6 (592)</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Left: days until and days since, both on a widget</h2>
+<p>Left is a time awareness app for iPhone. It counts in both directions with two features that sit side by side.</p>
+<ul>
+  <li><strong>Days until, in Ahead:</strong> add a date with <strong>Add a date ahead</strong> or import one <strong>From calendar</strong>. <strong>Show as...</strong> counts it in hours, days, weeks, months or years, and <strong>Repeat</strong> (weekly, fortnightly, monthly or yearly) rolls birthdays and anniversaries on by themselves. Reminders go out 1 month to 1 day before.</li>
+  <li><strong>Days since, in Since:</strong> create a streak and set <strong>Started on...</strong> to any past date. It counts up by itself, and <strong>Restart</strong> resets it when you start again, keeping your average and longest run.</li>
+  <li><strong>Widgets:</strong> the Ahead widget on the Home Screen and as a circular or rectangular Lock Screen widget; the Streak widget in small, medium and large and as a rectangular Lock Screen widget; and list widgets for several countdowns or streaks at once. They work in StandBy too.</li>
+  <li><strong>Live Activities:</strong> <strong>Get the final countdown</strong> shows the last stretch on the Lock Screen and in the Dynamic Island.</li>
+  <li><strong>Beyond days:</strong> Time Left shows how much of the week, month, year and your life is left, as grids and widgets.</li>
+</ul>
+<p><strong>Best for:</strong> a handful of counters that matter, on the Home Screen and Lock Screen, without ads.</p>
+<p><strong>Price:</strong> free to download, with no ads. The free plan includes 2 countdowns and 2 streaks (plus 2 habits and 2 Aims), counted over every item you've ever created, so deleting one doesn't free a slot. Left Premium, a subscription or lifetime purchase, unlocks unlimited items. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> free Lock Screen and Home Screen widgets for both directions; units from hours to years; countdown Live Activities; year and life progress in the same app.</p>
+<p><strong>Cons:</strong> only 2 free countdowns and 2 free streaks, while two apps here promise unlimited events; no Apple Watch app; iPhone only, with iOS 26 or later.</p>
+
+<figure class="post-shot"><picture><source srcset="/images/lp-since-feature-2-dark.webp" media="(prefers-color-scheme: dark)" /><img src="/images/lp-since-feature-2-light.webp" alt="Left streak called No phone during meals at 44 days, with restarts, average streak and longest streak" width="560" height="1272" loading="lazy" decoding="async" /></picture><figcaption>A Left streak counts the days since, with its history.</figcaption></figure>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get the day counter widgets</a></p>
+
+<h2>2. DayCount</h2>
+<p>By Zaminiti Pty Ltd. Its <a href="https://apps.apple.com/us/app/id1121088244" target="_blank" rel="noopener">App Store page</a> describes "event counters that track time before and after your date", with Home Screen and Lock Screen widgets built from "different filters, fonts, textures, and borders", daily streaks, repeats, notes, calendar import, Face ID lock and sync across iPhone, iPad and Mac.</p>
+<p><strong>Best for:</strong> people who want to style every widget and keep streaks in the same app.</p>
+<p><strong>Price:</strong> free to download; "DayCount Premium is available as an annual subscription or a lifetime purchase", with a free 7-day trial on the yearly plan.</p>
+<p><strong>Pros:</strong> 4.7 from 26,262 ratings, the most here; a detailed widget builder; sync across devices; Siri and Shortcuts.</p>
+<p><strong>Cons:</strong> the listing doesn't say what's free; Apple Watch isn't listed; its privacy label lists contact info and user content linked to you.</p>
+
+<h2>3. Countdown Days Since &amp; Until</h2>
+<p>By Joseph Sferrazza. Its <a href="https://apps.apple.com/us/app/id732814593" target="_blank" rel="noopener">App Store page</a> describes "counting down (or up)" in seconds, minutes, hours, days, weeks, months, years "or even sleeps", "Unlimited Events", Home and Lock Screen widgets, calendar import and sync to your devices and Apple Watch. Recent versions add Watch complications, shared countdowns and Siri on iOS 27.</p>
+<p><strong>Best for:</strong> counters on your Watch face as well as your phone.</p>
+<p><strong>Price:</strong> free with ads. The listing promises "Unlimited Events" and only marks ad-free widgets as paid ("ad-free with in-app purchase"); Unlock All, Remove Ads and effect packs are listed.</p>
+<p><strong>Pros:</strong> Apple Watch app and complications; unlimited events; its privacy label lists only diagnostics, not linked to you.</p>
+<p><strong>Cons:</strong> ads in the free version, including on widgets until you pay; Unlock All is listed without saying what it unlocks.</p>
+
+<h2>4. Countdown &amp; Count Up Timer</h2>
+<p>By Yoji Shimobayashi. Its <a href="https://apps.apple.com/us/app/id919998681" target="_blank" rel="noopener">App Store page</a> says: "Count down to something you're looking forward to, or see how much time has passed since a meaningful day." You can "Create as many events as you like" in years, months, weeks, days or hours, with Home Screen and Lock Screen widgets, recurring events, tags, photo backgrounds and iCloud backup.</p>
+<p><strong>Best for:</strong> a simple two-way counter with nothing to buy.</p>
+<p><strong>Price:</strong> free with ads; the page lists no in-app purchases.</p>
+<p><strong>Pros:</strong> unlimited events; Home Screen and Lock Screen widgets; nothing to unlock; updated in October 2026.</p>
+<p><strong>Cons:</strong> ads, with no listed way to remove them; its privacy label lists location, identifiers and usage data used to track you.</p>
+
+<h2>5. Day Counter by BITSENS</h2>
+<p>By BITSENS, UAB. Its <a href="https://apps.apple.com/us/app/id1499976509" target="_blank" rel="noopener">App Store page</a> calls it "a free, customizable counting app with two powerful modes: count up and countdown", counting days down to seconds, with widgets, reminders and a look back at past events by week, month or year. Its release notes add a free widget for everyone, swiping between days, weeks, months and years, and holiday suggestions by country.</p>
+<p><strong>Best for:</strong> people searching for exactly a "day counter", with sober days, birthdays and events in one list.</p>
+<p><strong>Price:</strong> free with ads. The listing names separate purchases for widgets, notes, dark mode, unlimited counters and removing ads, plus All In One bundles. Its description also promises "Unlimited Counters", so what's free isn't clear.</p>
+<p><strong>Pros:</strong> both modes front and center; a free widget; regular updates.</p>
+<p><strong>Cons:</strong> many separate unlocks; iPad isn't in its compatibility list; ads; its privacy label lists usage data used to track you.</p>
+
+<h2>6. Day Counter . by Inner Grow</h2>
+<p>By Inner Grow Limited. Its <a href="https://apps.apple.com/us/app/id1597681894" target="_blank" rel="noopener">App Store page</a> describes "A cute day counter and reminder app" that counts down to events, counts up days since, lists upcoming holidays, tracks birthdays and even food and item expiry dates.</p>
+<p><strong>Best for:</strong> a cute, simple counter with a low-cost lifetime unlock.</p>
+<p><strong>Price:</strong> free to download; Lifetime Premium and a Cute Countdown Meow subscription are listed. The listing doesn't say what's free.</p>
+<p><strong>Pros:</strong> 4.8 from 1,606 ratings; privacy label says Data Not Collected; updated for iOS 27 in October 2026.</p>
+<p><strong>Cons:</strong> a very short description that doesn't mention widgets; iPad isn't in its compatibility list.</p>
+
+<h2>7. Big Days - Event Countdown</h2>
+<p>By Vittorio Sorbera. Its <a href="https://apps.apple.com/us/app/id940109775" target="_blank" rel="noopener">App Store page</a> covers "Days remaining &amp; days since", photo backgrounds from Pixabay, custom fonts and colors, reminders and saving a countdown as a wallpaper. Version 10 in August 2026 added Home Screen widgets and "Full support for iOS StandBy mode".</p>
+<p><strong>Best for:</strong> photo-led countdowns, now on the Home Screen and in StandBy.</p>
+<p><strong>Price:</strong> free with ads; Big Days Pro and a Widget Pack are listed.</p>
+<p><strong>Pros:</strong> the only listing here that names StandBy; save any countdown as a wallpaper; running since 2014.</p>
+<p><strong>Cons:</strong> widgets are new; Lock Screen widgets aren't mentioned; ads; its privacy label lists identifiers, usage data and diagnostics used to track you.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>Search first:</strong> we searched the US App Store for day counter, days since and until, and count up apps on 20 October 2026.</li>
+  <li><strong>Kept:</strong> apps updated in the last 12 months whose listing says they count both up and down. Left is included because we make it.</li>
+  <li><strong>Also considered:</strong> Count Time Until &amp; Days Since (both directions and iCloud sync, but only 168 ratings), TimeCount and Countdown Widget &amp; Counter (popular, but their listings only describe counting down), TheDayBefore (a D-Day app whose listing describes counting down) and Days Matter (listing in Chinese). Countdown Timer: Day Counter by Gregory Strigunov was left out because it hasn't been updated since 2021.</li>
+  <li><strong>Sources:</strong> each app's own App Store page, including release notes, privacy labels and age-rating notes, and Apple's lookup data. No paid placements, and no developer reviewed this page.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>You want a few counters on the Lock Screen, free and without ads: <strong>Left</strong>.</li>
+  <li>You want to design your widgets: <strong>DayCount</strong>.</li>
+  <li>You want counters on your Apple Watch: <strong>Countdown Days Since &amp; Until</strong>.</li>
+  <li>You don't want to buy anything: <strong>Countdown &amp; Count Up Timer</strong>.</li>
+  <li>You want two modes in one list: <strong>Day Counter by BITSENS</strong>.</li>
+  <li>You want a cute counter and a lifetime unlock: <strong>Day Counter .</strong></li>
+  <li>You want photo countdowns in StandBy: <strong>Big Days</strong>.</li>
+</ul>
+<p>If you only count up, see our <a href="/blog/best-days-since-apps-iphone">best days since apps</a>; if you only count down, see the <a href="/blog/best-countdown-widgets-iphone">countdown widgets guide</a>. To count days right now, try the <a href="/tools/days-since-date">days since a date</a> and <a href="/tools/date-countdown-calculator">date countdown</a> calculators.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+<p>See more examples on the <a href="/days-since-widget">Left days since widget page</a> and the <a href="/countdown-widget">countdown widget page</a>.</p>
+
+<h2>Questions</h2>
+<h3>What is the best day counter app for iPhone?</h3>
+<p>DayCount is the most rated of the apps we compared and has a detailed widget builder. Left suits you if you want a few counters on the Lock Screen with free widgets and no ads. Countdown Days Since & Until is the pick if you want counters on your Apple Watch.</p>
+<h3>Is there a free day counter app?</h3>
+<p>Yes. Countdown & Count Up Timer lists no purchases at all, and Countdown Days Since & Until lists unlimited events without marking them as paid; both show ads. Left is free with no ads, but its free plan includes 2 countdowns and 2 streaks.</p>
+<h3>Can a day counter app show on my Lock Screen?</h3>
+<p>Yes. Left, DayCount, Countdown Days Since & Until and Countdown & Count Up Timer all list Lock Screen widgets. In Left, the Ahead widget shows days until and the Streak widget shows days since.</p>
+<h3>What's the difference between a day counter and a days since app?</h3>
+<p>A day counter usually counts both ways: days until a date and days since a date. A days since app only counts up, often with a reset button for habits or chores. See our <a href="/blog/best-days-since-apps-iphone">best days since apps</a> for count-up-only apps.</p>
+<h3>How do I count the days since a date?</h3>
+<p>Use our <a href="/tools/days-since-date">days since a date calculator</a> for a one-off answer. To keep counting, add it to a day counter app with a widget, such as a Left streak started on that date.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
