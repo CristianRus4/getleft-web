@@ -57,8 +57,11 @@ ID into `ga4MeasurementId`, run the site build, deploy.
     European IP, for example a VPN exit in Germany.
 - No Google Ads link exists, so the ads-personalisation panel stays inactive; the tag
   also sends `allow_ad_personalization_signals: false` and denies every ad signal.
-- Cloudflare also injects its own Web Analytics beacon (`static.cloudflareinsights.com`)
-  into browser responses. That comes from a Cloudflare dashboard setting, not this repo.
+- Cloudflare Web Analytics was on Automatic setup ("Enable, excluding visitor data in the EU"), so it
+  injected a `static.cloudflareinsights.com` beacon outside the EU.
+  - It was disabled for getleft.app on 2026-10-21 and the beacon is gone. GA4 is the only analytics, and
+    the only one the privacy policy and banner cover.
+  - Other zones on the account (left-time.app, safeplate.nz, txtpod.app) still have it on.
 - Admin → Data collection: Google signals **off**. Leave granular location and
   device data collection at its default (the privacy policy discloses
   approximate location and device type).
@@ -338,3 +341,24 @@ Live since 2026-10-21. left-time.app was the app's old site and still holds most
 - **What to watch:** in the weekly pulls of 26 Oct and 2 Nov, track brand queries ("left app", "left
   widget", "left time app") moving from left-time.app to getleft.app in Search Console: clicks,
   impressions and average position on both properties.
+
+## 14. Cloudflare setup (getleft.app zone)
+
+Checked 2026-10-21 (CNTXT-882 follow-up); see section 13 for left-time.app.
+
+- **www.**
+  - DNS: `CNAME www → getleft.app`, Proxied.
+  - Single Redirect "www to apex": `(http.host eq "www.getleft.app")` → `concat("https://getleft.app",
+    http.request.uri.path)`, 301, preserving the query string.
+  - Check: `curl -sI https://www.getleft.app/blog/` returns 301 to `https://getleft.app/blog/`.
+- **pages.dev duplicate.** Bulk Redirect list `pages_dev`, `getleft-web.pages.dev` → `https://getleft.app`, 301.
+  - Options: preserve query string, subpath matching and preserve path suffix are on; include subdomains is off.
+  - Rule "pages_dev to getleft.app" is enabled.
+  - Check: `curl -sI https://getleft-web.pages.dev/blog/` returns 301 to `https://getleft.app/blog/`.
+- **Pages project `getleft-web`.**
+  - Production branch `main`, deployed automatically; no build command, output or root directory; build
+    system v3.
+  - Preview deployments: **None**. Lane branches don't build previews.
+- **Web Analytics:** disabled for this zone (see section 2).
+- **Not done yet: HSTS.** Turn it on later (SSL/TLS → Edge Certificates), now that www and pages.dev
+  redirect cleanly.
