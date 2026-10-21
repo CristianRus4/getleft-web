@@ -14,7 +14,7 @@ Facts it is based on: `docs/seo/research/focus-facts.md` (read from the app sour
 
 The copy changes are already correct for the shipped app, but they describe Focus as available. If the branch merges before Focus is on the App Store, the site describes a feature people cannot get. Merge on release day, not before.
 
-`docs/seo/changelog.csv` did not exist on main when this branch was prepared, so no changelog rows were added. Add one row each for the four copy changes (support article, home FAQ, home bento, `llms.txt`) and one for the landing page when you merge, if the file exists by then.
+`docs/seo/changelog.csv` now exists on main. On merge day, add 5 changelog rows: the support article, the home FAQ, the home bento, `llms.txt` and the landing page.
 
 ## 1. Before merging: is Focus really out?
 
@@ -43,7 +43,7 @@ The branch contains these four content changes (the rest of the diff is generate
 - `llms.txt`
 - `i18n/locales/en.json`, English only: keys `index.bento.items.focus.body`, `index.faq.items[12].a`, `support_articles.focus_timer_in_left.{p_2,p_3,p_4,p_5,p_6,p_7,p_8}`
 
-**Translations.** The other locales still have the old Focus sentences, so until they are retranslated their Focus pages show the old claims (1 to 180 minutes, "Circle", "Dimming dots"). Tell the translation lane to retranslate the keys above; `node scripts/check-i18n.mjs --verbose` lists them as stale. The wrong 1-180 and 1-120 minute ranges are a factual error: if retranslation will be slow, consider asking the lane to prioritise `p_4` and `p_5` first.
+**Translations.** Done on this branch: the 9 keys above are machine-translated into all 18 locale catalogs (`i18n/locales/<lang>.json`) with Decoder, source hashes updated, `check-i18n` shows no stale Focus keys. The text is machine-translated and not reviewed by a person. The landing page `scheduled/pomodoro-timer-iphone.html` gets its translations after release, when Lane 0 dates it.
 
 ## 3. Date the landing page and register it (Lane 0)
 
