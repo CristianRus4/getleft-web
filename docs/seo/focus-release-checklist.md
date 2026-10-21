@@ -20,7 +20,8 @@ The copy changes are already correct for the shipped app, but they describe Focu
 
 1. The App Store shows Left 2026.11 (or whatever the release number is), and its "What's New" mentions Focus. `Left.xcodeproj/project.pbxproj` carries `MARKETING_VERSION` for the shipped build.
 2. Open the build and confirm Focus is in it: Tools → Focus, the Focus widget in the widget gallery, and the Live Activity on a started session. In the source, `ProductionFeatureGate.swift` has `.focus` commented out of `unreleasedFeatures` and `LeftWidgetsBundle.swift` registers `FocusWidget()` and `FocusLiveActivityWidgetExtension()`; if the release re-gated it, none of this ships.
-3. Re-read `docs/seo/research/focus-facts.md` against the release: durations 1 to 60 minutes, the four styles (Digital, Clock, Squares, Pulse), Premium gate. If the app changed (a duration range, a style, a new Focus feature, a different gate), update the support article, FAQ, bento, `llms.txt` and the landing page before merging.
+3. Decide the widget question. The widget's Start button does not check the plan (`StartFocusIntent` has no Premium check; only the in-app Start does), so a free user can start sessions from the widget. The site only says "Focus is part of Left Premium", which stays true either way. If the owner gates the widget before release, nothing on the site changes; if the owner wants the site to say "starting a session needs Premium", gate the intent first.
+4. Re-read `docs/seo/research/focus-facts.md` against the release: durations 1 to 60 minutes, the four styles (Digital, Clock, Squares, Pulse), Premium gate. If the app changed (a duration range, a style, a new Focus feature, a different gate), update the support article, FAQ, bento, `llms.txt` and the landing page before merging.
 
 ## 2. What to merge
 
