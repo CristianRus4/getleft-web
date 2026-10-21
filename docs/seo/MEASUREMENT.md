@@ -336,8 +336,12 @@ Live since 2026-10-21. left-time.app was the app's old site and still holds most
   - each gives one 301 to the same path on getleft.app and ends on a 200;
   - `.html` URLs then get getleft.app's usual 308 to the clean URL;
   - `/ios-26.html` lands on `/press`.
-- **Search Console Change of Address:** not filed yet. The owner files it in the left-time.app
-  property, pointing at `sc-domain:getleft.app`.
+- **Search Console Change of Address:** submitted 2026-10-21. Two earlier attempts failed with
+  "Couldn't fetch the page" right after the DNS switch.
+  - Search Console now shows "This site is currently moving to getleft.app".
+  - Google's checks passed, apart from the expected duplicate-redirect-target warning.
+- **Bing Site Move:** not available for left-time.app. The tool only reports "No pages found" and
+  there's no menu entry, so Bing follows the 301s and the getleft.app sitemap instead.
 - **What to watch:** in the weekly pulls of 26 Oct and 2 Nov, track brand queries ("left app", "left
   widget", "left time app") moving from left-time.app to getleft.app in Search Console: clicks,
   impressions and average position on both properties.
