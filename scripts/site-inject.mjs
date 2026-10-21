@@ -208,6 +208,12 @@ export async function run({ quiet = false } = {}) {
       const banner = appstore?.smartBannerMeta ? appstore.smartBannerMeta() : `<meta name="apple-itunes-app" content="app-id=${config.appId || '6740155884'}">`;
       if (!/<meta\s+name="apple-itunes-app"/i.test(html) || /<!-- left:smart-banner:start -->/.test(html)) {
         html = upsertBlock(html, 'smart-banner', `  ${banner}`, /<meta\s+name="viewport"[^>]*>/i);
+      } else if (appstore?.smartBannerMeta) {
+        // Hand-written banner (the home pages pass an app-argument): keep that, add the campaign token.
+        html = html.replace(/<meta\s+name="apple-itunes-app"\s+content="([^"]*)"\s*\/?>/i, (tag, content) => {
+          const arg = /app-argument=([^,]+)/.exec(content.replace(/&amp;/g, '&'));
+          return arg ? appstore.smartBannerMeta({ appArgument: arg[1].trim() }) : tag;
+        });
       }
     }
 

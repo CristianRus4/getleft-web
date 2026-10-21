@@ -15,7 +15,7 @@ denied; Google signals and ad personalisation off.
 |---|---|---|
 | `appId` | App Store ID shared with the app (release contract) | `6740155884` |
 | `ga4MeasurementId` | GA4 web stream ID | `G-YJKL80Z8DP` (live since 2026-10-19) |
-| `appStoreProviderToken` | App Store Connect provider token (`pt`) | empty: clean, untagged App Store links |
+| `appStoreProviderToken` | App Store Connect provider token (`pt`) | `127436485` since 2026-10-21 (the CNTXT team token, shared with AussieCamps and KiwiCamping) |
 | `campaignPrefix` | First segment of every website campaign token | `w` |
 | `analyticsHost` | The only hostname that may send data | `getleft.app` |
 | `analyticsExcludedPaths` | Paths that never load analytics (also under a locale prefix, e.g. `/de/invite`) | `/invite`, `/todoist`, `/friends`, `/public` |
@@ -163,7 +163,10 @@ App Store Connect (section 6).
 
 - With a provider token:
   `https://apps.apple.com/app/apple-store/id6740155884?pt=<pt>&ct=<ct>&mt=8`
-- Without one (today): `https://apps.apple.com/app/id6740155884`
+- Without one: `https://apps.apple.com/app/id6740155884`. The token has been set since 2026-10-21 (CNTXT-883), so every link is tagged.
+- Other apps' App Store links (on comparison posts) are left alone, and `check-site` only requires `ct` on Left's own links.
+- The invite pages (no analytics) carry a fixed `ct=w-invite`.
+- The home pages' hand-written banner keeps its `app-argument` and gains `affiliate-data`.
 
 **Campaign token (`ct`)** = `<prefix>-<family>-<placement>-<locale>`, family and
 placement lowercased, locale as published. Families come from
@@ -238,9 +241,7 @@ Cloudflare `_redirects`, 302 to the App Store:
 | `/app` | short link for posts, bios, print | `w-short-app` |
 | `/ios` | short link for posts, bios, print | `w-short-ios` |
 
-Targets follow section 6: clean `https://apps.apple.com/app/id6740155884`
-until the provider token exists, then
-`https://apps.apple.com/app/apple-store/id6740155884?pt=<pt>&ct=<ct>&mt=8`.
+Targets: `https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&ct=<ct>&mt=8` (set 2026-10-21).
 Clicks on on-site links to these paths are also counted by `download_click`.
 
 ## 10. Weekly data pull

@@ -14,6 +14,7 @@ import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { ROOT, SITE_ORIGIN, ALL_LOCALES, SOURCE_LOCALE, readJson } from './lib/site.mjs';
 import { englishPages } from './site-inject.mjs';
+import { isOwnAppStoreHref } from './lib/appstore.mjs';
 
 const errors = [];
 const warn = [];
@@ -91,6 +92,7 @@ async function main() {
     if (config.appStoreProviderToken) {
       for (const m of h.matchAll(/href="(https:\/\/apps\.apple\.com\/[^"]+)"/g)) {
         if (m[1].includes('/redeem')) continue;
+        if (!isOwnAppStoreHref(m[1].replace(/&amp;/g, '&'))) continue; // other apps' pages (comparisons) carry no token
         if (!/[?&](amp;)?ct=/.test(m[1])) { fail(file, `App Store link without campaign token: ${m[1].slice(0, 90)}`); break; }
       }
     }

@@ -54,6 +54,9 @@ for (const [mode, override] of [['config as is', undefined], ['dummy provider to
       if (override) {
         const u = new URL(a.href);
         assert.ok(u.searchParams.get('ct') && u.searchParams.get('pt') === DUMMY.appStoreProviderToken && u.searchParams.get('mt') === '8', `${page}: untagged link remains: ${a.href}`);
+      } else if (cfg.appStoreProviderToken) {
+        const u = new URL(a.href);
+        assert.ok(u.searchParams.get('ct') && u.searchParams.get('pt') === cfg.appStoreProviderToken && u.searchParams.get('mt') === '8', `${page}: untagged link remains: ${a.href}`);
       } else {
         assert.equal(a.href, `https://apps.apple.com/app/id${cfg.appId}`);
       }
@@ -65,7 +68,9 @@ for (const [mode, override] of [['config as is', undefined], ['dummy provider to
 assert.equal(appStoreUrl({ family: 'blog', placement: 'END', locale: 'zh-Hant', config: DUMMY }),
   `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=000000&ct=w-blog-end-zh-Hant&mt=8`);
 assert.throws(() => appStoreUrl({ family: 'a-very-long-family-name', placement: 'inline', locale: 'zh-Hant', config: DUMMY }), /characters/);
-assert.equal(appStoreUrl({ family: 'other', placement: 'qr', locale: 'all' }), `https://apps.apple.com/app/id${cfg.appId}`);
+assert.equal(appStoreUrl({ family: 'other', placement: 'qr', locale: 'all' }), cfg.appStoreProviderToken
+  ? `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=${cfg.appStoreProviderToken}&ct=w-other-qr-all&mt=8`
+  : `https://apps.apple.com/app/id${cfg.appId}`);
 const redeem = '<a href="https://apps.apple.com/redeem?ctx=offercodes&id=6740155884&code=X">r</a>';
 assert.equal(rewriteAppStoreLinks(redeem, { family: 'other', locale: 'en', config: DUMMY }), redeem);
 const variants = `<nav class="top-nav"><a href='https://apps.apple.com/us/app/x/id${cfg.appId}?a=1&amp;b=2'>a</a></nav><div data-tool-result><p><a class="dl-btn" href="https://apps.apple.com/app/id${cfg.appId}">b</a></p></div><a href="https://apps.apple.com/app/id1">other app</a>`;
