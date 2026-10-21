@@ -60,10 +60,10 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-13 | `blog/way-of-life-alternatives.html` | English page | scheduled |
 | 2026-11-13 | `tools/pt`: tools in Português (Portugal), 17 pages | Translation release | scheduled |
 | 2026-11-14 | `blog/it`: blog in Italiano, 47 pages | Translation release | scheduled |
-| 2026-11-15 | `blog/fr`: blog in Français, 45 pages | Translation release | scheduled |
-| 2026-11-16 | `blog/nl`: blog in Nederlands, 45 pages | Translation release | scheduled |
-| 2026-11-17 | `blog/pl`: blog in Polski, 45 pages | Translation release | scheduled |
-| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 45 pages | Translation release | scheduled |
+| 2026-11-15 | `blog/fr`: blog in Français, 47 pages | Translation release | scheduled |
+| 2026-11-16 | `blog/nl`: blog in Nederlands, 47 pages | Translation release | scheduled |
+| 2026-11-17 | `blog/pl`: blog in Polski, 47 pages | Translation release | scheduled |
+| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 47 pages | Translation release | scheduled |
 | 2026-11-19 | `pages/hi`: pages in हिन्दी, 9 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
