@@ -14,6 +14,8 @@
 // Drip publishing (scripts/lib/publish.mjs): a hash-family locale copy is also held
 // until i18n/publish-schedule.json gives its "<family>/<locale>" release a date on or
 // before the build date. Pages waiting in scheduled/ are not in any family yet.
+// Card lists (blog/index.html): a locale copy keeps a card only when the page it links to
+// has a copy in that locale and the card's text is translated (see pruneCards).
 //
 // Usage:
 //   node scripts/build-i18n.mjs                  # strict: fail on missing keys in "keys" families
@@ -100,11 +102,17 @@ async function main() {
   }
   const enData = data.get(SOURCE_LOCALE);
 
-  // 3. Which locales have which page.
+  const urlToPage = new Map();
+  for (const page of allPages) urlToPage.set('/' + pageToUrlPath(page), page);
+
+  // 3. Which locales have which page. Card lists come last: their cards depend on the
+  //    availability of the pages they link to.
   const availability = new Map(); // page → Set(locale codes)
   const ready = new Map(); // "<family>/<loc>" → pages at or above the threshold, released or not
   const coverageReport = [];
-  for (const page of allPages) {
+  const cardPages = new Set(allPages.filter(p => CARD_RE.test(annotated.get(p)?.html || '')));
+  const pruned = new Map(); // "<loc>/<page>" → card list without the cards that locale can't show
+  for (const page of [...allPages.filter(p => !cardPages.has(p)), ...cardPages]) {
     const f = pageFamily.get(page);
     const set = new Set([SOURCE_LOCALE]);
     for (const loc of TARGET_LOCALES) {
@@ -112,8 +120,14 @@ async function main() {
       const a = annotated.get(page);
       if (!a || !a.keys.length) continue;
       const tree = data.get(loc.code);
-      const done = a.keys.filter(k => typeof lookupRaw(tree, k) === 'string' && lookupRaw(tree, k).trim()).length;
-      const ratio = done / a.keys.length;
+      let keys = a.keys;
+      if (cardPages.has(page)) {
+        const p = pruneCards(a.html, loc.code, tree, { availability, urlToPage });
+        pruned.set(`${loc.code}/${page}`, p.html);
+        keys = keys.filter(k => !p.dropped.has(k));
+      }
+      const done = keys.filter(k => typeof lookupRaw(tree, k) === 'string' && lookupRaw(tree, k).trim()).length;
+      const ratio = done / Math.max(keys.length, 1);
       if (ratio >= HASH_MIN_COVERAGE) {
         const key = `${f.id}/${loc.code}`;
         ready.set(key, (ready.get(key) || 0) + 1);
@@ -127,9 +141,6 @@ async function main() {
   const held = [...ready].filter(([k]) => !isReleased(...k.split('/'), DATE));
   if (held.length) console.log(`[i18n] Held until scheduled (${DATE}): ${held.map(([k, n]) => `${k} ${n}`).join(', ')}`);
   await writeCalendar(DATE, ready);
-
-  const urlToPage = new Map();
-  for (const page of allPages) urlToPage.set('/' + pageToUrlPath(page), page);
 
   // 4. English sources: detect script, switcher, hreflang and generated JSON-LD.
   const detectTpl = await fs.readFile(path.join(ROOT, 'partials', 'detect.html'), 'utf8');
@@ -167,7 +178,9 @@ async function main() {
     for (const page of allPages) {
       if (!availability.get(page).has(loc.code)) continue;
       const f = pageFamily.get(page);
-      const src = f.mode === 'hash' ? annotated.get(page).html : await fs.readFile(path.join(ROOT, page), 'utf8');
+      const src = f.mode === 'hash'
+        ? pruned.get(`${loc.code}/${page}`) ?? annotated.get(page).html
+        : await fs.readFile(path.join(ROOT, page), 'utf8');
       const { html, missing } = transform(src, page, loc, tree, enData, { availability, urlToPage, family: f, switcherTpl });
       if (f.mode === 'keys') {
         totalErrors += missing.length;
@@ -193,6 +206,38 @@ async function main() {
 }
 
 // ─── helpers ───
+
+// A card is an <a class="blog-card"> holding no other link. It stays in a locale copy only
+// when its target page has a copy in that locale and every unit in it is translated, so a
+// translated list never shows an English card (new posts start English-only). The units of
+// dropped cards don't count against the list's own coverage, so new English posts can't
+// push a released list below the threshold and unpublish it.
+const CARD_RE = /\n(?:[ \t]*\n)?[ \t]*<a\b(?=[^>]*\bclass="[^"]*\bblog-card\b)[^>]*>[\s\S]*?<\/a>/;
+
+function unitKeys(html) {
+  const keys = new Set();
+  for (const m of html.matchAll(/\sdata-i18n(?:-html)?="([^"]+)"/g)) keys.add(m[1]);
+  for (const m of html.matchAll(/\sdata-i18n-attr="([^"]+)"/g)) {
+    for (const pair of m[1].split(',')) keys.add(pair.slice(pair.indexOf(':') + 1).trim());
+  }
+  return keys;
+}
+
+function pruneCards(html, langCode, tree, ctx) {
+  const dropped = new Set();
+  const out = html.replace(new RegExp(CARD_RE.source, 'g'), card => {
+    const href = (card.match(/\shref="([^"]*)"/) || [])[1] || '';
+    const clean = href.replace(/[?#].*$/, '').replace(/\.html$/, '').replace(/\/index$/, '/');
+    const page = ctx.urlToPage.get(clean);
+    const keys = unitKeys(card);
+    const translated = [...keys].every(k => typeof lookupRaw(tree, k) === 'string' && lookupRaw(tree, k).trim());
+    if (translated && (!page || ctx.availability.get(page)?.has(langCode))) return card;
+    for (const k of keys) dropped.add(k);
+    return '';
+  });
+  const kept = unitKeys(out);
+  return { html: out, dropped: new Set([...dropped].filter(k => !kept.has(k))) };
+}
 
 function hashSlug(page) {
   return page.replace(/^[^/]+\//, '').replace(/\.html$/, '').replace(/\//g, '~');

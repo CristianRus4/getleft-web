@@ -3,7 +3,8 @@
 //
 //   node scripts/check-publish.mjs              schedule checks on the built tree (part of build.mjs)
 //   node scripts/check-publish.mjs --selftest   also builds a throwaway copy of the repo on three
-//                                               fixture dates and checks what is live on each
+//                                               fixture dates and checks what is live on each,
+//                                               including the blog list cards (build-blog-list.mjs)
 //
 // Fails on:
 //   - a malformed schedule: bad dates, unknown family or locale, odd page paths
@@ -20,6 +21,8 @@ import { execFileSync } from 'node:child_process';
 import { ROOT, SITE_ORIGIN, ALL_LOCALES, SOURCE_LOCALE, FAMILIES, listFamilyPages, pageToUrlPath, pageUrl } from './lib/site.mjs';
 import { SCHEDULE_FILE, SCHEDULED_DIR, CALENDAR_FILE, buildDate, isDate, isReleased, loadSchedule, pendingPages, scheduledFiles } from './lib/publish.mjs';
 import { englishPages } from './site-inject.mjs';
+import { BLOG_INDEX, listedSlugs, addCards } from './build-blog-list.mjs';
+import { hashValue } from './lib/annotate.mjs';
 
 const errors = [];
 const warnings = [];
@@ -155,6 +158,18 @@ async function selftest() {
   const cat = JSON.parse(await fs.readFile(catFile, 'utf8'));
   cat[family.id][slugOf(fixturePage)] = cat[family.id][slugOf(copies[0])];
   await fs.writeFile(catFile, JSON.stringify(cat, null, 2) + '\n');
+  // Blog list fixtures: a live English-only post (no translation) and a live noindexed post.
+  const blogList = dir === 'blog';
+  const englishOnly = `${dir}/zz-english-only.html`;
+  const noindexPage = `${dir}/zz-noindex.html`;
+  if (blogList) {
+    const src = await fs.readFile(path.join(ROOT, copies[0]), 'utf8');
+    await fs.writeFile(path.join(tmp, englishOnly), src);
+    const robots = '<meta name="robots" content="noindex,follow" />';
+    await fs.writeFile(path.join(tmp, noindexPage), /<meta\s+name="robots"[^>]*>/i.test(src)
+      ? src.replace(/<meta\s+name="robots"[^>]*>/i, robots)
+      : src.replace(/<head>/i, `<head>\n  ${robots}`));
+  }
 
   const T = rel => path.join(tmp, rel);
   const read = rel => fs.readFile(T(rel), 'utf8');
@@ -187,6 +202,13 @@ async function selftest() {
   expect(existsSync(T(`${loc}/index.html`)), `${D0}: the site family (${loc}/index.html) is never held`);
   expect(existsSync(T(`${SCHEDULED_DIR}/${fixturePage}`)) && !existsSync(T(fixturePage)), `${D0}: ${fixturePage} waits in ${SCHEDULED_DIR}/`);
   expect(!sitemap.includes(pageUrl(fixturePage)), `${D0}: ${fixturePage} is not in the sitemap`);
+  const slug = p => p.slice(dir.length + 1).replace(/\.html$/, '');
+  if (blogList) {
+    const listed = listedSlugs(await read(BLOG_INDEX));
+    expect(listed.has(slug(englishOnly)), `${D0}: the live post ${englishOnly} gets a blog list card`);
+    expect(!listed.has(slug(fixturePage)), `${D0}: the scheduled ${fixturePage} has no card`);
+    expect(!listed.has(slug(noindexPage)), `${D0}: the noindexed ${noindexPage} has no card`);
+  }
   expect((await read(CALENDAR_FILE)).includes(`| ${D1} | \`${relKey}\``) && /\| scheduled \|/.test(await read(CALENDAR_FILE)), `${D0}: calendar lists the release as scheduled`);
 
   // A live page linking to the scheduled page fails the schedule check.
@@ -224,6 +246,7 @@ async function selftest() {
   expect(existsSync(T(`${loc}/${fixturePage}`)) && sitemap.includes(`<loc>${pageUrl(fixturePage, loc)}</loc>`), `${D2}: its ${loc} copy is published with it`);
   expect((await read(`i18n/${family.id}/en.json`)).includes(`"${slugOf(fixturePage)}"`), `${D2}: the build extracts its English for translation`);
   expect(!/\| scheduled \|/.test(await read(CALENDAR_FILE)), `${D2}: calendar shows both items live`);
+  if (blogList) await checkBlogList({ T, read, run, expect, dir, loc, D2, fixturePage, englishOnly, noindexPage, slug });
 
   for (const [ok, msg] of results) console.log(`  ${ok ? '✓' : '✗'} ${msg}`);
   const failed = results.filter(([ok]) => !ok).length;
@@ -233,6 +256,57 @@ async function selftest() {
   }
   await fs.rm(tmp, { recursive: true, force: true });
   console.log(`[check-publish] selftest passed (${results.length} checks).`);
+}
+
+// Blog list on D2: the promoted post's card is added once, at the top; a second run adds nothing;
+// the locale list shows a card only for a post that has a copy in that locale and whose card
+// text is translated.
+async function checkBlogList({ T, read, run, expect, dir, loc, D2, fixturePage, englishOnly, noindexPage, slug }) {
+  const cardsOf = html => [...html.matchAll(/<a\b[^>]*\bclass="blog-card"[^>]*>[\s\S]*?<\/a>/g)].map(m => m[0]);
+  const index = await read(BLOG_INDEX);
+  const hrefs = cardsOf(index).map(c => (c.match(/\shref="([^"]*)"/) || [])[1]);
+  const fixtureHref = `/${dir}/${slug(fixturePage)}`;
+  expect(hrefs.filter(h => h === fixtureHref).length === 1, `${D2}: ${fixturePage} has exactly one card`);
+  expect(hrefs[0] === fixtureHref, `${D2}: its card is first, above older cards`);
+  expect(!listedSlugs(index).has(slug(noindexPage)), `${D2}: the noindexed post still has no card`);
+  const again = run(['scripts/build-blog-list.mjs'], D2);
+  expect(again.ok && (await read(BLOG_INDEX)) === index, `${D2}: running the blog list step again changes nothing`);
+
+  const ordered = addCards('<section class="container blog-grid">\n\n  </section>', [
+    { slug: 'older', title: 'Older', description: 'd', minutes: 1, date: '2099-01-01' },
+    { slug: 'newer', title: 'Newer', description: 'd', minutes: 1, date: '2099-02-01' },
+  ]);
+  expect(ordered.indexOf('/blog/newer') < ordered.indexOf('/blog/older'), 'new cards are ordered by release date, newest first');
+
+  // Locale list before the fixture card is translated: every card links to a copy in that locale.
+  const fixtureCard = cardsOf(index).find(c => c.includes(`href="${fixtureHref}"`)) || '';
+  const inner = cls => (fixtureCard.match(new RegExp(`class="${cls}">([\\s\\S]*?)</div>`)) || [])[1] || '';
+  const alt = (fixtureCard.match(/\salt="([^"]*)"/) || [])[1] || '';
+  const units = {
+    [`t${hashValue(inner('blog-title'))}`]: inner('blog-title'),
+    [`t${hashValue(inner('blog-excerpt'))}`]: inner('blog-excerpt'),
+    [`t${hashValue(inner('blog-meta'))}`]: inner('blog-meta'),
+    [`a${hashValue(alt.replace(/&quot;/g, '"').replace(/&lt;/g, '<').replace(/&amp;/g, '&'))}`]: alt,
+  };
+  const locIndex = `${loc}/${BLOG_INDEX}`;
+  const foreign = html => cardsOf(html).filter(c => !new RegExp(`\\shref="/${loc}/`).test(c));
+  let locHtml = await read(locIndex);
+  expect(foreign(locHtml).length === 0, `${D2}: every card on ${locIndex} links to a ${loc} copy`);
+  expect(!locHtml.includes(slug(englishOnly)), `${D2}: ${locIndex} has no card for the English-only ${englishOnly}`);
+  const catFile = T(`i18n/${dir}/${loc}.json`);
+  const cat = JSON.parse(await fs.readFile(catFile, 'utf8'));
+  const hasAll = Object.keys(units).every(k => cat[dir].index?.[k]);
+  if (!hasAll) expect(!locHtml.includes(`/${loc}${fixtureHref}"`), `${D2}: ${locIndex} has no card for ${fixturePage} while its card text is untranslated`);
+
+  // Translate the fixture card (its text equals the English-only post's card): the translated
+  // post is listed, the English-only one still is not.
+  cat[dir].index = { ...cat[dir].index };
+  for (const [k, v] of Object.entries(units)) cat[dir].index[k] = `[${loc}] ${v}`;
+  await fs.writeFile(catFile, JSON.stringify(cat, null, 2) + '\n');
+  const rebuilt = run(['scripts/build-i18n.mjs', '--allow-missing'], D2);
+  locHtml = await read(locIndex);
+  expect(rebuilt.ok && locHtml.includes(`href="/${loc}${fixtureHref}"`) && locHtml.includes(`[${loc}] ${inner('blog-title')}`), `${D2}: once translated, ${locIndex} lists ${fixturePage} in ${loc}`);
+  expect(!locHtml.includes(slug(englishOnly)) && foreign(locHtml).length === 0, `${D2}: ${locIndex} still has no English-only card`);
 }
 
 async function main() {
