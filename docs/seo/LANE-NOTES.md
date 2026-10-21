@@ -80,6 +80,20 @@ node scripts/indexnow.mjs     # tells Bing about the pages you changed
 
 On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/*.html`, `i18n/*/en.json`, `docs/seo/publish-schedule.md`), take upstream, finish the rebase, rerun the build and commit.
 
+## Rule, 2026-10-21: every retitle or rewrite of a live page adds a changelog row
+
+`docs/seo/changelog.csv` is the record that lets us score each change at +14 and +28 days from Search Console and revert the losers (CNTXT-874). **In the same commit** as any retitle, meta description change, rewrite, expansion or factual correction of a live English page, add a row:
+
+`date,url,change_type,old_title,new_title,hypothesis`
+
+- `date`: the commit date (YYYY-MM-DD). `url`: the full live URL as Google shows it (`https://getleft.app/blog/slug`, no `.html`).
+- `change_type`: `retitle`, `meta`, `rewrite`, `expand`, `fact-fix`, `hub-links`, or joined with `+` (`retitle+rewrite+expand`).
+- `old_title` / `new_title`: the exact `<title>` before and after; write `(unchanged)` in both when only the body changed.
+- `hypothesis`: one sentence on what should improve. For a body change end it with `Pre-change copy: git show <commit>^:<path>.` so a revert knows where the old text is.
+- One row per page per change. Quote any field that contains a comma.
+- Skip brand new pages, scheduled pages that have not gone live, and translation-only commits. Translated pages are not tracked.
+- Scoring is run by the growth-lanes orchestrator from `~/Developer/Webs/.growth-lanes/scoring/RUNBOOK.md`.
+
 ## Update, 2026-10-19 20:45: Apple Watch hidden, Focus stays
 
 The owner confirmed today:
