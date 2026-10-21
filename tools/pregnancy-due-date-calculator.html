@@ -226,6 +226,7 @@
 
       <h2>Track the countdown with Left</h2>
       <p>Add your due date as a countdown in Left and pin it to your Home Screen or Lock Screen. Every morning you'll see exactly how many days remain - and after the birth, switch to Left's "Since" mode to track how many days old your baby is.</p>
+      <p>To keep the due date in sight, add a <a href="/countdown-widget">countdown widget</a> to your Home Screen with Left.</p>
     </div>
 
     <div class="tool-related">
@@ -393,7 +394,8 @@
       const cycle = Math.min(45, Math.max(21, parseInt(cycleEl.value, 10) || 28));
       // Whole calendar days, so a daylight-saving change never moves the date by one.
       const lmp = new Date(lmpInput.getFullYear(), lmpInput.getMonth(), lmpInput.getDate() + (cycle - 28));
-      const due = new Date(lmp.getFullYear(), lmp.getMonth(), lmp.getDate() + 280);
+      const due = new Date(lmp.getTime());
+      due.setDate(due.getDate() + 280);
       const now = new Date();
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
       const daysPregnant = Math.max(0, Math.round((today - lmp) / 86400000));
@@ -406,7 +408,7 @@
       if (daysPregnant <= 84) trimester = toolT('result.pregFirst');
       else if (daysPregnant <= 182) trimester = toolT('result.pregSecond');
       else trimester = toolT('result.pregThird');
-      trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { week: weeksPregnant + 1, day: daysMod + 1 }) : '');
+      trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { weeks: weeksPregnant, days: daysMod }) : '');
 
       if (daysUntilDue <= 0) {
         result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">${toolEscape(toolT('result.dueWas', { date: formatDateShort(due) }))}</div>`;

@@ -46,16 +46,19 @@ function monthsBetween(a, b) {
 
 // Years/months/days between two dates (used by age + pregnancy).
 function ymdBetween(a, b) {
-  let years = b.getFullYear() - a.getFullYear();
-  let months = b.getMonth() - a.getMonth();
-  let days = b.getDate() - a.getDate();
-  if (days < 0) {
-    months -= 1;
-    const prev = new Date(b.getFullYear(), b.getMonth(), 0);
-    days += prev.getDate();
-  }
-  if (months < 0) { years -= 1; months += 12; }
-  return { years: Math.max(0, years), months: Math.max(0, months), days: Math.max(0, days) };
+  // Whole months are added to `a` with end-of-month clamping (Jan 31 + 1 month = Feb 28), then the remaining days are counted.
+  const clamped = (n) => {
+    const t = a.getFullYear() * 12 + a.getMonth() + n;
+    const y = Math.floor(t / 12), m = t - y * 12;
+    return Date.UTC(y, m, Math.min(a.getDate(), new Date(y, m + 1, 0).getDate()));
+  };
+  const end = Date.UTC(b.getFullYear(), b.getMonth(), b.getDate());
+  let total = (b.getFullYear() - a.getFullYear()) * 12 + (b.getMonth() - a.getMonth());
+  if (total < 0) return { years: 0, months: 0, days: 0 };
+  if (clamped(total) > end) total -= 1;
+  if (total < 0) return { years: 0, months: 0, days: 0 };
+  const days = Math.round((end - clamped(total)) / 86400000);
+  return { years: Math.floor(total / 12), months: total % 12, days };
 }
 
 // Add years/months/weeks/days/hours/minutes to a date. Negative subtracts.
@@ -293,7 +296,7 @@ const LEFT_TOOL_STRINGS_EN = {
     pregFirst: 'First trimester',
     pregSecond: 'Second trimester',
     pregThird: 'Third trimester',
-    pregWeekDay: 'Week {week}, Day {day}',
+    pregWeekDay: '{weeks}w {days}d',
     dueWas: 'Due date was {date} - congratulations!',
     yearDays: 'Year {year} - {days} days total',
     easterDates: 'Western - {western}; Orthodox - {orthodox}',
@@ -313,7 +316,7 @@ const LEFT_TOOL_STRINGS_EN = {
     daysLeft: 'days left',
     weeksLeft: 'weeks left',
     yearsLeft: 'years left',
-    streakDays: 'streak days',
+    streakDays: 'days completed',
     fullWeeks: 'full weeks',
     approxMonths: 'approx. months',
     durationMin: 'duration min',

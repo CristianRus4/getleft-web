@@ -370,6 +370,36 @@ const SUPPORT_REL_MARK_START = '<!-- i18n:support-related:start -->';
 const SUPPORT_REL_MARK_END = '<!-- i18n:support-related:end -->';
 // Not shipped yet (Mood hidden in production, Apple Watch planned): not offered as related reading.
 const UNLISTED_SUPPORT = new Set(['mood_tracker_in_left', 'world_mood_globe', 'apple_watch_app']);
+// Related guides per article: 4 to 5 topical links instead of the whole list (the full list lives on /support).
+// An article without an entry here still gets every listed guide.
+const SUPPORT_RELATED = {
+  widget_iphone_home_screen: ['widget_iphone_lock_screen', 'widget_iphone_standby', 'edit_or_remove_widget_iphone', 'widget_transparent_iphone', 'choose_your_tools'],
+  widget_iphone_lock_screen: ['widget_iphone_home_screen', 'widget_iphone_standby', 'edit_or_remove_widget_iphone', 'focus_modes_with_left', 'wallpaper_shortcut'],
+  widget_iphone_standby: ['widget_iphone_home_screen', 'widget_iphone_lock_screen', 'edit_or_remove_widget_iphone', 'widget_transparent_iphone'],
+  edit_or_remove_widget_iphone: ['widget_iphone_home_screen', 'widget_iphone_lock_screen', 'widget_iphone_standby', 'widget_transparent_iphone'],
+  widget_transparent_iphone: ['widget_iphone_home_screen', 'edit_or_remove_widget_iphone', 'widget_iphone_lock_screen', 'wallpaper_shortcut'],
+  widget_ipad_home_screen: ['widget_ipad_lock_screen', 'widget_iphone_home_screen', 'edit_or_remove_widget_iphone', 'widget_iphone_standby'],
+  widget_ipad_lock_screen: ['widget_ipad_home_screen', 'widget_iphone_lock_screen', 'edit_or_remove_widget_iphone'],
+  widget_mac_desktop: ['widget_mac_notification_center', 'widget_iphone_home_screen', 'edit_or_remove_widget_iphone'],
+  widget_mac_notification_center: ['widget_mac_desktop', 'widget_iphone_home_screen', 'edit_or_remove_widget_iphone'],
+  streaks_vs_habits: ['aims_in_left', 'organise_ahead_since', 'apple_health_automatic_tracking', 'accountability_with_friends', 'choose_your_tools'],
+  aims_in_left: ['streaks_vs_habits', 'apple_health_automatic_tracking', 'organise_ahead_since', 'choose_your_tools', 'widget_iphone_home_screen'],
+  organise_ahead_since: ['streaks_vs_habits', 'aims_in_left', 'joint_ahead_dates', 'choose_your_tools'],
+  joint_ahead_dates: ['add_friends', 'accountability_with_friends', 'organise_ahead_since', 'streaks_vs_habits'],
+  add_friends: ['accountability_with_friends', 'joint_ahead_dates', 'account_and_sync', 'streaks_vs_habits'],
+  accountability_with_friends: ['add_friends', 'joint_ahead_dates', 'streaks_vs_habits', 'account_and_sync'],
+  apple_health_automatic_tracking: ['streaks_vs_habits', 'aims_in_left', 'choose_your_tools', 'fasting_in_left'],
+  fasting_in_left: ['apple_health_automatic_tracking', 'choose_your_tools', 'widget_iphone_lock_screen', 'focus_timer_in_left'],
+  focus_timer_in_left: ['focus_modes_with_left', 'fasting_in_left', 'widget_iphone_lock_screen', 'choose_your_tools'],
+  focus_modes_with_left: ['focus_timer_in_left', 'widget_iphone_lock_screen', 'widget_iphone_home_screen', 'left_shortcuts'],
+  wallpaper_shortcut: ['left_shortcuts', 'widget_iphone_lock_screen', 'widget_transparent_iphone', 'iphone_action_button_left'],
+  left_shortcuts: ['wallpaper_shortcut', 'iphone_action_button_left', 'focus_modes_with_left', 'choose_your_tools'],
+  iphone_action_button_left: ['left_shortcuts', 'wallpaper_shortcut', 'widget_iphone_home_screen', 'choose_your_tools'],
+  set_up_your_lifespan: ['choose_your_tools', 'widget_iphone_home_screen', 'aims_in_left', 'streaks_vs_habits'],
+  choose_your_tools: ['widget_iphone_home_screen', 'streaks_vs_habits', 'aims_in_left', 'organise_ahead_since', 'set_up_your_lifespan'],
+  restore_purchases: ['account_and_sync', 'choose_your_tools', 'add_friends'],
+  account_and_sync: ['restore_purchases', 'add_friends', 'joint_ahead_dates', 'accountability_with_friends'],
+};
 
 function injectSupportArticleExtras(html, page, enData) {
   html = stripInjection(html, SUPPORT_TOC_MARK_START, SUPPORT_TOC_MARK_END);
@@ -411,9 +441,8 @@ function injectSupportArticleExtras(html, page, enData) {
   }
 
   const supportArticles = (enData && enData.support_articles) || {};
-  const others = Object.keys(supportArticles)
-    .filter(slug => slug !== currentArticle && !UNLISTED_SUPPORT.has(slug) && supportArticles[slug] && supportArticles[slug].h1_1)
-    .sort();
+  const listed = slug => slug !== currentArticle && !UNLISTED_SUPPORT.has(slug) && supportArticles[slug] && supportArticles[slug].h1_1;
+  const others = (SUPPORT_RELATED[currentArticle] || Object.keys(supportArticles).sort()).filter(listed);
   if (others.length) {
     const items = others.map(slug => {
       const fallback = escapeText((supportArticles[slug].h1_1 || '').replace(/<[^>]+>/g, '').trim());
@@ -667,26 +696,33 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
 
   if (kind === 'app') {
     const meta = (data.index && data.index.meta) || {};
+    const appId = `${origin}${langPrefix}/#app`;
     return {
       '@context': 'https://schema.org',
-      '@type': 'WebSite',
-      name: 'Left',
-      url: `${origin}${langPrefix}/`,
-      inLanguage,
-      about: {
-        '@type': 'MobileApplication',
-        name: 'Left',
-        description: meta.description || '',
-        applicationCategory: 'ProductivityApplication',
-        operatingSystem: 'iOS 26.0 or later',
-        downloadUrl: 'https://apps.apple.com/app/id6740155884',
-        image: `${origin}/images/hero.webp`,
-        screenshot: `${origin}/images/left-feature.webp`,
-        author: { '@type': 'Person', name: 'Cristian Rus' },
-        publisher: { '@type': 'Organization', name: 'Cntxt Labs' },
-        inLanguage,
-        offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      },
+      '@graph': [
+        {
+          '@type': 'WebSite',
+          name: 'Left',
+          url: `${origin}${langPrefix}/`,
+          inLanguage,
+          about: { '@id': appId },
+        },
+        {
+          '@type': 'MobileApplication',
+          '@id': appId,
+          name: 'Left',
+          description: meta.description || '',
+          applicationCategory: 'ProductivityApplication',
+          operatingSystem: 'iOS 26.0 or later',
+          downloadUrl: 'https://apps.apple.com/app/id6740155884',
+          image: `${origin}/images/hero.webp`,
+          screenshot: `${origin}/images/left-feature.webp`,
+          author: { '@type': 'Person', name: 'Cristian Rus' },
+          publisher: { '@type': 'Organization', name: 'Cntxt Labs' },
+          inLanguage,
+          offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        },
+      ],
     };
   }
 
