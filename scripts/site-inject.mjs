@@ -202,6 +202,7 @@ export async function run({ quiet = false } = {}) {
     if (/<div\s+class="nav-links"/i.test(html)) html = setPrimaryNav(html, page);
     html = setFooterExtras(html);
     html = setMeta(html, 'left:content-type', contentType(page));
+    if (config.naverSiteVerification) html = setMeta(html, 'naver-site-verification', config.naverSiteVerification); // Naver Search Advisor (ko)
 
     const indexable = !NOINDEX.has(page);
     if (indexable && !NO_ANALYTICS.has(page) && page !== 'web.html') {
