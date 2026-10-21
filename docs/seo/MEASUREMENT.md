@@ -37,6 +37,17 @@ ID into `ga4MeasurementId`, run the site build, deploy.
   page changes off; custom dimensions `placement`, `locale`, `content_type` created;
   Search Console (`sc-domain:getleft.app`) linked. `download_click` is marked as a key
   event once GA has received it (the new GA4 admin only stars events it has seen).
+- Status on 2026-10-21 (CNTXT-881, done): `download_click` is marked as a key event and listed
+  under Key events.
+  - The custom dimensions carry values for the 16 events in the last 28 days:
+    - placement: float 6, nav 6, end 2, hero 1;
+    - content_type: home 13, support 2;
+    - locale: en 13, de 1, nl 1;
+    - one event has all three "(not set)".
+  - A live `g/collect` hit on `https://getleft.app/?nolang=1` carries `tid=G-YJKL80Z8DP`, `gcs=G101`
+    and `npa=1`.
+  - Not yet verified: the consent banner from a European time zone (the browser tools can't change
+    the time zone).
 - No Google Ads link exists, so the ads-personalisation panel stays inactive; the tag
   also sends `allow_ad_personalization_signals: false` and denies every ad signal.
 - Cloudflare also injects its own Web Analytics beacon (`static.cloudflareinsights.com`)
@@ -294,3 +305,23 @@ publishing section in `LANE-NOTES.md`). That makes each launch readable on its o
 - **Crawling.** The daily workflow submits the changed URLs to IndexNow itself
   (`scripts/indexnow.mjs --since <previous main>`), so there is no manual run for those
   pushes. New URLs enter `sitemap.xml` on their day, with `lastmod` set to that commit's date.
+
+## 13. left-time.app → getleft.app redirect (CNTXT-882)
+
+Live since 2026-10-21. left-time.app was the app's old site and still holds most of Left's brand search
+(see the 2026-10-19 baseline in `weekly/`).
+
+- **Cloudflare.**
+  - left-time.app's four A records and the `www` CNAME are Proxied.
+  - The Single Redirect rule "left-time to getleft" matches
+    `(http.host in {"left-time.app" "www.left-time.app"})`. It sends a dynamic 301 to
+    `concat("https://getleft.app", http.request.uri.path)` and keeps the query string.
+- **Verified 2026-10-21 with curl** on the 10 URLs listed in the issue:
+  - each gives one 301 to the same path on getleft.app and ends on a 200;
+  - `.html` URLs then get getleft.app's usual 308 to the clean URL;
+  - `/ios-26.html` lands on `/press`.
+- **Search Console Change of Address:** not filed yet. The owner files it in the left-time.app
+  property, pointing at `sc-domain:getleft.app`.
+- **What to watch:** in the weekly pulls of 26 Oct and 2 Nov, track brand queries ("left app", "left
+  widget", "left time app") moving from left-time.app to getleft.app in Search Console: clicks,
+  impressions and average position on both properties.
