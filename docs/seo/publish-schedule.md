@@ -5,9 +5,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 | Date | Item | Type | Status |
 |---|---|---|---|
-| 2026-10-20 | `blog/de`: blog in Deutsch, 46 pages | Translation release | live |
-| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 45 pages | Translation release | live |
-| 2026-10-20 | `blog/es`: blog in Español (España), 46 pages | Translation release | live |
+| 2026-10-20 | `blog/de`: blog in Deutsch, 48 pages | Translation release | live |
+| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 47 pages | Translation release | live |
+| 2026-10-20 | `blog/es`: blog in Español (España), 48 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 18 pages | Translation release | live |
