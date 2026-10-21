@@ -94,3 +94,4 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/days-since-app-alternatives | Ann H | https://www.pexels.com/photo/sticks-on-brown-background-7433748/ |
 | blog/best-time-awareness-apps-iphone | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
 | blog/time-left-app-alternatives | Christian Joudrey | https://unsplash.com/photos/row-of-bean-sprout-aO_jMXTduUE |
+| pomodoro-timer-iphone | taichi nakamura | https://unsplash.com/photos/white-and-black-analog-desk-clock-yXugmH3na-Q |
