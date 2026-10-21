@@ -1,0 +1,242 @@
+[
+  {
+    "id": "tools-06",
+    "verdict": "CONFIRMED",
+    "evidence": "tools/life-expectancy-calculator.html:505-508: baseline = F ? 79.0 : 73.8; estimated = baseline + adjustments; yearsLeft = max(0, min(105, estimated) - age). Default answers are all 0 (never smoked, no alcohol, no exercise, BMI normal selected, health Fair selected, no diabetes, high school, single, below-average income), so node gives a 70-year-old man 3.8 years left and an 80-year-old man 0.0. SSA 2022 period life table (TR2025) gives 14.09 remaining years for a man of exactly 70. Lede line 229 says 'A research-based estimate'; line 325 says 'a simplified assumption built into the tool, not an official statistic'; meta/og/twitter/JSON-LD (lines 132, 148, 159, 176) say 'population baselines and research-adjusted factors'. Line 337 says adjustments are additive. No source is cited for any adjustment.",
+    "gap_verified": 5,
+    "fix_ok": true,
+    "fix_correction": "The direction is right. Three refinements. (1) Don't add birth-based lifestyle adjustments (smoking -10, diabetes -6) unscaled to remaining life expectancy at older ages: a 70-year-old smoker would get 4 years. Scale each adjustment by remaining LE at the current age divided by LE at birth, or by a published hazard ratio, and keep a floor so the result never reaches 0 for a living person. (2) Name the table you use on the page (SSA is US-only and the page is served in ja). (3) The meta description is generator-owned: change it in scripts/build-tools-seo.mjs (the SEO override at line 969, plus the desc and cardDesc at line 46), not only in tools/*.html, or the next build reverts it. The 'How the estimate is calculated' paragraph (tbff000f008, the 73.8/79.0 baseline) must change too.",
+    "translation_impact_verified": "translated: 5-6 changed + 1-2 new units (tools/ja live)",
+    "translation_note": "i18n/tools/en.json life-expectancy-calculator has 88 units, and ja has 88/88. Units that change: t69ba522453 (lede), t172ddacbaa (cap paragraph), tbff000f008 (baseline paragraph, which the agent missed), af17ed8cdd5 (one attribute unit shared by meta, og and twitter, because the text is identical), lf17ed8cdd5 (JSON-LD), plus 1-2 new source lines. That gives about 82/90 = 91%, which is above 90% but close. If the per-adjustment sources go into the 9 <li> units, ja drops to about 73/90 = 81% and /ja/tools/life-expectancy-calculator would unpublish. Put the sources in one new paragraph, or translate them in the same push. Only tools/ja is released; the other 17 locales are 100% translated but held.",
+    "notes": "Result labels 'est. lifespan (yrs)' and 'life elapsed' in the inline script are hard-coded English (line 516/518)."
+  },
+  {
+    "id": "blog-02",
+    "verdict": "CONFIRMED",
+    "evidence": "blog/digital-clock-date-widget-iphone.html:369 '<strong>Does Left work on iPad and Mac?</strong><br/> No. Left is an iPhone app (iOS 26 or later)...'. Catalog unit t85699aec98 holds the question and answer as one block. LANE-NOTES 2026-10-20 says a Mac app is coming and the site must not say Left has no Mac app (product-claims.md only bans claiming one). The page has no FAQPage JSON-LD. App source: DigitalClockWidget.swift:336 supports systemSmall/Medium/Large + accessoryCircular/Rectangular/Inline (Home Screen, Lock Screen, StandBy). Left.xcodeproj: main app SUPPORTS_MACCATALYST = NO, SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO, so there is no Mac app today.",
+    "gap_verified": 4,
+    "fix_ok": true,
+    "fix_correction": "The wording is safe: it neither claims nor denies a Mac app, and the Sonoma 'iPhone widgets on the desktop' line matches the Lane 0 Mac articles. A small precision: 'On a Mac with macOS Sonoma or later, your iPhone's widgets, including this one, can also sit on the desktop (same Apple Account, iPhone nearby).'",
+    "translation_impact_verified": "translated: 1 unit (blog de, es, es-419 live)",
+    "translation_note": "The page has 89 units, and every locale has 88/89. Changing t85699aec98 gives 87/89 = 97.8%. No threshold risk.",
+    "notes": "I lowered the gap from 5 to 4: it is one sentence, and it is wrong only from the day the Mac app ships. It is still a hard-rule breach, so fix it early. Also 'No' for iPad is defensible today: the app is iPhone-only (TARGETED_DEVICE_FAMILY '1,6', Catalyst off)."
+  },
+  {
+    "id": "SUP-01",
+    "verdict": "PARTLY",
+    "evidence": "support/widget-ipad-home-screen.html:290 'Open the Left app on your iPad (download it from the App Store if you haven't already)'; support/widget-ipad-lock-screen.html:270 'Left needs iPadOS 26 or later' and :320 'Lock Screen widgets work on any iPad that can run Left'. Both are robots index,follow, in sitemap.xml, linked from support.html:416/420 and from the Related guides of all 29 support articles, and have 18 locale copies. GSC 16m: 6 + 3 English impressions. App: the main target has TARGETED_DEVICE_FAMILY '1,6' and the widget extension has 1, so the app is iPhone-only. The iTunes lookup shows features [] (not universal), 0 iPad screenshots, and 80 iPad models in supportedDevices (iPad compatibility mode). But product-claims.md line 28 explicitly says 'iPad and Mac support articles cover widgets only', and Lane 0 rewrote these two articles on 2026-10-20 (LANE-NOTES) instead of removing them. Whether an iPhone-only app's widgets appear in the iPad widget gallery in compatibility mode is unverified: no Apple source was found.",
+    "gap_verified": 4,
+    "fix_ok": false,
+    "fix_correction": "First test on a real iPad on iPadOS 26: install Left (an iPhone app) and check whether its widgets appear under Edit > Add Widget. If they don't, the articles are false: redirect them as proposed (gap 5). If they do, keep the URLs and reword them so they don't imply an iPad app: 'Left is an iPhone app. On an iPad you can install it from the App Store's iPhone apps, and its widgets then work on the iPad Home Screen and Lock Screen.' Then drop 'any iPad that can run Left'. Either way, the owner should decide, because product-claims.md and Lane 0 kept these pages on purpose. Deleting 36 indexed URLs before that test is premature.",
+    "translation_impact_verified": "no translated text",
+    "translation_note": "The removal or redirect adds no text. Keys support_articles.widget_ipad_* become orphans. A reword would change about 3-4 site-family keys in all 18 locales; the site family falls back to English and has no 90% gate.",
+    "notes": "The quotes in the problem statement are accurate. The rule it cites is softer than stated, and the fix contradicts a recorded owner/Lane 0 decision."
+  },
+  {
+    "id": "tools-01",
+    "verdict": "CONFIRMED",
+    "evidence": "tools/tools.js:62-70 addToDate uses setFullYear/setMonth without clamping. In node (functions extracted from tools.js): 2026-01-31 +1 month -> 2026-03-03; 2026-03-31 -1 month -> 2026-03-03; 2026-05-31 -1 month -> 2026-05-01; 2024-02-29 +/-1 year -> 2025-03-01 / 2023-03-01. tools/add-subtract-date-calculator.html:265 (unit teaf0e4a3c5) says 'adding 1 month to January 31st gives February 28th (or 29th in a leap year), not March 3rd.' Callers: add-subtract-date-calculator.html:454 and what-was-the-date.html:393-396.",
+    "gap_verified": 4,
+    "fix_ok": true,
+    "fix_correction": "",
+    "translation_impact_verified": "no translated text",
+    "translation_note": "The fix is a script change in tools/tools.js only. add-subtract-date-calculator is live in tools/ja (53/53). what-was-the-date is not live in any locale.",
+    "notes": "The same clamp should be reused by ymdBetween: see _missed, where the age calculator's text also contradicts its output."
+  },
+  {
+    "id": "tools-07",
+    "verdict": "CONFIRMED",
+    "evidence": "i18n/tools/en.json end-of-fasting-calculator: t50af1fdaad '16–24 hours - Fasting state: ketosis beginning, autophagy increasing', t91e8d57190 '24–72 hours - Extended fast: deep ketosis, significant autophagy', heading tecf3380abd 'Stages of fasting'. No source on the page. intermittent-fasting-duration-calculator.html:225 (t405bb3ebd7) '36 hours - ... (e.g., 5:2 protocol). Consult a doctor before attempting.' and :224 (t4e3ba8def8) 'OMAD ... Effective for weight loss'. A grep for doctor/medical/consult/pregnan on all three pages finds only the one clause at :225.",
+    "gap_verified": 4,
+    "fix_ok": true,
+    "fix_correction": "OK. Keep the caveat as a safety line, not a claim: 'Fasting is not suitable for everyone. If you are pregnant or breastfeeding, under 18, have diabetes or another medical condition, have had an eating disorder, or take regular medication, talk to a doctor first.' Per the fact-check rule for sensitive topics, add no new benefit claims.",
+    "translation_impact_verified": "no translated text (English-only pages)",
+    "translation_note": "The label 'translated: ~7 units changed' is wrong. All three pages (50, 50 and 47 units) have zero translated units in every locale catalog, and none is published in any locale. There are about 5 changed and 3 new English units, but no translation is lost.",
+    "notes": ""
+  },
+  {
+    "id": "tools-05",
+    "verdict": "CONFIRMED",
+    "evidence": "tools/pregnancy-due-date-calculator.html: the only input is :198 <input type='date' id='preg-lmp'>, with no cycle-length field. No disclaimer and no source link (grep 'not medical|disclaimer' finds nothing). t597d82a11d makes the uncited claims 'Only about 4% of babies are born on their exact due date ... 38 to 42 weeks'. te0f7a7df4e mentions a doctor or midwife, but only to describe Naegele's rule.",
+    "gap_verified": 4,
+    "fix_ok": true,
+    "fix_correction": "Minor: NHS dating scans happen between 8 and 14 weeks, so write 'usually from a dating scan in the first trimester (around 8 to 14 weeks)' rather than 'around 12 weeks'. The cycle-length adjustment (LMP + 280 days + (cycle - 28)) is the standard one.",
+    "translation_impact_verified": "1 changed + 3 new units, no translated text affected",
+    "translation_note": "43 units with 0 translated in every catalog. Not live in any locale. The label is correct.",
+    "notes": ""
+  },
+  {
+    "id": "SUP-02",
+    "verdict": "PARTLY",
+    "evidence": "support/apple-watch-app.html, mood-tracker-in-left.html and world-mood-globe.html all have <meta name='robots' content='noindex,follow'>, 0 sitemap entries, no inbound links from any other English page, 18 locale copies each (57 URLs) and hreflang tags. llms.txt and _redirects don't mention them. LANE-NOTES 2026-10-19 records this as a deliberate choice: 'Noindexed: support/apple-watch-app and blog/left-apple-watch-app (URLs stay live)'.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "A 302 to /support (not 410) is the safer option, but it reverses the recorded owner/Lane 0 decision, so ask the owner first. If they keep the URLs, at least drop the hreflang alternates and the 54 locale copies.",
+    "translation_impact_verified": "no translated text",
+    "translation_note": "Redirect or removal only. The keys stay in the site catalogs.",
+    "notes": "The facts are accurate, but gap 4 overstates the risk. The pages are noindexed, unlinked and out of the sitemap, so they reach only people who already have the URL. blog/left-apple-watch-app.html is in the same state (noindexed, live, English-only) and should be handled the same way."
+  },
+  {
+    "id": "SITE-01",
+    "verdict": "CONFIRMED",
+    "evidence": "Inbound links from English pages: /android 2 (index.html, support.html), /life-calendar 8, /days-left-wallpaper 11, /days-since-widget 14. The Android cluster has 126 clicks and 872 impressions in docs/seo/gsc/2026-10-19/left-time.app/query-16m.tsv (queries containing 'android'), and GROWTH-PLAN.md:55 agrees. tools/sobriety-calculator.html already links /days-since-widget. blog/best-free-widget-apps-iphone.html has no iPhone-only or Android discussion. blog/best-productivity-apps-mac.html:274 does say 'Left is built for iPhone'.",
+    "gap_verified": 3,
+    "fix_ok": true,
+    "fix_correction": "Drop sobriety-calculator from the list (it already links /days-since-widget). Drop best-free-widget-apps-iphone as an /android source: it doesn't discuss iPhone-only. Use best-productivity-apps-mac:274, the tools index and press. Add /days-since-widget to tools/days-since-date.",
+    "translation_impact_verified": "translated: about 7 units",
+    "translation_note": "1 unit each in tools/index, life-expectancy-calculator, age-calculator and days-since-date (all live in tools/ja, so each stays at least 97%). 1 unit in best-productivity-apps-mac (blog de, es, es-419). 1 unit in press (pages de, ja, zh-Hant; 25/26 now, so 24/26 = 92% after the change). No page goes under 90%.",
+    "notes": "Gap 4 is high for internal links. The 872 impressions are on the old left-time.app domain's home page, and /android is already linked from the home page, the strongest page."
+  },
+  {
+    "id": "blog-11",
+    "verdict": "CONFIRMED",
+    "evidence": "Units td7fb40ecd8 'Wallpaper: a year-progress visualization with \"Marathon 14 Oct\" as the label' and tcde330756e 'Wallpaper: \"Book 31 Dec\" with year-progress'. App: Left/Generators/WallpaperGenerator.swift:440 legend text is \"\\(remainingCount) \\(unit) left\" and the config has only mode/symbol/appearance/theme/showLegend/photo (WallpaperConfig.swift:209-215), so there is no free-text label. But WallpaperConfig.swift:11 and DynamicWallpaperView.swift:323-333 offer a 'Special Date' mode for any enabled Ahead date.",
+    "gap_verified": 3,
+    "fix_ok": true,
+    "fix_correction": "Better for the marathon, and true to the app: 'Wallpaper: a Special Date wallpaper for the marathon, a grid of the days until 14 Oct with the legend showing how many days are left. A permanent reminder of the big arc.' The book example can stay year-progress as proposed.",
+    "translation_impact_verified": "translated: 2 units",
+    "translation_note": "86 units, with blog de, es and es-419 at 85/86. After the change: 83/86 = 96.5%.",
+    "notes": ""
+  },
+  {
+    "id": "blog-19",
+    "verdict": "CONFIRMED",
+    "evidence": "blog/left-wallpaper-guide.html: about 480 words inside <article>, 5 h2, no FAQPage, meta description 81 characters. Catalog: 48 units, with de, es and es-419 at 47/48. The wallpaper queries on left-time.app add up to 1,116 impressions (query-16m.tsv, queries containing 'wallpaper').",
+    "gap_verified": 3,
+    "fix_ok": true,
+    "fix_correction": "Write every FAQ answer from the app source or /support/wallpaper-shortcut, and only say 'free' about the wallpaper itself. Ship the English and the de, es, es-419 translations in the same push (Lane 0 owns blog translation) so the locale URLs never unpublish.",
+    "translation_impact_verified": "translated: ~15-20 new units (5 Q&A blocks + 10 JSON-LD strings + list)",
+    "translation_note": "The threshold warning is correct. 47/(48+n) stays at least 0.9 only for n of 4 or fewer, so any FAQ with FAQPage JSON-LD (each Q&A is 1 t-unit plus 2 l-units) unpublishes /de, /es and /es-419/blog/left-wallpaper-guide unless the translations ship with it. The estimate of ~14 is low: 5 Q&As are already 15 units before the list.",
+    "notes": ""
+  },
+  {
+    "id": "SITE-06",
+    "verdict": "CONFIRMED",
+    "evidence": "None of the 7 landing pages has dateModified, datePublished, an author or a visible 'Updated' line. JSON-LD types are only FAQPage/BreadcrumbList/MobileApplication. index.html JSON-LD already names Person 'Cristian Rus'. press.html:207 shows only 'Developer: @CristianRus4', with no bio.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "Only write 'checked on iOS 26' if someone actually checks each page. Put the date in a <time> element and don't hard-code it in the translated sentence: the blog pattern (unit tbbe72438e2 'Updated <time ...>October 20, 2026</time>') re-opens the unit in every locale on each date change. Add dateModified on a WebPage node (scripts/lib/annotate.mjs JSONLD_KEYS doesn't extract dates, so it is not a unit). Linking to /press is fine, but it has no author bio.",
+    "translation_impact_verified": "translated: 7 new units (1 per page)",
+    "translation_note": "Pages-family landing pages have 89-114 units, all 100% translated. +1 unit leaves them at about 99%. Live: pages/de (released 2026-10-21), ja, zh-Hant. es-419 releases 2026-10-22 and the others follow daily, so translate before those dates.",
+    "notes": ""
+  },
+  {
+    "id": "SITE-11",
+    "verdict": "REJECTED",
+    "evidence": "android.html hero already has '<a class=\"lp-web-btn\" href=\"/web\">Open Left on the web</a>' above the iPhone 'Get Left for iPhone' data-cta=\"hero\" button (unit t16c38578a3, translated in all 18 locales). The only true part is that the web button isn't tracked. analytics.js:154/190-205 treats any [data-cta] element as a download link and fires gtag 'download_click', so adding data-cta=\"hero\" to the /web link would count web-app opens as App Store download clicks.",
+    "gap_verified": 1,
+    "fix_ok": false,
+    "fix_correction": "Don't add a button: it exists. If tracking is wanted, add a separate event (for example data-web-cta plus a 'web_open' gtag event in analytics.js) rather than data-cta, so download_click stays clean.",
+    "translation_impact_verified": "no translated text",
+    "translation_note": "The button label already exists and is translated. A tracking attribute on the <a> may change the hash of the enclosing block unit, if the lp-cta div is extracted as one block. Check this with the build before pushing.",
+    "notes": ""
+  },
+  {
+    "id": "blog-17",
+    "verdict": "CONFIRMED",
+    "evidence": "19 indexable posts have no /support link (my count matches the list; blog/index and the noindexed left-apple-watch-app are also without). Blog posts linking each landing page: /life-calendar 0, /days-since-widget 5 (best-days-since-apps-iphone went live 2026-10-21), /days-left-wallpaper 5, /countdown-widget 27. blog/iphone-aesthetic-widgets-guide.html already links /days-left-wallpaper.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "Drop the iphone-aesthetic-widgets-guide to /days-left-wallpaper link (it already exists). Otherwise fine: /support/aims-in-left, /support/widget-iphone-lock-screen and /support/focus-timer-in-left all exist, and product-claims says to keep Focus visible.",
+    "translation_impact_verified": "translated: 11 units",
+    "translation_note": "1 changed unit per page for 11 pages, not 12. Posts are at about 98% (one stale inline-CTA unit each), so -1 leaves them at about 97%. Blog de, es, es-419 live. Where a page is also in blog-15 (adhd-time-blindness, time-management-best-practices, stay-consistent-with-goals, smart-goals-guide, keep-track-multiple-projects, event-planning-timeline), batch both links so the paragraph re-opens once.",
+    "notes": ""
+  },
+  {
+    "id": "SITE-05",
+    "verdict": "CONFIRMED",
+    "evidence": "countdown-widget.html:383 'Left is free to download and its widgets are free.' (unit t885e4e5212, not 't885e5212' as written) and FAQ :394 / JSON-LD :249 'Yes. Left's widgets are free...' (tea51b70b4e / lea51b70b4e). App: LeftWidgetsBundle includes PlannerWidget, FastingWidget and FocusWidget. Planner and fasting are freeIncluded: false (OwnPaywallSupport.swift:317-318), and FocusView.swift:139 opens a paywall. The app's own paywall lists 'widgets' as freeIncluded: true, so the blanket line isn't false, only imprecise. It breaks the fact-check rule 'name the specific free widgets'.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "On a countdown page the simplest true line is: 'Left is free to download, and its countdown widgets are free.' The proposed 'Time Left, Ahead and Since widgets' is also true. Apply it to the same sentence on /days-since-widget, /habit-tracker and /android too (see _missed).",
+    "translation_impact_verified": "translated: 3 units",
+    "translation_note": "114 units, 100% in all locales. 111/114 = 97%. Live: pages de, ja, zh-Hant; the others are scheduled from 2026-10-22.",
+    "notes": "I lowered the gap from 3 to 2: the paywall itself calls widgets free; the issue is precision."
+  },
+  {
+    "id": "blog-22",
+    "verdict": "CONFIRMED",
+    "evidence": "data-cta=\"end\" is absent and 'Start noticing what matters' is absent in countdown-next-trip-with-friends, how-to-add-widgets-iphone, how-to-build-a-streak, left-planner-guide and what-is-year-progress. Each has 1 data-cta=\"inline\". All other indexable posts have the block.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "",
+    "translation_impact_verified": "translated: 35 new units (7 per page)",
+    "translation_note": "The standard block is 7 units, not 3: t83925e656c 'Download Left', td5e13d198e h2, t9354599239 paragraph, a46c2f007fd QR aria-label, t6f96ad126d 'Scan or search', ad282d74e55 button aria-label and t15164e11b5 svg + 'Download for iOS' (checked on adhd-reward-system). The hashes are content-based, so the translations already exist in every locale and can be copied under the same keys. If they are not copied, the pages fall to 90.7-91.9% (for example how-to-build-a-streak 78/86). That is above 90% but tight, so copy them in the same push.",
+    "notes": ""
+  },
+  {
+    "id": "tools-10",
+    "verdict": "CONFIRMED",
+    "evidence": "57 tool pages: 0 contain dateModified, datePublished or 'author', and none has a visible 'Updated' line. scripts/build-tools-seo.mjs:1068 already sets publisher {Organization, name: Left} (no url). The year tables are hand-written in tools/*.html, not generated: for example tools/days-until-easter.html:232-236 (2027-2031) and the FAQ 'When is Easter 2027?' :253. The dates are correct: Western 28 Mar 2027, Orthodox 2 May 2027, shared 16 Apr 2028 and 13 Apr 2031.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "Take dateModified from the page's last content change (git log of the tool's source), not the build date: the daily-publish workflow rebuilds every day, which would stamp every tool 'modified today'. Generating the tables from the build year means moving that content from tools/*.html into the generator. Each yearly roll-forward changes English text, so the year-specific units (table rows, the 'Easter 2027' FAQ and its JSON-LD) re-open in tools/ja every year. Plan a yearly translation pass.",
+    "translation_impact_verified": "translated: 1 new unit per page + yearly table churn",
+    "translation_note": "tools/ja has 17 tools + index live, at 100%. +1 unit leaves them at about 98%. JSON-LD dateModified isn't extracted (JSONLD_KEYS in scripts/lib/annotate.mjs is name/headline/description/text/caption/articleBody).",
+    "notes": "I lowered the gap from 3 to 2: the tables are correct until Easter 2027 passes."
+  },
+  {
+    "id": "blog-15",
+    "verdict": "CONFIRMED",
+    "evidence": "Counting only links inside <article> (the nav 'Tools' link is on every page), 5 of 48 posts link a /tools/ page: best-countdown-widgets-iphone, best-days-since-apps-iphone (new 2026-10-21), countdown-next-trip-with-friends, how-to-build-a-streak and what-is-year-progress. That is the same finding as '4 of 47' before today's post. All proposed target tools exist.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "Remove best-countdown-widgets-iphone from the pages list: it already links date-countdown-calculator and days-until-birthday. digital-clock-date-widget to time-zone-meeting-planner is a weak topical fit; /tools/countdown-timer or none is better.",
+    "translation_impact_verified": "translated: 14 units",
+    "translation_note": "1 changed unit for each of the 14 pages in the fix text (not 15). Blog de, es, es-419; each stays at about 97%.",
+    "notes": ""
+  },
+  {
+    "id": "SITE-02",
+    "verdict": "PARTLY",
+    "evidence": "index.html:821 (key index.widgets.android) is visible text: 'Using Android? Left is iPhone-only. See what works in your browser.' So the home page does say Left is iPhone-only. What is missing is the iOS 26 requirement, which appears only in JSON-LD (index.html:362 'operatingSystem: iOS 26.0 or later'). None of the 13 FAQ items (index.faq.items) covers devices.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "Point computers at /web, not /android, and keep the Mac neutral: 'Which devices does Left run on?' / 'Left is an iPhone app and needs iOS 26 or later. On Android or any computer, Left on the web shows your time in a browser (getleft.app/web). On a Mac with macOS Sonoma or later, Left's iPhone widgets can also sit on the desktop.'",
+    "translation_impact_verified": "translated: 2 keys (site family, all 18 locales)",
+    "translation_note": "The home FAQPage JSON-LD is generated from the same index.faq.items q/a keys (scripts/build-i18n.mjs:631-640), so the new item is 2 keys, not 3. The site family has no 90% gate: missing keys fall back to English in all 18 locales until translated.",
+    "notes": ""
+  },
+  {
+    "id": "blog-09",
+    "verdict": "CONFIRMED",
+    "evidence": "Meta description lengths: countdown-next-trip-with-friends 106, how-to-build-a-streak 106, how-to-add-widgets-iphone 112, left-wallpaper-guide 81, blog index 116. The proposed copy measures 146, 143, 143, 142 and 140. Its claims are backed: Joint Ahead is Premium (product-claims); how-to-build-a-streak:351+ documents logging a habit from the Habit widget and has 'What to do when a streak breaks'; how-to-add-widgets-iphone has a 'Troubleshooting' h2; Left Wallpaper is free.",
+    "gap_verified": 2,
+    "fix_ok": true,
+    "fix_correction": "",
+    "translation_impact_verified": "translated: 10 units",
+    "translation_note": "The detail is partly wrong. On 4 of the 5 pages, og:description and twitter:description have the same text as the meta description and share its a-unit (for example a2eb3a74485 covers all three), so change all three together. Only the blog index has a different og text. That makes 2 changed units per page (a + l), 10 in total. Pages stay at about 96-98% in de, es, es-419.",
+    "notes": ""
+  },
+  {
+    "id": "blog-20",
+    "verdict": "CONFIRMED",
+    "evidence": "blog/best-habit-tracker-apps-iphone.html: about 980 words inside <article>, 7 apps (h2 1-7), 0 <table>, 0 FAQPage. Catalog: 57 units, with de, es and es-419 at 56/57.",
+    "gap_verified": 3,
+    "fix_ok": true,
+    "fix_correction": "In the table, state no price for Left: use 'Free plan; Premium (prices in app)'. Mark Apple Health tracking and sharing as Left Premium. Ship the translations with the English.",
+    "translation_impact_verified": "translated: ~35 new units (table) / ~12 (FAQ only)",
+    "translation_note": "Correct that both options unpublish the live locales unless the translations ship together: 56/(57+n) is at least 0.9 only for n of 5 or fewer. A 4-question FAQ with FAQPage JSON-LD is 4 t-units + 8 l-units = 12, giving 56/69 = 81%.",
+    "notes": "Several habit/streak listicles are scheduled (streaks-app-alternatives 10-26, habitkit-alternatives 10-30, best-streak-counter-apps-iphone 11-04), so keep the comparison claims consistent with them."
+  },
+  {
+    "id": "_missed",
+    "items": [
+      {
+        "title": "Age calculator text contradicts its own output (tools/tools.js ymdBetween), live in tools/ja",
+        "evidence": "tools/age-calculator.html:244 (unit t241493e002): 'if you were born on January 31st and today is March 1st, you are 1 month and 1 day older (in a non-leap year), not 1 month and 0 days.' In node with ymdBetween from tools/tools.js:48-59: ymdBetween(2025-01-31, 2025-03-01) = {years:0, months:1, days:0}. Days go negative (-2) and are clamped to 0 by Math.max, so Jan 29, 30 and 31 all show '1 month 0 days' on Mar 1. Used by age-calculator.html:425 and days-until-birthday.html:505, both live in ja.",
+        "fix": "Compute y/m with the same end-of-month clamp proposed in tools-01 (anchor = dob + y years + m months, clamped), then count days from the anchor. Script only; no text change."
+      },
+      {
+        "title": "The blanket 'widgets are free' line is also on three other landing pages (SITE-05 only covers /countdown-widget)",
+        "evidence": "days-since-widget.html:394 FAQ 'Yes. Left's widgets are free, and the free plan...'; habit-tracker.html:390 and JSON-LD :249 'Left is free to download and its widgets are free.'; android.html:362 'Time Left, the widgets and the wallpaper are free.' (year-progress-widget.html:386 is already scoped to 'the Year widget and the other Time Left widgets').",
+        "fix": "Use the same scoped wording as SITE-05 ('its habit and streak widgets are free' and so on). That is about 2-3 pages-family units per page; all pages are at 100%, so there is no threshold risk."
+      },
+      {
+        "title": "The life expectancy meta description is generator-owned",
+        "evidence": "scripts/build-tools-seo.mjs:969 (SEO override) and :46 (desc, cardDesc) hold 'population baselines and research-adjusted factors'. tools/*.html is regenerated by the build (LANE-NOTES: tool copy lives in build-tools-seo.mjs).",
+        "fix": "Make the tools-06 meta, og and card edits in the generator, or they revert on the next node scripts/build.mjs."
+      }
+    ]
+  }
+]

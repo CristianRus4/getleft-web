@@ -1,0 +1,705 @@
+[
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/what-was-the-date"
+  ],
+  "line": "accuracy",
+  "problem": "addToDate() in tools/tools.js uses setMonth, so Jan 31 + 1 month returns Mar 3 (verified in node) and Mar 31 minus 1 month returns Mar 3; add-subtract page says \"adding 1 month to January 31st gives February 28th ... not March 3rd\".",
+  "fix": "In addToDate, after adding years/months, clamp the day to the last day of the target month (new Date(y, m+1, 0).getDate()); then apply weeks/days. Also Feb 29 minus/plus years should land on Feb 28. No page text changes, the existing sentence becomes true.",
+  "gap": 4,
+  "effort": "S",
+  "translation_impact": "no translated text",
+  "translation_detail": "Script change only (tools/tools.js). add-subtract is live in ja; text already says the correct behaviour.",
+  "id": "tools-01",
+  "demand": {
+   "gsc_impr_16m": 2,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "add days to a date"
+  }
+ },
+ {
+  "pages": [
+   "/tools/age-calculator",
+   "/tools/days-until-birthday"
+  ],
+  "line": "accuracy",
+  "problem": "ymdBetween() clamps negative days to 0: Jan 31 to Mar 1 gives 1 month 0 days, but age-calculator text says \"1 month and 1 day\"; born Jan 29-31 users lose days around end of February.",
+  "fix": "Compute months by adding whole months to the start with end-of-month clamping (Jan 31 + 1 month = Feb 28), then count the remaining days to the end date. Alternatively change the example sentence, but fixing the code keeps the text.",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "no translated text",
+  "translation_detail": "Script only. age-calculator is live in ja (text unchanged); days-until-birthday is live in ja.",
+  "id": "tools-02",
+  "demand": {
+   "gsc_impr_16m": 49,
+   "lt_impr_16m": 0,
+   "aso_pop": 54,
+   "main_query": "age calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/iso-week-number"
+  ],
+  "line": "accuracy",
+  "problem": "Page says if Jan 1 is Fri/Sat/Sun \"week 1 of the new ISO year starts on the Monday before New Year's Day\". It starts on the Monday after (2027: Jan 4; Jan 1 2027 is ISO week 53 of 2026, verified).",
+  "fix": "Replace the paragraph with: \"If January 1 falls on a Friday, Saturday or Sunday, it belongs to the last week of the previous ISO year, and week 1 starts on the first Monday after it (January 2 to 4). If January 1 falls on a Monday to Thursday, week 1 is the week that contains it, which can start in late December.\"",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 1 unit",
+  "translation_detail": "unit td70d897ae4 in i18n/tools/en.json; iso-week-number is not live in any locale (ja 0%).",
+  "id": "tools-03",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "what week number is it"
+  }
+ },
+ {
+  "pages": [
+   "/tools/pregnancy-due-date-calculator"
+  ],
+  "line": "accuracy",
+  "problem": "Due date = LMP + 280*86400000 ms: for LMPs from roughly mid-April to early June in DST-observing zones the date shown is one day early (LMP 2027-04-20 in New York/London shows Jan 24, correct Jan 25). The trimester line says \"Week 9, Day 1\" while the stat above says 8 weeks pregnant.",
+  "fix": "Use setDate(getDate()+280) for the due date. Show gestational age consistently as \"8 weeks 1 day\" in both places (change the pregWeekDay string).",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 1 unit",
+  "translation_detail": "runtime string result.pregWeekDay in i18n/tools-runtime/en.json; page not live in any locale.",
+  "id": "tools-04",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "pregnancy due date calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/pregnancy-due-date-calculator"
+  ],
+  "line": "eeat",
+  "problem": "Medical topic with no disclaimer, no source and no cycle-length or conception/IVF option; the 4% and 38-42 week claims are uncited. NHS and Tommy's calculators offer cycle length and link to a midwife.",
+  "fix": "Add: \"This is an estimate. Your midwife or doctor will confirm your due date, usually from a dating scan around 12 weeks.\" and cite the NHS due-date calculator and Tommy's (only about 4 in 100 babies arrive on the due date). Add a cycle-length field (adjust LMP by cycle minus 28 days).",
+  "gap": 4,
+  "effort": "M",
+  "translation_impact": "translated: 3 new units, 1 changed",
+  "translation_detail": "Changed t597d82a11d; new disclaimer, source line, field label. Not live in any locale.",
+  "id": "tools-05",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "pregnancy due date calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/life-expectancy-calculator"
+  ],
+  "line": "accuracy",
+  "problem": "yearsLeft = min(105, baseline+adjustments) - age, with baselines 73.8 (M) and 79.0 (F): with neutral answers a 70-year-old man gets about 4 years left, where actuarial tables give well over 10 (SSA period life table); adjustments are additive, unsourced, and the lede says \"research-based\" while the body says \"simplified assumption, not an official statistic\"; meta desc says \"population baselines and research-adjusted factors\".",
+  "fix": "Base years left on remaining life expectancy at the current age from a published table (SSA period life table or ONS/WHO) and apply the adjustments to that; cite the table and the sources for each adjustment (e.g. smoking, exercise meta-analyses). Reword the lede to \"A rough estimate of your life expectancy from simple lifestyle adjustments\" and the meta to \"Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice.\"",
+  "gap": 5,
+  "effort": "M",
+  "translation_impact": "translated: ~6 units",
+  "translation_detail": "lede t69ba522453, cap paragraph t172ddacbaa, desc af17ed8cdd5 + JSON-LD lf17ed8cdd5, plus new source line(s). Live in ja (88 units): ja stays above 90% but the changed units fall back to English until retranslated.",
+  "id": "tools-06",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 55,
+   "main_query": "life expectancy calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/end-of-fasting-calculator",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/fasting-countdown"
+  ],
+  "line": "accuracy",
+  "problem": "End-of-fasting lists \"16-24 hours: ketosis beginning, autophagy increasing; 24-72 hours: significant autophagy\" with no source (search found only generic wellness timelines; human autophagy timing is not established); intermittent page calls 36-hour fasts \"e.g., 5:2 protocol\" (5:2 is two low-calorie days, not 36 h fasts) and says OMAD is \"effective for weight loss\"; none has a medical caveat except one clause.",
+  "fix": "Replace the stage list with \"What people commonly describe\" wording without autophagy figures, or drop it; fix 5:2 (\"5:2 means eating normally five days and about 500-600 kcal on two\"); cut \"effective for weight loss\" or cite a review; add a caveat on all three: \"Not suitable if you are pregnant, under 18, have diabetes or a history of eating disorders, or take medication; talk to a doctor first.\" Link an NHS/Mayo Clinic page.",
+  "gap": 4,
+  "effort": "M",
+  "translation_impact": "translated: ~7 units changed, 3 new",
+  "translation_detail": "End-of-fasting t50af1fdaad, t91e8d57190, tecf3380abd; intermittent t405bb3ebd7, t4e3ba8def8; plus 3 caveat sentences. None live in ja.",
+  "id": "tools-07",
+  "demand": {
+   "gsc_impr_16m": 1,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "intermittent fasting calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/"
+  ],
+  "line": "accuracy",
+  "problem": "Index card text describes features the tools lack: pregnancy \"From last menstrual period, conception date, or ultrasound\" (LMP only), sleep \"Calculate how long you will sleep between bedtime and alarm\" (it suggests bed/wake times), fasting duration \"Hours and minutes between two fast times\" (it takes last-meal time and protocol).",
+  "fix": "Pregnancy: \"Estimated due date and current week from your last period.\" Sleep: \"Best bedtimes and wake-up times from 90-minute sleep cycles.\" Fasting: \"When your 16:8, 18:6 or custom fast ends from the time you last ate.\"",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 3 units",
+  "translation_detail": "index units t686d87a9e2, t380c07f32f, tc3168bd642; /tools/ is live in ja (203 units), those 3 fall back to English until retranslated (stays above 90%).",
+  "id": "tools-08",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "free online date tools"
+  }
+ },
+ {
+  "pages": [
+   "/tools/sleep-calculator"
+  ],
+  "line": "eeat",
+  "problem": "90-minute cycles and \"wake at the end of a cycle and feel refreshed\" are stated as fact; cycle length varies between people and nights; 7.5 h called \"ideal\" while the cited National Sleep Foundation range is 7-9 h; no link.",
+  "fix": "Say \"average cycle of about 90 minutes; yours may be 70-120\", link the Sleep Foundation or AASM/SRS recommendation (7 or more hours for adults), and relabel 7.5 h as \"a common target\" rather than ideal. Add a line: \"If you regularly feel unrested, see a doctor.\"",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: ~4 units",
+  "translation_detail": "tc9f5b1d091, t5522bc12dc, meta a88db384279 + l88db384279 (if desc reworded). Not live in any locale.",
+  "id": "tools-09",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "sleep calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/age-calculator",
+   "/tools/anniversary-countdown",
+   "/tools/business-days-calculator",
+   "/tools/business-days-from-date",
+   "/tools/christmas-countdown-widget",
+   "/tools/countdown-timer",
+   "/tools/date-countdown-calculator",
+   "/tools/date-units-converter",
+   "/tools/days-between-two-dates",
+   "/tools/days-since-date",
+   "/tools/days-until-birthday",
+   "/tools/days-until-easter",
+   "/tools/days-until-fall",
+   "/tools/days-until-fathers-day",
+   "/tools/days-until-halloween",
+   "/tools/days-until-mothers-day",
+   "/tools/days-until-new-year",
+   "/tools/days-until-spring",
+   "/tools/days-until-summer",
+   "/tools/days-until-thanksgiving",
+   "/tools/days-until-valentines",
+   "/tools/days-until-winter",
+   "/tools/deadline-countdown-calculator",
+   "/tools/end-of-fasting-calculator",
+   "/tools/fasting-countdown",
+   "/tools/fiscal-year-progress-calculator",
+   "/tools/habit-streak-calculator",
+   "/tools/hours-between-two-dates",
+   "/tools/hours-since-date",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/iso-week-number",
+   "/tools/life-expectancy-calculator",
+   "/tools/meeting-time-calculator",
+   "/tools/minutes-between-two-times",
+   "/tools/percentage-year-calculator",
+   "/tools/pregnancy-due-date-calculator",
+   "/tools/quarter-countdown-calculator",
+   "/tools/reading-time-calculator",
+   "/tools/retirement-countdown-calculator",
+   "/tools/school-days-calculator",
+   "/tools/semester-countdown-calculator",
+   "/tools/sleep-calculator",
+   "/tools/sobriety-calculator",
+   "/tools/time-between-two-times",
+   "/tools/time-left-in-year-calculator",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/time-until-weekend",
+   "/tools/time-zone-meeting-planner",
+   "/tools/unix-milliseconds-converter",
+   "/tools/unix-timestamp-converter",
+   "/tools/vacation-countdown",
+   "/tools/wedding-countdown",
+   "/tools/weeks-until-date",
+   "/tools/what-was-the-date",
+   "/tools/workday-countdown",
+   "/tools/working-hours-calculator"
+  ],
+  "line": "eeat",
+  "problem": "No tool page shows a published/updated date, author or reviewer, and JSON-LD has no dateModified/author; the \"next five years\" tables (Easter 2027-31, equinoxes, weekday tables, 2027 business-day table) are hard-coded and go stale each year.",
+  "fix": "Add dateModified (and publisher link to Left) to the WebApplication JSON-LD from the build date; add a visible \"Updated October 2026\" line; have build-tools-seo.mjs generate the five-year tables from the build year so they roll forward. Add a one-line \"How we check\" note on pages with calculations.",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: 1 new unit per page",
+  "translation_detail": "Visible line is 1 new unit per page (use a date placeholder so the yearly date change does not re-open the unit); JSON-LD dateModified is a non-prose value, verify the l-unit extraction ignores it. Live ja pages: 17 tools + index, each +1 unit stays above 90%.",
+  "id": "tools-10",
+  "demand": {
+   "gsc_impr_16m": 611,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "(all tool pages)"
+  }
+ },
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/age-calculator",
+   "/tools/date-countdown-calculator",
+   "/tools/days-between-two-dates",
+   "/tools/days-since-date",
+   "/tools/end-of-fasting-calculator",
+   "/tools/fasting-countdown",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/iso-week-number",
+   "/tools/life-expectancy-calculator",
+   "/tools/percentage-year-calculator",
+   "/tools/pregnancy-due-date-calculator",
+   "/tools/sleep-calculator",
+   "/tools/time-left-in-year-calculator",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/time-until-weekend",
+   "/tools/unix-milliseconds-converter",
+   "/tools/unix-timestamp-converter",
+   "/tools/what-was-the-date"
+  ],
+  "line": "conversion",
+  "problem": "19 tool pages have only the end-of-page download block; high-intent pages (date countdown, days between, days since, time left in year, age, fasting, sleep) never offer Left where the user has just got a result.",
+  "fix": "Add the existing .tool-cta result button after the widget, with a label that names the feature: \"Count days since in Left\" (days-since, days-between), \"Put this countdown on your Home Screen\" (date-countdown, fasting, weekend), \"Put the year on your Lock Screen\" (time-left/passed, percentage), \"See your life in weeks\" (age, life expectancy). Do not name Premium features as free.",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 1 unit per page",
+  "translation_detail": "One new button label per page (several strings already exist and are translated on other pages). Live ja among them: add-subtract, age, date-countdown, days-between, days-since-date, life-expectancy, percentage-year, time-left-in-year: +1 unit each stays above 90%.",
+  "id": "tools-11",
+  "demand": {
+   "gsc_impr_16m": 57,
+   "lt_impr_16m": 0,
+   "aso_pop": 72,
+   "main_query": "(date and countdown tool queries)"
+  }
+ },
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/age-calculator",
+   "/tools/date-countdown-calculator",
+   "/tools/days-between-two-dates",
+   "/tools/days-since-date",
+   "/tools/time-left-in-year-calculator",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/life-expectancy-calculator",
+   "/tools/pregnancy-due-date-calculator",
+   "/tools/end-of-fasting-calculator",
+   "/tools/fasting-countdown",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/sleep-calculator",
+   "/tools/what-was-the-date",
+   "/tools/time-until-weekend",
+   "/tools/school-days-calculator",
+   "/tools/working-hours-calculator"
+  ],
+  "line": "links",
+  "problem": "26 of 57 tool pages link no landing page (/countdown-widget, /days-since-widget, /year-progress-widget, /life-calendar, /habit-tracker); the most linked tool (date-countdown-calculator, 21 audited inbound) links none.",
+  "fix": "One sentence with a contextual link per page: date-countdown, days-between, what-was-the-date, add-subtract, fasting x3, sleep, pregnancy, weekend, school, working hours -> /countdown-widget; days-since-date -> /days-since-widget and /habit-tracker; time-left/passed -> /year-progress-widget; age, life-expectancy -> /life-calendar. Life-expectancy copy must not promise custom lifespan as free.",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 1 new unit per page",
+  "translation_detail": "New sentence per page. Live ja pages in this list (add-subtract, age, date-countdown, days-between, days-since-date, time-left-in-year, life-expectancy): +1 unit stays above 90%.",
+  "id": "tools-12",
+  "demand": {
+   "gsc_impr_16m": 37,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "(countdown / days since / year progress)"
+  }
+ },
+ {
+  "pages": [
+   "/tools/date-countdown-calculator"
+  ],
+  "line": "depth",
+  "problem": "The hub page (449 words, 21 audited inbound links) has no FAQ, examples or table; the \"how many days until...\" family of queries lands on it.",
+  "fix": "Add a short FAQ (\"How many days until a date?\", \"Does it count the end date?\", \"Which time zone?\"), a table of common targets with links to the holiday pages, and a result CTA. Keep new units to 6 or fewer, or retranslate ja in the same release, since ja (60 units) falls below 90% at 7 new units.",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~6 new units",
+  "translation_detail": "Live in ja (60 units): 6 new units keep it at 91%; more drops ja until translated.",
+  "id": "tools-13",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 72,
+   "main_query": "countdown to a date"
+  }
+ },
+ {
+  "pages": [
+   "/tools/days-since-date"
+  ],
+  "line": "depth",
+  "problem": "Core Left use case (Since, ASO \"days since\" 48 GB) but the page is 287 words with no FAQ, examples or app link; the days-since widget is not mentioned by name.",
+  "fix": "Add FAQ (days since a date, time-zone and DST handling, \"include today?\"), 3 worked examples, link /days-since-widget and /support/streaks-vs-habits, and a result CTA. Keep at 4 new units or fewer for ja (41 units, 90% limit).",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~4 new units",
+  "translation_detail": "Live in ja (41 units): 4 new units keep it at 91%.",
+  "id": "tools-14",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 48,
+   "main_query": "days since date"
+  }
+ },
+ {
+  "pages": [
+   "/tools/time-left-in-year-calculator",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/percentage-year-calculator"
+  ],
+  "line": "depth",
+  "problem": "Year-progress family (GSC 50 impr, percentage page at pos 10.5) is 323-414 words with no FAQ and no table, and time-left/time-passed do not link /year-progress-widget.",
+  "fix": "Add a table of days left at the start of each month and the current week number, a 3-question FAQ, and a link plus result CTA for the Year widget. Keep to 5 new units on the two ja-live pages (49 and 51 units).",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~5 new units per page",
+  "translation_detail": "ja live for time-left and percentage (5 units keeps both at 90%); time-passed not live.",
+  "id": "tools-15",
+  "demand": {
+   "gsc_impr_16m": 50,
+   "lt_impr_16m": 0,
+   "aso_pop": 46,
+   "main_query": "time left in the year"
+  }
+ },
+ {
+  "pages": [
+   "/tools/age-calculator"
+  ],
+  "line": "depth",
+  "problem": "289 words; no FAQ, no \"age on a given date\" input, no leap-day birthday note.",
+  "fix": "Add an \"as of\" date input and a 3-question FAQ (age in months, leap-day birthdays, how it is counted). Keep to 4 new units: age is live in ja with 43 units.",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~4 new units",
+  "translation_detail": "ja live (43 units); 4 new units keep it at 91%.",
+  "id": "tools-16",
+  "demand": {
+   "gsc_impr_16m": 1,
+   "lt_impr_16m": 0,
+   "aso_pop": 54,
+   "main_query": "age calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/business-days-calculator",
+   "/tools/business-days-from-date",
+   "/tools/working-hours-calculator",
+   "/tools/school-days-calculator"
+  ],
+  "line": "depth",
+  "problem": "No holiday or custom-weekend option; top results for \"business days calculator\" (inchcalculator, almanac, gigacalculator) offer US/UK/CA/AU holiday lists and weekend settings. Business-days-calculator has the tool set's largest GSC demand (120 impr, \"calculate business days\", \"2 business days\").",
+  "fix": "Add a \"Holidays\" select (none, US federal, UK, Canada, Australia, custom list) and a weekend selector (Sat-Sun, Fri-Sat, Sun only) in tools.js; keep the existing explanatory text.",
+  "gap": 3,
+  "effort": "L",
+  "translation_impact": "translated: ~6 new units per page",
+  "translation_detail": "New labels and one explanatory paragraph; business-days-calculator is live in ja (82 units, 6 new keeps 93%).",
+  "id": "tools-17",
+  "demand": {
+   "gsc_impr_16m": 125,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "business days calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/days-until-mothers-day",
+   "/tools/days-until-fathers-day",
+   "/tools/days-until-thanksgiving"
+  ],
+  "line": "depth",
+  "problem": "The counters only count to the US/May/June/November date although the text shows UK Mothering Sunday, AU/NZ Father's Day and Canadian Thanksgiving in tables; users in those countries (Mothering Sunday is Easter minus 21 days, already computable in tools.js) get the wrong countdown.",
+  "fix": "Add a region toggle (Mother's Day: US/CA/AU or UK/IE; Father's Day: US/CA/UK or AU/NZ; Thanksgiving: US or Canada) driving nextMothersDay/nextFathersDay/nextThanksgiving; auto-select by time zone.",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~4 new units per page",
+  "translation_detail": "Toggle labels and one sentence; none of the three is live in ja.",
+  "id": "tools-18",
+  "demand": {
+   "gsc_impr_16m": 27,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "days until mother's day"
+  }
+ },
+ {
+  "pages": [
+   "/tools/days-until-spring",
+   "/tools/days-until-summer",
+   "/tools/days-until-fall",
+   "/tools/days-until-winter"
+  ],
+  "line": "depth",
+  "problem": "Only astronomical dates; southern-hemisphere and UK users mostly mean the meteorological start (Sep 1, Dec 1, Mar 1, Jun 1), which the text mentions but the counter cannot show.",
+  "fix": "Add a \"Astronomical / Meteorological\" toggle to the four counters.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: ~3 new units per page",
+  "translation_detail": "Toggle labels; none live in ja.",
+  "id": "tools-19",
+  "demand": {
+   "gsc_impr_16m": 55,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "days until spring"
+  }
+ },
+ {
+  "pages": [
+   "/tools/time-zone-meeting-planner"
+  ],
+  "line": "depth",
+  "problem": "Zone dropdowns list ~600 raw IANA ids including legacy aliases (US/Pacific, Etc/GMT+12 whose sign is inverted), no overlap highlighting, only three zones; title says \"planner\" while the head query is \"time zone converter\".",
+  "fix": "Replace with a curated list of ~80 cities with UTC offsets; highlight 09:00-17:00 overlap; allow choosing which zone the entered time is in; retitle \"Time Zone Converter and Meeting Planner | Left\" (53 chars).",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~8 new units, title 3 + desc 2",
+  "translation_detail": "Not live in ja.",
+  "id": "tools-20",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "time zone converter"
+  }
+ },
+ {
+  "pages": [
+   "/tools/retirement-countdown-calculator"
+  ],
+  "line": "depth",
+  "problem": "The tool subtracts two ages; competitor retirement countdowns take a birth date and return an exact date and working days left.",
+  "fix": "Add an optional date-of-birth mode that returns the retirement date, days left and working days left.",
+  "gap": 2,
+  "effort": "M",
+  "translation_impact": "translated: ~4 new units",
+  "translation_detail": "Not live in ja.",
+  "id": "tools-21",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "retirement countdown"
+  }
+ },
+ {
+  "pages": [
+   "/tools/age-calculator",
+   "/tools/business-days-calculator",
+   "/tools/countdown-timer",
+   "/tools/days-between-two-dates",
+   "/tools/life-expectancy-calculator",
+   "/tools/add-subtract-date-calculator",
+   "/tools/end-of-fasting-calculator",
+   "/tools/pregnancy-due-date-calculator",
+   "/tools/fasting-countdown",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/iso-week-number",
+   "/tools/hours-between-two-dates",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/what-was-the-date",
+   "/tools/time-zone-meeting-planner"
+  ],
+  "line": "translation",
+  "problem": "Strings hard-coded in page scripts (add-subtract \"days after/before\", age \"years\", business days \"business days/calendar days/weekend days\", days-between \"days / week(s) and day(s)\", life expectancy result labels, countdown-timer \"Start timer/Reset timer\", \"weeks pregnant\", \"hours left\", \"ISO week\", etc.) bypass toolT(), so the live ja pages show English inside the results.",
+  "fix": "Move them into LEFT_TOOL_STRINGS_EN and i18n/tools-runtime/en.json (~20 strings on the six ja-live pages, ~60 across all 24 pages).",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: ~20 runtime strings for live ja pages (~60 total)",
+  "translation_detail": "Live ja pages affected: add-subtract, age, business-days-calculator, days-between-two-dates, life-expectancy, countdown-timer. Other locales not released.",
+  "id": "tools-22",
+  "demand": {
+   "gsc_impr_16m": 171,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "(ja tool pages)"
+  }
+ },
+ {
+  "pages": [
+   "/tools/end-of-fasting-calculator",
+   "/tools/fasting-countdown",
+   "/tools/intermittent-fasting-duration-calculator"
+  ],
+  "line": "conversion",
+  "problem": "The Left blurbs say \"add your fast end time as a countdown\", but Left has a fasting timer with a Live Activity (a Premium feature) that fits the intent better.",
+  "fix": "Add: \"Left also has a fasting timer with a Live Activity. Fasting is part of Left Premium.\" with no price or \"free\" wording, and link /countdown-widget for the free route.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: 1-2 new units per page",
+  "translation_detail": "Not live in ja.",
+  "id": "tools-23",
+  "demand": {
+   "gsc_impr_16m": 1,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "fasting timer"
+  }
+ },
+ {
+  "pages": [
+   "/tools/sobriety-calculator",
+   "/tools/habit-streak-calculator"
+  ],
+  "line": "eeat",
+  "problem": "Sobriety page says \"a local support service can help\" with no link (YMYL); habit-streak quotes 21/66-day figures with no source while weeks-until-date cites Lally 2009 (doi 10.1002/ejsp.674).",
+  "fix": "Sobriety: link a findahelpline-type directory and SAMHSA National Helpline (US). Habit-streak: cite Lally et al. 2009 with the same DOI link.",
+  "gap": 3,
+  "effort": "S",
+  "translation_impact": "translated: 2 units changed",
+  "translation_detail": "sobriety t0f76321606 (live in ja, falls back to English until retranslated), habit tdefb6d5cdd (not live).",
+  "id": "tools-24",
+  "demand": {
+   "gsc_impr_16m": 4,
+   "lt_impr_16m": 0,
+   "aso_pop": 52,
+   "main_query": "sobriety calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/hours-since-date",
+   "/tools/time-zone-meeting-planner",
+   "/tools/",
+   "/tools/date-units-converter",
+   "/tools/wedding-countdown"
+  ],
+  "line": "search-fit",
+  "problem": "hours-since title repeats itself (\"Hours Since Date - Hours Since a Time Calculator\"); index description is 164 chars; date-units (116) and wedding (118) descriptions are under 120; all 57 pages share one og-image.",
+  "fix": "hours-since title: \"Hours Since a Date and Time Calculator | Left\". Index desc: \"Free countdown and date calculators from Left: days until, days since, business days, year progress, time zones, sleep, fasting and Unix time.\" (141). Date-units: add \"Handles leap years and average months.\" Wedding: add \"Includes a planning timeline.\" Consider a distinct og image for the holiday pages.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: title 3 units, desc 2 units each",
+  "translation_detail": "Index is live in ja (title/desc units fall back to English until retranslated); others not live.",
+  "id": "tools-25",
+  "demand": {
+   "gsc_impr_16m": 2,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "hours since date"
+  }
+ },
+ {
+  "pages": [
+   "/tools/"
+  ],
+  "line": "links",
+  "problem": "The index intro names Left but links no landing page and the only CTA is the end block.",
+  "fix": "Add one sentence under the intro linking /countdown-widget, /days-since-widget and /year-progress-widget.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: 1 new unit",
+  "translation_detail": "Index live in ja (203 units).",
+  "id": "tools-26",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "free online date tools"
+  }
+ },
+ {
+  "pages": [
+   "/tools/unix-timestamp-converter"
+  ],
+  "line": "accuracy",
+  "problem": "Text says the tool \"works with second-precision timestamps; divide by 1,000\", but the script auto-converts values above 1e12 as milliseconds (and misreads ms values before Sept 2001 as seconds).",
+  "fix": "Replace with: \"Paste 10-digit seconds or 13-digit milliseconds; 13-digit values are converted automatically.\"",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: 1 unit",
+  "translation_detail": "unit t1e089e2cf7; not live in ja.",
+  "id": "tools-27",
+  "demand": {
+   "gsc_impr_16m": 1,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "unix timestamp converter"
+  }
+ },
+ {
+  "pages": [
+   "/tools/christmas-countdown-widget",
+   "/tools/days-until-halloween",
+   "/tools/days-until-valentines",
+   "/tools/days-until-easter",
+   "/tools/days-until-birthday",
+   "/tools/days-until-mothers-day",
+   "/tools/days-until-fathers-day",
+   "/tools/days-until-thanksgiving"
+  ],
+  "line": "accuracy",
+  "problem": "On the day itself the counters roll to next year at 00:00 (Christmas shows 364 days all day on Dec 25); the text says so, but there is no \"today\" message.",
+  "fix": "When today is the target day, show the existing result.arrived string (\"It's here.\") until midnight, and adjust the \"moves on to next year once the day begins\" sentence to \"once the day ends\".",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: 1 unit per page",
+  "translation_detail": "Christmas and birthday are live in ja.",
+  "id": "tools-28",
+  "demand": {
+   "gsc_impr_16m": 233,
+   "lt_impr_16m": 0,
+   "aso_pop": 63,
+   "main_query": "how many days until christmas"
+  }
+ },
+ {
+  "pages": [
+   "/tools/habit-streak-calculator"
+  ],
+  "line": "accuracy",
+  "problem": "\"Missed days to subtract\" produces a number labelled \"streak days\", but a streak with misses is not a streak (Left's Streak restarts).",
+  "fix": "Relabel the output \"days completed\" and keep the explanation, or default the input to 0 with a note.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: 1-2 units",
+  "translation_detail": "runtime stat.streakDays and one page unit; not live in ja.",
+  "id": "tools-29",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 67,
+   "main_query": "habit streak calculator"
+  }
+ },
+ {
+  "pages": [
+   "/tools/time-until-weekend",
+   "/tools/workday-countdown"
+  ],
+  "line": "depth",
+  "problem": "Weekend countdown ends at Saturday 00:00 only (many count to Friday 5 pm), and the workday timer does not roll to tomorrow.",
+  "fix": "Add a \"Weekend starts\" select (Friday 17:00 / Saturday 00:00) and a \"roll over to next workday\" option.",
+  "gap": 2,
+  "effort": "S",
+  "translation_impact": "translated: ~3 new units per page",
+  "translation_detail": "Not live in ja.",
+  "id": "tools-30",
+  "demand": {
+   "gsc_impr_16m": 2,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "time until weekend"
+  }
+ }
+]

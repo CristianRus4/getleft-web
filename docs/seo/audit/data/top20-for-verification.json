@@ -1,0 +1,613 @@
+[
+ {
+  "pages": [
+   "/tools/life-expectancy-calculator"
+  ],
+  "line": "accuracy",
+  "problem": "yearsLeft = min(105, baseline+adjustments) - age, with baselines 73.8 (M) and 79.0 (F): with neutral answers a 70-year-old man gets about 4 years left, where actuarial tables give well over 10 (SSA period life table); adjustments are additive, unsourced, and the lede says \"research-based\" while the body says \"simplified assumption, not an official statistic\"; meta desc says \"population baselines and research-adjusted factors\".",
+  "fix": "Base years left on remaining life expectancy at the current age from a published table (SSA period life table or ONS/WHO) and apply the adjustments to that; cite the table and the sources for each adjustment (e.g. smoking, exercise meta-analyses). Reword the lede to \"A rough estimate of your life expectancy from simple lifestyle adjustments\" and the meta to \"Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice.\"",
+  "gap": 5,
+  "effort": "M",
+  "translation_impact": "translated: ~6 units",
+  "translation_detail": "lede t69ba522453, cap paragraph t172ddacbaa, desc af17ed8cdd5 + JSON-LD lf17ed8cdd5, plus new source line(s). Live in ja (88 units): ja stays above 90% but the changed units fall back to English until retranslated.",
+  "id": "tools-06",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 55,
+   "main_query": "life expectancy calculator"
+  },
+  "source": "tools-fixes",
+  "demandRaw": 55,
+  "demandCapped": 55,
+  "priority": 400,
+  "tier": "A",
+  "rank": 1
+ },
+ {
+  "pages": [
+   "/blog/digital-clock-date-widget-iphone"
+  ],
+  "line": "accuracy",
+  "problem": "FAQ \"Does Left work on iPad and Mac? No. Left is an iPhone app\" denies a Mac app, which the claims doc forbids (\"Left has no Mac app\" is not allowed).",
+  "fix": "Replace the Q&A (one unit) with: \"<strong>Does Left work on a bigger screen?</strong> Left is an iPhone app (iOS 26 or later). Its Digital Clock widget works on the Home Screen, the Lock Screen and in StandBy, which makes a charging iPhone on the bedside table a good clock. On a Mac with macOS Sonoma or later, iPhone widgets can also sit on the desktop.\"",
+  "gap": 5,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 17,
+   "aso_pop": 0,
+   "main_query": "digital clock widget iphone"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 1 units",
+  "translation_detail": "Unit t85699aec98 (FAQ question + answer, no FAQPage JSON-LD on this page). Live de, es, es-419 lose that block until retranslated; page stays well above 90%.",
+  "id": "blog-02",
+  "source": "blog-fixes",
+  "demandRaw": 17,
+  "demandCapped": 17,
+  "priority": 210,
+  "tier": "A",
+  "rank": 2
+ },
+ {
+  "id": "SUP-01",
+  "pages": [
+   "/support/widget-ipad-home-screen",
+   "/support/widget-ipad-lock-screen"
+  ],
+  "line": "accuracy",
+  "problem": "Articles tell readers to \"Open the Left app on your iPad (download it from the App Store)\" and that \"Left needs iPadOS 26 or later, so Lock Screen widgets work on any iPad that can run Left\". product-claims.md: Left is iPhone-only, never claim an iPad app. Indexed, in the sitemap, in every article's Related guides, and live in 18 locales.",
+  "fix": "Remove both articles: 301 each to /support/widget-iphone-home-screen and /support/widget-iphone-lock-screen, delete the two support.html cards and the Related-guides entries, drop them from the sitemap and the 18 locale builds. If the owner wants an iPad topic, write it as 'iPhone widgets on iPad' only if that is verified, which it is not today.",
+  "gap": 5,
+  "demand": {
+   "gsc_impr_16m": 9,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "ipad home screen widget / ipad lock screen widget"
+  },
+  "effort": "S",
+  "translation_impact": "no translated text",
+  "translation_detail": "Removal only: 2 articles x 18 locales (36 URLs) and 2 cards in support.html disappear; their catalog keys become orphans to delete. Nothing is re-translated.",
+  "source": "support-site-fixes",
+  "demandRaw": 9,
+  "demandCapped": 9,
+  "priority": 170,
+  "tier": "A",
+  "rank": 3
+ },
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/what-was-the-date"
+  ],
+  "line": "accuracy",
+  "problem": "addToDate() in tools/tools.js uses setMonth, so Jan 31 + 1 month returns Mar 3 (verified in node) and Mar 31 minus 1 month returns Mar 3; add-subtract page says \"adding 1 month to January 31st gives February 28th ... not March 3rd\".",
+  "fix": "In addToDate, after adding years/months, clamp the day to the last day of the target month (new Date(y, m+1, 0).getDate()); then apply weeks/days. Also Feb 29 minus/plus years should land on Feb 28. No page text changes, the existing sentence becomes true.",
+  "gap": 4,
+  "effort": "S",
+  "translation_impact": "no translated text",
+  "translation_detail": "Script change only (tools/tools.js). add-subtract is live in ja; text already says the correct behaviour.",
+  "id": "tools-01",
+  "demand": {
+   "gsc_impr_16m": 2,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "add days to a date"
+  },
+  "source": "tools-fixes",
+  "demandRaw": 2,
+  "demandCapped": 2,
+  "priority": 108,
+  "tier": "A",
+  "rank": 4
+ },
+ {
+  "pages": [
+   "/tools/end-of-fasting-calculator",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/fasting-countdown"
+  ],
+  "line": "accuracy",
+  "problem": "End-of-fasting lists \"16-24 hours: ketosis beginning, autophagy increasing; 24-72 hours: significant autophagy\" with no source (search found only generic wellness timelines; human autophagy timing is not established); intermittent page calls 36-hour fasts \"e.g., 5:2 protocol\" (5:2 is two low-calorie days, not 36 h fasts) and says OMAD is \"effective for weight loss\"; none has a medical caveat except one clause.",
+  "fix": "Replace the stage list with \"What people commonly describe\" wording without autophagy figures, or drop it; fix 5:2 (\"5:2 means eating normally five days and about 500-600 kcal on two\"); cut \"effective for weight loss\" or cite a review; add a caveat on all three: \"Not suitable if you are pregnant, under 18, have diabetes or a history of eating disorders, or take medication; talk to a doctor first.\" Link an NHS/Mayo Clinic page.",
+  "gap": 4,
+  "effort": "M",
+  "translation_impact": "translated: ~7 units changed, 3 new",
+  "translation_detail": "End-of-fasting t50af1fdaad, t91e8d57190, tecf3380abd; intermittent t405bb3ebd7, t4e3ba8def8; plus 3 caveat sentences. None live in ja.",
+  "id": "tools-07",
+  "demand": {
+   "gsc_impr_16m": 1,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "intermittent fasting calculator"
+  },
+  "source": "tools-fixes",
+  "demandRaw": 1,
+  "demandCapped": 1,
+  "priority": 104,
+  "tier": "A",
+  "rank": 5
+ },
+ {
+  "pages": [
+   "/tools/pregnancy-due-date-calculator"
+  ],
+  "line": "eeat",
+  "problem": "Medical topic with no disclaimer, no source and no cycle-length or conception/IVF option; the 4% and 38-42 week claims are uncited. NHS and Tommy's calculators offer cycle length and link to a midwife.",
+  "fix": "Add: \"This is an estimate. Your midwife or doctor will confirm your due date, usually from a dating scan around 12 weeks.\" and cite the NHS due-date calculator and Tommy's (only about 4 in 100 babies arrive on the due date). Add a cycle-length field (adjust LMP by cycle minus 28 days).",
+  "gap": 4,
+  "effort": "M",
+  "translation_impact": "translated: 3 new units, 1 changed",
+  "translation_detail": "Changed t597d82a11d; new disclaimer, source line, field label. Not live in any locale.",
+  "id": "tools-05",
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "pregnancy due date calculator"
+  },
+  "source": "tools-fixes",
+  "demandRaw": 0,
+  "demandCapped": 0,
+  "priority": 100,
+  "tier": "A",
+  "rank": 6
+ },
+ {
+  "id": "SUP-02",
+  "pages": [
+   "/support/apple-watch-app",
+   "/support/mood-tracker-in-left",
+   "/support/world-mood-globe"
+  ],
+  "line": "accuracy",
+  "problem": "Three articles describe unshipped or hidden features (Apple Watch app, Mood, World Mood). Noindexed, unlinked and out of the sitemap, yet live, hreflang-tagged and translated in 18 locales (57 URLs).",
+  "fix": "Redirect the three URLs (302) to /support until the features ship, or return 410; stop building their locale copies. Restore when the owner re-enables each feature.",
+  "gap": 4,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "(noindexed)"
+  },
+  "effort": "S",
+  "translation_impact": "no translated text",
+  "translation_detail": "Removal or redirect only; keys stay in the catalogs for the day the features ship.",
+  "source": "support-site-fixes",
+  "demandRaw": 0,
+  "demandCapped": 0,
+  "priority": 100,
+  "tier": "A",
+  "rank": 7
+ },
+ {
+  "id": "SITE-01",
+  "pages": [
+   "/android",
+   "/life-calendar",
+   "/days-since-widget",
+   "/days-left-wallpaper"
+  ],
+  "line": "links",
+  "problem": "/android has 2 inbound links (home FAQ line, support FAQ) though the Android cluster is the best-proven demand (872 impressions, 126 clicks at position 1.3-6 on left-time.app). /life-calendar has 8 inbound, /days-left-wallpaper 11, /days-since-widget 14.",
+  "fix": "Link /android from the tools index, from the two blog posts that already discuss iPhone-only and Mac or widget apps (best-free-widget-apps-iphone, best-productivity-apps-mac) and from the press page; link /life-calendar from set-up-your-lifespan (done), the life-expectancy calculator and age calculator; link /days-since-widget from the sobriety and days-since tools.",
+  "gap": 4,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 872,
+   "aso_pop": 0,
+   "main_query": "left app for android / left widgets for time left android"
+  },
+  "effort": "S",
+  "translation_impact": "translated: ~6 units",
+  "translation_detail": "Blog edits: 1-2 units per post in de, es, es-419 (2 posts, 3 live locales). Tools: only tools/ja is live, the 4 tool pages need 1 unit each. Press: 1 unit in de, ja, zh-Hant. Prefer the tools and press pages first (fewer live locales).",
+  "source": "support-site-fixes",
+  "demandRaw": 872,
+  "demandCapped": 872,
+  "priority": 3588,
+  "tier": "B",
+  "rank": 8
+ },
+ {
+  "pages": [
+   "/blog/visual-goals-track-on-screens"
+  ],
+  "line": "accuracy",
+  "problem": "Wallpaper examples assume custom label text: \"a year-progress visualization with 'Marathon 14 Oct' as the label\" and \"Wallpaper: 'Book 31 Dec' with year-progress\". Left Wallpaper offers a legend such as \"73 days left\", not a free-text event label.",
+  "fix": "Marathon: \"Wallpaper: a year-progress wallpaper, with the legend showing days left in the year. A permanent reminder of the big arc.\" Book: \"Wallpaper: year-progress, so the whole-year frame is always on screen.\" Keep \"Marathon 14 Oct\" only as a widget label.",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 1116,
+   "aso_pop": 0,
+   "main_query": "days left wallpaper"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 2 units",
+  "translation_detail": "Units td7fb40ecd8 and tcde330756e. Live de, es, es-419.",
+  "id": "blog-11",
+  "source": "blog-fixes",
+  "demandRaw": 1116,
+  "demandCapped": 1116,
+  "priority": 3423,
+  "tier": "B",
+  "rank": 9
+ },
+ {
+  "pages": [
+   "/blog/left-wallpaper-guide"
+  ],
+  "line": "depth",
+  "problem": "500 words (2-minute read), 5 H2s, no FAQ or troubleshooting, on a topic with 1,116 left-time.app impressions (days left wallpaper 233, time left wallpaper 174, days left wallpaper iphone 104); the landing page /days-left-wallpaper carries the head query.",
+  "fix": "Add a FAQ (5 Q&As: is it free, does it update at midnight, what modes exist, why did the automation not run, Low Power Mode) and a \"What to put on it\" list, using only facts in /support/wallpaper-shortcut and /days-left-wallpaper. Add FAQPage JSON-LD.",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 1116,
+   "aso_pop": 0,
+   "main_query": "days left wallpaper iphone"
+  },
+  "effort": "M",
+  "translation_impact": "translated: ~14 new units",
+  "translation_detail": "The page has 48 units, so ~14 new units is about 29%: live de, es, es-419 copies fall below the 90% threshold and the locale URLs would be unpublished until retranslated. Schedule with Lane 0.",
+  "id": "blog-19",
+  "source": "blog-fixes",
+  "demandRaw": 1116,
+  "demandCapped": 1116,
+  "priority": 3423,
+  "tier": "B",
+  "rank": 10
+ },
+ {
+  "id": "SITE-06",
+  "pages": [
+   "/countdown-widget",
+   "/days-since-widget",
+   "/year-progress-widget",
+   "/life-calendar",
+   "/habit-tracker",
+   "/days-left-wallpaper",
+   "/android"
+  ],
+  "line": "eeat",
+  "problem": "No visible updated date, author or 'checked on iOS 26' line on any landing page; only photo credits are sourced.",
+  "fix": "Add \"By Cristian Rus, checked on iOS 26, <month year>\" under the intro and Article-style dateModified; link the author to /press.",
+  "gap": 2,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 4285,
+   "aso_pop": 0,
+   "main_query": "landing pages (all clusters)"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 7 units",
+  "translation_detail": "One new line per page in the pages catalog; de, ja, zh-Hant live (others scheduled, translate before release).",
+  "source": "support-site-fixes",
+  "demandRaw": 4285,
+  "demandCapped": 1500,
+  "priority": 3050,
+  "tier": "B",
+  "rank": 11
+ },
+ {
+  "id": "SITE-11",
+  "pages": [
+   "/android"
+  ],
+  "line": "conversion",
+  "problem": "The CTA on the Android page targets iPhone owners; Android visitors cannot download Left, and the useful action (open the web version, add it to the home screen) has no tracked CTA.",
+  "fix": "Add a hero button \"Open Left on the web\" with data-cta=\"hero\" (and track it) above the iPhone CTA; keep the iPhone CTA for visitors who also own an iPhone.",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 872,
+   "aso_pop": 0,
+   "main_query": "left app for android"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 1 unit",
+  "translation_detail": "One button label in the pages catalog; de, ja, zh-Hant live.",
+  "source": "support-site-fixes",
+  "demandRaw": 872,
+  "demandCapped": 872,
+  "priority": 2691,
+  "tier": "B",
+  "rank": 12
+ },
+ {
+  "pages": [
+   "/blog/aim-goal-tracker-left",
+   "/blog/adhd-task-initiation-strategies",
+   "/blog/adhd-time-blindness-iphone",
+   "/blog/adhd-work-from-home-setup",
+   "/blog/best-apps-for-adhd-iphone",
+   "/blog/best-free-widget-apps-iphone",
+   "/blog/best-goal-tracking-apps-iphone",
+   "/blog/best-planner-adhd",
+   "/blog/best-productivity-apps-adhd",
+   "/blog/event-planning-timeline",
+   "/blog/goal-progress-tracker-setup",
+   "/blog/iphone-aesthetic-widgets-guide",
+   "/blog/keep-track-multiple-projects",
+   "/blog/productivity-tools-visual-focus",
+   "/blog/smart-goals-guide",
+   "/blog/smart-goals-visual-guide",
+   "/blog/stay-consistent-with-goals",
+   "/blog/time-management-best-practices",
+   "/blog/timer-interval-app-iphone"
+  ],
+  "line": "links",
+  "problem": "19 posts link to no /support article, and the landing pages are thinly linked: /life-calendar has 0 blog links, /days-since-widget 4, /days-left-wallpaper 5 (vs /countdown-widget 27).",
+  "fix": "aim-goal-tracker-left to /support/aims-in-left; goal-progress-tracker-setup and smart-goals-visual-guide to /support/aims-in-left; adhd-task-initiation and adhd-time-blindness to /support/widget-iphone-lock-screen; timer-interval-app to /support/focus-timer-in-left (see blog-18); iphone-aesthetic-widgets-guide to /days-left-wallpaper; productivity-tools-visual-focus to /habit-tracker; stay-consistent-with-goals and best-goal-tracking to /days-since-widget; time-management-best-practices and what-is-year-progress to /life-calendar (\"see your whole life as a grid\"). Adjust to wherever the sentence already fits.",
+  "gap": 2,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 1116,
+   "aso_pop": 51,
+   "main_query": "days left wallpaper / days since widget"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 12 units",
+  "translation_detail": "1 changed unit per page for the 12 pages that get a link (the rest of the list is optional). Live de, es, es-419.",
+  "id": "blog-17",
+  "source": "blog-fixes",
+  "demandRaw": 1167,
+  "demandCapped": 1167,
+  "priority": 2384,
+  "tier": "B",
+  "rank": 13
+ },
+ {
+  "id": "SITE-05",
+  "pages": [
+   "/countdown-widget"
+  ],
+  "line": "accuracy",
+  "problem": "\"Left is free to download and its widgets are free.\" Planner, Fasting and Focus widgets belong to Premium features; the listicle fact-check rule is never to write a blanket \"every widget is free\".",
+  "fix": "\"Left is free to download and its Time Left, Ahead and Since widgets are free.\" Same wording in the FAQ answer \"Yes. Left's widgets are free...\" (Is there a free countdown widget?).",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 648,
+   "aso_pop": 60,
+   "main_query": "countdown widget iphone"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 3 units",
+  "translation_detail": "pages catalog: the paragraph (t885e5212), the FAQ answer HTML (tea51b70b4e) and its JSON-LD string (lea51b70b4e); live in de, ja, zh-Hant (others scheduled).",
+  "source": "support-site-fixes",
+  "demandRaw": 708,
+  "demandCapped": 708,
+  "priority": 2199,
+  "tier": "B",
+  "rank": 14
+ },
+ {
+  "pages": [
+   "/blog/countdown-next-trip-with-friends",
+   "/blog/how-to-add-widgets-iphone",
+   "/blog/how-to-build-a-streak",
+   "/blog/left-planner-guide",
+   "/blog/what-is-year-progress"
+  ],
+  "line": "conversion",
+  "problem": "These 5 strong pages have only one inline CTA (\"ctaTags: inline\") and no end-of-page Download block, unlike the other 40 posts.",
+  "fix": "Add the standard end block (\"Start noticing what matters.\" + Download for iOS, data-cta=\"end\") already used on the other posts.",
+  "gap": 2,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 1054,
+   "aso_pop": 0,
+   "main_query": "(mixed)"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 15 new units",
+  "translation_detail": "3 shared boilerplate units per page, identical text to units already translated on other pages (copy from de/es/es-419). Each page grows about 3%, no threshold risk.",
+  "id": "blog-22",
+  "source": "blog-fixes",
+  "demandRaw": 1054,
+  "demandCapped": 1054,
+  "priority": 2158,
+  "tier": "B",
+  "rank": 15
+ },
+ {
+  "pages": [
+   "/tools/add-subtract-date-calculator",
+   "/tools/age-calculator",
+   "/tools/anniversary-countdown",
+   "/tools/business-days-calculator",
+   "/tools/business-days-from-date",
+   "/tools/christmas-countdown-widget",
+   "/tools/countdown-timer",
+   "/tools/date-countdown-calculator",
+   "/tools/date-units-converter",
+   "/tools/days-between-two-dates",
+   "/tools/days-since-date",
+   "/tools/days-until-birthday",
+   "/tools/days-until-easter",
+   "/tools/days-until-fall",
+   "/tools/days-until-fathers-day",
+   "/tools/days-until-halloween",
+   "/tools/days-until-mothers-day",
+   "/tools/days-until-new-year",
+   "/tools/days-until-spring",
+   "/tools/days-until-summer",
+   "/tools/days-until-thanksgiving",
+   "/tools/days-until-valentines",
+   "/tools/days-until-winter",
+   "/tools/deadline-countdown-calculator",
+   "/tools/end-of-fasting-calculator",
+   "/tools/fasting-countdown",
+   "/tools/fiscal-year-progress-calculator",
+   "/tools/habit-streak-calculator",
+   "/tools/hours-between-two-dates",
+   "/tools/hours-since-date",
+   "/tools/intermittent-fasting-duration-calculator",
+   "/tools/iso-week-number",
+   "/tools/life-expectancy-calculator",
+   "/tools/meeting-time-calculator",
+   "/tools/minutes-between-two-times",
+   "/tools/percentage-year-calculator",
+   "/tools/pregnancy-due-date-calculator",
+   "/tools/quarter-countdown-calculator",
+   "/tools/reading-time-calculator",
+   "/tools/retirement-countdown-calculator",
+   "/tools/school-days-calculator",
+   "/tools/semester-countdown-calculator",
+   "/tools/sleep-calculator",
+   "/tools/sobriety-calculator",
+   "/tools/time-between-two-times",
+   "/tools/time-left-in-year-calculator",
+   "/tools/time-passed-in-year-calculator",
+   "/tools/time-until-weekend",
+   "/tools/time-zone-meeting-planner",
+   "/tools/unix-milliseconds-converter",
+   "/tools/unix-timestamp-converter",
+   "/tools/vacation-countdown",
+   "/tools/wedding-countdown",
+   "/tools/weeks-until-date",
+   "/tools/what-was-the-date",
+   "/tools/workday-countdown",
+   "/tools/working-hours-calculator"
+  ],
+  "line": "eeat",
+  "problem": "No tool page shows a published/updated date, author or reviewer, and JSON-LD has no dateModified/author; the \"next five years\" tables (Easter 2027-31, equinoxes, weekday tables, 2027 business-day table) are hard-coded and go stale each year.",
+  "fix": "Add dateModified (and publisher link to Left) to the WebApplication JSON-LD from the build date; add a visible \"Updated October 2026\" line; have build-tools-seo.mjs generate the five-year tables from the build year so they roll forward. Add a one-line \"How we check\" note on pages with calculations.",
+  "gap": 3,
+  "effort": "M",
+  "translation_impact": "translated: 1 new unit per page",
+  "translation_detail": "Visible line is 1 new unit per page (use a date placeholder so the yearly date change does not re-open the unit); JSON-LD dateModified is a non-prose value, verify the l-unit extraction ignores it. Live ja pages: 17 tools + index, each +1 unit stays above 90%.",
+  "id": "tools-10",
+  "demand": {
+   "gsc_impr_16m": 611,
+   "lt_impr_16m": 0,
+   "aso_pop": 0,
+   "main_query": "(all tool pages)"
+  },
+  "source": "tools-fixes",
+  "demandRaw": 611,
+  "demandCapped": 611,
+  "priority": 1908,
+  "tier": "B",
+  "rank": 16
+ },
+ {
+  "pages": [
+   "/blog/best-countdown-widgets-iphone",
+   "/blog/countdown-clock-graphic-guide",
+   "/blog/home-screen-timer-iphone",
+   "/blog/time-management-best-practices",
+   "/blog/adhd-time-blindness-iphone",
+   "/blog/adhd-students-study-tools-iphone",
+   "/blog/event-planning-timeline",
+   "/blog/project-timeline-visualization",
+   "/blog/keep-track-multiple-projects",
+   "/blog/smart-goals-guide",
+   "/blog/stay-consistent-with-goals",
+   "/blog/workplace-productivity-habits",
+   "/blog/presentation-timer-iphone",
+   "/blog/digital-clock-date-widget-iphone",
+   "/blog/time-management-tips-students"
+  ],
+  "line": "links",
+  "problem": "Only 4 of 47 posts link to any /tools page (43 do not), although 58 tool pages exist.",
+  "fix": "Add one inline link per page inside an existing paragraph: countdown-clock-graphic and home-screen-timer to /tools/countdown-timer; adhd-students-study-tools and time-management-tips-students to /tools/semester-countdown-calculator; event-planning-timeline to /tools/wedding-countdown; project-timeline-visualization, keep-track-multiple-projects, smart-goals-guide to /tools/deadline-countdown-calculator; stay-consistent-with-goals to /tools/habit-streak-calculator; time-management-best-practices and adhd-time-blindness to /tools/time-left-in-year-calculator; workplace-productivity-habits to /tools/working-hours-calculator; presentation-timer to /tools/countdown-timer; digital-clock-date-widget to /tools/time-zone-meeting-planner.",
+  "gap": 2,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 687,
+   "aso_pop": 75,
+   "main_query": "countdown timer / countdown calculators"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 15 units",
+  "translation_detail": "1 changed unit per page (the paragraph that gets the link; time-management-tips-students added to the 14 listed). Live de, es, es-419. Tool pages are untouched.",
+  "id": "blog-15",
+  "source": "blog-fixes",
+  "demandRaw": 762,
+  "demandCapped": 762,
+  "priority": 1574,
+  "tier": "B",
+  "rank": 17
+ },
+ {
+  "id": "SITE-02",
+  "pages": [
+   "/"
+  ],
+  "line": "accuracy",
+  "problem": "Home never says in visible text that Left is an iPhone app that needs iOS 26 (only the JSON-LD says so); visitors on Android, Mac or older iPhones only learn it at the App Store.",
+  "fix": "Add a FAQ \"Which devices does Left run on?\": \"Left is an iPhone app and needs iOS 26 or later. On Android or a computer, see /android for the web version.\" (no Mac claim, per LANE-NOTES).",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 188,
+   "lt_impr_16m": 282,
+   "aso_pop": 0,
+   "main_query": "left ios app / left app ios"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 3 units",
+  "translation_detail": "New FAQ question, answer and the matching FAQPage JSON-LD string; 18 locales (home is live in all).",
+  "source": "support-site-fixes",
+  "demandRaw": 470,
+  "demandCapped": 470,
+  "priority": 1485,
+  "tier": "B",
+  "rank": 18
+ },
+ {
+  "pages": [
+   "/blog/countdown-next-trip-with-friends",
+   "/blog/how-to-build-a-streak",
+   "/blog/how-to-add-widgets-iphone",
+   "/blog/left-wallpaper-guide",
+   "/blog/index"
+  ],
+  "line": "search-fit",
+  "problem": "Meta descriptions under the 120-160 range: 106, 106, 112, 81 and 116 characters.",
+  "fix": "countdown-next-trip: \"Create a trip countdown in Left, add it to your Home Screen or Lock Screen, and share it with travel friends as a Joint Ahead date (Left Premium).\" (146). how-to-build-a-streak: \"Habits vs streaks, how to pick a schedule you will hit, log a habit from a widget, and what to do when a streak breaks. Step by step on iPhone.\" (143). how-to-add-widgets-iphone: \"Step-by-step guide to adding widgets on iPhone with iOS 26: Home Screen, Lock Screen and StandBy, plus fixes when a widget is missing or stuck.\" (143). left-wallpaper-guide: \"How Left Wallpaper turns your days left into a lock screen that updates itself, and how to set it up with an Apple Shortcuts automation. Free.\" (142). blog index: \"Guides for making time visible on iPhone: widgets, habits, streaks, countdowns, Planner and ADHD-friendly setups, plus honest app round-ups.\" (140).",
+  "gap": 2,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 433,
+   "aso_pop": 65,
+   "main_query": "how to add widgets iphone / days left wallpaper / countdown trip"
+  },
+  "effort": "S",
+  "translation_impact": "translated: 10 units",
+  "translation_detail": "2 units per page (meta description a… and JSON-LD description l…; e.g. countdown-next-trip a2eb3a74485/l2eb3a74485, how-to-build-a-streak a498ddaf08f/l498ddaf08f, how-to-add-widgets a9317c108f3/l9317c108f3, wallpaper a2d4dae13a7/l2d4dae13a7, index ab951ee9290/lb951ee9290). og/twitter description units differ and are unchanged. Live de, es, es-419.",
+  "id": "blog-09",
+  "source": "blog-fixes",
+  "demandRaw": 498,
+  "demandCapped": 498,
+  "priority": 1046,
+  "tier": "B",
+  "rank": 19
+ },
+ {
+  "pages": [
+   "/blog/best-habit-tracker-apps-iphone"
+  ],
+  "line": "depth",
+  "problem": "1,002 words, 7 apps, no comparison table and no FAQ; top results (Zapier, Astropad, Timing, iPhone Life) are longer and use tables. 57 units on the page.",
+  "fix": "Add a comparison table (app, pricing model, widgets, Apple Health, sharing) from verified App Store data and a 4-question FAQ with FAQPage JSON-LD. Do after blog-14 so claims are verified.",
+  "gap": 3,
+  "demand": {
+   "gsc_impr_16m": 0,
+   "lt_impr_16m": 173,
+   "aso_pop": 67,
+   "main_query": "best habit tracker apps iphone"
+  },
+  "effort": "L",
+  "translation_impact": "translated: ~35 new units",
+  "translation_detail": "About 60% more units: live de, es, es-419 copies drop below 90% and unpublish until retranslated. Alternatively add only the FAQ (~10 units, 18%, still drops them).",
+  "id": "blog-20",
+  "source": "blog-fixes",
+  "demandRaw": 240,
+  "demandCapped": 240,
+  "priority": 795,
+  "tier": "B",
+  "rank": 20
+ }
+]
