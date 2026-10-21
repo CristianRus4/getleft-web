@@ -5,13 +5,15 @@
 # Does the same as the "Daily publish" GitHub Action, so it's safe to run any time, as often as you like:
 # when nothing new is due it publishes nothing.
 #   DRY_RUN=1 ./publish-now.command   builds and shows what would change, without committing or pushing.
+#   NO_PAUSE=1                        skips "Press Return to close" (used by "Publish all sites.command").
+# Exit 0 means published or nothing due, 1 means it failed; the last line printed is the summary.
 
 REPO="$HOME/Developer/Webs/getleft-web"
 WORK="$HOME/.getleft-publish"   # private copy, so your own checkouts are never touched
 
 finish() {
   echo
-  [ -t 0 ] && read -r -p "Press Return to close." _
+  [ -z "$NO_PAUSE" ] && [ -t 0 ] && read -r -p "Press Return to close." _
   exit "$1"
 }
 
