@@ -293,6 +293,11 @@ with any change shipped that week, so changes can be read against them.
   to `api.indexnow.org`. That one endpoint reaches Bing, Yandex, Naver and
   Seznam. `--all` resubmits the whole sitemap, and `--dry-run` only lists URLs.
   Google does not use IndexNow; Search Console's sitemap covers it.
+- **Naver Search Advisor** (Korean search; the site has a `ko` locale). getleft.app was verified on
+  2026-10-21 with the HTML meta tag, which lives in `site.config.json` → `naverSiteVerification`;
+  `site-inject` writes it into every page's head.
+  - `https://getleft.app/sitemap.xml` was submitted at 11:22 NZ. There is no separate `ko` sitemap.
+  - Page collection was requested for `https://getleft.app/ko/` at 11:23 NZ.
 
 ## 12. Drip publishing
 
