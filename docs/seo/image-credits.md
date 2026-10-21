@@ -91,3 +91,6 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | year-progress-widget | Anna Evans | https://unsplash.com/photos/planner-with-calendar-and-grid-notebooks-qYZDTv0iUDY |
 | habit-tracker | Kaufmann Mercantile | https://unsplash.com/photos/brass-colored-garden-water-can-on-brown-table-a7Woj8W6J0s |
 | days-left-wallpaper | Hanna Auramenka | https://www.pexels.com/photo/wooden-blocks-with-numbers-and-letters-8409610/ |
+| blog/days-since-app-alternatives | Ann H | https://www.pexels.com/photo/sticks-on-brown-background-7433748/ |
+| blog/best-time-awareness-apps-iphone | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
+| blog/time-left-app-alternatives | Christian Joudrey | https://unsplash.com/photos/row-of-bean-sprout-aO_jMXTduUE |
