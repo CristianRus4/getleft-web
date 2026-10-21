@@ -197,13 +197,18 @@
         <label for="preg-lmp">First day of last period (LMP)</label>
         <input type="date" id="preg-lmp" />
       </div>
+      <div class="tool-widget__row">
+        <label for="preg-cycle">Usual cycle length (days)</label>
+        <input type="number" id="preg-cycle" min="21" max="45" value="28" />
+      </div>
       <div class="tool-result" id="preg-result" aria-live="polite"></div>
       <p id="preg-trimester" style="margin-top:12px;font-size:14px;color:var(--text-secondary);"></p>
+      <p class="tool-fineprint"><em>This is an estimate. Your midwife or doctor will confirm your due date, usually from a dating scan in the first trimester (offered at around 10 to 14 weeks).</em></p>
     </div>
 
     <div class="tool-prose">
       <h2>How the due date is calculated</h2>
-      <p>The standard method (Naegele's Rule) adds <strong>280 days (40 weeks)</strong> to the first day of your last menstrual period. This is the same calculation your doctor or midwife uses for a first-trimester estimate when no ultrasound dating is available yet.</p>
+      <p>The standard method (Naegele's Rule) adds <strong>280 days (40 weeks)</strong> to the first day of your last menstrual period. Doctors and midwives use the same rule for a first estimate, before a dating scan. If your cycle is not 28 days long, enter your usual cycle length: the calculator moves the date by the difference (for a 32-day cycle, four days later).</p>
       <p>The 40-week count starts from your LMP - even though conception typically happens around week 2. So your "gestational age" as measured medically is always about 2 weeks ahead of your embryonic age.</p>
 
       <h2>Trimesters</h2>
@@ -214,7 +219,10 @@
       </ul>
 
       <h2>How accurate is this date?</h2>
-      <p>Only about 4% of babies are born on their exact due date. The estimated due date (EDD) is the midpoint of a normal delivery window that typically spans from 38 to 42 weeks. An ultrasound in the first trimester provides a more accurate date when cycle length differs from the standard 28-day assumption.</p>
+      <p>Only about 4% of babies are born on their exact due date. The estimated due date (EDD) is the midpoint of a normal delivery window that typically spans from 38 to 42 weeks. A dating scan in the first trimester gives a more accurate date, particularly when your cycle length differs from the standard 28-day assumption or you are unsure of your last period.</p>
+
+      <h2>Sources</h2>
+      <p>Naegele's rule and ultrasound dating: American College of Obstetricians and Gynecologists, <a href="https://www.acog.org/clinical/guidance/committee-opinion/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">Committee Opinion 700, Methods for Estimating the Due Date</a>. For a second opinion on the date, see the <a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener">NHS due date calculator</a> and <a href="https://www.tommys.org/pregnancy-information/calculators-tools-resources/pregnancy-due-date-calculator" target="_blank" rel="noopener">Tommy's due date calculator</a> (Tommy's notes that only around 4 in 100 babies are born on their due date). This tool is not medical advice: ask your midwife or doctor about your pregnancy.</p>
 
       <h2>Track the countdown with Left</h2>
       <p>Add your due date as a countdown in Left and pin it to your Home Screen or Lock Screen. Every morning you'll see exactly how many days remain - and after the birth, switch to Left's "Since" mode to track how many days old your baby is.</p>
@@ -367,6 +375,7 @@
   <script src="/tools/tools.js"></script>
   <script>
     const lmpEl = document.getElementById('preg-lmp');
+    const cycleEl = document.getElementById('preg-cycle');
     const result = document.getElementById('preg-result');
     const trimEl = document.getElementById('preg-trimester');
 
@@ -378,14 +387,19 @@
 
     function render() {
       if (!lmpEl.value) { result.innerHTML = ''; trimEl.textContent = ''; return; }
-      const lmp = new Date(lmpEl.value + 'T00:00:00');
-      if (isNaN(lmp)) return;
-      const due = new Date(lmp.getTime() + 280 * 86400000);
+      const lmpInput = new Date(lmpEl.value + 'T00:00:00');
+      if (isNaN(lmpInput)) return;
+      // A cycle longer or shorter than 28 days moves ovulation, and the due date, by the difference.
+      const cycle = Math.min(45, Math.max(21, parseInt(cycleEl.value, 10) || 28));
+      // Whole calendar days, so a daylight-saving change never moves the date by one.
+      const lmp = new Date(lmpInput.getFullYear(), lmpInput.getMonth(), lmpInput.getDate() + (cycle - 28));
+      const due = new Date(lmp.getFullYear(), lmp.getMonth(), lmp.getDate() + 280);
       const now = new Date();
-      const daysPregnant = Math.max(0, Math.floor((now - lmp) / 86400000));
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const daysPregnant = Math.max(0, Math.round((today - lmp) / 86400000));
       const weeksPregnant = Math.floor(daysPregnant / 7);
       const daysMod = daysPregnant % 7;
-      const daysUntilDue = Math.max(0, Math.ceil((due - now) / 86400000));
+      const daysUntilDue = Math.max(0, Math.round((due - today) / 86400000));
       const weeksUntilDue = Math.floor(daysUntilDue / 7);
 
       let trimester = '';
@@ -409,6 +423,7 @@
     }
 
     lmpEl.addEventListener('change', render);
+    cycleEl.addEventListener('input', render);
     render();
   </script>
   <script defer src="/index.js"></script>

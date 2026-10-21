@@ -61,8 +61,14 @@ function ymdBetween(a, b) {
 // Add years/months/weeks/days/hours/minutes to a date. Negative subtracts.
 function addToDate(date, { years = 0, months = 0, weeks = 0, days = 0, hours = 0, minutes = 0 }) {
   const x = new Date(date);
-  if (years)   x.setFullYear(x.getFullYear() + years);
-  if (months)  x.setMonth(x.getMonth() + months);
+  // Years and months clamp to the end of the target month: Jan 31 + 1 month is Feb 28 (or 29), not Mar 3.
+  const addMonths = (n) => {
+    const day = x.getDate();
+    x.setDate(1);
+    x.setMonth(x.getMonth() + n);
+    x.setDate(Math.min(day, new Date(x.getFullYear(), x.getMonth() + 1, 0).getDate()));
+  };
+  if (years || months) addMonths(years * 12 + months);
   if (weeks || days) x.setDate(x.getDate() + weeks * 7 + days);
   if (hours)   x.setHours(x.getHours() + hours);
   if (minutes) x.setMinutes(x.getMinutes() + minutes);

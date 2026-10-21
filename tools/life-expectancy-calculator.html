@@ -129,7 +129,7 @@
   <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
   <meta name="left:content-type" content="tool" />
   <title>Life Expectancy Calculator - Years You Have Left | Left</title>
-  <meta name="description" content="Estimate your life expectancy and years remaining from population baselines and research-adjusted factors: age, gender, lifestyle, health, and more." />
+  <meta name="description" content="Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -145,7 +145,7 @@
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <meta name="robots" content="index,follow" />
   <meta property="og:title" content="Life Expectancy Calculator - Years You Have Left" />
-  <meta property="og:description" content="Estimate your life expectancy and years remaining from population baselines and research-adjusted factors: age, gender, lifestyle, health, and more." />
+  <meta property="og:description" content="Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getleft.app/tools/life-expectancy-calculator" />
   <meta property="og:locale" content="en_US" />
@@ -156,7 +156,7 @@
   <meta property="og:site_name" content="Left" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Life Expectancy Calculator - Years You Have Left" />
-  <meta name="twitter:description" content="Estimate your life expectancy and years remaining from population baselines and research-adjusted factors: age, gender, lifestyle, health, and more." />
+  <meta name="twitter:description" content="Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice." />
   <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
@@ -173,7 +173,7 @@
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Estimate your life expectancy and years remaining from population baselines and research-adjusted factors: age, gender, lifestyle, health, and more.",
+  "description": "Estimate your remaining years from your age, sex and lifestyle. A rough, educational estimate based on life-table averages, not medical advice.",
   "publisher": {
     "@type": "Organization",
     "name": "Left"
@@ -226,7 +226,7 @@
 
   <main class="container tool-page">
     <h1>Life expectancy calculator</h1>
-    <p class="tool-lede">A research-based estimate of your life expectancy - and how many years, months, and weeks you likely have left.</p>
+    <p class="tool-lede">A rough estimate of your life expectancy from simple lifestyle adjustments - and how many years, months, and weeks you might have left.</p>
 
     <div class="tool-widget">
       <div class="tool-field-grid">
@@ -316,13 +316,13 @@
       <button id="le-calc" class="tool-submit">Calculate</button>
       <div class="tool-result" id="le-result" aria-live="polite"></div>
       <p class="tool-fineprint">
-        <em>This is an approximation for educational purposes, based on simplified assumptions and general population-level research. It is not medical advice. Individual outcomes vary widely.</em>
+        <em>This is an estimate for reflection, not medical advice. It starts from population averages and applies simplified adjustments, so individual outcomes vary widely.</em>
       </p>
     </div>
 
     <div class="tool-prose">
       <h2>How the estimate is calculated</h2>
-      <p>The calculator starts from a baseline of <strong>73.8 years for males</strong> and <strong>79.0 years for females</strong>. This is a simplified assumption built into the tool, not an official statistic and not a figure for any one country. It then applies rounded adjustments for each lifestyle and health factor, based on the general direction of published research:</p>
+      <p>The calculator starts from the <strong>remaining life expectancy at your current age</strong>, taken from the World Health Organization's global life tables for 2019 (the <a href="https://www.who.int/data/gho" target="_blank" rel="noopener">Global Health Observatory</a> indicator "ex - expectation of life at age x", for males and females, interpolated between the table's age bands). Because it is a global average, people in high-income countries will typically see a higher figure in real life, and people in lower-income countries a lower one. It then applies rounded adjustments for each lifestyle and health factor, based on the general direction of published research:</p>
       <ul>
         <li><strong>Smoking:</strong> −10 years (current), −5 years (former)</li>
         <li><strong>Heavy alcohol:</strong> −4 years; moderate: −0.5 years</li>
@@ -334,7 +334,8 @@
         <li><strong>Higher income (top quartile):</strong> +2 years</li>
         <li><strong>Self-rated health (Excellent):</strong> +2 years; (Poor): −5 years</li>
       </ul>
-      <p>Adjustments are additive and the result is capped between your current age (you can't have a negative years-left figure) and 105 years.</p>
+      <p>The adjustments are added together and scaled down as you get older, so they never exceed the years you have left; this is a simplification. Beyond age 85 the table is extended with a simple estimate, and the result never drops below a small floor for someone who is alive today.</p>
+      <p>Sources for the direction and rough size of the adjustments: Jha et al., <em>New England Journal of Medicine</em> 2013 (smoking); Wood et al., <em>The Lancet</em> 2018 (alcohol); Moore et al., <em>PLoS Medicine</em> 2012 (physical activity); Prospective Studies Collaboration, <em>The Lancet</em> 2009 (BMI); Emerging Risk Factors Collaboration, <em>New England Journal of Medicine</em> 2011 (diabetes); Chetty et al., <em>JAMA</em> 2016 (income). The adjustments for education, relationship status and self-rated health are simplified assumptions.</p>
 
       <h2>Why this matters</h2>
       <p>Knowing your approximate time horizon - even as a rough estimate - is clarifying. Left is built around exactly this idea: the time you have left is finite, and seeing it clearly is the first step to using it intentionally. The life expectancy calculator gives you a number to work with. What you do with that number is up to you.</p>
@@ -502,11 +503,31 @@
       const married = parseFloat(document.getElementById('le-married').value);
       const income  = parseFloat(document.getElementById('le-income').value);
 
-      const baseline = gender === 'F' ? 79.0 : 73.8;
+      // WHO Global Health Observatory, life tables for 2019, world, "ex - expectation of life at age x".
+      // Values are for the first year of each age band, for males and females.
+      const WHO_AGES = [0, 1, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85];
+      const WHO_EX = {
+        M: [70.86, 72.11, 68.84, 64.11, 59.30, 54.61, 50.01, 45.42, 40.87, 36.38, 31.99, 27.71, 23.60, 19.78, 16.25, 13.01, 10.06, 7.45, 5.23],
+        F: [75.94, 77.01, 73.78, 69.03, 64.20, 59.41, 54.65, 49.89, 45.17, 40.49, 35.89, 31.36, 26.99, 22.81, 18.84, 15.12, 11.71, 8.66, 6.03]
+      };
+      function whoRemaining(sex, a) {
+        const ex = WHO_EX[sex];
+        const last = WHO_AGES.length - 1;
+        if (a >= WHO_AGES[last]) return Math.max(1.5, ex[last] - 0.3 * (a - WHO_AGES[last]));
+        let i = 0;
+        while (WHO_AGES[i + 1] <= a) i++;
+        const t = (a - WHO_AGES[i]) / (WHO_AGES[i + 1] - WHO_AGES[i]);
+        return ex[i] + t * (ex[i + 1] - ex[i]);
+      }
+
+      const sex = gender === 'F' ? 'F' : 'M';
+      const baseRemaining = whoRemaining(sex, age);
       const adjustments = smoke + alcohol + exercise + bmi + health + diabetes + edu + married + income;
-      const estimated = baseline + adjustments;
-      const yearsLeft = Math.max(0, Math.min(105, estimated) - age);
-      const pctElapsed = Math.min(100, (age / Math.min(105, estimated)) * 100);
+      // The adjustments are sized for a newborn; scale them to the years that remain at this age.
+      const scaled = adjustments * (baseRemaining / WHO_EX[sex][0]);
+      const yearsLeft = Math.max(Math.max(0.5, baseRemaining * 0.2), baseRemaining + scaled);
+      const estimated = age + yearsLeft;
+      const pctElapsed = Math.min(100, (age / estimated) * 100);
       const weeksLeft = Math.floor(yearsLeft * 52.18);
       const daysLeft = Math.floor(yearsLeft * 365.25);
 
@@ -521,7 +542,7 @@
           ≈ ${fmtNum(weeksLeft)} weeks left &nbsp;·&nbsp; ≈ ${fmtNum(daysLeft)} days left
         </p>
         <p style="margin-top:8px;font-size:13px;color:var(--text-secondary);">
-          Adjustments applied: ${adjustments >= 0 ? '+' : ''}${adjustments.toFixed(1)} years from baseline of ${baseline} yrs
+          Baseline at age ${age}: ${baseRemaining.toFixed(1)} more yrs &nbsp;·&nbsp; your adjustments: ${scaled >= 0 ? '+' : ''}${scaled.toFixed(1)} yrs
         </p>`;
     });
   </script>
