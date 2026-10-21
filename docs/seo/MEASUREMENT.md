@@ -46,8 +46,15 @@ ID into `ga4MeasurementId`, run the site build, deploy.
     - one event has all three "(not set)".
   - A live `g/collect` hit on `https://getleft.app/?nolang=1` carries `tid=G-YJKL80Z8DP`, `gcs=G101`
     and `npa=1`.
-  - Not yet verified: the consent banner from a European time zone (the browser tools can't change
-    the time zone).
+  - Consent banner, checked 2026-10-21 with a headless browser on getleft.app/?nolang=1 from a New
+    Zealand IP:
+    - Shown for the time zones Europe/Berlin and Europe/Paris ("We use Google Analytics to understand
+      which pages help people…").
+    - Not shown for Pacific/Auckland or America/New_York.
+    - Every run sent `gcs=G101 npa=1`. That is expected: the consent *default* comes from Google's
+      IP-based region, so from an NZ IP it is the global default whatever the browser time zone is.
+  - Still unverified: the EU default (`gcs=G100` before a choice, no `_ga` cookie). That needs a
+    European IP, for example a VPN exit in Germany.
 - No Google Ads link exists, so the ads-personalisation panel stays inactive; the tag
   also sends `allow_ad_personalization_signals: false` and denies every ad signal.
 - Cloudflare also injects its own Web Analytics beacon (`static.cloudflareinsights.com`)
