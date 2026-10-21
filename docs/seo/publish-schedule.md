@@ -6,7 +6,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | Date | Item | Type | Status |
 |---|---|---|---|
 | 2026-10-20 | `blog/de`: blog in Deutsch, 49 pages | Translation release | live |
-| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 47 pages | Translation release | live |
+| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 48 pages | Translation release | live |
 | 2026-10-20 | `blog/es`: blog in Español (España), 49 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
@@ -59,11 +59,11 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-12 | `tools/nl`: tools in Nederlands, 17 pages | Translation release | scheduled |
 | 2026-11-13 | `blog/way-of-life-alternatives.html` | English page | scheduled |
 | 2026-11-13 | `tools/pt`: tools in Português (Portugal), 17 pages | Translation release | scheduled |
-| 2026-11-14 | `blog/it`: blog in Italiano, 47 pages | Translation release | scheduled |
-| 2026-11-15 | `blog/fr`: blog in Français, 47 pages | Translation release | scheduled |
+| 2026-11-14 | `blog/it`: blog in Italiano, 48 pages | Translation release | scheduled |
+| 2026-11-15 | `blog/fr`: blog in Français, 48 pages | Translation release | scheduled |
 | 2026-11-16 | `blog/nl`: blog in Nederlands, 47 pages | Translation release | scheduled |
 | 2026-11-17 | `blog/pl`: blog in Polski, 47 pages | Translation release | scheduled |
-| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 47 pages | Translation release | scheduled |
+| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 48 pages | Translation release | scheduled |
 | 2026-11-19 | `pages/hi`: pages in हिन्दी, 9 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
@@ -71,7 +71,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-21 | `tools/zh-Hans`: tools in 简体中文, 18 pages | Translation release | scheduled |
 | 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 47 pages | Translation release | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
-| 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 47 pages | Translation release | scheduled |
+| 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 48 pages | Translation release | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
 | 2026-11-24 | `time-left-today.html` | English page | scheduled |
 | 2026-11-24 | `tools/zh-Hant`: tools in 繁體中文, 17 pages | Translation release | scheduled |
@@ -88,7 +88,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 47 pages | Translation release | scheduled |
 | 2026-12-01 | `blog/ko`: blog in 한국어, 47 pages | Translation release | scheduled |
 | 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 47 pages | Translation release | scheduled |
-| 2026-12-03 | `blog/ru`: blog in Русский, 47 pages | Translation release | scheduled |
+| 2026-12-03 | `blog/ru`: blog in Русский, 48 pages | Translation release | scheduled |
 | 2026-12-04 | `blog/ro`: blog in Română, 47 pages | Translation release | scheduled |
 | 2026-12-05 | `tools/ru`: tools in Русский, 17 pages | Translation release | scheduled |
 | 2026-12-06 | `tools/tr`: tools in Türkçe, 17 pages | Translation release | scheduled |
