@@ -69,7 +69,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
 | 2026-11-21 | `tools/zh-Hans`: tools in 简体中文, 18 pages | Translation release | scheduled |
-| 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 47 pages | Translation release | scheduled |
+| 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 49 pages | Translation release | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
 | 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 48 pages | Translation release | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
@@ -83,7 +83,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-27 | `blog/tr`: blog in Türkçe, 48 pages | Translation release | scheduled |
 | 2026-11-28 | `blog/best-time-awareness-apps-iphone.html` | English page | scheduled |
 | 2026-11-28 | `tools/id`: tools in Bahasa Indonesia, 17 pages | Translation release | scheduled |
-| 2026-11-29 | `blog/ja`: blog in 日本語, 47 pages | Translation release | scheduled |
+| 2026-11-29 | `blog/ja`: blog in 日本語, 49 pages | Translation release | scheduled |
 | 2026-11-29 | `blog/time-left-app-alternatives.html` | English page | scheduled |
 | 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 47 pages | Translation release | scheduled |
 | 2026-12-01 | `blog/ko`: blog in 한국어, 47 pages | Translation release | scheduled |
