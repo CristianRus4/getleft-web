@@ -8,40 +8,40 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-20 | `blog/de`: blog in Deutsch, 50 pages | Translation release | live |
 | 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 50 pages | Translation release | live |
 | 2026-10-20 | `blog/es`: blog in Español (España), 50 pages | Translation release | live |
-| 2026-10-20 | `pages/ja`: pages in 日本語, 9 pages | Translation release | live |
-| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 9 pages | Translation release | live |
+| 2026-10-20 | `pages/ja`: pages in 日本語, 10 pages | Translation release | live |
+| 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 10 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 18 pages | Translation release | live |
 | 2026-10-21 | `blog/best-days-since-apps-iphone.html` | English page | live |
-| 2026-10-21 | `pages/de`: pages in Deutsch, 9 pages | Translation release | live |
+| 2026-10-21 | `pages/de`: pages in Deutsch, 10 pages | Translation release | live |
 | 2026-10-22 | `blog/widgetsmith-alternatives.html` | English page | live |
-| 2026-10-22 | `pages/es-419`: pages in Español (Latinoamérica), 9 pages | Translation release | live |
+| 2026-10-22 | `pages/es-419`: pages in Español (Latinoamérica), 10 pages | Translation release | live |
 | 2026-10-23 | `blog/best-life-calendar-apps-iphone.html` | English page | live |
-| 2026-10-23 | `pages/pt-BR`: pages in Português (Brasil), 9 pages | Translation release | live |
+| 2026-10-23 | `pages/pt-BR`: pages in Português (Brasil), 10 pages | Translation release | live |
 | 2026-10-23 | `pomodoro-timer-iphone.html` | English page | live |
 | 2026-10-24 | `blog/best-countdown-wallpaper-apps-iphone.html` | English page | scheduled |
-| 2026-10-24 | `pages/fr`: pages in Français, 9 pages | Translation release | scheduled |
+| 2026-10-24 | `pages/fr`: pages in Français, 10 pages | Translation release | scheduled |
 | 2026-10-25 | `blog/best-year-progress-apps-iphone.html` | English page | scheduled |
-| 2026-10-25 | `pages/es`: pages in Español (España), 9 pages | Translation release | scheduled |
+| 2026-10-25 | `pages/es`: pages in Español (España), 10 pages | Translation release | scheduled |
 | 2026-10-26 | `blog/streaks-app-alternatives.html` | English page | scheduled |
-| 2026-10-26 | `pages/ko`: pages in 한국어, 9 pages | Translation release | scheduled |
+| 2026-10-26 | `pages/ko`: pages in 한국어, 10 pages | Translation release | scheduled |
 | 2026-10-27 | `blog/best-birthday-countdown-apps-iphone.html` | English page | scheduled |
-| 2026-10-27 | `pages/it`: pages in Italiano, 9 pages | Translation release | scheduled |
+| 2026-10-27 | `pages/it`: pages in Italiano, 10 pages | Translation release | scheduled |
 | 2026-10-28 | `blog/structured-app-alternatives.html` | English page | scheduled |
-| 2026-10-28 | `pages/ru`: pages in Русский, 9 pages | Translation release | scheduled |
+| 2026-10-28 | `pages/ru`: pages in Русский, 10 pages | Translation release | scheduled |
 | 2026-10-29 | `blog/tiimo-alternatives.html` | English page | scheduled |
-| 2026-10-29 | `pages/tr`: pages in Türkçe, 9 pages | Translation release | scheduled |
+| 2026-10-29 | `pages/tr`: pages in Türkçe, 10 pages | Translation release | scheduled |
 | 2026-10-30 | `blog/habitkit-alternatives.html` | English page | scheduled |
-| 2026-10-30 | `pages/id`: pages in Bahasa Indonesia, 9 pages | Translation release | scheduled |
+| 2026-10-30 | `pages/id`: pages in Bahasa Indonesia, 10 pages | Translation release | scheduled |
 | 2026-10-31 | `blog/best-fasting-tracker-apps-iphone.html` | English page | scheduled |
-| 2026-10-31 | `pages/pl`: pages in Polski, 9 pages | Translation release | scheduled |
+| 2026-10-31 | `pages/pl`: pages in Polski, 10 pages | Translation release | scheduled |
 | 2026-11-01 | `blog/habitify-alternatives.html` | English page | scheduled |
-| 2026-11-01 | `pages/nl`: pages in Nederlands, 9 pages | Translation release | scheduled |
+| 2026-11-01 | `pages/nl`: pages in Nederlands, 10 pages | Translation release | scheduled |
 | 2026-11-02 | `blog/best-sobriety-counter-apps-iphone.html` | English page | scheduled |
-| 2026-11-02 | `pages/zh-Hans`: pages in 简体中文, 9 pages | Translation release | scheduled |
+| 2026-11-02 | `pages/zh-Hans`: pages in 简体中文, 10 pages | Translation release | scheduled |
 | 2026-11-03 | `blog/countdown-star-alternatives.html` | English page | scheduled |
-| 2026-11-03 | `pages/pt`: pages in Português (Portugal), 9 pages | Translation release | scheduled |
+| 2026-11-03 | `pages/pt`: pages in Português (Portugal), 10 pages | Translation release | scheduled |
 | 2026-11-04 | `blog/best-streak-counter-apps-iphone.html` | English page | scheduled |
-| 2026-11-04 | `pages/ro`: pages in Română, 9 pages | Translation release | scheduled |
+| 2026-11-04 | `pages/ro`: pages in Română, 10 pages | Translation release | scheduled |
 | 2026-11-05 | `blog/best-lock-screen-widget-apps-iphone.html` | English page | scheduled |
 | 2026-11-05 | `tools/de`: tools in Deutsch, 17 pages | Translation release | scheduled |
 | 2026-11-06 | `blog/widgy-alternatives.html` | English page | scheduled |
@@ -65,7 +65,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-16 | `blog/nl`: blog in Nederlands, 50 pages | Translation release | scheduled |
 | 2026-11-17 | `blog/pl`: blog in Polski, 50 pages | Translation release | scheduled |
 | 2026-11-18 | `blog/pt`: blog in Português (Portugal), 51 pages | Translation release | scheduled |
-| 2026-11-19 | `pages/hi`: pages in हिन्दी, 9 pages | Translation release | scheduled |
+| 2026-11-19 | `pages/hi`: pages in हिन्दी, 10 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
