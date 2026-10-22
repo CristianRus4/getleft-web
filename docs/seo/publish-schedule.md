@@ -60,7 +60,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-13 | `blog/way-of-life-alternatives.html` | English page | scheduled |
 | 2026-11-13 | `tools/pt`: tools in Português (Portugal), 17 pages | Translation release | scheduled |
 | 2026-11-14 | `blog/it`: blog in Italiano, 48 pages | Translation release | scheduled |
-| 2026-11-15 | `blog/fr`: blog in Français, 48 pages | Translation release | scheduled |
+| 2026-11-15 | `blog/fr`: blog in Français, 49 pages | Translation release | scheduled |
 | 2026-11-16 | `blog/nl`: blog in Nederlands, 49 pages | Translation release | scheduled |
 | 2026-11-17 | `blog/pl`: blog in Polski, 49 pages | Translation release | scheduled |
 | 2026-11-18 | `blog/pt`: blog in Português (Portugal), 49 pages | Translation release | scheduled |
