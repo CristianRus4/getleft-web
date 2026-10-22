@@ -86,7 +86,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-29 | `blog/ja`: blog in 日本語, 49 pages | Translation release | scheduled |
 | 2026-11-29 | `blog/time-left-app-alternatives.html` | English page | scheduled |
 | 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 49 pages | Translation release | scheduled |
-| 2026-12-01 | `blog/ko`: blog in 한국어, 48 pages | Translation release | scheduled |
+| 2026-12-01 | `blog/ko`: blog in 한국어, 49 pages | Translation release | scheduled |
 | 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 49 pages | Translation release | scheduled |
 | 2026-12-03 | `blog/ru`: blog in Русский, 49 pages | Translation release | scheduled |
 | 2026-12-04 | `blog/ro`: blog in Română, 49 pages | Translation release | scheduled |
