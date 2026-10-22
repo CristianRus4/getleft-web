@@ -17,6 +17,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-22 | `pages/es-419`: pages in Español (Latinoamérica), 9 pages | Translation release | live |
 | 2026-10-23 | `blog/best-life-calendar-apps-iphone.html` | English page | live |
 | 2026-10-23 | `pages/pt-BR`: pages in Português (Brasil), 9 pages | Translation release | live |
+| 2026-10-23 | `pomodoro-timer-iphone.html` | English page | live |
 | 2026-10-24 | `blog/best-countdown-wallpaper-apps-iphone.html` | English page | scheduled |
 | 2026-10-24 | `pages/fr`: pages in Français, 9 pages | Translation release | scheduled |
 | 2026-10-25 | `blog/best-year-progress-apps-iphone.html` | English page | scheduled |
@@ -104,4 +105,4 @@ None.
 
 These wait until they get a date in `pages`.
 
-- `scheduled/pomodoro-timer-iphone.html`
+None.

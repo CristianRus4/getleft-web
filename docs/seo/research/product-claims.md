@@ -37,8 +37,8 @@ Source: the Left app repo (`/Users/cristian/Developer/Apps/Left-app`, read-only)
 
 ## Focus
 
-- Focus ships in v2026.11 (about 2 November 2026, owner, 2026-10-19). Keep Focus visible and describe it as a
-  shipped feature (Pomodoro-style focus and break sessions, Live Activity, widget).
+- Focus ships in v2026.11. The owner put every Focus and Pomodoro page live on 2026-10-23, a few days before the
+  release. Describe it as a shipped feature, part of Left Premium. Facts: `docs/seo/research/focus-facts.md`.
 
 ## Brand and terms
 

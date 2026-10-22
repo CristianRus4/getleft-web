@@ -99,7 +99,7 @@ On a rebase conflict in generated files (`/<locale>/…`, `sitemap.xml`, `tools/
 The owner confirmed today:
 - **Apple Watch is not ready.** The website must not claim a Left Apple Watch app or complications until it ships.
 - **Mood stays hidden.**
-- **Focus ships in v2026.11** (about 2 November) and stays visible.
+- **Focus is live on the site** (owner, 2026-10-23; the app ships it in v2026.11).
 
 What Lane 0 changed:
 - **Noindexed:** `support/apple-watch-app` and `blog/left-apple-watch-app` (URLs stay live).
