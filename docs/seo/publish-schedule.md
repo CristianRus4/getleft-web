@@ -61,8 +61,8 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-13 | `tools/pt`: tools in Português (Portugal), 17 pages | Translation release | scheduled |
 | 2026-11-14 | `blog/it`: blog in Italiano, 48 pages | Translation release | scheduled |
 | 2026-11-15 | `blog/fr`: blog in Français, 48 pages | Translation release | scheduled |
-| 2026-11-16 | `blog/nl`: blog in Nederlands, 47 pages | Translation release | scheduled |
-| 2026-11-17 | `blog/pl`: blog in Polski, 47 pages | Translation release | scheduled |
+| 2026-11-16 | `blog/nl`: blog in Nederlands, 48 pages | Translation release | scheduled |
+| 2026-11-17 | `blog/pl`: blog in Polski, 48 pages | Translation release | scheduled |
 | 2026-11-18 | `blog/pt`: blog in Português (Portugal), 48 pages | Translation release | scheduled |
 | 2026-11-19 | `pages/hi`: pages in हिन्दी, 9 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
@@ -77,7 +77,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-24 | `tools/zh-Hant`: tools in 繁體中文, 17 pages | Translation release | scheduled |
 | 2026-11-25 | `month-progress-widget.html` | English page | scheduled |
 | 2026-11-25 | `tools/hi`: tools in हिन्दी, 17 pages | Translation release | scheduled |
-| 2026-11-26 | `blog/hi`: blog in हिन्दी, 47 pages | Translation release | scheduled |
+| 2026-11-26 | `blog/hi`: blog in हिन्दी, 48 pages | Translation release | scheduled |
 | 2026-11-26 | `retirement-countdown.html` | English page | scheduled |
 | 2026-11-27 | `blog/days-since-app-alternatives.html` | English page | scheduled |
 | 2026-11-27 | `blog/tr`: blog in Türkçe, 47 pages | Translation release | scheduled |
@@ -87,9 +87,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-29 | `blog/time-left-app-alternatives.html` | English page | scheduled |
 | 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 47 pages | Translation release | scheduled |
 | 2026-12-01 | `blog/ko`: blog in 한국어, 47 pages | Translation release | scheduled |
-| 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 47 pages | Translation release | scheduled |
+| 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 48 pages | Translation release | scheduled |
 | 2026-12-03 | `blog/ru`: blog in Русский, 48 pages | Translation release | scheduled |
-| 2026-12-04 | `blog/ro`: blog in Română, 47 pages | Translation release | scheduled |
+| 2026-12-04 | `blog/ro`: blog in Română, 48 pages | Translation release | scheduled |
 | 2026-12-05 | `tools/ru`: tools in Русский, 17 pages | Translation release | scheduled |
 | 2026-12-06 | `tools/tr`: tools in Türkçe, 17 pages | Translation release | scheduled |
 | 2026-12-07 | `tools/ro`: tools in Română, 17 pages | Translation release | scheduled |
