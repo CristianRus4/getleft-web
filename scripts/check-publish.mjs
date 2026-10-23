@@ -8,7 +8,8 @@
 //
 // Fails on:
 //   - a malformed schedule: bad dates, unknown family or locale, odd page paths
-//   - two future releases, or two future English pages, on the same day (policy: one of each per day)
+//   - more than three locales releasing on the same future day, or two future English pages on the same day
+//     (policy: up to three languages and one English page per day; owner, 2026-10-24)
 //   - a future page missing from scheduled/, or already at its live path
 //   - any live page, sitemap.xml or llms.txt linking to a page that is still scheduled
 //     (links are not rewritten: add the link on or after the page's date)
@@ -55,6 +56,12 @@ function checkOnePerDay(entries, what, date) {
   for (const [d, ks] of byDay) if (ks.length > 1) fail(`${SCHEDULE_FILE}: ${ks.length} ${what} on ${d} (${ks.join(', ')}); the policy allows one per day`);
 }
 
+function checkReleaseLocalesPerDay(entries, date, max = 3) {
+  const byDay = new Map();
+  for (const [k, d] of entries) if (d > date) byDay.set(d, new Set([...(byDay.get(d) || []), k.split('/')[1]]));
+  for (const [d, locs] of byDay) if (locs.size > max) fail(`${SCHEDULE_FILE}: ${locs.size} locales release on ${d} (${[...locs].join(', ')}); the policy allows ${max} per day`);
+}
+
 // '/blog/x', '/blog/x.html', 'https://getleft.app/blog/x?y#z' → '/blog/x'
 function normalizeHref(href) {
   if (href.startsWith(SITE_ORIGIN + '/')) href = href.slice(SITE_ORIGIN.length);
@@ -81,7 +88,7 @@ async function checkTree(date) {
   const raw = existsSync(path.join(ROOT, SCHEDULE_FILE)) ? JSON.parse(await fs.readFile(path.join(ROOT, SCHEDULE_FILE), 'utf8')) : {};
   checkShape(raw);
   const { pages, releases } = loadSchedule();
-  checkOnePerDay(Object.entries(releases), 'releases', date);
+  checkReleaseLocalesPerDay(Object.entries(releases), date);
   checkOnePerDay(Object.entries(pages), 'English pages', date);
 
   const pending = pendingPages(date);
