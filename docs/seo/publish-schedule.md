@@ -5,9 +5,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 | Date | Item | Type | Status |
 |---|---|---|---|
-| 2026-10-20 | `blog/de`: blog in Deutsch, 51 pages | Translation release | live |
-| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 51 pages | Translation release | live |
-| 2026-10-20 | `blog/es`: blog in Español (España), 51 pages | Translation release | live |
+| 2026-10-20 | `blog/de`: blog in Deutsch, 52 pages | Translation release | live |
+| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 52 pages | Translation release | live |
+| 2026-10-20 | `blog/es`: blog in Español (España), 52 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 10 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 10 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 18 pages | Translation release | live |
@@ -18,8 +18,8 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-23 | `blog/best-life-calendar-apps-iphone.html` | English page | live |
 | 2026-10-23 | `pages/pt-BR`: pages in Português (Brasil), 10 pages | Translation release | live |
 | 2026-10-23 | `pomodoro-timer-iphone.html` | English page | live |
-| 2026-10-24 | `blog/best-countdown-wallpaper-apps-iphone.html` | English page | scheduled |
-| 2026-10-24 | `pages/fr`: pages in Français, 10 pages | Translation release | scheduled |
+| 2026-10-24 | `blog/best-countdown-wallpaper-apps-iphone.html` | English page | live |
+| 2026-10-24 | `pages/fr`: pages in Français, 10 pages | Translation release | live |
 | 2026-10-25 | `blog/best-year-progress-apps-iphone.html` | English page | scheduled |
 | 2026-10-25 | `pages/es`: pages in Español (España), 10 pages | Translation release | scheduled |
 | 2026-10-26 | `blog/streaks-app-alternatives.html` | English page | scheduled |
@@ -60,37 +60,37 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-12 | `tools/nl`: tools in Nederlands, 17 pages | Translation release | scheduled |
 | 2026-11-13 | `blog/way-of-life-alternatives.html` | English page | scheduled |
 | 2026-11-13 | `tools/pt`: tools in Português (Portugal), 17 pages | Translation release | scheduled |
-| 2026-11-14 | `blog/it`: blog in Italiano, 51 pages | Translation release | scheduled |
-| 2026-11-15 | `blog/fr`: blog in Français, 51 pages | Translation release | scheduled |
-| 2026-11-16 | `blog/nl`: blog in Nederlands, 51 pages | Translation release | scheduled |
-| 2026-11-17 | `blog/pl`: blog in Polski, 51 pages | Translation release | scheduled |
-| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 51 pages | Translation release | scheduled |
+| 2026-11-14 | `blog/it`: blog in Italiano, 52 pages | Translation release | scheduled |
+| 2026-11-15 | `blog/fr`: blog in Français, 52 pages | Translation release | scheduled |
+| 2026-11-16 | `blog/nl`: blog in Nederlands, 52 pages | Translation release | scheduled |
+| 2026-11-17 | `blog/pl`: blog in Polski, 52 pages | Translation release | scheduled |
+| 2026-11-18 | `blog/pt`: blog in Português (Portugal), 52 pages | Translation release | scheduled |
 | 2026-11-19 | `pages/hi`: pages in हिन्दी, 10 pages | Translation release | scheduled |
 | 2026-11-20 | `birthday-countdown-widget.html` | English page | scheduled |
 | 2026-11-20 | `tools/ko`: tools in 한국어, 18 pages | Translation release | scheduled |
 | 2026-11-21 | `relationship-counter.html` | English page | scheduled |
 | 2026-11-21 | `tools/zh-Hans`: tools in 简体中文, 18 pages | Translation release | scheduled |
-| 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 51 pages | Translation release | scheduled |
+| 2026-11-22 | `blog/pt-BR`: blog in Português (Brasil), 52 pages | Translation release | scheduled |
 | 2026-11-22 | `exam-countdown.html` | English page | scheduled |
-| 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 51 pages | Translation release | scheduled |
+| 2026-11-23 | `blog/id`: blog in Bahasa Indonesia, 52 pages | Translation release | scheduled |
 | 2026-11-23 | `lock-screen-countdown.html` | English page | scheduled |
 | 2026-11-24 | `time-left-today.html` | English page | scheduled |
 | 2026-11-24 | `tools/zh-Hant`: tools in 繁體中文, 17 pages | Translation release | scheduled |
 | 2026-11-25 | `month-progress-widget.html` | English page | scheduled |
 | 2026-11-25 | `tools/hi`: tools in हिन्दी, 17 pages | Translation release | scheduled |
-| 2026-11-26 | `blog/hi`: blog in हिन्दी, 51 pages | Translation release | scheduled |
+| 2026-11-26 | `blog/hi`: blog in हिन्दी, 52 pages | Translation release | scheduled |
 | 2026-11-26 | `retirement-countdown.html` | English page | scheduled |
 | 2026-11-27 | `blog/days-since-app-alternatives.html` | English page | scheduled |
-| 2026-11-27 | `blog/tr`: blog in Türkçe, 51 pages | Translation release | scheduled |
+| 2026-11-27 | `blog/tr`: blog in Türkçe, 52 pages | Translation release | scheduled |
 | 2026-11-28 | `blog/best-time-awareness-apps-iphone.html` | English page | scheduled |
 | 2026-11-28 | `tools/id`: tools in Bahasa Indonesia, 17 pages | Translation release | scheduled |
-| 2026-11-29 | `blog/ja`: blog in 日本語, 51 pages | Translation release | scheduled |
+| 2026-11-29 | `blog/ja`: blog in 日本語, 52 pages | Translation release | scheduled |
 | 2026-11-29 | `blog/time-left-app-alternatives.html` | English page | scheduled |
-| 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 51 pages | Translation release | scheduled |
-| 2026-12-01 | `blog/ko`: blog in 한국어, 51 pages | Translation release | scheduled |
-| 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 51 pages | Translation release | scheduled |
-| 2026-12-03 | `blog/ru`: blog in Русский, 51 pages | Translation release | scheduled |
-| 2026-12-04 | `blog/ro`: blog in Română, 51 pages | Translation release | scheduled |
+| 2026-11-30 | `blog/zh-Hant`: blog in 繁體中文, 52 pages | Translation release | scheduled |
+| 2026-12-01 | `blog/ko`: blog in 한국어, 52 pages | Translation release | scheduled |
+| 2026-12-02 | `blog/zh-Hans`: blog in 简体中文, 52 pages | Translation release | scheduled |
+| 2026-12-03 | `blog/ru`: blog in Русский, 52 pages | Translation release | scheduled |
+| 2026-12-04 | `blog/ro`: blog in Română, 52 pages | Translation release | scheduled |
 | 2026-12-05 | `tools/ru`: tools in Русский, 17 pages | Translation release | scheduled |
 | 2026-12-06 | `tools/tr`: tools in Türkçe, 17 pages | Translation release | scheduled |
 | 2026-12-07 | `tools/ro`: tools in Română, 17 pages | Translation release | scheduled |
