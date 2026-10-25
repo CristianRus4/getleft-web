@@ -1,0 +1,784 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Outils de temps gratuits : compte à rebours et dates | Left</title>
+  <meta name="description" content="Compte à rebours et calculateurs de dates gratuits de Left : jours jusqu'à, jours depuis, jours ouvrables, progression de l'année, fuseaux horaires, sommeil, jeûne et temps Unix."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/fr/tools/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Outils de temps gratuits – Left"  />
+  <meta property="og:description" content="Compte à rebours et calculateurs de dates gratuits de Left : jours jusqu'à, jours depuis, jours ouvrables, progression de l'année, fuseaux horaires, sommeil, jeûne et temps Unix."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/fr/tools/" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Outils de temps gratuits – Left"  />
+  <meta name="twitter:description" content="Compte à rebours et calculateurs de dates gratuits de Left : jours jusqu'à, jours depuis, jours ouvrables, progression de l'année, fuseaux horaires, sommeil, jeûne et temps Unix."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Left - Free Time Tools",
+  "url": "https://getleft.app/tools/",
+  "description": "Free countdown and date calculators from Left: days until, days since, business days, year progress, time zones, sleep, fasting and Unix time."
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "name": "Left free time tools",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Countdown to any date",
+      "url": "https://getleft.app/tools/date-countdown-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Time left in the year",
+      "url": "https://getleft.app/tools/time-left-in-year-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Time passed in the year",
+      "url": "https://getleft.app/tools/time-passed-in-year-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "Percentage of the year",
+      "url": "https://getleft.app/tools/percentage-year-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "Christmas countdown",
+      "url": "https://getleft.app/tools/christmas-countdown-widget"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "Days until Easter",
+      "url": "https://getleft.app/tools/days-until-easter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 7,
+      "name": "Days until spring",
+      "url": "https://getleft.app/tools/days-until-spring"
+    },
+    {
+      "@type": "ListItem",
+      "position": 8,
+      "name": "Days until summer",
+      "url": "https://getleft.app/tools/days-until-summer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 9,
+      "name": "Days until fall",
+      "url": "https://getleft.app/tools/days-until-fall"
+    },
+    {
+      "@type": "ListItem",
+      "position": 10,
+      "name": "Days until winter",
+      "url": "https://getleft.app/tools/days-until-winter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 11,
+      "name": "Days until New Year",
+      "url": "https://getleft.app/tools/days-until-new-year"
+    },
+    {
+      "@type": "ListItem",
+      "position": 12,
+      "name": "Days until Halloween",
+      "url": "https://getleft.app/tools/days-until-halloween"
+    },
+    {
+      "@type": "ListItem",
+      "position": 13,
+      "name": "Days until Valentine's Day",
+      "url": "https://getleft.app/tools/days-until-valentines"
+    },
+    {
+      "@type": "ListItem",
+      "position": 14,
+      "name": "Days until Thanksgiving",
+      "url": "https://getleft.app/tools/days-until-thanksgiving"
+    },
+    {
+      "@type": "ListItem",
+      "position": 15,
+      "name": "Days until Mother's Day",
+      "url": "https://getleft.app/tools/days-until-mothers-day"
+    },
+    {
+      "@type": "ListItem",
+      "position": 16,
+      "name": "Days until Father's Day",
+      "url": "https://getleft.app/tools/days-until-fathers-day"
+    },
+    {
+      "@type": "ListItem",
+      "position": 17,
+      "name": "Days until your birthday",
+      "url": "https://getleft.app/tools/days-until-birthday"
+    },
+    {
+      "@type": "ListItem",
+      "position": 18,
+      "name": "Time until the weekend",
+      "url": "https://getleft.app/tools/time-until-weekend"
+    },
+    {
+      "@type": "ListItem",
+      "position": 19,
+      "name": "Days between two dates",
+      "url": "https://getleft.app/tools/days-between-two-dates"
+    },
+    {
+      "@type": "ListItem",
+      "position": 20,
+      "name": "Hours between two dates",
+      "url": "https://getleft.app/tools/hours-between-two-dates"
+    },
+    {
+      "@type": "ListItem",
+      "position": 21,
+      "name": "Weeks until a date",
+      "url": "https://getleft.app/tools/weeks-until-date"
+    },
+    {
+      "@type": "ListItem",
+      "position": 22,
+      "name": "Business days calculator",
+      "url": "https://getleft.app/tools/business-days-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 23,
+      "name": "Add or subtract from a date",
+      "url": "https://getleft.app/tools/add-subtract-date-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 24,
+      "name": "What was the date?",
+      "url": "https://getleft.app/tools/what-was-the-date"
+    },
+    {
+      "@type": "ListItem",
+      "position": 25,
+      "name": "Age calculator",
+      "url": "https://getleft.app/tools/age-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 26,
+      "name": "ISO week number",
+      "url": "https://getleft.app/tools/iso-week-number"
+    },
+    {
+      "@type": "ListItem",
+      "position": 27,
+      "name": "Unix timestamp converter",
+      "url": "https://getleft.app/tools/unix-timestamp-converter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 28,
+      "name": "Life expectancy calculator",
+      "url": "https://getleft.app/tools/life-expectancy-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 29,
+      "name": "Pregnancy due date",
+      "url": "https://getleft.app/tools/pregnancy-due-date-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 30,
+      "name": "Sleep calculator",
+      "url": "https://getleft.app/tools/sleep-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 31,
+      "name": "Fasting duration",
+      "url": "https://getleft.app/tools/intermittent-fasting-duration-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 32,
+      "name": "End of fasting calculator",
+      "url": "https://getleft.app/tools/end-of-fasting-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 33,
+      "name": "Live fasting countdown",
+      "url": "https://getleft.app/tools/fasting-countdown"
+    },
+    {
+      "@type": "ListItem",
+      "position": 34,
+      "name": "Days since a date",
+      "url": "https://getleft.app/tools/days-since-date"
+    },
+    {
+      "@type": "ListItem",
+      "position": 35,
+      "name": "Hours since a date",
+      "url": "https://getleft.app/tools/hours-since-date"
+    },
+    {
+      "@type": "ListItem",
+      "position": 36,
+      "name": "Minutes between times",
+      "url": "https://getleft.app/tools/minutes-between-two-times"
+    },
+    {
+      "@type": "ListItem",
+      "position": 37,
+      "name": "Time between two times",
+      "url": "https://getleft.app/tools/time-between-two-times"
+    },
+    {
+      "@type": "ListItem",
+      "position": 38,
+      "name": "Business days from a date",
+      "url": "https://getleft.app/tools/business-days-from-date"
+    },
+    {
+      "@type": "ListItem",
+      "position": 39,
+      "name": "Working hours calculator",
+      "url": "https://getleft.app/tools/working-hours-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 40,
+      "name": "Workday countdown",
+      "url": "https://getleft.app/tools/workday-countdown"
+    },
+    {
+      "@type": "ListItem",
+      "position": 41,
+      "name": "School days calculator",
+      "url": "https://getleft.app/tools/school-days-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 42,
+      "name": "Semester countdown",
+      "url": "https://getleft.app/tools/semester-countdown-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 43,
+      "name": "Quarter countdown",
+      "url": "https://getleft.app/tools/quarter-countdown-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 44,
+      "name": "Fiscal year progress",
+      "url": "https://getleft.app/tools/fiscal-year-progress-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 45,
+      "name": "Date units converter",
+      "url": "https://getleft.app/tools/date-units-converter"
+    },
+    {
+      "@type": "ListItem",
+      "position": 46,
+      "name": "Deadline countdown",
+      "url": "https://getleft.app/tools/deadline-countdown-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 47,
+      "name": "Vacation countdown",
+      "url": "https://getleft.app/tools/vacation-countdown"
+    },
+    {
+      "@type": "ListItem",
+      "position": 48,
+      "name": "Wedding countdown",
+      "url": "https://getleft.app/tools/wedding-countdown"
+    },
+    {
+      "@type": "ListItem",
+      "position": 49,
+      "name": "Retirement countdown",
+      "url": "https://getleft.app/tools/retirement-countdown-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 50,
+      "name": "Anniversary countdown",
+      "url": "https://getleft.app/tools/anniversary-countdown"
+    },
+    {
+      "@type": "ListItem",
+      "position": 51,
+      "name": "Sobriety calculator",
+      "url": "https://getleft.app/tools/sobriety-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 52,
+      "name": "Habit streak calculator",
+      "url": "https://getleft.app/tools/habit-streak-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 53,
+      "name": "Reading time calculator",
+      "url": "https://getleft.app/tools/reading-time-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 54,
+      "name": "Meeting time calculator",
+      "url": "https://getleft.app/tools/meeting-time-calculator"
+    },
+    {
+      "@type": "ListItem",
+      "position": 55,
+      "name": "Countdown timer",
+      "url": "https://getleft.app/tools/countdown-timer"
+    },
+    {
+      "@type": "ListItem",
+      "position": 56,
+      "name": "Time zone meeting planner",
+      "url": "https://getleft.app/tools/time-zone-meeting-planner"
+    },
+    {
+      "@type": "ListItem",
+      "position": 57,
+      "name": "Unix milliseconds converter",
+      "url": "https://getleft.app/tools/unix-milliseconds-converter"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Navigation principale">
+    <div class="container nav-inner">
+      <a href="/fr/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/fr/#features" class="nav-link">Fonctionnalités</a>
+          <a href="/fr/tools/" class="nav-link">Outils</a>
+          <a href="/fr/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-fr&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Télécharger</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tools-index">
+    <h1>Outils de temps gratuits</h1>
+    <p class="tools-intro">Une collection d’outils petits et rapides, qui ne cesse de grandir, créée par l’équipe de <a href="/fr/" style="color:var(--accent);">Left</a>. Fais un compte à rebours jusqu’à une date, calcule le temps entre deux moments, le nombre de jours depuis un événement, les jours ouvrés, les jours d’école, le sommeil, le jeûne, la progression de l’année, les fuseaux horaires, les timestamps Unix et plus encore. Pour les widgets iPhone, les habitudes, les séries, les dates À venir, les suivis Depuis et le Planificateur, télécharge Left.</p>
+    <p class="tools-intro">Left met aussi ça sur ton écran d’accueil : le <a href="/fr/countdown-widget" style="color:var(--accent);">widget de compte à rebours</a>, le <a href="/fr/days-since-widget" style="color:var(--accent);">widget de jours écoulés</a> et le <a href="/fr/year-progress-widget" style="color:var(--accent);">widget de progression de l’année</a>.</p>
+
+    <section class="tools-group">
+      <h2>Comptes à rebours</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/fr/tools/date-countdown-calculator"><div class="tool-card-title">Compte à rebours jusqu’à une date</div><p class="tool-card-desc">Choisis une date cible et vois les jours, les heures, les minutes et les secondes restants.</p></a>
+        <a class="tool-card" href="/tools/time-left-in-year-calculator"><div class="tool-card-title">Temps restant dans l’année</div><p class="tool-card-desc">Combien de jours, d’heures et de minutes avant le Nouvel An.</p></a>
+        <a class="tool-card" href="/tools/time-passed-in-year-calculator"><div class="tool-card-title">Temps écoulé dans l’année</div><p class="tool-card-desc">Où tu en es dans l’année, à la minute près.</p></a>
+        <a class="tool-card" href="/fr/tools/percentage-year-calculator"><div class="tool-card-title">Pourcentage de l’année</div><p class="tool-card-desc">Le pourcentage de l’année déjà écoulé et celui qu’il reste, à l’instant même.</p></a>
+        <a class="tool-card" href="/fr/tools/christmas-countdown-widget"><div class="tool-card-title">Compte à rebours de Noël</div><p class="tool-card-desc">Les jours, les semaines, les mois ou les heures avant le 25 décembre.</p></a>
+        <a class="tool-card" href="/tools/days-until-easter"><div class="tool-card-title">Jours avant Pâques</div><p class="tool-card-desc">Les dates de Pâques occidentale et orthodoxe, avec un compte à rebours en direct.</p></a>
+        <a class="tool-card" href="/tools/days-until-spring"><div class="tool-card-title">Jours avant le printemps</div><p class="tool-card-desc">Compte à rebours de l’équinoxe de printemps : hémisphère Nord ou Sud.</p></a>
+        <a class="tool-card" href="/tools/days-until-summer"><div class="tool-card-title">Jours avant l’été</div><p class="tool-card-desc">Compte à rebours du solstice d’été : choisis ton hémisphère.</p></a>
+        <a class="tool-card" href="/tools/days-until-fall"><div class="tool-card-title">Jours avant l’automne</div><p class="tool-card-desc">Compte à rebours de l’équinoxe d’automne : fonctionne pour les deux hémisphères.</p></a>
+        <a class="tool-card" href="/tools/days-until-winter"><div class="tool-card-title">Jours avant l’hiver</div><p class="tool-card-desc">Compte à rebours du solstice d’hiver : choisis ton hémisphère.</p></a>
+        <a class="tool-card" href="/fr/tools/days-until-new-year"><div class="tool-card-title">Jours avant le Nouvel An</div><p class="tool-card-desc">Le temps restant avant le 1er janvier.</p></a>
+        <a class="tool-card" href="/tools/days-until-halloween"><div class="tool-card-title">Jours avant Halloween</div><p class="tool-card-desc">Combien de temps avant le 31 octobre.</p></a>
+        <a class="tool-card" href="/tools/days-until-valentines"><div class="tool-card-title">Jours avant la Saint-Valentin</div><p class="tool-card-desc">Compte à rebours jusqu’au 14 février.</p></a>
+        <a class="tool-card" href="/tools/days-until-thanksgiving"><div class="tool-card-title">Jours avant Thanksgiving</div><p class="tool-card-desc">Quatrième jeudi de novembre aux États-Unis.</p></a>
+        <a class="tool-card" href="/tools/days-until-mothers-day"><div class="tool-card-title">Jours avant la fête des Mères</div><p class="tool-card-desc">Deuxième dimanche de mai aux États-Unis.</p></a>
+        <a class="tool-card" href="/tools/days-until-fathers-day"><div class="tool-card-title">Jours avant la fête des Pères</div><p class="tool-card-desc">Troisième dimanche de juin aux États-Unis.</p></a>
+        <a class="tool-card" href="/fr/tools/days-until-birthday"><div class="tool-card-title">Jours avant ton anniversaire</div><p class="tool-card-desc">Saisis une date de naissance et vois combien de temps il reste avant la prochaine.</p></a>
+        <a class="tool-card" href="/tools/time-until-weekend"><div class="tool-card-title">Temps avant le week-end</div><p class="tool-card-desc">Compte à rebours jusqu’à samedi matin.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Calculs de dates</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/fr/tools/days-between-two-dates"><div class="tool-card-title">Jours entre deux dates</div><p class="tool-card-desc">Le nombre exact de jours entre deux dates.</p></a>
+        <a class="tool-card" href="/tools/hours-between-two-dates"><div class="tool-card-title">Heures entre deux dates</div><p class="tool-card-desc">La durée en heures entre deux dates et heures.</p></a>
+        <a class="tool-card" href="/tools/weeks-until-date"><div class="tool-card-title">Semaines avant une date</div><p class="tool-card-desc">Choisis une date cible et vois le nombre de semaines entières restantes.</p></a>
+        <a class="tool-card" href="/fr/tools/business-days-calculator"><div class="tool-card-title">Calculateur de jours ouvrés</div><p class="tool-card-desc">Les jours ouvrés, du lundi au vendredi, entre deux dates.</p></a>
+        <a class="tool-card" href="/fr/tools/add-subtract-date-calculator"><div class="tool-card-title">Ajouter ou soustraire à une date</div><p class="tool-card-desc">Ajoute ou soustrais des années, des mois, des semaines, des jours, des heures ou des minutes.</p></a>
+        <a class="tool-card" href="/tools/what-was-the-date"><div class="tool-card-title">Quelle était la date ?</div><p class="tool-card-desc">Remonte dans le temps en soustrayant une durée.</p></a>
+        <a class="tool-card" href="/fr/tools/age-calculator"><div class="tool-card-title">Calculateur d’âge</div><p class="tool-card-desc">Ton âge exact en années, en mois et en jours.</p></a>
+        <a class="tool-card" href="/tools/iso-week-number"><div class="tool-card-title">Numéro de semaine ISO</div><p class="tool-card-desc">Le numéro de semaine ISO 8601 de n’importe quelle date.</p></a>
+        <a class="tool-card" href="/tools/minutes-between-two-times"><div class="tool-card-title">Minutes entre deux heures</div><p class="tool-card-desc">Le nombre exact de minutes entre deux heures de la journée.</p></a>
+        <a class="tool-card" href="/tools/time-between-two-times"><div class="tool-card-title">Durée entre deux heures</div><p class="tool-card-desc">La durée entre deux heures de la journée.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Depuis &amp; séries</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/fr/tools/days-since-date"><div class="tool-card-title">Jours depuis une date</div><p class="tool-card-desc">Compte les jours, les semaines et les mois depuis un événement.</p></a>
+        <a class="tool-card" href="/tools/hours-since-date"><div class="tool-card-title">Heures depuis une date</div><p class="tool-card-desc">Le nombre exact d’heures et de minutes depuis une date et une heure.</p></a>
+        <a class="tool-card" href="/fr/tools/anniversary-countdown"><div class="tool-card-title">Compte à rebours d’anniversaire de couple</div><p class="tool-card-desc">Les jours avant le prochain anniversaire annuel.</p></a>
+        <a class="tool-card" href="/fr/tools/sobriety-calculator"><div class="tool-card-title">Compteur de sobriété</div><p class="tool-card-desc">Les jours de sobriété et le prochain cap de ton rétablissement.</p></a>
+        <a class="tool-card" href="/tools/habit-streak-calculator"><div class="tool-card-title">Calculateur de série d’habitudes</div><p class="tool-card-desc">Compte les jours, les semaines et les mois d’une série d’habitudes.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Travail &amp; école</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/tools/business-days-from-date"><div class="tool-card-title">Jours ouvrés à partir d’une date</div><p class="tool-card-desc">Ajoute ou soustrais des jours ouvrés à une date.</p></a>
+        <a class="tool-card" href="/tools/working-hours-calculator"><div class="tool-card-title">Calculateur d’heures de travail</div><p class="tool-card-desc">Les heures de travail entre deux dates, pauses comprises.</p></a>
+        <a class="tool-card" href="/tools/workday-countdown"><div class="tool-card-title">Compte à rebours de la journée de travail</div><p class="tool-card-desc">Le temps restant avant la fin de ta journée de travail.</p></a>
+        <a class="tool-card" href="/tools/school-days-calculator"><div class="tool-card-title">Calculateur de jours d’école</div><p class="tool-card-desc">Les jours d’école, hors week-ends, entre deux dates.</p></a>
+        <a class="tool-card" href="/tools/semester-countdown-calculator"><div class="tool-card-title">Compte à rebours du semestre</div><p class="tool-card-desc">Les semaines, les jours et le pourcentage restants dans un semestre.</p></a>
+        <a class="tool-card" href="/tools/meeting-time-calculator"><div class="tool-card-title">Calculateur d’heure de réunion</div><p class="tool-card-desc">La durée d’une réunion, le temps écoulé et le temps restant.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Comptes à rebours de planification</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/tools/deadline-countdown-calculator"><div class="tool-card-title">Compte à rebours d’échéance</div><p class="tool-card-desc">Le temps restant en direct avant une échéance.</p></a>
+        <a class="tool-card" href="/fr/tools/vacation-countdown"><div class="tool-card-title">Compte à rebours des vacances</div><p class="tool-card-desc">Les jours avant ton prochain voyage ou tes prochaines vacances.</p></a>
+        <a class="tool-card" href="/fr/tools/wedding-countdown"><div class="tool-card-title">Compte à rebours du mariage</div><p class="tool-card-desc">Les jours, les semaines et les mois avant un mariage.</p></a>
+        <a class="tool-card" href="/tools/retirement-countdown-calculator"><div class="tool-card-title">Compte à rebours de la retraite</div><p class="tool-card-desc">Les années, les mois et les jours avant la retraite.</p></a>
+        <a class="tool-card" href="/tools/quarter-countdown-calculator"><div class="tool-card-title">Compte à rebours du trimestre</div><p class="tool-card-desc">Le temps restant dans le trimestre civil en cours.</p></a>
+        <a class="tool-card" href="/tools/fiscal-year-progress-calculator"><div class="tool-card-title">Progression de l’exercice fiscal</div><p class="tool-card-desc">Le pourcentage écoulé et restant de n’importe quel exercice fiscal.</p></a>
+        <a class="tool-card" href="/fr/tools/countdown-timer"><div class="tool-card-title">Minuteur de compte à rebours</div><p class="tool-card-desc">Un minuteur simple en heures, minutes et secondes.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Convertisseurs de temps</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/tools/unix-timestamp-converter"><div class="tool-card-title">Convertisseur de timestamp Unix</div><p class="tool-card-desc">Convertis les secondes epoch en dates lisibles, et inversement.</p></a>
+        <a class="tool-card" href="/tools/unix-milliseconds-converter"><div class="tool-card-title">Convertisseur de millisecondes Unix</div><p class="tool-card-desc">Convertis les millisecondes epoch en dates lisibles, et inversement.</p></a>
+        <a class="tool-card" href="/tools/date-units-converter"><div class="tool-card-title">Convertisseur d’unités de temps</div><p class="tool-card-desc">Convertis des jours, des semaines, des mois, des années, des heures et des minutes.</p></a>
+        <a class="tool-card" href="/tools/time-zone-meeting-planner"><div class="tool-card-title">Planificateur de réunion entre fuseaux horaires</div><p class="tool-card-desc">Compare l’heure d’une même réunion dans plusieurs fuseaux horaires.</p></a>
+        <a class="tool-card" href="/tools/reading-time-calculator"><div class="tool-card-title">Calculateur de temps de lecture</div><p class="tool-card-desc">Estime le temps de lecture à partir du nombre de mots et de la vitesse.</p></a>
+      </div>
+    </section>
+
+<section class="tools-group">
+      <h2>Vie &amp; santé</h2>
+      <div class="tools-grid">
+        <a class="tool-card" href="/fr/tools/life-expectancy-calculator"><div class="tool-card-title">Calculateur d’espérance de vie</div><p class="tool-card-desc">Une estimation à l’échelle d’une population, fondée sur des facteurs liés au mode de vie.</p></a>
+        <a class="tool-card" href="/tools/pregnancy-due-date-calculator"><div class="tool-card-title">Date d’accouchement prévue</div><p class="tool-card-desc">Date d’accouchement estimée et semaine en cours à partir de tes dernières règles.</p></a>
+        <a class="tool-card" href="/tools/sleep-calculator"><div class="tool-card-title">Calculateur de sommeil</div><p class="tool-card-desc">Meilleurs heures de coucher et de réveil à partir de cycles de sommeil de 90 minutes.</p></a>
+        <a class="tool-card" href="/tools/intermittent-fasting-duration-calculator"><div class="tool-card-title">Durée du jeûne</div><p class="tool-card-desc">Quand se termine ton jeûne 16:8, 18:6 ou personnalisé, à partir de ton dernier repas.</p></a>
+        <a class="tool-card" href="/tools/end-of-fasting-calculator"><div class="tool-card-title">Calculateur de fin de jeûne</div><p class="tool-card-desc">Quand se termine ton jeûne 16:8, 18:6 ou personnalisé ?</p></a>
+        <a class="tool-card" href="/tools/fasting-countdown"><div class="tool-card-title">Compte à rebours du jeûne en direct</div><p class="tool-card-desc">Compte à rebours en temps réel d’un jeûne en cours.</p></a>
+      </div>
+    </section>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Télécharger Left</span>
+        <h2>Commence à voir ce qui compte.</h2>
+        <p>Télécharge Left sur ton iPhone pour voir le temps qu’il te reste, les dates que tu attends avec impatience, construire les habitudes que tu veux garder et devenir une meilleure version de toi.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code – touche-le pour voir les instructions">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanne ou cherche <strong>« Left »</strong> sur l’App Store.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-fr&amp;mt=8" target="_blank" rel="noopener" aria-label="Télécharger Left sur l’App Store" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Télécharger pour iOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> personnes qui font compter chaque instant.</span> <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="Pied de page">
+          <a href="/fr/support">Aide</a>
+          <a href="/terms">Conditions</a>
+          <a href="/fr/privacy">Confidentialité</a>
+          <a href="/fr/press">Presse</a>
+          <a href="/fr/contact">Contact</a>
+          <a href="/fr/tools/">Outils</a>
+          <!-- left:footer-extra:start -->
+          <a href="/fr/blog/">Blog</a>
+          <a href="#" data-consent-open>Réglages des cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>FR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="true">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419","fr","it","ja"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentement aux cookies">
+  <p class="left-consent__text">Nous utilisons Google Analytics pour savoir quelles pages sont utiles. Pas de publicité, pas de suivi entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Autoriser les statistiques</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Non merci</button>
+    <a class="left-consent__link" href="/fr/privacy#website" data-consent-privacy>Confidentialité</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
