@@ -1,0 +1,801 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left - काउंटडाउन विजेट, आदत ट्रैकर और स्ट्रीक्स</title>
+  <meta name="description" content="iPhone पर समय को दृश्यमान बनाने के लिए गाइड: विजेट, आदतें, स्ट्रीक्स, काउंटडाउन, प्लानर और ADHD-अनुकूल सेटअप, साथ ही ईमानदार ऐप समीक्षा।"  />
+  <link rel="canonical" href="https://getleft.app/hi/blog/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left Blog"  />
+  <meta property="og:description" content="जन्मदिन, शादी या परीक्षा में कितने दिन बाकी? काउंटडाउन, दिन गिनें, आदत ट्रैकर और स्ट्रीक्स, सब iPhone होम स्क्रीन और लॉक स्क्रीन विजेट्स में।"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/hi/blog/" />
+  <meta property="og:locale" content="hi_IN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left Blog"  />
+  <meta name="twitter:description" content="जन्मदिन, शादी या परीक्षा में कितने दिन बाकी? काउंटडाउन, दिन गिनें, आदत ट्रैकर और स्ट्रीक्स, सब iPhone होम स्क्रीन और लॉक स्क्रीन विजेट्स में।"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Left Blog",
+  "description": "Guides for making time visible on iPhone: widgets, habits, streaks, countdowns, Planner and ADHD-friendly setups, plus honest app round-ups.",
+  "url": "https://getleft.app/blog/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "logo": { "@type": "ImageObject", "url": "https://getleft.app/favicon/android-chrome-512x512.png" }
+  }
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="मुख्य">
+    <div class="container nav-inner">
+      <a href="/hi/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/hi/#features" class="nav-link">विशेषताएँ</a>
+          <a href="/hi/tools/" class="nav-link">टूल्स</a>
+          <a href="/hi/blog/" class="nav-link">ब्लॉग</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-hi&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">डाउनलोड</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container blog-header">
+    <h1>Left Blog</h1>
+    <p>शेष समय, आदतें, स्ट्रीक्स, काउंटडाउन, प्लानर और वह विजेट्स जो ज़रूरी चीज़ नज़र में रखते हैं — गाइड्स।</p>
+  </main>
+
+  <section class="container blog-grid">
+
+    <a class="blog-card" href="/hi/blog/best-birthday-countdown-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-birthday-countdown-apps-iphone-hero.webp" alt="2026 में iPhone के लिए सबसे अच्छे जन्मदिन काउंटडाउन ऐप: 7 की तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए सबसे अच्छे बर्थडे काउंटडाउन ऐप: 7 की तुलना</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए सबसे अच्छे जन्मदिन काउंटडाउन और जन्मदिन रिमाइंडर ऐप, विजेट, संपर्क इंपोर्ट, Apple Watch और कीमत के आधार पर तुलना।</div>
+        <div class="blog-meta">9 मिनट में पढ़ें</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/streaks-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/streaks-app-alternatives-hero.webp" alt="2026 में iPhone के लिए Streaks ऐप के 7 सबसे अच्छे विकल्प" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए Streaks ऐप के 7 सबसे अच्छे विकल्प</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए Streaks आदत ट्रैकर के सबसे अच्छे विकल्प, कीमत, मुफ़्त प्लान, Apple Watch, विजेट और Apple Health के आधार पर तुलना।</div>
+        <div class="blog-meta">9 मिनट में पढ़ें</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-year-progress-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-year-progress-apps-iphone-hero.webp" alt="2026 में iPhone के लिए साल की प्रगति वाले सबसे अच्छे ऐप और विजेट: 5 की तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए साल की प्रगति वाले सबसे अच्छे ऐप और विजेट: 5 की तुलना</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए साल की प्रगति वाले सबसे अच्छे ऐप और विजेट, होम स्क्रीन और लॉक स्क्रीन विजेट, वॉलपेपर, Apple Watch और कीमत के आधार पर तुलना।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-countdown-wallpaper-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-wallpaper-apps-iphone-hero.webp" alt="2026 में iPhone के लिए सबसे अच्छे बचे दिन और काउंटडाउन वॉलपेपर ऐप: 6 की तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए सबसे अच्छे बचे दिनों और काउंटडाउन वॉलपेपर ऐप: 6 की तुलना</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए सबसे अच्छे बचे दिन और काउंटडाउन वॉलपेपर ऐप: साल, हफ़्तों में जीवन और काउंटडाउन लॉक स्क्रीन जो रोज़ अपडेट होती हैं।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-life-calendar-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-life-calendar-apps-iphone-hero.webp" alt="2026 में iPhone के लिए सबसे अच्छे लाइफ़ कैलेंडर ऐप: हफ़्तों में जीवन और मेमेंटो मोरी के 7 ऐप की तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए सबसे अच्छे लाइफ़ कैलेंडर ऐप: हफ़्तों में जीवन और मेमेंटो मोरी के 7 ऐप की तुलना</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए सबसे अच्छे लाइफ़ कैलेंडर, हफ़्तों में जीवन और मेमेंटो मोरी ऐप, विजेट, वॉलपेपर, कीमत और रेटिंग के आधार पर तुलना।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/widgetsmith-alternatives">
+      <div class="blog-cover"><img src="/images/blog/widgetsmith-alternatives-hero.webp" alt="2026 में iPhone के लिए Widgetsmith के 7 सबसे अच्छे विकल्प" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए Widgetsmith के 7 सबसे अच्छे विकल्प</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए Widgetsmith के सबसे अच्छे विकल्प: समय और काउंटडाउन विजेट, विजेट डिज़ाइनर, थीम और लॉन्चर, तुलना के साथ।</div>
+        <div class="blog-meta">9 मिनट में पढ़ें</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-days-since-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-days-since-apps-iphone-hero.webp" alt="2026 में iPhone के लिए सबसे अच्छे बीते दिन गिनने वाले ऐप: 7 की तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026 में iPhone के लिए सबसे अच्छे बीते दिन गिनने वाले ऐप: 7 की तुलना</div>
+        <div class="blog-excerpt">2026 में iPhone के लिए सबसे अच्छे बीते दिन और आखिरी बार ट्रैक करने वाले ऐप, कीमत, विजेट, Apple Watch और रेटिंग के आधार पर तुलना।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+
+    <a class="blog-card" href="/hi/blog/aim-goal-tracker-left">
+      <div class="blog-cover"><img src="/images/blog/aim-goal-tracker-left-hero.webp" alt="Left में उद्देश्य: गिनती वाले हर लक्ष्य को ट्रैक करें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left में उद्देश्य: गिनती वाले हर लक्ष्य को ट्रैक करें</div>
+        <div class="blog-excerpt">शुरुआत से में बने संख्या वाले लक्ष्य ट्रैकर से पैसे बचाएँ, किताबें पढ़ें, ज़्यादा दूर दौड़ें, कर्ज़ घटाएँ या प्रोजेक्ट पूरा करें।</div>
+        <div class="blog-meta">पढ़ने में 3 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/digital-clock-date-widget-iphone">
+      <div class="blog-cover"><img src="/images/blog/digital-clock-date-widget-iphone-hero.webp" alt="iPhone पर डिजिटल घड़ी और तारीख का विजेट लगाएँ (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone पर डिजिटल घड़ी और तारीख का विजेट लगाएँ (2026)</div>
+        <div class="blog-excerpt">होम स्क्रीन, लॉक स्क्रीन और स्टैंडबाय पर घड़ी + तारीख विजेट्स की व्यावहारिक गाइड — डिफ़ॉल्ट-घड़ी की थकान के बिना।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/presentation-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/presentation-timer-iphone-hero.webp" alt="iPhone के लिए बेहतरीन प्रेज़ेंटेशन टाइमर सेटअप" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के लिए बेहतरीन प्रेज़ेंटेशन टाइमर सेटअप</div>
+        <div class="blog-excerpt">एक काम करने वाला प्रेजेंटेशन टाइमर सेटअप — ताकि बात के बीच फ़ोन नीचे देखना न पड़े।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-reminder-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-reminder-apps-iphone-hero.webp" alt="iPhone के 10 बेहतरीन रिमाइंडर ऐप्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के 10 बेहतरीन रिमाइंडर ऐप्स (2026)</div>
+        <div class="blog-excerpt">ईमानदार राउंड-अप — हर एक किस लिए है, कहाँ कम पड़ता है, और जिसे आप सच में इस्तेमाल करेंगे उसे कैसे चुनें।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-reward-system">
+      <div class="blog-cover"><img src="/images/blog/adhd-reward-system-hero.webp" alt="ADHD के लिए टिकाऊ इनाम का सिस्टम कैसे बनाएँ" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD के लिए टिकाऊ इनाम का सिस्टम कैसे बनाएँ</div>
+        <div class="blog-excerpt">व्यावहारिक, विज्ञान-आधारित रणनीतियाँ जो ADHD डोपामाइन के असली काम करने के तरीके का सम्मान करती हैं।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-planner-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-planner-adhd-hero.webp" alt="ADHD के लिए सबसे अच्छा प्लानर कैसे चुनें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD के लिए सबसे अच्छा प्लानर कैसे चुनें</div>
+        <div class="blog-excerpt">ADHD दिमाग के साथ काम करने वाला प्लानर चुनने, सेट करने और सच में उसके साथ बने रहने की बिना-शर्म गाइड।</div>
+        <div class="blog-meta">पढ़ने में 8 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-time-blindness-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="ADHD टाइम ब्लाइंडनेस: मतलब और विजेट्स से मदद" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD टाइम ब्लाइंडनेस: मतलब और विजेट्स से मदद</div>
+        <div class="blog-excerpt">समय की अंधता समझाइए, और वह iPhone विजेट सेटअप जो समय को कार्रवाई लायक दिखने लायक बनाता है।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/time-management-best-practices">
+      <div class="blog-cover"><img src="/images/blog/time-management-best-practices-hero.webp" alt="समय सँभालने के 10 बेहतरीन तरीके जो सच में काम करते हैं" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">समय सँभालने के 10 बेहतरीन तरीके जो सच में काम करते हैं</div>
+        <div class="blog-excerpt">सीखने लायक दस तकनीकें — और दिखने वाला समय सेटअप जो उन्हें दूसरे हफ़्ते के बाद भी टिकाए रखता है।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/project-timeline-visualization">
+      <div class="blog-cover"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="प्रोजेक्ट की टाइमलाइन दिखाएँ: Gantt से एक नज़र वाले विजेट्स तक" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">प्रोजेक्ट की टाइमलाइन दिखाएँ: Gantt से एक नज़र वाले विजेट्स तक</div>
+        <div class="blog-excerpt">कब Gantt, कब रोडमैप, और कब काउंटडाउन — चार्ट को ज़रूरत से ज़्यादा बनाए बिना।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-home-screen-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-home-screen-widgets-iphone-hero.webp" alt="iPhone होम स्क्रीन के 10 बेहतरीन विजेट्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone होम स्क्रीन के 10 बेहतरीन विजेट्स (2026)</div>
+        <div class="blog-excerpt">जगह के हकदार विजेट्स का ईमानदार राउंड-अप — और कौन सिर्फ़ सजावट हैं।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/smart-goals-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-guide-hero.webp" alt="SMART लक्ष्य: 2026 की व्यावहारिक गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">SMART लक्ष्य: 2026 की व्यावहारिक गाइड</div>
+        <div class="blog-excerpt">दिखने वाले ट्रैकिंग सेटअप वाली व्यावहारिक गाइड जो SMART लक्ष्यों को दूसरे हफ़्ते के बाद भी जीवित रखती है।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/event-planning-timeline">
+      <div class="blog-cover"><img src="/images/blog/event-planning-timeline-hero.webp" alt="इवेंट प्लानिंग टाइमलाइन: हर कदम की गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">इवेंट प्लानिंग टाइमलाइन: हर कदम की गाइड</div>
+        <div class="blog-excerpt">पीछे से प्लानिंग, विक्रेता चेकपॉइंट्स, स्कोप-क्रीप के जाल, और टीम को अलाइन करने वाला शेयर किया काउंटडाउन।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/workplace-productivity-habits">
+      <div class="blog-cover"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="कामकाज में प्रोडक्टिविटी की 10 टिकने वाली आदतें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">कामकाज में प्रोडक्टिविटी की 10 टिकने वाली आदतें</div>
+        <div class="blog-excerpt">दूसरे हफ़्ते के बाद भी टिकने वाले तरीके, प्लस वह दिखने वाला सेटअप जो प्रेरणा घटने पर उन्हें थामे रखता है।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-morning-routine-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-morning-routine-iphone-hero.webp" alt="iPhone पर ADHD के अनुकूल सुबह की दिनचर्या कैसे बनाएँ" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone पर ADHD के अनुकूल सुबह की दिनचर्या कैसे बनाएँ</div>
+        <div class="blog-excerpt">तीन कदम, किसी भी क्रम में, फ़ोन उठाने के पल दिखते हैं। सुबह 5 बजे वाली इन्फ़्लुएंसर दिनचर्या वह नहीं है।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-task-initiation-strategies">
+      <div class="blog-cover"><img src="/images/blog/adhd-task-initiation-strategies-hero.webp" alt="ADHD में काम शुरू करना: जब शुरू न कर पाएँ तो क्या करें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD में काम शुरू करना: जब शुरू न कर पाएँ तो क्या करें</div>
+        <div class="blog-excerpt">2-मिनट का नियम, बाहरी शुरुआतएँ, और ADHD दिमाग के लिए एक्टिवेशन एनर्जी घटाने वाला विजेट सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/time-management-tips-students">
+      <div class="blog-cover"><img src="/images/blog/time-management-tips-students-hero.webp" alt="छात्रों के लिए समय सँभालने के 10 सुझाव" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">छात्रों के लिए समय सँभालने के 10 सुझाव</div>
+        <div class="blog-excerpt">असली सेमेस्टर में टिकने वाले टिप्स — दिखने वाली डेडलाइनें, ऊर्जा के पैटर्न, और ईमानदार रखने वाला विजेट सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 7 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/timer-interval-app-iphone">
+      <div class="blog-cover"><img src="/images/blog/timer-interval-app-iphone-hero.webp" alt="इंटरवल टाइमर ऐप्स: फिटनेस से आगे - फ़ोकस और आदतों की गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">इंटरवल टाइमर ऐप्स: फिटनेस से आगे - फ़ोकस और आदतों की गाइड</div>
+        <div class="blog-excerpt">Tabata से कहीं आगे इस्तेमाल के केस — और टाइमर को दिखता रखने वाला iPhone सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-goal-tracking-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-goal-tracking-apps-iphone-hero.webp" alt="iPhone के बेहतरीन लक्ष्य ट्रैकर ऐप्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के बेहतरीन लक्ष्य ट्रैकर ऐप्स (2026)</div>
+        <div class="blog-excerpt">लक्ष्य के प्रकार से सॉर्ट — डेडलाइनें, आदतें, संचय, प्रोजेक्ट्स। सही आकार के लिए सही ऐप।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-apple-watch-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-apple-watch-apps-adhd-hero.webp" alt="ADHD के लिए 9 बेहतरीन Apple Watch ऐप्स" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD के लिए 9 बेहतरीन Apple Watch ऐप्स</div>
+        <div class="blog-excerpt">कलाई का हैप्टिक वही है जो अलार्म बनना चाहता है — ऐप्स जो ADHD से जुड़े व्यवहार को सच में बदलते हैं।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/iphone-aesthetic-widgets-guide">
+      <div class="blog-cover"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="iPhone के खूबसूरत विजेट्स: 2026 की गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के खूबसूरत विजेट्स: 2026 की गाइड</div>
+        <div class="blog-excerpt">ऐसे विजेट्स के साथ सुंदर होम स्क्रीन डिज़ाइन करें जो अच्छे दिखें और कुछ काम भी करें।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-productivity-apps-mac">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-mac-hero.webp" alt="Mac के लिए बेहतरीन प्रोडक्टिविटी ऐप्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Mac के लिए बेहतरीन प्रोडक्टिविटी ऐप्स (2026)</div>
+        <div class="blog-excerpt">ईमानदार Mac प्रोडक्टिविटी स्टैक — तीन-चार ऐप्स जो जगह के हकदार हों, मेनू-बार की भीड़ नहीं।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-body-doubling-apps">
+      <div class="blog-cover"><img src="/images/blog/adhd-body-doubling-apps-hero.webp" alt="ADHD बॉडी डबलिंग: ऐप्स और दूसरे विकल्प जो सच में काम करते हैं" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD बॉडी डबलिंग: ऐप्स और दूसरे विकल्प जो सच में काम करते हैं</div>
+        <div class="blog-excerpt">बॉडी डबलिंग ADHD में क्यों मदद करती है, इसे आसान बनाने वाले ऐप्स, और async जवाबदेही का सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/countdown-clock-graphic-guide">
+      <div class="blog-cover"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="काउंटडाउन क्लॉक ग्राफ़िक डिज़ाइन: 2026 की गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">काउंटडाउन क्लॉक ग्राफ़िक डिज़ाइन: 2026 की गाइड</div>
+        <div class="blog-excerpt">टाइपोग्राफ़ी, रंग, लेआउट — और कोई भी स्टैटिक ग्राफ़िक मात देने वाला लाइव विजेट सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/goal-progress-tracker-setup">
+      <div class="blog-cover"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="लक्ष्य की प्रगति ट्रैकर ऐप: सेटअप गाइड (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">लक्ष्य की प्रगति ट्रैकर ऐप: सेटअप गाइड (2026)</div>
+        <div class="blog-excerpt">पहला लक्ष्य, विजेट की जगह, एडवांस्ड स्टाइल, और वे वर्कफ़्लो जो सच में टिकते हैं।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/home-screen-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="iPhone होम स्क्रीन पर काउंटडाउन टाइमर कैसे लगाएँ" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone होम स्क्रीन पर काउंटडाउन टाइमर कैसे लगाएँ</div>
+        <div class="blog-excerpt">साइज़, जगह, इस्तेमाल के केस — वह विजेट सेटअप जो धीरे-धीरे गायब नहीं होता।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-apps-for-adhd-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-apps-for-adhd-iphone-hero.webp" alt="ADHD वाले लोगों के लिए 10 बेहतरीन ऐप्स (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD वाले लोगों के लिए 10 बेहतरीन ऐप्स (iPhone, 2026)</div>
+        <div class="blog-excerpt">जो सच में मदद करते हैं — फ़ोकस, काम शुरू करना, समय की अंधता, दिनचर्या — खास फेलियर मोड से मैच।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/visual-goals-track-on-screens">
+      <div class="blog-cover"><img src="/images/blog/visual-goals-track-on-screens-hero.webp" alt="iPhone की स्क्रीन पर लक्ष्य सामने रखकर कैसे ट्रैक करें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone की स्क्रीन पर लक्ष्य सामने रखकर कैसे ट्रैक करें</div>
+        <div class="blog-excerpt">चार सतहों वाला लेयर्ड सिस्टम जो लक्ष्यों को भूलना लगभग असंभव बना देता है।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/smart-goals-visual-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-visual-guide-hero.webp" alt="SMART लक्ष्य: डिवाइस पर दिखाकर कैसे ट्रैक करें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">SMART लक्ष्य: डिवाइस पर दिखाकर कैसे ट्रैक करें</div>
+        <div class="blog-excerpt">SMART के हर अक्षर को दिखने वाले विजेट में बदलें — टेम्पलेट की ज़रूरत नहीं।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-students-study-tools-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-students-study-tools-iphone-hero.webp" alt="ADHD वाले छात्रों के पढ़ाई टूल्स (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD वाले छात्रों के पढ़ाई टूल्स (iPhone, 2026)</div>
+        <div class="blog-excerpt">ADHD छात्रों के लिए काम करने वाला iPhone स्टडी सेटअप — सेमेस्टर काउंटडाउन, Pomodoro और स्टडी स्ट्रीक्स।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-productivity-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-adhd-hero.webp" alt="ADHD के लिए बेहतरीन प्रोडक्टिविटी ऐप्स (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD के लिए बेहतरीन प्रोडक्टिविटी ऐप्स (iPhone, 2026)</div>
+        <div class="blog-excerpt">खास फेलियर मोड से मैच किए ऐप्स, उस छोटे स्टैक के साथ जो सच में काम करता है।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/productivity-tools-visual-focus">
+      <div class="blog-cover"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="प्रोडक्टिविटी टूल्स: सुविधाओं से बेहतर दिखते विजेट्स" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">प्रोडक्टिविटी टूल्स: सुविधाओं से बेहतर दिखते विजेट्स</div>
+        <div class="blog-excerpt">काम करने वाले चार विज़ुअल ट्रैकिंग स्टाइल — और पाँच ऐप्स की जगह लेने वाला एकीकृत सेटअप।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/how-to-focus-adhd">
+      <div class="blog-cover"><img src="/images/blog/how-to-focus-adhd-hero.webp" alt="ADHD में फ़ोकस कैसे करें: काम आने वाले तरीके" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD में फ़ोकस कैसे करें: काम आने वाले तरीके</div>
+        <div class="blog-excerpt">तुरंत ठीक करने वाले तरीके, संरचित दिनचर्या, माहौल, और वह विजेट सेटअप जो सबको जोड़कर रखता है।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-free-widget-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-free-widget-apps-iphone-hero.webp" alt="iPhone के 10 बेहतरीन मुफ़्त विजेट ऐप्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के 10 बेहतरीन मुफ़्त विजेट ऐप्स (2026)</div>
+        <div class="blog-excerpt">मुफ़्त टियर की ईमानदार कवरेज, और «मुफ़्त» लेबल के पीछे की खामियाँ।</div>
+        <div class="blog-meta">पढ़ने में 4 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/visual-reminders-adhd-apple-setup">
+      <div class="blog-cover"><img src="/images/blog/visual-reminders-adhd-apple-setup-hero.webp" alt="ADHD के लिए दिखते रिमाइंडर: iPhone सेटअप गाइड" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD के लिए दिखते रिमाइंडर: iPhone सेटअप गाइड</div>
+        <div class="blog-excerpt">iPhone पर विज़ुअल रिमाइंडर का सेटअप: डायनामिक विजेट्स जो वॉलपेपर में घुल नहीं जाते।</div>
+        <div class="blog-meta">पढ़ने में 4 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/keep-track-multiple-projects">
+      <div class="blog-cover"><img src="/images/blog/keep-track-multiple-projects-hero.webp" alt="कई प्रोजेक्ट का हिसाब एक साथ कैसे रखें (बिना परेशान हुए)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">कई प्रोजेक्ट का हिसाब एक साथ कैसे रखें (बिना परेशान हुए)</div>
+        <div class="blog-excerpt">एक सोर्स ऑफ़ ट्रुथ, साप्ताहिक रिव्यू, और प्रगति दिखाने वाला विजेट डैशबोर्ड।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/stay-consistent-with-goals">
+      <div class="blog-cover"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="लक्ष्यों पर निरंतर कैसे बने रहें (इच्छाशक्ति के भरोसे नहीं)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">लक्ष्यों पर निरंतर कैसे बने रहें (इच्छाशक्ति के भरोसे नहीं)</div>
+        <div class="blog-excerpt">जहाँ इच्छाशक्ति नाकाम हो जाती है, वहाँ निरंतरता देने वाले सिस्टम — दिखने वाली स्ट्रीक्स, फिर से शुरू करने की रस्में, जवाबदेही।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/adhd-work-from-home-setup">
+      <div class="blog-cover"><img src="/images/blog/adhd-work-from-home-setup-hero.webp" alt="ADHD में घर से काम: कारगर विजेट-आधारित सेटअप" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD में घर से काम: कारगर विजेट-आधारित सेटअप</div>
+        <div class="blog-excerpt">iPhone स्टैंडबाय, दिखने वाले डीप-वर्क ब्लॉक्स, और वह रोज़ का रिदम जो बुधवार तक टिकता है।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-habit-tracker-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-habit-tracker-apps-iphone-hero.webp" alt="iPhone के 7 बेहतरीन आदत ट्रैकर ऐप्स (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone के 7 बेहतरीन आदत ट्रैकर ऐप्स (2026)</div>
+        <div class="blog-excerpt">अग्रणी आदत ट्रैकर्स की तुलना — विजेट सपोर्ट, शेड्यूल, शेयरिंग, और आपके काम के तरीके से कौन मेल खाता है।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/best-countdown-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-widgets-iphone-hero.webp" alt="बेहतरीन iPhone काउंटडाउन विजेट्स: गाइड (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">बेहतरीन iPhone काउंटडाउन विजेट्स: गाइड (2026)</div>
+        <div class="blog-excerpt">वे काउंटडाउन विजेट्स जो हम अपनी होम स्क्रीन पर लगाएँगे — ट्रिप, जन्मदिन, डेडलाइनें, शेयर की गई तारीखें।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/habitkit-vs-left">
+      <div class="blog-cover"><img src="/images/blog/habitkit-vs-left-hero.webp" alt="HabitKit या Left: साफ़-साफ़ तुलना" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">HabitKit या Left: साफ़-साफ़ तुलना</div>
+        <div class="blog-excerpt">बहुत अलग फ़लसफ़े वाले दो मज़बूत आदत-ट्रैकिंग ऐप्स। हर एक कहाँ जीतता है, साथ-साथ।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/how-to-add-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="iPhone पर विजेट जोड़ें: होम, लॉक स्क्रीन और स्टैंडबाय" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone पर विजेट जोड़ें: होम, लॉक स्क्रीन और स्टैंडबाय</div>
+        <div class="blog-excerpt">Left को उदाहरण बनाकर कदम-दर-कदम — iOS में जहाँ भी आप विजेट लगा सकते हैं, हर सतह।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/what-is-year-progress">
+      <div class="blog-cover"><img src="/images/blog/what-is-year-progress-hero.webp" alt="साल की प्रगति: गणना और ट्रैक करने के फ़ायदे" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">साल की प्रगति: गणना और ट्रैक करने के फ़ायदे</div>
+        <div class="blog-excerpt">बड़े माइंडसेट शिफ़्ट के साथ छोटी विज़ुअलाइज़ेशन। साल-प्रगति विजेट्स आपकी प्लानिंग कैसे बदलते हैं।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/how-to-build-a-streak">
+      <div class="blog-cover"><img src="/images/blog/how-to-build-a-streak-hero.webp" alt="iPhone पर स्ट्रीक कैसे बनाएँ: आदतें और स्ट्रीक्स" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone पर स्ट्रीक कैसे बनाएँ: आदतें और स्ट्रीक्स</div>
+        <div class="blog-excerpt">आदतें बनाम स्ट्रीक्स, शेड्यूल सेट करना, और वह विजेट सेटअप जो इसे टिकाऊ बनाता है।</div>
+        <div class="blog-meta">पढ़ने में 6 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/left-wallpaper-guide">
+      <div class="blog-cover"><img src="/images/blog/left-wallpaper-guide-hero.webp" alt="Left वॉलपेपर: खुद अपडेट होती लॉक स्क्रीन" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left वॉलपेपर: खुद अपडेट होती लॉक स्क्रीन</div>
+        <div class="blog-excerpt">Left वॉलपेपर कैसे काम करता है, शॉर्टकट से उसका सेटअप कैसे करें और उस पर क्या दिखाएँ।</div>
+        <div class="blog-meta">पढ़ने में 2 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/countdown-next-trip-with-friends">
+      <div class="blog-cover"><img src="/images/blog/countdown-next-trip-with-friends-hero.webp" alt="अगली यात्रा का काउंटडाउन बनाएँ और दोस्तों से शेयर करें" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">अगली यात्रा का काउंटडाउन बनाएँ और दोस्तों से शेयर करें</div>
+        <div class="blog-excerpt">एक आगामी तारीख का वॉकथ्रू, फिर साथ आने वाले लोगों के साथ Joint Ahead में बदलना।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/hi/blog/left-planner-guide">
+      <div class="blog-cover"><img src="/images/blog/left-planner-guide-hero.webp" alt="Left प्लानर: आपका दिन एक नज़र में" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left प्लानर: आपका दिन एक नज़र में</div>
+        <div class="blog-excerpt">Apple रिमाइंडर, कैलेंडर इवेंट्स, आदतें, स्ट्रीक्स, मौसम, नींद, वर्कआउट्स और बहुत कुछ — एक जगह।</div>
+        <div class="blog-meta">पढ़ने में 5 मिनट</div>
+      </div>
+    </a>
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> लोग हर पल को मायने दे रहे हैं।</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="फ़ुटर">
+          <a href="/hi/support">सहायता</a>
+          <a href="/terms">शर्तें</a>
+          <a href="/hi/privacy">गोपनीयता</a>
+          <a href="/hi/press">प्रेस</a>
+          <a href="/hi/contact">संपर्क</a>
+          <a href="/hi/tools/">टूल्स</a>
+          <!-- left:footer-extra:start -->
+          <a href="/hi/blog/">ब्लॉग</a>
+          <a href="#" data-consent-open>कुकी सेटिंग</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>HI</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="true">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","hi","es","es-419","fr","it","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="कुकी सहमति">
+  <p class="left-consent__text">हम यह समझने के लिए Google Analytics इस्तेमाल करते हैं कि कौन-से पेज लोगों के काम आते हैं। कोई विज्ञापन नहीं, साइटों के बीच कोई ट्रैकिंग नहीं।</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>एनालिटिक्स की अनुमति दें</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>नहीं, धन्यवाद</button>
+    <a class="left-consent__link" href="/hi/privacy#website" data-consent-privacy>गोपनीयता</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

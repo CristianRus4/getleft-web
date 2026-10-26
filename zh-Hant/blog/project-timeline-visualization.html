@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>專案時間線視覺化：從甘特到小工具 | Left</title>
+  <meta name="description" content="何時用甘特圖、何時用路線圖、何時用倒數小工具——不過度建構的專案時間線視覺化實用指南。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="專案時間線視覺化：從甘特到小工具"  />
+  <meta property="og:description" content="何時用甘特圖、何時用路線圖、何時用倒數小工具。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Project Timeline Visualization: From Gantt to Glanceable Widgets",
+  "description": "When to use a Gantt chart, when a roadmap, and when a countdown widget - a practical guide to visualizing project timelines without overbuilding.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/project-timeline-visualization",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Project Timeline Visualization: From Gantt to Glanceable Widgets",
+      "item": "https://getleft.app/blog/project-timeline-visualization"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>專案時間線視覺化：從甘特到可瞥視小工具</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・7 分鐘</p>
+
+    <p>「專案時間線」可以指四種很不同的東西。建築專案的 200 行甘特。新創辦公室牆上的兩欄路線圖。專案工具裡的進度條。某人手機上六週後發表的倒數小工具。長相不同因為它們答不同問題。為問題選錯視覺化，是專案追蹤散掉的大半原因。</p>
+
+    <p>本指南平比四種主要時間線格式、何時各是對工具，以及貫穿全部的原則——贏的視覺化是你最需要行動時能看見的那個。小端靠<strong>Left</strong>（個人規模專案的倒數與進度小工具），但原則可擴到企業軟體。</p>
+
+    <figure class="post-hero"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/opened-planner-page-NzOQdPFVdIA" rel="noopener">Jessica Lewis / Unsplash</a></figcaption></figure>
+
+    <h2>四種視覺化格式</h2>
+
+    <h3>1. 甘特圖——給依賴重的專案</h3>
+    <p>行事曆時間線上的水平長條，每任務一列，長條間有依賴箭頭。1910 年發明（Henry Gantt），對 B 任務字面要等 A 完成才能開始的專案仍是對答案。建築、大型軟體發布、活動製作。</p>
+    <p>優點：顯示關鍵路徑；讓依賴無法忽略。缺點：維護沉重；專案負責人以外沒人真讀。若專案沒有硬依賴，甘特過度——你花在圖上的時間比專案多。</p>
+
+    <h3>2. PERT 圖——給未知</h3>
+    <p>任務當節點、依賴當邊的網路圖，每任務有樂觀／預期／悲觀時間估計。用於任務時長真不確定時。多數知識工作太流動，PERT 不值得那套數學——現在多用於研究與大型工程專案。</p>
+    <p>優點：強迫你思考不確定性。缺點：估計是打扮成數學的猜測；沒人隨興讀 PERT 圖。</p>
+
+    <h3>3. 路線圖——給利害關係人溝通</h3>
+    <p>依季或月的大水平車道，每車道具名主題或 epic，無細節。路線圖的工作是告訴不在專案上的人何時發生什麼，卻不給夠繩子去爭具體日期。多數「路線圖工具」就是這個。</p>
+    <p>優點：對齊利害關係人而不暴露內部細節；30 秒可讀。缺點：是溝通產物，不是規劃工具——不要試從路線圖管理執行。</p>
+
+    <h3>4. 進度條／倒數——給課責</h3>
+    <p>最簡單格式。一條顯示「完成 65%」或一個數字顯示「還剩 12 天」。這是真正改變行為的格式，因為它是普通人每天會看的唯一一個。甘特坐在伺服器上；<a href="/zh-Hant/countdown-widget">倒數小工具</a>坐在主畫面。</p>
+    <p>優點：維護便宜、常駐可見、激勵。缺點：藏依賴；不幫規劃。它是行為工具，不是規劃工具。</p>
+
+    <h2>把視覺化對上問題</h2>
+    <p>錯誤是以為其中一個「更好」。它們各答不同問題：</p>
+    <ul>
+      <li><strong>「什麼擋什麼，關鍵路徑何時斷？」</strong>→ 甘特。</li>
+      <li><strong>「我們的估計多不確定？」</strong>→ PERT。</li>
+      <li><strong>「該告訴董事會什麼？」</strong>→ 路線圖。</li>
+      <li><strong>「如何避免這日期偷偷逼近？」</strong>→ 倒數小工具。</li>
+    </ul>
+    <p>成熟的專案會同時用好幾種。內部規劃放在甘特圖或看板；向利害關係人報告用路線圖；團隊每個人的手機上都有倒數<a href="/tools/deadline-countdown-calculator">上線日期</a>的小工具，讓截止日永遠不會變得抽象。</p>
+
+    <h2>任何規模都有效的設計原則</h2>
+    <p>無論選哪種格式：</p>
+    <ul>
+      <li><strong>每狀態一色，不是每人。</strong>顏色應編碼「跟上／有風險／受阻」。依團隊上色讓圖像組織圖，不是狀態報告。</li>
+      <li><strong>隱藏已完成。</strong>階段完成後淡出。活躍項目該有視覺重量。</li>
+      <li><strong>低於粒度門檻的任務不要顯示。</strong>若任務少於一天，不屬時間線——屬擁有那天的任務裡的清單。</li>
+      <li><strong>讓今天線明顯。</strong>多數繪圖工具忘了在圖上放「現在」。垂直「今天」線是圖一半的價值。</li>
+      <li><strong>顯示還剩什麼，不只已完成。</strong>65% 進度條對剩餘 35% 什麼都沒說——是容易那半還是難那半？顯示剩餘具名任務的時間線有用得多。</li>
+    </ul>
+
+    <h2>個人規模甘特——用倒數小工具</h2>
+    <p>對你獨自跑的專案——論文、發表、婚禮、搬家——完整甘特過度。個人規模有效的模式：</p>
+    <ol>
+      <li><strong>找出現在到結束日間五或六個主要里程碑</strong>。不是工作——可見交付。</li>
+      <li>在 <a href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="inline">Left</a> 或你慣用的倒數 App 中，<strong>為每個專案建立一個倒數小工具</strong>。依序把它們放在同一個主畫面頁面上。</li>
+      <li><strong>下一個里程碑是鎖定畫面上唯一的。</strong>達成後換成下一個。</li>
+      <li><strong>到結束日的一個總倒數。</strong>在待機模式或桌布小工具。這是防止你為里程碑優化而犧牲專案的「大圖」檢視。</li>
+    </ol>
+    <p>這是五行甘特圖，渲染成五個小工具，不需軟體。每個小工具加入流程見<a href="/zh-Hant/support/widget-iphone-home-screen">主畫面小工具指南</a>。</p>
+
+    <h2>團隊規模模式</h2>
+    <p>對 5–15 人團隊，對的設定通常是：</p>
+    <ul>
+      <li><strong>一個專案工具</strong>（Linear、Asana、Jira、Notion）當任務的真相來源。</li>
+      <li><strong>一個季度路線圖</strong>，保持簡單、每月刷新、與利害關係人分享。</li>
+      <li><strong>一個共同即將到來倒數</strong>到發表，給全隊（Left Premium 功能）。這通常是缺的部分——分享倒數把發表日從「Linear 裡的東西」變成「主畫面上的東西」。分享流程見<a href="/zh-Hant/blog/countdown-next-trip-with-friends">共同即將到來逐步</a>。</li>
+    </ul>
+
+    <h2>常見時間線錯誤</h2>
+    <ul>
+      <li><strong>更新圖取代做事。</strong>甘特吸引完美主義者。若每週花超過 30 分鐘在圖本身，圖已變成專案。</li>
+      <li><strong>隱藏滑移。</strong>安靜右移卻不變色的長條教團隊滑移無關。滑移應可見。</li>
+      <li><strong>錯地方太多細節。</strong>任務級粒度的利害關係人路線圖邀請微管理。季度粒度的內部甘特錯過依賴故事。</li>
+      <li><strong>沒有每日可見版本。</strong>共享雲端裡的圖不在團隊視線。加倒數。</li>
+    </ul>
+
+    <h2>何時根本不需要時間線</h2>
+    <p>很多工作真的是平面的——一堆小任務、無真相互依賴、無真期限。這類工作的時間線是劇場。依優先排序的簡單列表勝過任何圖。不需要時間線的訊號：可交換任兩任務而不用其他東西移動。</p>
+
+    <h2>這與你其餘工作如何連結</h2>
+    <p>貫穿四種視覺化格式——甘特、PERT、路線圖、倒數——的原則，與任何時間管理系統相同：圖只有看得見才有效。活在共享雲端的甘特打不過手機上的倒數小工具。選你角色實際需要的細節層級，再確保那層級在每日流程可見。獨自專案追蹤見<a href="/zh-Hant/blog/keep-track-multiple-projects">多專案指南</a>與<a href="/zh-Hant/blog/best-countdown-widgets-iphone">倒數小工具整理</a>的日常機制。</p>
+
+    <h2>常見問題</h2>
+    <p><strong>個人專案需要甘特圖嗎？</strong><br/>
+    幾乎從不。里程碑列表 + 每個主要的倒數小工具就夠。只有里程碑間依賴真的限制你何時能開始時才用甘特。</p>
+
+    <p><strong>路線圖與甘特有何差別？</strong><br/>
+    粒度與受眾。路線圖給外部讀者，以季度解析度顯示主題、藏細節。甘特給執行團隊，顯示個別任務、暴露依賴。</p>
+
+    <p><strong>該用哪個工具？</strong><br/>
+    甘特：什麼都行（Asana、ClickUp、OmniPlan）。路線圖：老實說，投影片。倒數：像 Left 的倒數小工具 App。不要過度購物——工具不如紀律重要。</p>
+
+    <p><strong>該多久更新時間線？</strong><br/>
+    團隊規模每週，活躍個人專案每日。再少圖就與現實脫節。</p>
+
+    <p><strong>倒數小工具能取代專案工具嗎？</strong><br/>
+    獨自工作可以。團隊工作不行——仍需要任務、留言與指派的地方。小工具是專案工具上常駐可見的<em>檢視</em>，不是取代。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>開始留意真正重要的事。</h2>
+          <p>在 iPhone 下載 Left，看看剩餘時間、期待中的日子，養成想維持的習慣，成為更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下載 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下載 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","hi","es","es-419","fr","it","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

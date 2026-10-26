@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>प्रोजेक्ट टाइमलाइन: Gantt से विजेट्स तक | Left</title>
+  <meta name="description" content="Gantt चार्ट कब लें, रोडमैप कब और काउंटडाउन विजेट कब? बिना ज़रूरत से ज़्यादा सिस्टम बनाए प्रोजेक्ट की टाइमलाइन दिखाने की काम की गाइड पढ़ें।"  />
+  <link rel="canonical" href="https://getleft.app/hi/blog/project-timeline-visualization" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/project-timeline-visualization" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="प्रोजेक्ट टाइमलाइन: Gantt से विजेट्स तक"  />
+  <meta property="og:description" content="Gantt चार्ट कब लें, रोडमैप कब और काउंटडाउन विजेट कब।"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/hi/blog/project-timeline-visualization" />
+  <meta property="og:locale" content="hi_IN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Project Timeline Visualization: From Gantt to Glanceable Widgets",
+  "description": "When to use a Gantt chart, when a roadmap, and when a countdown widget - a practical guide to visualizing project timelines without overbuilding.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/project-timeline-visualization",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Project Timeline Visualization: From Gantt to Glanceable Widgets",
+      "item": "https://getleft.app/blog/project-timeline-visualization"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="मुख्य">
+    <div class="container nav-inner">
+      <a href="/hi/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/hi/#features" class="nav-link">विशेषताएँ</a>
+          <a href="/hi/tools/" class="nav-link">टूल्स</a>
+          <a href="/hi/blog/" class="nav-link">ब्लॉग</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-hi&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">डाउनलोड</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>प्रोजेक्ट की टाइमलाइन दिखाएँ: Gantt से एक नज़र वाले विजेट्स तक</h1>
+    <p class="article-meta">अपडेट: <time datetime="2026-10-20">20 अक्टूबर 2026</time> · पढ़ने में 7 मिनट</p>
+
+    <p>‘प्रोजेक्ट टाइमलाइन’ चार बहुत अलग चीज़ें हो सकती हैं। निर्माण प्रोजेक्ट का 200 पंक्तियों वाला Gantt चार्ट। स्टार्टअप दफ़्तर की दीवार पर दो कॉलम का रोडमैप। प्रोजेक्ट टूल में प्रगति का बार। छह हफ़्ते बाद लॉन्च के लिए किसी के फ़ोन पर काउंटडाउन विजेट। वे अलग दिखते हैं क्योंकि अलग सवालों के जवाब हैं। अपने सवाल के लिए गलत दृश्य चुनना प्रोजेक्ट ट्रैकिंग बिखरने की ज़्यादातर वजह है।</p>
+
+    <p>यह गाइड टाइमलाइन के चार मुख्य रूपों की सीधी तुलना है, हर एक कब सही टूल है और सबका एक सिद्धांत - जीतने वाला दृश्य वही है जो तब दिखे जब उस पर अमल की सबसे ज़्यादा ज़रूरत हो। छोटे स्तर पर <strong>Left</strong> लेंगे (निजी प्रोजेक्ट के लिए काउंटडाउन और प्रगति विजेट्स), लेकिन सिद्धांत बड़े कारोबारी सॉफ़्टवेयर तक चलते हैं।</p>
+
+    <figure class="post-hero"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/opened-planner-page-NzOQdPFVdIA" rel="noopener">Jessica Lewis / Unsplash</a></figcaption></figure>
+
+    <h2>दिखाने के चार रूप</h2>
+
+    <h3>1. Gantt चार्ट - एक-दूसरे पर बहुत निर्भर कामों के लिए</h3>
+    <p>कैलेंडर टाइमलाइन पर आड़े बार, हर काम की एक पंक्ति, बार के बीच निर्भरता के तीर। 1910 में (Henry Gantt) बना और अब भी उन प्रोजेक्ट का सही जवाब जहाँ काम A पूरे हुए बिना काम B सच में शुरू नहीं हो सकता। निर्माण, बड़े सॉफ़्टवेयर रिलीज़, इवेंट तैयार करना।</p>
+    <p>खूबियाँ: ज़रूरी कामों का क्रम दिखाता; निर्भरता अनदेखी करना नामुमकिन करता है। कमियाँ: सँभालने में भारी; प्रोजेक्ट लीड के बाहर असल में कोई नहीं पढ़ता। पक्की निर्भरताएँ न हों तो Gantt चार्ट ज़रूरत से ज़्यादा है - प्रोजेक्ट से ज़्यादा समय चार्ट पर लगा रहे हैं।</p>
+
+    <h3>2. PERT चार्ट - अनजानी बातों के लिए</h3>
+    <p>नेटवर्क चित्र जिसमें काम बिंदु और निर्भरता जोड़ने वाली रेखाएँ हैं, हर काम का आशावादी / संभावित / निराशावादी समय का अंदाज़ा है। तब इस्तेमाल होता है जब काम का समय सच में अनिश्चित हो। जानकारी वाला ज़्यादातर काम इतना बदलता है कि PERT का गणित फ़ायदेमंद नहीं - अब मुख्यतः शोध और बड़े इंजीनियरिंग प्रोजेक्ट में इस्तेमाल होता है।</p>
+    <p>खूबियाँ: अनिश्चितता पर सोचने को मजबूर करता है। कमियाँ: अंदाज़े गणित का रूप पहने अटकलें हैं; PERT चित्र कोई यूँ ही नहीं पढ़ता।</p>
+
+    <h3>3. रोडमैप - संबंधित लोगों से संवाद के लिए</h3>
+    <p>तिमाही या महीने के हिसाब से बड़ी आड़ी पट्टियाँ, हर पट्टी में विषय या बड़े काम के नाम, ब्योरा नहीं। रोडमैप का काम प्रोजेक्ट पर काम न करने वालों को बताना है क्या कब हो रहा है, बिना इतनी गुंजाइश दिए कि खास तारीखों पर बहस करें। ज़्यादातर ‘रोडमैप टूल्स’ यही हैं।</p>
+    <p>खूबियाँ: अंदर का ब्योरा दिखाए बिना संबंधित लोगों में सहमति; 30 सेकंड में पढ़ सकते हैं। कमियाँ: संवाद की चीज़ है, योजना का टूल नहीं - रोडमैप से काम का अमल न सँभालें।</p>
+
+    <h3>4. प्रगति का बार / काउंटडाउन - जवाबदेही के लिए</h3>
+    <p>सबसे आसान रूप। ‘65% पूरा’ दिखाता एक बार या ‘12 दिन बाकी’ बताता एक नंबर। यही सच में व्यवहार बदलता है, क्योंकि आम व्यक्ति हर दिन सिर्फ़ इसी को देखेगा। Gantt चार्ट सर्वर पर रहता है; <a href="/hi/countdown-widget">काउंटडाउन विजेट</a> होम स्क्रीन पर।</p>
+    <p>खूबियाँ: सँभालना सस्ता, हमेशा दिखता, प्रेरक। कमियाँ: निर्भरता छिपाता; योजना में मदद नहीं करता। व्यवहार का टूल है, योजना का नहीं।</p>
+
+    <h2>दिखाने का तरीका सवाल के हिसाब से चुनें</h2>
+    <p>गलती यह मानना है कि इनमें कोई एक ‘बेहतर’ है। हर एक अलग सवाल का जवाब देता है:</p>
+    <ul>
+      <li><strong>‘किससे क्या रुकता है, और ज़रूरी कामों का क्रम कब टूटता है?’</strong> → Gantt।</li>
+      <li><strong>‘हमारे अंदाज़े कितने अनिश्चित हैं?’</strong> → PERT।</li>
+      <li><strong>‘बोर्ड को क्या बताएँ?’</strong> → रोडमैप।</li>
+      <li><strong>‘इस तारीख को अचानक सिर पर आने से कैसे रोकूँ?’</strong> → काउंटडाउन विजेट।</li>
+    </ul>
+    <p>परिपक्व प्रोजेक्ट कई चीज़ें इस्तेमाल करता है। आंतरिक योजना Gantt या बोर्ड में रहती है; हितधारकों के अपडेट रोडमैप से होते हैं; और टीम में हर किसी के फ़ोन पर <a href="/tools/deadline-countdown-calculator">लॉन्च की तारीख़</a> का काउंटडाउन विजेट होता है, ताकि डेडलाइन कभी अमूर्त न बने।</p>
+
+    <h2>हर स्तर पर काम करने वाले डिज़ाइन सिद्धांत</h2>
+    <p>जो भी रूप चुनें:</p>
+    <ul>
+      <li><strong>हर स्थिति का एक रंग, हर व्यक्ति का नहीं।</strong> रंग बताए ‘सही राह / जोखिम / बाधित।’ टीम के हिसाब से रंग चार्ट को स्थिति की रिपोर्ट नहीं, संगठन का चार्ट बनाते हैं।</li>
+      <li><strong>पूरा काम छिपाएँ।</strong> चरण पूरा हो तो उसे हल्का करें। सक्रिय कामों को नज़र में ज़्यादा जगह मिलनी चाहिए।</li>
+      <li><strong>बारीकी की एक सीमा से छोटे काम न दिखाएँ।</strong> एक दिन से छोटा काम टाइमलाइन पर नहीं - उस दिन को घेरने वाले काम की चेकलिस्ट में हो।</li>
+      <li><strong>आज की रेखा साफ़ करें।</strong> ज़्यादातर चार्ट टूल्स चार्ट पर ‘अभी’ रखना भूलते हैं। खड़ी ‘आज’ रेखा चार्ट की आधी उपयोगिता है।</li>
+      <li><strong>सिर्फ़ पूरा नहीं, बाकी काम दिखाएँ।</strong> 65% प्रगति का बार बाकी 35% के बारे में कुछ नहीं बताता - आसान हिस्सा है या कठिन? बाकी नाम वाले काम दिखाने वाली टाइमलाइन कहीं ज़्यादा उपयोगी है।</li>
+    </ul>
+
+    <h2>निजी स्तर का Gantt - काउंटडाउन विजेट्स से</h2>
+    <p>अकेले चलाते प्रोजेक्ट - थीसिस, लॉन्च, शादी, घर बदलना - के लिए पूरा Gantt ज़रूरत से ज़्यादा है। निजी स्तर पर काम का तरीका:</p>
+    <ol>
+      <li>अभी से अंतिम तारीख के बीच <strong>पाँच-छह बड़े पड़ाव पहचानें</strong>। काम नहीं - दिखने वाले नतीजे।</li>
+      <li><strong>हर एक के लिए काउंटडाउन विजेट बनाएँ</strong>, <a href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-hi&amp;mt=8" target="_blank" rel="noopener" data-cta="inline">Left</a> या अपने पसंदीदा काउंटडाउन ऐप में। उन्हें एक ही होम स्क्रीन पेज पर क्रम से रखें।</li>
+      <li><strong>लॉक स्क्रीन पर सिर्फ़ अगला पड़ाव हो।</strong> पूरा होते ही अगला लगाएँ।</li>
+      <li><strong>अंतिम तारीख तक एक पूरा काउंटडाउन।</strong> स्टैंडबाय डिस्प्ले या वॉलपेपर विजेट पर। यह ‘बड़ी तस्वीर’ है जो प्रोजेक्ट की कीमत पर एक पड़ाव बेहतर बनाने से रोकती है।</li>
+    </ol>
+    <p>यह पाँच पंक्तियों का Gantt चार्ट है, पाँच विजेट्स में दिखाया गया, किसी सॉफ़्टवेयर की ज़रूरत नहीं। हर विजेट जोड़ने का तरीका हमारी <a href="/hi/support/widget-iphone-home-screen">होम स्क्रीन विजेट गाइड</a> में है।</p>
+
+    <h2>टीम के स्तर का तरीका</h2>
+    <p>5–15 लोगों की टीम के लिए सही सेटअप आम तौर पर:</p>
+    <ul>
+      <li>कामों की जानकारी के भरोसेमंद ठिकाने के रूप में <strong>एक प्रोजेक्ट टूल</strong> (Linear, Asana, Jira, Notion)।</li>
+      <li><strong>एक तिमाही रोडमैप</strong>, आसान रखें, हर महीने ताज़ा करें, संबंधित लोगों से साझा करें।</li>
+      <li>टीम के हर व्यक्ति के लिए लॉन्च का <strong>एक साझा आगामी काउंटडाउन</strong> (Left Premium की सुविधा)। आम तौर पर यही हिस्सा छूटता है - साझा काउंटडाउन जो लॉन्च तारीख को ‘Linear की चीज़’ से ‘मेरी होम स्क्रीन की चीज़’ बनाता है। साझा करने के तरीके के लिए हमारी <a href="/hi/blog/countdown-next-trip-with-friends">साझा आगामी तारीखों की गाइड</a> देखें।</li>
+    </ul>
+
+    <h2>टाइमलाइन की आम गलतियाँ</h2>
+    <ul>
+      <li><strong>काम करने के बजाय चार्ट अपडेट करना।</strong> Gantt चार्ट परफ़ेक्शन चाहने वालों को खींचते हैं। चार्ट पर ही हफ़्ते में 30 मिनट से ज़्यादा लगाएँ तो चार्ट प्रोजेक्ट बन गया है।</li>
+      <li><strong>देरी छिपाना।</strong> बिना रंग बदले चुपचाप दाईं ओर खिसकते बार टीम को सिखाते हैं कि देरी मायने नहीं रखती। देरी दिखनी चाहिए।</li>
+      <li><strong>गलत जगह बहुत ब्योरा।</strong> संबंधित लोगों के रोडमैप में हर काम की बारीकी छोटे-छोटे नियंत्रण को बुलाती है। तिमाही की बारीकी वाले अंदरूनी Gantt चार्ट निर्भरता की बात चूकते हैं।</li>
+      <li><strong>रोज़ दिखने वाला रूप नहीं।</strong> साझा ड्राइव का चार्ट टीम की नज़र में नहीं। काउंटडाउन जोड़ें।</li>
+    </ul>
+
+    <h2>जब टाइमलाइन की ज़रूरत ही न हो</h2>
+    <p>बहुत-सा काम सच में सीधा है - छोटे कामों का ढेर, न खास आपसी निर्भरता न असली डेडलाइन। ऐसे काम की टाइमलाइन दिखावा है। प्राथमिकता से लगी आसान सूची किसी चार्ट से बेहतर है। टाइमलाइन न चाहिए होने का संकेत: कोई दो काम बदल सकते हैं, बिना कुछ और हिलाए।</p>
+
+    <h2>बाकी काम से यह कैसे जुड़ता है</h2>
+    <p>चारों रूपों - Gantt, PERT, रोडमैप, काउंटडाउन - का सिद्धांत किसी समय प्रबंधन सिस्टम जैसा ही है: चार्ट तभी काम करता है जब दिखे। साझा ड्राइव में रहने वाला Gantt फ़ोन के काउंटडाउन विजेट से बेहतर नहीं। अपनी भूमिका को सच में जितनी बारीकी चाहिए, चुनें, फिर उसे रोज़ के काम में दिखता रखें। अकेले प्रोजेक्ट ट्रैक करने के रोज़ के तरीकों के लिए हमारी <a href="/hi/blog/keep-track-multiple-projects">कई प्रोजेक्ट की गाइड</a> और <a href="/hi/blog/best-countdown-widgets-iphone">काउंटडाउन विजेट्स की तुलना</a> हैं।</p>
+
+    <h2>अक्सर पूछे जाने वाले सवाल</h2>
+    <p><strong>क्या निजी प्रोजेक्ट के लिए Gantt चार्ट चाहिए?</strong><br/>
+    लगभग कभी नहीं। पड़ावों की सूची + हर बड़े पड़ाव का काउंटडाउन विजेट काफ़ी है। Gantt तभी लें जब पड़ावों की आपसी निर्भरता सच में सीमित करे कि काम कब शुरू कर सकते हैं।</p>
+
+    <p><strong>रोडमैप और Gantt में फ़र्क क्या है?</strong><br/>
+    बारीकी और पढ़ने वाले। रोडमैप बाहर के लोगों के लिए है, तिमाही के स्तर पर विषय दिखाता और ब्योरा छिपाता है। Gantt काम चलाने वाली टीम के लिए है, अलग काम और आपसी निर्भरता दिखाता है।</p>
+
+    <p><strong>कौन-सा टूल इस्तेमाल करूँ?</strong><br/>
+    Gantt के लिए: कुछ भी चलता है (Asana, ClickUp, OmniPlan)। रोडमैप के लिए: सच कहें तो एक स्लाइड। काउंटडाउन के लिए: Left जैसा काउंटडाउन विजेट ऐप। खरीदारी में न उलझें - अनुशासन के मुकाबले टूल कम अहम है।</p>
+
+    <p><strong>टाइमलाइन कितनी बार अपडेट करूँ?</strong><br/>
+    टीम के स्तर पर हफ़्ते में, सक्रिय निजी प्रोजेक्ट के लिए रोज़। उससे कम करें तो चार्ट हकीकत से अलग हो जाता है।</p>
+
+    <p><strong>क्या काउंटडाउन विजेट्स प्रोजेक्ट टूल की जगह ले सकते हैं?</strong><br/>
+    अकेले के काम में हाँ। टीम के काम में नहीं - काम, टिप्पणियाँ और ज़िम्मेदारियाँ रखने की जगह अब भी चाहिए। विजेट्स प्रोजेक्ट टूल के ऊपर हमेशा दिखने वाला <em>दृश्य</em> हैं, उसका विकल्प नहीं।</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left डाउनलोड करें</span>
+          <h2>जो मायने रखता है, उस पर ध्यान देना शुरू करें।</h2>
+          <p>अपने iPhone पर Left डाउनलोड करें। बचा हुआ समय और जिन तारीख़ों का इंतज़ार है उन्हें देखें, जिन आदतों को बनाए रखना चाहते हैं उन्हें अपनाएँ और ख़ुद को बेहतर बनाएँ।</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR कोड - निर्देशों के लिए टैप करें">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">स्कैन करें या App Store पर <strong>"Left"</strong> खोजें।</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-hi&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store से Left डाउनलोड करें" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS के लिए डाउनलोड
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> लोग हर पल को मायने दे रहे हैं।</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="फ़ुटर">
+          <a href="/hi/support">सहायता</a>
+          <a href="/terms">शर्तें</a>
+          <a href="/hi/privacy">गोपनीयता</a>
+          <a href="/hi/press">प्रेस</a>
+          <a href="/hi/contact">संपर्क</a>
+          <a href="/hi/tools/">टूल्स</a>
+          <!-- left:footer-extra:start -->
+          <a href="/hi/blog/">ब्लॉग</a>
+          <a href="#" data-consent-open>कुकी सेटिंग</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>HI</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="true">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","hi","es","es-419","fr","it","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="कुकी सहमति">
+  <p class="left-consent__text">हम यह समझने के लिए Google Analytics इस्तेमाल करते हैं कि कौन-से पेज लोगों के काम आते हैं। कोई विज्ञापन नहीं, साइटों के बीच कोई ट्रैकिंग नहीं।</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>एनालिटिक्स की अनुमति दें</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>नहीं, धन्यवाद</button>
+    <a class="left-consent__link" href="/hi/privacy#website" data-consent-privacy>गोपनीयता</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

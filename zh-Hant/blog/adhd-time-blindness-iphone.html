@@ -1,0 +1,488 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>ADHD 時間盲：是什麼、小工具如何幫忙 | Left</title>
+  <meta name="description" content="解釋時間盲，以及讓時間看得見、足以採取行動的 iPhone 小工具設定——務實、經 ADHD 驗證、不灌水。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="ADHD 時間盲：是什麼、小工具如何幫忙"  />
+  <meta property="og:description" content="解釋時間盲，加上讓時間看得見的小工具設定。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:image" content="https://getleft.app/images/blog/adhd-time-blindness-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/adhd-time-blindness-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Time Blindness: What It Is and How Widgets Help",
+  "description": "Time blindness explained, and the iPhone widget setup that makes time visible enough to act on - practical, ADHD-tested, no-fluff.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-time-blindness-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Time Blindness: What It Is and How Widgets Help",
+      "item": "https://getleft.app/blog/adhd-time-blindness-iphone"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>ADHD 時間盲：是什麼、小工具如何幫忙</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・5 分鐘</p>
+
+    <p>「時間盲」是 ADHD 用語，指時間幾乎是看不見的物質。有<em>現在</em>，有<em>不是現在</em>，「20 分鐘後」與「3 小時後」的感覺重量差不多。期限像驚喜一樣到來。任務膨脹填滿所有可用時間，因為時間在用完前都不真實。未來在成為現在之前都是理論。</p>
+
+    <p>這不是道德失敗或懶惰問題。這是 ADHD 大腦體驗時間的方式，有用的介入是外在的——在眼睛本來就會看的地方讓時間可見。本指南解釋時間盲，再走一遍最有幫助的 iPhone 小工具設定，以<strong>Left</strong>為實作例子。</p>
+
+    <figure class="post-hero"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/analog-clock-on-top-of-a-gas-stove-14739173/" rel="noopener">Jessica Lewis (thepaintedsquare) / Pexels</a></figcaption></figure>
+
+    <h2>時間盲究竟是什麼</h2>
+    <p>研究者把 ADHD 時間知覺描述為壓縮且聚焦當下。兩個具體缺損：</p>
+    <ul>
+      <li><strong>難以估計經過時間。</strong>二十分鐘可能像五分鐘；五分鐘可能像二十。內在時鐘無法可靠校準。</li>
+      <li><strong>難以表徵未來時間。</strong>幾天之後的事件沒有情緒重量。你「知道」會來，但<em>感覺</em>不到。</li>
+    </ul>
+    <p>兩種缺損的介入相同：用外在時間取代內在時間。讓時鐘可見、期限可見、經過時間可見。大腦沒壞——缺的是其他大腦在內在生成的輸入。</p>
+
+    <h2>日常生活中的症狀</h2>
+    <ul>
+      <li>你開始「很快做一件事」，兩小時後才浮上來。</li>
+      <li>原本覺得還遠的期限，在前一晚 11 點變成恐慌。</li>
+      <li>你總是遲到，儘管本意要準時。</li>
+      <li>你持續把任務時長低估 2 倍或更多。</li>
+      <li>週日晚上感覺離週一早上很遠，週一早上卻又毫無預警地到了。</li>
+      <li>專注時忘記吃飯；會議要等警報響才想起。</li>
+    </ul>
+    <p>若這些大多有感，時間盲對你是真的。好消息：在正確環境設定下，這是最能解決的 ADHD 症狀之一。</p>
+
+    <h2>讓時間看得見的小工具設定</h2>
+    <p>四個小工具，各處理一種時間盲失敗模式：</p>
+
+    <h3>1. 年度進度——針對感覺不到未來</h3>
+    <p>一個顯示「<a href="/tools/time-left-in-year-calculator">今年還剩 47%</a>」的小工具。一年突然變得有限。你在一月訂下又忘掉的目標，有了看得見的時間壓力。放在主畫面、<a href="/zh-Hant/support/widget-iphone-lock-screen">鎖定畫面</a>或桌布上（見<a href="/zh-Hant/year-progress-widget">年度進度小工具</a>）。延伸閱讀：<a href="/zh-Hant/blog/what-is-year-progress">什麼是年度進度</a>。</p>
+
+    <h3>2. 鎖定畫面倒數——防偷襲的期限</h3>
+    <p>下一個大期限的即將到來倒數。「離上線還有 9 天。」放在鎖定畫面，每次拿起手機都看到。期限不再是驚喜。<a href="/zh-Hant/countdown-widget">倒數小工具</a>頁面有選項。</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener">取得倒數小工具</a></p>
+
+    <h3>3. 即時動態計時器——針對經過時間盲</h3>
+    <p>開始專注區塊或任務時，跑即時動態計時器。看著經過時間跳動，給你內在時鐘沒提供的外在時鐘。</p>
+
+    <h3>4. 待機模式顯示——桌上的錨</h3>
+    <p>桌上時鐘＋倒數。環境式「現在幾點／接下來什麼」顯示。不必為了看時間拿手機（再被帶跑）。</p>
+
+    <h2>時間盲的因應技巧</h2>
+    <p>小工具之外，三個很搭的技巧：</p>
+    <ul>
+      <li><strong>把估計加倍。</strong>你覺得任務要多久，就乘二。追蹤一個月後，估計會校準。</li>
+      <li><strong>期限前加緩衝。</strong>若 5 點截止，內心把期限當 3 點。緩衝吸收不可避免的低估。</li>
+      <li><strong>「現在」儀式。</strong>特定的身體或聽覺錨點代表「工作現在開始」——放特定歌單、坐特定椅子。幫助銜接「我該開始」與「我正在開始」。</li>
+    </ul>
+
+    <h2>人生不同階段的時間盲</h2>
+
+    <h3>學生</h3>
+    <p>經典 ADHD 學生故事：報告三週後交，三週感覺無限，突然明天就要交。鎖定畫面倒數加上里程碑日期（第 1 週定題、第 2 週大綱、第 3 週初稿）把三週變成三塊可見區塊，而不是一團模糊。見<a href="/zh-Hant/blog/adhd-students-study-tools-iphone">ADHD 學生學習工具</a>。</p>
+
+    <h3>在職成人</h3>
+    <p>專案期限、會議準備、交付物。接下來兩個里程碑用鎖定畫面倒數；深度工作區塊用即時動態計時。大交付前一週釘在鎖定畫面的倒數小工具，是在做真正的保護工作。</p>
+
+    <h3>家長</h3>
+    <p>「下午 3:15 接小孩」在 2:45 就該有真實感，而不是 3:14 才慌。鎖定畫面接送倒數，加上提前 30 分鐘提醒（Left 的即將到來日期有<strong>取得提醒</strong>選項）就能處理。「還有多少時間」這個常駐問題，得到常駐答案。</p>
+
+    <h3>有服藥時間的人</h3>
+    <p>Apple 提醒事項負責「現在」鬧鐘，倒數小工具負責「快到了」覺察。兩者一起避免「我吃藥了嗎？」迴圈。</p>
+
+    <h2>小工具<em>無法</em>完全修好的時間盲</h2>
+    <p>老實說：</p>
+    <ul>
+      <li><strong>過動專注黑屏。</strong>進入過動專注時你看不見小工具。實體輕推例如觸覺更有效；有聲鬧鐘更甚。</li>
+      <li><strong>情緒性時間扭曲。</strong>害怕任務會讓它感覺比實際更遠。小工具告訴你真相，但不修感覺。</li>
+      <li><strong>嚴重情況。</strong>若時間盲明顯影響工作、關係或安全，小工具有幫助但不是全部答案。請與臨床人員談談。</li>
+    </ul>
+
+    <h2>你該期待的提升</h2>
+    <p>連續兩週的小工具設定，對中度時間盲通常帶來真實改變：較少「等等，明天？」時刻、較少最後一刻恐慌、較少自動駕駛流失的時間。別期待變身——期待最昂貴失敗模式明顯減少。</p>
+
+    <h2>相關文章</h2>
+    <p>更廣的 ADHD 生產力脈絡：<a href="/zh-Hant/blog/best-productivity-apps-adhd">ADHD 最佳生產力 App</a>。一般視覺提醒：<a href="/zh-Hant/blog/visual-reminders-adhd-apple-setup">跨 Apple 裝置的 ADHD 視覺提醒</a>。任務啟動專題：<a href="/zh-Hant/blog/adhd-task-initiation-strategies">ADHD 任務啟動策略</a>。</p>
+
+    <h2>常見問題</h2>
+    <p><strong>時間盲是正式的 ADHD 症狀嗎？</strong><br/>
+    是——它是 ADHD 執行功能障礙中被認可的面向。臨床用語是「時間處理缺損」。</p>
+
+    <p><strong>單靠智慧手錶就能解決嗎？</strong><br/>
+    對很多人有幫助。任何你會瞥一眼的螢幕，都能把「離 X 還多久」從估計變成一眼可見。在 iPhone 上，鎖定畫面或待機模式的倒數做同樣的事。</p>
+
+    <p><strong>沒有 ADHD 卻很有感怎麼辦？</strong><br/>
+    時間盲是光譜。典型大腦也常有輕微版本。不論診斷，小工具設定都有幫助。</p>
+
+    <p><strong>藥物會治好時間盲嗎？</strong><br/>
+    對很多人是部分。藥物常稍微拉長感覺中的未來，但不完全消除問題。小工具設定與藥物並用仍有幫助。</p>
+
+    <p><strong>Left 具體如何幫忙？</strong><br/>
+    年度進度、即將到來倒數、即時動態與待機模式小工具——都是 iPhone 主畫面與鎖定畫面上看得見的時間。不必特地查看，時間就可見。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>開始留意真正重要的事。</h2>
+          <p>在 iPhone 下載 Left，看看剩餘時間、期待中的日子，養成想維持的習慣，成為更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下載 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下載 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","hi","es","es-419","fr","it","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

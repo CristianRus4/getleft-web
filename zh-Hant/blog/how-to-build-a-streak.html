@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>如何在 iPhone 建立連續紀錄：習慣與連續紀錄 | Left</title>
+  <meta name="description" content="習慣與連續紀錄的差別、如何選排程，以及讓連續紀錄長久維持的 iPhone 小工具設定。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="如何在 iPhone 建立連續紀錄：習慣與連續紀錄"  />
+  <meta property="og:description" content="習慣與連續紀錄的差別、如何選排程，以及讓連續紀錄長久維持的 iPhone 小工具設定。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/blog/how-to-build-a-streak" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:image" content="https://getleft.app/images/blog/how-to-build-a-streak-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="如何在 iPhone 建立連續紀錄：習慣與連續紀錄"  />
+  <meta name="twitter:description" content="習慣與連續紀錄的差別、如何選排程，以及讓連續紀錄長久維持的 iPhone 小工具設定。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/how-to-build-a-streak-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build a Streak on Your iPhone",
+  "description": "Habits vs streaks, how to pick a schedule, and the iPhone widget setup that makes a streak stick for good.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-build-a-streak",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Build a Streak on Your iPhone",
+      "item": "https://getleft.app/blog/how-to-build-a-streak"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the difference between a streak and a habit in Left?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A streak counts time since a start date and grows on its own until you restart it, which suits things like days without alcohol. A habit is an action you mark complete on a schedule, and Left works out your streak from those completions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do days off in my schedule break a habit streak?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Days outside the schedule you set, such as weekends on a weekdays habit, keep the streak alive without adding to it. Only a scheduled day that ends without the habit logged breaks the run."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I log a habit from a widget?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with the Habit widget on your Home Screen. Set its Layout to Text, then tap today's symbol to log or unlog. The other habit widgets, including the Habits list and Lock Screen widgets, show progress but open the app when tapped."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many habits and streaks can I track for free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Two habits, two streaks and two Aims. The limit counts every item you have created, so deleting one doesn't free a slot. Left Premium removes the limit."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>如何在 iPhone 建立連續紀錄</h1>
+<p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・6 分鐘</p>
+<p>連續紀錄是少數在現實中站得住腳的生產力概念。一旦有一段進行中，你就不想當打斷的人；每天成長的數字，是明天再出現的穩定理由。</p>
+
+<figure class="post-hero"><img src="/images/blog/how-to-build-a-streak-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/young-plants-growing-in-pots-on-a-sunny-windowsill-Aw_AUfPccIQ" rel="noopener">Elly M / Unsplash</a></figcaption></figure>
+
+<h2>連續紀錄、習慣或目標：選對的那個</h2>
+<p>在 Left，這三種都在<strong>事件</strong>底下，但回答不同問題。</p>
+<ul>
+  <li><strong>連續紀錄</strong>：「從那時起多久？」從開始日自動累計，除非你重新開始。例子：不喝酒天數、戒菸天數。</li>
+  <li><strong>習慣</strong>：「我做了嗎？」依你設的排程完成時標記，Left 再依完成算出連續。例子：一週跑三天、每個平日閱讀。</li>
+  <li><strong>目標</strong>：「多少？」朝目標數字往上或往下數。例如今年跑 500 公里。見<a href="/zh-Hant/support/aims-in-left">目標怎麼運作</a>。</li>
+</ul>
+<p><a href="/zh-Hant/support/streaks-vs-habits">連續紀錄與習慣指南</a>有更多例子。</p>
+
+<h2>選一個你真的做得到的排程</h2>
+<p>經典錯誤是「每天」。多數習慣不需要每天。把目標設得比感覺舒服的略低。你能維持的連續，勝過十條放棄的。</p>
+<p>Left 給你幾種做法。每日習慣可以<strong>每天</strong>、<strong>平日</strong>、<strong>週末</strong>、<strong>一週中的特定日期</strong>，或<strong>每週天數</strong>（任選日子，例如四天）。也可以設每週或每月目標，例如一週三次或一個月兩次，日子自選。</p>
+<p>排程外的日子不會打斷鏈。若習慣設為平日，安靜的週六仍維持連續。今天要到一天結束才算錯過。</p>
+
+<h2>如何在 Left 建立習慣</h2>
+<ol>
+  <li>打開 Left，到<strong>事件</strong>，點 +。</li>
+  <li>搜尋想法從範本開始，或點<strong>從頭建立</strong>並選<strong>習慣</strong>。</li>
+  <li>命名，再選頻率：每日、每週或每月、幾次，以及排程。</li>
+  <li>若要提醒，開啟<strong>取得提醒</strong>。最多可加四個，各自有日子與時間。</li>
+  <li>若今天之前就已開始，把<strong>開始於...</strong>設成正確日期，再儲存。</li>
+</ol>
+<p>做完習慣後打開它，點<strong>記錄</strong>。若誤記，用<strong>取消登入習慣</strong>還原。詳情畫面顯示完成天數、錯過天數、最長連續紀錄與完成網格。</p>
+<h2>如何在 Left 建立連續紀錄</h2>
+<ol>
+  <li>到<strong>事件</strong>，點 +，選<strong>從頭建立</strong>，再選<strong>連續紀錄</strong>。</li>
+  <li>命名，若喜歡也可加目標。</li>
+  <li>把<strong>開始於...</strong>設成開始時間（含時刻）。可以是過去，但不能是未來。</li>
+  <li>若連續有自然終點，開啟<strong>有結束日期</strong>並選<strong>完成於...</strong>日期。</li>
+  <li>選好提醒，再儲存。</li>
+</ol>
+<p>之後就沒什麼要記錄的了。</p>
+
+<h2>放到主畫面和鎖定畫面</h2>
+<p>Left 有四個小工具做這件事：</p>
+<ul>
+  <li><strong>習慣</strong>（小或中，另有矩形鎖定畫面小工具）顯示一個習慣。也是唯一能記錄習慣的小工具：把<strong>佈局</strong>設成<strong>文字</strong>，再點今天的符號即可記錄或取消，不必打開 App。</li>
+  <li><strong>習慣列表</strong>（小、中或大，另有圓形與矩形鎖定畫面小工具）顯示 4 個（小或中）或 8 個（大）習慣的進度。</li>
+  <li><strong>連續紀錄</strong>（小、中或大，另有矩形鎖定畫面小工具）以小時、天、週、月或年顯示一條連續紀錄。</li>
+  <li><strong>連續紀錄列表</strong>（中或大）最多顯示 3 條（中）或 7 條（大）。</li>
+</ul>
+<p>要加入：長按主畫面，點「編輯」，再「加入小工具」，搜尋 Left，選小工具與尺寸。再長按它，點「編輯小工具」，用<strong>選擇習慣</strong>或<strong>選擇連續紀錄</strong>決定顯示內容。見<a href="/zh-Hant/support/widget-iphone-home-screen">主畫面小工具指南</a>與<a href="/zh-Hant/days-since-widget">經過天數小工具</a>樣式。</p>
+
+<h2>真的有用的提醒</h2>
+<ul>
+
+  <li><strong>取得持續提醒</strong>適合你老是忘記的習慣。設定<strong>在什麼時間之前？</strong>，若還沒記錄，會在那時間前一小時於鎖定畫面和動態島出現即時動態。</li>
+  <li><strong>取得經過時間提醒</strong>會在連續紀錄超過設定天數仍未重新開始時通知你。適合你刻意重設的連續，例如「離上次打給奶奶過了幾天」。</li>
+</ul>
+
+<h2>連續紀錄中斷時怎麼辦</h2>
+
+<p><strong>連續紀錄</strong>則打開它並點<strong>重新開始</strong>。Left 會請你選重新開始的時間，介於開始日到現在之間，所以週六晚的失手可以精確記下。什麼都不會丟：Left 保留<strong>重新開始次數</strong>、<strong>平均連續紀錄</strong>、<strong>最長連續紀錄</strong>與每次紀錄歷史。</p>
+<p><strong>習慣</strong>方面，錯過一天會結束目前這段，但完成天數與最長連續仍在。<strong>習慣強度</strong>會經過弱、穩定、強、自動、終身。它權衡近期一致性、總重複次數與目前這段，所以錯過一天不會把建好的習慣打回原點。</p>
+<p>無論哪種，別在心裡從零重算。連續紀錄數字只是資料；習慣是下一個行動。若要手動數，可用<a href="/tools/habit-streak-calculator">習慣連續紀錄計算機</a>。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener">取得習慣與連續紀錄追蹤</a></p>
+
+<h2>分享以求督促</h2>
+<p>有 Left Premium 時，可以請朋友督促你。先在朋友裡加他們，再打開習慣或連續紀錄，開啟<strong>朋友</strong>並點<strong>新增好友</strong>。對方接受後就能追蹤那一項、送支持或恭喜。見<a href="/zh-Hant/support/accountability-with-friends">督促怎麼運作</a>。</p>
+
+<h2>免費有什麼</h2>
+<p>Left 免費版包含 2 個習慣、2 個連續紀錄、2 個目標，以及全部小工具。上限計算你曾建立的每一項，刪除也不會空出名額。Left Premium 加上無限項目、朋友與 Apple 健康追蹤。購買前 App 內會顯示價格。見<a href="/zh-Hant/habit-tracker">習慣追蹤</a>。</p>
+
+<h2>問題</h2>
+<h3>Left 裡連續紀錄和習慣有什麼差別？</h3>
+<p>連續紀錄從開始日自動累計時間，直到你重新開始，適合像「不喝酒天數」這類。習慣是依排程標記完成的行動，Left 再依完成紀錄算出連續。</p>
+<h3>排程外的休息日會打斷習慣連續紀錄嗎？</h3>
+<p>不會。排程外的日子，例如平日習慣的週末，會維持連續紀錄但不加天數。只有排定該做卻沒記錄的日子結束後，才會打斷。</p>
+<h3>可以從小工具記錄習慣嗎？</h3>
+<p>可以，用主畫面上的習慣小工具。把佈局設成文字，再點今天的符號即可記錄或取消記錄。其他習慣小工具（含習慣列表與鎖定畫面小工具）只顯示進度，點一下會打開 App。</p>
+<h3>免費版可以追蹤幾個習慣和連續紀錄？</h3>
+<p>兩個習慣、兩個連續紀錄、兩個目標。上限計算你建立過的每一項，刪除也不會空出名額。Left Premium 解除上限。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>開始留意真正重要的事。</h2>
+          <p>在 iPhone 下載 Left，看看剩餘時間、期待中的日子，養成想維持的習慣，成為更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下載 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下載 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","hi","es","es-419","fr","it","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
