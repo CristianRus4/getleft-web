@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Таймлайн планирования события: пошаговое руководство (2026) | Left</title>
+  <meta name="description" content="Практичный таймлайн планирования события — планирование назад, чекпоинты вендоров, ловушки расползания объёма и общий обратный отсчёт, который держит всю команду на одной линии."  />
+  <link rel="canonical" href="https://getleft.app/ru/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Таймлайн планирования события: пошаговое руководство (2026)"  />
+  <meta property="og:description" content="Практичный таймлайн планирования события с общим обратным отсчётом, который держит всю команду на одной линии."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ru/blog/event-planning-timeline" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Event Planning Timeline: A Step-by-Step Guide",
+  "description": "A practical event planning timeline - backward planning, vendor checkpoints, scope-creep traps, and the shared countdown setup that keeps the whole team aligned.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/event-planning-timeline",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Event Planning Timeline: A Step-by-Step Guide",
+      "item": "https://getleft.app/blog/event-planning-timeline"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Основной">
+    <div class="container nav-inner">
+      <a href="/ru/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ru/#features" class="nav-link">Возможности</a>
+          <a href="/ru/tools/" class="nav-link">Инструменты</a>
+          <a href="/ru/blog/" class="nav-link">Блог</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ru&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Скачать</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Таймлайн планирования события: пошаговое руководство</h1>
+    <p class="article-meta">Обновлено <time datetime="2026-10-20">20 октября 2026</time> · 7 мин чтения</p>
+
+    <p>Большинство советов по планированию событий — один чеклист на 200 пунктов. Так события и срываются. Чеклист плоский — каждый пункт кажется одинаково срочным — поэтому мелочи делаются в первую лихорадочную неделю, а крупное сползает на последнюю. Реальное планирование идёт по таймлайну: когда что должно стартовать, что от чего зависит и как держать всю команду на одних датах?</p>
+
+    <p>Это руководство разбирает рабочий таймлайн планирования мероприятия — конференции, <a href="/ru/tools/wedding-countdown">свадьбы</a>, запуска продукта, большого дня рождения — на трёх горизонтах (12 месяцев, 3 месяца, 2 недели). Оно также описывает настройку общего обратного отсчёта, благодаря которой вся команда смотрит на одну и ту же конечную дату, с помощью совместного «Впереди» в <strong>Left</strong> (функция Left Premium).</p>
+
+    <figure class="post-hero"><img src="/images/blog/event-planning-timeline-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/outdoor-tables-set-for-a-formal-dining-event-t1ep0yUdXWw" rel="noopener">Bruno Ngarukiye / Unsplash</a></figcaption></figure>
+
+    <h2>Планируйте назад, не вперёд</h2>
+    <p>Главная ошибка планирования — начинать с «что делаем первым?» и идти вперёд. Планирование вперёд прячет зависимости — не замечаете, что площадке нужны девять месяцев, пока не остаётесь с шестью. Планирование назад стартует с даты события и спрашивает «к какой дате X должно быть готово, чтобы событие состоялось?»</p>
+    <p>Практически: напишите дату события сверху, затем перечислите deliverables в обратном порядке, у каждого дедлайн от даты события. Получится таймлайн, а не список.</p>
+
+    <h2>За 12 месяцев (или как можно раньше)</h2>
+    <ul>
+      <li><strong>Стратегия.</strong> Определите событие одним предложением: что это, для кого, как выглядит успех. Если не можете — не начинайте бронировать вендоров.</li>
+      <li><strong>Бюджет.</strong> Общая сумма. Распределение на площадку / кейтеринг / продакшн / маркетинг. Резервная строка 15%. Пропуск резерва — самая частая причина перерасхода.</li>
+      <li><strong>Площадка.</strong> Топ-площадки любого популярного размера бронируют за 9+ месяцев. Если событие в выходные популярного месяца — удвойте.</li>
+      <li><strong>Save-the-dates.</strong> Даже для корпоративных событий. Раньше занять дату в календарях участников гораздо дешевле, чем потом гоняться за RSVP.</li>
+      <li><strong>Якорные спикеры / талант.</strong> Кто хедлайн — фиксируйте сейчас. Доступность спикеров двигает дату не меньше площадки.</li>
+    </ul>
+    <p>Если стартуете позже 12 месяцев, игнорируйте ярлык «12 месяцев» и сначала сделайте эти вещи в любом случае. Порядок важнее абсолютного тайминга.</p>
+
+    <h2>За 6 месяцев</h2>
+    <ul>
+      <li><strong>Спонсоры и партнёры.</strong> Подтверждены письменно, с определёнными обязательствами. Устные договорённости тихо исчезают.</li>
+      <li><strong>Кейтеринг и продакшн.</strong> Забронированы. Меню и требования к AV набросаны, даже если не финал.</li>
+      <li><strong>Маркетинг-план.</strong> Когда публичный сайт? Когда каждый соцпуш? Назначены владельцы.</li>
+      <li><strong>Билеты.</strong> Платформа выбрана, цены заданы, продажи открыты если применимо.</li>
+      <li><strong>Настройте общий отсчёт команды.</strong> Совместное «Впереди» в Left, дата конца = дата события. Всё ядро команды может следить за одним отсчётом на телефоне и добавить <a href="/ru/countdown-widget">виджет обратного отсчёта</a>. Виджет «180 дней до запуска» на чьём-то телефоне — самый дешёвый инструмент выравнивания команды. Разбор настройки — в <a href="/ru/blog/countdown-next-trip-with-friends">руководстве по совместному «Впереди»</a>.</li>
+    </ul>
+
+    <h2>За 3 месяца</h2>
+    <ul>
+      <li><strong>Финальные подтверждения спикеров.</strong> Все зафиксированы, проинформированы и имеют нужные материалы.</li>
+      <li><strong>Сайт живой, регистрация открыта.</strong> Если ещё не.</li>
+      <li><strong>Run-of-show набросан.</strong> Поминутное расписание дня(дней) события. Исходный документ, на который все ссылаются в день.</li>
+      <li><strong>Обходы с вендорами.</strong> Физические визиты с кейтерингом, AV и продакшном. Сюрпризы здесь дёшевы; сюрпризы в день события — нет.</li>
+      <li><strong>Запасные планы.</strong> Погода, неявка, сбой AV, диетические сюрпризы. Напишите план на случай сбоев, не только воображайте.</li>
+    </ul>
+
+    <h2>За 1 месяц</h2>
+    <ul>
+      <li><strong>Run-of-show зафиксирован.</strong> Разослан всем, кому нужно. Больше никаких структурных изменений.</li>
+      <li><strong>Финальный headcount площадке и кейтерингу.</strong> Обычно к этому моменту контрактно обязателен.</li>
+      <li><strong>Бриф для персонала.</strong> Роли, контакты, пути эскалации.</li>
+      <li><strong>Репетиция прохода.</strong> Даже на 30 минут. Найдёте одну-две реальные проблемы.</li>
+    </ul>
+
+    <h2>За 2 недели</h2>
+    <ul>
+      <li><strong>Напоминающие коммуникации.</strong> Участники, спикеры, вендоры получают напоминание с ключевой информацией.</li>
+      <li><strong>Финальный логистический документ.</strong> Один PDF с адресами, временем, контактами, парковкой, диетой, расписанием. Всем, кому нужно.</li>
+      <li><strong>Техчек.</strong> AV-оборудование, слайды, проверка микрофона, запись если нужна.</li>
+      <li><strong>Ведите личный отсчёт.</strong> Помимо общего командного совместного «Впереди» поставьте себе личный отсчёт последних дней. Помогает не забыть неброскую админку (печать, забор, упаковка) на последней неделе.</li>
+    </ul>
+
+    <h2>Накануне / в день</h2>
+    <ul>
+      <li><strong>Передача, не микроменеджмент.</strong> К этому моменту ваша работа — быть доступным, а не делать. Доверьтесь команде, которую собрали.</li>
+      <li><strong>Один человек владеет таймингом.</strong> Кто бы ни был — у него run-of-show, секундомер и право подталкивать спикеров.</li>
+      <li><strong>Документируйте, что работает и что нет.</strong> Заметки во время события — золото для постмортема. Пять минут между сессиями в приложении заметок.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ru&amp;mt=8" target="_blank" rel="noopener">Получить виджет обратного отсчёта</a></p>
+
+    <h2>Общий отсчёт — почему важнее ещё одной таблицы</h2>
+    <p>Большая часть плановой информации живёт в таблице, которую нужно открыть. Дата события — единственная информация, которую вся команда должна видеть без открытия чего угодно. Совместный отсчёт «Впереди» на телефоне каждого — «73 дня до запуска» — выносит дату из таблицы в периферийное зрение.</p>
+    <p>Вот разница между командой, которая «знает» дату, и командой, которая её <em>чувствует</em>. Знание даёт спокойствие. Чувство — действие.</p>
+
+    <h2>Типичные режимы сбоя (и как их избежать)</h2>
+
+    <h3>Задержки вендоров</h3>
+    <p>Главный источник срывов. Защита: подтверждённые контракты (не устные), явные даты сдач, еженедельные проверки с −90 дней. Заложите буфер: их заявленные дедлайны считайте на 7–14 дней раньше реальности.</p>
+
+    <h3>Расползание объёма</h3>
+    <p>«А можно ещё X?» — обычно от стейкхолдера, который работу не делает. Защита: любая новая просьба после отметки 3 месяцев требует явного одобрения бюджета. Сделайте административно сложно, а не эмоционально.</p>
+
+    <h3>Несовпадающие цели</h3>
+    <p>Через три месяца обнаруживаете: CEO думал, событие для клиентов, а Marketing — для прессы. Защита: стратегия одним предложением в самом начале, подписанная каждым стейкхолдером. Перечитывайте на каждой статус-встрече.</p>
+
+    <h3>Туннельное зрение в последние 2 недели</h3>
+    <p>Перестаёте видеть лес. Защита: проверка с кем-то вне ядра команды на неделе −2. Свежий взгляд ловит очевидные дыры, к которым команда ослепла.</p>
+
+    <h2>После события</h2>
+    <p>В течение недели:</p>
+    <ul>
+      <li><strong>Отправьте благодарности.</strong> Вендорам, спикерам, спонсорам, ключевым участникам. Персонально, не массово.</li>
+      <li><strong>Оплатите счета.</strong> Быстрая оплата — инвестиция в отношения.</li>
+      <li><strong>Проведите постмортем.</strong> Три вопроса: что сработало, что нет, что бы изменили. Запишите — к следующему году не вспомните.</li>
+      <li><strong>Архивируйте run-of-show и таймлайн.</strong> Самый полезный документ для планировщика следующего года — фактические данные этого.</li>
+    </ul>
+
+    <h2>Если это личное событие (свадьба, юбилейная вечеринка)</h2>
+    <p>Тот же таймлайн, меньшая команда, больше эмоций. Две правки:</p>
+    <ul>
+      <li><strong>Один человек владеет таймлайном.</strong> Не комитет. Решения нужно принимать быстро, а свадьбы умирают в комитетах.</li>
+      <li><strong>Совместное «Впереди» делится с партнёром, не со всем списком гостей.</strong> Отсчёт — инструмент планирования для вас двоих; мнения 80 гостей о таймлайне не нужны.</li>
+    </ul>
+    <p>Для личной поездки, а не события, тот же паттерн совместного «Впереди» работает — см. <a href="/ru/blog/countdown-next-trip-with-friends">Обратный отсчёт до следующей поездки</a>.</p>
+
+    <h2>Похожие материалы</h2>
+    <p>Для планирования проектной стороны параллельно с координацией события см. <a href="/ru/blog/project-timeline-visualization">визуализацию таймлайна проекта</a> и <a href="/ru/blog/keep-track-multiple-projects">как вести несколько проектов</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Как рано начинать планировать свадьбу?</strong><br/>
+    9–12 месяцев для типичной субботней свадьбы на популярной площадке. 12+ если нужна конкретная площадка в пик сезона или есть destination-элемент.</p>
+
+    <p><strong>Как рано для корпоративной конференции?</strong><br/>
+    12 месяцев идеально, 9 рабочих, 6 — стресс. Меньше 6 — выбираете из площадок, которые никому больше не нужны.</p>
+
+    <p><strong>Какой единственный самый полезный инструмент?</strong><br/>
+    Общий отсчёт конечной даты на телефоне каждого члена команды плюс письменный run-of-show в последний месяц. Красивые проектные инструменты важнее этих двух простых вещей реже.</p>
+
+    <p><strong>Как справляться с расползанием объёма от старших стейкхолдеров?</strong><br/>
+    Озвучивайте бюджетный эффект каждой просьбы. «Да, можем добавить. Это стоит $X и убирает Y.» Большинство старших стейкхолдеров отступают, когда у объёма есть цена.</p>
+
+    <p><strong>Можно ли поделиться отсчётом события с со-планировщиком?</strong><br/>
+    Да — совместное «Впереди» в Left (часть Left Premium) ставит один отсчёт на оба телефона. Лёгкая версия общего проектного инструмента.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Скачать Left</span>
+          <h2>Начните замечать то, что важно.</h2>
+          <p>Скачайте Left на iPhone, чтобы видеть оставшееся время, даты, которых ждёте, строить привычки и становиться лучше.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-код — нажмите для инструкции">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Отсканируйте или найдите <strong>«Left»</strong> в App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ru&amp;mt=8" target="_blank" rel="noopener" aria-label="Скачайте Left в App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Скачать для iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> человек берегут каждое мгновение.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Подвал">
+          <a href="/ru/support">Поддержка</a>
+          <a href="/terms">Условия</a>
+          <a href="/ru/privacy">Конфиденциальность</a>
+          <a href="/ru/press">Пресса</a>
+          <a href="/ru/contact">Контакты</a>
+          <a href="/ru/tools/">Инструменты</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ru/blog/">Блог</a>
+          <a href="#" data-consent-open>Настройки cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RU</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="true">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pt-BR","ru","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Согласие на использование cookie">
+  <p class="left-consent__text">Мы используем Google Analytics, чтобы понимать, какие страницы помогают людям. Без рекламы и без отслеживания между сайтами.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Разрешить аналитику</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Нет, спасибо</button>
+    <a class="left-consent__link" href="/ru/privacy#website" data-consent-privacy>Конфиденциальность</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

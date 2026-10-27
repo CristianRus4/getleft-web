@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Как добавить виджеты на iPhone (экран «Домой» и экран блокировки) | Left</title>
+  <meta name="description" content="Пошаговое руководство по добавлению виджетов на iPhone: экран «Домой», экран блокировки и режим ожидания на примере Left."  />
+  <link rel="canonical" href="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Как добавить виджеты на iPhone (экран «Домой» и экран блокировки)"  />
+  <meta property="og:description" content="Пошаговое руководство по добавлению виджетов на iPhone: экран «Домой», экран блокировки и режим ожидания на примере Left."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Как добавить виджеты на iPhone (экран «Домой» и экран блокировки)"  />
+  <meta name="twitter:description" content="Пошаговое руководство по добавлению виджетов на iPhone: экран «Домой», экран блокировки и режим ожидания на примере Left."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+  "description": "Step-by-step guide to adding widgets on iPhone: Home Screen, Lock Screen and StandBy, using Left as the example.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-add-widgets-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+      "item": "https://getleft.app/blog/how-to-add-widgets-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why can't I find an app in the iPhone widget gallery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app usually needs to be opened once before its widgets appear. If it still isn't listed, restart your iPhone and update iOS and the app. Some apps also don't offer widgets at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can any widget go on the Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Lock Screen only takes inline, circular and rectangular widgets, and each app decides which of its widgets come in those shapes. Larger widgets, like Left's Everything or Time Ahead list, are Home Screen only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are my Lock Screen widgets not in color?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS draws Lock Screen widgets in a single tint that matches the clock, so they stay readable over any wallpaper. The app's full colors show on the Home Screen, unless you pick the Tinted look, and in StandBy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do iPhone widgets update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS controls the refresh schedule to save battery, so widgets update regularly but not always instantly. Opening the app usually triggers a refresh. Time-based widgets, like a year progress widget, roll over on their own."
+      }
+    }
+  ],
+  "inLanguage": "ru"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Основной">
+    <div class="container nav-inner">
+      <a href="/ru/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ru/#features" class="nav-link">Возможности</a>
+          <a href="/ru/tools/" class="nav-link">Инструменты</a>
+          <a href="/ru/blog/" class="nav-link">Блог</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ru&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Скачать</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Как добавить виджеты на iPhone: экран «Домой», экран блокировки и режим ожидания</h1>
+<p class="article-meta">Обновлено <time datetime="2026-10-20">20 октября 2026</time> · 6 мин чтения</p>
+<p>У iPhone три места для виджетов: экран «Домой», экран блокировки и режим ожидания. Вот полный путь для каждого на iOS 26 на примере Left.</p>
+
+<figure class="post-hero"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/hammer-and-framed-prints-on-floor-wk6ufnhdvD4" rel="noopener">Barney Goodman / Unsplash</a></figcaption></figure>
+
+<h2>Перед началом</h2>
+<p>Установите приложение, чей виджет нужен, и откройте его хотя бы раз. Многие приложения, в том числе Left, появляются в галерее виджетов только после первого запуска. Left требует iOS 26 или новее.</p>
+
+<h2>Добавить виджет на экран «Домой»</h2>
+<ol>
+  <li>Нажмите и удерживайте пустое место на экране «Домой», пока приложения не начнут подрагивать.</li>
+  <li>Нажмите «Изменить» в левом верхнем углу, затем «Добавить виджет».</li>
+  <li>Найдите приложение (например Left) или прокрутите до него, затем коснитесь.</li>
+  <li>Листайте виджеты и размеры. Виджеты экрана «Домой» бывают маленькими, средними и большими.</li>
+  <li>Нажмите «Добавить виджет», перетащите его куда нужно и нажмите «Готово».</li>
+</ol>
+<p>Подробнее в <a href="/ru/support/widget-iphone-home-screen">руководстве по виджетам экрана «Домой»</a>.</p>
+
+<h3>Выберите, что показывает виджет</h3>
+<p>Большинство виджетов можно настроить. Нажмите и удерживайте виджет и нажмите «Изменить виджет». В Left здесь выбирают, какой обратный отсчёт показывает виджет «Впереди», какую привычку ведёт виджет привычки или считает ли виджет года в днях, неделях или месяцах.</p>
+
+<h3>Сменить размер</h3>
+<p>В режиме подрагивания у многих виджетов в углу есть маленький маркер — потяните, чтобы сменить размер. Если его нет, удалите виджет и добавьте снова нужного размера.</p>
+<p>Маленький вмещает одно число, средний — число с контекстом, большой — полную сетку. В Left маленький виджет <strong>Впереди</strong> показывает один обратный отсчёт, средний <strong>Всё</strong> — день, неделю, месяц и год вместе, а большой виджет года — все 365 дней.</p>
+
+<h3>Складывайте виджеты в стек, чтобы экономить место</h3>
+<p>Перетащите виджет поверх другого того же размера, чтобы создать стек, затем смахните вверх или вниз по стеку, чтобы переключаться. Нажмите и удерживайте стек и нажмите «Изменить стек», чтобы упорядочить или включить «Умное вращение», когда iOS выносит вперёд виджет, который считает наиболее релевантным.</p>
+
+<h3>Сделать виджеты прозрачными или тонированными</h3>
+<p>Нажмите «Изменить» на подрагивающем экране «Домой», затем «Настроить», чтобы сменить вид всех иконок и виджетов — например «Прозрачный» или «Тонированный». Виджеты Left следуют этому выбору. См. <a href="/ru/support/widget-transparent-iphone">как сделать виджеты Left прозрачными</a>.</p>
+
+<h2>Добавить виджет на экран блокировки</h2>
+<ol>
+  <li>Нажмите и удерживайте экран блокировки, пока внизу не появится «Настроить». Возможно, сначала нужно разблокировать Face ID.</li>
+  <li>Нажмите «Настроить», затем выберите экран блокировки.</li>
+  <li>Коснитесь области виджетов под временем, чтобы добавить круглые и прямоугольные, или коснитесь даты над временем, чтобы выбрать встроенный виджет.</li>
+  <li>Выберите приложение (например Left) и коснитесь нужного виджета.</li>
+  <li>Закройте панель виджетов и нажмите «Готово».</li>
+</ol>
+<p>На экране блокировки три формы:</p>
+<ul>
+  <li><strong>Встроенный</strong>: одна строка текста рядом с датой, над временем.</li>
+  <li><strong>Круглый</strong>: маленький круглый виджет. В ряду под временем помещается до четырёх.</li>
+  <li><strong>Прямоугольный</strong>: более широкий виджет на место двух круглых.</li>
+</ul>
+<p>Виджеты экрана блокировки не используют полные цвета приложения. iOS рисует их одним оттенком под часы, поэтому дизайн опирается на форму и контраст. Подробнее в <a href="/ru/support/widget-iphone-lock-screen">руководстве по виджетам экрана блокировки</a>.</p>
+
+<h3>Какие виджеты Left подходят для каждого слота</h3>
+<ul>
+  <li><strong>Встроенные</strong>: Год, Месяц, Неделя, День, Минуты, Жизнь, Вы, цифровые и аналоговые часы.</li>
+  <li><strong>Круглые</strong>: Год, Месяц, Неделя, День, Жизнь, Вы, Впереди, список привычек и часы.</li>
+  <li><strong>Прямоугольные</strong>: Год, Месяц, Неделя, День, Жизнь, Вы, Впереди, Привычка, список привычек, Серия, Цель и часы.</li>
+  <li><strong>Только экран «Домой»</strong>: «Всё», список времени «Впереди», список серий, список Целей, Календарь, Особая заметка, Полосы «Впереди» и Круг «Впереди» и другие.</li>
+</ul>
+<p>Практичный экран блокировки: виджет года встроенной строкой, круглый виджет «Впереди» для следующей поездки и прямоугольный виджет серии для забега, который вы защищаете. На страницах <a href="/ru/countdown-widget">виджета обратного отсчёта</a>, <a href="/ru/year-progress-widget">виджета прогресса года</a> и <a href="/ru/habit-tracker">трекера привычек</a> — стили.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ru&amp;mt=8" target="_blank" rel="noopener">Получить виджеты Left</a></p>
+
+<h3>Виджеты и «Эфир активности» — разное</h3>
+<p>«Эфир активности» тоже появляется на экране блокировки и в Dynamic Island, но вы не добавляете его в «Настроить». Приложение запускает его для того, что происходит сейчас. В Left обратный отсчёт может показать его при включении <strong>Финальный обратный отсчёт</strong>, а привычка — через <strong>Постоянное напоминание</strong>.</p>
+<h2>Виджеты в режиме ожидания</h2>
+<p>Режим ожидания превращает iPhone в полноэкранный дисплей, когда он заряжается, заблокирован и лежит на боку.</p>
+<ol>
+  <li>Убедитесь, что режим ожидания включён в «Настройки» &gt; «Режим ожидания».</li>
+  <li>Поставьте iPhone на зарядку в альбомной ориентации и дайте ему заблокироваться.</li>
+  <li>Листайте горизонтально, пока не дойдёте до вида с виджетами — два стека виджетов рядом.</li>
+  <li>Нажмите и удерживайте стек, при необходимости разблокируйте и нажмите +, чтобы добавить виджет. Найдите Left и добавьте нужный.</li>
+</ol>
+<p>Смахните вверх или вниз по любому стеку, чтобы листать его виджеты. В тёмной комнате режим ожидания может перейти в ночной режим с красным оттенком. См. <a href="/ru/support/widget-iphone-standby">виджеты Left в режиме ожидания</a>.</p>
+
+<h2>Изменить или удалить виджет</h2>
+<ul>
+  <li><strong>Экран «Домой»</strong>: нажмите и удерживайте виджет и нажмите «Изменить виджет», чтобы изменить, или «Удалить виджет», чтобы убрать с экрана, затем подтвердите.</li>
+  <li><strong>Экран блокировки</strong>: нажмите и удерживайте, нажмите «Настроить», выберите экран блокировки, коснитесь области виджетов и нажмите минус на виджете, который хотите убрать.</li>
+
+</ul>
+<p>Удаление виджета никогда не удаляет данные в приложении. Подробнее в <a href="/ru/support/edit-or-remove-widget-iphone">как изменить или удалить виджет</a>.</p>
+
+<h2>Устранение неполадок</h2>
+<ul>
+  <li><strong>Приложения нет в галерее виджетов.</strong> Откройте приложение один раз и проверьте снова. Всё ещё нет? Перезапустите iPhone и обновите iOS и приложение.</li>
+  <li><strong>Виджет показывает устаревшие данные.</strong> iOS решает, когда обновлять виджеты, в том числе ради батареи, поэтому обновления не всегда мгновенны. Открытие приложения обычно запускает обновление. Если виджет завис, удалите его и добавьте снова.</li>
+  <li><strong>Виджет пустой или показывает не то.</strong> Нажмите и удерживайте, нажмите «Изменить виджет» и выберите элемент снова — например, если удалили обратный отсчёт, который он показывал.</li>
+
+</ul>
+
+<h2>Вопросы</h2>
+<h3>Почему я не нахожу приложение в галерее виджетов iPhone?</h3>
+<p>Приложение обычно нужно открыть хотя бы раз, прежде чем появятся его виджеты. Если его всё ещё нет в списке, перезапустите iPhone и обновите iOS и приложение. Некоторые приложения вообще не предлагают виджеты.</p>
+<h3>Любой ли виджет можно поставить на экран блокировки?</h3>
+<p>Нет. Экран блокировки принимает только встроенные, круглые и прямоугольные виджеты, и каждое приложение само решает, какие из них есть в этих формах. Более крупные — например «Всё» или список времени «Впереди» в Left — только на экране «Домой».</p>
+<h3>Почему виджеты экрана блокировки не цветные?</h3>
+<p>iOS рисует виджеты экрана блокировки одним оттенком под часы, чтобы они читались на любых обоях. Полные цвета приложения видны на экране «Домой» — если не выбран вид «Тонированный» — и в режиме ожидания.</p>
+<h3>Как часто обновляются виджеты iPhone?</h3>
+<p>iOS управляет расписанием обновлений ради батареи, поэтому виджеты обновляются регулярно, но не всегда мгновенно. Открытие приложения обычно запускает обновление. Виджеты по времени, вроде прогресса года, переключаются сами.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Скачать Left</span>
+          <h2>Начните замечать то, что важно.</h2>
+          <p>Скачайте Left на iPhone, чтобы видеть оставшееся время, даты, которых ждёте, строить привычки и становиться лучше.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-код — нажмите для инструкции">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Отсканируйте или найдите <strong>«Left»</strong> в App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ru&amp;mt=8" target="_blank" rel="noopener" aria-label="Скачайте Left в App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Скачать для iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> человек берегут каждое мгновение.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Подвал">
+          <a href="/ru/support">Поддержка</a>
+          <a href="/terms">Условия</a>
+          <a href="/ru/privacy">Конфиденциальность</a>
+          <a href="/ru/press">Пресса</a>
+          <a href="/ru/contact">Контакты</a>
+          <a href="/ru/tools/">Инструменты</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ru/blog/">Блог</a>
+          <a href="#" data-consent-open>Настройки cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RU</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="true">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pt-BR","ru","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Согласие на использование cookie">
+  <p class="left-consent__text">Мы используем Google Analytics, чтобы понимать, какие страницы помогают людям. Без рекламы и без отслеживания между сайтами.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Разрешить аналитику</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Нет, спасибо</button>
+    <a class="left-consent__link" href="/ru/privacy#website" data-consent-privacy>Конфиденциальность</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

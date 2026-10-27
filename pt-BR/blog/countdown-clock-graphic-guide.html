@@ -1,0 +1,501 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Relógio de contagem regressiva: guia de design 2026 | Left</title>
+  <meta name="description" content="Como desenhar um widget de relógio de contagem regressiva: tipografia, cor, layout e dados ao vivo que vencem um gráfico estático."  />
+  <link rel="canonical" href="https://getleft.app/pt-BR/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Relógio de contagem regressiva: guia de design 2026"  />
+  <meta property="og:description" content="Como desenhar um widget gráfico de relógio de contagem regressiva para o iPhone, com tipografia, cor, layout e dado ao vivo."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/pt-BR/blog/countdown-clock-graphic-guide" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Designing a Countdown Clock Graphic: A 2026 Guide",
+  "description": "How to design a countdown clock graphic widget - typography, color, layout, and the live-data setup that beats any static graphic on social or your devices.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/countdown-clock-graphic-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Designing a Countdown Clock Graphic: A 2026 Guide",
+      "item": "https://getleft.app/blog/countdown-clock-graphic-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/pt-BR/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pt-BR/#features" class="nav-link">Recursos</a>
+          <a href="/pt-BR/tools/" class="nav-link">Ferramentas</a>
+          <a href="/pt-BR/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-pt-BR&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Baixar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Relógio de contagem regressiva: guia de design 2026</h1>
+    <p class="article-meta">Atualizado em <time datetime="2026-10-20">20 de outubro de 2026</time> · 5 min de leitura</p>
+
+    <p>“Gráfico de relógio de contagem regressiva” costuma significar uma de duas coisas: uma imagem estática que você gerou uma vez, com “100 dias para o verão” carimbado, ou um widget ao vivo que mostra o número atual. A primeira é decoração. A segunda muda o comportamento. Este guia é sobre desenhar a segunda: um gráfico de relógio de contagem regressiva que se atualiza, fica no telefone e continua útil depois da primeira semana.</p>
+
+    <p>Vamos cobrir os princípios de design que tornam um widget de contagem regressiva eficaz, a armadilha das contagens cheias de enfeite e a configuração com o widget Ahead do <strong>Left</strong>, que transforma um conceito gráfico numa peça ao vivo, atualizada todo dia, na Tela de Início, na Tela Bloqueada e no Em Espera. Veja a página do <a href="/pt-BR/countdown-widget">widget de contagem regressiva</a> para o resultado pronto.</p>
+
+    <figure class="post-hero"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-close-up-of-a-wooden-box-with-numbers-on-it-idHU3psb4DU" rel="noopener">Annie Spratt / Unsplash</a></figcaption></figure>
+
+    <h2>Gráfico estático ou widget ao vivo</h2>
+    <p>Um gráfico estático de contagem regressiva fica ótimo num print e está errado amanhã. Um widget ao vivo é, em média, menos bonito e está certo todo dia. Para qualquer coisa que você queira acompanhar de verdade (uma meta, uma viagem, um prazo), o ao vivo ganha. O estático serve para um post único nas redes.</p>
+    <p>Este guia parte do princípio de que você quer a versão ao vivo.</p>
+
+    <h2>Princípios de design de um widget de contagem regressiva</h2>
+
+    <h3>1. Um número, grande</h3>
+    <p>O número da <a href="/pt-BR/tools/countdown-timer">contagem regressiva</a> é o ponto principal. Ele deve ser o maior elemento do widget. Qualquer coisa que compita com ele, como ilustrações, degradês e tipografia decorativa, está brigando com o dado. Use um visual neutro em volta de um número dominante.</p>
+
+    <h3>2. Nomeie o evento com especificidade</h3>
+    <p>“Viagem a Tóquio” ganha de “Férias”. “Lançamento do 3º trimestre” ganha de “Prazo”. A especificidade faz a contagem parecer real. Se o rótulo é genérico, a contagem é decoração.</p>
+
+    <h3>3. Escolha a unidade certa</h3>
+    <ul>
+      <li><strong>Dias</strong> para eventos a 7 dias ou mais.</li>
+      <li><strong>Dias + horas</strong> para eventos de 1 a 7 dias.</li>
+      <li><strong>Horas + minutos</strong> para eventos a menos de um dia.</li>
+      <li><strong>Segundos</strong> quase nunca. Parece ansiedade, e o atraso da atualização os deixa visivelmente errados.</li>
+    </ul>
+    <p>Muitos apps de widgets deixam a unidade se adaptar sozinha conforme a data se aproxima. Ative isso, se estiver disponível.</p>
+
+    <h3>4. Alto contraste</h3>
+    <p>O número tem de ser lido num olhar. Preto sobre creme, branco sobre preto, azul-marinho sobre osso. Paletas de meio-tom parecem refinadas e são difíceis de ler na vida real, sobretudo no sol ou com pouca luz.</p>
+
+    <h3>5. Uma só família tipográfica</h3>
+    <p>Uma família de fontes em todo o texto do widget. O número pode ser mais pesado ou mais leve que o rótulo, mas da mesma família. Misturar serifada, display e sans sempre parece acidente.</p>
+
+    <h2>Cores conforme o tipo de meta</h2>
+    <ul>
+      <li><strong>Contagens de expectativa (viagem, aniversário, lançamento):</strong> paleta mais quente. Terracota, dourado, ocre. A cor sinaliza antecipação.</li>
+      <li><strong>Contagens de pressão (prazo, prova):</strong> paleta mais fria e calma. Ardósia, azul-marinho, verde-sálvia. A cor deve reduzir a pressão, não ampliá-la.</li>
+      <li><strong>Arcos longos (ano, semestre):</strong> neutros. Osso, carvão, off-white. Widgets de um ano inteiro ficam perto de papel de parede; o tom baixo cansa menos com o tempo.</li>
+    </ul>
+    <p>Contagens em vermelho vivo são um erro comum. Parecem urgentes num print e, no dia a dia, parecem estresse. Guarde o vermelho para alertas de fato críticos no tempo.</p>
+
+    <h2>A posição importa tanto quanto o design</h2>
+    <ul>
+      <li><strong>Tela Bloqueada:</strong> a contagem mais urgente. Visível toda vez que você pega o telefone.</li>
+      <li><strong>Tela de Início (página principal):</strong> a contagem ativa mais importante.</li>
+      <li><strong>Tela de Início (página secundária):</strong> todas as outras contagens ativas, empilhadas.</li>
+      <li><strong>Em Espera:</strong> a contagem regressiva da mesa.</li>
+      <li><strong>Papel de parede:</strong> o arco do ano.</li>
+    </ul>
+    <p>Uma contagem no lugar errado é invisível. Uma contagem no lugar certo muda o jeito de gastar os dias.</p>
+
+    <h2>A configuração no Left</h2>
+    <ol>
+      <li>Em Futuras, toque em <strong>Adicionar uma data Futuras</strong> e crie uma entrada com o nome e a data do evento.</li>
+      <li>Em <strong>Mais opções</strong>, use <strong>Mostrar como...</strong> para escolher horas, dias, semanas, meses ou anos, além de um símbolo.</li>
+      <li>Escolha uma cor e, se quiser, uma foto de fundo.</li>
+      <li>Adicione o widget à superfície que escolher (<a href="/pt-BR/support/widget-iphone-home-screen">Tela de Início</a>, <a href="/pt-BR/support/widget-iphone-lock-screen">Tela Bloqueada</a>, <a href="/pt-BR/support/widget-iphone-standby">Em Espera</a>).</li>
+      <li>Mantenha o widget pressionado → Editar Widget → escolha a data específica do Ahead.</li>
+    </ol>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-pt-BR&amp;mt=8" target="_blank" rel="noopener">Baixe o widget de contagem regressiva</a></p>
+
+    <h2>Erros comuns de design</h2>
+    <ul>
+      <li><strong>Adicionar segundos.</strong> Fica carregado e atrasa de um jeito visível.</li>
+      <li><strong>Centralizar tudo.</strong> Texto centralizado em todas as linhas parece pôster. Layouts assimétricos parecem funcionais.</li>
+      <li><strong>Ilustrações decorativas atrás do número.</strong> Elas dificultam a leitura do número.</li>
+      <li><strong>Vários widgets competindo na mesma página.</strong> Duas contagens lado a lado disputam uma com a outra. Uma contagem e um widget relacionado (relógio, progresso do ano) funcionam melhor.</li>
+      <li><strong>Usar uma imagem de banco como fundo.</strong> Pixeliza mal e compete com o número.</li>
+    </ul>
+
+    <h2>Quando as contagens perdem o efeito</h2>
+    <p>Três modos de falha e os consertos:</p>
+    <ul>
+      <li><strong>Fadiga visual.</strong> Mude a cor ou o tamanho do widget depois de 4–6 semanas. O movimento faz você olhar de novo.</li>
+      <li><strong>O número deixa de parecer real.</strong> A contagem está ali há tanto tempo que virou papel de parede. Passe para a Tela Bloqueada, se ainda não estiver.</li>
+      <li><strong>A contagem terminou.</strong> Remova. Não deixe uma contagem concluída parada ali. Ela dilui o impacto da próxima.</li>
+    </ul>
+
+    <h2>Para gráficos de rede social</h2>
+    <p>Se você quer mesmo um gráfico estático para compartilhar (um post de anúncio, por exemplo), os princípios são os mesmos: um número grande, um rótulo específico, alto contraste, uma só família tipográfica. Gere no dia em que for publicar. Não tente reaproveitar.</p>
+
+    <h2>Leituras relacionadas</h2>
+    <p>Para a seleção mais ampla de widgets de contagem regressiva: <a href="/pt-BR/blog/best-countdown-widgets-iphone">melhores widgets de contagem regressiva para iPhone</a>. Para o design como estética: <a href="/pt-BR/blog/iphone-aesthetic-widgets-guide">widgets estéticos para iPhone</a>. Para o layout da Tela de Início: <a href="/pt-BR/blog/home-screen-timer-iphone">configuração do timer na Tela de Início</a>.</p>
+
+    <h2>Perguntas frequentes</h2>
+    <p><strong>Qual é a melhor fonte para um widget de contagem regressiva?</strong><br/>
+    Uma sans geométrica (Helvetica, Inter, Outfit) ou uma serifada slab forte. Evite fontes display, que ficam difíceis de ler em tamanho pequeno.</p>
+
+    <p><strong>Devo usar um fundo em degradê?</strong><br/>
+    Degradês sutis funcionam; os agressivos competem com o número. Na dúvida, use uma cor chapada.</p>
+
+    <p><strong>Dá para compartilhar um design de contagem regressiva com alguém?</strong><br/>
+    Com o Left, compartilhe a contagem de base pelo Joint Ahead (parte do Left Premium). A outra pessoa recebe a mesma entrada do Ahead; o widget no telefone dela usa o estilo dela. O dado é compartilhado; o design é escolha de cada um.</p>
+
+    <p><strong>Quão precisa é a contagem regressiva?</strong><br/>
+    O iOS controla a frequência de atualização do widget. A contagem é precisa ao minuto para eventos em algumas horas, à hora para eventos em alguns dias e ao dia para eventos mais distantes.</p>
+
+    <p><strong>O que o widget Ahead do Left mostra, em concreto?</strong><br/>
+    Uma contagem regressiva configurável: horas, dias, semanas, meses ou anos, progresso opcional, um símbolo, cor e foto de fundo. Feito para ser a versão ao vivo de um “gráfico de relógio de contagem regressiva”.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Baixe o Left</span>
+          <h2>Comece a notar o que importa.</h2>
+          <p>Baixe o Left no iPhone para ver o tempo que resta, as datas que você espera, criar os hábitos que quer manter e se tornar uma versão melhor de você.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - toque para ver as instruções">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escaneie ou busque <strong>“Left”</strong> na App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-pt-BR&amp;mt=8" target="_blank" rel="noopener" aria-label="Baixar na App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Baixar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> pessoas fazendo cada momento valer.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Rodapé">
+          <a href="/pt-BR/support">Suporte</a>
+          <a href="/terms">Termos</a>
+          <a href="/pt-BR/privacy">Privacidade</a>
+          <a href="/pt-BR/press">Imprensa</a>
+          <a href="/pt-BR/contact">Contato</a>
+          <a href="/pt-BR/tools/">Ferramentas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pt-BR/blog/">Blog</a>
+          <a href="#" data-consent-open>Configurações de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>BR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="true">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pt-BR","ru","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimento de cookies">
+  <p class="left-consent__text">Usamos o Google Analytics para entender quais páginas ajudam as pessoas. Sem anúncios e sem rastreamento entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir análises</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Agora não</button>
+    <a class="left-consent__link" href="/pt-BR/privacy#website" data-consent-privacy>Privacidade</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

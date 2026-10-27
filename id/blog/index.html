@@ -1,0 +1,816 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Blog Left — Waktu Tersisa, Kebiasaan, Hitung Mundur & Widget</title>
+  <meta name="description" content="Panduan untuk membuat waktu terlihat di iPhone: widget, kebiasaan, rentetan, penghitung waktu mundur, Perencana, dan pengaturan ramah ADHD, ditambah ulasan aplikasi jujur."  />
+  <link rel="canonical" href="https://getleft.app/id/blog/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Blog Left"  />
+  <meta property="og:description" content="Panduan untuk waktu tersisa, widget iPhone, kebiasaan, rentetan, hitung mundur, dan Perencana."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/id/blog/" />
+  <meta property="og:locale" content="id_ID" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Blog Left"  />
+  <meta name="twitter:description" content="Panduan untuk waktu tersisa, widget iPhone, kebiasaan, rentetan, hitung mundur, dan Perencana."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Left Blog",
+  "description": "Guides for making time visible on iPhone: widgets, habits, streaks, countdowns, Planner and ADHD-friendly setups, plus honest app round-ups.",
+  "url": "https://getleft.app/blog/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "logo": { "@type": "ImageObject", "url": "https://getleft.app/favicon/android-chrome-512x512.png" }
+  }
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Utama">
+    <div class="container nav-inner">
+      <a href="/id/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/id/#features" class="nav-link">Fitur</a>
+          <a href="/id/tools/" class="nav-link">Alat</a>
+          <a href="/id/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-id&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Unduh</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container blog-header">
+    <h1>Blog Left</h1>
+    <p>Panduan untuk waktu tersisa, kebiasaan, rentetan, hitung mundur, Perencana, dan widget yang menjaga yang penting tetap terlihat.</p>
+  </main>
+
+  <section class="container blog-grid">
+
+    <a class="blog-card" href="/id/blog/structured-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/structured-app-alternatives-hero.webp" alt="6 Alternatif Aplikasi Structured Terbaik untuk iPhone di 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">6 Alternatif Aplikasi Structured Terbaik untuk iPhone di 2026</div>
+        <div class="blog-excerpt">Alternatif terbaik untuk perencana harian Structured di iPhone pada 2026: perencana visual, tampilan hari, dan alat blok waktu, dibandingkan.</div>
+        <div class="blog-meta">9 menit baca</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-birthday-countdown-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-birthday-countdown-apps-iphone-hero.webp" alt="Aplikasi Hitung Mundur Ulang Tahun Terbaik untuk iPhone di 2026: 7 Dibandingkan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aplikasi Hitung Mundur Ulang Tahun Terbaik untuk iPhone di 2026: 7 Dibandingkan</div>
+        <div class="blog-excerpt">Aplikasi hitung mundur ulang tahun dan pengingat ulang tahun terbaik untuk iPhone di 2026, dibandingkan dari sisi widget, impor Kontak, Apple Watch, dan harga.</div>
+        <div class="blog-meta">9 menit baca</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/streaks-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/streaks-app-alternatives-hero.webp" alt="7 Alternatif Aplikasi Streaks Terbaik untuk iPhone di 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">7 Alternatif Aplikasi Streaks Terbaik untuk iPhone di 2026</div>
+        <div class="blog-excerpt">Alternatif terbaik untuk pelacak kebiasaan Streaks di iPhone pada 2026, dibandingkan dari sisi harga, paket gratis, Apple Watch, widget, dan Apple Health.</div>
+        <div class="blog-meta">9 menit baca</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-year-progress-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-year-progress-apps-iphone-hero.webp" alt="Aplikasi dan Widget Progres Tahun Terbaik untuk iPhone di 2026: 5 Dibandingkan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aplikasi dan Widget Progres Tahun Terbaik untuk iPhone di 2026: 5 Dibandingkan</div>
+        <div class="blog-excerpt">Aplikasi dan widget progres tahun terbaik untuk iPhone di 2026, dibandingkan dari sisi widget Layar Utama dan Layar Terkunci, wallpaper, Apple Watch, dan harga.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-countdown-wallpaper-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-wallpaper-apps-iphone-hero.webp" alt="Aplikasi Wallpaper Hari Tersisa dan Hitung Mundur Terbaik untuk iPhone di 2026: 6 Dibandingkan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aplikasi Sisa Hari dan Wallpaper Hitung Mundur Terbaik untuk iPhone di 2026: 6 Dibandingkan</div>
+        <div class="blog-excerpt">Aplikasi wallpaper hari tersisa dan hitung mundur terbaik untuk iPhone di 2026: Layar Terkunci tahun, hidup dalam minggu, dan hitung mundur yang diperbarui setiap hari.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-life-calendar-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-life-calendar-apps-iphone-hero.webp" alt="Aplikasi Kalender Hidup Terbaik untuk iPhone di 2026: 7 Aplikasi Hidup dalam Minggu dan Memento Mori Dibandingkan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aplikasi Kalender Hidup Terbaik untuk iPhone di 2026: 7 Aplikasi Hidup dalam Minggu dan Memento Mori Dibandingkan</div>
+        <div class="blog-excerpt">Aplikasi kalender hidup, hidup dalam minggu, dan memento mori terbaik untuk iPhone di 2026, dibandingkan dari sisi widget, wallpaper, harga, dan rating.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/widgetsmith-alternatives">
+      <div class="blog-cover"><img src="/images/blog/widgetsmith-alternatives-hero.webp" alt="7 Alternatif Widgetsmith Terbaik untuk iPhone di 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">7 Alternatif Widgetsmith Terbaik untuk iPhone di 2026</div>
+        <div class="blog-excerpt">Alternatif Widgetsmith terbaik untuk iPhone di 2026: widget waktu dan hitung mundur, perancang widget, tema, dan launcher, dibandingkan.</div>
+        <div class="blog-meta">9 menit baca</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-days-since-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-days-since-apps-iphone-hero.webp" alt="Aplikasi Hari Sejak Terbaik untuk iPhone di 2026: 7 Dibandingkan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aplikasi Hari Sejak Terbaik untuk iPhone di 2026: 7 Dibandingkan</div>
+        <div class="blog-excerpt">Aplikasi hari sejak dan pelacak terakhir kali terbaik untuk iPhone di 2026, dibandingkan dari sisi harga, widget, Apple Watch, dan rating.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+
+    <a class="blog-card" href="/id/blog/aim-goal-tracker-left">
+      <div class="blog-cover"><img src="/images/blog/aim-goal-tracker-left-hero.webp" alt="Tujuan di Left: Lacak Sasaran Apa Pun yang Bisa Dihitung" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Tujuan di Left: Lacak Sasaran Apa Pun yang Bisa Dihitung</div>
+        <div class="blog-excerpt">Hemat uang, baca buku, lari lebih jauh, kurangi utang, atau selesaikan proyek dengan pelacak tujuan berbasis angka di Sejak.</div>
+        <div class="blog-meta">Bacaan 3 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/digital-clock-date-widget-iphone">
+      <div class="blog-cover"><img src="/images/blog/digital-clock-date-widget-iphone-hero.webp" alt="Cara Mengatur Widget Jam Digital dan Tanggal di iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Mengatur Widget Jam Digital dan Tanggal di iPhone (2026)</div>
+        <div class="blog-excerpt">Panduan praktis widget jam + tanggal di Layar Utama, Layar Terkunci, dan Siaga — tanpa kelelahan jam default.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/presentation-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/presentation-timer-iphone-hero.webp" alt="Setup Timer Presentasi Terbaik untuk iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Setup Timer Presentasi Terbaik untuk iPhone</div>
+        <div class="blog-excerpt">Rig timer presentasi yang bekerja sehingga kamu tidak perlu menunduk ke ponsel di tengah bicara.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-reminder-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-reminder-apps-iphone-hero.webp" alt="10 App Pengingat Terbaik untuk iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 App Pengingat Terbaik untuk iPhone (2026)</div>
+        <div class="blog-excerpt">Ringkasan jujur — untuk apa masing-masing, di mana kurang, dan cara memilih yang akan kamu pakai.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-reward-system">
+      <div class="blog-cover"><img src="/images/blog/adhd-reward-system-hero.webp" alt="Cara Membangun Sistem Hadiah ADHD yang Berkelanjutan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Membangun Sistem Hadiah ADHD yang Berkelanjutan</div>
+        <div class="blog-excerpt">Strategi praktis berbasis sains yang menghormati cara kerja dopamin ADHD.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-planner-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-planner-adhd-hero.webp" alt="Cara Memilih Perencana Terbaik untuk ADHD" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Memilih Perencana Terbaik untuk ADHD</div>
+        <div class="blog-excerpt">Panduan tanpa rasa malu untuk memilih, menyiapkan, dan benar-benar bertahan dengan perencana yang cocok dengan otak ADHD.</div>
+        <div class="blog-meta">Bacaan 8 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-time-blindness-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="Buta Waktu ADHD: Apa Itu dan Bagaimana Widget Membantu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Buta Waktu ADHD: Apa Itu dan Bagaimana Widget Membantu</div>
+        <div class="blog-excerpt">Kebutaan waktu dijelaskan, dan setup widget iPhone yang membuat waktu cukup terlihat untuk ditindaklanjuti.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/time-management-best-practices">
+      <div class="blog-cover"><img src="/images/blog/time-management-best-practices-hero.webp" alt="10 Praktik Terbaik Manajemen Waktu yang Benar-Benar Bekerja" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 Praktik Terbaik Manajemen Waktu yang Benar-Benar Bekerja</div>
+        <div class="blog-excerpt">Sepuluh teknik yang layak dipelajari — dan setup waktu terlihat yang menjaga mereka bertahan melewati minggu kedua.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/project-timeline-visualization">
+      <div class="blog-cover"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="Visualisasi Timeline Proyek: Dari Gantt ke Widget Sekilas" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Visualisasi Timeline Proyek: Dari Gantt ke Widget Sekilas</div>
+        <div class="blog-excerpt">Kapan memakai Gantt, kapan roadmap, dan kapan hitung mundur — tanpa membangun chart berlebihan.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-home-screen-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-home-screen-widgets-iphone-hero.webp" alt="10 Widget Layar Utama Terbaik untuk iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 Widget Layar Utama Terbaik untuk iPhone (2026)</div>
+        <div class="blog-excerpt">Ringkasan jujur widget yang pantas mendapat tempatnya — dan mana yang sekadar dekorasi.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/smart-goals-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-guide-hero.webp" alt="Tujuan SMART: Panduan Setup Praktis untuk 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Tujuan SMART: Panduan Setup Praktis untuk 2026</div>
+        <div class="blog-excerpt">Panduan praktis dengan setup pelacakan terlihat yang menjaga tujuan SMART tetap hidup melewati minggu kedua.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/event-planning-timeline">
+      <div class="blog-cover"><img src="/images/blog/event-planning-timeline-hero.webp" alt="Timeline Perencanaan Acara: Panduan Langkah demi Langkah" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Timeline Perencanaan Acara: Panduan Langkah demi Langkah</div>
+        <div class="blog-excerpt">Perencanaan mundur, pos pemeriksaan vendor, jebakan scope-creep, dan hitung mundur bersama yang menyelaraskan tim.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/workplace-productivity-habits">
+      <div class="blog-cover"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="10 Kebiasaan Produktivitas Tempat Kerja yang Benar-Benar Bertahan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 Kebiasaan Produktivitas Tempat Kerja yang Benar-Benar Bertahan</div>
+        <div class="blog-excerpt">Metode yang bertahan melewati minggu kedua, plus setup terlihat yang menopangnya saat kemauan pudar.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-morning-routine-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-morning-routine-iphone-hero.webp" alt="Cara Membangun Rutinitas Pagi Ramah-ADHD di iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Membangun Rutinitas Pagi Ramah-ADHD di iPhone</div>
+        <div class="blog-excerpt">Tiga langkah, urutan apa saja, terlihat saat kamu mengangkat ponsel. Infomercial 5 pagi sudah usang.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-task-initiation-strategies">
+      <div class="blog-cover"><img src="/images/blog/adhd-task-initiation-strategies-hero.webp" alt="Inisiasi Tugas ADHD: Cara Mulai Saat Tidak Bisa" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Inisiasi Tugas ADHD: Cara Mulai Saat Tidak Bisa</div>
+        <div class="blog-excerpt">Aturan 2 menit, awal yang dieksternalisasi, dan setup widget yang menurunkan energi aktivasi.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/time-management-tips-students">
+      <div class="blog-cover"><img src="/images/blog/time-management-tips-students-hero.webp" alt="10 Tip Manajemen Waktu untuk Siswa" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 Tip Manajemen Waktu untuk Siswa</div>
+        <div class="blog-excerpt">Tips yang bertahan di semester nyata — deadline terlihat, pola energi, dan setup widget yang jujur.</div>
+        <div class="blog-meta">Bacaan 7 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/timer-interval-app-iphone">
+      <div class="blog-cover"><img src="/images/blog/timer-interval-app-iphone-hero.webp" alt="App Timer Interval: Di Luar Kebugaran — Panduan untuk Fokus dan Kebiasaan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App Timer Interval: Di Luar Kebugaran — Panduan untuk Fokus dan Kebiasaan</div>
+        <div class="blog-excerpt">Kasus penggunaan jauh melampaui Tabata — dan setup iPhone yang menjaga timer terlihat.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-goal-tracking-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-goal-tracking-apps-iphone-hero.webp" alt="App Pelacak Tujuan Terbaik untuk iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App Pelacak Tujuan Terbaik untuk iPhone (2026)</div>
+        <div class="blog-excerpt">Diurutkan menurut jenis tujuan — deadline, kebiasaan, akumulasi, proyek. App yang tepat untuk tujuan yang tepat.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-apple-watch-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-apple-watch-apps-adhd-hero.webp" alt="9 App Apple Watch Terbaik untuk ADHD" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">9 App Apple Watch Terbaik untuk ADHD</div>
+        <div class="blog-excerpt">Haptic di pergelangan adalah apa yang diimpikan alarm — app yang benar-benar mengubah perilaku terkait ADHD.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/iphone-aesthetic-widgets-guide">
+      <div class="blog-cover"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="Widget Aesthetic iPhone: Panduan How-To 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Widget Aesthetic iPhone: Panduan How-To 2026</div>
+        <div class="blog-excerpt">Desain Layar Utama estetis dengan widget yang terlihat bagus dan melakukan sesuatu yang berguna.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-productivity-apps-mac">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-mac-hero.webp" alt="App Produktivitas Terbaik untuk Mac (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App Produktivitas Terbaik untuk Mac (2026)</div>
+        <div class="blog-excerpt">Stack produktivitas Mac yang jujur — tiga atau empat app yang pantas, tanpa kekacauan bilah menu.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-body-doubling-apps">
+      <div class="blog-cover"><img src="/images/blog/adhd-body-doubling-apps-hero.webp" alt="Body Doubling ADHD: App dan Alternatif yang Benar-Benar Bekerja" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Body Doubling ADHD: App dan Alternatif yang Benar-Benar Bekerja</div>
+        <div class="blog-excerpt">Mengapa body doubling membantu ADHD, app yang memfasilitasinya, dan setup akuntabilitas async.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/countdown-clock-graphic-guide">
+      <div class="blog-cover"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="Mendesain Grafik Jam Hitung Mundur: Panduan 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Mendesain Grafik Jam Hitung Mundur: Panduan 2026</div>
+        <div class="blog-excerpt">Tipografi, warna, layout — dan setup widget live yang mengalahkan grafik statis mana pun.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/goal-progress-tracker-setup">
+      <div class="blog-cover"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="App Pelacak Progres Tujuan: Panduan Setupmu (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App Pelacak Progres Tujuan: Panduan Setupmu (2026)</div>
+        <div class="blog-excerpt">Tujuan pertama, penempatan widget, gaya lanjutan, dan alur kerja yang benar-benar bertahan.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/home-screen-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="Cara Memasang Timer Hitung Mundur di Layar Utama iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Memasang Timer Hitung Mundur di Layar Utama iPhone</div>
+        <div class="blog-excerpt">Ukuran, penempatan, kasus penggunaan — setup widget yang tidak pudar.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-apps-for-adhd-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-apps-for-adhd-iphone-hero.webp" alt="10 App Terbaik untuk Orang dengan ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 App Terbaik untuk Orang dengan ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">App yang benar-benar membantu — fokus, inisiasi tugas, kebutaan waktu, rutinitas — dicocokkan dengan mode kegagalan spesifik.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/visual-goals-track-on-screens">
+      <div class="blog-cover"><img src="/images/blog/visual-goals-track-on-screens-hero.webp" alt="Tujuan Visual: Cara Melacak Ambisi di Layar iPhone-mu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Tujuan Visual: Cara Melacak Ambisi di Layar iPhone-mu</div>
+        <div class="blog-excerpt">Sistem berlapis empat permukaan yang membuat tujuan mustahil dilupakan.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/smart-goals-visual-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-visual-guide-hero.webp" alt="Tujuan SMART Visual: Cara Melacaknya di Perangkatmu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Tujuan SMART Visual: Cara Melacaknya di Perangkatmu</div>
+        <div class="blog-excerpt">Terjemahkan setiap huruf SMART menjadi widget terlihat — tanpa template.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-students-study-tools-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-students-study-tools-iphone-hero.webp" alt="Alat Belajar untuk Siswa dengan ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Alat Belajar untuk Siswa dengan ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">Setup belajar iPhone yang bekerja untuk siswa ADHD — hitung mundur semester, Pomodoro, dan rentetan belajar.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-productivity-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-adhd-hero.webp" alt="App Produktivitas Terbaik untuk ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App Produktivitas Terbaik untuk ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">App dicocokkan dengan mode kegagalan spesifik, dengan stack kecil yang benar-benar bekerja.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/productivity-tools-visual-focus">
+      <div class="blog-cover"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="Alat Produktivitas: Mengapa Visual Mengalahkan Berat-Fitur" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Alat Produktivitas: Mengapa Visual Mengalahkan Berat-Fitur</div>
+        <div class="blog-excerpt">Empat gaya pelacakan visual yang bekerja — dan setup terpadu yang mengganti lima app.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/how-to-focus-adhd">
+      <div class="blog-cover"><img src="/images/blog/how-to-focus-adhd-hero.webp" alt="Cara Fokus dengan ADHD: Langkah Praktis yang Bekerja" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Fokus dengan ADHD: Langkah Praktis yang Bekerja</div>
+        <div class="blog-excerpt">Perbaikan segera, ritual terstruktur, lingkungan, dan setup widget yang menyatukannya.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-free-widget-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-free-widget-apps-iphone-hero.webp" alt="10 App Widget Gratis Terbaik untuk iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 App Widget Gratis Terbaik untuk iPhone (2026)</div>
+        <div class="blog-excerpt">Cakupan tier gratis yang jujur, dengan jebakan di balik label «gratis».</div>
+        <div class="blog-meta">Bacaan 4 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/visual-reminders-adhd-apple-setup">
+      <div class="blog-cover"><img src="/images/blog/visual-reminders-adhd-apple-setup-hero.webp" alt="Pengingat Visual untuk ADHD: Panduan Setup iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Pengingat Visual untuk ADHD: Panduan Setup iPhone</div>
+        <div class="blog-excerpt">Setup pengingat visual di iPhone: widget dinamis yang tidak pudar ke wallpaper.</div>
+        <div class="blog-meta">Bacaan 4 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/keep-track-multiple-projects">
+      <div class="blog-cover"><img src="/images/blog/keep-track-multiple-projects-hero.webp" alt="Cara Melacak Banyak Proyek Sekaligus (Tanpa Kehilangan Akal)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Melacak Banyak Proyek Sekaligus (Tanpa Kehilangan Akal)</div>
+        <div class="blog-excerpt">Satu sumber kebenaran, tinjauan mingguan, dan dasbor widget yang membuat progres terlihat.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/stay-consistent-with-goals">
+      <div class="blog-cover"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="Cara Tetap Konsisten dengan Tujuan (Tanpa Mengandalkan Kemauan)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Tetap Konsisten dengan Tujuan (Tanpa Mengandalkan Kemauan)</div>
+        <div class="blog-excerpt">Sistem yang menghasilkan konsistensi di mana kemauan gagal — rentetan terlihat, ritual mulai ulang, akuntabilitas.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/adhd-work-from-home-setup">
+      <div class="blog-cover"><img src="/images/blog/adhd-work-from-home-setup-hero.webp" alt="ADHD Kerja dari Rumah: Setup Berbasis Widget yang Bekerja" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD Kerja dari Rumah: Setup Berbasis Widget yang Bekerja</div>
+        <div class="blog-excerpt">Siaga iPhone, blok deep-work terlihat, dan ritme harian yang bertahan sampai Rabu.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-habit-tracker-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-habit-tracker-apps-iphone-hero.webp" alt="7 App Pelacak Kebiasaan Terbaik untuk iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">7 App Pelacak Kebiasaan Terbaik untuk iPhone (2026)</div>
+        <div class="blog-excerpt">Membandingkan pelacak kebiasaan terkemuka — dukungan widget, jadwal, berbagi, dan mana yang cocok cara kerjamu.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/best-countdown-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-widgets-iphone-hero.webp" alt="Widget Hitung Mundur Terbaik untuk Layar Utama iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Widget Hitung Mundur Terbaik untuk Layar Utama iPhone (2026)</div>
+        <div class="blog-excerpt">Widget hitung mundur yang akan kami taruh di Layar Utama sendiri — perjalanan, ulang tahun, deadline, tanggal bersama.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/habitkit-vs-left">
+      <div class="blog-cover"><img src="/images/blog/habitkit-vs-left-hero.webp" alt="HabitKit vs Left: Perbandingan Jujur" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">HabitKit vs Left: Perbandingan Jujur</div>
+        <div class="blog-excerpt">Dua app pelacak kebiasaan kuat dengan filosofi sangat berbeda. Di mana masing-masing menang, berdampingan.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/how-to-add-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="Cara Menambahkan Widget di iPhone: Layar Utama, Layar Terkunci, dan Siaga" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Menambahkan Widget di iPhone: Layar Utama, Layar Terkunci, dan Siaga</div>
+        <div class="blog-excerpt">Langkah demi langkah memakai Left sebagai contoh — setiap permukaan tempat kamu bisa meletakkan widget di iOS.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/what-is-year-progress">
+      <div class="blog-cover"><img src="/images/blog/what-is-year-progress-hero.webp" alt="Apa itu Progres Tahun, dan Mengapa Kamu Harus Melacaknya" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Apa itu Progres Tahun, dan Mengapa Kamu Harus Melacaknya</div>
+        <div class="blog-excerpt">Visualisasi kecil dengan pergeseran mindset besar. Bagaimana widget progres tahun mengubah cara kamu melihat tahun.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/how-to-build-a-streak">
+      <div class="blog-cover"><img src="/images/blog/how-to-build-a-streak-hero.webp" alt="Cara Membangun Rentetan di iPhone Kamu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cara Membangun Rentetan di iPhone Kamu</div>
+        <div class="blog-excerpt">Kebiasaan vs rentetan, mengatur jadwal, dan setup widget yang membuatnya bertahan.</div>
+        <div class="blog-meta">Bacaan 6 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/left-wallpaper-guide">
+      <div class="blog-cover"><img src="/images/blog/left-wallpaper-guide-hero.webp" alt="Wallpaper Left: Layar Terkunci yang Memperbarui Sendiri" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Wallpaper Left: Layar Terkunci yang Memperbarui Sendiri</div>
+        <div class="blog-excerpt">Cara kerja Left Wallpaper, cara setup dengan Shortcuts, dan apa yang diletakkan di sana.</div>
+        <div class="blog-meta">Bacaan 2 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/countdown-next-trip-with-friends">
+      <div class="blog-cover"><img src="/images/blog/countdown-next-trip-with-friends-hero.webp" alt="Menghitung Mundur ke Perjalanan Berikutnya (dan Membagikannya dengan Teman)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Menghitung Mundur ke Perjalanan Berikutnya (dan Membagikannya dengan Teman)</div>
+        <div class="blog-excerpt">Panduan tanggal Ahead, lalu mengubahnya menjadi Joint Ahead dengan orang yang ikut.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/id/blog/left-planner-guide">
+      <div class="blog-cover"><img src="/images/blog/left-planner-guide-hero.webp" alt="Perencana Left: Harimu dalam Satu Tampilan" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Perencana Left: Harimu dalam Satu Tampilan</div>
+        <div class="blog-excerpt">Pengingat Apple, acara kalender, kebiasaan, rentetan, cuaca, tidur, olahraga, dan lainnya di satu tempat.</div>
+        <div class="blog-meta">Bacaan 5 menit</div>
+      </div>
+    </a>
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> orang menjadikan setiap momen berarti.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/id/support">Bantuan</a>
+          <a href="/terms">Ketentuan</a>
+          <a href="/id/privacy">Privasi</a>
+          <a href="/id/press">Pers</a>
+          <a href="/id/contact">Kontak</a>
+          <a href="/id/tools/">Alat</a>
+          <!-- left:footer-extra:start -->
+          <a href="/id/blog/">Blog</a>
+          <a href="#" data-consent-open>Pengaturan cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ID</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="true">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pt-BR","ru","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Persetujuan cookie">
+  <p class="left-consent__text">Kami memakai Google Analytics untuk memahami halaman mana yang membantu orang. Tanpa iklan, tanpa pelacakan lintas situs.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Izinkan analitik</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Tidak, terima kasih</button>
+    <a class="left-consent__link" href="/id/privacy#website" data-consent-privacy>Privasi</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
