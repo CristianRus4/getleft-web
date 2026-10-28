@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Jak dodać widżety na iPhonie (ekran główny i blokady) | Left</title>
+  <meta name="description" content="Krok po kroku: jak dodać widżety na iPhonie — ekran główny, ekran blokady i tryb czuwania, z Left jako przykładem."  />
+  <link rel="canonical" href="https://getleft.app/pl/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Jak dodać widżety na iPhonie (ekran główny i blokady)"  />
+  <meta property="og:description" content="Krok po kroku: jak dodać widżety na iPhonie — ekran główny, ekran blokady i tryb czuwania, z Left jako przykładem."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/pl/blog/how-to-add-widgets-iphone" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jak dodać widżety na iPhonie (ekran główny i blokady)"  />
+  <meta name="twitter:description" content="Krok po kroku: jak dodać widżety na iPhonie — ekran główny, ekran blokady i tryb czuwania, z Left jako przykładem."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+  "description": "Step-by-step guide to adding widgets on iPhone: Home Screen, Lock Screen and StandBy, using Left as the example.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-add-widgets-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+      "item": "https://getleft.app/blog/how-to-add-widgets-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why can't I find an app in the iPhone widget gallery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app usually needs to be opened once before its widgets appear. If it still isn't listed, restart your iPhone and update iOS and the app. Some apps also don't offer widgets at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can any widget go on the Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Lock Screen only takes inline, circular and rectangular widgets, and each app decides which of its widgets come in those shapes. Larger widgets, like Left's Everything or Time Ahead list, are Home Screen only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are my Lock Screen widgets not in color?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS draws Lock Screen widgets in a single tint that matches the clock, so they stay readable over any wallpaper. The app's full colors show on the Home Screen, unless you pick the Tinted look, and in StandBy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do iPhone widgets update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS controls the refresh schedule to save battery, so widgets update regularly but not always instantly. Opening the app usually triggers a refresh. Time-based widgets, like a year progress widget, roll over on their own."
+      }
+    }
+  ],
+  "inLanguage": "pl"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Główna">
+    <div class="container nav-inner">
+      <a href="/pl/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pl/#features" class="nav-link">Funkcje</a>
+          <a href="/pl/tools/" class="nav-link">Narzędzia</a>
+          <a href="/pl/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-pl&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Pobierz</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Jak dodać widżety na iPhonie: ekran główny, blokady i tryb czuwania</h1>
+<p class="article-meta">Zaktualizowano <time datetime="2026-10-20">20 października 2026</time> · 6 min czytania</p>
+<p>iPhone ma trzy miejsca na widżety: ekran główny, ekran blokady i tryb czuwania. Oto pełna ścieżka dla każdego na iOS 26, z Left jako przykładem.</p>
+
+<figure class="post-hero"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/hammer-and-framed-prints-on-floor-wk6ufnhdvD4" rel="noopener">Barney Goodman / Unsplash</a></figcaption></figure>
+
+<h2>Zanim zaczniesz</h2>
+<p>Zainstaluj aplikację, której widżetu chcesz, i otwórz ją przynajmniej raz. Wiele aplikacji, w tym Left, pojawia się w galerii widżetów dopiero po pierwszym uruchomieniu. Left wymaga iOS 26 lub nowszego.</p>
+
+<h2>Dodaj widżet do ekranu głównego</h2>
+<ol>
+  <li>Dotknij i przytrzymaj pusty obszar ekranu głównego, aż aplikacje zaczną drżeć.</li>
+  <li>Stuknij Edytuj w lewym górnym rogu, potem Dodaj widżet.</li>
+  <li>Wyszukaj aplikację (np. Left) albo przewiń, by ją znaleźć, potem stuknij.</li>
+  <li>Przesuwaj między widżetami i rozmiarami. Widżety ekranu głównego mają rozmiary Mały, Średni i Duży.</li>
+  <li>Stuknij Dodaj widżet, przeciągnij widżet tam, gdzie chcesz, i stuknij Gotowe.</li>
+</ol>
+<p>Więcej w <a href="/pl/support/widget-iphone-home-screen">przewodniku po widżetach ekranu głównego</a>.</p>
+
+<h3>Wybierz, co pokazuje widżet</h3>
+<p>Większość widżetów da się skonfigurować. Dotknij i przytrzymaj widżet, potem stuknij Edytuj widżet. W Left tu wybierasz, które odliczanie pokazuje widżet Ahead, który nawyk śledzi widżet Nawyk, albo czy widżet Roku liczy w dniach, tygodniach czy miesiącach.</p>
+
+<h3>Zmień rozmiar</h3>
+<p>W trybie drżenia wiele widżetów ma małą rączkę w rogu, którą przeciągasz, by zmienić rozmiar. Jeśli jej nie widać, usuń widżet i dodaj ponownie w wybranym rozmiarze.</p>
+<p>Mały mieści jedną liczbę, Średni — liczbę z kontekstem, Duży — pełną siatkę. W Left mały widżet <strong>Nadchodzące</strong> pokazuje jedno odliczanie, średni <strong>Wszystko</strong> — dzień, tydzień, miesiąc i rok razem, a duży widżet Roku — wszystkie 365 dni.</p>
+
+<h3>Układaj widżety w stosy, by oszczędzić miejsce</h3>
+<p>Przeciągnij widżet na inny widżet tego samego rozmiaru, by utworzyć stos, potem przesuwaj w górę lub w dół po stosie, by przełączać. Dotknij i przytrzymaj stos i stuknij Edytuj stos, by zmienić kolejność lub włączyć Inteligentne obracanie, które pozwala iOS wysunąć widżet, który uważa za najbardziej trafny.</p>
+
+<h3>Zrób widżety bezbarwnymi lub barwionymi</h3>
+<p>Stuknij Edytuj na drżącym ekranie głównym, potem Dostosuj, by przełączyć wszystkie ikony i widżety na inny wygląd, np. Bezbarwny lub Barwiony. Widżety Left podążają za tym wyborem. Zobacz <a href="/pl/support/widget-transparent-iphone">jak zrobić widżety Left przezroczystymi</a>.</p>
+
+<h2>Dodaj widżet do ekranu blokady</h2>
+<ol>
+  <li>Dotknij i przytrzymaj ekran blokady, aż na dole pojawi się Dostosuj. Może najpierw trzeba odblokować Face ID.</li>
+  <li>Stuknij Dostosuj, potem wybierz ekran blokady.</li>
+  <li>Stuknij obszar widżetów pod godziną, by dodać okrągłe i prostokątne, albo stuknij datę nad godziną, by wybrać widżet w linii.</li>
+  <li>Wybierz aplikację (np. Left) i stuknij widżet, którego chcesz.</li>
+  <li>Zamknij panel widżetów i stuknij Gotowe.</li>
+</ol>
+<p>Są trzy kształty ekranu blokady:</p>
+<ul>
+  <li><strong>W linii</strong>: jedna linia tekstu obok daty, nad godziną.</li>
+  <li><strong>Okrągły</strong>: mały okrągły widżet. Rząd pod godziną mieści do czterech.</li>
+  <li><strong>Prostokątny</strong>: szerszy widżet zajmujący miejsce dwóch okrągłych.</li>
+</ul>
+<p>Widżety ekranu blokady nie używają pełnych kolorów aplikacji. iOS rysuje je w jednym odcieniu dopasowanym do zegara, więc projekty opierają się na kształcie i kontraście. Więcej w <a href="/pl/support/widget-iphone-lock-screen">przewodniku po widżetach ekranu blokady</a>.</p>
+
+<h3>Które widżety Left pasują do którego slotu</h3>
+<ul>
+  <li><strong>W linii</strong>: Rok, Miesiąc, Tydzień, Dzień, Minuty, Życie, Ty, Zegar cyfrowy i Zegar analogowy.</li>
+  <li><strong>Okrągłe</strong>: Rok, Miesiąc, Tydzień, Dzień, Życie, Ty, Nadchodzące, Lista nawyków i zegary.</li>
+  <li><strong>Prostokątne</strong>: Rok, Miesiąc, Tydzień, Dzień, Życie, Ty, Nadchodzące, Nawyk, Lista nawyków, Passa, Cel i zegary.</li>
+  <li><strong>Tylko ekran główny</strong>: Wszystko, Nadchodzące – lista, Lista pass, Lista celów, Kalendarz, Specjalna notatka, Nadchodzące – paski i Nadchodzące – okrąg, wśród innych.</li>
+</ul>
+<p>Praktyczny ekran blokady: widżet Roku w linii, okrągły widżet Ahead do następnej podróży i prostokątny widżet Passy dla biegu, który chronisz. Style pokazują strony <a href="/pl/countdown-widget">widżetu odliczania</a>, <a href="/pl/year-progress-widget">widżetu postępu roku</a> i <a href="/pl/habit-tracker">trackera nawyków</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-pl&amp;mt=8" target="_blank" rel="noopener">Pobierz widżety Left</a></p>
+
+<h3>Widżety i wydarzenia na żywo to różne rzeczy</h3>
+<p>Wydarzenia na żywo też pojawiają się na ekranie blokady i w Dynamic Island, ale nie dodajesz ich w Dostosuj. Aplikacja uruchamia je dla czegoś, co dzieje się teraz. W Left odliczanie może pokazać jedno, gdy włączysz <strong>Uzyskaj końcowe odliczanie</strong>, a nawyk — przez <strong>Ustaw stałe przypomnienie</strong>.</p>
+<h2>Używaj widżetów w trybie czuwania</h2>
+<p>Tryb czuwania zamienia iPhone'a w pełnoekranowy wyświetlacz, gdy ładuje się, jest zablokowany i leży na boku.</p>
+<ol>
+  <li>Upewnij się, że tryb czuwania jest włączony w Ustawienia &gt; tryb czuwania.</li>
+  <li>Połóż iPhone'a na ładowarce w poziomie i pozwól mu się zablokować.</li>
+  <li>Przesuwaj w poziomie, aż dotrzesz do widoku widżetów, z dwoma stosami widżetów obok siebie.</li>
+  <li>Dotknij i przytrzymaj stos, odblokuj jeśli trzeba, i stuknij +, by dodać widżet. Wyszukaj Left i dodaj ten, którego chcesz.</li>
+</ol>
+<p>Przesuwaj w górę lub w dół po którymkolwiek stosie, by przełączać jego widżety. W ciemnym pomieszczeniu tryb czuwania może przejść w tryb Nocny, który barwi wyświetlacz na czerwono. Zobacz <a href="/pl/support/widget-iphone-standby">widżety Left w trybie czuwania</a>.</p>
+
+<h2>Edytuj lub usuń widżet</h2>
+<ul>
+  <li><strong>Ekran główny</strong>: dotknij i przytrzymaj widżet i stuknij Edytuj widżet, by go zmienić, albo Usuń widżet, by zdjąć go z ekranu, potem potwierdź.</li>
+  <li><strong>Ekran blokady</strong>: dotknij i przytrzymaj, stuknij Dostosuj, wybierz ekran blokady, stuknij obszar widżetów i stuknij minus na widżecie, który chcesz usunąć.</li>
+
+</ul>
+<p>Usunięcie widżetu nigdy nie kasuje danych w aplikacji. Więcej w <a href="/pl/support/edit-or-remove-widget-iphone">jak edytować lub usunąć widżet</a>.</p>
+
+<h2>Rozwiązywanie problemów</h2>
+<ul>
+  <li><strong>Aplikacji nie ma w galerii widżetów.</strong> Otwórz aplikację raz, potem sprawdź ponownie. Nadal brak? Zrestartuj iPhone'a i zaktualizuj iOS oraz aplikację.</li>
+  <li><strong>Widżet pokazuje stare informacje.</strong> iOS decyduje, kiedy widżety się odświeżają, częściowo by oszczędzać baterię, więc aktualizacje nie zawsze są natychmiastowe. Otwarcie aplikacji zwykle wymusza odświeżenie. Jeśli widżet wygląda na zawieszony, usuń go i dodaj ponownie.</li>
+  <li><strong>Widżet jest pusty lub pokazuje zły element.</strong> Dotknij i przytrzymaj, stuknij Edytuj widżet i wybierz element ponownie — np. jeśli usunąłeś odliczanie, które pokazywał.</li>
+
+</ul>
+
+<h2>Pytania</h2>
+<h3>Dlaczego nie mogę znaleźć aplikacji w galerii widżetów iPhone'a?</h3>
+<p>Aplikację zwykle trzeba otworzyć raz, zanim pojawią się jej widżety. Jeśli nadal jej nie ma na liście, zrestartuj iPhone'a i zaktualizuj iOS oraz aplikację. Niektóre aplikacje w ogóle nie oferują widżetów.</p>
+<h3>Czy każdy widżet może trafić na ekran blokady?</h3>
+<p>Nie. Ekran blokady przyjmuje tylko widżety w linii, okrągłe i prostokątne, a każda aplikacja decyduje, które z jej widżetów mają te kształty. Większe widżety, jak Wszystko lub Nadchodzące – lista w Left, są tylko na ekranie głównym.</p>
+<h3>Dlaczego widżety ekranu blokady nie są w kolorze?</h3>
+<p>iOS rysuje widżety ekranu blokady w jednym odcieniu dopasowanym do zegara, by były czytelne na każdej tapecie. Pełne kolory aplikacji widać na ekranie głównym — chyba że wybierzesz wygląd Barwiony — oraz w trybie czuwania.</p>
+<h3>Jak często aktualizują się widżety iPhone'a?</h3>
+<p>iOS steruje harmonogramem odświeżania, by oszczędzać baterię, więc widżety aktualizują się regularnie, ale nie zawsze natychmiast. Otwarcie aplikacji zwykle wymusza odświeżenie. Widżety oparte na czasie, jak postęp roku, przewijają się same.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Pobierz Left</span>
+          <h2>Zacznij zauważać to, co ważne.</h2>
+          <p>Pobierz Left na iPhone'a, by zobaczyć czas, który ci pozostał, daty, na które czekasz, budować nawyki, które chcesz zachować, i stawać się lepszą wersją siebie.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Kod QR - dotknij, by zobaczyć instrukcje">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Zeskanuj lub wyszukaj <strong>„Left”</strong> w App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-pl&amp;mt=8" target="_blank" rel="noopener" aria-label="Pobierz Left w App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Pobierz na iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> osób, dla których każda chwila ma znaczenie.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Stopka">
+          <a href="/pl/support">Pomoc</a>
+          <a href="/terms">Warunki</a>
+          <a href="/pl/privacy">Prywatność</a>
+          <a href="/pl/press">Prasa</a>
+          <a href="/pl/contact">Kontakt</a>
+          <a href="/pl/tools/">Narzędzia</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pl/blog/">Blog</a>
+          <a href="#" data-consent-open>Ustawienia plików cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>PL</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="true">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pl","pt-BR","ru","tr","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Zgoda na pliki cookie">
+  <p class="left-consent__text">Używamy Google Analytics, by wiedzieć, które strony pomagają ludziom. Bez reklam i bez śledzenia między witrynami.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Zezwól na statystyki</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nie, dziękuję</button>
+    <a class="left-consent__link" href="/pl/privacy#website" data-consent-privacy>Prywatność</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

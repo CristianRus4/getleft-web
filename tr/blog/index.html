@@ -1,0 +1,829 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left Blog — Kalan Zaman, Alışkanlıklar, Geri Sayımlar ve Widget'lar</title>
+  <meta name="description" content="iPhone'da zamanı görünür kılma rehberleri: widget'lar, alışkanlıklar, seriler, geri sayımlar, Planlayıcı ve ADHD dostu kurulumlar, ayrıca dürüst uygulama incelemeleri."  />
+  <link rel="canonical" href="https://getleft.app/tr/blog/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left Blog"  />
+  <meta property="og:description" content="Kalan zaman, iPhone widget'ları, alışkanlıklar, seriler, geri sayımlar ve Planlayıcı rehberleri."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/tr/blog/" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left Blog"  />
+  <meta name="twitter:description" content="Kalan zaman, iPhone widget'ları, alışkanlıklar, seriler, geri sayımlar ve Planlayıcı rehberleri."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Left Blog",
+  "description": "Guides for making time visible on iPhone: widgets, habits, streaks, countdowns, Planner and ADHD-friendly setups, plus honest app round-ups.",
+  "url": "https://getleft.app/blog/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "logo": { "@type": "ImageObject", "url": "https://getleft.app/favicon/android-chrome-512x512.png" }
+  }
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Birincil">
+    <div class="container nav-inner">
+      <a href="/tr/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/tr/#features" class="nav-link">Özellikler</a>
+          <a href="/tr/tools/" class="nav-link">Araçlar</a>
+          <a href="/tr/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-tr&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">İndir</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container blog-header">
+    <h1>Left Blog</h1>
+    <p>Kalan zaman, alışkanlıklar, seriler, geri sayımlar, Planlayıcı ve önemli olanı görüşte tutan widget'lar için rehberler.</p>
+  </main>
+
+  <section class="container blog-grid">
+
+    <a class="blog-card" href="/tr/blog/tiimo-alternatives">
+      <div class="blog-cover"><img src="/images/blog/tiimo-alternatives-hero.webp" alt="2026'da iPhone için En İyi 6 Tiimo Alternatifi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi 6 Tiimo Alternatifi</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi Tiimo alternatifleri: görsel planlayıcılar, rutin zamanlayıcıları, görev zamanlayıcıları ve kalan zaman widget'ları karşılaştırıldı.</div>
+        <div class="blog-meta">9 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/structured-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/structured-app-alternatives-hero.webp" alt="2026'da iPhone için En İyi 6 Structured Uygulaması Alternatifi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi 6 Structured Uygulaması Alternatifi</div>
+        <div class="blog-excerpt">2026'da iPhone için Structured günlük planlayıcısının en iyi alternatifleri: görsel planlayıcılar, gün görünümleri ve zaman bloklama uygulamaları karşılaştırıldı.</div>
+        <div class="blog-meta">9 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-birthday-countdown-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-birthday-countdown-apps-iphone-hero.webp" alt="2026'da iPhone için En İyi Doğum Günü Geri Sayım Uygulamaları: 7 Karşılaştırma" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone İçin En İyi Doğum Günü Geri Sayım Uygulamaları: 7 Uygulama Karşılaştırıldı</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi doğum günü geri sayım ve doğum günü hatırlatıcı uygulamaları; widget'lar, Kişiler'den içe aktarma, Apple Watch ve fiyat açısından karşılaştırıldı.</div>
+        <div class="blog-meta">9 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/streaks-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/streaks-app-alternatives-hero.webp" alt="2026'da iPhone için En İyi 7 Streaks Uygulaması Alternatifi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi 7 Streaks Uygulaması Alternatifi</div>
+        <div class="blog-excerpt">2026'da iPhone için Streaks alışkanlık takipçisinin en iyi alternatifleri; fiyat, ücretsiz planlar, Apple Watch, widget'lar ve Apple Sağlık açısından karşılaştırıldı.</div>
+        <div class="blog-meta">9 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-year-progress-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-year-progress-apps-iphone-hero.webp" alt="2026'da iPhone için En İyi Yıl İlerlemesi Uygulamaları ve Widget'ları: 5 Karşılaştırma" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi Yıl İlerlemesi Uygulamaları ve Widget'ları: 5 Karşılaştırma</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi yıl ilerlemesi uygulamaları ve widget'ları; Ana Ekran ve Kilit Ekranı widget'ları, duvar kâğıdı, Apple Watch ve fiyat açısından karşılaştırıldı.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-countdown-wallpaper-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-wallpaper-apps-iphone-hero.webp" alt="2026'da iPhone için En İyi Kalan Gün ve Geri Sayım Duvar Kâğıdı Uygulamaları: 6 Karşılaştırma" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone İçin En İyi Kalan Gün ve Geri Sayım Duvar Kâğıdı Uygulamaları: 6 Uygulama Karşılaştırıldı</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi kalan gün ve geri sayım duvar kâğıdı uygulamaları: her gün güncellenen yıl, haftalarla hayat ve geri sayım Kilit Ekranları.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-life-calendar-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-life-calendar-apps-iphone-hero.webp" alt="2026'da iPhone için En İyi Hayat Takvimi Uygulamaları: 7 Haftalarla Hayat ve Memento Mori Uygulaması Karşılaştırması" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi Hayat Takvimi Uygulamaları: 7 Haftalarla Hayat ve Memento Mori Uygulaması Karşılaştırması</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi hayat takvimi, haftalarla hayat ve memento mori uygulamaları; widget'lar, duvar kâğıdı, fiyat ve değerlendirmeler açısından karşılaştırıldı.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/widgetsmith-alternatives">
+      <div class="blog-cover"><img src="/images/blog/widgetsmith-alternatives-hero.webp" alt="2026'da iPhone için En İyi 7 Widgetsmith Alternatifi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">2026'da iPhone için En İyi 7 Widgetsmith Alternatifi</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi Widgetsmith alternatifleri: zaman ve geri sayım widget'ları, widget tasarım araçları, temalar ve başlatıcılar karşılaştırıldı.</div>
+        <div class="blog-meta">9 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-days-since-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-days-since-apps-iphone-hero.webp" alt="2026'da iPhone için En İyi Geçen Gün Sayacı Uygulamaları: 7 Karşılaştırma" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için En İyi Geçen Gün Sayacı Uygulamaları (2026): 7 Karşılaştırma</div>
+        <div class="blog-excerpt">2026'da iPhone için en iyi geçen gün ve son seferi takip uygulamaları; fiyat, widget'lar, Apple Watch ve değerlendirmeler açısından karşılaştırıldı.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+
+    <a class="blog-card" href="/tr/blog/aim-goal-tracker-left">
+      <div class="blog-cover"><img src="/images/blog/aim-goal-tracker-left-hero.webp" alt="Left'te Amaç: Sayabileceğin Her Hedefi Takip Et" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left'te Amaç: Sayabileceğin Her Hedefi Takip Et</div>
+        <div class="blog-excerpt">Para biriktir, kitap oku, daha uzağa koş, borcu azalt veya Başlangıçtan beri'ye gömülü sayı tabanlı bir hedef takipçisiyle bir projeyi bitir.</div>
+        <div class="blog-meta">3 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/digital-clock-date-widget-iphone">
+      <div class="blog-cover"><img src="/images/blog/digital-clock-date-widget-iphone-hero.webp" alt="iPhone'da Dijital Saat ve Tarih Widget'ı Nasıl Kurulur (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone'da Dijital Saat ve Tarih Widget'ı Nasıl Kurulur (2026)</div>
+        <div class="blog-excerpt">Ana Ekran, Kilitli Ekran ve Bekleme Modunda saat + tarih widget'ları için pratik rehber — varsayılan-saat yorgunluğu olmadan.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/presentation-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/presentation-timer-iphone-hero.webp" alt="iPhone için En İyi Sunum Zamanlayıcısı Kurulumu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için En İyi Sunum Zamanlayıcısı Kurulumu</div>
+        <div class="blog-excerpt">Konuşma ortasında telefona bakmak zorunda kalmayacak şekilde kurulmuş çalışan bir sunum zamanlayıcısı düzeneği.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-reminder-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-reminder-apps-iphone-hero.webp" alt="iPhone için 10 En İyi Anımsatıcı Uygulaması (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için 10 En İyi Anımsatıcı Uygulaması (2026)</div>
+        <div class="blog-excerpt">Dürüst bir derleme — her birinin ne için olduğu, nerede yetersiz kaldığı ve gerçekten kullanacağını nasıl seçersin.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-reward-system">
+      <div class="blog-cover"><img src="/images/blog/adhd-reward-system-hero.webp" alt="Sürdürülebilir ADHD Ödül Sistemi Nasıl Kurulur" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Sürdürülebilir ADHD Ödül Sistemi Nasıl Kurulur</div>
+        <div class="blog-excerpt">ADHD dopamininin gerçekten nasıl çalıştığına saygı duyan pratik, bilim bilgilendirilmiş stratejiler.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-planner-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-planner-adhd-hero.webp" alt="ADHD için En İyi Planlayıcı Nasıl Seçilir" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD için En İyi Planlayıcı Nasıl Seçilir</div>
+        <div class="blog-excerpt">ADHD beyniyle işe yarayan bir planlayıcıyı seçme, kurma ve gerçekten ona bağlı kalma rehberi — utanmadan.</div>
+        <div class="blog-meta">8 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-time-blindness-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="ADHD Zaman Körlüğü: Nedir ve Widget'lar Nasıl Yardım Eder" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD Zaman Körlüğü: Nedir ve Widget'lar Nasıl Yardım Eder</div>
+        <div class="blog-excerpt">Zaman körlüğü açıklanır ve üzerine hareket edilecek kadar görünür kılan iPhone widget kurulumu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/time-management-best-practices">
+      <div class="blog-cover"><img src="/images/blog/time-management-best-practices-hero.webp" alt="Gerçekten İşe Yarayan 10 Zaman Yönetimi En İyi Uygulaması" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Gerçekten İşe Yarayan 10 Zaman Yönetimi En İyi Uygulaması</div>
+        <div class="blog-excerpt">Öğrenmeye değer on teknik — ve onları ikinci haftanın ötesinde yapışkan tutan görünür-zaman kurulumu.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/project-timeline-visualization">
+      <div class="blog-cover"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="Proje Zaman Çizelgesi Görselleştirme: Gantt'tan Bakışta Okunur Widget'lara" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Proje Zaman Çizelgesi Görselleştirme: Gantt'tan Bakışta Okunur Widget'lara</div>
+        <div class="blog-excerpt">Ne zaman Gantt, ne zaman yol haritası, ne zaman geri sayım — çizelgeyi aşırı kurmadan.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-home-screen-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-home-screen-widgets-iphone-hero.webp" alt="iPhone için En İyi 10 Ana Ekran Widget'ı (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için En İyi 10 Ana Ekran Widget'ı (2026)</div>
+        <div class="blog-excerpt">Yerini hak eden widget'ların dürüst bir derlemesi — ve hangilerinin süs olduğu.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/smart-goals-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-guide-hero.webp" alt="SMART Hedefler: 2026 için Pratik Kurulum Rehberi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">SMART Hedefler: 2026 için Pratik Kurulum Rehberi</div>
+        <div class="blog-excerpt">SMART hedefleri ikinci haftanın ötesinde canlı tutan görünür-takip kurulumuyla çalışan bir rehber.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/event-planning-timeline">
+      <div class="blog-cover"><img src="/images/blog/event-planning-timeline-hero.webp" alt="Etkinlik Planlama Zaman Çizelgesi: Adım Adım Rehber" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Etkinlik Planlama Zaman Çizelgesi: Adım Adım Rehber</div>
+        <div class="blog-excerpt">Geriye planlama, satıcı kontrol noktaları, kapsam kayması tuzakları ve takımı hizalayan paylaşılan geri sayım.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/workplace-productivity-habits">
+      <div class="blog-cover"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="Gerçekten Tutunan 10 İşyeri Üretkenlik Alışkanlığı" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Gerçekten Tutunan 10 İşyeri Üretkenlik Alışkanlığı</div>
+        <div class="blog-excerpt">İkinci haftanın ötesinde ayakta kalan yöntemler, artı motivasyon solduğunda onları ayakta tutan görünür kurulum.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-morning-routine-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-morning-routine-iphone-hero.webp" alt="iPhone'da ADHD Dostu Sabah Rutini Nasıl Kurulur" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone'da ADHD Dostu Sabah Rutini Nasıl Kurulur</div>
+        <div class="blog-excerpt">Üç adım, herhangi bir sırada, telefonu kaldırdığın anda görünür. 05:00 influencer rutini o değildir.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-task-initiation-strategies">
+      <div class="blog-cover"><img src="/images/blog/adhd-task-initiation-strategies-hero.webp" alt="ADHD Görev Başlatma: Başlayamadığında Nasıl Başlanır" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD Görev Başlatma: Başlayamadığında Nasıl Başlanır</div>
+        <div class="blog-excerpt">2 dakika kuralı, dışsallaştırılmış başlangıçlar ve ADHD beyinleri için aktivasyon enerjisini düşüren widget kurulumu.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/time-management-tips-students">
+      <div class="blog-cover"><img src="/images/blog/time-management-tips-students-hero.webp" alt="Öğrenciler için 10 Zaman Yönetimi İpucu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Öğrenciler için 10 Zaman Yönetimi İpucu</div>
+        <div class="blog-excerpt">Gerçek bir dönemi ayakta tutan ipuçları — görünür son tarihler, enerji kalıpları ve dürüst tutan widget kurulumu.</div>
+        <div class="blog-meta">7 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/timer-interval-app-iphone">
+      <div class="blog-cover"><img src="/images/blog/timer-interval-app-iphone-hero.webp" alt="Aralıklı Zamanlayıcı Uygulamaları: Fitness Ötesi — Odak ve Alışkanlıklar Rehberi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Aralıklı Zamanlayıcı Uygulamaları: Fitness Ötesi — Odak ve Alışkanlıklar Rehberi</div>
+        <div class="blog-excerpt">Tabata'nın çok ötesinde kullanım durumları — ve zamanlayıcıyı görünür tutan iPhone kurulumu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-goal-tracking-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-goal-tracking-apps-iphone-hero.webp" alt="iPhone için En İyi Hedef Takip Uygulamaları (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için En İyi Hedef Takip Uygulamaları (2026)</div>
+        <div class="blog-excerpt">Hedef türüne göre sıralı — son tarihler, alışkanlıklar, birikim, projeler. Doğru şekil için doğru uygulama.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-apple-watch-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-apple-watch-apps-adhd-hero.webp" alt="ADHD için En İyi 9 Apple Watch Uygulaması" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD için En İyi 9 Apple Watch Uygulaması</div>
+        <div class="blog-excerpt">Bilek haptik bir alarmın olmayı dilediği şeydir — ADHD'ye ilgili davranışı gerçekten değiştiren uygulamalar.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/iphone-aesthetic-widgets-guide">
+      <div class="blog-cover"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="iPhone Estetik Widget'ları: 2026 Nasıl Yapılır Rehberi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone Estetik Widget'ları: 2026 Nasıl Yapılır Rehberi</div>
+        <div class="blog-excerpt">Harika görünen ve yararlı bir şey yapan widget'larla estetik bir Ana Ekran tasarla.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-productivity-apps-mac">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-mac-hero.webp" alt="Mac için En İyi Üretkenlik Uygulamaları (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Mac için En İyi Üretkenlik Uygulamaları (2026)</div>
+        <div class="blog-excerpt">Dürüst bir Mac üretkenlik yığını — yerini hak eden üç veya dört uygulama, menü çubuğu kalabalığı yok.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-body-doubling-apps">
+      <div class="blog-cover"><img src="/images/blog/adhd-body-doubling-apps-hero.webp" alt="ADHD Body Doubling: Gerçekten İşe Yarayan Uygulamalar ve Alternatifler" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD Body Doubling: Gerçekten İşe Yarayan Uygulamalar ve Alternatifler</div>
+        <div class="blog-excerpt">Body doubling'in ADHD'ye neden yardımcı olduğu, kolaylaştıran uygulamalar ve asenkron hesap verebilirlik kurulumu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/countdown-clock-graphic-guide">
+      <div class="blog-cover"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="Geri Sayım Saati Grafiği Tasarlamak: 2026 Rehberi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Geri Sayım Saati Grafiği Tasarlamak: 2026 Rehberi</div>
+        <div class="blog-excerpt">Tipografi, renk, düzen — ve herhangi bir statik grafiği yenen canlı widget kurulumu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/goal-progress-tracker-setup">
+      <div class="blog-cover"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="Hedef İlerleme Takip Uygulaması: Kurulum Rehberin (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Hedef İlerleme Takip Uygulaması: Kurulum Rehberin (2026)</div>
+        <div class="blog-excerpt">İlk hedef, widget yerleşimi, gelişmiş stiller ve gerçekten yapışan iş akışları.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/home-screen-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="iPhone Ana Ekranına Geri Sayım Zamanlayıcısı Nasıl Konur" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone Ana Ekranına Geri Sayım Zamanlayıcısı Nasıl Konur</div>
+        <div class="blog-excerpt">Boyutlandırma, yerleşim, kullanım durumları — solmayan widget kurulumu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-apps-for-adhd-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-apps-for-adhd-iphone-hero.webp" alt="ADHD'li İnsanlar için En İyi 10 Uygulama (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD'li İnsanlar için En İyi 10 Uygulama (iPhone, 2026)</div>
+        <div class="blog-excerpt">Gerçekten yardımcı olan uygulamalar — odak, görev başlatma, zaman körlüğü, rutin — spesifik başarısızlık modlarına eşleştirilmiş.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/visual-goals-track-on-screens">
+      <div class="blog-cover"><img src="/images/blog/visual-goals-track-on-screens-hero.webp" alt="Görsel Hedefler: İsteklerini iPhone Ekranlarında Nasıl Takip Edersin" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Görsel Hedefler: İsteklerini iPhone Ekranlarında Nasıl Takip Edersin</div>
+        <div class="blog-excerpt">Hedefleri unutulamaz kılan dört yüzeyli katmanlı bir sistem.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/smart-goals-visual-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-visual-guide-hero.webp" alt="SMART Hedefler Görsel: Cihazlarında Nasıl Takip Edilir" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">SMART Hedefler Görsel: Cihazlarında Nasıl Takip Edilir</div>
+        <div class="blog-excerpt">SMART'ın her harfini görünür bir widget'a çevir — şablon gerekmez.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-students-study-tools-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-students-study-tools-iphone-hero.webp" alt="ADHD'li Öğrenciler için Çalışma Araçları (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD'li Öğrenciler için Çalışma Araçları (iPhone, 2026)</div>
+        <div class="blog-excerpt">ADHD'li öğrenciler için işe yarayan iPhone çalışma kurulumu — dönem geri sayımları, Pomodoro ve çalışma serileri.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-productivity-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-adhd-hero.webp" alt="ADHD için En İyi Üretkenlik Uygulamaları (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD için En İyi Üretkenlik Uygulamaları (iPhone, 2026)</div>
+        <div class="blog-excerpt">Spesifik başarısızlık modlarına eşleştirilmiş uygulamalar, gerçekten işe yarayan küçük yığınla.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/productivity-tools-visual-focus">
+      <div class="blog-cover"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="Üretkenlik Araçları: Neden Görsel Özellik Ağırlıklısını Yener" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Üretkenlik Araçları: Neden Görsel Özellik Ağırlıklısını Yener</div>
+        <div class="blog-excerpt">İşe yarayan dört görsel takip stili — ve beş uygulamanın yerini alan birleşik kurulum.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/how-to-focus-adhd">
+      <div class="blog-cover"><img src="/images/blog/how-to-focus-adhd-hero.webp" alt="ADHD ile Nasıl Odaklanılır: İşe Yarayan Pratik Adımlar" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD ile Nasıl Odaklanılır: İşe Yarayan Pratik Adımlar</div>
+        <div class="blog-excerpt">Anlık düzeltmeler, yapılandırılmış rutinler, çevre ve bir arada tutan widget kurulumu.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-free-widget-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-free-widget-apps-iphone-hero.webp" alt="iPhone için 10 En İyi Ücretsiz Widget Uygulaması (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için 10 En İyi Ücretsiz Widget Uygulaması (2026)</div>
+        <div class="blog-excerpt">Dürüst ücretsiz katman kapsamı, «ücretsiz» etiketinin arkasındaki tuzaklarla.</div>
+        <div class="blog-meta">4 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/visual-reminders-adhd-apple-setup">
+      <div class="blog-cover"><img src="/images/blog/visual-reminders-adhd-apple-setup-hero.webp" alt="ADHD için Görsel Anımsatıcılar: iPhone Kurulum Rehberi" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD için Görsel Anımsatıcılar: iPhone Kurulum Rehberi</div>
+        <div class="blog-excerpt">iPhone'da görsel hatırlatıcılar için bir kurulum: duvar kâğıdına karışmayan dinamik widget'lar.</div>
+        <div class="blog-meta">4 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/keep-track-multiple-projects">
+      <div class="blog-cover"><img src="/images/blog/keep-track-multiple-projects-hero.webp" alt="Birden Fazla Projeyi Nasıl Takip Edersin (Aklını Kaybetmeden)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Birden Fazla Projeyi Nasıl Takip Edersin (Aklını Kaybetmeden)</div>
+        <div class="blog-excerpt">Bir gerçek kaynağı, haftalık inceleme ve ilerlemeyi görünür kılan bir widget panosu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/stay-consistent-with-goals">
+      <div class="blog-cover"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="Hedeflerle Nasıl Tutarlı Kalınır (İradeye Dayanmadan)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Hedeflerle Nasıl Tutarlı Kalınır (İradeye Dayanmadan)</div>
+        <div class="blog-excerpt">İradenin başarısız olduğu yerde tutarlılık üreten sistemler — görünür seriler, yeniden başlama ritüelleri, hesap verebilirlik.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/adhd-work-from-home-setup">
+      <div class="blog-cover"><img src="/images/blog/adhd-work-from-home-setup-hero.webp" alt="ADHD Evden Çalışma: İşe Yarayan Widget Güdümlü Kurulum" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD Evden Çalışma: İşe Yarayan Widget Güdümlü Kurulum</div>
+        <div class="blog-excerpt">iPhone Bekleme Modu, görünür derin çalışma blokları ve Çarşambayı ayakta tutan günlük ritim.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-habit-tracker-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-habit-tracker-apps-iphone-hero.webp" alt="iPhone için 7 En İyi Alışkanlık Takipçisi (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone için 7 En İyi Alışkanlık Takipçisi (2026)</div>
+        <div class="blog-excerpt">Önde gelen alışkanlık takipçilerini karşılaştırma — widget desteği, programlar, paylaşım ve çalışma şekline hangisinin uyduğu.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/best-countdown-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-widgets-iphone-hero.webp" alt="iPhone Ana Ekranı için En İyi Geri Sayım Widget'ları (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone Ana Ekranı için En İyi Geri Sayım Widget'ları (2026)</div>
+        <div class="blog-excerpt">Kendi Ana Ekranlarımıza koyacağımız geri sayım widget'ları — geziler, doğum günleri, son tarihler, paylaşılan tarihler.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/habitkit-vs-left">
+      <div class="blog-cover"><img src="/images/blog/habitkit-vs-left-hero.webp" alt="HabitKit vs Left: Dürüst Bir Karşılaştırma" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">HabitKit vs Left: Dürüst Bir Karşılaştırma</div>
+        <div class="blog-excerpt">Çok farklı felsefelerle iki güçlü alışkanlık takip uygulaması. Her birinin nerede kazandığı, yan yana.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/how-to-add-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="iPhone'a Widget Nasıl Eklenir: Ana Ekran, Kilitli Ekran ve Bekleme Modu" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone'a Widget Nasıl Eklenir: Ana Ekran, Kilitli Ekran ve Bekleme Modu</div>
+        <div class="blog-excerpt">Örnek olarak Left kullanarak adım adım — iOS'ta widget koyabileceğin her yüzey.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/what-is-year-progress">
+      <div class="blog-cover"><img src="/images/blog/what-is-year-progress-hero.webp" alt="Yıl İlerlemesi Nedir ve Neden Takip Etmelisin" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Yıl İlerlemesi Nedir ve Neden Takip Etmelisin</div>
+        <div class="blog-excerpt">Büyük bir zihniyet kaymasıyla küçük bir görselleştirme. Yıl-ilerleme widget'ları planlama şeklini nasıl değiştirir.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/how-to-build-a-streak">
+      <div class="blog-cover"><img src="/images/blog/how-to-build-a-streak-hero.webp" alt="iPhone'unda Seri Nasıl Kurarsın" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">iPhone'unda Seri Nasıl Kurarsın</div>
+        <div class="blog-excerpt">Alışkanlıklar vs seriler, bir program kurmak ve yapışkan kılan widget kurulumu.</div>
+        <div class="blog-meta">6 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/left-wallpaper-guide">
+      <div class="blog-cover"><img src="/images/blog/left-wallpaper-guide-hero.webp" alt="Left Duvar Kâğıdı: Kendi Kendini Güncelleyen Kilitli Ekran" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left Duvar Kâğıdı: Kendi Kendini Güncelleyen Kilitli Ekran</div>
+        <div class="blog-excerpt">Left Duvar Kâğıdı nasıl çalışır, Kestirmeler ile nasıl kurulur ve üzerine ne konur.</div>
+        <div class="blog-meta">2 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/countdown-next-trip-with-friends">
+      <div class="blog-cover"><img src="/images/blog/countdown-next-trip-with-friends-hero.webp" alt="Sonraki Gezine Geri Sayım (ve Arkadaşlarla Paylaşmak)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Sonraki Gezine Geri Sayım (ve Arkadaşlarla Paylaşmak)</div>
+        <div class="blog-excerpt">Bir Gelecek tarihinin yürüyüşü, sonra birlikte gelenlerle Ortak Gelecek'e çevirmek.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/tr/blog/left-planner-guide">
+      <div class="blog-cover"><img src="/images/blog/left-planner-guide-hero.webp" alt="Left Planlayıcı: Günün Tek Görünümde" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left Planlayıcı: Günün Tek Görünümde</div>
+        <div class="blog-excerpt">Apple Anımsatıcılar, takvim etkinlikleri, alışkanlıklar, seriler, hava, uyku, antrenmanlar ve daha fazlası bir yerde.</div>
+        <div class="blog-meta">5 dk okuma</div>
+      </div>
+    </a>
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> kişi her anı önemli kılıyor.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Alt bilgi">
+          <a href="/tr/support">Destek</a>
+          <a href="/terms">Koşullar</a>
+          <a href="/tr/privacy">Gizlilik</a>
+          <a href="/tr/press">Basın</a>
+          <a href="/tr/contact">İletişim</a>
+          <a href="/tr/tools/">Araçlar</a>
+          <!-- left:footer-extra:start -->
+          <a href="/tr/blog/">Blog</a>
+          <a href="#" data-consent-open>Çerez ayarları</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>TR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="true">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pl","pt-BR","ru","tr","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Çerez onayı">
+  <p class="left-consent__text">Hangi sayfaların insanlara yardımcı olduğunu anlamak için Google Analytics kullanıyoruz. Reklam yok, siteler arası izleme yok.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analitiğe izin ver</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Hayır, teşekkürler</button>
+    <a class="left-consent__link" href="/tr/privacy#website" data-consent-privacy>Gizlilik</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

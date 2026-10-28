@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>İş Günü Hesaplayıcı — Tarihler Arası Çalışma Günleri | Left</title>
+  <meta name="description" content="İki tarih arasındaki iş günü sayısını hesapla. Son tarihler, sözleşmeler ve proje planı için ücretsiz çalışma günü hesaplayıcı."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/tr/tools/business-days-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/business-days-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/business-days-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="İş Günü Hesaplayıcı — Tarihler Arası Çalışma Günleri"  />
+  <meta property="og:description" content="İki tarih arasındaki iş günü sayısını hesapla. Son tarihler, sözleşmeler ve proje planı için ücretsiz çalışma günü hesaplayıcı."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/tr/tools/business-days-calculator" />
+  <meta property="og:locale" content="tr_TR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="İş Günü Hesaplayıcı — Tarihler Arası Çalışma Günleri"  />
+  <meta name="twitter:description" content="İki tarih arasındaki iş günü sayısını hesapla. Son tarihler, sözleşmeler ve proje planı için ücretsiz çalışma günü hesaplayıcı."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Business Days Calculator - Working Days Between Dates",
+  "url": "https://getleft.app/tools/business-days-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Calculate the number of business days between two dates. Free working-days calculator for deadlines, contracts, and project planning.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "tr"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Business days calculator",
+      "item": "https://getleft.app/tools/business-days-calculator"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Ana gezinme">
+    <div class="container nav-inner">
+      <a href="/tr/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/tr/#features" class="nav-link">Özellikler</a>
+          <a href="/tr/tools/" class="nav-link">Araçlar</a>
+          <a href="/tr/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-tr&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">İndir</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>İş günü hesaplayıcı</h1>
+    <p class="tool-lede">İki tarih arasındaki tam çalışma günü sayısını (Pazartesi–Cuma) hesapla — hafta sonları yok.</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <label for="bd-start">Başlangıç tarihi</label>
+        <input type="date" id="bd-start" />
+      </div>
+      <div class="tool-widget__row">
+        <label for="bd-end">Bitiş tarihi</label>
+        <input type="date" id="bd-end" />
+      </div>
+      <div class="tool-result" id="bd-result" aria-live="polite"></div>
+    </div>
+
+    <div class="tool-prose">
+      <h2>Bu iş günü sayısı nasıl çalışır</h2>
+      <p>Hesaplayıcı <strong>Pazartesi’den Cuma’ya</strong> sayar; Cumartesi ve Pazar’ı atlar. Başlangıç tarihini dahil eder, bitiş tarihinden önce durur — takvimde çalışma günü sayar gibi: 2 Kasım 2026 Pazartesi’den 30 Kasım 2026 Pazartesi’ye tam dört çalışma haftasıdır, sonuç 20 iş günüdür. Tarihleri ters girersen yer değiştirir; aralıktaki takvim günlerini ve hafta sonlarını da gösterir.</p>
+      <p>Kaba «gün × 5 ÷ 7» kısayolu yerine aralığı gün gün gezer; hafta sonlarının konumuna göre o kısayol bir-iki gün sapabilir.</p>
+      <h2>2027’nin her ayındaki iş günleri</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Ay</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Hafta içi (Pzt–Cum)</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Ocak</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Şubat</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">20</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Mart</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">23</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Nisan</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Mayıs</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Haziran</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Temmuz</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Ağustos</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Eylül</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Ekim</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">21</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Kasım</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">22</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Aralık</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">23</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);"><strong>Toplam</strong></td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);"><strong>261</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Bunlar resmi tatillerden önceki hafta içi günlerdir. Bir ayda her zaman 20 ile 23 arası vardır; bütün yılda 260, 261 veya 262 olur — yılın başladığı hafta gününe ve artık yıl olup olmadığına bağlıdır.</p>
+      <h2>Resmi tatiller</h2>
+      <p>Tatiller ülke, eyalet ve işverene göre değişir; bu yüzden hesaplayıcı onları çıkarmaz. Aralıkta hafta içine düşenleri sen çıkar. Örneğin ABD’de yukarıdaki aralıkta iki federal tatil vardır: 11 Kasım Çarşamba Veterans Day ve 26 Kasım Perşembe Thanksgiving; geriye 18 çalışma günü kalır.</p>
+      <h2>Ters yönde</h2>
+      <p>İş günü sayısını bilip tarihi lazımsa <a href="/tools/business-days-from-date">bir tarihten itibaren iş günleri</a> aracını kullan. Örneğin 19 Ekim 2026 Pazartesi’den 30 iş günü sonra, tatillerden önce, 30 Kasım 2026 Pazartesi’dir.</p>
+      <h2>Yaygın kullanımlar</h2>
+      <ul>
+        <li><strong>Sözleşmeler ve yasal son tarihler:</strong> «30 iş günü içinde» yaygın bir maddedir.</li>
+        <li><strong>Kargo tahminleri:</strong> çoğu kurye teslimatı iş günleriyle verir.</li>
+        <li><strong>Proje planı:</strong> takvim süresini gerçekten sahip olduğun çalışma günlerine çevir.</li>
+        <li><strong>İhbar süreleri:</strong> bazı iş ve kira ihbarları çalışma günleriyle sayılır.</li>
+      </ul>
+      <h2>Son tarihi göz önünde tut</h2>
+      <p>Tarihi öğrendikten sonra Left’te <a href="/tr/countdown-widget">Gelecek geri sayımı</a> olarak ekle ve Ana Ekran veya Kilitli Ekrana koy; kalan günler hep görünür olsun.</p>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-tr&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Count down to your deadline in Left
+        </a>
+      </p>
+      <h2>Sorular</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>İş günü hesaplayıcı başlangıç ve bitiş tarihlerini dahil eder mi?</summary>
+          <div class="faq-answer"><p>Başlangıç tarihini dahil eder, bitiş tarihini hariç tutar. Bir Pazartesi’den sonraki Pazartesi’ye 5 iş günü sayılır.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Resmi tatilleri sayar mı?</summary>
+          <div class="faq-answer"><p>Hayır. Her Pazartesi’den Cuma’ya kadar sayar. Aralıkta hafta içine düşen resmi tatilleri çıkar; bunlar ülke ve bölgeye göre değişir.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Bir yılda kaç iş günü vardır?</summary>
+          <div class="faq-answer"><p>Resmi tatillerden önce 260 ile 262 arası hafta içi. 2027’de 261.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Bir ayda kaç iş günü vardır?</summary>
+          <div class="faq-answer"><p>Ayın uzunluğuna ve başladığı hafta gününe göre 20 ile 23 arası hafta içi gün.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does the business days calculator include the start and end dates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It includes the start date and excludes the end date. From one Monday to the next Monday counts as 5 business days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it count public holidays?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It counts every Monday to Friday. Subtract any public holidays that fall on weekdays in your range, since they differ by country and region."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many business days are in a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Between 260 and 262 weekdays, before public holidays. 2027 has 261."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many business days are in a month?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Between 20 and 23 weekdays, depending on the length of the month and the weekday it starts on."
+      }
+    }
+  ],
+  "inLanguage": "tr"
+}
+</script>
+    </div>
+    <div class="tool-related">
+      <h2>İlgili araçlar</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/business-days-from-date">Bir tarihten itibaren iş günleri</a>
+        <a class="tool-related-item" href="/tools/working-hours-calculator">Çalışma saati hesaplayıcı</a>
+        <a class="tool-related-item" href="/tools/school-days-calculator">Okul günü hesaplayıcı</a>
+        <a class="tool-related-item" href="/tools/deadline-countdown-calculator">Son tarih geri sayımı</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left'i indir</span>
+        <h2>Önemli olanı fark etmeye başla.</h2>
+        <p>iPhone'una Left'i indir; kalan zamanını, dört gözle beklediğin tarihleri gör, korumak istediğin alışkanlıkları kur ve daha iyi bir versiyonuna dönüş.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR kod - yönerge için dokun">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">App Store'da <strong>"Left"</strong> ara veya tara.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-tr&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store'dan Left'i indir" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            iOS için indir
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> kişi her anı önemli kılıyor.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Alt bilgi">
+          <a href="/tr/support">Destek</a>
+          <a href="/terms">Koşullar</a>
+          <a href="/tr/privacy">Gizlilik</a>
+          <a href="/tr/press">Basın</a>
+          <a href="/tr/contact">İletişim</a>
+          <a href="/tr/tools/">Araçlar</a>
+          <!-- left:footer-extra:start -->
+          <a href="/tr/blog/">Blog</a>
+          <a href="#" data-consent-open>Çerez ayarları</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>TR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="true">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pl","pt-BR","ru","tr","ja","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"O gün geldi.","notYet":"Henüz değil","futureDate":"Bu tarih gelecekte.","datePassed":"Bu tarih geçti.","selectDate":"Geçerli bir tarih seç.","selectBoth":"Her iki tarihi de seç.","chooseTarget":"Yukarıdan bir hedef tarih seç.","deadlinePassed":"Son tarih geçti","pastDue":"Süresi doldu","deadlineUrgent":"Acil son tarih","deadlineSoon":"Yaklaşıyor","deadlineAhead":"Son tarih ileride","fastComplete":"Oruç bitti!","weddingArrived":"Tarih geldi","weekend":"Hafta sonu!","itsWeekend":"Hafta sonu! Tadını çıkar.","workdayEnded":"İş günü bitti","workdayEndedHint":"Yeniden geri saymak için daha geç bir saat ayarla.","upcoming":"Yaklaşan: {dates}","since":"{date} tarihinden beri","fastEnds":"Oruç bitişi: {date}","sinceJan1":"{year} yılında 1 Ocak gece yarısından beri","untilDec31":"{year} yılında 31 Aralık gece yarısına kadar","fiscalEnds":"Mali yıl bitişi: {date}","quarterEnds":"Çeyrek bitişi: {date}","weddingDate":"Düğün tarihi: {date}","departure":"Kalkış: {date}","currentAge":"Şu anki yaş: {years} yıl, {months} ay, {days} gün","hoursAndMinutes":"{hours} saat ve {minutes} dakika","minutesExtra":"fazladan {minutes} dakika, toplam {total} dakika","readingDetail":"{wpm} kelime/dakikada {minutes} dakika ve {seconds} saniye","workdaysAt":"Günde {hours} saatle {days} iş günü","minutesSince":"{date} tarihinden beri toplam {minutes} dakika","schoolDays":"okul günü","weekdaysMinusBreaks":"{weekdays} hafta içi günden {breaks} tatil günü çıkarılmış","businessAfter":"{date} tarihinden {count} iş günü sonra","businessBefore":"{date} tarihinden {count} iş günü önce","futureTime":"Bu saat gelecekte.","unitEquals":"{amount} {from} yaklaşık {value} {to} eder","invalidTimestamp":"Geçersiz zaman damgası.","invalidDate":"Geçersiz tarih.","local":"yerel","pregFirst":"İlk trimester","pregSecond":"İkinci trimester","pregThird":"Üçüncü trimester","pregWeekDay":"{weeks} hf {days} gn","dueWas":"Tahmini doğum tarihi {date} idi — tebrikler!","yearDays":"Yıl {year} — toplam {days} gün","easterDates":"Batı — {western}; Ortodoks — {orthodox}"},"stat":{"days":"gün","hours":"saat","min":"dk","sec":"sn","weeks":"hafta","months":"ay","daysSince":"geçen gün","daysUntil":"kalan gün","yearAnniversary":"yıl dönümü","elapsed":"geçen","left":"kalan","daysLeft":"kalan gün","weeksLeft":"kalan hafta","yearsLeft":"kalan yıl","streakDays":"tamamlanan günler","fullWeeks":"tam hafta","approxMonths":"yaklaşık ay","durationMin":"süre dk","elapsedMin":"geçen dk","minutesLeft":"kalan dakika","currentQuarter":"geçerli çeyrek","remaining":"kalan","daysSober":"ayıklık günü","daysToMilestone":"sonraki kilometre taşına gün","nextMilestone":"sonraki kilometre taşı","daysUntilDeparture":"kalkışa kalan gün","tripDays":"seyahat günü"},"unit":{"months":{"one":"ay","other":"ay"},"weeks":{"one":"hafta","other":"hafta"},"days":{"one":"gün","other":"gün"},"hours":{"one":"saat","other":"saat"},"minutes":{"one":"dakika","other":"dakika"},"seconds":{"one":"saniye","other":"saniye"},"years":{"one":"yıl","other":"yıl"}},"next":{"christmas":"Sonraki Noel: {date}","newYear":"Sonraki Yılbaşı: {date}","halloween":"Sonraki Cadılar Bayramı: {date}","thanksgiving":"ABD’de sonraki Şükran Günü: {date}","valentines":"Sonraki Sevgililer Günü: {date}","mothersDay":"ABD’de sonraki Anneler Günü: {date}","fathersDay":"ABD’de sonraki Babalar Günü: {date}","spring":"Sonraki ilkbahar ekinoksu: {date}","summer":"Sonraki yaz gündönümü: {date}","fall":"Sonraki sonbahar ekinoksu: {date}","winter":"Sonraki kış gündönümü: {date}","westernEaster":"Sonraki Batı Paskalyası: {date}","orthodoxEaster":"Sonraki Ortodoks Paskalyası: {date}","birthday":"Sonraki doğum günü: {date}","anniversary":"Sonraki yıldönümü: {date}","saturday":"Sonraki cumartesi: {date}","birthdayAway":{"one":"Sonraki doğum günü: {date} ({count} gün kaldı)","other":"Sonraki doğum günü: {date} ({count} gün kaldı)"}},"sleep":{"bed9":"9 sa (6 döngü)","bed75":"7,5 sa (5 döngü, önerilen)","bed6":"6 sa (4 döngü)","bed45":"4,5 sa (3 döngü)","wake45":"4,5 sa","wake6":"6 sa","wake75":"7,5 sa (önerilen)","wake9":"9 sa"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const startEl = document.getElementById('bd-start');
+    const endEl = document.getElementById('bd-end');
+    const result = document.getElementById('bd-result');
+
+    const today = new Date();
+    startEl.value = toLocalDateInput(today);
+    const future = new Date(today);
+    future.setDate(future.getDate() + 14);
+    endEl.value = toLocalDateInput(future);
+
+    function render() {
+      if (!startEl.value || !endEl.value) { result.innerHTML = ''; return; }
+      const a = new Date(startEl.value + 'T00:00:00');
+      const b = new Date(endEl.value + 'T00:00:00');
+      if (isNaN(a) || isNaN(b)) return;
+      const [s, e] = a <= b ? [a, b] : [b, a];
+      const bizDays = businessDaysBetween(s, e);
+      const totalDays = Math.round((e - s) / 86400000);
+      const weekendDays = totalDays - bizDays;
+      result.innerHTML = `
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(bizDays)}</div><div class="tool-stat-label">business days</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(totalDays)}</div><div class="tool-stat-label">calendar days</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(weekendDays)}</div><div class="tool-stat-label">weekend days</div></div>
+        </div>`;
+    }
+
+    startEl.addEventListener('change', render);
+    endEl.addEventListener('change', render);
+    render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Çerez onayı">
+  <p class="left-consent__text">Hangi sayfaların insanlara yardımcı olduğunu anlamak için Google Analytics kullanıyoruz. Reklam yok, siteler arası izleme yok.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analitiğe izin ver</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Hayır, teşekkürler</button>
+    <a class="left-consent__link" href="/tr/privacy#website" data-consent-privacy>Gizlilik</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

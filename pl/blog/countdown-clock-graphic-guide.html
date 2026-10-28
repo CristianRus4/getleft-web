@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Grafika zegara odliczania: przewodnik projektowy 2026 | Left</title>
+  <meta name="description" content="Jak zaprojektować widżet grafiki zegara odliczania — typografia, kolor, układ i żywe dane lepsze niż statyczna grafika w socialu."  />
+  <link rel="canonical" href="https://getleft.app/pl/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Grafika zegara odliczania: przewodnik projektowy 2026"  />
+  <meta property="og:description" content="Jak zaprojektować widżet grafiki zegara odliczania."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/pl/blog/countdown-clock-graphic-guide" />
+  <meta property="og:locale" content="pl_PL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Designing a Countdown Clock Graphic: A 2026 Guide",
+  "description": "How to design a countdown clock graphic widget - typography, color, layout, and the live-data setup that beats any static graphic on social or your devices.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/countdown-clock-graphic-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Designing a Countdown Clock Graphic: A 2026 Guide",
+      "item": "https://getleft.app/blog/countdown-clock-graphic-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Główna">
+    <div class="container nav-inner">
+      <a href="/pl/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pl/#features" class="nav-link">Funkcje</a>
+          <a href="/pl/tools/" class="nav-link">Narzędzia</a>
+          <a href="/pl/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-pl&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Pobierz</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Grafika zegara odliczania: przewodnik projektowy 2026</h1>
+    <p class="article-meta">Zaktualizowano <time datetime="2026-10-20">20 października 2026</time> · 5 min czytania</p>
+
+    <p>„Grafika zegara odliczania” zwykle oznacza jedną z dwóch rzeczy: statyczny obraz wygenerowany raz z napisem „100 dni do lata” albo żywy widżet, który naprawdę pokazuje bieżącą liczbę. Pierwsze to dekoracja. Drugie zmienia zachowanie. Ten przewodnik jest o projektowaniu drugiego — grafiki zegara odliczania, która aktualizuje się sama, siedzi na telefonie i pozostaje użyteczna po pierwszym tygodniu.</p>
+
+    <p>Omówimy zasady designu, które czynią widżet odliczania skutecznym, pułapkę nadmiernie udekorowanych odliczań oraz ustawienie z widżetem Ahead w <strong>Left</strong>, które zamienia koncepcję graficzną w żywy, codziennie aktualizowany element na ekranie głównym, ekranie blokady i w trybie czuwania. Gotowy efekt na stronie <a href="/pl/countdown-widget">widżetu odliczania</a>.</p>
+
+    <figure class="post-hero"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-close-up-of-a-wooden-box-with-numbers-on-it-idHU3psb4DU" rel="noopener">Annie Spratt / Unsplash</a></figcaption></figure>
+
+    <h2>Statyczna grafika kontra żywy widżet</h2>
+    <p>Statyczna grafika odliczania wygląda świetnie na zrzucie i jutro jest już zła. Żywy widżet jest średnio brzydszy i codziennie ma rację. Do wszystkiego, co naprawdę chcesz śledzić (cel, podróż, termin), wygrywa żywy. Statyczny jest OK na jednorazowy post w socialu.</p>
+    <p>Ten przewodnik zakłada, że chcesz wersji żywej.</p>
+
+    <h2>Zasady designu widżetu odliczania</h2>
+
+    <h3>1. Jedna liczba, duża</h3>
+    <p>Liczba <a href="/pl/tools/countdown-timer">odliczania</a> to cały sens. Powinna być największym elementem widżetu. Wszystko, co z nią konkuruje — ilustracje, gradienty, ozdobna typografia — walczy z danymi. Użyj neutralnej oprawy wokół dominującej liczby.</p>
+
+    <h3>2. Opisz wydarzenie konkretnie</h3>
+    <p>„Wycieczka do Tokio” bije „Wakacje.” „Premiera Q3” bije „Termin.” Specyfika sprawia, że odliczanie czuje się realne. Jeśli etykieta jest ogólna, odliczanie jest dekoracją.</p>
+
+    <h3>3. Wybierz właściwą jednostkę</h3>
+    <ul>
+      <li><strong>Dni</strong> przy wydarzeniach za 7+ dni.</li>
+      <li><strong>Dni + godziny</strong> przy wydarzeniach za 1–7 dni.</li>
+      <li><strong>Godziny + minuty</strong> przy wydarzeniach bliższych niż dzień.</li>
+      <li><strong>Sekundy</strong> prawie nigdy. Wyglądają niespokojnie; opóźnienie odświeżania czyni je widocznie niedokładnymi.</li>
+    </ul>
+    <p>Wiele aplikacji widżetów pozwala jednostce dostosowywać się automatycznie wraz ze zbliżaniem się daty — włącz to, jeśli jest dostępne.</p>
+
+    <h3>4. Wysoki kontrast</h3>
+    <p>Liczba powinna czytać się jednym rzutem oka. Czerń na kremie, biel na czerni, granat na kości. Palety w tonach średnich wyglądają dopracowanie i są trudne do odczytu w realu — zwłaszcza w słońcu lub przy słabym świetle.</p>
+
+    <h3>5. Jedna rodzina typograficzna</h3>
+    <p>Jedna rodzina fontów w całym tekście widżetu. Liczba może być cięższa lub lżejsza niż etykieta, ale ta sama rodzina. Mieszanie szeryfowego + display + sans zawsze wygląda jak wypadek.</p>
+
+    <h2>Wybór kolorów według typu celu</h2>
+    <ul>
+      <li><strong>Ekscytujące odliczania (podróż, urodziny, premiera):</strong> cieplejsza paleta — terracotta, złoto, ochra. Kolor sygnalizuje oczekiwanie.</li>
+      <li><strong>Odliczania presji (termin, egzamin):</strong> chłodniejsza, spokojniejsza paleta — slate, navy, sage. Kolor powinien zmniejszać presję, nie ją wzmacniać.</li>
+      <li><strong>Długie łuki (rok, semestr):</strong> neutralne — kość słoniowa, charcoal, off-white. Widżety na cały rok są blisko tapety; stonowane czyta się lepiej z czasem.</li>
+    </ul>
+    <p>Jaskrawoczerwone odliczania to częsty błąd. Wyglądają pilnie na zrzucie i w codziennym życiu czyta się je jak stres. Zostaw czerwień na naprawdę krytyczne alerty czasowe.</p>
+
+    <h2>Miejsce ma znaczenie tak samo jak design</h2>
+    <ul>
+      <li><strong>Ekran blokady:</strong> najbardziej pilne odliczanie. Widoczne przy każdym podniesieniu.</li>
+      <li><strong>Ekran główny (główna strona):</strong> najważniejsze aktywne odliczanie.</li>
+      <li><strong>Ekran główny (strona drugorzędna):</strong> wszystkie inne aktywne odliczania, w stosie.</li>
+      <li><strong>Tryb czuwania:</strong> odliczanie na biurku.</li>
+      <li><strong>Tapeta:</strong> łuk roku.</li>
+    </ul>
+    <p>Odliczanie w złym miejscu jest niewidoczne. Odliczanie we właściwym miejscu zmienia sposób, w jaki spędzasz dni.</p>
+
+    <h2>Ustawienie w Left</h2>
+    <ol>
+      <li>W Nadchodzące stuknij <strong>Dodaj datę do Nadchodzące</strong> i utwórz wpis z nazwą wydarzenia i datą.</li>
+      <li>Pod <strong>Więcej opcji</strong> użyj <strong>Pokaż jako...</strong>, by wybrać godziny, dni, tygodnie, miesiące lub lata oraz symbol.</li>
+      <li>Wybierz kolor i, jeśli chcesz, zdjęcie tła.</li>
+      <li>Dodaj widżet do wybranej powierzchni (<a href="/pl/support/widget-iphone-home-screen">ekran główny</a>, <a href="/pl/support/widget-iphone-lock-screen">ekran blokady</a>, <a href="/pl/support/widget-iphone-standby">tryb czuwania</a>).</li>
+      <li>Przytrzymaj widżet → Edytuj widżet → wybierz konkretną datę Ahead.</li>
+    </ol>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-pl&amp;mt=8" target="_blank" rel="noopener">Pobierz widżet odliczania</a></p>
+
+    <h2>Częste błędy projektowe</h2>
+    <ul>
+      <li><strong>Dodawanie sekund.</strong> Wygląda zajęcie, zauważalnie laguje.</li>
+      <li><strong>Wyśrodkowanie wszystkiego.</strong> Wyśrodkowany tekst w każdej linii czyta się jak plakat. Układy asymetryczne czyta się jak funkcjonalne.</li>
+      <li><strong>Dekoracyjne ilustracje za liczbą.</strong> Utrudniają odczyt liczby.</li>
+      <li><strong>Wiele konkurujących widżetów na tej samej stronie.</strong> Dwa odliczania obok siebie walczą ze sobą. Jedno odliczanie + jeden powiązany widżet (zegar, postęp roku) czyta się lepiej.</li>
+      <li><strong>Używanie stockowego zdjęcia jako tła.</strong> Źle się pikselizuje; konkuruje z liczbą.</li>
+    </ul>
+
+    <h2>Kiedy odliczania tracą efekt</h2>
+    <p>Trzy tryby awarii i poprawki:</p>
+    <ul>
+      <li><strong>Zmęczenie wizualne.</strong> Zmień kolor lub rozmiar widżetu po 4–6 tygodniach. Ruch ponownie angażuje.</li>
+      <li><strong>Liczba przestaje czuć się realna.</strong> Odliczanie jest tam tak długo, że stało się tapetą. Przenieś je na ekran blokady, jeśli jeszcze go tam nie ma.</li>
+      <li><strong>Odliczanie się skończyło.</strong> Usuń je. Nie zostawiaj ukończonego odliczania — rozwadnia wpływ następnego.</li>
+    </ul>
+
+    <h2>Na grafiki do social mediów</h2>
+    <p>Jeśli naprawdę chcesz statycznej grafiki do udostępnienia (post ogłoszeniowy itd.), zasady są te same: jedna duża liczba, konkretna etykieta, wysoki kontrast, jedna rodzina fontów. Wygeneruj ją w dniu publikacji. Nie próbuj jej używać ponownie.</p>
+
+    <h2>Powiązane artykuły</h2>
+    <p>Szersze zestawienie widżetów odliczania: <a href="/pl/blog/best-countdown-widgets-iphone">najlepsze widżety odliczania na iPhone'a</a>. Strona designu jako estetyki: <a href="/pl/blog/iphone-aesthetic-widgets-guide">estetyczne widżety iPhone'a</a>. Układ ekranu głównego: <a href="/pl/blog/home-screen-timer-iphone">ustawienie timera na ekranie głównym</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Jaki font jest najlepszy do widżetu odliczania?</strong><br/>
+    Geometryczny sans (Helvetica, Inter, Outfit) albo mocny slab serif. Unikaj fontów display, które stają się trudne do odczytu w małych rozmiarach.</p>
+
+    <p><strong>Czy używać gradientowego tła?</strong><br/>
+    Subtelne gradienty są OK; agresywne konkurują z liczbą. W razie wątpliwości użyj płaskiego koloru.</p>
+
+    <p><strong>Czy mogę udostępnić design odliczania komuś?</strong><br/>
+    W Left udostępnij samo odliczanie przez Joint Ahead (część Left Premium) — dostają ten sam wpis Ahead; widżet na ich telefonie używa ich własnego stylu. Dane są wspólne; design jest wyborem każdej osoby.</p>
+
+    <p><strong>Jak dokładne jest odliczanie?</strong><br/>
+    iOS steruje częstotliwością odświeżania widżetów. Odliczanie jest dokładne do minuty przy wydarzeniach w godzinach, do godziny przy wydarzeniach w dniach i do dnia przy dalszych.</p>
+
+    <p><strong>Co konkretnie pokazuje widżet Ahead w Left?</strong><br/>
+    Konfigurowalne odliczanie — godziny, dni, tygodnie, miesiące lub lata, opcjonalny postęp, symbol, kolor i zdjęcie tła. Zaprojektowane jako żywa wersja „grafiki zegara odliczania.”</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Pobierz Left</span>
+          <h2>Zacznij zauważać to, co ważne.</h2>
+          <p>Pobierz Left na iPhone'a, by zobaczyć czas, który ci pozostał, daty, na które czekasz, budować nawyki, które chcesz zachować, i stawać się lepszą wersją siebie.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Kod QR - dotknij, by zobaczyć instrukcje">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Zeskanuj lub wyszukaj <strong>„Left”</strong> w App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-pl&amp;mt=8" target="_blank" rel="noopener" aria-label="Pobierz Left w App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Pobierz na iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> osób, dla których każda chwila ma znaczenie.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Stopka">
+          <a href="/pl/support">Pomoc</a>
+          <a href="/terms">Warunki</a>
+          <a href="/pl/privacy">Prywatność</a>
+          <a href="/pl/press">Prasa</a>
+          <a href="/pl/contact">Kontakt</a>
+          <a href="/pl/tools/">Narzędzia</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pl/blog/">Blog</a>
+          <a href="#" data-consent-open>Ustawienia plików cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>PL</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="true">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","pl","pt-BR","ru","tr","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Zgoda na pliki cookie">
+  <p class="left-consent__text">Używamy Google Analytics, by wiedzieć, które strony pomagają ludziom. Bez reklam i bez śledzenia między witrynami.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Zezwól na statystyki</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nie, dziękuję</button>
+    <a class="left-consent__link" href="/pl/privacy#website" data-consent-privacy>Prywatność</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
