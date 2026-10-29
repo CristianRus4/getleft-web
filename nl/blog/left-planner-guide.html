@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left Planner: agenda, herinneringen, gewoonten | Left</title>
+  <meta name="description" content="Wat Left Planner in één dagweergave samenbrengt: agenda-afspraken, Apple Reminders, gewoonten en reeksen, plus hoe je die opzet."  />
+  <link rel="canonical" href="https://getleft.app/nl/blog/left-planner-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left Planner: agenda, herinneringen, gewoonten"  />
+  <meta property="og:description" content="Wat Left Planner in één dagweergave samenbrengt: agenda-afspraken, Apple Reminders, gewoonten en reeksen, plus hoe je die opzet."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/nl/blog/left-planner-guide" />
+  <meta property="og:locale" content="nl_NL" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/left-planner-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left Planner: agenda, herinneringen, gewoonten"  />
+  <meta name="twitter:description" content="Wat Left Planner in één dagweergave samenbrengt: agenda-afspraken, Apple Reminders, gewoonten en reeksen, plus hoe je die opzet."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/left-planner-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Left Planner: Your Day in One View",
+  "description": "What Left Planner brings together in one day view: calendar events, Apple Reminders, habits and streaks, plus how to set it up.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/left-planner-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Left Planner: Your Day in One View",
+      "item": "https://getleft.app/blog/left-planner-guide"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Left Planner free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Planner is part of Left Premium. On the free plan, Planner shows a sample so you can see how it looks. Left Premium is available as a subscription or a lifetime purchase, and prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I complete reminders from Planner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tap the square next to a reminder in Planner to tick it off, and the change is saved to Apple Reminders. The Planner widget is interactive too: tap a reminder's or habit's symbol to complete it from the Home Screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Left Planner work with Todoist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Go to Settings, open Planner and tap Set up Todoist to connect your account. Todoist tasks then appear in Planner, where you can tick them off, and you can add them to the Planner widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Apple Health data does Planner show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Apple Health access, the Summary shows sleep, steps, workouts and mindful time for the day you're viewing. You can turn each one on or off in the Planner section of Settings."
+      }
+    }
+  ],
+  "inLanguage": "nl"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primair">
+    <div class="container nav-inner">
+      <a href="/nl/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/nl/#features" class="nav-link">Functies</a>
+          <a href="/nl/tools/" class="nav-link">Tools</a>
+          <a href="/nl/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-nl&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Downloaden</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Left Planner: je dag in één weergave</h1>
+<p class="article-meta">Bijgewerkt <time datetime="2026-10-20">20 oktober 2026</time> · 5 min lezen</p>
+<p>Planner is Lefts dagweergave. Die zet je agenda-afspraken, Apple Reminders, Todoist-taken en een kort dagelijks overzicht van weer en Apple Health-data op één plek, naast de gewoonten, reeksen, Doelen en Ahead-datums die je al in Left volgt. Gebouwd om de dag zichtbaar te maken, niet om nog een taaksysteem te worden.</p>
+<p><strong>Planner is onderdeel van Left Premium.</strong> Op het gratis abonnement toont het openen van Planner een voorbeeld („Zo ziet Planner eruit”) zodat je ziet hoe die werkt vóór je upgradet. Prijzen zie je in de app vóór je koopt.</p>
+
+<figure class="post-hero"><img src="/images/blog/left-planner-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/three-green-clipboards-on-wall-kYUiv5oDzGI" rel="noopener">Joyce Hankins / Unsplash</a></figcaption></figure>
+
+<h2>Wat Planner kan tonen</h2>
+<p>Elke bron kun je aan of uit zetten, zodat Planner zoveel of zo weinig toont als je wilt:</p>
+<ul>
+  <li><strong>Apple Agenda's</strong>: afspraken uit de agenda’s die je kiest.</li>
+  <li><strong>Apple Reminders</strong>: herinneringen uit de lijsten die je kiest.</li>
+  <li><strong>Todoist</strong>: taken uit je Todoist-account, zodra je die koppelt.</li>
+  <li><strong>Gewoonten</strong>, <strong>Reeksen</strong>, <strong>Doelen</strong> en <strong>Ahead-datums</strong> uit Left.</li>
+  <li><strong>Overzicht</strong>: het weer voor de dag die je bekijkt, plus slaap, stappen, trainingen en mindful tijd uit Apple Health, en vasten als je dat gebruikt.</li>
+</ul>
+<p>Je kunt van dag naar dag gaan, naar elke datum springen, en <strong>Weergeven als</strong> gebruiken om te wisselen tussen een lijst-, week- en maandlayout.</p>
+
+<h2>Meer dan een weergave</h2>
+<p>Planner is niet alleen-lezen. Vanuit de dagweergave kun je:</p>
+<ul>
+  <li>Vink een Apple Reminder of een Todoist-taak af. De wijziging wordt opgeslagen in Reminders of Todoist.</li>
+  <li>Leg een gewoonte vast door op het symbool te tikken. Gewoontes die automatisch met Apple Health worden gevolgd, vullen zichzelf in.</li>
+  <li>Voeg met de +-knop een nieuwe herinnering of agenda-afspraak toe.</li>
+  <li>Open elk item om de details te zien.</li>
+</ul>
+
+<h2>Planner opzetten</h2>
+<p>De eerste keer dat je Planner opent, laat een kaart <strong>Stel je Planner in</strong> je kiezen hoe Planner eruitziet, wat die toont, en welke diensten die mag gebruiken.</p>
+<ol>
+  <li>Open <strong>Planner</strong>. Staat die niet in je ondermenu, dan zit die achter de tools-knop. Je kunt die vastpinnen, of tot de tool maken die Left eerst opent, via <a href="/nl/support/choose-your-tools">Kies je tools</a>.</li>
+  <li>Onder <strong>Diensten koppelen</strong> sta je toe of wijs je af: Agenda's, Herinneringen, Apple Health, Locatie en Todoist. iOS vraagt elke toestemming pas wanneer je ervoor kiest die toe te staan.</li>
+  <li>Onder <strong>Toon in Planner</strong> kies je wat verschijnt: Overzicht, Agenda's, Herinneringen, Todoist, Gewoonten, Reeksen, Doelen en Ahead.</li>
+  <li>Tik op <strong>Begin met de Planner</strong>.</li>
+</ol>
+<p>Waarvoor elke toestemming is:</p>
+<ul>
+  <li><strong>Agenda's</strong> toont je afspraken. Het laat Left ook Ahead-datums in je agenda opslaan.</li>
+  <li><strong>Herinneringen</strong> toont je Apple Reminders.</li>
+  <li><strong>Apple Health</strong> toont trainingen, stappen, slaap en mindfulness per dag.</li>
+  <li><strong>Locatie</strong> toont het weer voor de dagen die je bekijkt.</li>
+</ul>
+<p>Wijs je iets af, werkt Planner met wat je hebt toegestaan. Je kunt toegang later aanzetten in de iOS Instellingen-app.</p>
+
+<h3>Fijnstellen in Instellingen</h3>
+<p>In Lefts Instellingen laat de Planner-sectie je de details bijstellen:</p>
+<ul>
+  <li><strong>Kalenders instellen</strong> en <strong>Herinneringen instellen</strong> kiezen welke agenda’s en lijsten verschijnen. Handig om werkmeetings uit een persoonlijke Planner te houden.</li>
+  <li><strong>Stel Todoist in</strong> koppelt je Todoist-account. Left opent Todoists eigen inlogpagina daarvoor.</li>
+  <li><strong>Kaarten bestellen</strong> zet de volgorde van de secties Overzicht, Schema, Gewoonten, Reeksen, Doelen en Ahead-datums.</li>
+  <li>Overzicht-schakelaars zetten <strong>Weer</strong>, <strong>Slaap</strong>, <strong>Stappen</strong>, <strong>Trainingen</strong>, <strong>Mindful tijd</strong> en <strong>Vasten</strong> aan of uit.</li>
+  <li><strong>Tijdnotatie</strong> wisselt tussen relatieve en absolute tijden, en je kunt <strong>Voltooide items</strong> en <strong>Extra details</strong> tonen of verbergen.</li>
+  <li><strong>Badge voor resterende items</strong> toont wat er vandaag over is op Lefts app-icoon.</li>
+</ul>
+
+<h2>De Planner-widget</h2>
+<p>De Planner-widget komt in small, medium en large en toont de events en herinneringen van vandaag. Bewerk de widget om Todoist-taken, gewoonten, reeksen en Doelen toe te voegen, en om te kiezen of hele-dag-events en -herinneringen verschijnen, of voltooide items zichtbaar blijven, en of die een telling van resterende items toont.</p>
+<p>De widget is interactief: tik op het symbool van een herinnering of gewoonte om die direct vanaf het beginscherm te voltooien. Tik op een rij om dat item in Planner te openen. Voor beginschermsetup, zie de <a href="/nl/support/widget-iphone-home-screen">widgetgids</a>.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-nl&amp;mt=8" target="_blank" rel="noopener">Probeer Planner in Left</a></p>
+
+<h2>Tips</h2>
+<ul>
+  <li>Gebruik Apple Reminders of Todoist voor to-dos en Apple Agenda voor alles met een tijd. Planner zet beide naast je gewoonten, zodat je de hele dag in één keer ziet.</li>
+  <li>Begin klein. Zet de bronnen aan die je echt checkt, voeg er daarna meer toe als je ze mist.</li>
+  <li>Open je Left vooral om je dag te plannen, zet Planner als standaardtool in Kies je tools.</li>
+  <li>Combineer de Planner-widget met een <a href="/nl/countdown-widget">aftelwidget</a> voor de datums waarnaar je toewerkt, of gebruik Lefts <a href="/nl/habit-tracker">gewoonte-tracker</a>-widgets voor de routines die je wilt houden.</li>
+</ul>
+
+<h2>Vragen</h2>
+<h3>Is Left Planner gratis?</h3>
+<p>Nee. Planner is onderdeel van Left Premium. Op het gratis abonnement toont Planner een voorbeeld zodat je ziet hoe die eruitziet. Left Premium is beschikbaar als abonnement of lifetime-aankoop, en prijzen zie je in de app vóór je koopt.</p>
+<h3>Kan ik herinneringen vanuit Planner voltooien?</h3>
+<p>Ja. Tik op het vierkant naast een herinnering in Planner om die af te vinken, en de wijziging wordt opgeslagen in Apple Reminders. De Planner-widget is ook interactief: tik op het symbool van een herinnering of gewoonte om die vanaf het beginscherm te voltooien.</p>
+<h3>Werkt Left Planner met Todoist?</h3>
+<p>Ja. Ga naar Instellingen, open Planner en tik op <strong>Stel Todoist in</strong> om je account te koppelen. Todoist-taken verschijnen daarna in Planner, waar je ze kunt afvinken, en je kunt ze toevoegen aan de Planner-widget.</p>
+<h3>Welke Apple Health-data toont Planner?</h3>
+<p>Met toegang tot Apple Health toont Overzicht slaap, stappen, trainingen en mindful tijd voor de dag die je bekijkt. Je kunt elk aan of uit zetten in de Planner-sectie van Instellingen.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left downloaden</span>
+          <h2>Begin te merken wat ertoe doet.</h2>
+          <p>Download Left op je iPhone om de tijd te zien die je nog hebt, de data waar je naar uitkijkt, de gewoonten te bouwen die je wilt behouden en een betere versie van jezelf te worden.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-code - tik voor instructies">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan of zoek naar <strong>"Left"</strong> in de App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-nl&amp;mt=8" target="_blank" rel="noopener" aria-label="Download Left in de App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download voor iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> mensen die elk moment laten tellen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/nl/support">Hulp</a>
+          <a href="/terms">Voorwaarden</a>
+          <a href="/nl/privacy">Privacy</a>
+          <a href="/nl/press">Pers</a>
+          <a href="/nl/contact">Contact</a>
+          <a href="/nl/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/nl/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-instellingen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>NL</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="true">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Toestemming voor cookies">
+  <p class="left-consent__text">We gebruiken Google Analytics om te begrijpen welke pagina’s mensen helpen. Geen advertenties, geen tracking over sites heen.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Statistieken toestaan</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nee, bedankt</button>
+    <a class="left-consent__link" href="/nl/privacy#website" data-consent-privacy>Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

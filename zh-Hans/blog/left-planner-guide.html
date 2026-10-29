@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left 规划：行事历、提醒事项与习惯合一 | Left</title>
+  <meta name="description" content="Left 规划在一日检视里汇整什么：行事历事件、Apple 提醒事项、习惯与连续记录，以及如何设定。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/left-planner-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left 规划：行事历、提醒事项与习惯合一"  />
+  <meta property="og:description" content="Left 规划在一日检视里汇整什么：行事历事件、Apple 提醒事项、习惯与连续记录，以及如何设定。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/left-planner-guide" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/left-planner-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left 规划：行事历、提醒事项与习惯合一"  />
+  <meta name="twitter:description" content="Left 规划在一日检视里汇整什么：行事历事件、Apple 提醒事项、习惯与连续记录，以及如何设定。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/left-planner-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Left Planner: Your Day in One View",
+  "description": "What Left Planner brings together in one day view: calendar events, Apple Reminders, habits and streaks, plus how to set it up.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/left-planner-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Left Planner: Your Day in One View",
+      "item": "https://getleft.app/blog/left-planner-guide"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Left Planner free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Planner is part of Left Premium. On the free plan, Planner shows a sample so you can see how it looks. Left Premium is available as a subscription or a lifetime purchase, and prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I complete reminders from Planner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Tap the square next to a reminder in Planner to tick it off, and the change is saved to Apple Reminders. The Planner widget is interactive too: tap a reminder's or habit's symbol to complete it from the Home Screen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Left Planner work with Todoist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Go to Settings, open Planner and tap Set up Todoist to connect your account. Todoist tasks then appear in Planner, where you can tick them off, and you can add them to the Planner widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What Apple Health data does Planner show?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Apple Health access, the Summary shows sleep, steps, workouts and mindful time for the day you're viewing. You can turn each one on or off in the Planner section of Settings."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Left 规划：一日一览</h1>
+<p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・5 分钟</p>
+<p>规划是 Left 的日检视。它把行事历事件、Apple 提醒事项、Todoist 任务，以及天气与 Apple 健康资料的短每日摘要放在一处，旁边是你已在 Left 追踪的习惯、连续记录、目标与即将到来日期。为了让一天可见而建，不是再变成另一套任务系统。</p>
+<p><strong>规划属 Left Premium。</strong>免费方案打开规划会显示样本（「规划长这样」），让你升级前先看怎么运作。购买前 App 内会显示价格。</p>
+
+<figure class="post-hero"><img src="/images/blog/left-planner-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/three-green-clipboards-on-wall-kYUiv5oDzGI" rel="noopener">Joyce Hankins / Unsplash</a></figcaption></figure>
+
+<h2>规划可以显示什么</h2>
+<p>每个来源都可开关，所以规划可显示多或少，随你：</p>
+<ul>
+  <li><strong>Apple 行事历</strong>：你选的行事历中的事件。</li>
+  <li><strong>Apple 提醒事项</strong>：你选的列表中的提醒。</li>
+  <li><strong>Todoist</strong>：连接帐号后，来自 Todoist 的任务。</li>
+  <li>来自 Left 的<strong>习惯</strong>、<strong>连续记录</strong>、<strong>目标</strong>与<strong>即将到来日期</strong>。</li>
+  <li><strong>摘要</strong>：你正在看的那一天的天气，加上来自 Apple 健康的睡眠、步数、运动与正念时间，以及你若有用的断食。</li>
+</ul>
+<p>你可以逐日移动、跳到任何日期，并用<strong>检视为</strong>在列表、周与月版面间切换。</p>
+
+<h2>不只是检视</h2>
+<p>规划不是唯读。从日检视你可以：</p>
+<ul>
+  <li>打勾 Apple 提醒事项或 Todoist 任务。变更会存回提醒事项或 Todoist。</li>
+  <li>点符号记录习惯。用 Apple 健康自动追踪的习惯会自己填上。</li>
+  <li>用 + 按钮新增提醒或行事历事件。</li>
+  <li>打开任何项目查看详情。</li>
+</ul>
+
+<h2>设定规划</h2>
+<p>第一次打开规划时，<strong>设定你的规划</strong>卡片让你选择规划长怎样、显示什么，以及可用哪些服务。</p>
+<ol>
+  <li>打开<strong>规划</strong>。若不在底部选单，它在工具按钮后面。可用<a href="/zh-Hans/support/choose-your-tools">选择你的工具</a>钉住，或设成 Left 先打开的工具。</li>
+  <li>在<strong>连接服务</strong>下，允许或拒绝各项：行事历、提醒事项、Apple 健康、定位与 Todoist。你选择允许时，iOS 才会逐项询问权限。</li>
+  <li>在<strong>在规划中显示</strong>下，选出现什么：摘要、行事历、提醒事项、Todoist、习惯、连续记录、目标与即将到来。</li>
+  <li>点<strong>开始使用规划</strong>。</li>
+</ol>
+<p>各权限用途：</p>
+<ul>
+  <li><strong>行事历</strong>显示你的事件。也让 Left 把即将到来日期存到行事历。</li>
+  <li><strong>提醒事项</strong>显示你的 Apple 提醒事项。</li>
+  <li><strong>Apple 健康</strong>显示每天的运动、步数、睡眠与正念。</li>
+  <li><strong>定位</strong>显示你查看那些天的天气。</li>
+</ul>
+<p>若你拒绝某项，规划会用你允许的运作。之后可在 iOS 设定 App 开启存取。</p>
+
+<h3>在设定微调</h3>
+<p>在 Left 的设定，规划区可调整细节：</p>
+<ul>
+  <li><strong>设定行事历</strong>与<strong>设定提醒事项</strong>选择出现哪些行事历与列表。适合让工作会议离开个人规划。</li>
+  <li><strong>设定 Todoist</strong>连接你的 Todoist 帐号。Left 会打开 Todoist 自己的登入页来完成。</li>
+  <li><strong>卡片顺序</strong>设定摘要、行程、习惯、连续记录、目标与即将到来日期各区的顺序。</li>
+  <li>摘要开关可开或关<strong>天气</strong>、<strong>睡眠</strong>、<strong>步数</strong>、<strong>运动</strong>、<strong>正念时间</strong>与<strong>断食</strong>。</li>
+  <li><strong>时间格式</strong>在相对与绝对时间间切换，也可显示或隐藏<strong>已完成项目</strong>与<strong>额外详情</strong>。</li>
+  <li><strong>剩余项目标记</strong>在 Left 的 App 图示上显示今天还剩什么。</li>
+</ul>
+
+<h2>规划小组件</h2>
+<p>规划小组件有小、中、大尺寸，显示今天的事件与提醒。编辑小组件可加入 Todoist 任务、习惯、连续记录与目标，并选择是否出现整天事件与提醒、已完成是否保留可见，以及是否显示剩余项目计数。</p>
+<p>小组件可互动：点提醒或习惯的符号即可从主屏幕完成。点一列在规划打开该项目。主屏幕设定见<a href="/zh-Hans/support/widget-iphone-home-screen">小组件指南</a>。</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">在 Left 中试用计划</a></p>
+
+<h2>小技巧</h2>
+<ul>
+  <li>待办用 Apple 提醒事项或 Todoist，有时间的事用 Apple 行事历。规划把两者放在习惯旁边，让你一次看见整天。</li>
+  <li>从小开始。先打开你实际会查的来源，若想念再加。</li>
+  <li>若你打开 Left 主要是规划一天，在选择你的工具把规划设为默认工具。</li>
+  <li>把规划小组件与你正在努力的日期的<a href="/zh-Hans/countdown-widget">倒数小组件</a>搭配，或用 Left 的<a href="/zh-Hans/habit-tracker">习惯追踪</a>小组件放想维持的例行。</li>
+</ul>
+
+<h2>问题</h2>
+<h3>Left 规划免费吗？</h3>
+<p>不行。规划属 Left Premium。免费方案会显示样本让你看样子。Left Premium 可订阅或终身购买，购买前 App 内会显示价格。</p>
+<h3>可以从规划完成提醒吗？</h3>
+<p>可以。在规划里点提醒旁的方块打勾，变更会存回 Apple 提醒事项。规划小组件也可互动：点提醒或习惯的符号即可从主屏幕完成。</p>
+<h3>Left 规划支援 Todoist 吗？</h3>
+<p>可以。到设定、打开规划，点<strong>设定 Todoist</strong>连接帐号。Todoist 任务就会出现在规划，可打勾，也可加到规划小组件。</p>
+<h3>规划显示哪些 Apple 健康资料？</h3>
+<p>有 Apple 健康存取时，摘要会显示你正在看的那一天的睡眠、步数、运动与正念时间。可在设定的规划区逐项开关。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

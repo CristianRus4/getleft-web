@@ -1,0 +1,532 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>纪念日倒数日：距离纪念日还有多少天 | Left</title>
+  <meta name="description" content="纪念日倒数日：输入最初的日期，算出距离下一个纪念日还有几天、已经几周年，以及下一个纪念日是哪一天。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/tools/anniversary-countdown" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/anniversary-countdown" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/anniversary-countdown" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="纪念日倒数日：距离纪念日还有多少天"  />
+  <meta property="og:description" content="纪念日倒数日：输入最初的日期，算出距离下一个纪念日还有几天、已经几周年，以及下一个纪念日是哪一天。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/tools/anniversary-countdown" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="纪念日倒数日：距离纪念日还有多少天"  />
+  <meta name="twitter:description" content="纪念日倒数日：输入最初的日期，算出距离下一个纪念日还有几天、已经几周年，以及下一个纪念日是哪一天。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Anniversary Countdown - Days Until Your Anniversary",
+  "url": "https://getleft.app/tools/anniversary-countdown",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Count down to your next anniversary from any original date. See days remaining, years completed, and the exact next anniversary date.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "zh-Hans"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Anniversary countdown",
+      "item": "https://getleft.app/tools/anniversary-countdown"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主导航">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>纪念日倒数</h1>
+    <p class="tool-lede">从任意最初的日期开始，倒数下一个纪念日。查看剩余天数、已经度过的年数，以及下一个纪念日的具体日期。</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <div class="tool-widget__field"><label for="ann-date">最初的日期</label><input type="date" id="ann-date" /></div>
+      </div>
+      <div class="tool-result" id="ann-result" aria-live="polite"></div>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hans&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          把这个倒计时放到主屏幕
+        </a>
+      </p>
+    </div>
+
+    <div class="tool-prose">
+      <h2>纪念日倒数是怎么算的</h2>
+      <p>输入最初的日期：你们相遇、结婚、入职或搬家的那一天。工具会找到下一次这个月日到来的时间，倒数还有几天，并告诉你那会是第几个纪念日。如果今年的日期已经过去，就会顺延到明年。当天计数器显示 0 天。</p>
+      <p>如果最初的日期是 2月29日，在不是闰年的年份，工具会显示 3月1日，因为这些年份没有 2月29日。</p>
+      <h2>传统的纪念日主题</h2>
+      <p>如果想给每个里程碑找点灵感，下面是常见的传统主题，不同国家会有所不同：</p>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">周年</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">传统主题</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">纸</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">5 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">木</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">10 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">锡或铝</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">15 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">水晶</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">20 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">瓷器</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">25 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">银</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">50 周年</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">金</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>不只是婚礼</h2>
+      <p>同样的倒数适用于任何每年重复的日期：初次约会的日子、公司成立日、戒酒日、宠物的领养日。选好日期，剩下的交给工具。</p>
+      <h2>把它放上主屏幕，每年自动重复</h2>
+      <ol>
+        <li>在 iPhone 上安装 Left，打开<strong>即将到来</strong>，轻点<strong>添加即将到来的日期</strong>，再轻点<strong>新日期</strong>。</li>
+        <li>给它起个名字，把<strong>开始</strong>设为下一个纪念日的日期。</li>
+        <li>把<strong>重复</strong>设为<strong>每年</strong>，这样倒数日每年都会回来，不用重新创建。</li>
+        <li>保存后，把 Left 的<strong>即将到来</strong>小组件添加到主屏幕或锁屏，并在<strong>编辑小组件</strong>里选择这个日期。</li>
+      </ol>
+      <p>免费版包含 2 个倒计时。想统计从那天起已经过去多少年多少天，可以用<a href="/zh-Hans/tools/days-since-date">某个日期已过去几天</a>。</p>
+      <h2>常见问题</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>距离我们的纪念日还有几天？</summary>
+          <div class="faq-answer"><p>先在上方输入最初的日期，计数器会显示距离下一次这个月日出现还有几天。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>如果纪念日是 2月29日怎么办？</summary>
+          <div class="faq-answer"><p>在不是闰年的年份，工具会把下一个纪念日显示为 3月1日。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>会显示这是第几个纪念日吗？</summary>
+          <div class="faq-answer"><p>会。它会显示最初的日期和下一个纪念日之间相隔的年数。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>怎样在 iPhone 上让倒数日每年重复？</summary>
+          <div class="faq-answer"><p>在 Left 里把日期的「重复」选项设为「每年」。免费版包含 2 个倒计时。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many days until our anniversary?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter the original date above. The counter shows the days until the next time that month and day occurs."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my anniversary is on February 29?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In years that are not leap years, the tool shows March 1 for the next anniversary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does it show which anniversary it is?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It shows the number of years between the original date and the next anniversary."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make the countdown repeat every year on my iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Left, set the date’s Repeat option to Yearly. The free plan includes 2 countdowns."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+    </div>
+    <div class="tool-related">
+      <h2>相关工具</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hans/tools/days-since-date">某个日期已过去几天</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/wedding-countdown">婚礼倒计时</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/days-until-birthday">距离你的生日还有几天</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/date-countdown-calculator">任意日期倒数日</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">下载 Left</span>
+        <h2>开始留意真正重要的事。</h2>
+        <p>把 Left 下载到你的 iPhone，看见剩余的时间，期待你盼望的日子，建立想要坚持的习惯，成为更好的自己。</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="二维码，轻点查看说明">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">扫描二维码，或在 App Store 搜索<strong>「Left」</strong>。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 下载 Left" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            下载 iOS 版
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在让每一刻都有意义。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页脚">
+          <a href="/zh-Hans/support">支持</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联系</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到啦。","notYet":"还没到","futureDate":"这个日期还没到。","datePassed":"这个日期已经过去了。","selectDate":"请选择有效的日期。","selectBoth":"请选择两个日期。","chooseTarget":"请先在上方选择目标日期。","deadlinePassed":"已过截止时间","pastDue":"已逾期","deadlineUrgent":"截止时间很紧迫","deadlineSoon":"快到截止时间了","deadlineAhead":"离截止时间还早","fastComplete":"断食完成！","weddingArrived":"这一天到了","weekend":"周末到啦！","itsWeekend":"周末到啦！好好享受吧。","workdayEnded":"今天的工作结束了","workdayEndedHint":"把时间设得晚一些，就可以重新开始倒计时。","upcoming":"接下来：{dates}","since":"自{date}起","fastEnds":"断食结束时间：{date}","sinceJan1":"自{year}年1月1日0点起","untilDec31":"到{year}年12月31日24点为止","fiscalEnds":"财政年度结束日：{date}","quarterEnds":"本季度结束日：{date}","weddingDate":"婚礼日期：{date}","departure":"出发日期：{date}","currentAge":"当前年龄：{years}岁{months}个月{days}天","hoursAndMinutes":"{hours}小时{minutes}分钟","minutesExtra":"多出{minutes}分钟，共{total}分钟","readingDetail":"按每分钟{wpm}个词计算，需要{minutes}分{seconds}秒","workdaysAt":"{days}个工作日，每天{hours}小时","minutesSince":"自{date}起共{minutes}分钟","schoolDays":"上课日","weekdaysMinusBreaks":"{weekdays}个工作日减去{breaks}天假期","businessAfter":"{date}之后的{count}个工作日","businessBefore":"{date}之前的{count}个工作日","futureTime":"这个时间还没到。","unitEquals":"{amount}{from}约等于{value}{to}","invalidTimestamp":"时间戳无效。","invalidDate":"日期无效。","local":"本地","pregFirst":"孕早期","pregSecond":"孕中期","pregThird":"孕晚期","pregWeekDay":"{weeks}周{days}天","dueWas":"预产期是{date}，恭喜！","yearDays":"{year}年共{days}天","easterDates":"西方教会：{western}；东正教：{orthodox}"},"stat":{"days":"天","hours":"小时","min":"分钟","sec":"秒","weeks":"周","months":"个月","daysSince":"已过天数","daysUntil":"距离天数","yearAnniversary":"周年","elapsed":"已过","left":"剩余","daysLeft":"剩余天数","weeksLeft":"剩余周数","yearsLeft":"剩余年数","streakDays":"已完成天数","fullWeeks":"整周数","approxMonths":"约合月数","durationMin":"时长（分钟）","elapsedMin":"已过分钟数","minutesLeft":"剩余分钟数","currentQuarter":"当前季度","remaining":"剩余","daysSober":"戒酒天数","daysToMilestone":"距下个里程碑","nextMilestone":"下个里程碑","daysUntilDeparture":"距出发天数","tripDays":"旅行天数"},"unit":{"months":{"one":"个月","other":"个月"},"weeks":{"one":"周","other":"周"},"days":{"one":"天","other":"天"},"hours":{"one":"小时","other":"小时"},"minutes":{"one":"分钟","other":"分钟"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一个圣诞节：{date}","newYear":"下一个元旦：{date}","halloween":"下一个万圣节：{date}","thanksgiving":"下一个美国感恩节：{date}","valentines":"下一个情人节：{date}","mothersDay":"下一个母亲节：{date}","fathersDay":"下一个父亲节：{date}","spring":"下一个春分：{date}","summer":"下一个夏至：{date}","fall":"下一个秋分：{date}","winter":"下一个冬至：{date}","westernEaster":"下一个西方复活节：{date}","orthodoxEaster":"下一个东正教复活节：{date}","birthday":"下一个生日：{date}","anniversary":"下一个纪念日：{date}","saturday":"下一个周六：{date}","birthdayAway":{"one":"下一个生日：{date}（还有{count}天）","other":"下一个生日：{date}（还有{count}天）"}},"sleep":{"bed9":"9小时（6个睡眠周期）","bed75":"7.5小时（5个睡眠周期，推荐）","bed6":"6小时（4个睡眠周期）","bed45":"4.5小时（3个睡眠周期）","wake45":"4.5小时","wake6":"6小时","wake75":"7.5小时（推荐）","wake9":"9小时"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const dateEl = document.getElementById('ann-date'); const result = document.getElementById('ann-result');
+    const def = new Date(); def.setFullYear(def.getFullYear() - 3); dateEl.value = toLocalDateInput(def);
+    function render() {
+      const original = new Date(dateEl.value + 'T00:00:00'); const now = new Date();
+      let next = new Date(now.getFullYear(), original.getMonth(), original.getDate());
+      if (next < startOfDay(now)) next.setFullYear(next.getFullYear() + 1);
+      const years = next.getFullYear() - original.getFullYear();
+      const days = Math.ceil((next - now) / MS_DAY);
+      result.innerHTML = '<div class="tool-stat-row">' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + fmtNum(days) + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.daysUntil')) + '</div></div>' +
+        '<div class="tool-stat"><div class="tool-stat-num">' + years + '</div><div class="tool-stat-label">' + toolEscape(toolT('stat.yearAnniversary')) + '</div></div>' +
+      '</div><p class="tool-result-sub">' + toolEscape(toolT('next.anniversary', { date: formatDateLong(next) })) + '</p>';
+    }
+    dateEl.addEventListener('change', render); render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

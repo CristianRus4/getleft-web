@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left Blog — Tempo restante, hábitos, contagens e widgets</title>
+  <meta name="description" content="Guias para tornar o tempo visível no iPhone: widgets, hábitos, sequências, contagens regressivas, Planeador e configurações amigáveis ao TDAH, mais resenhas honestas de aplicações."  />
+  <link rel="canonical" href="https://getleft.app/pt/blog/" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left Blog"  />
+  <meta property="og:description" content="Guias sobre tempo restante, widgets do iPhone, hábitos, sequências, contagens e Planner."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/pt/blog/" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left Blog"  />
+  <meta name="twitter:description" content="Guias sobre tempo restante, widgets do iPhone, hábitos, sequências, contagens e Planner."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "Left Blog",
+  "description": "Guides for making time visible on iPhone: widgets, habits, streaks, countdowns, Planner and ADHD-friendly setups, plus honest app round-ups.",
+  "url": "https://getleft.app/blog/",
+  "inLanguage": "en",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "logo": { "@type": "ImageObject", "url": "https://getleft.app/favicon/android-chrome-512x512.png" }
+  }
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/pt/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pt/#features" class="nav-link">Funcionalidades</a>
+          <a href="/pt/tools/" class="nav-link">Ferramentas</a>
+          <a href="/pt/blog/" class="nav-link">Blogue</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-pt&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Descarregar</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container blog-header">
+    <h1>Left Blog</h1>
+    <p>Guias sobre tempo restante, hábitos, sequências, contagens, Planner e widgets que mantêm o que importa à vista.</p>
+  </main>
+
+  <section class="container blog-grid">
+
+    <a class="blog-card" href="/pt/blog/habitkit-alternatives">
+      <div class="blog-cover"><img src="/images/blog/habitkit-alternatives-hero.webp" alt="As 6 melhores alternativas ao HabitKit para iPhone em 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As 6 melhores alternativas ao HabitKit para iPhone em 2026</div>
+        <div class="blog-excerpt">As melhores alternativas ao HabitKit para iPhone em 2026: apps de hábitos com grelha, widgets gratuitos, opções para o ecrã bloqueado e para o Apple Watch, comparadas.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/tiimo-alternatives">
+      <div class="blog-cover"><img src="/images/blog/tiimo-alternatives-hero.webp" alt="As 6 melhores alternativas ao Tiimo para iPhone em 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As 6 melhores alternativas ao Tiimo para iPhone em 2026</div>
+        <div class="blog-excerpt">As melhores alternativas ao Tiimo para iPhone em 2026: planeadores visuais, temporizadores de rotina, temporizadores de tarefas e widgets de tempo restante, comparados.</div>
+        <div class="blog-meta">9 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/structured-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/structured-app-alternatives-hero.webp" alt="As 6 melhores alternativas à app Structured para iPhone em 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As 6 melhores alternativas à app Structured para iPhone em 2026</div>
+        <div class="blog-excerpt">As melhores alternativas ao planeador diário Structured para iPhone em 2026: planeadores visuais, vistas do dia e apps de blocos de tempo, comparados.</div>
+        <div class="blog-meta">9 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-birthday-countdown-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-birthday-countdown-apps-iphone-hero.webp" alt="As melhores apps de contagem decrescente de aniversários natalícios para iPhone em 2026: 7 comparadas" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores aplicações de contagem decrescente de aniversários para iPhone em 2026: 7 comparadas</div>
+        <div class="blog-excerpt">As melhores apps de contagem decrescente e de lembretes de aniversários natalícios para iPhone em 2026, comparadas em widgets, importação de Contactos, Apple Watch e preço.</div>
+        <div class="blog-meta">9 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/streaks-app-alternatives">
+      <div class="blog-cover"><img src="/images/blog/streaks-app-alternatives-hero.webp" alt="As 7 melhores alternativas à app Streaks para iPhone em 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As 7 melhores alternativas à app Streaks para iPhone em 2026</div>
+        <div class="blog-excerpt">As melhores alternativas à app de hábitos Streaks para iPhone em 2026, comparadas em preço, planos gratuitos, Apple Watch, widgets e app Saúde da Apple.</div>
+        <div class="blog-meta">9 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-year-progress-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-year-progress-apps-iphone-hero.webp" alt="As melhores apps e widgets de progresso do ano para iPhone em 2026: 5 comparados" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As melhores apps e widgets de progresso do ano para iPhone em 2026: 5 comparados</div>
+        <div class="blog-excerpt">As melhores apps e widgets de progresso do ano para iPhone em 2026, comparados em widgets para o ecrã principal e o ecrã bloqueado, fundo de ecrã, Apple Watch e preço.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-countdown-wallpaper-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-wallpaper-apps-iphone-hero.webp" alt="As melhores apps de dias restantes e de fundos de ecrã com contagem decrescente para iPhone em 2026: 6 comparadas" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores aplicações de fundos de ecrã de dias restantes e contagem decrescente para iPhone em 2026: 6 comparadas</div>
+        <div class="blog-excerpt">As melhores apps de dias restantes e de fundos de ecrã com contagem decrescente para iPhone em 2026: ecrãs bloqueados do ano, da vida em semanas e de contagens decrescentes que se atualizam todos os dias.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-life-calendar-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-life-calendar-apps-iphone-hero.webp" alt="As melhores apps de calendário da vida para iPhone em 2026: 7 apps de vida em semanas e memento mori comparadas" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As melhores apps de calendário da vida para iPhone em 2026: 7 apps de vida em semanas e memento mori comparadas</div>
+        <div class="blog-excerpt">As melhores apps de calendário da vida, vida em semanas e memento mori para iPhone em 2026, comparadas em widgets, fundo de ecrã, preço e avaliações.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/widgetsmith-alternatives">
+      <div class="blog-cover"><img src="/images/blog/widgetsmith-alternatives-hero.webp" alt="As 7 melhores alternativas ao Widgetsmith para iPhone em 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">As 7 melhores alternativas ao Widgetsmith para iPhone em 2026</div>
+        <div class="blog-excerpt">As melhores alternativas ao Widgetsmith para iPhone em 2026: widgets de hora e de contagem decrescente, criadores de widgets, temas e lançadores, comparados.</div>
+        <div class="blog-meta">9 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-days-since-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-days-since-apps-iphone-hero.webp" alt="As melhores apps de dias desde para iPhone em 2026: 7 comparadas" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores aplicações de dias desde para iPhone em 2026: 7 comparadas</div>
+        <div class="blog-excerpt">As melhores apps de dias desde e de registo da última vez para iPhone em 2026, comparadas em preço, widgets, Apple Watch e avaliações.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+
+    <a class="blog-card" href="/pt/blog/aim-goal-tracker-left">
+      <div class="blog-cover"><img src="/images/blog/aim-goal-tracker-left-hero.webp" alt="Objetivo no Left: acompanha qualquer meta que possas contar" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Objetivo no Left: acompanha qualquer meta que possas contar</div>
+        <div class="blog-excerpt">Poupa dinheiro, lê livros, corre mais longe, reduz dívida ou acaba um projeto com um rastreador de objetivos baseado em números integrado no Since.</div>
+        <div class="blog-meta">3 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/digital-clock-date-widget-iphone">
+      <div class="blog-cover"><img src="/images/blog/digital-clock-date-widget-iphone-hero.webp" alt="Como configurar um widget de relógio digital e data no iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como configurar o widget de relógio digital e data no iPhone (2026)</div>
+        <div class="blog-excerpt">Um guia prático de widgets de relógio + data no ecrã principal, ecrã bloqueado e Em espera — sem a fadiga do relógio por omissão.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/presentation-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/presentation-timer-iphone-hero.webp" alt="O melhor setup de timer de apresentação para iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">O melhor setup de timer de apresentação para iPhone</div>
+        <div class="blog-excerpt">Um setup funcional de timer de apresentação para nunca teres de olhar para o telemóvel a meio da talk.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-reminder-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-reminder-apps-iphone-hero.webp" alt="10 melhores apps de lembretes para iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 melhores apps de lembretes para iPhone (2026)</div>
+        <div class="blog-excerpt">Um resumo honesto — para que serve cada uma, onde falha e como escolher a que vais mesmo usar.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-reward-system">
+      <div class="blog-cover"><img src="/images/blog/adhd-reward-system-hero.webp" alt="Como construir um sistema de recompensa ADHD sustentável" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como construir um sistema de recompensas ADHD sustentável</div>
+        <div class="blog-excerpt">Estratégias práticas, informadas pela ciência, que respeitam como a dopamina ADHD realmente funciona.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-planner-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-planner-adhd-hero.webp" alt="Como escolher o melhor planeador para ADHD" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como escolher o melhor planeador para ADHD</div>
+        <div class="blog-excerpt">Um guia sem vergonha para escolher, configurar e realmente manter um planeador que funciona com um cérebro ADHD.</div>
+        <div class="blog-meta">8 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-time-blindness-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="Cegueira temporal no TDAH: widgets que ajudam" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Cegueira temporal no TDAH: widgets que ajudam</div>
+        <div class="blog-excerpt">Cegueira temporal explicada, e o setup de widgets no iPhone que torna o tempo visível o suficiente para agir.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/time-management-best-practices">
+      <div class="blog-cover"><img src="/images/blog/time-management-best-practices-hero.webp" alt="10 melhores práticas de gestão de tempo que realmente funcionam" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 melhores práticas de gestão de tempo que realmente funcionam</div>
+        <div class="blog-excerpt">Dez técnicas que valem a pena aprender — e o setup de tempo visível que as mantém coladas após a segunda semana.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/project-timeline-visualization">
+      <div class="blog-cover"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="Visualização de timeline de projeto: do Gantt a widgets de relance" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Visualização de timeline de projeto: do Gantt a widgets de relance</div>
+        <div class="blog-excerpt">Quando usar um Gantt, quando um roadmap e quando uma contagem — sem construir o gráfico a mais.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-home-screen-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-home-screen-widgets-iphone-hero.webp" alt="10 melhores widgets da ecrã principal (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 melhores widgets da ecrã principal (2026)</div>
+        <div class="blog-excerpt">Um resumo honesto dos widgets que ganham o espaço — e quais são decoração.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/smart-goals-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-guide-hero.webp" alt="Metas SMART: guia prático de configuração para 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Metas SMART: guia prático de configuração para 2026</div>
+        <div class="blog-excerpt">Um guia funcional com o setup de tracking visível que mantém os objetivos SMART vivos após a segunda semana.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/event-planning-timeline">
+      <div class="blog-cover"><img src="/images/blog/event-planning-timeline-hero.webp" alt="Timeline de planeamento de eventos: um guia passo a passo" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Timeline de planeamento de eventos: guia passo a passo</div>
+        <div class="blog-excerpt">Planeamento para trás, checkpoints de fornecedores, armadilhas de scope-creep e a contagem partilhada que alinha a equipa.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/workplace-productivity-habits">
+      <div class="blog-cover"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="10 hábitos de produtividade no trabalho que realmente colam" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 hábitos de produtividade no trabalho que realmente colam</div>
+        <div class="blog-excerpt">Métodos que sobrevivem para além da segunda semana, mais o setup visível que os segura quando a motivação some.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-morning-routine-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-morning-routine-iphone-hero.webp" alt="Como construir uma rotina matinheira amigável para ADHD no iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como construir uma rotina matinal amiga do ADHD no iPhone</div>
+        <div class="blog-excerpt">Três passos, em qualquer ordem, visíveis no momento em que levantas o telemóvel. A rotina de influencer às 5h não é isto.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-task-initiation-strategies">
+      <div class="blog-cover"><img src="/images/blog/adhd-task-initiation-strategies-hero.webp" alt="Iniciação de tarefas ADHD: começar quando não dá" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Iniciação de tarefas ADHD: começar quando não dá</div>
+        <div class="blog-excerpt">A regra dos 2 minutos, arranques externalizados e o setup de widgets que baixa a energia de ativação para cérebros ADHD.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/time-management-tips-students">
+      <div class="blog-cover"><img src="/images/blog/time-management-tips-students-hero.webp" alt="10 dicas de gestão de tempo para estudantes" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 dicas de gestão de tempo para estudantes</div>
+        <div class="blog-excerpt">Dicas que sobrevivem a um semestre real — prazos visíveis, padrões de energia e o setup de widgets que mantém tudo honesto.</div>
+        <div class="blog-meta">7 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/timer-interval-app-iphone">
+      <div class="blog-cover"><img src="/images/blog/timer-interval-app-iphone-hero.webp" alt="Apps de timer de intervalos: para além do fitness — um guia para foco e hábitos" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Apps de timer de intervalos: além do fitness — guia para foco e hábitos</div>
+        <div class="blog-excerpt">Casos de uso muito para além do Tabata — e o setup no iPhone que mantém o timer visível.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-goal-tracking-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-goal-tracking-apps-iphone-hero.webp" alt="Melhores apps de acompanhamento de objetivos para iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores apps de acompanhamento de objetivos para iPhone (2026)</div>
+        <div class="blog-excerpt">Ordenado por tipo de objetivo — prazos, hábitos, acumulação, projetos. A app certa para a forma certa.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-apple-watch-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-apple-watch-apps-adhd-hero.webp" alt="9 melhores apps Apple Watch para ADHD" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">9 melhores apps Apple Watch para ADHD</div>
+        <div class="blog-excerpt">O háptico no pulso é o que um alarme gostaria de ser — apps que realmente mudam comportamento relevante para ADHD.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/iphone-aesthetic-widgets-guide">
+      <div class="blog-cover"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="Widgets estéticos para iPhone: guia de 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Widgets estéticos para iPhone: guia de 2026</div>
+        <div class="blog-excerpt">Desenha um ecrã principal aesthetic com widgets que ficam bem e fazem algo útil.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-productivity-apps-mac">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-mac-hero.webp" alt="Melhores apps de produtividade para Mac (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores apps de produtividade para Mac (2026)</div>
+        <div class="blog-excerpt">Um stack honesto de produtividade Mac — três ou quatro apps que ganham o lugar, sem desordem na barra de menus.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-body-doubling-apps">
+      <div class="blog-cover"><img src="/images/blog/adhd-body-doubling-apps-hero.webp" alt="Body doubling ADHD: apps e alternativas que realmente funcionam" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Body doubling ADHD: apps e alternativas que realmente funcionam</div>
+        <div class="blog-excerpt">Porque o body doubling ajuda no ADHD, as apps que o facilitam e o setup de accountability async.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/countdown-clock-graphic-guide">
+      <div class="blog-cover"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="Relógio de contagem decrescente: guia de design 2026" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Relógio de contagem decrescente: guia de design 2026</div>
+        <div class="blog-excerpt">Tipografia, cor, layout — e o setup de widgets live que bate qualquer gráfico estático.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/goal-progress-tracker-setup">
+      <div class="blog-cover"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="App de progresso de objetivos: o teu guia de setup (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">App de progresso de objetivos: o teu guia de setup (2026)</div>
+        <div class="blog-excerpt">Primeiro objetivo, colocação de widgets, estilos avançados e os workflows que realmente colam.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/home-screen-timer-iphone">
+      <div class="blog-cover"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="Como pôr um timer de contagem no ecrã principal do iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como colocar um timer de contagem decrescente na ecrã principal</div>
+        <div class="blog-excerpt">Tamanho, colocação, casos de uso — o setup de widgets que não desvanece.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-apps-for-adhd-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-apps-for-adhd-iphone-hero.webp" alt="10 melhores apps para pessoas com ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 melhores apps para pessoas com ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">Apps que realmente ajudam — foco, iniciação de tarefas, cegueira temporal, rotina — alinhadas com modos de falha específicos.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/visual-goals-track-on-screens">
+      <div class="blog-cover"><img src="/images/blog/visual-goals-track-on-screens-hero.webp" alt="Objetivos visuais: como seguir ambições nos ecrãs do iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Objetivos visuais: como acompanhar ambições nos ecrãs do iPhone</div>
+        <div class="blog-excerpt">Um sistema em camadas de quatro superfícies que torna os objetivos impossíveis de esquecer.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/smart-goals-visual-guide">
+      <div class="blog-cover"><img src="/images/blog/smart-goals-visual-guide-hero.webp" alt="Objetivos SMART visuais: como os seguir nos teus dispositivos" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Objetivos SMART visuais: como os seguir nos teus dispositivos</div>
+        <div class="blog-excerpt">Traduz cada letra de SMART num widget visível — sem templates necessários.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-students-study-tools-iphone">
+      <div class="blog-cover"><img src="/images/blog/adhd-students-study-tools-iphone-hero.webp" alt="Ferramentas de estudo para estudantes com ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Ferramentas de estudo para estudantes com ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">O setup de estudo no iPhone que funciona para estudantes ADHD — contagens do semestre, Pomodoro e sequências de estudo.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-productivity-apps-adhd">
+      <div class="blog-cover"><img src="/images/blog/best-productivity-apps-adhd-hero.webp" alt="Melhores apps de produtividade para ADHD (iPhone, 2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores apps de produtividade para ADHD (iPhone, 2026)</div>
+        <div class="blog-excerpt">Apps alinhadas com modos de falha específicos, com o stack pequeno que realmente funciona.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/productivity-tools-visual-focus">
+      <div class="blog-cover"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="Ferramentas de produtividade: porque o visual bate o cheio de funcionalidades" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Ferramentas de produtividade: porque o visual bate o cheio de funcionalidades</div>
+        <div class="blog-excerpt">Os quatro estilos de tracking visual que funcionam — e o setup unificado que substitui cinco apps.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/how-to-focus-adhd">
+      <div class="blog-cover"><img src="/images/blog/how-to-focus-adhd-hero.webp" alt="Como focar com ADHD: passos práticos que funcionam" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como focar com ADHD: passos práticos que funcionam</div>
+        <div class="blog-excerpt">Correções imediatas, rotinas estruturadas, ambiente e o setup de widgets que segura tudo.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-free-widget-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-free-widget-apps-iphone-hero.webp" alt="10 melhores apps de widgets grátis no iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">10 melhores apps de widgets grátis no iPhone (2026)</div>
+        <div class="blog-excerpt">Cobertura honesta do nível gratuito, com as pegadinhas por trás do rótulo «grátis».</div>
+        <div class="blog-meta">4 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/visual-reminders-adhd-apple-setup">
+      <div class="blog-cover"><img src="/images/blog/visual-reminders-adhd-apple-setup-hero.webp" alt="Lembretes visuais para ADHD: guia de setup no iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Lembretes visuais para ADHD: guia de setup no iPhone</div>
+        <div class="blog-excerpt">Um setup de lembretes visuais no iPhone: widgets dinâmicos que não desvanecem no wallpaper.</div>
+        <div class="blog-meta">4 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/keep-track-multiple-projects">
+      <div class="blog-cover"><img src="/images/blog/keep-track-multiple-projects-hero.webp" alt="Como acompanhar vários projetos (sem perder a cabeça)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como acompanhar vários projetos (sem perder a cabeça)</div>
+        <div class="blog-excerpt">Uma fonte de verdade, revisão semanal e um dashboard de widgets que torna o progresso visível.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/stay-consistent-with-goals">
+      <div class="blog-cover"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="Como manter-te consistente com objetivos (sem depender da força de vontade)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como manter consistência com objetivos (sem depender da força de vontade)</div>
+        <div class="blog-excerpt">Os sistemas que produzem consistência onde a força de vontade falha — sequências visíveis, rituais de recomeço, accountability.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/adhd-work-from-home-setup">
+      <div class="blog-cover"><img src="/images/blog/adhd-work-from-home-setup-hero.webp" alt="ADHD a trabalhar a partir de casa: um setup com widgets que funciona" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">ADHD a trabalhar a partir de casa: um setup com widgets que funciona</div>
+        <div class="blog-excerpt">Em espera no iPhone, blocos de deep work visíveis e o ritmo diário que sobrevive à quarta-feira.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-habit-tracker-apps-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-habit-tracker-apps-iphone-hero.webp" alt="7 melhores apps de hábitos para iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">7 melhores apps de hábitos para iPhone (2026)</div>
+        <div class="blog-excerpt">A comparar os principais rastreadores de hábitos — suporte a widgets, horários, partilha e qual encaixa na tua forma de trabalhar.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/best-countdown-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/best-countdown-widgets-iphone-hero.webp" alt="Melhores widgets de contagem para o ecrã principal do iPhone (2026)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Melhores widgets de contagem decrescente na ecrã principal (2026)</div>
+        <div class="blog-excerpt">Os widgets de contagem que poríamos nos nossos próprios ecrãs principais — viagens, aniversários, prazos, datas partilhadas.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/habitkit-vs-left">
+      <div class="blog-cover"><img src="/images/blog/habitkit-vs-left-hero.webp" alt="HabitKit vs Left: uma comparação honesta" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">HabitKit vs Left: uma comparação honesta</div>
+        <div class="blog-excerpt">Duas apps fortes de tracking de hábitos com filosofias muito diferentes. Onde cada uma ganha, lado a lado.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/how-to-add-widgets-iphone">
+      <div class="blog-cover"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="Como adicionar widgets no iPhone: ecrã principal, ecrã bloqueado e Em espera" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como adicionar widgets no iPhone: ecrã principal, ecrã bloqueado e Em espera</div>
+        <div class="blog-excerpt">Passo a passo com o Left como exemplo — todas as superfícies onde podes pôr um widget no iOS.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/what-is-year-progress">
+      <div class="blog-cover"><img src="/images/blog/what-is-year-progress-hero.webp" alt="O que é Year Progress e porque o deverias seguir" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">O que é o progresso do ano e por que o deves seguir</div>
+        <div class="blog-excerpt">Uma visualização pequena com uma grande mudança de mindset. Como os widgets de progresso do ano mudam a forma como planeias.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/how-to-build-a-streak">
+      <div class="blog-cover"><img src="/images/blog/how-to-build-a-streak-hero.webp" alt="Como construir uma sequência no teu iPhone" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Como criar uma sequência no teu iPhone</div>
+        <div class="blog-excerpt">Hábitos vs sequências, definir um horário e o setup de widgets que faz colar.</div>
+        <div class="blog-meta">6 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/left-wallpaper-guide">
+      <div class="blog-cover"><img src="/images/blog/left-wallpaper-guide-hero.webp" alt="Fundo de ecrã Left: ecrã bloqueado que se atualiza" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Fundo de ecrã Left: ecrã bloqueado que se atualiza</div>
+        <div class="blog-excerpt">Como funciona o Left Wallpaper, como o configurar com Atalhos e o que pôr nele.</div>
+        <div class="blog-meta">2 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/countdown-next-trip-with-friends">
+      <div class="blog-cover"><img src="/images/blog/countdown-next-trip-with-friends-hero.webp" alt="A contar para a tua próxima viagem (e partilhá-la com amigos)" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Contagem decrescente para a próxima viagem (e partilhá-la com amigos)</div>
+        <div class="blog-excerpt">Passo a passo de uma data Ahead, depois transformá-la num Joint Ahead com as pessoas que vão.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+    <a class="blog-card" href="/pt/blog/left-planner-guide">
+      <div class="blog-cover"><img src="/images/blog/left-planner-guide-hero.webp" alt="Left Planner: o teu dia numa vista" width="1200" height="675" loading="lazy" decoding="async"  /></div>
+      <div class="blog-body">
+        <div class="blog-title">Left Planner: o teu dia numa só vista</div>
+        <div class="blog-excerpt">Apple Reminders, eventos de calendário, hábitos, sequências, tempo, sono, treinos e mais num só sítio.</div>
+        <div class="blog-meta">5 min de leitura</div>
+      </div>
+    </a>
+
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> pessoas a fazer cada momento contar.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Rodapé">
+          <a href="/pt/support">Apoio</a>
+          <a href="/terms">Termos</a>
+          <a href="/pt/privacy">Privacidade</a>
+          <a href="/pt/press">Imprensa</a>
+          <a href="/pt/contact">Contacto</a>
+          <a href="/pt/tools/">Ferramentas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pt/blog/">Blogue</a>
+          <a href="#" data-consent-open>Definições de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>PT</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="true">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimento de cookies">
+  <p class="left-consent__text">Usamos o Google Analytics para perceber que páginas ajudam as pessoas. Sem anúncios nem rastreamento entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir estatísticas</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Não, obrigado</button>
+    <a class="left-consent__link" href="/pt/privacy#website" data-consent-privacy>Privacidade</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

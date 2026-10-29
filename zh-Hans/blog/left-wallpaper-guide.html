@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Left 壁纸：会自己更新的锁屏 | Left</title>
+  <meta name="description" content="Left 壁纸怎么运作、如何用捷径设定，以及要放什么。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/left-wallpaper-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/left-wallpaper-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/left-wallpaper-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Left 壁纸：会自己更新的锁屏"  />
+  <meta property="og:description" content="Left 壁纸怎么运作、如何用捷径设定，以及要放什么。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/left-wallpaper-guide" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/left-wallpaper-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Left 壁纸：会自己更新的锁屏"  />
+  <meta name="twitter:description" content="Left 壁纸怎么运作、如何用捷径设定，以及要放什么。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/left-wallpaper-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Left Wallpaper: A Lock Screen That Updates Itself",
+  "description": "How Left Wallpaper works, how to set it up with Shortcuts, and what to put on it.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/left-wallpaper-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Left Wallpaper: A Lock Screen That Updates Itself",
+      "item": "https://getleft.app/blog/left-wallpaper-guide"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is Left Wallpaper free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left Wallpaper is free and does not need Left Premium. Special Date mode uses one of your Ahead dates, and the free plan lets you create 2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the wallpaper update every day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, once the Shortcuts automation is set up. It runs at the time you choose, such as 12:01 AM. To refresh more than once a day, add a second Time of Day automation."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What modes does Left Wallpaper have?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Five: Year, Life, Month, Calendar and Special Date. The legend reads like \"73 days left\". In Special Date mode it shows months when the date is more than 90 days away, and years when it is more than two years away."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why did my wallpaper automation not run?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The timing is up to iOS. Check the automation is set to Run Immediately and repeat Every Day. If a run was missed, open Shortcuts and run the shortcut by hand."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Low Power Mode stop the wallpaper from updating?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It can delay it. iOS sometimes delays background automations in Low Power Mode, when the phone is hot or when it has not been unlocked recently. Unlock your phone and the automation will catch up."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Left 壁纸：会自己更新的锁屏</h1>
+<p class="article-meta">更新于 <time datetime="2026-10-20">2026年10月20日</time> · 2 分钟</p>
+<p>iOS 壁纸是静态的。小组件不是。<strong>Left 壁纸</strong>介于两者之间——它用你的即时时间资料产生壁纸图片，再用 Apple 捷径自我更新。可免费使用。范例见<a href="/zh-Hans/days-left-wallpaper">剩余天数壁纸</a>页。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">获取剩余天数壁纸</a></p>
+
+<figure class="post-hero"><img src="/images/blog/left-wallpaper-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-plant-and-a-picture-on-a-wall-WxhIbQHJd4A" rel="noopener">Miska Sage / Unsplash</a></figcaption></figure>
+
+<h2>可以显示什么</h2>
+<ul>
+  <li>你的一年（以天、周或月）、一个月，或行事历检视</li>
+  <li>你的人生以年、月或周呈现（符号网格）</li>
+  <li>你选的任何即将到来日期的倒数（特别日期）</li>
+  <li>来自我的照片或 Unsplash 的照片背景，可加模糊，叠在以上任一之上</li>
+</ul>
+
+<h2>可以放什么</h2>
+<ul>
+  <li>以天显示的一年，每次唤醒手机都能快速看到「还剩几天」</li>
+  <li>以周为单位的人生，做成一份人生日历</li>
+  <li>用「特别日期」倒数一趟旅行或一场活动</li>
+  <li>一张你喜欢的照片，加上模糊效果，上面叠一层网格</li>
+</ul>
+
+<h2>实际怎么运作</h2>
+<p>在 Left，你选择模式、符号、浅色或深色外观、主题色，以及是否显示图例（如「还剩 73 天」的文字）。Left 接著在 Apple 捷径提供壁纸动作。你把该动作接到每天执行的捷径<em>自动化</em>，壁纸就会保持最新，不用你动手。</p>
+
+<h2>设定，逐步说明</h2>
+<p>你会建一个请 Left 重新产生壁纸的捷径，再加每天执行该捷径的自动化。接好之后就不用再碰。</p>
+
+<h3>1. 建立新捷径</h3>
+<p>先在 Left 设好想要的壁纸。再点<strong>打开捷径</strong>到捷径 App，点<strong>+</strong>建立新捷径。</p>
+
+<h3>2. 建立捷径</h3>
+<p>搜索<strong>Wallpaper</strong>，点带 Left 图示的动作。再加入<strong>设定壁纸照片</strong>，点其箭头，关闭<strong>显示预览</strong>、<strong>裁剪主题</strong>与<strong>易读性模糊</strong>。替捷径取名，例如<em>「Left 壁纸」</em>。</p>
+
+<h3>3. 建立自动化</h3>
+<p>在捷径搜索栏下方点<strong>自动化</strong>，建立新的<strong>一天中的时间</strong>自动化。设为<strong>上午 12:01</strong>（或你喜欢的任何时间），重复<strong>每天</strong>。关闭<strong>通知</strong>。</p>
+
+<h3>4. 自动化捷径</h3>
+<p>选步骤 2 建立的捷径作为要执行的动作。点播放测试，再用返回箭头储存。完成——从现在起锁屏每天会自己更新。</p>
+
+<p>需要更多细节或截图？见<a href="/zh-Hans/support/wallpaper-shortcut">Left 壁纸捷径支援页</a>的完整逐步说明。</p>
+
+<h2>小技巧</h2>
+<ul>
+  <li>手机过热或低电量模式时，iOS 可能延迟自动化——那是系统，不是 Left。</li>
+  <li>搭配小型锁屏小组件，例如<a href="/zh-Hans/year-progress-widget">年度进度小组件</a>，作为备援。</li>
+</ul>
+
+<h2>问题</h2>
+<h3>Left 壁纸免费吗？</h3>
+<p>是的。Left 壁纸免费，不需要 Left Premium。「特别日期」模式会用到你的一个「即将到来」日期，免费版可创建 2 个。</p>
+<h3>壁纸会每天更新吗？</h3>
+<p>会，只要设置好快捷指令自动化。它会在你选定的时间运行，例如上午 12:01。想一天刷新多次，可以再添加一个「特定时间」自动化。</p>
+<h3>Left 壁纸有哪些模式？</h3>
+<p>五种：年份、人生、月份、日历和特别日期。说明文字类似「还剩 73 天」。在「特别日期」模式下，日期在 90 天以后时会以月显示，在两年以后时会以年显示。</p>
+<h3>为什么我的壁纸自动化没有运行？</h3>
+<p>具体时间由 iOS 决定。请检查自动化是否设为「立即运行」，并设置为「每天」重复。如果错过了一次运行，打开快捷指令手动运行该快捷指令即可。</p>
+<h3>低电量模式会让壁纸停止更新吗？</h3>
+<p>可能会延迟。在低电量模式下、手机过热时，或最近没有解锁过时，iOS 有时会推迟后台自动化。解锁手机后，自动化就会补上。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

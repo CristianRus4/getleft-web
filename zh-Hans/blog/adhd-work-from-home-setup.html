@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>ADHD 在家工作：有效的小组件驱动设定 | Left</title>
+  <meta name="description" content="给 ADHD 成人的在家工作设定：iPhone 待机显示、可见深度工作时段，以及撑过周三的每日节奏。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/adhd-work-from-home-setup" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/adhd-work-from-home-setup" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/adhd-work-from-home-setup" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="ADHD 在家工作：有效的小组件驱动设定"  />
+  <meta property="og:description" content="给 ADHD 成人的在家工作设定：iPhone 待机显示、可见深度工作时段，以及撑过周三的每日节奏。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/adhd-work-from-home-setup" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/adhd-work-from-home-setup-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/adhd-work-from-home-setup-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Work From Home: A Widget-Driven Setup That Works",
+  "description": "A working-from-home setup for ADHD adults: iPhone StandBy, visible deep-work blocks, and a daily rhythm that holds up past Wednesday.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-work-from-home-setup",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Work From Home: A Widget-Driven Setup That Works",
+      "item": "https://getleft.app/blog/adhd-work-from-home-setup"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>ADHD 在家工作：有效的小组件驱动设定</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・5 分钟</p>
+
+    <p>在家工作对 ADHD 成人比生产力部落格承认的更难。办公室有环境身体加倍、可见同事、工作与休息的人为分离，以及会注意到你不在的主管。在家工作剥光这些。剩下的是意志力对抗非为专注工作设计的环境——而 ADHD 意志力不是那场仗的对工具。</p>
+
+    <p>本指南是对 ADHD 友善的在家工作设定可用版。环境设计、外部化办公室曾提供结构的小组件设定、撑过周三的每日节奏，以及任何设定的诚实上限。我们用<strong>Left</strong>在 iPhone 主屏幕、锁屏与待机显示的小组件做可见结构工。</p>
+
+    <figure class="post-hero"><img src="/images/blog/adhd-work-from-home-setup-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-desk-with-a-chair-and-a-window-in-the-background-cpDBPCwTs2s" rel="noopener">Annie Spratt / Unsplash</a></figcaption></figure>
+
+    <h2>办公室给了你什么（以及你必须取代什么）</h2>
+    <ul>
+      <li><strong>隐性开始时间。</strong>走进办公室定义一天开始。在家，开始变模糊。</li>
+      <li><strong>身体加倍。</strong>别人在工作是环境问责。</li>
+      <li><strong>强迫活动。</strong>通勤、走到会议、买咖啡。在家工作日可零活动度过。</li>
+      <li><strong>工作与休息分离。</strong>两栋不同建筑。在家，桌子离沙发六呎。</li>
+      <li><strong>外部时间结构。</strong>中午吃午餐因为大家都去了。在家，午餐在下午 4 点或从不。</li>
+    </ul>
+    <p>每一项都必须有意识重建。小组件设定是一部分；环境设计是另一部分。</p>
+
+    <h2>实体设定</h2>
+    <ul>
+      <li><strong>一个专用工作点，不是「感觉对的地方」。</strong>大脑制约成「这里是我工作的地方」。若无法专用房间，专用一把椅子。</li>
+      <li><strong>看不见床。</strong>看得到床地工作同时劣化专注与睡眠。</li>
+      <li><strong>手机在视线内的待机支架。</strong>不在手上。待机显示时间、下一个会议与活跃倒数，不用拿起手机。</li>
+      <li><strong>一个屏幕工作，一个环境（可选）。</strong>若有备用平板，当会议与 Slack 屏幕，让工作屏幕保持不杂乱。</li>
+      <li><strong>专注时段用真耳机。</strong>向大脑（以及家里其他人）讯号：这是深度工作时间。</li>
+    </ul>
+
+    <h2>小组件设定</h2>
+
+    <h3>iPhone 锁屏</h3>
+    <p>一个即将到来倒数：下一个期限或重要会议。每次从工作瞥开都可见。</p>
+
+    <h3>iPhone 主屏幕</h3>
+    <p>习惯小组件（文字版面，可点记录）：「今天开始深度工作」与连续。小型<a href="/zh-Hans/year-progress-widget">年度进度小组件</a>。小型到日终倒数（防止在家工作日膨胀）。</p>
+
+    <h3>桌上的待机显示显示</h3>
+    <p>时钟 + 活跃倒数 + 今天习惯连续记录。你不再有的「办公室时钟」。</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">获取倒计时小组件</a></p>
+
+    <h2>每日节奏</h2>
+    <ul>
+      <li><strong>硬开始时间。</strong>选一个（9:00、9:30——随便）。在锁屏设即将到来倒数到它。倒数外部化开始，你不必内在决定。</li>
+      <li><strong>第一时段：身体加倍。</strong>Focusmate、FaceTime 朋友或虚拟共工。前 50 分钟是一天最难的开始；外包给别人的存在。</li>
+      <li><strong>上午中段：一个深度工作时段。</strong>90 分钟。手机在专注模式、实时活动计时跑著。真工在这里发生。</li>
+      <li><strong>午餐——真的休息。</strong>尽可能在户外。活动不可选，不是可选。</li>
+      <li><strong>下午：浅层工作、会议、异步。</strong>ADHD 专注通常下午较弱；不要对抗。用下午做合拍的事。</li>
+      <li><strong>硬停止。</strong>选时间。设实时活动倒数到它。归零时关笔电。日终与日始一样重要。</li>
+    </ul>
+
+    <h2>会议税</h2>
+    <p>ADHD 在家工作日死于太多会议。每次会议：</p>
+    <ul>
+      <li>吃掉会议时间。</li>
+      <li>吃掉之前 5–10 分钟（预期耗损）。</li>
+      <li>吃掉之后 10–20 分钟（情境切换恢复）。</li>
+    </ul>
+    <p>「30 分钟会议」花费 55–60 分钟专注工作。三场会议一天就没了。防御：在行事历封锁 90 分钟无会议区、拒绝无清楚议程的会议、若可能把会议集中到一周一两天。</p>
+
+    <h2>Slack／邮件陷阱</h2>
+    <p>不断查收是在家版办公室打断，但更糟——没有限制面对面打断的社会成本。战术：</p>
+    <ul>
+      <li><strong>每天两个 Slack／邮件窗口。</strong>例如上午 11 点与下午 3 点。之外关闭。</li>
+      <li><strong>专注模式在深度工作时段静音它们</strong>。</li>
+      <li><strong>争取时间的状态讯息。</strong>「11 点前低头工作」设定期待。</li>
+    </ul>
+
+    <h2>日终仪式</h2>
+    <p>在家工作日不会自然结束。建结束：</p>
+    <ul>
+      <li><strong>关笔电前写明天的三个优先</strong>。（与<a href="/zh-Hans/blog/adhd-morning-routine-iphone">ADHD 晨间例行</a>同一三优先仪式，在日终执行，让早晨有起跑优势。）</li>
+      <li><strong>在习惯小组件标记「今天工作了」。</strong>对一天努力的可见奖励。</li>
+      <li><strong>实体关闭工作 App。</strong>退出 Slack。关闭工作浏览器视窗。动作标记转换。</li>
+      <li><strong>至少离开桌子 15 分钟。</strong>散步、差事，任何创造工作与家实体分离的事。</li>
+    </ul>
+
+    <h2>在家工作何时无效</h2>
+    <p>三个该考虑的诚实讯号：</p>
+    <ul>
+      <li><strong>你工作 10 小时却只产出过去 6 小时的量。</strong>日子在膨胀，却没更有生产力。</li>
+      <li><strong>三天没离开公寓。</strong>活动不可商量；缺席是系统失败讯号。</li>
+      <li><strong>你要嘛永远在工作，要嘛从不工作。</strong>双模失败：ADHD 在家工作常在超专注马拉松与完全回避间震荡。</li>
+    </ul>
+    <p>解法从加更多结构（每周一天共工）到换工作（有些 ADHD 成人真的需要办公室或混合）。诚实面对需要哪个。</p>
+
+    <h2>相关文章</h2>
+    <p>日常专注技巧：<a href="/zh-Hans/blog/how-to-focus-adhd">如何用ADHD提高专注力</a>。对于困难日开始任务：<a href="/zh-Hans/blog/adhd-task-initiation-strategies">ADHD任务启动</a>。关于身体陪伴功能：<a href="/zh-Hans/blog/adhd-body-doubling-apps">ADHD身体陪伴应用</a>。关于更广泛的应用组合：<a href="/zh-Hans/blog/best-productivity-apps-adhd">ADHD最佳生产力应用</a>。关于选择计划本：<a href="/zh-Hans/blog/best-planner-adhd">如何为ADHD选择最佳计划 </a>。</p>
+
+    <h2>常见问题</h2>
+    <p><strong>在家工作对 ADHD 好还是坏？</strong><br/>
+    混杂。弹性很好；缺外部结构很难。有意识设定时，在家可净正。没有时常净负。</p>
+
+    <p><strong>一天几个深度工作时段？</strong><br/>
+    一个真正的就够。两个是好日子。三个罕见。</p>
+
+    <p><strong>共工空间呢？</strong><br/>
+    常值得，即使一周一两天。恢复身体加倍并强迫离开家。</p>
+
+    <p><strong>该告诉雇主我的 ADHD 吗？</strong><br/>
+    看文化与所需调整。无论是否揭露，与临床医师谈职场调整都值得——决定前知道选项。</p>
+
+    <p><strong>Left 如何帮助在家工作 ADHD？</strong><br/>
+    外部化开始时间（锁屏倒数）、结束时间（硬停止倒数）、活跃时段（实时活动），并经连续提供可见奖励——都在你的 iPhone 主屏幕、锁屏与待机显示。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

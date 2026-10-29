@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>生产力工具：为什么视觉胜过功能繁重 | Left</title>
+  <meta name="description" content="为什么可见小组件胜过功能繁重的生产力 App——四种有效的视觉追踪样式，以及取代五个 App 的统一设定。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/productivity-tools-visual-focus" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/productivity-tools-visual-focus" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/productivity-tools-visual-focus" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="生产力工具：为什么视觉胜过功能繁重"  />
+  <meta property="og:description" content="为什么可见小组件胜过功能繁重的生产力 App。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/productivity-tools-visual-focus" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/productivity-tools-visual-focus-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/productivity-tools-visual-focus-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Productivity Tools: Why Visual Beats Feature-Heavy",
+  "description": "Why visible widgets beat feature-heavy productivity apps - the four visual tracking styles that work, and the unified setup that replaces five apps.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/productivity-tools-visual-focus",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Productivity Tools: Why Visual Beats Feature-Heavy",
+      "item": "https://getleft.app/blog/productivity-tools-visual-focus"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>生产力工具：为什么视觉胜过功能繁重</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・5 分钟</p>
+
+    <p>多数生产力 App 以同一方式失败：功能繁重、设定一次、第三周放弃。模式如此一致，暗示问题不是 App——是类别。你必须打开的 App 无法在你不打开的时刻帮忙。没有这问题的类别：小组件。它们无需行动就可见、无需提示就更新、活在周边视野。</p>
+
+    <p>本指南谈选可见追踪胜过功能复杂。四种有效视觉样式、用一个小组件表面取代五个 App 的统一设定，以及防止变不可见的维护规则。我们用<strong>Left</strong>当实作范例，因为其小组件组在一个 App 涵盖四种视觉样式。</p>
+
+    <figure class="post-hero"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/minimalist-photography-of-hand-tools-hanged-on-wall-NP9kbCXeVK0" rel="noopener">Katie Rodriguez / Unsplash</a></figcaption></figure>
+
+    <h2>为什么功能繁重的生产力 App 失败</h2>
+    <ul>
+      <li><strong>功能不再被用。</strong>你设定五种检视、用一种，其他四种是 UI 里的视觉噪音。</li>
+      <li><strong>App 必须打开才交付价值。</strong>打开需要意图。多数有生产力时刻没有它。</li>
+      <li><strong>设定与使用竞争。</strong>本该是工作的数小时设定。</li>
+      <li><strong>你不再信任它。</strong>半设定的复杂系统不是可靠真相来源——而你知道。</li>
+    </ul>
+    <p>替代不是没有 App——是可见 App。小组件在功能失败处成功，因为它们不需行动。</p>
+
+    <h2>四种视觉追踪样式</h2>
+
+    <h3>1. 期限追踪</h3>
+    <p>到日期的倒数小组件。最适合有硬结束时间的事件：发表、期限、旅行、考试。数字往下制造行事历项目做不到的压力。</p>
+
+    <h3>2. 习惯长条</h3>
+    <p>为重复行动计数的连续记录。最适合以坚持为目标的每日或每周<a href="/zh-Hans/habit-tracker">习惯</a>：运动、写作、学习、练习。连续记录不断增加，就是奖励循环。</p>
+
+    <h3>3. 目标路线图</h3>
+    <p>标出目前位置的里程碑序列。最适合多阶段专案：报告、训练计划、产品发表。可见的「我们在这」回答「我在哪」。</p>
+
+    <h3>4. 事件倒数</h3>
+    <p>与期限追踪同形，但调成兴奋而非压力。最适合旅行、周年、里程碑生日。更暖颜色、更友善框架。</p>
+
+    <p>四种都是小组件。没有一个需要打开 App 才有价值。</p>
+
+    <h2>统一设定</h2>
+    <p>一个 App 跨多表面的小组件胜过各有自己的五个 App。用 Left 的统一设定：</p>
+    <ul>
+      <li><strong>锁屏：</strong>下一个期限倒数 + 日期。</li>
+      <li><strong>主屏幕（主）：</strong>一个习惯小组件 + 一个倒数小组件 + 年度进度。</li>
+      <li><strong>主屏幕（次要）：</strong>其余即将到来的堆叠倒数。</li>
+      <li><strong>待机显示：</strong>时钟 + 活跃倒数。</li>
+    </ul>
+    <p>五个小组件、一个 App、四种追踪样式。对许多人它取代分开的倒数 App 与习惯 App，并坐在行事历与任务管理旁边。</p>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">获取倒计时小组件</a></p>
+
+    <h2>依用途的范例组合</h2>
+
+    <h3>学生学期组合</h3>
+    <ul>
+      <li>锁屏：到下一个考试／报告的倒数。</li>
+      <li>主屏幕：学习连续记录 + 学期长即将到来日期（学期初到考试结束）+ <a href="/zh-Hans/year-progress-widget">年度进度</a>。</li>
+      <li>次要：所有即将作业的堆叠期限。</li>
+    </ul>
+    <p>更广图景见<a href="/zh-Hans/blog/time-management-tips-students">学生时间管理</a>。</p>
+
+    <h3>专业仪表板</h3>
+    <ul>
+      <li>锁屏：到下一个交付的倒数。</li>
+      <li>主屏幕：写作／工作习惯连续记录 + 年度进度，加上从季初跑到季末的即将到来日期。</li>
+      <li>桌上待机显示：时钟 + 到交付的倒数。</li>
+    </ul>
+    <p>见<a href="/zh-Hans/blog/workplace-productivity-habits">职场生产力习惯</a>。</p>
+
+    <h3>习惯链</h3>
+    <ul>
+      <li>主屏幕：3–5 个习惯小组件（每个习惯一个）带连续记录计数。</li>
+      <li>锁屏：「今天所有习惯」摘要。</li>
+    </ul>
+    <p>见<a href="/zh-Hans/blog/how-to-build-a-streak">如何建立连续记录</a>。</p>
+
+    <h2>维护规则</h2>
+    <p>可见小组件若不维护会淡掉。保持有效的规则：</p>
+    <ul>
+      <li><strong>每 4–6 周轮替位置。</strong>把小组件移到不同位置或页以重新抓住注意力。</li>
+      <li><strong>移除完成的倒数。</strong>不要留下已完成倒数坐在那。</li>
+      <li><strong>每季稽核。</strong>这些小组件仍相关吗？丢掉不相关的。</li>
+      <li><strong>每季一个头条焦点。</strong>最可见小组件是你实际朝什么努力。</li>
+    </ul>
+
+    <h2>「淡成壁纸」问题</h2>
+    <p>即使很棒的小组件也会淡。解法是上面的轮替规则，加上诚实测试：瞥小组件时，你感觉到资料吗？若否，改什么——位置、颜色、格式——直到感觉到。</p>
+
+    <h2>视觉小组件无法取代什么</h2>
+    <ul>
+      <li><strong>深任务层级。</strong>若需要有子专案与子任务的专案，除小组件外还需要任务管理（Things、Todoist）。</li>
+      <li><strong>有共享事件的行事历。</strong>实际会议用 Apple 行事历或 Fantastical。</li>
+      <li><strong>长篇笔记。</strong>备注 App 或 Obsidian。</li>
+    </ul>
+    <p>可见小组件是常驻层；更深工具是定期深度工作层。两者都有角色。</p>
+
+    <h2>相关文章</h2>
+    <p>更广生产力脉络见：<a href="/zh-Hans/blog/time-management-best-practices">时间管理最佳做法</a>与<a href="/zh-Hans/blog/best-home-screen-widgets-iphone">最佳主屏幕小组件</a>。视觉目标面见：<a href="/zh-Hans/blog/visual-goals-track-on-screens">跨屏幕的视觉目标</a>。ADHD 专用见：<a href="/zh-Hans/blog/best-productivity-apps-adhd">最佳 ADHD 生产力 App</a>。</p>
+
+    <h2>常见问题</h2>
+    <p><strong>小组件会取代我的任务管理吗？</strong><br/>
+    简单任务列表可以。深专案层级不行——小组件与任务管理是互补，不是替代。</p>
+
+    <p><strong>多少小组件是对的数量？</strong><br/>
+    所有表面共六个是有用的上限。再多变成壁纸。</p>
+
+    <p><strong>需要多个小组件 App 吗？</strong><br/>
+    多数人不需要。一个涵盖倒数 + 习惯 + 年度进度的小组件 App（如 Left）加上原生行事历／提醒事项就够。</p>
+
+    <p><strong>这与通知有何不同？</strong><br/>
+    通知打断。小组件待在那。通知被滑掉；小组件被瞥视。不同类别的注意力。</p>
+
+    <p><strong>Left 跨这四种追踪样式提供什么？</strong><br/>
+    即将到来（期限 + 事件倒数）、事件（习惯连续记录）与年度进度（经百分比的目标路线图）——都在你 iPhone 主屏幕、锁屏与待机显示的同一小组件组。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

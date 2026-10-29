@@ -1,0 +1,550 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>如何在 iPhone 加入小组件（主屏幕与锁屏）| Left</title>
+  <meta name="description" content="在 iPhone 加入小组件的逐步指南：主屏幕、锁屏与待机显示，以 Left 为例。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="如何在 iPhone 加入小组件（主屏幕与锁屏）"  />
+  <meta property="og:description" content="在 iPhone 加入小组件的逐步指南：主屏幕、锁屏与待机显示，以 Left 为例。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="如何在 iPhone 加入小组件（主屏幕与锁屏）"  />
+  <meta name="twitter:description" content="在 iPhone 加入小组件的逐步指南：主屏幕、锁屏与待机显示，以 Left 为例。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+  "description": "Step-by-step guide to adding widgets on iPhone: Home Screen, Lock Screen and StandBy, using Left as the example.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-add-widgets-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+      "item": "https://getleft.app/blog/how-to-add-widgets-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why can't I find an app in the iPhone widget gallery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app usually needs to be opened once before its widgets appear. If it still isn't listed, restart your iPhone and update iOS and the app. Some apps also don't offer widgets at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can any widget go on the Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Lock Screen only takes inline, circular and rectangular widgets, and each app decides which of its widgets come in those shapes. Larger widgets, like Left's Everything or Time Ahead list, are Home Screen only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are my Lock Screen widgets not in color?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS draws Lock Screen widgets in a single tint that matches the clock, so they stay readable over any wallpaper. The app's full colors show on the Home Screen, unless you pick the Tinted look, and in StandBy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do iPhone widgets update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS controls the refresh schedule to save battery, so widgets update regularly but not always instantly. Opening the app usually triggers a refresh. Time-based widgets, like a year progress widget, roll over on their own."
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>如何在 iPhone 加入小组件：主屏幕、锁屏与待机显示</h1>
+<p class="article-meta">更新：<time datetime="2026-10-20">2026 年 10 月 20 日</time>・6 分钟</p>
+<p>iPhone 有三处放小组件：主屏幕、锁屏与待机显示。以下是 iOS 26 上各处的完整路径，以 Left 为例。</p>
+
+<figure class="post-hero"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/hammer-and-framed-prints-on-floor-wk6ufnhdvD4" rel="noopener">Barney Goodman / Unsplash</a></figcaption></figure>
+
+<h2>开始之前</h2>
+<p>安装你要小组件的 App 并至少打开一次。许多 App（含 Left）要首次启动后才会出现在小组件图库。Left 需 iOS 26 或更新。</p>
+
+<h2>把小组件加到主屏幕</h2>
+<ol>
+  <li>长按主屏幕空白处直到 App 开始晃动。</li>
+  <li>点左上角「编辑」，再点「加入小组件」。</li>
+  <li>搜索 App（例如 Left）或卷动找寻，再点它。</li>
+  <li>滑动浏览小组件与尺寸。主屏幕小组件有小、中、大。</li>
+  <li>点「加入小组件」，拖到想要的位置，再点「完成」。</li>
+</ol>
+<p>更多见<a href="/zh-Hans/support/widget-iphone-home-screen">主屏幕小组件指南</a>。</p>
+
+<h3>选择小组件显示什么</h3>
+<p>多数小组件可以设定。长按小组件并点「编辑小组件」。在 Left，这里可选即将到来显示哪个倒数、习惯小组件追哪个习惯，或年度小组件以天、周或月计算。</p>
+
+<h3>更改尺寸</h3>
+<p>晃动模式下，许多小组件一角有小把手可拖曳改尺寸。若没看到，移除再以想要的尺寸加入。</p>
+<p>小尺寸适合一个数字，中尺寸是数字加脉络，大尺寸是完整网格。在 Left，小尺寸<strong>即将到来</strong>显示一个倒数，中尺寸<strong>一切</strong>同时显示日、周、月、年，大尺寸年度小组件显示全部 365 天。</p>
+
+<h3>堆叠小组件以省空间</h3>
+<p>把一个小组件拖到同尺寸的另一个上以建立堆叠，再在堆叠上上下滑动切换。长按堆叠并点「编辑堆叠」可重排或开启智慧旋转，让 iOS 带出它认为最相关的小组件。</p>
+
+<h3>让小组件透明或著色</h3>
+<p>在晃动的主屏幕点「编辑」，再「自订」，可把图示与小组件换成其他外观，例如透明或著色。Left 小组件会跟著选项。见<a href="/zh-Hans/support/widget-transparent-iphone">如何让 Left 小组件透明</a>。</p>
+
+<h2>把小组件加到锁屏</h2>
+<ol>
+  <li>长按锁屏直到底部出现「自订」。可能需先用 Face ID 解锁。</li>
+  <li>点「自订」，再选锁屏。</li>
+  <li>点时间下方的小组件区加入圆形与矩形，或点时间上方的日期选单行小组件。</li>
+  <li>选 App（例如 Left），再点你要的小组件。</li>
+  <li>关闭小组件面板并点「完成」。</li>
+</ol>
+<p>锁屏有三种形状：</p>
+<ul>
+  <li><strong>单行</strong>：日期旁、时间上方的一行文字。</li>
+  <li><strong>圆形</strong>：小圆形小组件。时间下方那列最多放四个。</li>
+  <li><strong>矩形</strong>：较宽的小组件，占两个圆形的空间。</li>
+</ul>
+<p>锁屏小组件不用 App 的完整色彩。iOS 用与时钟相符的单色绘制，设计仰赖形状与对比。更多见<a href="/zh-Hans/support/widget-iphone-lock-screen">锁屏小组件指南</a>。</p>
+
+<h3>Left 哪些小组件适合各位置</h3>
+<ul>
+  <li><strong>单行</strong>：年、月、周、日、分钟、人生、你、数位时钟与类比时钟。</li>
+  <li><strong>圆形</strong>：年、月、周、日、人生、你、即将到来、习惯列表与时钟。</li>
+  <li><strong>矩形</strong>：年、月、周、日、人生、你、即将到来、习惯、习惯列表、连续记录、目标与时钟。</li>
+  <li><strong>仅主屏幕</strong>：一切、即将到来时间列表、连续记录列表、目标列表、行事历、特别备注、即将到来长条与即将到来圆环等。</li>
+</ul>
+<p>实用的锁屏：单行年度小组件、下趟旅行的圆形即将到来，以及你在守护的跑步用矩形连续记录。<a href="/zh-Hans/countdown-widget">倒数小组件</a>、<a href="/zh-Hans/year-progress-widget">年度进度小组件</a>与<a href="/zh-Hans/habit-tracker">习惯追踪</a>页面有样式。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">获取 Left 小组件</a></p>
+
+<h3>小组件与实时活动不同</h3>
+<p>实时活动也会出现在锁屏与动态岛，但不是在「自订」里加入。App 为正在发生的事启动它们。在 Left，打开<strong>获取最终倒数</strong>可显示倒数，习惯可透过<strong>获取持续提醒</strong>显示。</p>
+<h2>在待机显示使用小组件</h2>
+<p>待机显示在充电、锁定且横放时，把 iPhone 变成全屏幕显示。</p>
+<ol>
+  <li>在「设定」&gt;「待机显示」确认已开启待机显示。</li>
+  <li>把 iPhone 横向放上充电器并让它锁定。</li>
+  <li>水平滑动直到到达小组件检视，两侧各有一叠小组件。</li>
+  <li>长按一叠，必要时解锁，点 + 加入小组件。搜索 Left 并加入你要的。</li>
+</ol>
+<p>在任一堆叠上下滑动切换小组件。暗室中待机显示可切换夜间模式，把显示著成红色。见<a href="/zh-Hans/support/widget-iphone-standby">待机显示中的 Left 小组件</a>。</p>
+
+<h2>编辑或移除小组件</h2>
+<ul>
+  <li><strong>主屏幕</strong>：长按小组件，点「编辑小组件」更改，或「移除小组件」拿掉，再确认。</li>
+  <li><strong>锁屏</strong>：长按，点「自订」，选锁屏，点小组件区，再点要移除的小组件上的减号。</li>
+
+</ul>
+<p>移除小组件不会删除 App 里的资料。更多见<a href="/zh-Hans/support/edit-or-remove-widget-iphone">如何编辑或移除小组件</a>。</p>
+
+<h2>疑难排解</h2>
+<ul>
+  <li><strong>App 不在小组件图库。</strong>先打开 App 一次再查。还是没有？重开 iPhone 并更新 iOS 与 App。</li>
+  <li><strong>小组件显示旧信息。</strong>iOS 决定何时重新整理小组件（部分为省电），所以更新不一定立刻。打开 App 通常会促发更新。若卡住，移除再加一次。</li>
+  <li><strong>小组件是空的或显示错误项目。</strong>长按，点「编辑小组件」再选一次项目，例如你删了它正在显示的倒数。</li>
+
+</ul>
+
+<h2>问题</h2>
+<h3>为什么在 iPhone 小组件图库找不到 App？</h3>
+<p>App 通常要先打开一次，小组件才会出现。若仍未列出，重开 iPhone 并更新 iOS 与 App。有些 App 根本不提供小组件。</p>
+<h3>任何小组件都能放锁屏吗？</h3>
+<p>不行。锁屏只接受单行、圆形与矩形小组件，各 App 自行决定哪些小组件有这些形状。较大的小组件，例如 Left 的一切或即将到来时间列表，只能放主屏幕。</p>
+<h3>为什么锁屏小组件没有彩色？</h3>
+<p>iOS 用与时钟相符的单色绘制锁屏小组件，好在任何壁纸上保持可读。App 的完整色彩在主屏幕显示（除非选著色外观），待机显示亦然。</p>
+<h3>iPhone 小组件多久更新一次？</h3>
+<p>iOS 为省电控制重新整理排程，所以小组件会定期更新，但不一定立刻。打开 App 通常会触发更新。时间类小组件（如年度进度）会自行滚动。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

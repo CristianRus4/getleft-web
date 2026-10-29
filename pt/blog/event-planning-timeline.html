@@ -1,0 +1,530 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Timeline de eventos: guia passo a passo (2026) | Left</title>
+  <meta name="description" content="Timeline prática de planeamento de eventos — planear de trás para a frente, fornecedores, scope creep e contagem partilhada da equipa."  />
+  <link rel="canonical" href="https://getleft.app/pt/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Timeline de planeamento de eventos: guia passo a passo (2026)"  />
+  <meta property="og:description" content="Uma timeline prática de planeamento de eventos com o setup de contagem partilhada que mantém toda a equipa alinhada."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/pt/blog/event-planning-timeline" />
+  <meta property="og:locale" content="pt_PT" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Event Planning Timeline: A Step-by-Step Guide",
+  "description": "A practical event planning timeline - backward planning, vendor checkpoints, scope-creep traps, and the shared countdown setup that keeps the whole team aligned.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/event-planning-timeline",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Event Planning Timeline: A Step-by-Step Guide",
+      "item": "https://getleft.app/blog/event-planning-timeline"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/pt/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pt/#features" class="nav-link">Funcionalidades</a>
+          <a href="/pt/tools/" class="nav-link">Ferramentas</a>
+          <a href="/pt/blog/" class="nav-link">Blogue</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-pt&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Descarregar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Timeline de planeamento de eventos: guia passo a passo</h1>
+    <p class="article-meta">Atualizado <time datetime="2026-10-20">20 de outubro de 2026</time> · 7 min de leitura</p>
+
+    <p>A maior parte do conselho de planeamento de eventos apresenta-se como uma única checklist de 200 itens. É assim que os eventos falham. Uma checklist é plana — cada item parece igualmente urgente — por isso as coisas pequenas fazem-se na primeira semana frenética e as grandes escorregam para a última. O planeamento real corre numa timeline: quando deve cada coisa começar, o que depende do quê, e como manténs toda a equipa a olhar para as mesmas datas?</p>
+
+    <p>Este guia percorre um cronograma de planeamento de eventos que funciona — conferência, <a href="/pt/tools/wedding-countdown">casamento</a>, lançamento de produto, grande aniversário — em três horizontes temporais (12 meses, 3 meses, 2 semanas). Cobre também a configuração de contagem decrescente partilhada que mantém toda a equipa a olhar para a mesma data final, usando o Joint Ahead no <strong>Left</strong> (uma funcionalidade do Left Premium).</p>
+
+    <figure class="post-hero"><img src="/images/blog/event-planning-timeline-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/outdoor-tables-set-for-a-formal-dining-event-t1ep0yUdXWw" rel="noopener">Bruno Ngarukiye / Unsplash</a></figcaption></figure>
+
+    <h2>Planeia de trás para a frente, não para a frente</h2>
+    <p>O maior erro de planeamento é começar por «o que fazemos primeiro?» e ir para a frente. Planear para a frente esconde as dependências — não te apercebes de que o local precisa de nove meses de antecedência até estares a seis meses. Planear de trás para a frente começa na data do evento e pergunta «até que data deve X estar feito para o evento poder acontecer?»</p>
+    <p>Na prática: escreve a data do evento no topo, depois lista entregáveis em ordem inversa, cada um com um prazo calculado a partir da data do evento. O resultado é uma timeline, não uma lista.</p>
+
+    <h2>12 meses antes (ou o mais cedo possível)</h2>
+    <ul>
+      <li><strong>Estratégia.</strong> Define o evento numa frase: o que é, para quem, como é o sucesso. Se não conseguires, não comeces a reservar fornecedores.</li>
+      <li><strong>Orçamento.</strong> Número total. Alocações para local / catering / produção / marketing. Uma linha de contingência de 15%. Saltar a contingência é a razão mais comum para eventos ultrapassarem o orçamento.</li>
+      <li><strong>Local.</strong> Os melhores locais para qualquer tamanho popular de evento estão reservados 9+ meses antes. Se o teu evento for num fim de semana de um mês popular, duplica isso.</li>
+      <li><strong>Save-the-dates.</strong> Mesmo para eventos corporativos. Guardar a data cedo nos calendários dos participantes é muito mais barato do que perseguir RSVPs depois.</li>
+      <li><strong>Oradores / talentos âncora.</strong> Quem for a cabeça de cartaz, fecha agora. A disponibilidade dos oradores impulsiona a data tanto como o local.</li>
+    </ul>
+    <p>Se começares mais tarde do que 12 meses antes, ignora o rótulo «12 meses» e faz estas coisas primeiro de qualquer forma. A ordem importa mais do que o timing absoluto.</p>
+
+    <h2>6 meses antes</h2>
+    <ul>
+      <li><strong>Patrocinadores e parceiros.</strong> Confirmados por escrito, com entregáveis definidos. Acordos verbais desaparecem em silêncio.</li>
+      <li><strong>Catering e produção.</strong> Reservados. Menu e requisitos AV esboçados, mesmo que ainda não finais.</li>
+      <li><strong>Plano de marketing.</strong> Quando vai o site público ao ar? Quando acontece cada push social? Responsáveis atribuídos.</li>
+      <li><strong>Bilheteira.</strong> Plataforma escolhida, preços definidos, vendas abertas se aplicável.</li>
+      <li><strong>Configura a contagem partilhada da equipa.</strong> Joint Ahead no Left, data final = data do evento. Toda a equipa central pode seguir a mesma contagem no telemóvel e adicioná-la como <a href="/pt/countdown-widget">widget de contagem decrescente</a>. O widget «faltam 180 dias para o lançamento» no telemóvel de alguém é a ferramenta de alinhamento de equipa mais barata que existe. Walkthrough em <a href="/pt/blog/countdown-next-trip-with-friends">guia Joint Ahead</a>.</li>
+    </ul>
+
+    <h2>3 meses antes</h2>
+    <ul>
+      <li><strong>Confirmações finais de oradores.</strong> Todos estão fechados, briefados e têm os materiais de que precisam.</li>
+      <li><strong>Site no ar, registos abertos.</strong> Se ainda não estiverem.</li>
+      <li><strong>Run-of-show esboçado.</strong> Horário minuto a minuto para o(s) dia(s) do evento. Este é o documento-fonte que todos consultam no dia.</li>
+      <li><strong>Visitas com fornecedores.</strong> Visitas físicas ao local com catering, AV e produção. Surpresas aqui são baratas; no dia do evento não.</li>
+      <li><strong>Planos de reserva.</strong> Tempo, faltas, falha de AV, surpresas alimentares. Escreve a contingência, não te limites a imaginá-la.</li>
+    </ul>
+
+    <h2>1 mês antes</h2>
+    <ul>
+      <li><strong>Run-of-show fechado.</strong> Distribuído a quem precisar. Sem mais mudanças estruturais.</li>
+      <li><strong>Contagem final de cabeças para local e catering.</strong> Normalmente exigida contratualmente a esta altura.</li>
+      <li><strong>Pacote de briefing para a equipa.</strong> Funções, contactos, caminhos de escalação.</li>
+      <li><strong>Ensaio de walk-through.</strong> Mesmo um de 30 minutos. Vais encontrar um ou dois problemas reais.</li>
+    </ul>
+
+    <h2>2 semanas antes</h2>
+    <ul>
+      <li><strong>Comunicações de lembrete.</strong> Participantes, oradores e fornecedores recebem todos um lembrete com informação-chave.</li>
+      <li><strong>Documento final de logística.</strong> Um PDF com moradas, horas, contactos, estacionamento, dietas, horário. Enviado a quem precisar.</li>
+      <li><strong>Tech check.</strong> Equipamento AV, slides, teste de microfone, setup de gravação se aplicável.</li>
+      <li><strong>Corre uma contagem pessoal.</strong> Para além do Joint Ahead partilhado da equipa, define uma contagem pessoal a marcar os últimos dias. Útil para o trabalho administrativo pouco vistoso (imprimir, ir buscar, empacotar) não se esquecer na última semana.</li>
+    </ul>
+
+    <h2>O dia anterior / o próprio dia</h2>
+    <ul>
+      <li><strong>Entrega, não microgestão.</strong> A esta altura o teu trabalho é estar disponível, não fazer. Confia na equipa que construíste.</li>
+      <li><strong>Uma pessoa gere o timing.</strong> Quem for, tem o run-of-show, um cronómetro e autoridade para fazer avançar os oradores.</li>
+      <li><strong>Documenta o que funciona e o que não.</strong> Notas durante o evento são ouro para o post-mortem. Cinco minutos entre sessões, na app de notas.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-pt&amp;mt=8" target="_blank" rel="noopener">Obtém o widget de contagem decrescente</a></p>
+
+    <h2>A contagem partilhada — por que importa mais do que mais uma folha de cálculo</h2>
+    <p>A maior parte da informação de planeamento vive numa folha de cálculo que alguém tem de abrir. A data do evento é a única peça de informação que toda a equipa deve ver sem abrir nada. Uma contagem Joint Ahead no telemóvel de cada membro — «faltam 73 dias para o lançamento» — empurra a data da folha de cálculo para a visão periférica.</p>
+    <p>Esta é a diferença entre uma equipa que «conhece» a data e uma equipa que <em>sente</em> a data. Conhecer produz calma. Sentir produz ação.</p>
+
+    <h2>Modos de falha comuns (e como evitá-los)</h2>
+
+    <h3>Atrasos de fornecedores</h3>
+    <p>A maior fonte única de atraso. Defesa: contratos confirmados (não verbais), datas de entrega explícitas, check-ins semanais a partir de 90 dias antes. Constrói a margem tratando os prazos declarados deles como 7–14 dias mais cedo do que a realidade.</p>
+
+    <h3>Scope creep</h3>
+    <p>«Podemos também fazer X?» — normalmente de um stakeholder que não faz o trabalho. Defesa: qualquer pedido novo após a marca dos 3 meses exige aprovação explícita de orçamento. Torna-o administrativamente difícil em vez de emocionalmente difícil.</p>
+
+    <h3>Objetivos desalinhados</h3>
+    <p>Três meses depois, descobres que o CEO pensava que o evento era para clientes e o Marketing pensava que era para a imprensa. Defesa: aquela frase de estratégia logo no início, assinada por cada stakeholder. Relê-a em cada reunião de estado.</p>
+
+    <h3>Visão de túnel nas últimas 2 semanas</h3>
+    <p>Deixas de ver a floresta. Defesa: um check-in com alguém fora da equipa central na semana –2. Olhos frescos apanham falhas óbvias às quais a equipa ficou cega.</p>
+
+    <h2>Depois do evento</h2>
+    <p>Dentro de uma semana:</p>
+    <ul>
+      <li><strong>Envia agradecimentos.</strong> Fornecedores, oradores, patrocinadores, participantes-chave. Personalizados, não em massa.</li>
+      <li><strong>Paga faturas.</strong> Pagamento rápido é um investimento na relação.</li>
+      <li><strong>Faz um post-mortem.</strong> Três perguntas: o que funcionou, o que não, o que mudaríamos. Escreve — daqui a um ano não te vais lembrar.</li>
+      <li><strong>Arquiva o run-of-show e a timeline.</strong> O documento mais útil para o planeador do ano seguinte são os números reais deste ano.</li>
+    </ul>
+
+    <h2>Se for um evento pessoal (casamento, festa de marco)</h2>
+    <p>A mesma timeline, equipa mais pequena, mais emoção. Dois ajustes:</p>
+    <ul>
+      <li><strong>Uma pessoa gere a timeline.</strong> Não uma comissão. As decisões precisam de ser rápidas e os casamentos morrem em comissão.</li>
+      <li><strong>O Joint Ahead partilha-se com o teu parceiro, não com toda a lista de convidados.</strong> A contagem é uma ferramenta de planeamento para os dois; não precisas das opiniões de 80 convidados sobre a timeline.</li>
+    </ul>
+    <p>Para uma viagem pessoal em vez de um evento, o mesmo padrão Joint Ahead funciona — vê <a href="/pt/blog/countdown-next-trip-with-friends">Contagem para a próxima viagem</a>.</p>
+
+    <h2>Leituras relacionadas</h2>
+    <p>Para planeamento de projeto que corre em paralelo com a coordenação do evento, vê <a href="/pt/blog/project-timeline-visualization">visualização de timeline de projeto</a> e <a href="/pt/blog/keep-track-multiple-projects">acompanhar vários projetos</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>Com que antecedência devo começar a planear um casamento?</strong><br/>
+    9–12 meses para um casamento típico de sábado num local popular. 12+ meses se quiseres um local específico em época alta ou tiveres um elemento de destino.</p>
+
+    <p><strong>Com que antecedência para uma conferência corporativa?</strong><br/>
+    12 meses ideal, 9 meses viável, 6 meses stressante. Menos de 6 significa escolher entre os locais que mais ninguém quis.</p>
+
+    <p><strong>Qual é a única ferramenta mais útil?</strong><br/>
+    Uma contagem partilhada da data final que vive no telemóvel de cada membro da equipa, mais um run-of-show escrito no último mês. As ferramentas de projeto sofisticadas importam menos do que estas duas coisas simples.</p>
+
+    <p><strong>Como lido com scope creep de stakeholders seniores?</strong><br/>
+    Cita o impacto no orçamento de cada pedido. «Sim, podemos acrescentar isso. Custa X $ e remove Y.» A maioria dos stakeholders seniores recua quando o âmbito tem preço.</p>
+
+    <p><strong>Posso partilhar uma contagem de evento com um co-planeador?</strong><br/>
+    Sim — Joint Ahead no Left (parte do Left Premium) põe a mesma contagem em ambos os telemóveis. É a versão leve de uma ferramenta de projeto partilhada.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Transferir o Left</span>
+          <h2>Começa a reparar no que importa.</h2>
+          <p>Transfere o Left para o teu iPhone para veres o tempo que te resta e as datas que esperas com vontade, construíres os hábitos que queres manter e te tornares uma versão melhor de ti.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Código QR - toca para instruções">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Digitaliza ou procura <strong>"Left"</strong> na App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-pt&amp;mt=8" target="_blank" rel="noopener" aria-label="Transferir o Left na App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Transferir para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> pessoas a fazer cada momento contar.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Rodapé">
+          <a href="/pt/support">Apoio</a>
+          <a href="/terms">Termos</a>
+          <a href="/pt/privacy">Privacidade</a>
+          <a href="/pt/press">Imprensa</a>
+          <a href="/pt/contact">Contacto</a>
+          <a href="/pt/tools/">Ferramentas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pt/blog/">Blogue</a>
+          <a href="#" data-consent-open>Definições de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>PT</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="true">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ru","tr","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimento de cookies">
+  <p class="left-consent__text">Usamos o Google Analytics para perceber que páginas ajudam as pessoas. Sem anúncios nem rastreamento entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir estatísticas</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Não, obrigado</button>
+    <a class="left-consent__link" href="/pt/privacy#website" data-consent-privacy>Privacidade</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
