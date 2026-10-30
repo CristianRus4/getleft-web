@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>目標進捗トラッカーアプリ：セットアップガイド（2026） | Left</title>
+  <meta name="description" content="iPhoneで目標進捗トラッカーを組む実用ガイド。最初の目標、ウィジェット配置、高度なスタイル、本当に続くワークフロー。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/goal-progress-tracker-setup" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="目標進捗トラッカーアプリ：セットアップガイド（2026）"  />
+  <meta property="og:description" content="iPhoneで目標進捗トラッカーを組む実用ガイド。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/goal-progress-tracker-setup" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/goal-progress-tracker-setup-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/goal-progress-tracker-setup-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goal Progress Tracker App: Your Setup Guide (2026)",
+  "description": "A practical guide to setting up a goal progress tracker on iPhone - first goal, widget placement, advanced styles, and the workflows that actually stick.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/goal-progress-tracker-setup",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Goal Progress Tracker App: Your Setup Guide (2026)",
+      "item": "https://getleft.app/blog/goal-progress-tracker-setup"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>目標進捗トラッカーアプリ：セットアップガイド（2026）</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・6分</p>
+
+    <p>目標進捗トラッカーは、進捗が見えるときだけ役立ちます。多くのユーザーの間違いは、アプリを一度設定し、3ページ目にアイコン1つ置き、存在を忘れること。トラッカーはデータが死ぬ場所になります。アプリ選びよりセットアップが大事です。</p>
+
+    <p>このガイドは、本当に動く目標進捗トラッカーのセットアップ——最初の目標、ウィジェット配置、形式の選択、ライフスタイル別ワークフロー——を歩きます。実例は<strong>Left</strong>です。カウントダウン、目標の進捗、パーセント、習慣ストリークを一つの見えるシステムでカバーするからです。ただしセットアップ原則はどのトラッカーにも当てはまります。</p>
+
+    <figure class="post-hero"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-close-up-of-a-book-on-a-table-A98vvG7lPvA" rel="noopener">Jonathan Bottoms / Unsplash</a></figcaption></figure>
+
+    <h2>可視化がすべてを変える理由</h2>
+    <p>頭の中の目標は願い。メモアプリの目標は古い願い。「47%完了、残り63日」を出すロック画面ウィジェットの目標は、毎日の重力がある目標です。可視化が目標——可視化のないデータは希望です。</p>
+    <p>追跡は効きます。<em>Psychological Bulletin</em>の138研究の2016年メタ分析では、目標への進捗をモニタすると達成しやすく、進捗を物理的に記録したり公開したりすると効果が大きいとわかりました（<a href="https://www.apa.org/news/press/releases/2015/10/progress-goals.aspx" target="_blank" rel="noopener">American Psychological Associationの要約</a>）。ひと目のウィジェットは、その記録を見えるところに保つ簡単な方法です。</p>
+
+    <h2>ステップ1 — 目標を1つ選ぶ</h2>
+    <p>3つではない。1つ。最初に追う目標は、いちばん実現したいもの。2つ目と3つ目は、システムが証明されてから。</p>
+    <p>具体的に：「9月30日に5kmレース」であって「もっと健康に」ではない。測れるように：数字、回数、パーセント。期限付きに：日付であって「そのうち」ではない。</p>
+
+    <h2>ステップ2 — 正しい形式を選ぶ</h2>
+    <p>4つの形式が違う目標に合います：</p>
+    <ul>
+      <li><strong>カウントダウン</strong> — 締め切り目標向け。「レースまで63日。」</li>
+      <li><strong>目標</strong> — 数値ベースの目標向け。「25冊中12冊、48%。」</li>
+      <li><strong>進捗バー</strong> — 目標、カウントダウン、習慣の状態をひと目で読めるように。</li>
+      <li><strong>ストリーク</strong> — 習慣駆動の目標向け。「ランニングストリーク：14日。」</li>
+    </ul>
+    <p>ほとんどの成果目標には組み合わせが必要です。測定できるターゲットには<a href="/ja/support/aims-in-left">目標</a>、締め切りにはカウントダウン、成果を生む行動には習慣かストリークを使います。</p>
+
+    <h2>ステップ3 — 見えるところにウィジェットを置く</h2>
+    <p>可視性の階層、いちばん見られるものから：</p>
+    <ol>
+      <li>ロック画面 — 毎回の手に取り、1日に何十回。</li>
+      <li>ホーム画面のメインページ — 最初にスワイプして来る場所。</li>
+      <li>デスク充電器のスタンバイ — 環境としてのひと目。</li>
+      <li>スタンバイ — ベッドサイド／デスクのディスプレイ。</li>
+      <li>ホーム画面のサブページ — スワイプしたとき。</li>
+    </ol>
+    <p>最初の目標はロック画面かホーム画面のメインページへ。それ以外は、静かに格下げされます。</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">目標ウィジェットを入手</a></p>
+
+    <h2>ステップ4 — 読みやすさ向けにカスタム</h2>
+    <p>ウィジェットはひと目で読め、集中を要しないべきです。手がかり：</p>
+    <ul>
+      <li>数字がいちばん大きい要素。</li>
+      <li>ラベルは具体的（「5kmレース 9月30日」）で、汎用（「レース」）ではない。</li>
+      <li>文字と背景のコントラストを高く。</li>
+      <li>ウィジェット全体で書体はひとつ。</li>
+    </ul>
+    <p>美学に合うよう色を調整——原則は<a href="/ja/blog/iphone-aesthetic-widgets-guide">おしゃれウィジェットガイド</a>——ただし機能的な読みやすさが先。</p>
+
+    <h2>ステップ5 — 支える習慣を作る</h2>
+    <p>目標の失敗の多くは追跡の失敗ではなく、行動の失敗です。目標には繰り返しの行動が必要。目標ウィジェットを、それを生む行動の習慣ウィジェットと組む。</p>
+    <p>ランニングの例：総キロの目標、レース日までのカウントダウン、「今日走った」習慣。トラッカーが結果、締め切り、インプットを示します。ひと目で3つの問いに答えます。どれだけやったか、締め切りまでどれだけか、今日やったか。</p>
+
+    <h2>ライフスタイル別のワークフローパターン</h2>
+
+    <h3>学生向け</h3>
+    <p>セメスターの締め切りごとにカウントダウン1つ（試験、論文、プロジェクトの節目）。「今日勉強した」ストリーク1つ。セメスター向けに設定した年の進捗。ADHD向けの調整は<a href="/ja/blog/adhd-students-study-tools-iphone">学生向け学習ツール</a>、より広いシステムは<a href="/ja/blog/time-management-tips-students">学生の時間管理</a>を。</p>
+
+    <h3>プロ向け</h3>
+    <p>次の大きな成果物のカウントダウン1つ。成果物を生む日次インプット習慣（執筆、営業電話、コミットなど）のストリーク1つ。大局の目標用の四半期レビューウィジェット。</p>
+
+    <h3>個人の目標向け</h3>
+    <p>結果のカウントダウン1つ（レース、旅行、節目の誕生日）。それを支える日次習慣のストリーク1つ。年が気づかぬうちに過ぎないよう<a href="/ja/year-progress-widget">年の進捗ウィジェット</a>1つ。<a href="/ja/blog/visual-goals-track-on-screens">画面を横断する見える目標</a>を参照。</p>
+
+    <h3>共有目標向け（パートナー、チーム）</h3>
+    <p>共有カウントダウンのJoint Ahead、共有習慣・ストリークの友達（どちらもLeft Premium）。二人とも自分のスマホで同じ目標を追えます。旅行、共同フィットネス、プロジェクトの締め切りに便利。<a href="/ja/blog/countdown-next-trip-with-friends">Joint Aheadガイド</a>を参照。</p>
+
+    <h2>よくあるセットアップの失敗</h2>
+    <ul>
+      <li><strong>一度に追う目標が多すぎる。</strong>四半期あたり3つ以下。見えるフォーカスは1つ。</li>
+      <li><strong>結果だけの追跡。</strong>「10ポンド痩せる」は直接制御できない結果です。行動目標（「週2回筋トレ」）を足し、両方追う。</li>
+      <li><strong>隠れたページのウィジェット。</strong>見つけるためにスワイプが要るなら、すでに負けています。</li>
+      <li><strong>永遠のカスタム。</strong>セットアップは30分未満であるべき。それ以上は、実際の目標を避けるためにセットアップしている。</li>
+    </ul>
+
+    <h2>メンテのルーティン</h2>
+    <p>週次：ウィジェットをひと目、必要なら進捗を記録、「順調か？」と聞く。プランナーやメモに一文。</p>
+    <p>月次：トレンドを実際に見る。進捗はタイムラインと合っているか。違うなら——締め切りを延ばすか、スコープを切る。見せかけない。</p>
+    <p>四半期：完了した目標はアーカイブ。新しい目標を足す。ウィジェット構成を刷新。</p>
+
+    <h2>目標をやめるとき</h2>
+    <ul>
+      <li>2週間、行動していない。</li>
+      <li>設定したときほど大事ではなくなった。</li>
+      <li>事情が変わり、タイムラインが不可能になった。</li>
+    </ul>
+    <p>きれいに捨てる方が、死んだ目標でトラッカーを汚すよりましです。引きずらずアーカイブ。</p>
+
+    <h2>関連記事</h2>
+    <p>目標の枠組み：<a href="/ja/blog/smart-goals-guide">SMART目標ガイド</a>。可視化側：<a href="/ja/blog/smart-goals-visual-guide">SMART目標ビジュアルガイド</a>。長期の一貫性：<a href="/ja/blog/stay-consistent-with-goals">目標に一貫して取り組む</a>。目標トラッキングアプリの総覧：<a href="/ja/blog/best-goal-tracking-apps-iphone">iPhone向け目標トラッキングアプリおすすめ</a>。</p>
+
+    <h2>よくある質問</h2>
+    <p><strong>一度にいくつの目標を追うべき？</strong><br/>
+    四半期あたり2〜3。見出しの目標は常に見えるところに。他はサブの面へ。</p>
+
+    <p><strong>きれいな終了日がない目標は？</strong><br/>
+    足してください。「Q3末まで」や「12月31日まで」で十分。期限なし目標は可視化しにくいです。</p>
+
+    <p><strong>トラッカーはどのくらいの頻度で更新すべき？</strong><br/>
+    カウントダウンは自動（日次）。ストリークは自ら増え、習慣と目標の進捗は記録したとき——たいてい毎日——更新されます。</p>
+
+    <p><strong>1つの目標の下に複数のサブ目標を追えますか？</strong><br/>
+    はい——サブ目標ごとに別のカウントダウンや進捗ウィジェットを作り、到来順にホーム画面へ並べます。</p>
+
+    <p><strong>Leftは目標追跡をどう扱いますか？</strong><br/>
+    カウントダウンはこれから、目標・習慣・ストリークは経過、カレンダー枠は年の進捗。トラッカーは開くのを思い出すアプリではなく、常に見える層になります。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

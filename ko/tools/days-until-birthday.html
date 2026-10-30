@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>생일까지 며칠 남았을까? 생일 디데이 계산기 | Left</title>
+  <meta name="description" content="다음 생일까지 며칠 남았을까요? 생년월일을 입력하면 일, 시간, 분 단위로 실시간 생일 디데이를 알려 줍니다. 무료 계산기입니다."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/ko/tools/days-until-birthday" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/days-until-birthday" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/days-until-birthday" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="생일까지 며칠 남았을까? 생일 디데이 계산기"  />
+  <meta property="og:description" content="다음 생일까지 며칠 남았을까요? 생년월일을 입력하면 일, 시간, 분 단위로 실시간 생일 디데이를 알려 줍니다. 무료 계산기입니다."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ko/tools/days-until-birthday" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="생일까지 며칠 남았을까? 생일 디데이 계산기"  />
+  <meta name="twitter:description" content="다음 생일까지 며칠 남았을까요? 생년월일을 입력하면 일, 시간, 분 단위로 실시간 생일 디데이를 알려 줍니다. 무료 계산기입니다."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "How Many Days Until My Birthday - Countdown",
+  "url": "https://getleft.app/tools/days-until-birthday",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "How many days until your next birthday? Enter your birthdate for a live countdown in days, hours, and minutes. Free birthday countdown calculator.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "ko"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Days until your birthday",
+      "item": "https://getleft.app/tools/days-until-birthday"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>생일까지 남은 일수</h1>
+    <p class="tool-lede">생년월일을 입력하면 다음 생일까지 초 단위로 실시간 디데이를 알려 줍니다.</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <label for="bday-input">생년월일</label>
+        <input type="date" id="bday-input" />
+      </div>
+      <div id="bday-age" style="font-size:14px;color:var(--text-secondary);margin-bottom:8px;"></div>
+      <div id="bday-date" style="font-size:14px;color:var(--text-secondary);margin-bottom:16px;"></div>
+      <div class="tool-units" id="bday-units" role="group" aria-label="표시 단위">
+        <button class="is-active" data-unit="all">일 · 시간 · 분 · 초</button>
+        <button data-unit="weeks">주</button>
+        <button data-unit="days">일 단위만</button>
+        <button data-unit="hours">시간</button>
+      </div>
+      <div class="tool-result" id="bday-result" aria-live="polite"></div>
+      <p class="tool-cta" style="margin:20px 0 0;">
+        <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ko&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          이 카운트다운을 홈 화면에 추가하기
+        </a>
+      </p>
+    </div>
+
+    <div class="tool-prose">
+      <h2>생일 디데이의 작동 방식</h2>
+      <p>생년월일을 입력하면 해당 월과 일이 올해나 내년에 다음으로 돌아오는 날을 찾습니다. 내 시간대 기준으로 그날이 시작되는 자정까지 세므로 0이 되면 내가 있는 곳에서는 정식으로 생일이 된 것입니다. 생일 당일이 되면 다음 해로 넘어갑니다. 현재 나이도 년, 개월, 일로 함께 보여 줍니다.</p>
+      <p>날짜는 기기에 남아 있으며 계산은 브라우저에서 이루어집니다.</p>
+      <h2>2월 29일 생일</h2>
+      <p>윤일에 태어났다면 생일은 약 4년에 한 번만 달력에 나타납니다. 다른 해에는 이 도구가 2월 28일 다음 날인 3월 1일까지 셉니다. 2월 28일에 축하하는 사람도 있으며 둘 다 흔하고, 법적 나이에 대한 공식 규정은 나라마다 다릅니다.</p>
+      <h2>잊지 않는 습관 만들기</h2>
+      <p>생일을 놓치지 않는 가장 쉬운 방법은 다가오는 것을 미리 보는 것입니다. 몇 주 전에 알면 선물을 주문하고, 식당을 예약하고, 전화할 시간을 잡을 수 있어 전날 허둥대지 않아도 됩니다.</p>
+      <h2>이 디데이를 홈 화면에 추가하기</h2>
+      <ol>
+        <li>iPhone에 Left를 설치하고 <strong>앞으로</strong>를 열어 <strong>앞으로에 날짜 추가</strong>를 탭한 다음 <strong>새로운 날짜</strong>를 선택하세요.</li>
+        <li>이름을 붙이고 <strong>시작</strong>을 다음 생일로 설정한 뒤 <strong>반복</strong>을 <strong>매년</strong>으로 설정하세요.</li>
+        <li><strong>알림 받기</strong>를 켜고, 예를 들어 2주 전으로 설정하세요.</li>
+        <li>Left의 <strong>앞으로</strong> 위젯을 홈 화면이나 잠금 화면에 추가하고 <strong>위젯 편집</strong>에서 생일을 선택하세요.</li>
+      </ol>
+      <p>무료 플랜에는 디데이 2개가 포함되며, Left Premium은 온 가족의 생일을 넣을 수 있도록 제한을 없애 줍니다. 내 생일은 Left의 <a href="/ko/life-calendar">인생 달력</a>에도 사용됩니다.</p>
+      <h2>자주 묻는 질문</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>생일까지 며칠 남았나요?</summary>
+          <div class="faq-answer"><p>위에 생년월일을 입력하면 실시간 카운터가 내 시간대 기준으로 다음 생일까지 남은 일, 시간, 분, 초를 정확히 보여 줍니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>생일이 2월 29일이면 어떻게 되나요?</summary>
+          <div class="faq-answer"><p>2월 29일이 없는 해에는 3월 1일까지 세고, 윤년에는 2월 29일까지 셉니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>다른 사람의 생일까지도 디데이를 셀 수 있나요?</summary>
+          <div class="faq-answer"><p>네. 생년월일은 누구 것이든 입력할 수 있습니다. 친구와 가족도 같은 방식으로 계산됩니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>iPhone에서 생일 디데이 위젯을 쓸 수 있나요?</summary>
+          <div class="faq-answer"><p>네. Left의 앞으로에 매년 반복되는 날짜로 생일을 추가한 뒤 홈 화면이나 잠금 화면의 앞으로 위젯에 표시하세요.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many days until my birthday?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Enter your date of birth above and the live counter shows the exact days, hours, minutes and seconds until your next birthday in your time zone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my birthday is on February 29?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In years without a February 29, this tool counts to March 1. In leap years it counts to February 29."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I count down to someone else’s birthday?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Enter any date of birth. The tool works the same way for friends and family."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get a birthday countdown widget on my iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Add the birthday in Left as an Ahead date that repeats yearly, then show it in an Ahead widget on your Home Screen or Lock Screen."
+      }
+    }
+  ],
+  "inLanguage": "ko"
+}
+</script>
+    </div>
+    <div class="tool-related">
+      <h2>관련 도구</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ko/tools/age-calculator">나이 계산기</a>
+        <a class="tool-related-item" href="/tools/days-until-mothers-day">미국 어머니의 날까지 남은 일수</a>
+        <a class="tool-related-item" href="/ko/tools/date-countdown-calculator">원하는 날짜까지 디데이</a>
+        <a class="tool-related-item" href="/ko/tools/days-between-two-dates">두 날짜 사이 일수</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left 다운로드</span>
+        <h2>소중한 것에 눈을 뜨는 시간.</h2>
+        <p>iPhone에서 Left를 다운로드하고 남은 시간과 기다리는 날짜를 확인하며, 지키고 싶은 습관을 쌓아 더 나은 나를 만들어 보세요.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 안내 보려면 탭">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            iOS용 다운로드
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"그날이 되었습니다.","notYet":"아직 아닙니다","futureDate":"미래의 날짜입니다.","datePassed":"이미 지난 날짜입니다.","selectDate":"올바른 날짜를 선택해 주세요.","selectBoth":"두 날짜를 모두 선택해 주세요.","chooseTarget":"위에서 목표 날짜를 선택해 주세요.","deadlinePassed":"마감이 지났습니다","pastDue":"기한 초과","deadlineUrgent":"마감이 임박했습니다","deadlineSoon":"곧 마감입니다","deadlineAhead":"마감까지 여유가 있습니다","fastComplete":"단식 완료!","weddingArrived":"그날이 되었습니다","weekend":"주말입니다!","itsWeekend":"주말입니다! 즐거운 시간 보내세요.","workdayEnded":"근무가 끝났습니다","workdayEndedHint":"더 늦은 시간을 설정하면 다시 카운트다운할 수 있습니다.","upcoming":"다가오는 날짜: {dates}","since":"{date}부터","fastEnds":"단식 종료: {date}","sinceJan1":"{year}년 1월 1일 0시부터","untilDec31":"{year}년 12월 31일 24시까지","fiscalEnds":"회계연도 종료: {date}","quarterEnds":"분기 종료: {date}","weddingDate":"결혼식 날짜: {date}","departure":"출발: {date}","currentAge":"현재 나이: {years}년 {months}개월 {days}일","hoursAndMinutes":"{hours}시간 {minutes}분","minutesExtra":"{minutes}분 추가, 총 {total}분","readingDetail":"분당 {wpm}단어 기준 {minutes}분 {seconds}초","workdaysAt":"하루 {hours}시간 기준 근무일 {days}일","minutesSince":"{date}부터 총 {minutes}분","schoolDays":"수업일","weekdaysMinusBreaks":"평일 {weekdays}일에서 휴일 {breaks}일 제외","businessAfter":"{date}부터 {count}영업일 후","businessBefore":"{date}부터 {count}영업일 전","futureTime":"미래의 시간입니다.","unitEquals":"{amount} {from} = 약 {value} {to}","invalidTimestamp":"올바르지 않은 타임스탬프입니다.","invalidDate":"올바르지 않은 날짜입니다.","local":"현지","pregFirst":"임신 초기","pregSecond":"임신 중기","pregThird":"임신 후기","pregWeekDay":"{weeks}주 {days}일","dueWas":"출산 예정일은 {date}이었습니다. 축하합니다!","yearDays":"{year}년 - 총 {days}일","easterDates":"서방 교회 - {western}, 정교회 - {orthodox}"},"stat":{"days":"일","hours":"시간","min":"분","sec":"초","weeks":"주","months":"개월","daysSince":"일 경과","daysUntil":"일 남음","yearAnniversary":"주년","elapsed":"경과","left":"남음","daysLeft":"일 남음","weeksLeft":"주 남음","yearsLeft":"년 남음","streakDays":"완료된 일수","fullWeeks":"만 주","approxMonths":"약 개월","durationMin":"소요 시간(분)","elapsedMin":"경과 시간(분)","minutesLeft":"분 남음","currentQuarter":"현재 분기","remaining":"남음","daysSober":"금주 일수","daysToMilestone":"다음 기념일까지 일수","nextMilestone":"다음 기념일","daysUntilDeparture":"출발까지 일수","tripDays":"여행 일수"},"unit":{"months":{"one":"개월","other":"개월"},"weeks":{"one":"주","other":"주"},"days":{"one":"일","other":"일"},"hours":{"one":"시간","other":"시간"},"minutes":{"one":"분","other":"분"},"seconds":{"one":"초","other":"초"},"years":{"one":"년","other":"년"}},"next":{"christmas":"다음 크리스마스: {date}","newYear":"다음 새해: {date}","halloween":"다음 핼러윈: {date}","thanksgiving":"다음 미국 추수감사절: {date}","valentines":"다음 밸런타인데이: {date}","mothersDay":"다음 미국 어머니의 날: {date}","fathersDay":"다음 미국 아버지의 날: {date}","spring":"다음 춘분: {date}","summer":"다음 하지: {date}","fall":"다음 추분: {date}","winter":"다음 동지: {date}","westernEaster":"다음 서방 교회 부활절: {date}","orthodoxEaster":"다음 정교회 부활절: {date}","birthday":"다음 생일: {date}","anniversary":"다음 기념일: {date}","saturday":"다음 토요일: {date}","birthdayAway":{"one":"다음 생일: {date} ({count}일 남음)","other":"다음 생일: {date} ({count}일 남음)"}},"sleep":{"bed9":"9시간 (6주기)","bed75":"7.5시간 (5주기, 권장)","bed6":"6시간 (4주기)","bed45":"4.5시간 (3주기)","wake45":"4.5시간","wake6":"6시간","wake75":"7.5시간 (권장)","wake9":"9시간"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const input = document.getElementById('bday-input');
+    const result = document.getElementById('bday-result');
+    const dateEl = document.getElementById('bday-date');
+    const ageEl = document.getElementById('bday-age');
+    const unitBtns = document.querySelectorAll('#bday-units button');
+    let unit = 'all';
+    let cancelTick = null;
+
+    // Default to a placeholder so the field isn't blank
+    const today = new Date();
+    input.max = toLocalDateInput(today);
+
+    unitBtns.forEach(b => b.addEventListener('click', () => {
+      unitBtns.forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      unit = b.dataset.unit;
+    }));
+
+    function nextBirthdayFrom(dob) {
+      const now = new Date();
+      let next = new Date(now.getFullYear(), dob.getMonth(), dob.getDate(), 0, 0, 0);
+      if (next <= now) next.setFullYear(next.getFullYear() + 1);
+      return next;
+    }
+
+    function render() {
+      if (!input.value) { result.innerHTML = ''; dateEl.textContent = ''; ageEl.textContent = ''; return; }
+      const dob = new Date(input.value + 'T00:00:00');
+      if (isNaN(dob)) return;
+      const next = nextBirthdayFrom(dob);
+      const age = ymdBetween(dob, new Date());
+      ageEl.textContent = toolT('result.currentAge', { years: age.years, months: age.months, days: age.days });
+      dateEl.textContent = toolT('next.birthday', { date: formatDateLong(next) });
+      renderCountdown(result, next - Date.now(), unit);
+    }
+
+    input.addEventListener('change', () => {
+      if (cancelTick) cancelTick();
+      cancelTick = tickEvery(1000, render);
+    });
+
+    document.getElementById('bday-units').addEventListener('click', () => setTimeout(render, 0));
+
+    // Kick off with empty state
+    render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>시각 목표: iPhone에서 야망 추적 | Left</title>
+  <meta name="description" content="추상 목표를 iPhone 홈·잠금·스탠바이·배경화면의 보이는 위젯으로. 목표를 잊을 수 없게 하는 실무 설정."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/visual-goals-track-on-screens" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/visual-goals-track-on-screens" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/visual-goals-track-on-screens" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="시각 목표: iPhone에서 야망 추적"  />
+  <meta property="og:description" content="추상 목표를 iPhone의 보이는 위젯으로."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/visual-goals-track-on-screens" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/visual-goals-track-on-screens-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/visual-goals-track-on-screens-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Visual Goals: How to Track Ambitions on Your iPhone Screens",
+  "description": "Turn abstract goals into visible widgets on your iPhone Home Screen, Lock Screen, StandBy, and Wallpaper. A practical setup that makes goals impossible to forget.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/visual-goals-track-on-screens",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Visual Goals: How to Track Ambitions on Your iPhone Screens",
+      "item": "https://getleft.app/blog/visual-goals-track-on-screens"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>시각 목표: iPhone 화면에서 야망을 추적하는 방법</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 6분 읽기</p>
+
+    <p>동기와 기법도 중요하지만, 더 단순한 것도 있습니다. 평범한 하루에 목표가 보이느냐. 메모 앱·선반 노트·연초 Google Doc에 잠긴 목표는 놓치기 쉽습니다. 잠금 화면의 목표는 아닙니다. 가시성은 먼저 고칠 만한 싸고 지루한 변수입니다.</p>
+
+    <p>이 가이드는 iPhone 화면을 층진 시각 목표 추적 시스템으로 바꾸는 이야기입니다. 네 표면 — 배경화면, 잠금 화면, 홈 화면, 스탠바이 — 각기 다른 시야. 실습 예로 <strong>Left</strong>를 쓰지만, 패턴은 어떤 위젯 앱에도 적용됩니다. 핵심은 브랜드가 아니라 구조입니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/visual-goals-track-on-screens-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/knitting-needles-and-yarn-on-wooden-surface-5788151/" rel="noopener">Pavel Danilyuk / Pexels</a></figcaption></figure>
+
+    <h2>시각 목표가 통하는 이유</h2>
+    <p>이유 셋, 대략 중요한 순:</p>
+    <ul>
+      <li><strong>기억할 것을 기억할 필요가 없습니다.</strong> 시각 단서가, 아니면 표류할 순간에 목표를 드러냅니다. "이번 분기 뭘 향해 일해야 했지?"의 인지 부하가 제로로.</li>
+      <li><strong>시간이 만져집니다.</strong> "연말까지"는 추상입니다. "163일" 카운트다운 위젯은 구체입니다. 마감이 모호한 지평이 아니라 실제 날짜처럼 느껴지기 시작합니다.</li>
+      <li><strong>진행 자체가 보상입니다.</strong> 올라가는 연속 기록, 채워지는 진행 막대, 늘어나는 비율 — 동기만으로는 못 버티는 도파민 미량. ADHD 뇌에 특히 관련; <a href="/ko/blog/adhd-reward-system">ADHD 보상 시스템 만들기</a>를 보세요.</li>
+    </ul>
+
+    <h2>네 표면 층 시스템</h2>
+    <p>각 iPhone 표면은 흘깃 패턴이 다릅니다. 맞는 목표는 맞는 표면에:</p>
+
+    <h3>배경화면 - 항상 켜진 보기</h3>
+    <p>배경화면은 잠금을 풀 때마다 봅니다. 가장 영구한 표면 — 매일 말고 분기에 한 번. 가장 크고 긴 시야의 목표: 올해의 헤드라인 야망. Left 배경화면 기능이 연도 진행 시각화로 배경화면 자체를 갱신할 수 있습니다. 설정은 <a href="/ko/blog/left-wallpaper-guide">Left 배경화면 가이드</a>, 결과는 <a href="/ko/days-left-wallpaper">남은 일수 배경화면</a> 페이지.</p>
+
+    <h3>잠금 화면 - 일일 흘깃</h3>
+    <p>잠금 화면은 하루에 수십 번 보는 것입니다. 여기 구체 카운트다운 하나·둘 — 다음 큰 마감, 이번 분기 목표일. 시간 아래 위젯은 작지만 가시성은 큽니다. <a href="/ko/support/widget-iphone-lock-screen">잠금 화면 위젯 설정</a>.</p>
+
+    <h3>홈 화면 - 작업 보기</h3>
+    <p>폰에서 실제로 하는 곳. 홈 화면 위젯은 목표를 만드는 행동을 추적해야 합니다. 습관 연속 기록, 이정표 카운트다운, 목표 진행 막대. 잠금 화면보다 크고 상세하고 인터랙티브.</p>
+
+    <h3>스탠바이 - 책상 디스플레이</h3>
+    <p>폰이 스탠드에서 충전 중(보통 책상·침대맡)이면 스탠바이가 흘깃용 디스플레이로 바꿉니다. 한쪽은 시계+연도 진행, 다른 쪽은 최상위 카운트다운. "올해 향해 가는 것"의 책상 버전. <a href="/ko/support/widget-iphone-standby">스탠바이 위젯 설정</a>.</p>
+
+    <h2>실습 예: 마라톤 훈련</h2>
+    <p>목표: 10월 14일 마라톤. 지금은 3월. 8개월 전.</p>
+    <ul>
+      <li><strong>배경화면:</strong> 마라톤을 위한 특별한 날짜 배경화면입니다. 10월 14일까지 카운트다운하는 격자에 남은 시간을 보여 주는 범례가 있어, 큰 목표를 늘 떠올리게 해 줍니다.</li>
+      <li><strong>잠금 화면:</strong> 작은 카운트다운("마라톤까지 214일"). 폰을 집을 때마다 날짜가 현재로.</li>
+      <li><strong>홈 화면:</strong> 현재 연속 기록이 있는 "오늘 달림" 습관 위젯. 결과를 만드는 행동.</li>
+      <li><strong>스탠바이(침대맡):</strong> 시계 + 같은 마라톤 카운트다운. 일어날 때 처음 보는 것.</li>
+    </ul>
+    <p>네 표면, 목표 하나, 알림 소음 없음. 보는 모든 화면에 있어 잊을 수 없습니다.</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">남은 일수 배경화면 받기</a></p>
+
+    <h2>실습 예: 창작 프로젝트</h2>
+    <p>목표: 12월 31일까지 책 출고. 지금은 8월.</p>
+    <ul>
+      <li><strong>배경화면:</strong> 올해 진행률로, 1년 전체의 틀이 항상 화면에 보입니다.</li>
+      <li><strong>잠금 화면:</strong> 다음 이정표까지의 카운트다운(예: 9월 30일 초고), 끝날 때마다 다음 이정표로 교체.</li>
+      <li><strong>홈 화면:</strong> 연속 기록이 있는 "오늘 씀" 습관 위젯. 행동.</li>
+      <li><strong>홈 화면 보조 페이지:</strong> 이정표 다섯을 순서대로 위젯으로. 시각 프로젝트 계획.</li>
+      <li><strong>스탠바이:</strong> 시계 + 다음 이정표 카운트다운.</li>
+    </ul>
+    <p>패턴은 목표 유형을 넘깁니다. 배경화면은 호, 잠금 화면은 다음 체크포인트, 홈 화면은 행동.</p>
+
+    <h2>위젯이 계속 일하게 하는 디자인 원칙</h2>
+    <ul>
+      <li><strong>헤드라인 목표 하나.</strong> 배경화면에 목표 셋은 배경화면에 목표 없음입니다. 이번 분기에 가장 중요한 하나를 고르세요.</li>
+      <li><strong>구체 라벨.</strong> "마라톤 10월 14일"이 "레이스"보다 낫습니다. 구체성이 목표를 실감나게 합니다.</li>
+      <li><strong>색을 무드에 맞추세요.</strong> 피하는 목표는 차분한 색(낮은 압박). 설레는 목표는 더 밝은 팔레트. 색 선택이 위젯을 볼 때의 기분을 조용히 바꿉니다.</li>
+      <li><strong>쌓지 말고 교체.</strong> 목표가 끝나면 위젯을 제거하세요. 끝난 카운트다운이 표면을 어지럽히고 임팩트를 흐립니다.</li>
+      <li><strong>필요 없는 것에 게이미피케이션하지 마세요.</strong> 어떤 목표는 연속 기록이, 어떤 목표는 단순 "X일 남음"이 낫습니다. 모든 목표를 같은 위젯 형식에 억지로 넣지 마세요.</li>
+    </ul>
+
+    <h2>시각 목표가 더 이상 안 통할 때</h2>
+    <p>흔한 실패 셋과 수정:</p>
+    <ul>
+      <li><strong>시각 피로.</strong> 4–6주 후 위젯이 안 들어옵니다. 다른 페이지로 옮기고, 색을 바꾸고, 크기를 바꾸세요. 작은 시각 변화가 주의를 다시 끌어들입니다.</li>
+      <li><strong>목표 표류.</strong> 3월에 세운 목표가 8월에 관련 없어 느껴집니다. 솔직한 답: 버리세요. 죽은 목표를 달력에 끌지 마세요.</li>
+      <li><strong>위젯이 너무 많음.</strong> 홈 화면에 목표 위젯 14개, 뭐가 제일 중요한지 모름. 셋으로 줄이세요.</li>
+    </ul>
+
+    <h2>목표 유형별</h2>
+    <ul>
+      <li><strong>습관 목표</strong>(매일 운동, 매일 쓰기): 습관 위젯 + 연속 기록 수.</li>
+      <li><strong>마감 목표</strong>(논문, 레이스일): 앞으로 카운트다운 위젯.</li>
+      <li><strong>누적 목표</strong>($5,000 저축, 책 25권): 비율 진행 막대 위젯.</li>
+      <li><strong>시간 목표</strong>(올해를 잘 쓰기): 연도 진행 위젯.</li>
+      <li><strong>회피 목표</strong>(금주, 30일 SNS 없음): 경과일부터의 연속 기록 위젯.</li>
+    </ul>
+
+    <h2>책임 레이어 (선택)</h2>
+    <p>보이는 목표를 누군가와 공유하면 대화 없이 책임 레이어가 생깁니다. Left의 공동 앞으로와 친구(둘 다 Left Premium)로 친구가 자기 폰에서도 카운트다운이나 연속 기록을 팔로우할 수 있습니다. 가시성이 책임입니다 — 누구도 언급할 필요 없고, 위젯이 일합니다. 공유 흐름은 <a href="/ko/blog/countdown-next-trip-with-friends">다음 여행 카운트다운</a>을 보세요.</p>
+
+    <h2>관련 글</h2>
+    <p>이 위젯 설정의 SMART 프레임워크: <a href="/ko/blog/smart-goals-guide">SMART 목표 가이드</a>. SMART의 시각 쪽: <a href="/ko/blog/smart-goals-visual-guide">SMART 목표 시각 가이드</a>. 장기 유지: <a href="/ko/blog/stay-consistent-with-goals">목표와 꾸준히</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>시각 목표를 한 번에 몇 개까지?</strong><br/>
+    헤드라인 하나(배경화면/스탠바이), 잠금 화면 활성 이정표 2–3, 홈 화면 습관 위젯 3–4. 대략 위젯 총 6–8 — 그 이상은 나쁜 의미의 배경화면.</p>
+
+    <p><strong>목표에 명확한 마감이 없으면요?</strong><br/>
+    스스로 하나 두세요. "분기 말까지"면 충분합니다. 열린 목표는 셀 것이 없어 시각화가 잘 안 됩니다. 날짜를 고르세요.</p>
+
+    <p><strong>같은 위젯에 질릴까요?</strong><br/>
+    네, 4–6주 후. 교체나 리스타일을 계획하세요. 다른 페이지나 다른 색이면 충분합니다.</p>
+
+    <p><strong>모호한 창작 목표에도 되나요?</strong><br/>
+    부분적으로요. 결과 목표("훌륭한 책 쓰기")를 과정 목표("하루 500단어")로 바꾸세요. 과정 목표는 깔끔한 위젯이 있고, 결과 목표는 없습니다.</p>
+
+    <p><strong>Left는 어떻게 다루나요?</strong><br/>
+    카운트다운은 앞으로, 연속 기록은 경과, 시간 기반 위젯은 연도 진행, 항상 켜진 디스플레이는 배경화면 — 모두 iPhone에. 각 표면을 맞는 위젯이.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

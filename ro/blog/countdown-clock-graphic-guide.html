@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Proiectarea unui grafic de ceas cu numărătoare: ghid 2026 | Left</title>
+  <meta name="description" content="Cum proiectezi un widget grafic de ceas cu numărătoare — tipografie, culoare, aranjament și configurarea pe date live care bate orice grafic static pe social sau pe dispozitive."  />
+  <link rel="canonical" href="https://getleft.app/ro/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/countdown-clock-graphic-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Proiectarea unui grafic de ceas cu numărătoare: ghid 2026"  />
+  <meta property="og:description" content="Cum proiectezi un widget grafic de ceas cu numărătoare."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ro/blog/countdown-clock-graphic-guide" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/countdown-clock-graphic-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Designing a Countdown Clock Graphic: A 2026 Guide",
+  "description": "How to design a countdown clock graphic widget - typography, color, layout, and the live-data setup that beats any static graphic on social or your devices.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/countdown-clock-graphic-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Designing a Countdown Clock Graphic: A 2026 Guide",
+      "item": "https://getleft.app/blog/countdown-clock-graphic-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/ro/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ro/#features" class="nav-link">Funcții</a>
+          <a href="/ro/tools/" class="nav-link">Unelte</a>
+          <a href="/ro/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ro&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Descarcă</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Proiectarea unui grafic de ceas cu numărătoare: ghid 2026</h1>
+    <p class="article-meta">Actualizat <time datetime="2026-10-20">20 octombrie 2026</time> · 5 min de citire</p>
+
+    <p>„Grafic de ceas cu numărătoare” înseamnă de obicei unul din două: o imagine statică pe care ai generat-o o dată cu „100 de zile până la vară” pe ea, sau un widget live care arată numărul curent. Primul e decor. Al doilea schimbă comportamentul. Acest ghid e despre proiectarea celui de-al doilea — un grafic de ceas cu numărătoare care se actualizează singur, stă pe telefon și rămâne util după prima săptămână.</p>
+
+    <p>Acoperim principiile de design care fac un widget de numărătoare eficient, capcana numărătorilor supra-decorate și configurarea cu widgetul <strong>Viitoare</strong> din Left care transformă un concept grafic într-o piesă live, actualizată zilnic pe ecranul principal, ecranul de blocare și În repaus. Vezi pagina <a href="/ro/countdown-widget">widgetului de numărătoare inversă</a> pentru rezultatul final.</p>
+
+    <figure class="post-hero"><img src="/images/blog/countdown-clock-graphic-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-close-up-of-a-wooden-box-with-numbers-on-it-idHU3psb4DU" rel="noopener">Annie Spratt / Unsplash</a></figcaption></figure>
+
+    <h2>Grafic static vs widget live</h2>
+    <p>Un grafic static de numărătoare arată grozav într-un screenshot și e greșit mâine. Un widget live e mai urât în medie și corect în fiecare zi. Pentru orice vrei să urmărești cu adevărat (un obiectiv, o călătorie, un termen), live câștigă. Static e ok pentru un post social unic.</p>
+    <p>Acest ghid presupune că vrei versiunea live.</p>
+
+    <h2>Principii de design pentru un widget de numărătoare</h2>
+
+    <h3>1. Un număr, mare</h3>
+    <p>Numărul <a href="/ro/tools/countdown-timer">numărătorii</a> e tot rostul. Ar trebui să fie cel mai mare element din widget. Orice concurează cu el — ilustrații, degradeuri, tipografie decorativă — se luptă cu datele. Folosește un cadru neutru în jurul unui număr dominant.</p>
+
+    <h3>2. Etichetează evenimentul specific</h3>
+    <p>„Călătorie la Tokyo” bate „Vacanță.” „Lansare Q3” bate „Termen.” Specificitatea face numărătoarea să se simtă reală. Dacă eticheta e generică, numărătoarea e decorativă.</p>
+
+    <h3>3. Alege unitatea potrivită</h3>
+    <ul>
+      <li><strong>Zile</strong> pentru evenimente la 7+ zile.</li>
+      <li><strong>Zile + ore</strong> pentru evenimente la 1–7 zile.</li>
+      <li><strong>Ore + minute</strong> pentru evenimente la mai puțin de o zi.</li>
+      <li><strong>Secunde</strong> aproape niciodată. Pare anxios; lag-ul de reîmprospătare le face vizibil inexacte.</li>
+    </ul>
+    <p>Multe aplicații de widgeturi lasă unitatea să se adapteze automat pe măsură ce data se apropie — activează asta dacă e disponibil.</p>
+
+    <h3>4. Contrast mare</h3>
+    <p>Numărul ar trebui citit dintr-o privire. Negru pe crem, alb pe negru, bleumarin pe os. Paletele pe tonuri medii arată rafinate și sunt greu de citit în viața reală — mai ales la soare sau la lumină slabă.</p>
+
+    <h3>5. O singură familie tipografică</h3>
+    <p>O familie de fonturi pe tot textul widgetului. Numărul poate fi mai greu sau mai ușor decât eticheta, dar aceeași familie. Amestecul serif + display + sans arată mereu ca un accident.</p>
+
+    <h2>Alegerea culorilor după tipul de obiectiv</h2>
+    <ul>
+      <li><strong>Numărători de entuziasm (călătorie, zi de naștere, lansare):</strong> paletă mai caldă — terracotta, aur, ocru. Culoarea semnalează anticiparea.</li>
+      <li><strong>Numărători de presiune (termen, examen):</strong> paletă mai rece, mai calmă — ardezie, bleumarin, salvie. Culoarea ar trebui să reducă presiunea, nu s-o amplifice.</li>
+      <li><strong>Arcuri lungi (an, semestru):</strong> neutre — os, cărbune, alb-crem. Widgeturile pe tot anul sunt aproape de fundal; mute se citesc mai bine în timp.</li>
+    </ul>
+    <p>Numărătoarele roșu aprins sunt o greșeală comună. Arată urgente într-un screenshot și se citesc ca stres în viața de zi cu zi. Păstrează roșul pentru alerte cu adevărat critice în timp.</p>
+
+    <h2>Plasarea contează la fel de mult ca designul</h2>
+    <ul>
+      <li><strong>Ecranul de blocare:</strong> cea mai urgentă numărătoare. Vizibilă la fiecare ridicare.</li>
+      <li><strong>Ecranul principal (pagina principală):</strong> cea mai importantă numărătoare activă.</li>
+      <li><strong>Ecranul principal (pagina secundară):</strong> toate celelalte numărători active, stivuite.</li>
+      <li><strong>În repaus:</strong> numărătoarea de pe afișajul de birou.</li>
+      <li><strong>Fundal:</strong> arcul anului.</li>
+    </ul>
+    <p>O numărătoare la locul greșit e invizibilă. O numărătoare la locul potrivit schimbă cum îți cheltui zilele.</p>
+
+    <h2>Configurarea în Left</h2>
+    <ol>
+      <li>În Viitoare, atinge <strong>Adaugă o dată Viitoare</strong> și creează o intrare cu numele evenimentului și data.</li>
+      <li>Sub <strong>Mai multe opțiuni</strong>, folosește <strong>Afișează ca...</strong> ca să alegi ore, zile, săptămâni, luni sau ani, plus un simbol.</li>
+      <li>Alege o culoare și, dacă vrei, o fotografie de fundal.</li>
+      <li>Adaugă widgetul pe suprafața aleasă (<a href="/ro/support/widget-iphone-home-screen">ecranul principal</a>, <a href="/ro/support/widget-iphone-lock-screen">ecranul de blocare</a>, <a href="/ro/support/widget-iphone-standby">În repaus</a>).</li>
+      <li>Ține apăsat pe widget → Editați widgetul → alege data Viitoare anume.</li>
+    </ol>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ro&amp;mt=8" target="_blank" rel="noopener">Descarcă widgetul de numărătoare inversă</a></p>
+
+    <h2>Greșeli comune de design</h2>
+    <ul>
+      <li><strong>Adăugarea secundelor.</strong> Pare aglomerat, întârzie vizibil.</li>
+      <li><strong>Totul centrat.</strong> Textul centrat pe fiecare linie se citește ca un poster. Aranjamentele asimetrice se citesc ca funcționale.</li>
+      <li><strong>Ilustrații decorative în spatele numărului.</strong> Fac numărul mai greu de citit.</li>
+      <li><strong>Mai multe widgeturi care concurează pe aceeași pagină.</strong> Două numărători una lângă alta se bat. O numărătoare + un widget legat (ceas, progresul anului) se citește mai bine.</li>
+      <li><strong>Folosirea unei imagini stock ca fundal.</strong> Pixelizează prost; concurează cu numărul.</li>
+    </ul>
+
+    <h2>Când numărătoarele își pierd efectul</h2>
+    <p>Trei moduri de eșec și remedieri:</p>
+    <ul>
+      <li><strong>Oboseală vizuală.</strong> Schimbă culoarea sau mărimea widgetului după 4–6 săptămâni. Mișcarea reangajează.</li>
+      <li><strong>Numărul nu se mai simte real.</strong> Numărătoarea e acolo de atât de mult timp încât a devenit fundal. Mut-o pe ecranul de blocare dacă nu e deja.</li>
+      <li><strong>Numărătoarea s-a terminat.</strong> Elimină-o. Nu lăsa o numărătoare gata să stea acolo — diluează impactul următoarei.</li>
+    </ul>
+
+    <h2>Pentru grafice pe social media</h2>
+    <p>Dacă vrei cu adevărat un grafic static de partajat (post de anunț etc.), principiile sunt aceleași: un număr mare, etichetă specifică, contrast mare, o singură familie tipografică. Generează-l în ziua în care îl postezi. Nu încerca să-l refolosești.</p>
+
+    <h2>Lecturi asemănătoare</h2>
+    <p>Pentru topul mai larg de widgeturi de numărătoare: <a href="/ro/blog/best-countdown-widgets-iphone">cele mai bune widgeturi de numărătoare pentru iPhone</a>. Pentru design-ca-estetică: <a href="/ro/blog/iphone-aesthetic-widgets-guide">widgeturi estetice pentru iPhone</a>. Pentru aranjamentul pe ecranul principal: <a href="/ro/blog/home-screen-timer-iphone">configurarea cronometrului pe ecranul principal</a>.</p>
+
+    <h2>Întrebări frecvente</h2>
+    <p><strong>Care e cel mai bun font pentru un widget de numărătoare?</strong><br/>
+    Un sans geometric (Helvetica, Inter, Outfit) sau un slab serif puternic. Evită fonturile display care se citesc greu la mărimi mici.</p>
+
+    <p><strong>Ar trebui să folosesc un fundal în gradient?</strong><br/>
+    Gradientele subtile sunt ok; cele agresive concurează cu numărul. Dacă ai dubii, folosește o culoare plată.</p>
+
+    <p><strong>Pot partaja un design de numărătoare cu cineva?</strong><br/>
+    Cu Left, partajează numărătoarea de bază prin Viitoare comună (parte din Left Premium) — primesc aceeași intrare Viitoare; widgetul de pe telefonul lor folosește stilul lor. Datele sunt partajate; designul e alegerea fiecăruia.</p>
+
+    <p><strong>Cât de precisă e numărătoarea?</strong><br/>
+    iOS controlează frecvența de reîmprospătare a widgeturilor. Numărătoarea e precisă la minut pentru evenimente în ore, la oră pentru evenimente în zile și la zi pentru evenimente mai îndepărtate.</p>
+
+    <p><strong>Ce arată exact widgetul Viitoare din Left?</strong><br/>
+    O numărătoare configurabilă — ore, zile, săptămâni, luni sau ani, progres opțional, un simbol, culoare și fotografie de fundal. Proiectat să fie versiunea live a unui „grafic de ceas cu numărătoare.”</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarcă Left</span>
+          <h2>Începe să observi ce contează.</h2>
+          <p>Descarcă Left pe iPhone ca să vezi timpul care ți-a mai rămas, datele pe care le aștepți, să construiești obiceiurile pe care vrei să le păstrezi și să devii o versiune mai bună a ta.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Cod QR - atinge pentru instrucțiuni">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanează sau caută <strong>„Left”</strong> în App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ro&amp;mt=8" target="_blank" rel="noopener" aria-label="Descarcă Left din App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descarcă pentru iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> de oameni care valorifică fiecare moment.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Subsol">
+          <a href="/ro/support">Asistență</a>
+          <a href="/terms">Termeni</a>
+          <a href="/ro/privacy">Confidențialitate</a>
+          <a href="/ro/press">Presă</a>
+          <a href="/ro/contact">Contact</a>
+          <a href="/ro/tools/">Instrumente</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ro/blog/">Blog</a>
+          <a href="#" data-consent-open>Setări cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="true">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consimțământ cookie">
+  <p class="left-consent__text">Folosim Google Analytics ca să înțelegem care pagini îi ajută pe oameni. Fără reclame, fără urmărire între site-uri.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permite analitica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nu, mulțumesc</button>
+    <a class="left-consent__link" href="/ro/privacy#website" data-consent-privacy>Confidențialitate</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

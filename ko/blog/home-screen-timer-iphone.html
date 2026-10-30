@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhone 홈 화면에 카운트다운 두기 | Left</title>
+  <meta name="description" content="iPhone 홈 화면 카운트다운 타이머 실무 설정 — 크기, 배치, 창의적 용도, 사라지지 않는 위젯 선택."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/home-screen-timer-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/home-screen-timer-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/home-screen-timer-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 홈 화면에 카운트다운 두기"  />
+  <meta property="og:description" content="iPhone 홈 화면 카운트다운 타이머 실무 설정."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/home-screen-timer-iphone" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/home-screen-timer-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/home-screen-timer-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Put a Countdown Timer on Your iPhone Home Screen",
+  "description": "A practical setup for a countdown timer on the iPhone Home Screen - sizing, placement, creative use cases, and the widget choices that don't fade away.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/home-screen-timer-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Put a Countdown Timer on Your iPhone Home Screen",
+      "item": "https://getleft.app/blog/home-screen-timer-iphone"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>iPhone 홈 화면에 카운트다운 타이머 두기</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 5분 읽기</p>
+
+    <p>기본 iOS 시계 타이머는 주방에 훌륭하고 그 외엔 형편없습니다. 화면을 잠그고, 위젯으로 안 나오고, 다른 앱을 쓰는 순간 사라집니다. 홈 화면에 사는 카운트다운 타이머 — 잠금 해제·열기·기억 없이 보이는 — 는 다른 종류의 유용함입니다.</p>
+
+    <p>이 가이드는 위젯 앱으로 iPhone 홈 화면에 <a href="/ko/tools/countdown-timer">카운트다운 타이머</a>를 두는 방법을 단계별로 설명하며, <strong>Left</strong>의 앞으로 위젯을 예시로 듭니다. 배치, 크기, 위젯을 둘 만한 창의적인 활용 사례, 그리고 첫 주가 지나도 계속 유용하게 만드는 설정까지 다룹니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/black-and-white-analog-egg-timer-vZawEq0Eexo" rel="noopener">Marcelo Leal / Unsplash</a></figcaption></figure>
+
+    <h2>단계별 설정</h2>
+    <ol>
+      <li>위젯 앱을 여세요(Left, 또는 고른 대안).</li>
+      <li>새 카운트다운을 만드세요(Left: 앞으로 항목; <a href="/ko/countdown-widget">카운트다운 위젯</a> 페이지 참고). 이름을 구체적으로 — "여행"보다 "8월 14일 여행".</li>
+      <li>목표 날짜를 설정하세요.</li>
+      <li>저장.</li>
+      <li>홈 화면 빈 곳을 길게 누르세요.</li>
+      <li>왼쪽 위 <strong>+</strong>를 탭하세요.</li>
+      <li>위젯 앱을 검색하세요.</li>
+      <li>크기(작은, 중간, 큰)를 고르고 <strong>위젯 추가</strong>를 탭하세요.</li>
+      <li>위젯을 원하는 위치로 끌어다 놓고 <strong>완료</strong>를 탭하세요.</li>
+      <li>위젯을 길게 누르기 → <strong>위젯 편집</strong> → 특정 카운트다운 고르기.</li>
+    </ol>
+    <p>스크린샷 있는 자세한 위젯 추가 흐름: <a href="/ko/support/widget-iphone-home-screen">iPhone 홈 화면 위젯 가이드</a>.</p>
+
+    <h2>맞는 크기 고르기</h2>
+    <ul>
+      <li><strong>작은 (2×2):</strong> 카운트다운 숫자와 이벤트 라벨만. 페이지에 위젯이 많을 때.</li>
+      <li><strong>중간 (4×2):</strong> 카운트다운 + 추가 맥락(진행 막대, 부가 정보). 페이지의 메인이 카운트다운일 때.</li>
+      <li><strong>큰 (4×4):</strong> 카운트다운 + 여러 단위 표시 + 장식 공간. 전용 홈 화면 페이지 하나에.</li>
+    </ul>
+    <p>대부분 가장 중요한 카운트다운은 중간, 부차는 작은 위젯을 씁니다.</p>
+
+    <h2>배치 원칙</h2>
+    <ul>
+      <li><strong>홈 화면 왼쪽 위.</strong> 눈이 먼저 갑니다.</li>
+      <li><strong>스와이프해야 찾는 페이지가 아닌 곳.</strong> 카운트다운의 일은 수동적으로 보이는 것입니다.</li>
+      <li><strong>바쁜 위젯 옆이 아닌 곳.</strong> 시각적 여백이 카운트다운을 눈에 들어오게 합니다.</li>
+      <li><strong>페이지당 최대 하나.</strong> 나란히 두 카운트다운은 서로 주의를 뺏습니다.</li>
+    </ul>
+
+    <h2>홈 화면 타이머를 정당화하는 용도</h2>
+    <ul>
+      <li><strong>여행/이벤트 카운트다운.</strong> 32일 뒤 휴가. 11일 뒤 기념일. 7일 뒤 컨퍼런스.</li>
+      <li><strong>프로젝트 마감.</strong> 18일 뒤 납품. 캘린더를 열지 않아도 보이는 압박.</li>
+      <li><strong>개인 이정표.</strong> 생일, 레이스 데이, 시험.</li>
+      <li><strong>목표 종료일.</strong> "30일 챌린지 종료까지 11일."</li>
+      <li><strong>반복 마감.</strong> 월말, 분기말, 회계연도 말.</li>
+      <li><strong>연도 진행.</strong> "올해 63% 지남." 남은 달을 쓰는 방식을 다시 잡습니다.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">카운트다운 위젯 받기</a></p>
+
+    <h2>Smart vs 고정</h2>
+    <p>일부 위젯 앱은 특정 카운트다운을 고정하거나, 다음으로 가장 관련 있는 것을 고르는 "Smart" 모드를 씁니다. 카운트다운이 많고 위젯이 다음을 계속 보여 주길 원하면 Smart가 편합니다. 지금 중요한 게 하나뿐이면 고정이 낫습니다.</p>
+    <p>지원하는 앱에서 흔한 설정: 카운트다운을 도는 작은 Smart 위젯 + 헤드라인 목표용 중간 고정 위젯.</p>
+
+    <h2>흔한 실수</h2>
+    <ul>
+      <li><strong>위젯을 너무 많이.</strong> 한 페이지에 카운트다운 여섯 = 배경화면. 실용 최대는 셋.</li>
+      <li><strong>일반 라벨.</strong> "여행" → "8월 14일 도쿄 여행." 구체성이 카운트다운을 실감나게 합니다.</li>
+      <li><strong>급하지 않은 카운트다운에 밝은 색.</strong> 1년 뒤 날짜에 빨간 위젯은 이유 없이 스트레스로 읽힙니다.</li>
+      <li><strong>끝난 카운트다운을 안 지움.</strong> 홈 화면에 남은 끝난 카운트다운이 다음의 임팩트를 흐립니다.</li>
+    </ul>
+
+    <h2>잠금 화면·스탠바이와 짝짓기</h2>
+    <p>홈 화면 위젯은 표면 하나입니다. 전체 그림:</p>
+    <ul>
+      <li>같은 카운트다운용 <strong>잠금 화면 위젯</strong> — 집을 때마다 보임. <a href="/ko/support/widget-iphone-lock-screen">잠금 화면 가이드</a>.</li>
+      <li><strong>스탠바이 디스플레이</strong>에 침대맡·책상 카운트다운. <a href="/ko/support/widget-iphone-standby">스탠바이 가이드</a>.</li>
+      <li>막바지용 <strong>실시간 현황</strong>: 앞으로 날짜의 알림 구역에서 <strong>최종 카운트다운</strong>을 켜 잠금 화면과 Dynamic Island에서 보세요.</li>
+    </ul>
+    <p>네 표면에 걸친 카운트다운 하나 = 잊을 수 없는 것.</p>
+
+    <h2>카운트다운이 더 이상 안 통할 때</h2>
+    <p>실패 모드 세 가지:</p>
+    <ul>
+      <li><strong>숫자가 안 들어옵니다.</strong> 위젯을 옮기고, 색을 바꾸고, 크기를 바꾸세요. 시각 변화가 다시 끌어들입니다.</li>
+      <li><strong>날짜에 관심이 식었습니다.</strong> 목표가 동기부여가 안 되면 위젯이 고칠 수 없습니다 — 목표 자체를 다시 평가하세요.</li>
+      <li><strong>카운트다운이 끝났습니다.</strong> 위젯을 제거하세요. 다음 카운트다운을 추가하세요.</li>
+    </ul>
+
+    <h2>관련 글</h2>
+    <p>전체 위젯 총정리: <a href="/ko/blog/best-countdown-widgets-iphone">최고의 iPhone 카운트다운 위젯</a>. 디자인 원칙: <a href="/ko/blog/countdown-clock-graphic-guide">카운트다운 시계 그래픽 가이드</a>. 미적 측면: <a href="/ko/blog/iphone-aesthetic-widgets-guide">미적 iPhone 위젯</a>. 더 넓은 홈 화면 위젯 맥락: <a href="/ko/blog/best-home-screen-widgets-iphone">최고의 홈 화면 위젯</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>홈 화면 타이머가 배터리를 많이 쓰나요?</strong><br/>
+    아니요. iOS가 위젯 새로고침을 제어합니다 — 예산은 작고 일정합니다.</p>
+
+    <p><strong>홈 화면에 타이머를 여러 개 둘 수 있나요?</strong><br/>
+    네. 실용 최대는 셋; 그 이상은 어수선합니다.</p>
+
+    <p><strong>iOS 시계 타이머와 홈 화면 카운트다운 위젯의 차이는?</strong><br/>
+    시계 타이머는 단기(분/시간)이고 전면 사용이 필요합니다. 카운트다운 위젯은 장기(일/월)이고 아무것도 열지 않아도 수동적으로 보입니다.</p>
+
+    <p><strong>있는 앱에서 Smart 모드는 어떻게 되나요?</strong><br/>
+    Smart가 다음 다가오는 카운트다운을 자동으로 고릅니다. 하나가 끝나면 다음이 보입니다. 날짜가 지날 때마다 위젯을 수동 편집하기 싫은 사람에게 유용합니다.</p>
+
+    <p><strong>Left의 홈 화면 타이머 위젯은 무엇을 보여 주나요?</strong><br/>
+    고른 앞으로 항목의 카운트다운 숫자, 선택적으로 진행 막대·라벨·색. 작은·중간·큰 세 크기, 상세 수준이 다름.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

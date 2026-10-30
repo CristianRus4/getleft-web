@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Aplicație de progres al obiectivelor: ghidul tău de configurare (2026) | Left</title>
+  <meta name="description" content="Un ghid practic pentru a configura un tracker de progres al obiectivelor pe iPhone — primul obiectiv, plasarea widgeturilor, stiluri avansate și fluxurile care chiar rămân."  />
+  <link rel="canonical" href="https://getleft.app/ro/blog/goal-progress-tracker-setup" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/goal-progress-tracker-setup" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Aplicație de progres al obiectivelor: ghidul tău de configurare (2026)"  />
+  <meta property="og:description" content="Un ghid practic pentru a configura un tracker de progres al obiectivelor pe iPhone."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ro/blog/goal-progress-tracker-setup" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/goal-progress-tracker-setup-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/goal-progress-tracker-setup-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Goal Progress Tracker App: Your Setup Guide (2026)",
+  "description": "A practical guide to setting up a goal progress tracker on iPhone - first goal, widget placement, advanced styles, and the workflows that actually stick.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/goal-progress-tracker-setup",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Goal Progress Tracker App: Your Setup Guide (2026)",
+      "item": "https://getleft.app/blog/goal-progress-tracker-setup"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/ro/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ro/#features" class="nav-link">Funcții</a>
+          <a href="/ro/tools/" class="nav-link">Unelte</a>
+          <a href="/ro/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ro&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Descarcă</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>Aplicație de progres al obiectivelor: ghidul tău de configurare (2026)</h1>
+    <p class="article-meta">Actualizat <time datetime="2026-10-20">20 octombrie 2026</time> · 6 min de citire</p>
+
+    <p>Un tracker de progres al obiectivelor e util doar dacă progresul e vizibil. Greșeala pe care o fac majoritatea utilizatorilor de aplicații de urmărire a obiectivelor e să configureze aplicația o dată, să pună o singură pictogramă pe a treia pagină a ecranului principal și să uite că există. Trackerul devine un loc unde datele merg să moară. Configurarea contează mai mult decât alegerea aplicației.</p>
+
+    <p>Acest ghid trece prin configurarea unui tracker de progres al obiectivelor care chiar funcționează — primul obiectiv, plasarea widgeturilor, alegerile de format și fluxurile pentru stiluri de viață diferite. Folosim <strong>Left</strong> ca exemplu concret pentru că acoperă numărători, progresul Scopului, procente și serii de obiceiuri într-un sistem vizibil, dar principiile de configurare se aplică oricărui tracker.</p>
+
+    <figure class="post-hero"><img src="/images/blog/goal-progress-tracker-setup-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-close-up-of-a-book-on-a-table-A98vvG7lPvA" rel="noopener">Jonathan Bottoms / Unsplash</a></figcaption></figure>
+
+    <h2>De ce vizualizarea schimbă totul</h2>
+    <p>Un obiectiv în cap e o dorință. Un obiectiv într-o aplicație de note e o dorință veche. Un obiectiv pe un widget pe ecranul de blocare care arată „47% complet, 63 de zile rămase” e un obiectiv cu gravitație zilnică. Vizualizarea e obiectivul — datele fără vizualizare sunt speranță.</p>
+    <p>Urmărirea contează. O meta-analiză din 2016 a 138 de studii din <em>Psychological Bulletin</em> a găsit că monitorizarea progresului către un obiectiv îi făcea pe oameni mai predispuși să-l atingă, iar efectul era mai mare când progresul era înregistrat fizic sau făcut public (<a href="https://www.apa.org/news/press/releases/2015/10/progress-goals.aspx" target="_blank" rel="noopener">rezumat American Psychological Association</a>). Un widget dintr-o privire e un mod ușor de a ține acel înregistrare la vedere.</p>
+
+    <h2>Pasul 1 — Alege un obiectiv</h2>
+    <p>Nu trei. Unul. Primul obiectiv pe care îl urmărești trebuie să fie cel pe care vrei cel mai mult să-l faci real. Două și trei pot veni mai târziu, odată ce sistemul e dovedit.</p>
+    <p>Fă-l anume: „Alergă o cursă de 5 km pe 30 septembrie”, nu „fii mai în formă”. Fă-l măsurabil: un număr, un numărător, un procent. Fă-l limitat în timp: o dată, nu „curând”.</p>
+
+    <h2>Pasul 2 — Alege formatul potrivit</h2>
+    <p>Patru formate se potrivesc unor obiective diferite:</p>
+    <ul>
+      <li><strong>Numărare</strong> — pentru obiective cu termen. „63 de zile până la cursă.”</li>
+      <li><strong>Scop</strong> — pentru obiective pe bază de numere. „12 din 25 de cărți citite, 48%.”</li>
+      <li><strong>Bară de progres</strong> — ca să faci starea Scopului, a numărării sau a obiceiului lizibilă dintr-o privire.</li>
+      <li><strong>Serie</strong> — pentru obiective conduse de obiceiuri. „Serie de alergare: 14 zile.”</li>
+    </ul>
+    <p>Majoritatea obiectivelor de rezultat au nevoie de o combinație: un <a href="/ro/support/aims-in-left">Scop</a> pentru ținta măsurabilă, o numărătoare până la termen și un obicei sau o serie pentru acțiunea care duce la el.</p>
+
+    <h2>Pasul 3 — Pune widgetul unde îl vei vedea</h2>
+    <p>Ierarhia vizibilității, de la cel mai văzut la cel mai puțin:</p>
+    <ol>
+      <li>Ecranul de blocare — la fiecare ridicare, de zeci de ori pe zi.</li>
+      <li>Pagina principală a ecranului principal — primul lucru spre care glisezi.</li>
+      <li>În repaus pe încărcătorul de birou — privire ambientală.</li>
+      <li>În repaus — display pe noptieră / birou.</li>
+      <li>Pagini secundare pe ecranul principal — când glisezi la ele.</li>
+    </ol>
+    <p>Primul obiectiv merge pe ecranul de blocare sau pe pagina principală a ecranului principal. Oriunde altundeva, obiectivul e degradat în liniște.</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ro&amp;mt=8" target="_blank" rel="noopener">Descarcă widgetul pentru obiective</a></p>
+
+    <h2>Pasul 4 — Personalizează pentru lizibilitate</h2>
+    <p>Widgetul ar trebui să fie lizibil dintr-o privire, nu să ceară atenție concentrată. Indicii:</p>
+    <ul>
+      <li>Numărul e cel mai mare element.</li>
+      <li>Eticheta e anume („cursă 5 km 30 sept”) nu generică („Cursă”).</li>
+      <li>Contrast mare între text și fundal.</li>
+      <li>Un tip de literă pe tot widgetul.</li>
+    </ul>
+    <p>Ajustează culoarea ca să se potrivească esteticii tale — vezi <a href="/ro/blog/iphone-aesthetic-widgets-guide">ghidul widgeturilor estetice</a> pentru principii — dar lizibilitatea funcțională vine întâi.</p>
+
+    <h2>Pasul 5 — Construiește obiceiul de sprijin</h2>
+    <p>Majoritatea eșecurilor de obiective nu sunt eșecuri de urmărire — sunt eșecuri de acțiune. Obiectivul are nevoie de o acțiune recurentă atașată. Împerechează widgetul de obiectiv cu un widget de obicei pentru acțiunea care îl produce.</p>
+    <p>Pentru exemplul de alergare: Scop pentru kilometrii totali, numărare până în ziua cursei și un obicei pentru „am alergat azi”. Acum trackerul arată rezultatul, termenul și inputul. O privire răspunde la trei întrebări: cât am făcut, cât de departe e termenul și am făcut treaba azi.</p>
+
+    <h2>Tipare de flux după stil de viață</h2>
+
+    <h3>Pentru studenți</h3>
+    <p>O numărare pe termen de semestru (examene, lucrări, etape de proiect). O serie pentru „am studiat azi”. Progresul anului configurat pentru semestru. Vezi <a href="/ro/blog/adhd-students-study-tools-iphone">instrumente de studiu pentru studenți</a> pentru ajustări ADHD și <a href="/ro/blog/time-management-tips-students">gestionarea timpului pentru studenți</a> pentru sistemul mai larg.</p>
+
+    <h3>Pentru profesioniști</h3>
+    <p>O numărare pentru următoarea livrare majoră. O serie pentru obiceiul zilnic de input (scriere, apeluri de vânzări, commit-uri de cod — orice produce livrarea). Un widget de revizuire trimestrială pentru obiectivul de ansamblu.</p>
+
+    <h3>Pentru obiective personale</h3>
+    <p>O numărare pentru rezultat (cursă, călătorie, zi de naștere-etapă). O serie pentru obiceiul zilnic care îl alimentează. Un <a href="/ro/year-progress-widget">widget Progresul anului</a> ca anul să nu treacă fără să observi. Vezi <a href="/ro/blog/visual-goals-track-on-screens">obiective vizuale pe ecrane</a>.</p>
+
+    <h3>Pentru obiective partajate (parteneri, echipe)</h3>
+    <p>Date Viitoare comune pentru numărători partajate și prieteni pentru obiceiuri și serii partajate (ambele Left Premium). Ambele persoane pot urmări același obiectiv pe telefoanele lor. Util pentru călătorii, obiective comune de fitness, termene de proiect. Vezi <a href="/ro/blog/countdown-next-trip-with-friends">ghidul Date Viitoare comune</a>.</p>
+
+    <h2>Greșeli comune de configurare</h2>
+    <ul>
+      <li><strong>Urmărirea prea multor obiective odată.</strong> Trei sau mai puține pe trimestru; unul pe care să te concentrezi vizibil.</li>
+      <li><strong>Urmărire doar de rezultat.</strong> „Slăbește 10 lbs” e un rezultat pe care nu-l controlezi direct. Adaugă un obiectiv de acțiune („antrenament de forță de două ori pe săptămână”) și urmărește-le pe amândouă.</li>
+      <li><strong>Widget pe o pagină ascunsă.</strong> Dacă trebuie să glisezi ca să găsești widgetul, ai pierdut deja.</li>
+      <li><strong>Personalizare la nesfârșit.</strong> Configurarea ar trebui să dureze sub 30 de minute. Orice mai lung înseamnă că folosești configurarea ca să eviți obiectivul real.</li>
+    </ul>
+
+    <h2>Rutina de întreținere</h2>
+    <p>Săptămânal: aruncă o privire la widget, înregistrează progresul dacă e nevoie, întreabă „sunt pe drum?” O notă de o propoziție într-un planificator sau o aplicație de note.</p>
+    <p>Lunar: uită-te chiar la tendință. Progresul se potrivește cu timeline-ul? Dacă nu — prelungește termenul sau taie din scop. Nu te preface.</p>
+    <p>Trimestrial: obiectivele completate se arhivează. Se adaugă obiective noi. Configurația de widgeturi se reîmprospătează.</p>
+
+    <h2>Când să lași un obiectiv</h2>
+    <ul>
+      <li>Nu ai acționat pe el în două săptămâni.</li>
+      <li>Nu mai contează atât de mult ca atunci când l-ai setat.</li>
+      <li>Circumstanțele tale s-au schimbat într-un fel care face timeline-ul imposibil.</li>
+    </ul>
+    <p>Să renunți curat e mai bun decât să lași un obiectiv mort să-ți aglomereze trackerul. Arhivează, nu trage.</p>
+
+    <h2>Lecturi asemănătoare</h2>
+    <p>Pentru cadrul de obiective: <a href="/ro/blog/smart-goals-guide">ghidul obiectivelor SMART</a>. Pentru partea de vizualizare anume: <a href="/ro/blog/smart-goals-visual-guide">ghidul vizual SMART</a>. Pentru a rămâne consecvent în timp: <a href="/ro/blog/stay-consistent-with-goals">a rămâne consecvent cu obiectivele</a>. Pentru topul mai larg al aplicațiilor de urmărire a obiectivelor: <a href="/ro/blog/best-goal-tracking-apps-iphone">cele mai bune aplicații de urmărire a obiectivelor pentru iPhone</a>.</p>
+
+    <h2>Întrebări frecvente</h2>
+    <p><strong>Câte obiective ar trebui să urmăresc odată?</strong><br/>
+    Două până la trei pe trimestru. Un obiectiv principal vizibil tot timpul; celelalte pe o suprafață secundară.</p>
+
+    <p><strong>Ce dacă obiectivul meu nu are o dată de final curată?</strong><br/>
+    Adaugă una. „Până la sfârșitul T3” sau „până pe 31 decembrie” ajunge. Obiectivele deschise nu se vizualizează bine.</p>
+
+    <p><strong>Cât de des ar trebui să actualizez trackerul?</strong><br/>
+    Numărătoarele se actualizează automat (zilnic). Seriile cresc singure, iar progresul obiceiurilor și al Scopului se actualizează când îl înregistrezi, de obicei zilnic.</p>
+
+    <p><strong>Pot urmări mai multe sub-obiective sub un obiectiv?</strong><br/>
+    Da — creează numărători sau widgeturi de progres separate pe sub-obiectiv. Ordonează-le pe ecranul principal în ordinea celor ce vin.</p>
+
+    <p><strong>Cum gestionează Left urmărirea obiectivelor?</strong><br/>
+    Viitoare pentru numărători, De la pentru Scop, obiceiuri și serii, și Progresul anului pentru cadrul de calendar. Trackerul devine stratul mereu vizibil în loc de o aplicație pe care trebuie să-ți amintești să o deschizi.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Descarcă Left</span>
+          <h2>Începe să observi ce contează.</h2>
+          <p>Descarcă Left pe iPhone ca să vezi timpul care ți-a mai rămas, datele pe care le aștepți, să construiești obiceiurile pe care vrei să le păstrezi și să devii o versiune mai bună a ta.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Cod QR - atinge pentru instrucțiuni">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanează sau caută <strong>„Left”</strong> în App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ro&amp;mt=8" target="_blank" rel="noopener" aria-label="Descarcă Left din App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Descarcă pentru iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> de oameni care valorifică fiecare moment.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Subsol">
+          <a href="/ro/support">Asistență</a>
+          <a href="/terms">Termeni</a>
+          <a href="/ro/privacy">Confidențialitate</a>
+          <a href="/ro/press">Presă</a>
+          <a href="/ro/contact">Contact</a>
+          <a href="/ro/tools/">Instrumente</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ro/blog/">Blog</a>
+          <a href="#" data-consent-open>Setări cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="true">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consimțământ cookie">
+  <p class="left-consent__text">Folosim Google Analytics ca să înțelegem care pagini îi ajută pe oameni. Fără reclame, fără urmărire între site-uri.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permite analitica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nu, mulțumesc</button>
+    <a class="left-consent__link" href="/ro/privacy#website" data-consent-privacy>Confidențialitate</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

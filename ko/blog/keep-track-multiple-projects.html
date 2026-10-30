@@ -1,0 +1,535 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>여러 프로젝트를 추적하는 법 | Left</title>
+  <meta name="description" content="병렬 프로젝트 5개 이상을 추적하는 실용 시스템 — 단일 진실의 원천, 주간 리뷰, 진행을 보이게 하는 위젯 대시보드."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/keep-track-multiple-projects" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/keep-track-multiple-projects" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/keep-track-multiple-projects" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="여러 프로젝트를 추적하는 법"  />
+  <meta property="og:description" content="병렬 프로젝트를 추적하는 실용 시스템."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/keep-track-multiple-projects" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/keep-track-multiple-projects-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/keep-track-multiple-projects-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Keep Track of Multiple Projects (Without Losing Your Mind)",
+  "description": "A practical system for keeping track of 5+ parallel projects - one source of truth, weekly review, and the widget dashboard that makes progress visible.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/keep-track-multiple-projects",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Keep Track of Multiple Projects (Without Losing Your Mind)",
+      "item": "https://getleft.app/blog/keep-track-multiple-projects"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>여러 프로젝트를 추적하는 법 (정신 잃지 않고)</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 5분 읽기</p>
+
+    <p>프로젝트 다섯을 돌리는 것은 노트 앱, 이메일 스레드, Slack 채널, 할 일 목록 셋에 흩어져 있으면 열을 돌리는 것처럼 느껴집니다. 정신 세금은 일이 아니라 — 각 프로젝트의 상태를 파악하려는 끊임없는 컨텍스트 전환입니다. 고치는 법은 더 강력한 프로젝트 도구가 아닙니다. 단일 진실의 원천, 짧은 주간 리뷰, 파헤치지 않고 프로젝트 상태를 띄우는 위젯 대시보드입니다.</p>
+
+    <p>이 가이드는 작동하는 시스템을 밟습니다: 모든 프로젝트를 담는 "커맨드 센터" 파일, 오늘의 초점을 고르는 우선순위 필터, 진행을 보이게 하는 대시보드 위젯, 전체를 살리는 루틴. 도움이 되면 프로젝트 마감의 대시보드로 <strong>Left</strong>의 카운트다운 위젯을 보입니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/keep-track-multiple-projects-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/shelves-filled-with-colorful-binders-and-folders-vT7r4YYbX0w" rel="noopener">Richard Heinen / Unsplash</a></figcaption></figure>
+
+    <h2>1단계 — 단일 진실의 원천 만들기</h2>
+    <p>모든 프로젝트가 있는 파일 하나. Notion 표, Apple Notes, 문서, 스프레드시트 — 도구는 상관없고 위치가 중요합니다. 각 프로젝트에 대해 캡처:</p>
+    <ul>
+      <li><strong>프로젝트 이름.</strong></li>
+      <li><strong>한 문장 목표.</strong> "Y까지 X를 출시."</li>
+      <li><strong>마감.</strong> 실제 날짜.</li>
+      <li><strong>현재 상태.</strong> 단어 하나: 활성, 차단, 대기, 일시정지.</li>
+      <li><strong>다음 행동.</strong> 단일한 구체적 다음 단계.</li>
+      <li><strong>블로커(있으면).</strong> 무엇이 막는지.</li>
+      <li><strong>우선순위.</strong> 1(최상), 2, 3.</li>
+    </ul>
+    <p>실시간으로가 아니라 주간으로 업데이트하세요. 실시간 업데이트가 파일이 죽는 방식입니다.</p>
+
+    <h2>2단계 — 솔직히 우선순위</h2>
+    <p>대부분 "프로젝트 5개" 목록은 사실 활성 2 + 정체 3입니다. 솔직한 분류:</p>
+    <ul>
+      <li><strong>활성:</strong> 이번 주에 일합니다.</li>
+      <li><strong>대기:</strong> 특정 사람이나 무언가에 막힘.</li>
+      <li><strong>일시정지:</strong> 의도적으로 보류; 돌아올 것입니다.</li>
+      <li><strong>정체:</strong> 표류, 활성도 솔직한 일시정지도 아님. 솔직하세요 — 죽이거나 다시 시작.</li>
+    </ul>
+    <p>아이젠하워 매트릭스나 MoSCoW가 프로젝트 수준에서 도울 수 있습니다; 둘 다 "이번 주에 진심으로 집중할 2–3은?"으로 돌아옵니다.</p>
+
+    <h2>3단계 — 시각 대시보드</h2>
+    <p>단일 진실 파일이 데이터; 대시보드가 가시성. 되는 대시보드 구성:</p>
+    <ul>
+      <li><strong>잠금 화면:</strong> 가장 급한 <a href="/tools/deadline-countdown-calculator">프로젝트 마감일</a>까지의 카운트다운.</li>
+      <li><strong>홈 화면(메인 페이지):</strong> 활성 프로젝트마다 <a href="/ko/countdown-widget">카운트다운 위젯</a> 3–4개, 우선순위 순.</li>
+      <li><strong>스탠바이(책상):</strong> 헤드라인 프로젝트의 카운트다운 + 시계.</li>
+      <li><strong>실시간 현황:</strong> 지금 일하는 프로젝트의 최종 카운트다운, 잠금 화면과 다이나믹 아일랜드에.</li>
+    </ul>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">카운트다운 위젯 받기</a></p>
+    <p>이제 활성 프로젝트의 마감이 수동적으로 보입니다. 기억할 필요 없이 위젯이 합니다.</p>
+
+    <h2>4단계 — 주간 리뷰(일요일 15분)</h2>
+    <ol>
+      <li>단일 진실의 원천을 여세요.</li>
+      <li>각 프로젝트 상태를 업데이트 — 활성 / 대기 / 일시정지 / 정체.</li>
+      <li>각 다음 행동을 업데이트하세요.</li>
+      <li>바뀌면 우선순위 숫자를 업데이트하세요.</li>
+      <li>위젯 대시보드를 새로고침 — 완료된 카운트다운을 빼고, 새 가장 긴급한 것을 올리세요.</li>
+      <li>이번 주에 반드시 일어나야 할 2–3가지를 고르세요.</li>
+    </ol>
+    <p>이게 주간 리뷰 전부입니다. 15분. 더 정교하게 만들지 마세요; 버려집니다.</p>
+
+    <h2>5단계 — 일일 집중 리셋(아침 5분)</h2>
+    <ol>
+      <li>대시보드 위젯을 흘깃 보세요.</li>
+      <li>오늘의 메인 프로젝트를 고르세요 — 대개 주간 우선의 #1.</li>
+      <li>오늘의 구체적 다음 행동을 식별하세요.</li>
+      <li>집중 블록용 실시간 현황 카운트다운을 두세요.</li>
+    </ol>
+
+    <h2>흔한 실패 모드</h2>
+    <ul>
+      <li><strong>파일을 과설계.</strong> 열이 하나 많으면 주간 업데이트가 15분 대신 45분.</li>
+      <li><strong>하는 대신 추적.</strong> 프로젝트에 일하는 시간보다 시스템을 업데이트하는 시간이 더 길면, 시스템이 일이 된 것입니다.</li>
+      <li><strong>정체된 프로젝트를 숨기기.</strong> 정체된 프로젝트는 안 본다고 사라지지 않습니다. 솔직히 정체로 표시하세요 — 다시 시작하거나 죽이는 첫 단계입니다.</li>
+      <li><strong>"개인" 프로젝트에 마감 없음.</strong> 마감 없는 프로젝트는 결코 끝나지 않습니다. 스스로 부과한 것이라도 하나를 두세요.</li>
+    </ul>
+
+    <h2>실무 예 — 클라이언트 일을 저글링하는 프리랜서</h2>
+    <ul>
+      <li>단일 진실의 원천: 활성 클라이언트 프로젝트 6 + 개인 프로젝트 2의 Notion 표.</li>
+      <li>잠금 화면 위젯: 가장 가까운 클라이언트 마감까지의 카운트다운.</li>
+      <li>홈 화면: 카운트다운 위젯 4 — 상위 클라이언트 프로젝트 3 + 개인 1.</li>
+      <li>주간 리뷰: 일요일, 15분. 상태 업데이트, 위젯 새로고침.</li>
+      <li>매일: 오늘의 메인 클라이언트를 고르세요. 집중 블록용 실시간 현황 타이머.</li>
+    </ul>
+    <p>부하가 읽힙니다. "모든 게 불타고 있다" 느낌이 사그라드는 이유는 각 마감이 긴급해지기 훨씬 전에 보이기 때문입니다.</p>
+
+    <h2>실무 예 — 병렬 과제가 있는 학생</h2>
+    <ul>
+      <li>단일 진실의 원천: 수업마다 Apple 미리 알림 목록.</li>
+      <li>잠금 화면 위젯: 다음 시험까지의 카운트다운.</li>
+      <li>홈 화면: 카운트다운 3–4 — 모든 수업에서 가장 긴급한 과제.</li>
+      <li>스탠바이: 시계 + 가장 가까운 주요 마감까지의 카운트다운.</li>
+      <li>주간 리뷰: 일요일, 10분.</li>
+    </ul>
+    <p>더 넓은 학생 시스템은 <a href="/ko/blog/time-management-tips-students">학생을 위한 시간 관리 팁</a>, ADHD 특화는 <a href="/ko/blog/adhd-students-study-tools-iphone">ADHD용 공부 도구</a>.</p>
+
+    <h2>정말로 프로젝트가 너무 많을 때</h2>
+    <p>대시보드에 "최우선" 프로젝트가 여섯이면, 우선은 하나: 자르기. 어려운 질문 몇:</p>
+    <ul>
+      <li>둘을 한 분기 미룰 수 있나요?</li>
+      <li>하나를 위임할 수 있나요?</li>
+      <li>이 중 하나가 실제로 죽었나요 — 인정만 안 하는?</li>
+      <li>이 중 누군가의 우선을 떠맡은 것이 있나요?</li>
+    </ul>
+    <p>우선 프로젝트 8개 목록은 기능적으로 정체 프로젝트 8개입니다. 활성 2–3으로 자르세요. 나머지는 그게 끝나면 돌아올 수 있습니다.</p>
+
+    <h2>관련 글</h2>
+    <p>이벤트형 타임라인: <a href="/ko/blog/event-planning-timeline">이벤트 계획 타임라인</a>. 시각화 형식: <a href="/ko/blog/project-timeline-visualization">프로젝트 타임라인 시각화</a>. 바탕 시간 관리: <a href="/ko/blog/time-management-best-practices">시간 관리 모범</a>.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>추적할 프로젝트 최대 수는?</strong><br/>
+    활성 프로젝트: 주당 2–3. 전체 추적(일시정지·대기 포함): 8–10. 그 이상이면 시스템이 깨집니다.</p>
+
+    <p><strong>단일 진실의 원천에 어떤 도구를?</strong><br/>
+    주간으로 실제로 업데이트할 것. 구조를 좋아하면 Notion; 아니면 Apple Notes. 규율보다 도구가 덜 중요합니다.</p>
+
+    <p><strong>대시보드를 팀과 공유해야 하나요?</strong><br/>
+    위젯 대시보드는 개인용입니다. 팀 공유 프로젝트 상태는 팀의 프로젝트 도구를 쓰세요. 공동 앞으로(Left Premium)로 필요하면 특정 마감을 협업자와 공유할 수 있습니다.</p>
+
+    <p><strong>범위가 갑자기 폭발한 프로젝트는?</strong><br/>
+    활성 우선 1로 옮기고, 다른 것을 일시정지. 동시에 활성 프로젝트 2–3개보다 많이 돌릴 수 없습니다; 새 것이 주의를 요구하면 다른 것이 멈춰야 합니다.</p>
+
+    <p><strong>Left가 다중 프로젝트 추적에 어떻게 맞나요?</strong><br/>
+    각 프로젝트 마감용 카운트다운 위젯, 홈·잠금·스탠바이에. "머릿속 프로젝트 5"를 "홈 화면의 마감 5"로 바꾸는 대시보드.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

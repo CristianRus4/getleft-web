@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>時間盲とは、ウィジェットの助け | Left</title>
+  <meta name="description" content="時間盲の説明と、行動できるほど時間を見えるにするiPhoneウィジェット。実践的で、ADHDで確かめた内容です。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/adhd-time-blindness-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/adhd-time-blindness-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="時間盲とは、ウィジェットの助け"  />
+  <meta property="og:description" content="時間盲の説明と、時間を見えるにするウィジェットの設定です。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/adhd-time-blindness-iphone" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/adhd-time-blindness-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/adhd-time-blindness-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Time Blindness: What It Is and How Widgets Help",
+  "description": "Time blindness explained, and the iPhone widget setup that makes time visible enough to act on - practical, ADHD-tested, no-fluff.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-time-blindness-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Time Blindness: What It Is and How Widgets Help",
+      "item": "https://getleft.app/blog/adhd-time-blindness-iphone"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>時間盲とは、ウィジェットの助け</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・5分</p>
+
+    <p>「時間盲」は、時間がほとんど見えないものとして経験されることを指すADHDの言葉です。<em>今</em>と<em>今ではない</em>があり、「20分後」と「3時間後」の差には、感じる重みがほとんどありません。期限は驚きのように来ます。時間が本物に感じられるのは尽きるまでなので、タスクは使える時間を全部埋めます。未来は、現在になるまで理論です。</p>
+
+    <p>これは道徳の失敗でも、怠惰でもありません。ADHDの脳が時間を経験する仕方で、助けになる介入は外側にあります。すでに目が行く場所で、時間を見えるようにします。このガイドは時間盲を説明し、いちばん助けになるiPhoneウィジェットの設定を、<strong>Left</strong>を例に進みます。</p>
+
+    <figure class="post-hero"><img src="/images/blog/adhd-time-blindness-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/analog-clock-on-top-of-a-gas-stove-14739173/" rel="noopener">Jessica Lewis (thepaintedsquare) / Pexels</a></figcaption></figure>
+
+    <h2>時間盲とは実際なにか</h2>
+    <p>研究者は、ADHDの時間の感じ方を、圧縮され、今に寄っていると書きます。欠如は2つです。</p>
+    <ul>
+      <li><strong>経過時間の見積もりが難しい。</strong>20分が5分に感じ、5分が20分に感じます。内側の時計は安定して校正されません。</li>
+      <li><strong>未来の時間を表しにくい。</strong>数日より先の出来事には感情の重みがありません。来ることは「知って」いても、<em>感じ</em>ません。</li>
+    </ul>
+    <p>どちらの欠如も、介入は同じです。内側の時間を外側の時間に置き換えます。時計を見えるようにし、期限を見えるようにし、経過時間を見えるようにします。脳は壊れていません。他の脳が内側で作る入力が、足りないだけです。</p>
+
+    <h2>日常の症状</h2>
+    <ul>
+      <li>「ちょっとだけ」を始めて、2時間後に顔を上げます。</li>
+      <li>遠く見えた期限が、前の夜の23時にパニックになります。</li>
+      <li>時間どおりにする気はあるのに、慢性的に遅れます。</li>
+      <li>タスクの所要時間を、一貫して2倍以上に少なく見積もります。</li>
+      <li>日曜の夜は月曜の朝から遠く感じるのに、月曜の朝は予告なく来ます。</li>
+      <li>集中すると食事を忘れ、会議はアラートが鳴って初めて思い出します。</li>
+    </ul>
+    <p>これらの多くに心当たりがあるなら、時間盲はあなたにとって本物です。良い知らせは、環境を正しく整えれば、最も扱いやすいADHDの症状の1つだということです。</p>
+
+    <h2>時間を見えるにするウィジェットの設定</h2>
+    <p>4つのウィジェット。それぞれ時間盲の別の失敗に対応します。</p>
+
+    <h3>1. 年間の進捗。未来を感じられないときに</h3>
+    <p>「<a href="/ja/tools/time-left-in-year-calculator">今年は残り47%</a>」と表示するウィジェット。急に1年が有限に感じられます。1月に立てて忘れていた目標に、目に見える時間のプレッシャーが生まれます。ホーム画面、<a href="/ja/support/widget-iphone-lock-screen">ロック画面</a>、または壁紙に置きましょう（<a href="/ja/year-progress-widget">年の進捗ウィジェット</a>を参照）。背景知識：<a href="/ja/blog/what-is-year-progress">年の進捗とは</a>。</p>
+
+    <h3>2. ロック画面のカウントダウン。忍び寄る期限に</h3>
+    <p>次の大きな期限へのこれからカウントダウン。「発売まであと9日」。拾うたびに見るロック画面に置きます。期限は不意打ちではなくなります。選択肢は<a href="/ja/countdown-widget">カウントダウンウィジェット</a>のページにあります。</p>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">カウントダウンウィジェットを入手</a></p>
+
+    <h3>3. ライブアクティビティのタイマー。経過時間の盲に</h3>
+    <p>集中の塊やタスクを始めるとき、ライブアクティビティのタイマーを走らせます。経過時間が進むのを見ると、内側の時計が出さない外側の時計になります。</p>
+
+    <h3>4. スタンバイ表示。机の錨に</h3>
+    <p>机の上の時計とカウントダウン。まわりに置く「今何時か、次は何か」です。時間を知るためにスマホを見て、脇道へそれる必要がなくなります。</p>
+
+    <h2>時間盲への対処</h2>
+    <p>ウィジェットのほかに、よく組む3つのやり方です。</p>
+    <ul>
+      <li><strong>見積もりを2倍にします。</strong>タスクにかかると思う時間は、2倍にしてください。1か月追うと、見積もりが校正されます。</li>
+      <li><strong>期限の前に余裕を足します。</strong>17時が期限なら、内側では15時を期限にします。余裕が、避けられない過小見積もりを吸収します。</li>
+      <li><strong>「今」の儀式。</strong>「仕事は今始まる」を意味する、特定の身体か音の錨です。決めた再生リストを付ける、決めた椅子に座る。 「始めるべき」と「始めている」の隙間を渡します。</li>
+    </ul>
+
+    <h2>人生の段階ごとの時間盲</h2>
+
+    <h3>学生</h3>
+    <p>典型的なADHDの学生の話です。レポートは3週間後で、3週間は無限に感じ、突然あしたです。ロック画面のカウントダウンに節目の日（1週目までにテーマ、2週目までに構成、3週目までに下書き）を置くと、3週間が1つのぼんやりではなく3つの塊として見えます。<a href="/ja/blog/adhd-students-study-tools-iphone">学生向けADHDの学習ツール</a>を見てください。</p>
+
+    <h3>働く大人</h3>
+    <p>プロジェクトの期限、会議の準備、成果物。次の2つの節目へのロック画面のカウントダウンと、深い作業のあいだのライブアクティビティのタイマーです。大きな成果物の前の週、ロック画面に固定したカウントダウンウィジェットは、実際の守りになります。</p>
+
+    <h3>保護者</h3>
+    <p>「お迎えは15時15分」は、15時14分のパニックではなく、14時45分に本物と感じる必要があります。ロック画面のお迎えカウントダウンと、30分前のリマインダー（Leftのこれから日付には<strong>リマインダーを受け取る</strong>があります）が扱います。「あとどれだけ時間がある？」という絶え間ない問いに、絶え間ない答えが出ます。</p>
+
+    <h3>服薬の時刻がある人</h3>
+    <p>「今だ」のアラームにはAppleのリマインダー、来るものの自覚にはカウントダウンウィジェット。2つ揃うと、「薬は飲んだ？」のループを防ぎます。</p>
+
+    <h2>ウィジェットでは完全には直せ<em>ない</em>時間盲</h2>
+    <p>率直に：</p>
+    <ul>
+      <li><strong>過集中の空白。</strong>過集中のあいだはウィジェットを見ません。触覚のような身体の合図のほうが効き、音のアラームはさらに効きます。</li>
+      <li><strong>感情による時間のゆがみ。</strong>タスクを恐れると、実際より遠く感じます。ウィジェットは真実を告げますが、その感じは直しません。</li>
+      <li><strong>重い場合。</strong>時間盲が仕事、関係、安全に大きく影響するなら、ウィジェットは助けますが全部の答えではありません。臨床の人に相談してください。</li>
+    </ul>
+
+    <h2>期待してよい持ち上がり</h2>
+    <p>一貫したウィジェットの設定を2週間続けると、中程度の時間盲には実際の変化が出ることが多いです。「待って、それあした？」が減り、直前のパニックが減り、自動操縦で失う時間が減ります。変容は期待しないでください。いちばん高くつく失敗が、意味のある分減ることを期待してください。</p>
+
+    <h2>関連記事</h2>
+    <p>より広いADHDの生産性は、<a href="/ja/blog/best-productivity-apps-adhd">ADHD向けの生産性アプリ</a>。視覚リマインダー全般は、<a href="/ja/blog/visual-reminders-adhd-apple-setup">Apple端末でのADHDの視覚リマインダー</a>。課題の開始は、<a href="/ja/blog/adhd-task-initiation-strategies">ADHDの課題開始</a>を見てください。</p>
+
+    <h2>よくある質問</h2>
+    <p><strong>時間盲は、ADHDの正式な症状ですか？</strong><br/>
+    はい。ADHDの実行機能の障害の、認められた一面です。臨床の用語は「時間処理の欠如」です。</p>
+
+    <p><strong>スマートウォッチだけで直りますか？</strong><br/>
+    多くの人には役立ちます。ちらっと見る画面なら、「Xまであとどれだけ」が推測から一目になります。iPhoneでは、ロック画面かスタンバイのカウントダウンが同じ仕事をします。</p>
+
+    <p><strong>ADHDでなくても、これに心当たりはありますか？</strong><br/>
+    時間盲は幅があります。定型の脳にも軽い形はよくあります。診断に関係なく、ウィジェットの設定は役立ちます。</p>
+
+    <p><strong>薬で時間盲は直りますか？</strong><br/>
+    多くの人には、一部だけです。薬は感じる未来を少し伸ばすことが多いですが、問題を完全には消しません。ウィジェットの設定は、薬と並べても役立ちます。</p>
+
+    <p><strong>Leftは具体的にどう助けますか？</strong><br/>
+    年間の進捗、これからのカウントダウン、ライブアクティビティ、スタンバイのウィジェット。すべてiPhoneのホーム画面とロック画面で見える時間です。何かを確認しなくても、時間が見えます。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

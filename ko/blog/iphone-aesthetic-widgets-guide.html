@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhone 미적 위젯: 2026 하우투 가이드 | Left</title>
+  <meta name="description" content="기능 위젯으로 미적 iPhone 홈·잠금 화면 디자인 — 테마, 타이포, 색, 그리고 장식용 위젯의 함정."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 미적 위젯: 2026 하우투 가이드"  />
+  <meta property="og:description" content="기능 위젯으로 미적 iPhone 설정 디자인하기."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/iphone-aesthetic-widgets-guide" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/iphone-aesthetic-widgets-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/iphone-aesthetic-widgets-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+  "description": "How to design an aesthetic iPhone Home and Lock Screen with functional widgets - themes, typography, color, and the trap of widgets-as-decoration.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/iphone-aesthetic-widgets-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+      "item": "https://getleft.app/blog/iphone-aesthetic-widgets-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>iPhone 미적 위젯: 2026 하우투 가이드</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 5분 읽기</p>
+
+    <p>미적 홈 화면은 iOS 14 위젯 출시의 예상 못한 선물 중 하나였습니다. 출시 일주일 만에 iPhone 커스터마이즈가 "격자 아이콘"에서 창작이 됐습니다. 단점: 소셜의 미적 홈 화면 절반은 스크린샷에서는 멋지고 실생활에서는 쓸모없습니다 — 원하는 것을 안 여는 아이콘 벽, 가짜 데이터를 보여 주는 예쁜 위젯.</p>
+
+    <p>이 가이드는 실제로 기능하는 미적 iPhone 설정을 위한 것입니다. 무드부터 시작하고, 맞는 도구를 고르고, 뭔가 하는 위젯을 만들고, 2주에 실망하는 함정을 피하세요. 빌딩 블록 하나로 <strong>Left</strong> 위젯을 씁니다 — 대부분 미학에 맞출 만큼 조절 가능하면서도 진짜 데이터(카운트다운, 연도 진행, 습관 연속 기록)를 보여 줍니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/paint-color-swatches-are-displayed-on-a-shelf-XsJQc5r33Ik" rel="noopener">Declan Sun / Unsplash</a></figcaption></figure>
+
+    <h2>앱이 아니라 무드부터</h2>
+    <p>실수: Widgetsmith를 열고 위젯을 따로따로 고르기. 결과는 콜라주. 수정: 무드를 먼저 정하세요.</p>
+    <ul>
+      <li><strong>팔레트를 고르세요</strong>(색 3–5개). 배경화면이 이 팔레트에서, 위젯이 배경화면에서 끌어와야 합니다.</li>
+      <li><strong>타이포 느낌을 고르세요</strong> — 세리프, 산세, 고정폭. 패밀리는 둘을 넘기지 마세요.</li>
+      <li><strong>바이브를 고르세요</strong> — 미니멀, 레트로, 코티지코어, 브루탈리스트, 애니메. 바이브가 선택을 제약해 통일하기 쉬워집니다.</li>
+    </ul>
+
+    <h2>미학에 중요한 위젯 앱</h2>
+    <ul>
+      <li>타이포 위젯(시계, 날짜, 날씨)용 <strong>Widgetsmith</strong>.</li>
+      <li>픽셀 단위 커스텀 위젯용 <strong>Widgy</strong>.</li>
+      <li>아이콘 포함 전체 테마용 <strong>ScreenKit</strong>.</li>
+      <li>빠른 미리 만든 미적 타일용 <strong>Color Widgets</strong>.</li>
+      <li>미학에 맞는 기능 위젯용 <strong>Left</strong> — 팔레트에 틴트한 카운트다운, 연도 진행, 습관 연속 기록.</li>
+      <li>고른 이미지로 앱을 여는 단축어를 통한 커스텀 아이콘용 <strong>단축어</strong> 앱.</li>
+    </ul>
+    <p>전부 필요 없습니다. 타이포 위젯 앱 하나 + Left + 커스텀 단축어 아이콘이면 대부분 갑니다.</p>
+
+    <h2>첫 미적 홈 화면 만들기</h2>
+    <ol>
+      <li><strong>배경화면을 고르세요.</strong> 나머지가 거기서 나옵니다. 단색, 은은한 그라데이션, 조용한 사진이 복잡한 패턴보다 낫습니다.</li>
+      <li><strong>팔레트를 잡으세요.</strong> 메모 앱에 색 3–5개 참고용.</li>
+      <li><strong>고른 위젯 앱에서 위젯 2–3개를 디자인하세요.</strong> 시간/날짜 하나, 기능 위젯 하나(카운트다운, 습관), 장식 위젯 하나(사진, 명언).</li>
+      <li><strong>앱 아이콘 5–10개를 단축어로 바꾸세요.</strong> 전부 다시 하지 말고, 가장 많이 쓰는 것만.</li>
+      <li><strong>일주일 테스트.</strong> 미적 홈 화면은 첫날 멋지고 나흘째 사용성 문제를 드러냅니다. 조정하세요.</li>
+    </ol>
+
+    <h2>레이아웃 원칙</h2>
+    <ul>
+      <li><strong>초점 위젯 하나.</strong> 페이지를 고정하는 큰 위젯. 나머지는 지원.</li>
+      <li><strong>비대칭 균형.</strong> 대칭은 지루하고, 의도적 비대칭이 리듬을 만듭니다.</li>
+      <li><strong>네거티브 스페이스.</strong> 빈 행·열이 눈을 쉬게 합니다. 아이콘을 가장자리까지 채우면 바빠 보입니다.</li>
+      <li><strong>한 페이지, 한 목적.</strong> 날짜·날씨·오늘 습관의 "아침" 페이지. 다음 마감 카운트다운의 "집중" 페이지. 사진 위젯이 있는 별도 미적 페이지.</li>
+    </ul>
+
+    <h2>미적 잠금 화면</h2>
+    <p>iOS 16+ 잠금 화면 사용자화가 미적 옵션을 크게 넓혔습니다. 꾸준히 멋있는 패턴 셋:</p>
+    <ul>
+      <li>피사체 뒤에 시간이 끼인 <strong>심도 사진</strong>.</li>
+      <li>디자인된 글꼴의 <strong>단색 배경 + 타이포 시계</strong>(Apple 시계 글꼴 선택).</li>
+      <li>날짜나 카운트다운을 보여 주는 작은 위젯 하나와 <strong>천문/날씨 배경화면</strong>.</li>
+    </ul>
+    <p>집중 모드와 스택해 시간대별로 다른 미학이 켜지게 — 업무 시간은 미니멀/Work, 저녁은 더 장식적.</p>
+
+    <h2>장식용 위젯의 함정</h2>
+    <p>가장 큰 미적 홈 화면 실패: 예뻐 보이지만 실제로 쓰는 데이터를 안 보여 주는 위젯. 안 보는 "날씨", 이미 다른 앱이 세는 "걸음 수", 읽기를 멈춘 "오늘의 명언".</p>
+    <p>경험칙: 모든 위젯은 "이번 주 보고 행동했나" 테스트를 통과해야 합니다. 행동한 기억이 없으면, 할 법한 것으로 바꾸세요.</p>
+
+    <h2>기능하는 미적 위젯 픽</h2>
+    <ul>
+      <li>팔레트 색의 <strong>Left 카운트다운 위젯</strong> — 아름답고, 중요한 때를 알려 줍니다.</li>
+      <li><strong>Left의 <a href="/ko/year-progress-widget">연도 진행 위젯</a></strong>을 작은 기하 타일로 — "63% 남음" 타일은 시각적으로 깔끔하고 의미도 있습니다.</li>
+      <li>다음 이벤트를 보여 주는 <strong>Widgetsmith 캘린더</strong> — 타이포로도 아름다운 캘린더 위젯.</li>
+      <li>커스텀 아이콘의 <strong>단축어 런처 타일</strong> — 실제로 쓰는 앱을 열고, 의도적으로 보입니다.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">올해 진행률 위젯 받기</a></p>
+
+    <h2>Left 위젯 테마 입히기</h2>
+    <p>Left 위젯 스타일은 조절할 수 있게 설계됐습니다. 위젯 설정을 열면 고를 수 있습니다.</p>
+    <ul>
+      <li>색(팔레트에 맞추기).</li>
+      <li>배경(기기, 라이트, 다크, 검정 또는 색).</li>
+      <li>기호 — 점·사각형부터 별·잎·불꽃·하트까지.</li>
+      <li>텍스트: 남은 양, 남은 비율, 또는 숨김.</li>
+    </ul>
+    <p>미적 설정에서 Left가 통하는 이유입니다 — 데이터는 진짜(여행 카운트다운), 디자인은 본인 것. 주로 날짜/시계/날씨인 Widgetsmith와 비교하면: Left는 같은 시각 언어로 "무엇이 오나"와 "무엇을 하나" 위젯을 다룹니다.</p>
+
+    <h2>미학이 방해될 때</h2>
+    <p>미적 홈 화면은 실제로 쓰이도록 굽혀야 합니다. 흔한 충돌 셋:</p>
+    <ul>
+      <li><strong>커스텀 단축어 아이콘은 로딩 지연이 있습니다.</strong> 한 번 탭 → 단축어 열림 → 실제 앱. 하루에도 수십 번 여는 앱이면 지연이 쌓입니다.</li>
+      <li><strong>예쁜 글꼴은 한눈에 읽기 어려울 수 있습니다.</strong> 눈을 가늘게 떠야 하면 기능이 죽은 겁니다.</li>
+      <li><strong>설정에 한 시간 걸리는 테마는 지루해서 달마다 다시 합니다.</strong> 테마 설정을 30분 아래로 두어 분기 리프레시가 두렵지 않게 하세요.</li>
+    </ul>
+
+    <h2>계절이 바뀔 때</h2>
+    <p>미학을 연 2–4회 새로고침하세요. 전체를 다시 하지 말고 — 팔레트를 10–20% 조정하고, 배경화면을 바꾸고, 위젯 틴트를 바꾸세요. 시각 변화가 주의를 다시 끌어들이고, 구조 골격(어디에 어떤 위젯, 무엇을)은 유지됩니다.</p>
+
+    <h2>관련 글</h2>
+    <p>더 넓은 위젯 총정리: <a href="/ko/blog/best-home-screen-widgets-iphone">최고의 iPhone 홈 화면 위젯</a>. 무료 위젯 앱: <a href="/ko/blog/best-free-widget-apps-iphone">최고의 무료 위젯 앱</a>. 디자인 쪽: <a href="/ko/blog/countdown-clock-graphic-guide">카운트다운 시계 그래픽 가이드</a>. Left 배경화면: <a href="/ko/blog/left-wallpaper-guide">Left 배경화면 가이드</a>와 <a href="/ko/days-left-wallpaper">남은 일수 배경화면</a> 페이지.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>페이지당 위젯은 몇 개?</strong><br/>
+    대부분 미학에 둘에서 넷. 다섯이면 바빠지고, 하나면 비어 보입니다.</p>
+
+    <p><strong>커스텀 단축어 아이콘이 배터리를 쓰나요?</strong><br/>
+    측정할 만한 소모는 없습니다. 유일한 단점은 작은 실행 지연입니다.</p>
+
+    <p><strong>미학용 위젯 크기는?</strong><br/>
+    크기를 섞으세요. 큰 초점 위젯 + 작은 위젯 둘이 중간 넷보다 잘 읽힙니다.</p>
+
+    <p><strong>위젯이 "틀린" 내용으로 갱신되지 않게 하려면?</strong><br/>
+    위젯을 길게 누르고 위젯 편집을 탭한 뒤, 보일 특정 카운트다운이나 습관을 고르세요.</p>
+
+    <p><strong>Left는 미적 설정을 어떻게 지원하나요?</strong><br/>
+    위젯마다 색·배경·기호·텍스트를 조절합니다. 팔레트에 맞추면서도 실제 시간 데이터를 보여 줍니다.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

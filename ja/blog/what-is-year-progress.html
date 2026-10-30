@@ -1,0 +1,558 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>今年の進捗とは？計算と使い方 | Left</title>
+  <meta name="description" content="年の進捗ウィジェットが何を見せるか、割合の計算方法、年をバーで見ると計画の立て方がどう変わるかを説明します。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/what-is-year-progress" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/what-is-year-progress" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/what-is-year-progress" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="今年の進捗とは？計算と使い方"  />
+  <meta property="og:description" content="年の進捗ウィジェットが何を見せるか、割合の計算方法、年をバーで見ると計画の立て方がどう変わるかを説明します。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/what-is-year-progress" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/what-is-year-progress-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="今年の進捗とは？計算と使い方"  />
+  <meta name="twitter:description" content="年の進捗ウィジェットが何を見せるか、割合の計算方法、年をバーで見ると計画の立て方がどう変わるかを説明します。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/what-is-year-progress-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "What is Year Progress, and Why You Should Track It",
+  "description": "What a year progress widget shows, how the percentage is calculated, and how seeing the year as a bar changes the way you plan.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-17",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/what-is-year-progress",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "What is Year Progress, and Why You Should Track It",
+      "item": "https://getleft.app/blog/what-is-year-progress"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you calculate the percentage of the year that has passed?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide the number of days that have passed by the number of days in the year, then multiply by 100. For example, 19 October 2026 is day 292, and 292 ÷ 365 × 100 = 80%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a leap year change year progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, slightly. A leap year has 366 days instead of 365, so each day is a slightly smaller share of the year. On 1 July in a leap year you are exactly halfway; in a normal year you reach halfway at midday on 2 July."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days are left in the year on 1 July?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In a normal year, 1 July is day 182, which leaves 183 days if you count 1 July as used. In a leap year, 1 July is day 183, which also leaves 183 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Year widget in Left free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Time Left, the Year widget and the other time widgets, and Left Wallpaper are all free. Left Premium adds things like unlimited countdowns and habits, Planner and friends."
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>年の進捗とは、なぜ追うのか</h1>
+<p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・6分</p>
+<p>年の進捗とは、今年のうちすでに過ぎた分で、ふつうは割合で示します。1月1日は0%です。12月31日には100%に近づきます。そのあいだは、多くの人が避ける問いに、素の答えをくれます。今年は、実際にあとどれだけ残っているのか。</p>
+
+<figure class="post-hero"><img src="/images/blog/what-is-year-progress-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/red-and-brown-leaves-on-white-surface-gKkiUhz8UvY" rel="noopener">Elena Kloppenburg / Unsplash</a></figcaption></figure>
+
+<h2>年の進捗の計算方法</h2>
+<p>式は単純です。年の進捗（%）＝過ぎた日数÷年の日数×100。</p>
+<p>平年は365日です。うるう年は366日で、2月が29日になります。うるう年は4で割り切れる年ですが、100で割り切れて400で割り切れない世紀年は除きます。だから2028年はうるう年で、2100年は違います。</p>
+
+<h3>計算例</h3>
+<ul>
+  <li>2026年5月15日は、365日の年の135日目です。135÷365＝経過37.0%で、残り230日です。</li>
+  <li>2026年7月1日は182日目です。182÷365＝経過49.9%で、残り183日です。</li>
+  <li>2026年10月19日は292日目です。292÷365＝経過80.0%で、残り73日です。</li>
+  <li>うるう年の2028年では、7月1日は183日目です。183÷366＝ちょうど50%です。</li>
+</ul>
+
+<h3>残り日数と割合の関係</h3>
+<p>残り日数は同じ数字の裏側です。年の日数から、今いる日を引きます。残り割合は、100%から進捗を引くだけです。Leftは今日を消化済みとして数えるので、2026年7月1日の年ウィジェットは残り183日、つまり残り50%と表示します。</p>
+<p>秒まで測る計算機、たとえば<a href="/ja/tools/percentage-year-calculator">年の割合の計算</a>は、今日すでに過ぎた時間だけを数えます。朝は日単位の数字より少し小さく、深夜に追いつきます。</p>
+<p>任意の日付は、<a href="/tools/time-passed-in-year-calculator">年の経過時間の計算</a>か<a href="/ja/tools/time-left-in-year-calculator">年の残り時間の計算</a>で確認できます。</p>
+
+<h3>覚えておく目印</h3>
+<p>365日の年では、3月末は90日目（24.7%）、6月末は181日目（49.6%）、9月末は273日目（74.8%）です。ちょうど半分は7月2日の正午です。</p>
+
+<h2>見ると、計画の立て方が変わる理由</h2>
+<p>年は1月には長く、11月には短く感じます。途中ですり抜けるのは、印がないからです。「まだ時間はある」は、なくなる直前まで、年の大半で本当です。</p>
+<p>見える数字は、実務的にいくつか役立ちます。</p>
+<ul>
+  <li><strong>年を四半期に分けます。</strong>25%の時点で、1月に立てた計画が始まっているかが見えます。</li>
+  <li><strong>あいまいな期限を消します。</strong>「今年」は終わりが見えません。「80%が過ぎ、残り73日」は見えます。</li>
+  <li><strong>トレードオフが具体的になります。</strong>10月19日からの73日は、約10週末です。計画に使える数字です。</li>
+
+</ul>
+
+<h2>年の進捗の見せ方</h2>
+<p>形式を変えると、同じ数字の感じ方が変わります。</p>
+<ul>
+  <li><strong>割合。</strong>いちばんコンパクトです。「80%」のような1行は、ロック画面の時計の上にも入ります。</li>
+  <li><strong>進捗バーまたはリング。</strong>一目で読めますが、正確に測るのは難しくなります。</li>
+  <li><strong>365日のグリッド。</strong>1日につき1つの記号で、過ぎた日は薄く、残りの日は濃くします。年は分数ではなく、日の集まりになります。</li>
+  <li><strong>週または月。</strong>52週または12か月は粗くて落ち着き、小さいウィジェットに向きます。</li>
+  <li><strong>残り日数。</strong>割合ではなくカウントダウンです。</li>
+</ul>
+
+<h2>Leftで年の進捗を設定する</h2>
+<p>Leftの<strong>残り時間</strong>機能は、<a href="/ja/life-calendar">人生</a>、月、週、日と並べて、1年を記号のグリッドで表示します。年ウィジェットは、そのグリッドをホーム画面、ロック画面、スタンバイに表示します。残り時間とウィジェットは無料です。</p>
+<h3>年のウィジェットをホーム画面に追加する</h3>
+<ol>
+  <li>Leftをインストールして、一度開きます。</li>
+  <li>ホーム画面の何もない場所を、アプリが揺れるまでタッチしたままにし、「編集」、それから「ウィジェットを追加」をタップします。</li>
+  <li>Leftを検索し、年のウィジェットまでスワイプして、小さい・中くらい・大を選び、「ウィジェットを追加」をタップします。「完了」をタップします。</li>
+  <li>ウィジェットをタッチしたままにして、「ウィジェットを編集」をタップします。主な項目：</li>
+</ol>
+<ul>
+  <li><strong>表示時間</strong>：日数、週間、か月、時間、分。日数にすると365個の記号グリッドになります。</li>
+  <li><strong>残り時間</strong>：<strong>時間として表示</strong>（例：「残り73日」）、<strong>パーセンテージで表示</strong>（「残り20%」）、または<strong>非表示</strong>。</li>
+  <li><strong>シンボル</strong>：点、四角、星、ハート、葉、六角形を含む14種類です。</li>
+  <li><strong>背景</strong>と<strong>テーマ</strong>：ウィジェットを壁紙に合わせます。</li>
+</ul>
+<p>詳しくは<a href="/ja/support/widget-iphone-home-screen">ホーム画面にLeftのウィジェットを追加する方法</a>を見てください。</p>
+
+<h3>ロック画面に置く</h3>
+<p>年のウィジェットは、ロック画面の3つの形すべてにあります。インライン（時刻の上の1行）、円形、長方形です。</p>
+<ol>
+  <li>ロック画面をタッチしたままにし、「カスタマイズ」をタップして、ロック画面を選びます。</li>
+  <li>時刻の上の日付をタップするとインラインのウィジェット、時刻の下の領域をタップすると円形と長方形のウィジェットです。</li>
+  <li>Leftを選び、年のウィジェットを選んで、「完了」をタップします。</li>
+</ol>
+<p>ロック画面のウィジェットは、時計に合う1色で描かれます。詳しくは<a href="/ja/support/widget-iphone-lock-screen">ロック画面のガイド</a>を見てください。</p>
+
+<h3>日・週・月・年をまとめて見る</h3>
+<p><strong>すべて</strong>ウィジェット（中くらい）は、日・週・月・年の進捗を1か所に表示します。</p>
+
+<h3>壁紙にする</h3>
+<p>Left壁紙には<strong>年</strong>のモードがあり、日・週・月で年を描き、「残り73日」のような凡例も出せます。ショートカットのオートメーションが毎朝更新するので、グリッドは常に最新です。<a href="/ja/support/wallpaper-shortcut">壁紙のショートカットガイド</a>で設定するか、<a href="/ja/days-left-wallpaper">残り日数の壁紙</a>を読んでください。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">年の進捗ウィジェットを入手</a></p>
+
+<h2>一緒に置くもの</h2>
+<p>年の進捗だけなら、思い出させるものです。いくつか具体と組むと、ホーム画面の1ページが計画の面になります。</p>
+<ul>
+  <li>取り組んでいることへの<strong>カウントダウン</strong>。<strong>これから</strong>の日付と<a href="/ja/countdown-widget">カウントダウンウィジェット</a>を使います。</li>
+  <li><strong>経過</strong>の<strong>習慣を1つか2つ</strong>。過ぎていく時間の横に、具体的な行動が並びます。<a href="/ja/habit-tracker">習慣トラッカー</a>を見てください。</li>
+  <li><strong>月または週のウィジェット</strong>。年が抽象的すぎるときの、短い射程です。</li>
+</ul>
+<p>すべてのスタイルは<a href="/ja/year-progress-widget">年間進捗ウィジェット</a>のページで見られます。</p>
+
+<h2>質問</h2>
+<h3>過ぎた年の割合はどう計算しますか？</h3>
+<p>過ぎた日数を、その年の日数で割り、100を掛けます。たとえば2026年10月19日は292日目で、292÷365×100＝80%です。</p>
+<h3>うるう年で年の進捗は変わりますか？</h3>
+<p>はい、わずかに変わります。うるう年は365日ではなく366日なので、1日が年に占める割合は少し小さくなります。うるう年の7月1日はちょうど半分です。平年では半分になるのは7月2日の正午です。</p>
+<h3>7月1日の時点で、年の残り日数は何日ですか？</h3>
+<p>平年では7月1日は182日目で、7月1日を消化済みにすると残りは183日です。うるう年では7月1日は183日目で、残りも183日です。</p>
+<h3>Leftの年ウィジェットは無料ですか？</h3>
+<p>はい。残り時間、年のウィジェットと他の時間ウィジェット、Left壁紙はすべて無料です。Left Premiumは、無制限のカウントダウンと習慣、プランナー、友達などを加えます。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="LeftをApp Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

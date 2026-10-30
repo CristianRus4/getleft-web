@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>ADHDのボディダブリング：アプリと代替 | Left</title>
+  <meta name="description" content="ボディダブリングとは何か、ADHDになぜ効くか、おすすめアプリ（Focusmate、Flow Clubなど）、ローテク代替、非同期のアカウンタビリティ構成まで。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/adhd-body-doubling-apps" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/adhd-body-doubling-apps" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/adhd-body-doubling-apps" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="ADHDのボディダブリング：アプリと代替"  />
+  <meta property="og:description" content="ADHD向けボディダブリングのアプリと代替。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/adhd-body-doubling-apps" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/adhd-body-doubling-apps-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/adhd-body-doubling-apps-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Body Doubling: Apps and Alternatives That Actually Work",
+  "description": "What body doubling is, why it helps ADHD, the best apps (Focusmate, Flow Club, others), and the low-tech alternatives - plus an async accountability setup.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-body-doubling-apps",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Body Doubling: Apps and Alternatives That Actually Work",
+      "item": "https://getleft.app/blog/adhd-body-doubling-apps"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>ADHDのボディダブリング：本当に効くアプリと代替</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・5分</p>
+
+    <p>ボディダブリングは、たまたま一度やってみて初めて気づく、不公平なほど効果的なADHDの介入方法です。あなたは誰かと同じ物理的または仮想的な空間で過ごします。共同作業をするのではなく、ただ存在しているだけで、突然一人では始められなかったこと、集中すること、そしてやり終えることができるようになるのです。研究者はまだこれについて多くを研究していませんが、ADHDを持つ多くの人が、これが物事を始めるのに役立ち、やり遂げるのに役立つと言っています。</p>
+
+    <p>このガイドは、ボディダブリングとは何か、ADHDになぜ効くか、それを助けるアプリ（Focusmate、Flow Clubなど）、ローテク代替、ライブが無理なときに<strong>Left</strong>の友達と共有ストリークを非同期アカウンタビリティ層として使う方法を扱います。</p>
+
+    <figure class="post-hero"><img src="/images/blog/adhd-body-doubling-apps-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-room-with-two-chairs-and-a-desk-xcyQq8jq_5w" rel="noopener">Lotus Design N Print / Unsplash</a></figcaption></figure>
+
+    <h2>ボディダブリングが実際に何か</h2>
+    <p>決まった時間、もう一人と一緒にいる。それぞれ自分のことをする。最初に短いチェックイン（何をするか）、終わりにも（どうだったか）。中は沈黙の作業。それだけ。</p>
+    <p>次のような形があります：</p>
+    <ul>
+      <li><strong>対面。</strong>カフェ、図書館、共有部屋で友達と働く。</li>
+      <li><strong>ビデオ通話。</strong>カメラオン、マイクオフ、両方働く。</li>
+      <li><strong>音声のみ。</strong>もう一人の空間の環境的な存在だけ。</li>
+      <li><strong>共有可視性の非同期。</strong>軽い形——共有ウィジェットやストリークで、相手が働いているときがそれぞれ見える。</li>
+    </ul>
+
+    <h2>ADHDに効く理由</h2>
+    <p>もっともらしい仕組みは3つ：</p>
+    <ul>
+      <li><strong>社会的アカウンタビリティ。</strong>沈黙の証人でも、途中で止めるのは悪く感じる。</li>
+      <li><strong>外的リズム。</strong>誰かが働いている存在が、脳が同期できるテンポを作ります。</li>
+      <li><strong>新奇追求の低下。</strong>暗黙の社会契約でスマホチェックが不適切に感じられ、摩擦が自動運転スクロールを止める。</li>
+    </ul>
+    <p>どれも相手に何かをさせる必要はありません。そこにいればよいだけです。</p>
+
+    <h2>試す価値のあるボディダブリングアプリ</h2>
+
+    <h3>Focusmate</h3>
+    <p>カテゴリのリーダー。50分のビデオセッションを、会ったことのないパートナーと事前予約。無料枠は週に数回、有料は無制限。事前予約して守れる人に強い。</p>
+
+    <h3>Flow Club</h3>
+    <p>ファシリテーター付きのグループセッション（4〜10人）。BGM、短い意図確認、そのあと沈黙の作業。1対1動画より環境グループのエネルギーが好きな人に強い。</p>
+
+    <h3>Cofocus</h3>
+    <p>オンデマンドの1対1セッション。Focusmateよりスケジュール性が低い。24時間前にコミットせずボディダブリングが欲しい人に強い。</p>
+
+    <h3>Caveday</h3>
+    <p>構造化された3時間の「ケーブ」形式のグループ共働。より没入的で、カジュアルさは少ない。落ち着くために長いコミットが要る人に強い。</p>
+
+    <h3>Discordの勉強サーバー</h3>
+    <p>無料で活気あるコミュニティ（特に学生向け）。沈黙で一緒に勉強する公開ボイスチャンネル。学生に強い。安い入り口。</p>
+
+    <h2>ローテクの代替</h2>
+    <ul>
+      <li><strong>別タイムゾーンの友達。</strong>「10時に開始」とテキスト→両方働く→「11時に完了」とテキスト。それだけ。アプリ不要。</li>
+      <li><strong>近所のカフェ／図書館。</strong>同じ部屋で働く他の人。「みんな働いている」エネルギーは本物。</li>
+      <li><strong>YouTubeの「一緒に勉強」動画。</strong>意外と効く——画面で勉強する誰かが、安いボディダブルになる。多くのADHDユーザーが推す。</li>
+      <li><strong>ミュートのFaceTime。</strong>無料、標準、即時。友達とFaceTimeを開き、両方ミュートで両方働く。</li>
+    </ul>
+
+    <h2>非同期版 — 共有ウィジェット</h2>
+    <p>リアルタイムのボディダブリングがいつも使えるわけではありません。軽い版：パートナーとの共有ストリークやカウントダウンを、両方のスマホに見えるように。可視性がアカウンタビリティ。口に出す必要はなく、ウィジェットが働きます。</p>
+    <p>Leftでは友達が責任ある習慣とストリークを共有でき、共有カウントダウンにはJoint Ahead日付があります（これらの友達機能はLeft Premiumの一部）。勉強パートナーがあなたの進捗を見、あなたが相手のを見るので、休んだ日は両方に見えます。アカウンタビリティは静かで常時。<a href="/ja/support/accountability-with-friends">友達とのアカウンタビリティ</a>と<a href="/ja/blog/countdown-next-trip-with-friends">Joint Aheadガイド</a>を。<a href="/ja/days-since-widget">ストリークウィジェット</a>がセッション間に自分の連続を見えるままにします。</p>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">連続記録ウィジェットを入手</a></p>
+
+    <h2>ボディダブリングを定着させるには</h2>
+    <ul>
+      <li><strong>スケジュールする。</strong>固定時刻の繰り返しセッションが、その場しのぎに勝つ。「火木の午前10時」が「いつでも」に勝つ。</li>
+      <li><strong>小さく始める。</strong>週1セッションで始めに十分。5つ予約して燃え尽きない。</li>
+      <li><strong>正しいパートナーを選ぶ。</strong>親しい友達だと失敗しがち（喋ってしまう）。見知らぬ人（Focusmate経由）や仕事専用の友達の方がうまくいくことが多い。</li>
+      <li><strong>最初に目標を述べる。</strong>「報告書の最初の3段落を書く。」具体的意図が、ぼんやりした意図に勝つ。</li>
+      <li><strong>マルチタスクしない。</strong>セッションが効くのは両方がそこにいるから。半分の注意は魔法を壊す。</li>
+    </ul>
+
+    <h2>ボディダブリングが効かないとき</h2>
+    <p>率直に：</p>
+    <ul>
+      <li><strong>タスクが電話や会話を要する場合。</strong>ボディダブリングは沈黙の並行作業を前提にします。</li>
+      <li><strong>パートナーが散漫なことをしている場合。</strong>ビデオ通話でInstagramをスクロールする誰かは、一人で働くより悪い環境です。</li>
+      <li><strong>高度に創造的・探索的な仕事。</strong>創作の一部は孤独が効く。ボディダブリングは実行タスク向きで、アイデア出し向きではない。</li>
+      <li><strong>実際のタスクを避けるために使っているなら。</strong>「明日Focusmateを予約する」が、別の名の先延ばしになり得る。</li>
+    </ul>
+
+    <h2>学生向け</h2>
+    <p>ボディダブリングは、特にADHD学生にとっていちばんレバレッジの高い学生介入のひとつです。図書館は非公式のボディダブリングとして機能します。定期のFocusmateやDiscord勉強スケジュールが、家からそれを再現します。見える締め切りカウントダウン（<a href="/ja/blog/adhd-students-study-tools-iphone">ADHD学生向け学習ツール</a>）と合わせると、実行機能の負荷の多くを扱えます。</p>
+
+    <h2>リモートワーカー向け</h2>
+    <p>在宅ADHDはボディダブリングに頼ることが多い——オフィスの存在がないと、仕事開始の起動エネルギーが上がる。パターン：就業日の最初の50分に毎日Focusmateを入れる。そのセッションが一日を始め、残りは勢い。より広い絵は<a href="/ja/blog/adhd-work-from-home-setup">ADHDの在宅セットアップ</a>を。</p>
+
+    <h2>関連記事</h2>
+    <p>ボディダブリングを補うタスク開始戦略：<a href="/ja/blog/adhd-task-initiation-strategies">ADHDのタスク開始</a>。セッション開始後の集中：<a href="/ja/blog/how-to-focus-adhd">ADHDで集中する方法</a>。より広いADHDアプリスタック：<a href="/ja/blog/best-apps-for-adhd-iphone">ADHD向けiPhoneアプリおすすめ</a>。</p>
+
+    <h2>よくある質問</h2>
+    <p><strong>ボディダブリングがなぜ効果的なのか？</strong><br/> 最も有力な推測：存在が暗黙の社会的責任感を生み出し、外部のリズムを提供し、新規性への欲求を減らすため。研究はまだ少ないため、これらは証明されたものとしてではなく、もっとあり得る説明として捉えてください。実体験に基づく報告は一貫しています。</p>
+
+    <p><strong>ADHDでない人とでも効きますか？</strong><br/>
+    はい。パートナーにADHDは要りません。隣で本当に働けばよいだけです。</p>
+
+    <p><strong>変ですか？</strong><br/>
+    最初のセッションは変に感じます。5回目には普通です。最初のぎこちなさを押し通す価値があります。</p>
+
+    <p><strong>セッション中に集中できない場合は？</strong><br/>
+    集中できなくても、たいてい始められます。ADHDの開始問題では、始めることが価値のほとんど——動き出すと集中がついてくることが多いです。</p>
+
+    <p><strong>Leftはボディダブリングをどう助けますか？</strong><br/>
+    友達とJoint Ahead日付（Left Premium）が非同期アカウンタビリティを提供：相手のストリークと共有日付が見える。静かな可視性が、ライブセッションを超えてボディダブリング効果を延ばします。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

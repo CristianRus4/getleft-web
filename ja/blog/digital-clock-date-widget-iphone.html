@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhoneのデジタル時計・日付ウィジェット（2026） | Left</title>
+  <meta name="description" content="iPhoneのホーム画面、ロック画面、スタンバイにデジタル時計と日付のウィジェットを置く実用ガイド。標準の時計に飽きた人向け。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/digital-clock-date-widget-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/digital-clock-date-widget-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/digital-clock-date-widget-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhoneのデジタル時計・日付ウィジェット（2026）"  />
+  <meta property="og:description" content="iPhoneのホーム画面、ロック画面、スタンバイにデジタル時計と日付のウィジェットを置く、実用的なガイド。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/digital-clock-date-widget-iphone" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/digital-clock-date-widget-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/digital-clock-date-widget-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Set Up a Digital Clock and Date Widget on iPhone (2026)",
+  "description": "A practical guide to setting up a digital clock and date widget on your iPhone Home Screen, Lock Screen, and StandBy - without the default-clock fatigue.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/digital-clock-date-widget-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Set Up a Digital Clock and Date Widget on iPhone (2026)",
+      "item": "https://getleft.app/blog/digital-clock-date-widget-iphone"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>iPhoneにデジタル時計と日付のウィジェットを置く方法（2026）</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・8分</p>
+
+    <p>時計と日付は、スマホでいちばんよく確認するふたつの情報です。iOSはどちらも標準で表示しますが、置き場所は小さく固定で、見た目もみんな同じです。ホーム画面、ロック画面、スタンバイのデジタル時計・日付ウィジェットなら、もっと見たくなる表示にできます。大きな数字、好きな書体、好きな色、そしてうまく組めば、時と分だけではない少しの文脈も。</p>
+
+    <p>これはセットアップガイドであり、アプリ総覧ではありません。時計・日付ウィジェットに何を載せるか、iOSの各面への追加方法、よくあるトラブルの直し方を扱います。実例には<strong>Left</strong>を使います。時刻、日付、残り時間の表示を同じ面に載せられるデジタル時計ウィジェットがあるからです。ただし原則は、LeftでもApple標準でも他のアプリでも同じです。</p>
+
+    <figure class="post-hero"><img src="/images/blog/digital-clock-date-widget-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/text-puOOhog95SY" rel="noopener">Yucel M / Unsplash</a></figcaption></figure>
+
+    <h2>標準の時計を替える意味は？</h2>
+    <p>Appleのステータスバーの時計は小さく、上部のノッチ付近にあります。標準のロック画面の時計は大きめですが、ほとんどスタイルを変えられず、日付も目立ちません。ウィジェット一覧は、標準表示だけでは実際の使い方に情報が足りないときのためのものです。</p>
+    <p>ウィジェットを足すかどうかの正直な基準は、ひと目が短くなるかどうかです。いま<em>日付を確かめるためにロック解除している</em>なら、日付を出すロック画面ウィジェットが勝ちます。ベッドサイドでスタンバイにしたiPhoneを部屋の向こうから睨んでいるなら、スタンバイの大きな時計ウィジェットは本当の改善です。装飾だけで、なくなっても気づかないなら、いりません。</p>
+
+    <h2>時計・日付ウィジェットに載せるべきもの</h2>
+    <p>時計ウィジェットは面積が小さいので、すべての要素に居場所の理由が要ります。出すべきは優先順にこの4つです。</p>
+    <ul>
+      <li><strong>時と分。</strong>大きく、コントラストが高く、当然の主役。</li>
+      <li><strong>曜日。</strong>「火曜日」の方が、「8月12日」よりひと目で多くのことがわかります。多くの人は今日の日付は思い出せなくても、曜日はいつもわかっています。</li>
+      <li><strong>日付。</strong>短い形：「8月12日」や「12 Aug」。いま手に持っている端末では、年はたいてい不要です。</li>
+      <li><strong>文脈はひとつ。</strong>任意：年の進捗パーセント、1日の残り時間、次の締切までのカウントダウン。ここでLeftやPretty Progressのようなウィジェットアプリが、標準の時計より居場所を稼げます——標準ウィジェットは時刻の隣に「年の残り63%」を出せません。</li>
+    </ul>
+    <p>秒、午前／午後、タイムゾーン表示は、小サイズではほとんど居場所を稼げません。切ってください。</p>
+
+    <h2>ステップ1：ホーム画面に時計・日付ウィジェットを追加する</h2>
+    <p>Leftを含む、どのウィジェットアプリでも同じです。</p>
+    <ol>
+      <li>ホーム画面の何もないところを長押しし、アイコンが揺れるまで待ちます。</li>
+      <li>左上の<strong>＋</strong>ボタンをタップします。</li>
+      <li>ウィジェットアプリを検索する（例：「Left」）か、一覧をスクロールします。</li>
+      <li>小／中／大のサイズをスワイプし、欲しいサイズで<strong>「ウィジェットを追加」</strong>をタップします。小は1行に4つ並び、時刻だけに向きます。中なら時刻＋日付＋一文の文脈が入ります。</li>
+      <li>置きたい場所へドラッグし、<strong>「完了」</strong>をタップします。</li>
+      <li>もう一度ウィジェットを長押しし、<strong>「ウィジェットを編集」</strong>をタップしてスタイル——時計、パーセント、カウントダウン、または組み合わせ表示——と色を選びます。</li>
+    </ol>
+    <p>完全なステップバイステップは、<a href="/ja/support/widget-iphone-home-screen">iPhone ホーム画面ウィジェットガイド</a>に記載されています。</p>
+
+    <h2>ステップ2：ロック画面に時計ウィジェットを追加する</h2>
+    <p>ロック画面ウィジェットは小さめです（時計の上のインラインまたは長方形ブロック）。ロック解除せずにスマホを手に取るたびにロック画面が見えるので、日付ウィジェットとしていちばん効く面です。</p>
+    <ol>
+      <li>ロック画面を長押しし、<strong>「カスタマイズ」</strong>、次に<strong>「ロック画面」</strong>をタップします。</li>
+      <li>時刻の下のウィジェット領域をタップします。</li>
+      <li>ウィジェットアプリを探し、曜日、日付、またはパーセントを出すロック画面ウィジェットを選びます。</li>
+      <li><strong>「完了」</strong>を2回タップします。</li>
+    </ol>
+    <p>ウィジェットの上にあるAppleの時計がすでに時刻を出しているので、ロック画面のウィジェットは<em>補完</em>情報を出すべきです。日付、曜日、年の進捗パーセントなど。詳しい手順は<a href="/ja/support/widget-iphone-lock-screen">ロック画面ウィジェットガイド</a>にあります。</p>
+
+    <h2>ステップ3：スタンバイに時計ウィジェットを追加する</h2>
+    <p>スタンバイは、iOS 17で入ったベッドサイド／横置き充電モードです。横向きで充電中のiPhoneを、ひと目で見られるディスプレイにします。スタンバイのデジタル時計ウィジェットは、多くの人が寝室の時計として落ち着く先です。</p>
+    <ol>
+      <li>iPhoneを充電器につなぎ、横向きに置きます（MagSafeスタンドが理想です）。</li>
+      <li>スタンバイ表示を右にスワイプし、ウィジェット表示へ進みます。</li>
+      <li>左または右のウィジェットを長押しし、Face IDで認証します。</li>
+      <li><strong>＋</strong>をタップし、ウィジェットアプリを選んでからサイズを選びます。</li>
+      <li>片側に時計ウィジェット、もう片側にカウントダウンか年の進捗ウィジェットを置きます。左に時刻、右に「残り」——ベッドサイドの表示としてこれで揃います。</li>
+    </ol>
+    <p>詳しい手順：<a href="/ja/support/widget-iphone-standby">スタンバイウィジェットのセットアップ</a>。</p>
+
+    <h2>本当に効くデザインの選び方</h2>
+    <p>人はウィジェットを飾りすぎます。フォントを3つ、色を4つ選び、結果として標準より読みにくくなります。おおまかな重要度順に、いくつか原則があります。</p>
+    <ul>
+      <li><strong>コントラストを最優先。</strong>明るいウィジェットに暗い文字、または暗いウィジェットに明るい文字。中間色同士はスクショでは上品に見えて、実生活では読めません。</li>
+      <li><strong>書体はひとつ。</strong>時刻を等幅の数字にしたら、日付も同じ系統に。変化のためのスラブセリフと丸ゴシックの混ぜ合わせは、視覚ノイズになります。</li>
+      <li><strong>色は気分ではなく壁紙に合わせる。</strong>壁紙が賑やかなら、フラットな単色のウィジェット背景を。きれいなグラデーションなら、半透明ウィジェットが向きます。</li>
+      <li><strong>秒は出さない。</strong>秒はストレスの信号です。ウィジェットはリアルタイムではなくiOSの更新スケジュールで動くので、秒表示は見た目に遅れます——正確ではなく、壊れているように見えます。</li>
+      <li><strong>形式はロケールに合わせる。</strong>24時間表示に慣れている人には、その方が速く読めます。そうでない人には午前／午後付きの12時間が向きます。アプリの初期値をそのままにせず、意識して選んでください。</li>
+    </ul>
+
+    <h2>時刻の隣に「残り」を足す</h2>
+    <p>ここが、純粋な時計アプリとLeftの違いです。デジタル時計だけなら「いま何時か」に答えます。時計・日付ウィジェットに「残りの時間」表示を添えると、「今日／今週／今年の残りはどれだけか」に答えられ、はるかに役立つ問いです。試す価値のある組み合わせは3つです。</p>
+    <ul>
+      <li><strong>時刻＋年の進捗。</strong>時計はいまを示し、<a href="/ja/year-progress-widget">年の進捗ウィジェット</a>は大きな枠を与えます。この小さな可視化が計画の立て方をどう変えるかは、<a href="/ja/blog/what-is-year-progress">年の進捗とは何か、なぜ追うのか</a>で書いています。</li>
+      <li><strong>時刻＋次の締切。</strong>左に時計、右に「これから」のカウントダウン（例：「ローンチまで12日」）。時計は今日に足をつけ、カウントダウンは未来について正直でいさせます。</li>
+      <li><strong>時刻＋習慣ストリーク。</strong>時計と、いちばん長く続いているアクティブなストリーク。朝いちばんに便利で、決まった時間帯の習慣に特に向きます。スケジュール側は<a href="/ja/blog/how-to-build-a-streak">ストリークの作り方ガイド</a>で扱っています。</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">デジタル時計ウィジェットを入手</a></p>
+
+    <h2>よくあるトラブルの対処</h2>
+    <p><strong>旅行のあと、ウィジェットの時刻がズレる。</strong>iOSは携帯ネットワークから時刻を取ります。タイムゾーンを跨いだのに古いゾーンのままだったら、<em>設定 → 一般 → 日付と時刻</em>を開き、<em>自動設定</em>をオフにしてからオンに戻します。ウィジェットのアプリを強制終了し、1分待ってもう一度確認してください。</p>
+    <p><strong>何時間もウィジェットが更新されない。</strong>iOSは電池節約のため、ウィジェット更新をかなり絞ります。ウィジェットをタップ（アプリが開く）すると、戻ったときにだいたい強制更新されます。ずっと遅れるなら、アプリがAppleのバックグラウンド更新のペナルティに入っていることがあります——<em>設定 →［アプリ］→ バックグラウンドApp更新</em>を切り替えてみてください。</p>
+    <p><strong>プレビューと見た目が違う。</strong>ウィジェット一覧はニュートラルなグレー背景です。壁紙、ダーク／ライトモード、アクセシビリティ（太字テキスト、さらに大きな文字）で、同じウィジェットでも実機の見え方が変わります。使うモードに端末を合わせてから、選び直してください。</p>
+    <p><strong>フォントを選んだのに戻ってしまう。</strong>フォント選択を有料プランにしているアプリもあれば、無料では限られたフォントだけのアプリもあります。アプリの設定を確認してください。再起動のたびに戻るなら、バグではなくプランの問題です。</p>
+
+    <h2>デジタル時計が、より広いウィジェット構成のどこに収まるか</h2>
+    <p>時計と日付のウィジェットは、スマホでもっとも長く居座るウィジェットです。習慣が変われば習慣ウィジェットは入れ替え、日付が過ぎればカウントダウンも替えます。時計は替えません。だからこそ、一度きちんと決める価値があります。入れ替え可能なウィジェットを少しだけ添える——次の大きな日付のカウントダウン、いま追っている習慣、年の進捗——それだけで、アプリをひとつも開かずに必要なことのほとんどがわかるホーム画面になります。</p>
+
+    <p>ホーム画面、ロック画面、スタンバイなど、iOSのウィジェット面を一通り案内するページもあります：<a href="/ja/blog/how-to-add-widgets-iphone">iPhoneにウィジェットを追加する方法</a>。</p>
+
+    <h2>よくある質問</h2>
+    <p><strong>標準のiOS時計ウィジェットで十分ですか？</strong><br/>
+    時刻だけなら、はい。標準の時計は信頼でき、デザインもよいです。同じタイルで時刻と日付、年の進捗、カウントダウンを組み合わせたいときや、書体を整えたいときに、サードパーティのウィジェットが必要になります。</p>
+
+    <p><strong>12時間表示と24時間表示、どちら？</strong><br/>
+    より速く読める方です。「17は午後5時」と頭の中で変換しているなら、切り替えた方が、何年ものあいだ毎回のひと目でわずかに得します。米国以外では24時間が多く、米国では12時間が多いです。</p>
+
+    <p><strong>デジタル時計ウィジェットは電池を食いますか？</strong><br/>
+    いいえ。ウィジェットの更新頻度はiOSが制御し、電池が気になる閾値より十分下に抑えます。時計ウィジェットの更新予算は、他のウィジェットと同じです。</p>
+
+    <p><strong>ホーム画面のページごとに違う時計ウィジェットを置けますか？</strong><br/>
+    はい。ホーム画面の各ページは別キャンバスです。よくあるのは、大きな時計＋日付＋年の進捗のウィジェット専用ページを1つ作り、他のページはいつものアプリアイコンのグリッドにする構成です。</p>
+
+    <p><strong>LeftのクロックウィジェットはiPadやMacでも見られますか？</strong><br/>
+    LeftはiPhoneアプリ（iOS 26以降）です。デジタル時計ウィジェットは、ホーム画面、ロック画面、StandByで使えるので、充電中のiPhoneをベッドサイドの時計として活用できます。LeftのウィジェットはiPadにも表示され、macOS Sonoma以降のMacでは、iPhoneのウィジェット（このウィジェットも含む）をデスクトップや通知センターに置けます（同じApple Accountで、iPhoneが近くにある場合）。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

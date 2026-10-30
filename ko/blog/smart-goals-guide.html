@@ -1,0 +1,520 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>SMART 목표: 2026 실무 설정 가이드 | Left</title>
+  <meta name="description" content="SMART 목표 설정 실무 가이드 — 예시, 흔한 실수, 2주를 넘는 보이는 추적 설정."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/smart-goals-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/smart-goals-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/smart-goals-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="SMART 목표: 2026 실무 설정 가이드"  />
+  <meta property="og:description" content="SMART 목표 설정 실무 가이드와, 2주를 넘게 살리는 보이는 추적 설정."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/smart-goals-guide" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "SMART Goals: A Practical Setup Guide for 2026",
+  "description": "A working guide to setting SMART goals - examples, common mistakes, and the visible-tracking setup that keeps them alive past week two.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/smart-goals-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "SMART Goals: A Practical Setup Guide for 2026",
+      "item": "https://getleft.app/blog/smart-goals-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>SMART 목표: 2026 실무 설정 가이드</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 6분 읽기</p>
+
+    <p>SMART 목표 — Specific, Measurable, Achievable, Relevant, Time-bound — 는 1981년 George Doran이 제안한 뒤 채택·남용·패러디를 거쳐 왔습니다. 비판받을 만합니다. 대부분 "SMART 목표"는 아무도 안 여는 Word 문서의 관료적 문장이 됩니다. 프레임워크 자체는 타당합니다. 실패하는 것은 실행입니다. 목표는 한 번 쓰이고 보관된 뒤 다시 보이지 않습니다.</p>
+
+    <p>이 가이드는 실무 버전입니다. 60초 안에 SMART 목표 쓰기, 각 글자가 실제로 자리하는 곳, 흔한 실수, 시야에 목표를 두는 보이는 추적 설정. 유용할 때 <strong>Left</strong> 위젯이 "T"(기한)를 생각 없이 다루는 방식을 보여 줍니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/smart-goals-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/yellow-pencil-on-white-paper-and-carpentry-tools-5973969/" rel="noopener">Ono Kosuki / Pexels</a></figcaption></figure>
+
+    <h2>SMART가 실제로 뜻하는 것 (전문 용어 없이)</h2>
+    <ul>
+      <li><strong>구체적</strong> — 이름 있는 결과 하나. "더 많이 달리기"는 모호합니다. "쉬지 않고 5km"는 구체적입니다.</li>
+      <li><strong>측정 가능</strong> — 끝났는지 아는 방법을 정하세요. 숫자, 횟수, 예/아니요.</li>
+      <li><strong>달성 가능</strong> — 지금 현실적 용량 안. 스트레치는 괜찮고, 불가능은 아닙니다.</li>
+      <li><strong>관련성</strong> — 신경 쓰는 더 큰 것과 연결. 아니면 2주에 흥미를 잃습니다.</li>
+      <li><strong>기한</strong> — <a href="/tools/deadline-countdown-calculator">실제 종료일</a>이 있습니다. "여름까지"가 아니라 날짜입니다.</li>
+    </ul>
+    <p>이 테스트 중 하나라도 실패하면 목표가 실패합니다. 대부분 목표는 기한이 없고 측정할 수 없어서 실패합니다.</p>
+
+    <h2>모호 → SMART, 세 번 고쳐 쓰기</h2>
+
+    <p><strong>모호:</strong> "더 건강해지기."</p>
+    <p><strong>구체적 + 측정 가능:</strong> "5km 레이스 완주."</p>
+    <p><strong>SMART:</strong> "9월 30일까지 30분 미만 5km 레이스, 주 3회 아침 훈련."</p>
+
+    <p>바뀐 점을 보세요. 숫자(30분 미만), 날짜(9월 30일), 반복 행동(주 3회 아침). 마지막이 자주 빠집니다 — 반복 행동 없는 목표는 소원입니다.</p>
+
+    <h2>영역별 실제 SMART 목표</h2>
+
+    <h3>커리어</h3>
+    <p>"3분기 말까지 회사 블로그에 사례 연구 세 편 발행, 6주마다 초고 하나." 구체적(사례 연구 세 편), 측정 가능(개수), 달성 가능(6주씩은 현실적), 관련성(역할에 유용하다면), 기한(3분기 말).</p>
+
+    <h3>피트니스</h3>
+    <p>"12월 31일까지 매주 주 2회 근력 운동, 습관 위젯으로 준수율 추적." 위젯 부분이 중요합니다 — 없으면 목표가 증발합니다.</p>
+
+    <h3>학습</h3>
+    <p>"6월 30일까지 Khan Academy Calculus I 과정 완료, 주 1유닛." 구체적 과정, 측정 가능 완료, 주간 리듬.</p>
+
+    <h3>재정</h3>
+    <p>"11월 30일까지 비상금 $5,000, 격주 $250 자동 이체." 기한, 측정 가능, 자동화.</p>
+
+    <h3>개인</h3>
+    <p>"올해 남은 기간 매주 일요일 엄마에게 전화." 때로 가장 단순한 것이 최선입니다. 구체적, 측정 가능(했거나 안 했거나), 달성 가능, 관련, 기한.</p>
+
+    <h2>SMART 목표를 죽이는 실수들</h2>
+    <ul>
+      <li><strong>한 번에 너무 많이.</strong> 분기당 최대 셋입니다. 일곱을 세운 사람은 영을 달성합니다.</li>
+      <li><strong>행동 대신 결과만 측정.</strong> "10파운드 감량"은 완전히 통제하지 못하는 결과입니다. "주 2회 근력"은 하는 행동입니다. 행동 목표가 안정적으로 발화합니다.</li>
+      <li><strong>쓰고 치워 두기.</strong> 매일 보는 곳에 목표가 없으면 2주에 잊힙니다. 가장 흔한 실패 모드이고, 위젯으로 완전히 고칠 수 있습니다.</li>
+      <li><strong>리뷰 주기 없음.</strong> SMART 목표는 점검이 필요합니다 — 주일이면 충분합니다. 없으면 드리프트가 쌓입니다.</li>
+      <li><strong>실제로는 환상인 스트레치.</strong> "30일 만에 30파운드 감량"은 야심이 아니라 실패 설정입니다. 달성 가능은 지금 달성 가능하다는 뜻입니다.</li>
+    </ul>
+
+    <h2>T가 일하게 만들기</h2>
+    <p>기한(Time-bound)이 가장 자주 흐려집니다("여름까지"). 동시에 목표의 나머지를 현실로 만드는 부분입니다. "T"를 자동으로 다루는 위젯 설정:</p>
+    <ul>
+      <li><strong>목표 마감까지의 앞으로 <a href="/ko/countdown-widget">카운트다운</a>.</strong> "5km 레이스까지 62일." 폰을 집을 때마다 보이도록 잠금 화면에.</li>
+      <li><strong>반복 행동용 <a href="/ko/habit-tracker">습관 위젯</a>.</strong> 현재 연속 기록이 있는 "근력 운동". 홈 화면에.</li>
+      <li><strong>연도 진행 위젯</strong>을 항상 켜 둔 틀로. 목표가 올해의 전부가 아닙니다. 연도 진행이 달력을 정직하게 유지합니다. 이유는 <a href="/ko/blog/what-is-year-progress">연도 진행이란</a>에서 다뤘습니다.</li>
+    </ul>
+    <p>셋이 함께 "무엇을 향해, 얼마나 자주 일하고, 시간이 얼마나 남았는지"를 아무것도 열지 않고 답합니다.</p>
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">카운트다운 위젯 받기</a></p>
+
+    <h2>주간 리뷰 (10분, 일요일)</h2>
+    <ol>
+      <li><strong>카운트다운을 보세요.</strong> 마감이 아직 맞나요? 삶이 바뀌었으면 날짜를 옮기세요 — 모른 척하지 마세요.</li>
+      <li><strong>연속 기록을 보세요.</strong> 이번 주 반복 행동을 했나요? 했으면 아무것도 하지 마세요. 안 했으면 왜?</li>
+      <li><strong>한 문장 메모.</strong> "궤도" 또는 "X 때문에 뒤처짐." 플래너나 Notes에 두세요.</li>
+      <li><strong>조정 하나.</strong> 이번 주에 바꿀 것 하나. 다섯이 아니라 하나.</li>
+    </ol>
+    <p>리뷰는 그게 전부입니다. 사람들은 목표 리뷰를 90분 일요일 의식으로 과도 설계하고, 4주에 무너집니다. 10분이 지속 가능합니다.</p>
+
+    <h2>목표 스택 — SMART와 습관 결합</h2>
+    <p>가장 오래 가는 목표는 두 층입니다. SMART 결과(레이스, 출시, 저축 목표)와 그것을 만드는 반복 습관(러닝, 글쓰기, 자동 이체). 카운트다운 위젯은 결과를, 습관 위젯은 행동을 추적합니다. 둘 다 보이고, 둘 다 갱신되고, 둘 다 홈 화면에.</p>
+    <p>놓친 주에도 목표가 버티는 시스템이기도 합니다. 카운트다운은 계속 가고, 연속 기록은 리셋되고, 구조는 남습니다. 처음부터가 아니라 이어 가는 겁니다.</p>
+
+    <h2>SMART 목표를 그만둘 때</h2>
+    <p>목표는 성스럽지 않습니다. 버릴 신호 세 가지:</p>
+    <ul>
+      <li><strong>관련성이 바뀌었습니다.</strong> 상황이 바뀌어 목표가 더 이상 중요하지 않습니다. 의식 없이 보관하세요.</li>
+      <li><strong>달성 가능이 틀렸습니다.</strong> 두 달 성실히 했는데 일정에 한참 못 미칩니다. 범위를 줄이거나 날짜를 늘리되, 어느 쪽인지 솔직히.</li>
+      <li><strong>위젯을 더 이상 안 봅니다.</strong> 카운트다운을 보거나 습관을 표시하지 않은 지 2주면, 목표는 이미 버려진 겁니다. 공식화하세요.</li>
+    </ul>
+    <p>목표를 깨끗이 버리는 편이 반만 하는 것보다 훨씬 낫습니다. 죽은 목표를 끌지 마세요.</p>
+
+    <h2>더 큰 그림</h2>
+    <p>SMART 목표는 많은 프레임워크 중 하나입니다. 끝이 명확하고 과정이 꾸준한 결과에 잘 맞습니다. 열린 창작, 미지수가 많은 복잡 프로젝트, "아직 뭘 원하는지 모르겠다"에는 약합니다. 그때는 더 가벼운 프레임이 낫습니다 — 인접 접근은 <a href="/ko/blog/visual-goals-track-on-screens">화면의 시각 목표</a>와 <a href="/ko/blog/stay-consistent-with-goals">목표와 꾸준히</a>를 보세요.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>SMART 목표를 한 번에 몇 개까지?</strong><br/>
+    분기당 둘에서 셋. 그 이상이면 우선순위가 아니라 목록입니다.</p>
+
+    <p><strong>목표를 측정할 수 없으면요?</strong><br/>
+    아직 목표가 아니라 방향입니다. 그건 괜찮지만 다르게 다루세요. 측정 가능 대리("명성 쌓기" 대신 "매주 발행")를 골라 목표로 쓰세요.</p>
+
+    <p><strong>마감을 스트레치로 둬야 하나요?</strong><br/>
+    살짝 스트레치는 좋습니다(더 빨리 움직입니다). 큰 스트레치는 나쁩니다(일찍 포기합니다). 일하면 70% 자신 있는 날짜를 목표로 하세요.</p>
+
+    <p><strong>ADHD에도 SMART 목표를 쓸 수 있나요?</strong><br/>
+    네, 한 가지만 바꾸면요. 반복 행동이 가장 중요합니다. ADHD용 SMART = "결과 + 작은 매일 행동 + 보이는 위젯." 도파민 루프 쪽은 <a href="/ko/blog/adhd-reward-system">ADHD 보상 시스템 만들기</a>를 보세요.</p>
+
+    <p><strong>Left는 SMART 목표에 어떻게 도움이 되나요?</strong><br/>
+    앞으로는 기한 카운트다운을, 경과(습관·연속 기록)는 반복 행동을, 연도 진행은 달력 틀을 담당합니다. 모두 보이고, 모두 위젯에 — 목표가 1주 뒤에 사라지지 않습니다.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

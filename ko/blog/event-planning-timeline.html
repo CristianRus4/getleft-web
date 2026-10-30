@@ -1,0 +1,536 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>이벤트 계획 타임라인: 단계별 가이드 (2026) | Left</title>
+  <meta name="description" content="실무 이벤트 계획 타임라인 — 역산 계획, 벤더 체크포인트, 범위 팽창 함정, 팀을 맞추는 공유 카운트다운."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/event-planning-timeline" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="이벤트 계획 타임라인: 단계별 가이드 (2026)"  />
+  <meta property="og:description" content="팀을 맞추는 공유 카운트다운 설정이 있는 실무 이벤트 계획 타임라인."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/event-planning-timeline" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/event-planning-timeline-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Event Planning Timeline: A Step-by-Step Guide",
+  "description": "A practical event planning timeline - backward planning, vendor checkpoints, scope-creep traps, and the shared countdown setup that keeps the whole team aligned.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/event-planning-timeline",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Event Planning Timeline: A Step-by-Step Guide",
+      "item": "https://getleft.app/blog/event-planning-timeline"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>이벤트 계획 타임라인: 단계별 가이드</h1>
+    <p class="article-meta">업데이트: <time datetime="2026-10-20">2026년 10월 20일</time> · 7분 읽기</p>
+
+    <p>대부분 이벤트 계획 조언은 단일 200항목 체크리스트처럼 제시됩니다. 그렇게 이벤트가 떨어집니다. 체크리스트는 평평합니다 — 모든 항목이 똑같이 급해 보여 — 첫 미친 주에 작은 일이 되고 큰 일은 마지막 미친 주로 밀립니다. 진짜 계획은 타임라인입니다. 각각 언제 시작해야 하나, 무엇이 무엇에 의존하나, 팀이 같은 날짜를 보게 하려면?</p>
+
+    <p>이 가이드는 컨퍼런스, <a href="/ko/tools/wedding-countdown">결혼식</a>, 제품 출시, 큰 생일 파티 같은 행사에 실제로 쓰이는 기획 타임라인을 세 가지 시간 범위(12개월, 3개월, 2주)로 살펴봅니다. 또 <strong>Left</strong>의 공동 앞으로(Left Premium 기능)로 팀 모두가 같은 종료일을 보게 하는 공유 카운트다운 설정도 다룹니다.</p>
+
+    <figure class="post-hero"><img src="/images/blog/event-planning-timeline-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/outdoor-tables-set-for-a-formal-dining-event-t1ep0yUdXWw" rel="noopener">Bruno Ngarukiye / Unsplash</a></figcaption></figure>
+
+    <h2>앞으로가 아니라 역으로 계획</h2>
+    <p>가장 큰 계획 실수는 "뭘 먼저 하지?"에서 앞으로 가는 것입니다. 앞 계획은 의존성을 숨깁니다 — 장소가 9개월 리드타임이 필요한 줄 6개월 전에서야 압니다. 역 계획은 이벤트일에서 시작해 "이벤트가 일어나려면 X는 언제까지 끝나야 하나?"를 묻습니다.</p>
+    <p>실무: 맨 위에 이벤트일을 쓰고, 역순으로 납품물을 나열하며, 각각 이벤트일에서 계산한 마감을 둡니다. 결과는 목록이 아니라 타임라인입니다.</p>
+
+    <h2>12개월 전 (또는 가능한 한 일찍)</h2>
+    <ul>
+      <li><strong>전략.</strong> 이벤트를 한 문장으로: 무엇인지, 누구를 위한지, 성공이 무엇인지. 못 하면 벤더를 예약하지 마세요.</li>
+      <li><strong>예산.</strong> 총액. 장소/케이터링/프로덕션/마케팅 배분. 15% 비상 항목. 비상을 빼는 것이 초과의 가장 흔한 이유입니다.</li>
+      <li><strong>장소.</strong> 인기 규모 탑 장소는 9개월+ 전에 예약됩니다. 인기 달 주말이면 두 배로.</li>
+      <li><strong>세이브더데이트.</strong> 기업 이벤트도. 참석자 캘린더에 일찍 날짜를 잡는 것이 나중에 RSVP를 쫓는 것보다 훨씬 쌉니다.</li>
+      <li><strong>앵커 스피커 / 탤런트.</strong> 헤드라인이 누구든 지금 잠그세요. 스피커 가용성이 장소만큼 날짜를 좌우합니다.</li>
+    </ul>
+    <p>12개월보다 늦게 시작하면 "12개월" 라벨을 무시하고 이것들을 먼저 하세요. 절대 시점보다 순서가 중요합니다.</p>
+
+    <h2>6개월 전</h2>
+    <ul>
+      <li><strong>스폰서와 파트너.</strong> 서면으로 확정, 납품물 정의. 구두 합의는 조용히 사라집니다.</li>
+      <li><strong>케이터링과 프로덕션.</strong> 예약됨. 메뉴·AV 요구는 초안이라도 작성.</li>
+      <li><strong>마케팅 계획.</strong> 공개 사이트는 언제 라이브? 각 소셜 푸시는 언제? 담당자 지정.</li>
+      <li><strong>티케팅.</strong> 플랫폼·가격 확정, 해당하면 판매 오픈.</li>
+      <li><strong>팀의 공유 카운트다운을 설정하세요.</strong> Left의 공동 앞으로, 종료일 = 이벤트일. 핵심 팀이 같은 카운트다운을 폰에서 팔로우하고 <a href="/ko/countdown-widget">카운트다운 위젯</a>으로 둘 수 있습니다. 누군가의 폰에 "출시까지 180일" 위젯이 가장 싼 팀 정렬 도구입니다. 설정은 <a href="/ko/blog/countdown-next-trip-with-friends">공동 앞으로 가이드</a>.</li>
+    </ul>
+
+    <h2>3개월 전</h2>
+    <ul>
+      <li><strong>최종 스피커 확인.</strong> 모두 잠김, 브리핑됨, 필요한 자료 있음.</li>
+      <li><strong>사이트 라이브, 등록 오픈.</strong> 아직이 아니면.</li>
+      <li><strong>런오브쇼 초안.</strong> 이벤트 당일(들)의 분 단위 일정. 당일 모두가 참조하는 소스 문서.</li>
+      <li><strong>벤더 워크스루.</strong> 케이터링·AV·프로덕션과 현장 방문. 여기 놀라움은 싸고, 당일 놀라움은 비쌉니다.</li>
+      <li><strong>백업 계획.</strong> 날씨, 노쇼, AV 고장, 식단 서프라이즈. 상상만 말고 비상 계획을 쓰세요.</li>
+    </ul>
+
+    <h2>1개월 전</h2>
+    <ul>
+      <li><strong>런오브쇼 잠금.</strong> 필요한 사람에게 배포. 더 이상 구조 변경 없음.</li>
+      <li><strong>장소·케이터링에 최종 인원.</strong> 보통 이 시점 계약상 필수.</li>
+      <li><strong>스태프용 브리핑 팩.</strong> 역할, 연락처, 에스컬레이션 경로.</li>
+      <li><strong>워크스루 리허설.</strong> 30분이라도. 진짜 문제 하나·둘을 찾습니다.</li>
+    </ul>
+
+    <h2>2주 전</h2>
+    <ul>
+      <li><strong>리마인더 커뮤니케이션.</strong> 참석자·스피커·벤더 모두 핵심 정보 리마인더를 받음.</li>
+      <li><strong>최종 물류 문서.</strong> 주소·시간·연락처·주차·식단·일정이 있는 PDF 하나. 필요한 사람에게 발송.</li>
+      <li><strong>테크 체크.</strong> AV, 슬라이드, 마이크, 해당하면 녹화.</li>
+      <li><strong>개인 카운트다운을 돌리세요.</strong> 공유 팀 공동 앞으로 외에, 마지막 날을 세는 개인 카운트다운. 마지막 주에 빛나지 않는 행정(인쇄, 픽업, 짐)이 잊히지 않게.</li>
+    </ul>
+
+    <h2>전날 / 당일</h2>
+    <ul>
+      <li><strong>핸드오프, 마이크로매니지먼트 말고.</strong> 지금은 하는 게 아니라 가능한 것이 일. 만든 팀을 믿으세요.</li>
+      <li><strong>한 사람이 타이밍을 소유.</strong> 누구든, 런오브쇼와 스톱워치, 스피커를 밀어붙일 권한이 있습니다.</li>
+      <li><strong>되는 것과 안 되는 것을 기록하세요.</strong> 이벤트 중 메모는 사후 검토에 금입니다. 세션 사이 5분, 메모 앱에 적기.</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">카운트다운 위젯 받기</a></p>
+
+    <h2>공유 카운트다운 — 또 다른 스프레드시트보다 중요한 이유</h2>
+    <p>대부분 계획 정보는 누군가 열어야 하는 스프레드시트에 있습니다. 이벤트일은 팀이 아무것도 열지 않고 봐야 하는 정보입니다. 팀원 모든 폰의 공동 앞으로 카운트다운 — "출시까지 73일" — 이 날짜를 스프레드시트에서 주변 시야로 밀어냅니다.</p>
+    <p>날짜를 "아는" 팀과 날짜를 <em>느끼는</em> 팀의 차이입니다. 앎은 평온을, 느낌은 행동을 낳습니다.</p>
+
+    <h2>흔한 실패 모드 (그리고 피하는 법)</h2>
+
+    <h3>벤더 지연</h3>
+    <p>미끄러짐의 가장 큰 단일 원인. 방어: 확정 계약(구두 말고), 명시적 납품일, 90일 전부터 주간 체크인. 그들이 말한 마감을 현실보다 7–14일 이르게 취급해 버퍼를 넣으세요.</p>
+
+    <h3>범위 팽창</h3>
+    <p>"X도 할 수 있나요?" — 보통 일을 안 하는 이해관계자. 방어: 3개월 이후 새 요청은 명시적 예산 승인. 감정적으로가 아니라 행정적으로 어렵게.</p>
+
+    <h3>어긋난 목표</h3>
+    <p>석 달째, CEO는 고객용이라 생각했고 마케팅은 언론용이라 생각했음을 발견합니다. 방어: 맨 앞의 한 문장 전략, 모든 이해관계자 서명. 모든 현황 회의에서 다시 읽으세요.</p>
+
+    <h3>마지막 2주의 터널 비전</h3>
+    <p>숲이 안 보입니다. 방어: –2주에 핵심 팀 밖 사람과 체크인. 신선한 눈이 팀이 못 보던 분명한 빈틈을 잡습니다.</p>
+
+    <h2>이벤트 후</h2>
+    <p>일주일 안에:</p>
+    <ul>
+      <li><strong>감사 보내기.</strong> 벤더, 스피커, 스폰서, 핵심 참석자. 일괄이 아니라 개인화.</li>
+      <li><strong>청구서 결제.</strong> 빠른 결제는 관계 투자입니다.</li>
+      <li><strong>사후 검토.</strong> 질문 셋: 뭐가 됐나, 뭐가 안 됐나, 뭘 바꿀까. 적으세요 — 내년이면 기억 안 납니다.</li>
+      <li><strong>런오브쇼와 타임라인 보관.</strong> 내년 플래너에게 가장 유용한 문서는 올해의 실적입니다.</li>
+    </ul>
+
+    <h2>개인 이벤트라면 (웨딩, 이정표 파티)</h2>
+    <p>같은 타임라인, 더 작은 팀, 더 많은 감정. 조정 둘:</p>
+    <ul>
+      <li><strong>한 사람이 타임라인을 소유.</strong> 위원회가 아닙니다. 결정은 빨라야 하고 웨딩은 위원회에서 죽습니다.</li>
+      <li><strong>공동 앞으로는 전체 게스트 목록이 아니라 파트너와 공유.</strong> 카운트다운은 둘의 계획 도구입니다. 게스트 80명의 타임라인 의견은 필요 없습니다.</li>
+    </ul>
+    <p>이벤트보다 개인 여행이면 같은 공동 앞으로 패턴이 됩니다 — <a href="/ko/blog/countdown-next-trip-with-friends">다음 여행 카운트다운</a>을 보세요.</p>
+
+    <h2>관련 글</h2>
+    <p>이벤트 조율과 병행하는 프로젝트 쪽 계획은 <a href="/ko/blog/project-timeline-visualization">프로젝트 타임라인 시각화</a>와 <a href="/ko/blog/keep-track-multiple-projects">여러 프로젝트 추적</a>을 보세요.</p>
+
+    <h2>FAQ</h2>
+    <p><strong>웨딩은 얼마나 일찍 계획해야 하나요?</strong><br/>
+    인기 장소의 전형적인 토요일 웨딩은 9–12개월. 성수기 특정 장소나 목적지 요소가 있으면 12개월+.</p>
+
+    <p><strong>기업 컨퍼런스는 얼마나 일찍?</strong><br/>
+    12개월이 이상, 9개월은 가능, 6개월은 스트레스. 6개월 미만이면 아무도 원하지 않은 장소만 남습니다.</p>
+
+    <p><strong>가장 유용한 단일 도구는?</strong><br/>
+    팀원 모든 폰에 사는 공유 종료일 카운트다운, 그리고 마지막 달의 서면 런오브쇼. 화려한 프로젝트 도구보다 이 둘 단순함이 중요합니다.</p>
+
+    <p><strong>시니어 이해관계자의 범위 팽창은?</strong><br/>
+    모든 요청의 예산 영향을 인용하세요. "네, 추가할 수 있습니다. 비용 $X이고 Y를 빼야 합니다." 대부분 시니어는 범위에 가격이 붙으면 물러납니다.</p>
+
+    <p><strong>공동 플래너와 이벤트 카운트다운을 공유할 수 있나요?</strong><br/>
+    네 — Left의 공동 앞으로(Left Premium)가 같은 카운트다운을 두 폰에 둡니다. 공유 프로젝트 도구의 가벼운 버전입니다.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

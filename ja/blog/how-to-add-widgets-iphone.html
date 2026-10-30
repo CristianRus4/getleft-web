@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhoneにウィジェットを追加 | Left</title>
+  <meta name="description" content="iPhoneにウィジェットを追加する手順です。ホーム画面、ロック画面、スタンバイのそれぞれを、Leftのウィジェットを例に順を追って説明します。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/how-to-add-widgets-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhoneにウィジェットを追加（ホームとロック画面）"  />
+  <meta property="og:description" content="iPhoneにウィジェットを追加する手順です。ホーム画面、ロック画面、スタンバイのそれぞれを、Leftのウィジェットを例に順を追って説明します。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/how-to-add-widgets-iphone" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhoneにウィジェットを追加（ホームとロック画面）"  />
+  <meta name="twitter:description" content="iPhoneにウィジェットを追加する手順です。ホーム画面、ロック画面、スタンバイのそれぞれを、Leftのウィジェットを例に順を追って説明します。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/how-to-add-widgets-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+  "description": "Step-by-step guide to adding widgets on iPhone: Home Screen, Lock Screen and StandBy, using Left as the example.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-12",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-add-widgets-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Add Widgets on iPhone: Home Screen, Lock Screen and StandBy",
+      "item": "https://getleft.app/blog/how-to-add-widgets-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Why can't I find an app in the iPhone widget gallery?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The app usually needs to be opened once before its widgets appear. If it still isn't listed, restart your iPhone and update iOS and the app. Some apps also don't offer widgets at all."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can any widget go on the Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The Lock Screen only takes inline, circular and rectangular widgets, and each app decides which of its widgets come in those shapes. Larger widgets, like Left's Everything or Time Ahead list, are Home Screen only."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are my Lock Screen widgets not in color?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS draws Lock Screen widgets in a single tint that matches the clock, so they stay readable over any wallpaper. The app's full colors show on the Home Screen, unless you pick the Tinted look, and in StandBy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often do iPhone widgets update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS controls the refresh schedule to save battery, so widgets update regularly but not always instantly. Opening the app usually triggers a refresh. Time-based widgets, like a year progress widget, roll over on their own."
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>iPhoneにウィジェットを追加：ホーム画面、ロック画面、スタンバイ</h1>
+<p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・6分</p>
+<p>iPhoneのウィジェットを置ける場所は3つです。ホーム画面、ロック画面、スタンバイ。iOS 26でのそれぞれの手順を、Leftを例に示します。</p>
+
+<figure class="post-hero"><img src="/images/blog/how-to-add-widgets-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/hammer-and-framed-prints-on-floor-wk6ufnhdvD4" rel="noopener">Barney Goodman / Unsplash</a></figcaption></figure>
+
+<h2>始める前に</h2>
+<p>欲しいウィジェットのアプリをインストールし、少なくとも一度開きます。Leftを含む多くのアプリは、初回起動のあとでなければウィジェット一覧に出ません。LeftにはiOS 26以降が必要です。</p>
+
+<h2>ホーム画面にウィジェットを追加する</h2>
+<ol>
+  <li>アプリが揺れ始めるまで、ホーム画面の何もない場所をタッチしたままにします。</li>
+  <li>左上の「編集」をタップし、次に「ウィジェットを追加」をタップします。</li>
+  <li>アプリ（たとえばLeft）を検索するか、スクロールして見つけ、タップします。</li>
+  <li>ウィジェットとサイズをスワイプして見ます。ホーム画面のウィジェットには、小さい、中くらい、大があります。</li>
+  <li>「ウィジェットを追加」をタップし、置きたい場所へドラッグして、「完了」をタップします。</li>
+</ol>
+<p>詳しくは<a href="/ja/support/widget-iphone-home-screen">ホーム画面にLeftのウィジェットを追加する方法</a>を見てください。</p>
+
+<h3>ウィジェットの表示内容を選ぶ</h3>
+<p>ほとんどのウィジェットは設定できます。ウィジェットをタッチしたままにして「ウィジェットを編集」をタップします。Leftでは、ここでこれからウィジェットに出すカウントダウン、習慣ウィジェットが追う習慣、年ウィジェットを日・週・月のどれで数えるかを選びます。</p>
+
+<h3>サイズを変える</h3>
+<p>揺れモードでは、多くのウィジェットの隅に小さいハンドルが出て、ドラッグするとサイズを切り替えられます。見えない場合は、ウィジェットを外し、欲しいサイズで入れ直します。</p>
+<p>小さいには数字1つ、中くらいには数字と文脈、大にはグリッド全体が入ります。Leftでは、小さい<strong>これから</strong>ウィジェットがカウントダウン1つ、中くらいの<strong>すべて</strong>ウィジェットが日・週・月・年をまとめて、大の年ウィジェットが365日すべてを示します。</p>
+
+<h3>ウィジェットを重ねて場所を空ける</h3>
+<p>同じサイズのウィジェットの上に別のウィジェットをドラッグしてスタックを作り、スタックを上下にスワイプして切り替えます。スタックをタッチしたままにして「スタックを編集」をタップすると、並べ替えや「スマートローテート」のオンができます。スマートローテートは、iOSが最も関連があると判断したウィジェットを前面に出します。</p>
+
+<h3>ウィジェットをクリアまたは色調にする</h3>
+<p>揺れているホーム画面で「編集」、次に「カスタマイズ」をタップすると、アイコンとウィジェット全体の見た目を「クリア」や「色調」などに切り替えられます。Leftのウィジェットもその選択に従います。<a href="/ja/support/widget-transparent-iphone">Leftのウィジェットを透明にする方法</a>を見てください。</p>
+
+<h2>ロック画面にウィジェットを追加する</h2>
+<ol>
+  <li>下に「カスタマイズ」が出るまで、ロック画面をタッチしたままにします。先にFace IDでロック解除が必要なことがあります。</li>
+  <li>「カスタマイズ」をタップし、ロック画面を選びます。</li>
+  <li>円形と長方形を追加するには時刻の下のウィジェット領域をタップし、インラインを選ぶには時刻の上の日付をタップします。</li>
+  <li>アプリ（たとえばLeft）を選び、欲しいウィジェットをタップします。</li>
+  <li>ウィジェットのパネルを閉じ、「完了」をタップします。</li>
+</ol>
+<p>ロック画面の形は3つです。</p>
+<ul>
+  <li><strong>インライン</strong>：時刻の上、日付の横に並ぶ1行の文字。</li>
+  <li><strong>円形</strong>：小さい丸いウィジェット。時刻の下の列には4つまで入ります。</li>
+  <li><strong>長方形</strong>：円形2つ分の幅がある、より広いウィジェット。</li>
+</ul>
+<p>ロック画面のウィジェットは、アプリ本来の色を使いません。iOSが時計に合わせた単一の色調で描くので、デザインは形とコントラストに頼ります。詳しくは<a href="/ja/support/widget-iphone-lock-screen">ロック画面のガイド</a>を見てください。</p>
+
+<h3>各枠に入るLeftのウィジェット</h3>
+<ul>
+  <li><strong>インライン</strong>：年、月、週、日、分、人生、あなた、デジタル時計、アナログ時計。</li>
+  <li><strong>円形</strong>：年、月、週、日、人生、あなた、これから、習慣リスト、時計。</li>
+  <li><strong>長方形</strong>：年、月、週、日、人生、あなた、これから、習慣、習慣リスト、ストリーク、目標、時計。</li>
+  <li><strong>ホーム画面のみ</strong>：「すべて」「これからの時間リスト」「ストリーク一覧」「目標リスト」「カレンダー」「特記事項」「これからのバー」「これからの円」など。</li>
+</ul>
+<p>実用的なロック画面。年ウィジェットをインラインに、次の旅行のこれからウィジェットを円形に、守っているランニングのストリークウィジェットを長方形に。見た目は<a href="/ja/countdown-widget">カウントダウンウィジェット</a>、<a href="/ja/year-progress-widget">年間進捗ウィジェット</a>、<a href="/ja/habit-tracker">習慣トラッカー</a>にあります。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">Leftのウィジェットを入手</a></p>
+
+<h3>ウィジェットとライブアクティビティは別です</h3>
+<p>ライブアクティビティもロック画面とDynamic Islandに出ますが、「カスタマイズ」では追加しません。今起きていることに対して、アプリが開始します。Leftでは、<strong>ファイナルカウントダウンを取得する</strong>をオンにするとカウントダウンが出て、習慣は<strong>持続的なリマインダーを取得する</strong>で出せます。</p>
+<h2>スタンバイでウィジェットを使う</h2>
+<p>スタンバイは、充電中でロックされ、横向きのとき、iPhoneを全画面の表示にします。</p>
+<ol>
+  <li>「設定」&gt;「スタンバイ」でスタンバイがオンになっていることを確認します。</li>
+  <li>iPhoneを横向きで充電器に置き、ロックさせます。</li>
+  <li>ウィジェットが2つのスタックで並ぶ表示まで、横にスワイプします。</li>
+  <li>スタックをタッチしたままにし、求められたらロックを解除し、+ をタップしてウィジェットを追加します。Leftを検索し、欲しいものを追加します。</li>
+</ol>
+<p>どちらのスタックでも上下にスワイプすると、そのウィジェットを順に見られます。暗い部屋では、スタンバイがナイトモードに切り替わり、画面が赤く色づきます。<a href="/ja/support/widget-iphone-standby">スタンバイのLeftウィジェット</a>を見てください。</p>
+
+<h2>ウィジェットを編集または削除する</h2>
+<ul>
+  <li><strong>ホーム画面</strong>：ウィジェットをタッチしたままにし、「ウィジェットを編集」で変更するか、「ウィジェットを削除」で画面から外して、確認します。</li>
+  <li><strong>ロック画面</strong>：タッチしたままにし、「カスタマイズ」をタップし、ロック画面を選び、ウィジェット領域をタップして、外したいウィジェットのマイナスボタンをタップします。</li>
+
+</ul>
+<p>ウィジェットを外しても、アプリ内のデータは消えません。詳しくは<a href="/ja/support/edit-or-remove-widget-iphone">ウィジェットの編集と削除</a>を見てください。</p>
+
+<h2>トラブルシューティング</h2>
+<ul>
+  <li><strong>アプリがウィジェット一覧にない。</strong>アプリを一度開いてから、もう一度確認します。まだない場合は、iPhoneを再起動し、iOSとアプリを更新してください。</li>
+  <li><strong>ウィジェットが古い情報を出している。</strong>iOSは、電池の節約もあり、ウィジェットの更新タイミングを決めるので、更新はいつも即座ではありません。アプリを開くと、たいてい更新されます。止まったように見える場合は、外してから入れ直してください。</li>
+  <li><strong>ウィジェットが空、または違う項目を出している。</strong>タッチしたままにし、「ウィジェットを編集」をタップして、項目を選び直します。表示していたカウントダウンを削除した場合などです。</li>
+
+</ul>
+
+<h2>質問</h2>
+<h3>iPhoneのウィジェット一覧にアプリが出ないのはなぜですか？</h3>
+<p>ウィジェットが出る前に、アプリを一度開く必要があることが多いです。それでも一覧にない場合は、iPhoneを再起動し、iOSとアプリを更新してください。ウィジェット自体を出していないアプリもあります。</p>
+<h3>どのウィジェットでもロック画面に置けますか？</h3>
+<p>いいえ。ロック画面に置けるのは、インライン、円形、長方形のウィジェットだけで、どのウィジェットをその形で出すかは各アプリが決めます。Leftの「すべて」や「これからの時間リスト」のような大きいウィジェットは、ホーム画面だけです。</p>
+<h3>ロック画面のウィジェットに色が付かないのはなぜですか？</h3>
+<p>iOSはロック画面のウィジェットを、時計に合わせた単一の色調で描くので、どの壁紙の上でも読めます。アプリ本来の色は、色調を選ばない限りホーム画面に出て、スタンバイにも出ます。</p>
+<h3>iPhoneのウィジェットは、どのくらいの頻度で更新されますか？</h3>
+<p>iOSは電池を節約するため更新のタイミングを制御するので、ウィジェットは定期的に更新されますが、いつも即座ではありません。アプリを開くと、たいてい更新されます。年の進捗ウィジェットのように時刻に基づくものは、それ自体で切り替わります。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="LeftをApp Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

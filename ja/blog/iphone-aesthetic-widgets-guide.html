@@ -1,0 +1,524 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>見た目のiPhoneウィジェット（2026） | Left</title>
+  <meta name="description" content="機能するウィジェットで、見た目の良いiPhoneのホーム画面とロック画面を作る方法です。テーマ、文字、色、そして飾りだけのウィジェットの罠をまとめます。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/iphone-aesthetic-widgets-guide" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="見た目のiPhoneウィジェット（2026）"  />
+  <meta property="og:description" content="機能するウィジェットで、見た目の良いiPhoneをデザインする方法です。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/iphone-aesthetic-widgets-guide" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/iphone-aesthetic-widgets-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/iphone-aesthetic-widgets-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+  "description": "How to design an aesthetic iPhone Home and Lock Screen with functional widgets - themes, typography, color, and the trap of widgets-as-decoration.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-05-18",
+  "dateModified": "2026-10-20",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/iphone-aesthetic-widgets-guide",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone Aesthetic Widgets: A 2026 How-To Guide",
+      "item": "https://getleft.app/blog/iphone-aesthetic-widgets-guide"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+    <h1>見た目のiPhoneウィジェット（2026）</h1>
+    <p class="article-meta">更新：<time datetime="2026-10-20">2026年10月20日</time>・5分</p>
+
+    <p>見た目のホーム画面は、iOS 14のウィジェット公開がもたらした、予期しない贈り物の1つでした。公開から1週間で、iPhoneのカスタマイズは「格子のアイコン」から創作の実践になりました。欠点は、SNSの見た目のホーム画面の半分が、スクリーンショットでは見事で、実生活では無用なことです。開きたいものが何も開かないアイコンの壁、良く見えて偽のデータを出すウィジェット。</p>
+
+    <p>このガイドは、実際に機能する、見た目の良いiPhoneの設定のデザインです。気分から始め、正しい道具を選び、何かをするウィジェットを作り、2週目に美しいホーム画面を失望させる罠を避けます。構成要素の1つに<strong>Left</strong>のウィジェットを使います。ほとんどの見た目に合うほど調整でき、それでも本物のデータ（カウントダウン、年の進捗、習慣のストリーク）を出します。</p>
+
+    <figure class="post-hero"><img src="/images/blog/iphone-aesthetic-widgets-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/paint-color-swatches-are-displayed-on-a-shelf-XsJQc5r33Ik" rel="noopener">Declan Sun / Unsplash</a></figcaption></figure>
+
+    <h2>アプリではなく、気分から始める</h2>
+    <p>失敗：Widgetsmithを開いて、ウィジェットを孤立して選ぶ。結果はコラージュです。直し：先に気分を決めます。</p>
+    <ul>
+      <li><strong>配色を選ぶ</strong>（3〜5色）。壁紙はこの配色から取り、ウィジェットは壁紙から取ります。</li>
+      <li><strong>文字の感じを選ぶ</strong>。セリフ、サンセリフ、等幅。書体ファミリーは2つより多く混ぜないでください。</li>
+      <li><strong>雰囲気を選ぶ</strong>。ミニマル、レトロ、コテージコア、ブルータリスト、アニメ。雰囲気が選択を絞り、まとまりを容易にします。</li>
+    </ul>
+
+    <h2>見た目で大事なウィジェットアプリ</h2>
+    <ul>
+      <li>文字のウィジェット（時計、日付、天気）には<strong>Widgetsmith</strong>。</li>
+      <li>ピクセル単位のカスタムウィジェットには<strong>Widgy</strong>。</li>
+      <li>アイコンを含むテーマ一式には<strong>ScreenKit</strong>。</li>
+      <li>既製の見た目タイルを速く得るには<strong>Color Widgets</strong>。</li>
+      <li>配色に色を合わせた、機能するウィジェットには<strong>Left</strong>。カウントダウン、年の進捗、習慣のストリーク。</li>
+      <li>選んだ画像でアプリを開くショートカット経由のカスタムアイコンには、<strong>ショートカットアプリ</strong>。</li>
+    </ul>
+    <p>これら全部は要りません。文字のウィジェットアプリ1つ、Left、カスタムのショートカットアイコンで、ほとんど届きます。</p>
+
+    <h2>最初の見た目のホーム画面を作る</h2>
+    <ol>
+      <li><strong>壁紙を選ぶ。</strong>他はすべてそこから流れます。無地、柔らかいグラデーション、静かな写真の方が、忙しい模様より働きます。</li>
+      <li><strong>配色を決める。</strong>参照用に、メモアプリへ色を3〜5色。</li>
+      <li><strong>選んだウィジェットアプリで、ウィジェットを2〜3個デザインする。</strong>時刻や日付のウィジェット1つ、機能のウィジェット1つ（カウントダウン、習慣）、飾りのウィジェット1つ（写真、引用）。</li>
+      <li><strong>アプリアイコン5〜10個をショートカットに置き換える。</strong>すべてのアイコンを作り直そうとせず、いちばん使うものを選びます。</li>
+      <li><strong>1週間試す。</strong>見た目のホーム画面は1日目は見事で、4日目までに使い勝手の問題が出ます。調整します。</li>
+    </ol>
+
+    <h2>配置の原則</h2>
+    <ul>
+      <li><strong>焦点のウィジェット1つ。</strong>ページを支える大きいウィジェット。他はすべてそれを支えます。</li>
+      <li><strong>非対称のバランス。</strong>対称は退屈です。意図した非対称がリズムを作ります。</li>
+      <li><strong>余白。</strong>空の行や列が、目を休ませます。端から端までアイコンを詰めると、忙しく見えます。</li>
+      <li><strong>1ページ、1つの役割。</strong>「朝」のページには日付、天気、今日の習慣。「集中」のページには次の締め切りへのカウントダウン。写真ウィジェットの見た目のページは別に。</li>
+    </ul>
+
+    <h2>見た目のロック画面</h2>
+    <p>iOS 16以降のロック画面のカスタマイズで、見た目の選択肢は大きく広がりました。一貫して良く見える型は3つです。</p>
+    <ul>
+      <li>被写体の後ろに時刻を入れた<strong>被写界深度の写真</strong>。</li>
+      <li>デザインされたフォントの<strong>文字の時計と、無地の背景</strong>（Appleの時計のフォント選択で設定）。</li>
+      <li>日付かカウントダウンを出す小さいウィジェット1つと、<strong>天文や天気の壁紙</strong>。</li>
+    </ul>
+    <p>集中モードと重ね、時間によって違う見た目を有効にします。営業時間はミニマルや仕事、夜はより装飾的に。</p>
+
+    <h2>飾りとしてのウィジェットの罠</h2>
+    <p>見た目のホーム画面でいちばん大きい失敗は、きれいに見えるだけで、実際に使うデータを出さないウィジェットです。一度も確認しない「天気」、別のアプリがすでに歩数を追っているときの「歩数計」、読むのをやめた「今日の一言」。</p>
+    <p>経験則：すべてのウィジェットは「今週これを見て、それに基づいて動いたか」の試験を通るべきです。動いた覚えがないなら、動くものに置き換えてください。</p>
+
+    <h2>機能する、見た目のウィジェットの選択</h2>
+    <ul>
+      <li>配色の色にした<strong>Leftのカウントダウンウィジェット</strong>。美しく、何かが大事な時期を知らせます。</li>
+      <li>小さい幾何学的なタイルとしての<strong>Leftの<a href="/ja/year-progress-widget">年間進捗ウィジェット</a></strong>。「残り63%」のタイルは、見た目がきれいで、意味もあります。</li>
+      <li>次の予定を出す<strong>Widgetsmithのカレンダー</strong>。文字としても美しいカレンダーウィジェットです。</li>
+      <li>カスタムアイコンの<strong>ショートカットの起動タイル</strong>。実際に使うアプリを開き、意図的に見えます。</li>
+    </ul>
+
+    <p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">年の進捗ウィジェットを入手</a></p>
+
+    <h2>Leftのウィジェットにテーマを当てる</h2>
+    <p>Leftのウィジェットのスタイルは、調整できるように設計されています。ウィジェットの設定を開くと、次を選べます。</p>
+    <ul>
+      <li>色（配色に合わせる）。</li>
+      <li>背景（端末、ライト、ダーク、黒、または1色）。</li>
+      <li>記号。点や四角から、星、葉、炎、ハートまで。</li>
+      <li>文章：残り時間、残りのパーセンテージ、または非表示。</li>
+    </ul>
+    <p>これが、見た目の設定でLeftが働く理由です。データは本物（旅行までのカウントダウン）で、デザインは自分のものです。ほとんどが日付、時計、天気のWidgetsmithと比べると、Leftは「これから来ること」と「自分がしていること」のウィジェットを、同じ視覚言語で扱います。</p>
+
+    <h2>見た目が邪魔になるとき</h2>
+    <p>見た目のホーム画面は、実際に使われることに曲がる必要があります。よくある衝突は3つです。</p>
+    <ul>
+      <li><strong>カスタムのショートカットアイコンは、起動に遅れを足す。</strong>1タップでショートカットが開き、それから本物のアプリが開きます。1日に何十回も開くアプリでは、この遅れが積み上がります。</li>
+      <li><strong>きれいなフォントは、一目で読みにくいことがある。</strong>目を細める必要があるなら、機能は失われています。</li>
+      <li><strong>設定に1時間かかるテーマは、退屈から毎月作り直されます。</strong>テーマの設定は30分未満に保つと、四半期の更新が重荷になりません。</li>
+    </ul>
+
+    <h2>季節が変わるとき</h2>
+    <p>見た目は年に2〜4回更新します。全部を作り直さず、配色を10〜20%調整し、壁紙を入れ替え、ウィジェットの色調を変えます。見た目の変化が注意を引き戻し、構造の骨格（どのウィジェットがどこで何をするか）は残ります。</p>
+
+    <h2>関連記事</h2>
+    <p>ウィジェット全体は<a href="/ja/blog/best-home-screen-widgets-iphone">ホーム画面ウィジェット10選</a>。無料のウィジェットアプリは<a href="/ja/blog/best-free-widget-apps-iphone">無料ウィジェットアプリ</a>。デザインは<a href="/ja/blog/countdown-clock-graphic-guide">カウントダウン時計の図解</a>。Leftの壁紙は<a href="/ja/blog/left-wallpaper-guide">Left壁紙のガイド</a>と<a href="/ja/days-left-wallpaper">残り日数の壁紙</a>。</p>
+
+    <h2>よくある質問</h2>
+    <p><strong>1ページにウィジェットは何個？</strong><br/>
+    ほとんどの見た目では2〜4個が働きます。5個で忙しく、1個では空に見えます。</p>
+
+    <p><strong>カスタムのショートカットアイコンは電池を消耗しますか？</strong><br/>
+    測定できる消耗はありません。唯一の短所は、小さい起動の遅れです。</p>
+
+    <p><strong>見た目にはどのサイズのウィジェット？</strong><br/>
+    サイズを混ぜます。焦点の大きいウィジェット1つと小さいウィジェット2つの方が、中くらい4つより読めます。</p>
+
+    <p><strong>ウィジェットが「違う」内容に更新されないようにするには？</strong><br/>
+    ウィジェットを長押しし、「ウィジェットを編集」をタップして、出したい特定のカウントダウンや習慣を選びます。</p>
+
+    <p><strong>Leftは見た目の設定をどう支えますか？</strong><br/>
+    ウィジェットごとに、色、背景、記号、文章を調整できます。ウィジェットは配色に合い、それでも本物の時間のデータを出します。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
