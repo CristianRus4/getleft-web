@@ -1,6 +1,6 @@
 # Focus: what the shipped app does (read from source 2026-10-21, for CNTXT-886)
 
-Source: the Left app repo, `/Users/cristian/Developer/Apps/Left-app` (read-only), at commit `1ff4340` (HEAD on 2026-10-21; Focus rework `fc46f54`, 2026-10-19).
+Source: the Left app repo, `/Users/cristian/Developer/Apps/AppStore/Left-app` (read-only), at commit `1ff4340` (HEAD on 2026-10-21; Focus rework `fc46f54`, 2026-10-19).
 All paths below are relative to that repo. Focus is in the code for v2026.11; `project.pbxproj` still says `MARKETING_VERSION = 2026.10`, so the release build has not been cut yet.
 
 Rules for the site: describe Focus as shipped only from release day (see `docs/seo/focus-release-checklist.md`). Never mention Apple Watch (Left's watch app is unannounced, and the app has a Focus Watch page that must not be referenced). Never promise a price.

@@ -1,6 +1,6 @@
 # What the website may and may not claim (verified 2026-10-19)
 
-Source: the Left app repo (`/Users/cristian/Developer/Apps/Left-app`, read-only), `ProductionFeatureGate.swift`,
+Source: the Left app repo (`/Users/cristian/Developer/Apps/AppStore/Left-app`, read-only), `ProductionFeatureGate.swift`,
 `OwnPaywallSupport.swift`, `FreeItemQuotaManager.swift`, `LeftWidgetsBundle.swift`, `project.pbxproj`.
 
 ## Shipped and safe to describe

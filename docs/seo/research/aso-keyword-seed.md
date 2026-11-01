@@ -10,7 +10,7 @@
   - App info records: `5a33639d…` is live (49 locales) and `4b88918a…` is pending (50 locales).
   - **Keyword fields differ a lot between live and pending.** Do not treat the live set as final.
 - **Web repo has no ASO keyword history.** `git log --all -- docs/aso` returns nothing, and `docs/aso` never existed in `/Users/cristian/Developer/Webs/getleft-web`. Commit 458c5d23 only moved `docs/nexus/{PROJECT,TRANSLATIONS,WEBSITE}.md` to `docs/`, replaced `docs/nexus/translation.config.json` with `docs/translation.config.json`, and deleted the nexus sync workflows and `sync.mjs`.
-- **The real ASO record is in the app repo**, under `/Users/cristian/Developer/Apps/Left-app/docs/aso/`: `config.json`, `plan.json`, `product-context.md`, `research/*`, `events/*`, `listing-checks/*`, `observations/*`. I read `product-context.md`, `plan.md` and `research/2026-10-15-keyword-overhaul/cntxt800-corrected-evaluation.md`.
+- **The real ASO record is in the app repo**, under `/Users/cristian/Developer/Apps/AppStore/Left-app/docs/aso/`: `config.json`, `plan.json`, `product-context.md`, `research/*`, `events/*`, `listing-checks/*`, `observations/*`. I read `product-context.md`, `plan.md` and `research/2026-10-15-keyword-overhaul/cntxt800-corrected-evaluation.md`.
   - Not opened: `research/2026-10-08-nine-locale-additions/{keyword-proposal,intent-searches,candidate-decisions}.json`, `research/2026-10-14-english-localizations/README.md`, and `docs/nexus/aso` in the app repo (UNVERIFIED contents).
 - **Elevate tracked keywords** (`elevate aso keywords list --app left`):
   - 2,978 rows over 43 storefronts. Every row has role=`watch`; none is `protected`, `target` or `guardrail`.
@@ -313,4 +313,4 @@ Topics: countdown/days until, widget, habit tracker, streak, goal/aim, time left
 - **Highest-value terms by popularity for the site:** countdown / countdown widget / habit tracker / planner / widget in English storefronts; 디데이, 倒数日/倒數日, 記念日/カウントダウン in East Asia; calendrier/calendario/kalender-type generic terms are popular but marked generic, so low fit.
 - **Left does not rank well for most core terms.** Few core countdown or habit-tracker keywords have a rank under 100.
 
-Key file paths: `/Users/cristian/Developer/Apps/Left-app/docs/aso/` (`config.json`, `product-context.md`, `plan.md`, `research/2026-10-15-keyword-overhaul/cntxt800-corrected-evaluation.md`), `/Users/cristian/Developer/Apps/Left-app/docs/translation.config.json`, `/Users/cristian/Developer/Webs/getleft-web/docs/translation.config.json`.
+Key file paths: `/Users/cristian/Developer/Apps/AppStore/Left-app/docs/aso/` (`config.json`, `product-context.md`, `plan.md`, `research/2026-10-15-keyword-overhaul/cntxt800-corrected-evaluation.md`), `/Users/cristian/Developer/Apps/AppStore/Left-app/docs/translation.config.json`, `/Users/cristian/Developer/Webs/getleft-web/docs/translation.config.json`.
