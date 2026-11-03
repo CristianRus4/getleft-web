@@ -18,6 +18,14 @@ Source: the Left app repo (`/Users/cristian/Developer/Apps/AppStore/Left-app`, r
   dates (Joint Ahead, Shared Since), custom lifespan, alternative icons, games.
 - Planner can connect Todoist.
 - Requires iOS 26 (iPhone).
+- Apple Watch app (owner confirmed 2026-11-03; superseded the 2026-10-19 "not ready" note). watchOS 26. Source:
+  `LeftWatch/Views/WatchScreens.swift`, `LeftWatch/App/ContentView.swift`, `Complications/`.
+  - Screens: Time Left (year, month, week with week number, day), Ahead countdowns, Habits (log from the watch),
+    Streaks, Aims, Planner (Premium), Fasting, Focus.
+  - Complications in circular, rectangular, inline and corner sizes: Year, Life, Month, Week, Day, Ahead, Habit,
+    Streak, Aim, Habits Today, Fasting, Planner List and Planner Timeline (rectangular). Year, Life, Ahead,
+    Habit, Streak and Aim are configurable.
+  - Don't claim which watch features are free (pricing is under an A/B test).
 - Languages: the app ships 41 locales.
 
 ## Never claim
@@ -25,15 +33,14 @@ Source: the Left app repo (`/Users/cristian/Developer/Apps/AppStore/Left-app`, r
 - Mood, mood logging, World Mood globe (hidden in production).
 - Time Between (hidden in production).
 - A Control Center control (not registered).
-- An iPad app or a Mac app (the app is iPhone-only; iPad and Mac support articles cover widgets only).
+- An iPad app or a Mac app (iPad and Mac support articles cover widgets only).
 - Prices, trial lengths or discounts (remote config; the safe line is "Prices are shown in the app before you buy").
 - "Free forever", or that Planner, fasting, friends, Health tracking or games are free.
 - Unlimited free countdowns, habits, streaks or Aims.
 - Any user count, download count or revenue figure that is not already on the site (existing stats stay untouched).
 - New testimonials or reviews of any kind.
 - Android availability (Left is iPhone-only; there is a web version at /web).
-- An Apple Watch app or complications. The owner confirmed on 2026-10-19 that the watch app is not ready;
-  claims return when it ships. Mentioning that other apps have watch apps is fine.
+
 
 ## Focus
 
