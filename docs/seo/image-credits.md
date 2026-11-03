@@ -95,5 +95,5 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | blog/best-time-awareness-apps-iphone | Irvin Aloise | https://unsplash.com/photos/a-sundial-casting-a-shadow-on-a-textured-surface-qgrcu8CHEEs |
 | blog/time-left-app-alternatives | Christian Joudrey | https://unsplash.com/photos/row-of-bean-sprout-aO_jMXTduUE |
 | pomodoro-timer-iphone | taichi nakamura | https://unsplash.com/photos/white-and-black-analog-desk-clock-yXugmH3na-Q |
-| blog/pretty-progress-alternatives | William Warby | https://unsplash.com/photos/gray-and-yellow-measures-WahfNoqbYnM |
-| blog/pretty-progress-vs-left | Brett Jordan | https://unsplash.com/photos/blue-and-yellow-measuring-tape-faOPbPmznfQ |
+| blog/pretty-progress-alternatives | Aron Visuals | https://unsplash.com/photos/selective-focus-photo-of-brown-and-blue-hourglass-on-stones-BXOXnQ26B7o |
+| blog/pretty-progress-vs-left | BoliviaInteligente | https://unsplash.com/photos/uxtRLYUanLw |
