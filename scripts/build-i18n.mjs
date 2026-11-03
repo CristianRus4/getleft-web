@@ -541,7 +541,8 @@ function transform(html, pagePath, locale, data, enData, ctx) {
   html = generateJsonLd(html, data, locale, pagePath);
   if (annotateModule?.translateJsonLd) {
     html = html.replace(
-      /(<script\b[^>]*type="application\/ld\+json"[^>]*\sdata-i18n-ld="([^"]+)"[^>]*>)([\s\S]*?)(<\/script>)/g,
+      // The annotator writes data-i18n-ld before type, so match the two attributes in either order.
+      /(<script\b(?=[^>]*\stype="application\/ld\+json")(?=[^>]*\sdata-i18n-ld="([^"]+)")[^>]*>)([\s\S]*?)(<\/script>)/g,
       (full, open, prefix, body, close) => {
         const out = annotateModule.translateJsonLd(body, suffix => {
           const v = lookupRaw(data, `${prefix}.${suffix}`);
@@ -621,8 +622,10 @@ function rewriteRelativeAssetPaths(html) {
   const attrs = ['href', 'src', 'content', 'data-final-src', 'data-action-image', 'data-action-image-dark', 'data-feature-image', 'data-feature-image-dark'];
   return html.replace(new RegExp(`\\b(${attrs.join('|')})="([^"#?:][^"]*)"`, 'g'), (full, attr, value) => {
     if (value.startsWith('/')) return full;
-    if (!assetPrefixes.some(prefix => value === prefix || value.startsWith(prefix))) return full;
-    return `${attr}="/${value}"`;
+    // "../favicon/…" from a page one folder deep would resolve inside the locale folder, so anchor it at the root.
+    const bare = value.replace(/^(?:\.\.\/)+/, '');
+    if (!assetPrefixes.some(prefix => bare === prefix || bare.startsWith(prefix))) return full;
+    return `${attr}="/${bare}"`;
   });
 }
 
@@ -697,28 +700,34 @@ function jsonLdGenerator(kind, data, locale, pagePath) {
   if (kind === 'app') {
     const meta = (data.index && data.index.meta) || {};
     const appId = `${origin}${langPrefix}/#app`;
+    const publisher = { '@type': 'Organization', name: 'Cntxt Labs', legalName: 'Cntxt Limited', url: 'https://cntxtlabs.co' };
     return {
       '@context': 'https://schema.org',
       '@graph': [
         {
           '@type': 'WebSite',
           name: 'Left',
+          alternateName: ['Left app', 'Left Time'],
           url: `${origin}${langPrefix}/`,
           inLanguage,
+          publisher,
           about: { '@id': appId },
         },
         {
           '@type': 'MobileApplication',
           '@id': appId,
           name: 'Left',
+          alternateName: ['Left app', 'Left: Widgets for Time Left'],
+          url: `${origin}${langPrefix}/`,
           description: meta.description || '',
           applicationCategory: 'ProductivityApplication',
           operatingSystem: 'iOS 26.0 or later',
           downloadUrl: 'https://apps.apple.com/app/id6740155884',
-          image: `${origin}/images/hero.webp`,
-          screenshot: `${origin}/images/left-feature.webp`,
-          author: { '@type': 'Person', name: 'Cristian Rus' },
-          publisher: { '@type': 'Organization', name: 'Cntxt Labs' },
+          sameAs: ['https://apps.apple.com/us/app/left-widgets-for-time-left/id6740155884'],
+          image: `${origin}/left-icon/android-chrome-512x512.png`,
+          screenshot: `${origin}/images/left-hero-light.webp`,
+          author: { '@type': 'Person', name: 'Cristian Rus', sameAs: ['https://x.com/CristianRus4'] },
+          publisher,
           inLanguage,
           offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
         },
