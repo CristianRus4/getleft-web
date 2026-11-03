@@ -97,3 +97,5 @@ App icons on the best-of and alternatives pages are the official App Store icons
 | pomodoro-timer-iphone | taichi nakamura | https://unsplash.com/photos/white-and-black-analog-desk-clock-yXugmH3na-Q |
 | blog/pretty-progress-alternatives | Aron Visuals | https://unsplash.com/photos/selective-focus-photo-of-brown-and-blue-hourglass-on-stones-BXOXnQ26B7o |
 | blog/pretty-progress-vs-left | BoliviaInteligente | https://unsplash.com/photos/uxtRLYUanLw |
+| blog/countdown-screensaver-iphone | Ales Krivec | https://unsplash.com/photos/turned-on-gray-alarm-clock-displaying-1011-ZMZHcvIVgbg |
+| blog/weeks-and-days-iphone-screen | Swello | https://unsplash.com/photos/a-calendar-and-vase-sit-on-a-wooden-desk-rjEyCqESNTk |
