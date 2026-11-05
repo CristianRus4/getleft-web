@@ -78,7 +78,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-03 | `blog/pretty-progress-vs-left.html` | English page | live |
 | 2026-11-04 | `blog/countdown-screensaver-iphone.html` | English page | live |
 | 2026-11-05 | `blog/weeks-and-days-iphone-screen.html` | English page | live |
-| 2026-11-06 | `blog/widgy-alternatives.html` | English page | scheduled |
+| 2026-11-06 | `blog/widgy-alternatives.html` | English page | live |
 | 2026-11-07 | `blog/best-relationship-counter-apps-iphone.html` | English page | scheduled |
 | 2026-11-08 | `blog/best-exam-countdown-apps-iphone.html` | English page | scheduled |
 | 2026-11-09 | `blog/best-day-counter-apps-iphone.html` | English page | scheduled |
