@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Build Accountability for Goals and Habits (2026) | Left</title>
+  <meta name="description" content="How to build accountability for goals and habits: the four ingredients, how to choose and brief an accountability partner, a script and a weekly check-in." />
+  <link rel="canonical" href="https://getleft.app/blog/how-to-build-accountability" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-build-accountability" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-build-accountability" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Build Accountability for Goals and Habits (2026)" />
+  <meta property="og:description" content="How to build accountability for goals and habits: the four ingredients, how to choose and brief an accountability partner, a script and a weekly check-in." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/how-to-build-accountability" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Build Accountability for Goals and Habits (2026)" />
+  <meta name="twitter:description" content="How to build accountability for goals and habits: the four ingredients, how to choose and brief an accountability partner, a script and a weekly check-in." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Build Accountability: A Simple System That Works Without Nagging",
+  "description": "How to build accountability for goals and habits: the four ingredients, how to choose and brief an accountability partner, a script and a weekly check-in.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-build-accountability",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Build Accountability: A Simple System That Works Without Nagging",
+      "item": "https://getleft.app/blog/how-to-build-accountability"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you hold yourself accountable without a partner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Make the commitment specific, keep a record you see every day (a widget or a paper tracker on the wall), and book a 10-minute weekly review with yourself. A short written note keeps the review honest, even if nobody reads it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does an accountability partner do?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They see your progress, check in on a schedule, and ask a helpful question when you slip. They don't need to coach you. Their main job is to be someone you know is looking."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should you check in with an accountability partner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Once a week works for most goals. Daily contact tends to burn out, while monthly is too slow to catch a slip. If your partner can see your progress any time, a weekly conversation is enough."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What should you do when you miss a commitment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Name the next step rather than the reason, for example \"Missed Thursday, running tomorrow at 7.\" If you miss a whole week, make the commitment smaller instead of dropping it, and talk about it at your next check-in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can an app replace an accountability partner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "An app can handle the record and the reminders, which is most of the daily work. A person adds the part that matters most for many people: knowing someone else will see it. Some apps, including Left with Left Premium, combine both by letting a friend watch a shared habit or streak."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Build Accountability: A Simple System That Works Without Nagging</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 8 min read</p>
+<p>If you want to know how to build accountability for a goal or habit, start by dropping the idea that some people simply "are" accountable. Accountability is a setup, not a trait. People who seem to follow through on everything usually have four things in place: a specific promise, a record of whether they kept it, someone who sees that record, and a regular moment to look at it together.</p>
+<p>Below: how to build each piece, how to pick and brief an accountability partner, and how to keep it light enough that nobody feels nagged. It works for work projects, training, study, writing, or any habit you keep restarting.</p>
+<figure class="post-hero"><img src="/images/blog/way-of-life-alternatives-hero.webp" alt="A hand-drawn goal tracker on dotted white paper with a row of weekly cells shaded in green or red, and pens lying across the page." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18" rel="noopener">Photo: Isaac Smith on Unsplash</a></figcaption></figure>
+
+<h2>Accountability is a system, not willpower</h2>
+<p>Willpower runs out on bad days, which are exactly the days that decide whether a habit survives. A system keeps working on those days because it depends on what's visible and expected, not on how you feel. Think of a team standup: nobody there has superhuman discipline, they just know someone will ask "What did you do yesterday?" You can build the same thing for your own goals.</p>
+
+<h2>How to build accountability: the four ingredients</h2>
+<p>Every accountability setup that lasts has these four parts. If yours keeps falling apart, one of them is usually missing.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Ingredient</th><th>Weak version</th><th>Strong version</th></tr></thead>
+  <tbody>
+    <tr><td><strong>A specific commitment</strong></td><td>"Exercise more"</td><td>"Run 3 times a week, at least 20 minutes, through March"</td></tr>
+    <tr><td><strong>A visible record</strong></td><td>Memory, or a note you never reopen</td><td>A streak, checklist or progress bar you see every day</td></tr>
+    <tr><td><strong>Someone who sees it</strong></td><td>"I told my friend once"</td><td>A named person who can see the record without asking</td></tr>
+    <tr><td><strong>A regular check-in</strong></td><td>"We'll catch up sometime"</td><td>Sunday, 10 minutes, same questions every week</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The commitment has to be checkable: if a friend can't tell from the record whether you did it, it isn't specific enough. A <a href="/blog/smart-goals-guide">SMART goal</a> gets you there with a number, a frequency and an end date. The record keeps check-ins honest, so a week takes five seconds to review instead of turning into "I think I did okay?" The witness raises the stakes just enough, and the check-in is where you adjust, in week two rather than month three.</p>
+
+<h2>Self-accountability, a partner, or a group?</h2>
+<p>All three work. They suit different goals and different people.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Type</th><th>Best for</th><th>Watch out for</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Self-accountability</strong></td><td>Private goals, small habits, people who like data</td><td>Easy to quietly lower the bar when nobody's looking</td></tr>
+    <tr><td><strong>One partner</strong></td><td>Most personal goals: fitness, study, a side project</td><td>Depends on one person staying engaged</td></tr>
+    <tr><td><strong>A small group (3 to 6)</strong></td><td>Shared goals: a running club, a writing group, a team push</td><td>Easy to hide in; needs one person to run the check-in</td></tr>
+  </tbody>
+</table>
+</div>
+<p>A good default: try self-accountability (commitment plus record) for two weeks. If you're slipping, add a partner. Groups make most sense when everyone shares the same kind of goal.</p>
+<p>If what you need is company while you work, not someone checking afterwards, try <a href="/blog/adhd-body-doubling-apps">body doubling</a> instead. It helps many people start tasks, with or without ADHD.</p>
+
+<h2>How to choose and brief an accountability partner</h2>
+<h3>Who makes a good partner</h3>
+<ul>
+  <li><strong>Reliable, not intense.</strong> Someone who will look every week, not lecture you.</li>
+  <li><strong>Caring a little, not a lot.</strong> A spouse or parent whose mood depends on your progress can make misses feel heavy. A friend or colleague is often easier.</li>
+  <li><strong>Ideally with a goal of their own.</strong> Mutual accountability lasts longer because you each have a reason to show up.</li>
+</ul>
+<h3>What to tell them</h3>
+<p>Brief your partner once, so they never have to guess:</p>
+<ol>
+  <li><strong>The commitment,</strong> in one sentence with a number and an end date.</li>
+  <li><strong>Where they can see your progress,</strong> so they don't have to ask.</li>
+  <li><strong>When you'll check in,</strong> for example Sunday evening by message.</li>
+  <li><strong>What to do on a miss.</strong> This is the part most people skip, and it decides whether the setup survives.</li>
+</ol>
+<h3>What to do on a miss</h3>
+<p>Agree on this before it happens. A useful rule: <strong>one miss, no comment; two in a row, one question.</strong> Make it "What got in the way?", not "Why didn't you do it?" The first invites a fix, the second excuses.</p>
+<p>When you miss, share the next step, not the reason: "Missed Thursday, running tomorrow at 7." Miss a whole week and you shrink the commitment instead of quitting. Our guide on <a href="/blog/stay-consistent-with-goals">staying consistent with goals</a> covers that reset.</p>
+
+<h2>A script for asking someone to be your accountability partner</h2>
+<p>Asking feels awkward mostly because it's vague. A specific, small request is easy to say yes to:</p>
+<blockquote>
+<p>"Hey, I'm trying to run three times a week until the end of March. Would you be up for being my accountability partner? It's small: you'd be able to see my progress, and on Sundays I'll send you a two-line update. If I miss twice in a row, just ask me what got in the way. No pressure if you're busy. And if you've got something you're working on, I'm happy to do the same for you."</p>
+</blockquote>
+<p>It names the goal, the end date, the effort and the miss rule, offers something back, and makes no easy to say, which makes yes more likely.</p>
+
+<h2>A weekly check-in template</h2>
+<p>Same five questions every week, about 10 minutes or one message each:</p>
+<ol>
+  <li><strong>Score:</strong> how many times did I do it, out of how many planned? (for example 2 of 3)</li>
+  <li><strong>Win:</strong> what went well, even if small?</li>
+  <li><strong>Blocker:</strong> what got in the way, in one line?</li>
+  <li><strong>Change:</strong> one adjustment for next week (time, place, size of the task)</li>
+  <li><strong>Commitment:</strong> what exactly will I do next week?</li>
+</ol>
+<p>Every four weeks, add one more: is the goal still right? Changing a target openly is a decision. Changing it quietly is how accountability dies.</p>
+
+<h2>Light accountability: visibility beats daily texts</h2>
+<p>Daily check-in messages feel great in week one and like homework by week three. The fix is passive visibility: your partner can see your record any time, and you only talk once a week. The record does the daily work and the check-in handles the thinking. A partner who sees a completed day doesn't need to reply, and a quick "nice, 10 days" does more than a reminder ever will.</p>
+<p>For habits you track daily, a streak works well as the shared record. Our guide on <a href="/blog/how-to-build-a-streak">how to build a streak</a> covers sizing a habit so the streak is realistic.</p>
+
+<h2>Setting it up on iPhone with Left</h2>
+<p><strong>Left</strong> is an iPhone app (with an Apple Watch app) that covers the record and the witness parts of the system:</p>
+<ul>
+  <li><strong>The visible record.</strong> In Since, add your commitment as a habit (things you do on a schedule, like running three times a week), a streak (days since you started or stopped something), or an Aim (a countable goal, like 100 km run or a number to bring down). Put it on your Home Screen or Lock Screen as a widget, so the record is in front of you without opening the app.</li>
+  <li><strong>Someone who sees it.</strong> With Left Premium, add a friend and share a specific habit or streak with them. Once they accept, they become a watcher: they see whether you completed or missed the habit, or whether the streak is still going, and can send support or congratulations. They only see the items you share. Here's <a href="/support/add-friends">how to add friends</a> and <a href="/support/accountability-with-friends">how accountability with friends works</a>.</li>
+  <li><strong>A shared deadline.</strong> Joint Ahead dates, also part of Left Premium, let you count down to the same date with a friend, such as race day or a project deadline.</li>
+</ul>
+<p>Notifications for completions and misses are optional for both of you, so your friend sees your progress without you having to report it.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Share a habit in Left</a></p>
+<p>Left is free to download. The free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims, counted over every item you've ever created, so deleting one doesn't free a slot. Left Premium, a subscription or lifetime purchase, unlocks unlimited items. Prices are shown in the app before you buy.</p>
+
+<h2>Why accountability setups fail, and the fix</h2>
+<ul>
+  <li><strong>The goal is too big.</strong> "Write a book" can't be checked weekly. Fix: commit to the action, such as 300 words on 4 days a week.</li>
+  <li><strong>No record.</strong> Check-ins become guesswork. Fix: one place where the score lives, visible to both of you.</li>
+  <li><strong>Too much contact.</strong> Daily messages burn out both sides. Fix: passive visibility plus one weekly check-in.</li>
+  <li><strong>No miss rule.</strong> The first bad week turns awkward, and both of you avoid the topic. Fix: agree on the miss rule up front.</li>
+  <li><strong>The wrong partner.</strong> Too harsh or too busy. Fix: thank them and switch. It's a setup, not a friendship test.</li>
+  <li><strong>No end date.</strong> Open-ended commitments fade. Fix: run it for 4 to 8 weeks, then review and renew.</li>
+</ul>
+
+<h2>Questions</h2>
+<h3>How do you hold yourself accountable without a partner?</h3>
+<p>Make the commitment specific, keep a record you see every day (a widget or a paper tracker on the wall), and book a 10-minute weekly review with yourself. A short written note keeps the review honest, even if nobody reads it.</p>
+<h3>What does an accountability partner do?</h3>
+<p>They see your progress, check in on a schedule, and ask a helpful question when you slip. They don't need to coach you. Their main job is to be someone you know is looking.</p>
+<h3>How often should you check in with an accountability partner?</h3>
+<p>Once a week works for most goals. Daily contact tends to burn out, while monthly is too slow to catch a slip. If your partner can see your progress any time, a weekly conversation is enough.</p>
+<h3>What should you do when you miss a commitment?</h3>
+<p>Name the next step rather than the reason, for example "Missed Thursday, running tomorrow at 7." If you miss a whole week, make the commitment smaller instead of dropping it, and talk about it at your next check-in.</p>
+<h3>Can an app replace an accountability partner?</h3>
+<p>An app can handle the record and the reminders, which is most of the daily work. A person adds the part that matters most for many people: knowing someone else will see it. Some apps, including <a href="/support/accountability-with-friends">Left with Left Premium</a>, combine both by letting a friend watch a shared habit or streak.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
