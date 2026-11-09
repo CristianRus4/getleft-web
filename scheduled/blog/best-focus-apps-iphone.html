@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Best Focus Apps for iPhone (2026): Timers, Blockers and More | Left</title>
+  <meta name="description" content="The best focus apps for iPhone, sorted by the job they do: focus timers, app blockers, visual timers and Apple&#x27;s Focus modes. Pick by why you lose focus." />
+  <link rel="canonical" href="https://getleft.app/blog/best-focus-apps-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/best-focus-apps-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/best-focus-apps-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Best Focus Apps for iPhone (2026): Timers, Blockers and More" />
+  <meta property="og:description" content="The best focus apps for iPhone, sorted by the job they do: focus timers, app blockers, visual timers and Apple&#x27;s Focus modes. Pick by why you lose focus." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/best-focus-apps-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/workplace-productivity-habits-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Focus Apps for iPhone (2026): Timers, Blockers and More" />
+  <meta name="twitter:description" content="The best focus apps for iPhone, sorted by the job they do: focus timers, app blockers, visual timers and Apple&#x27;s Focus modes. Pick by why you lose focus." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/workplace-productivity-habits-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Best Focus Apps for iPhone (2026): Timers, Blockers and More",
+  "description": "The best focus apps for iPhone, sorted by the job they do: focus timers, app blockers, visual timers and Apple's Focus modes. Pick by why you lose focus.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/best-focus-apps-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Best Focus Apps for iPhone (2026): Timers, Blockers and More",
+      "item": "https://getleft.app/blog/best-focus-apps-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best focus app for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It depends on why you lose focus. If you struggle to start or keep track of time, a focus timer such as Left, Session or Focus Keeper helps. If your phone is the distraction, an app blocker such as Opal or one sec, or Apple's free Screen Time, works better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a focus timer app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A focus timer runs blocks of work and breaks, usually in the Pomodoro pattern of 25 minutes of focus and a 5-minute break, with a longer break after four sessions. Most let you change the lengths and keep a history of your sessions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left's Focus the same as iPhone Focus modes?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Apple's Focus modes silence notifications and change your Home Screen and Lock Screen. Left's Focus is a work and break timer, part of Left Premium. You can use both at once."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Left block apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Left's Focus timer doesn't block or limit other apps. If you need that, pair it with Screen Time, a Focus mode or an app blocker such as Opal or one sec."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I put a focus timer on my Lock Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left's Focus timer shows a Live Activity on the Lock Screen and in the Dynamic Island while a session runs, and its widget comes in Lock Screen sizes with Start and Pause buttons on the rectangular one."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there free focus apps for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Apple's Focus modes, Screen Time and the Clock app's timer are free and already on your iPhone. Many focus apps are free to download with in-app purchases. Left is free to download, and its Focus timer is part of Left Premium."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Best Focus Apps for iPhone (2026): Timers, Blockers and More</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 11 min read</p>
+<p>"Focus app" covers very different tools. A focus timer gives your work a start and an end. An app blocker keeps you out of the apps that eat your afternoon. A visual timer shows time draining away so you can feel it. And Apple's own Focus modes and Screen Time quietly do part of the job for free. The right one depends less on the app and more on where your focus breaks.</p>
+<p>Below, the best focus apps for iPhone are sorted by job, so you can pick by the reason you lose focus.</p>
+<p><strong>Disclosure:</strong> we make Left, so we have put it first. Here is what it does well, what it doesn't do, and when another app suits you better.</p>
+
+<figure class="post-hero"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/desk-with-globe-lamp-and-supplies-by-window-bZqWrQCXr2Q" rel="noopener">Trương Tuyết Ly / Unsplash</a></figcaption></figure>
+
+<h2>First, find where your focus breaks</h2>
+<p>Think about your last lost hour and match it to one of these:</p>
+<ul>
+  <li><strong>You can't start.</strong> The task feels too big, so you tidy, scroll or make coffee instead. You need a small, fixed block with a clear end: a <strong>focus timer</strong>.</li>
+  <li><strong>You start, then drift.</strong> Twenty minutes in, you're somewhere else, and you don't notice how long you've been gone. You need time you can see: a <strong>visual timer</strong>, or a focus timer that stays on your Lock Screen.</li>
+  <li><strong>Your phone pulls you away.</strong> You pick it up to check one thing and lose half an hour. A timer won't fix that. You need friction: an <strong>app blocker</strong>, Screen Time limits or a Focus mode.</li>
+  <li><strong>Notifications break in.</strong> Messages and alerts interrupt you even when you don't touch the phone. Apple's <strong>Focus modes</strong> handle this, for free.</li>
+</ul>
+<p>Plenty of people have two of these. That's fine: the best setup is often one timer plus one guard, as the worked setups further down show.</p>
+
+<h2>The four kinds of focus app</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Kind</th><th>What it does</th><th>Helps when</th><th>Examples</th></tr></thead>
+  <tbody>
+    <tr><td>Focus timer</td><td>Runs work and break blocks, often Pomodoro-style</td><td>You can't start, or you work too long without a break</td><td>Left, Session, Flow, Be Focused, Focus Keeper</td></tr>
+    <tr><td>App blocker</td><td>Locks or slows down chosen apps for a set time</td><td>Your phone is the distraction</td><td>Opal, one sec, Forest</td></tr>
+    <tr><td>Visual timer</td><td>Shows time left as a shape that shrinks</td><td>You lose track of time</td><td>Time Timer, Left's Squares and Clock styles</td></tr>
+    <tr><td>Built into iOS</td><td>Silences notifications, filters Home Screens, limits apps</td><td>Alerts interrupt you, or you want a free start</td><td>Focus modes, Screen Time</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/left.webp" alt="Left app icon" width="48" height="48" loading="lazy" decoding="async" /><span>1. Left: a focus timer you can see from the Lock Screen</span></h2>
+<p>Left is a time awareness app for iPhone, and its <strong>Focus</strong> timer is part of Left Premium. It runs the familiar Pomodoro rhythm: 25 minutes of focus, a 5-minute short break, and a 20-minute long break after four sessions. Each length can be anything from 1 to 60 minutes.</p>
+<ul>
+  <li><strong>Four timer styles:</strong> Digital (large numbers), Clock (a dial with a wedge of time left), Squares (one square per minute that drains as you go) and Pulse (a soft glow in the color of the phase). Squares and Clock work as a visual timer for people who don't feel numbers.</li>
+  <li><strong>A day strip:</strong> a row of small pills under the timer shows today's focus and break sessions, so you can see how your day is actually going.</li>
+  <li><strong>Off the app, on your screens:</strong> a Live Activity keeps the countdown on the Lock Screen and in the Dynamic Island. The Focus widget comes for the Home Screen and the Lock Screen, and has Start and Pause or Resume buttons, so you can begin a session without opening Left.</li>
+  <li><strong>Flexible endings:</strong> a notification marks the end of each phase. Extend a phase by 5, 10, 15 or 20 minutes, turn on <strong>Continue automatically</strong> to roll into the next phase, or <strong>Keep going when time ends</strong> to count overtime when you're in the middle of something good.</li>
+  <li><strong>My focus:</strong> a history with a summary of the last 7 days, a 14-day chart and a six-week trend.</li>
+  <li><strong>The rest of the day, too:</strong> Left's Time Left views show how much of today, the week and the year remains, with free widgets. Seeing how much of today is left is often what gets a session started.</li>
+</ul>
+<p><strong>What it doesn't do:</strong> Left doesn't block apps, and Focus has no sounds and no task list. If your phone is the thing pulling you away, pair it with Screen Time, a Focus mode or one of the blockers below.</p>
+<p><strong>Best for:</strong> people who need a clear start and a visible end, and want the timer on the Lock Screen rather than buried in an app.</p>
+<p><strong>Price:</strong> Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy. Focus is part of Left Premium.</p>
+<p><strong>Pros:</strong> four ways to see the time; widget with Start and Pause buttons; Live Activity; a clear history; countdowns, habits and time left in the same app.</p>
+<p><strong>Cons:</strong> no app blocking or focus sounds; Focus needs Left Premium; needs an iPhone with iOS 26 or later.</p>
+<p>The full walkthrough is in <a href="/support/focus-timer-in-left">how to use the Focus timer in Left</a>, and the <a href="/pomodoro-timer-iphone">Pomodoro timer page</a> shows it on screen.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get the focus timer</a></p>
+
+<h2>2. Session: a timer with an intention</h2>
+<p>Session is a Pomodoro-style focus timer that asks you to say what you're about to work on before you start, then keeps a log of your sessions.</p>
+<p><strong>Best for:</strong> people who drift because they never decided what the session was for.</p>
+
+<h2>3. Flow, Be Focused and Focus Keeper: simple Pomodoro timers</h2>
+<p>These are the classic, no-fuss Pomodoro timers that have been on the App Store for years. You set the work and break lengths, tap start and get a count of finished sessions. Flow leans minimal; Be Focused and Focus Keeper stick close to the original technique.</p>
+<p><strong>Best for:</strong> people who want a plain timer and nothing else.</p>
+<p><strong>Worth knowing:</strong> if you want the timer on your Lock Screen or a history, check each listing for widgets and stats.</p>
+
+<h2>4. Forest: a reason to leave the phone alone</h2>
+<p>Forest turns focus into a game. You plant a virtual tree when you start, it grows while you stay off your phone, and it withers if you leave to use another app. Over time your sessions add up to a forest.</p>
+<p><strong>Best for:</strong> people who respond to a small visual reward and a little guilt, and students who want to keep their phone face down while they study.</p>
+<p><strong>Worth knowing:</strong> it works on motivation, not on a hard lock, so it's easy to give up a tree when the pull is strong.</p>
+
+<h2>5. Opal: an app blocker for the phone itself</h2>
+<p>Opal is a screen time app that blocks the apps you choose during focus sessions or on a schedule, using Apple's Screen Time controls, and shows reports of how you use your phone.</p>
+<p><strong>Best for:</strong> people whose main problem is opening social media or games without meaning to.</p>
+<p><strong>Worth knowing:</strong> check what the free version covers before you commit, and consider trying Apple's free Screen Time limits first to see whether blocking helps you at all.</p>
+
+<h2>6. one sec: a pause before the scroll</h2>
+<p>one sec adds a short delay when you open an app you've marked as distracting. You take a breath, then it asks whether you still want to go in. Often you don't.</p>
+<p><strong>Best for:</strong> people who check apps on autopilot and want a speed bump rather than a wall.</p>
+<p><strong>Worth knowing:</strong> setup uses Shortcuts or Screen Time, which takes a few minutes the first time.</p>
+
+<h2>7. Visual timers such as Time Timer</h2>
+<p>Visual timers show time as a colored disk or bar that shrinks as the minutes pass. Time Timer, the classic red disk used in many classrooms, has an iPhone app, and there are many apps in the same style.</p>
+<p><strong>Best for:</strong> anyone who loses track of time, children, and people with ADHD who find "12 minutes left" means less than a shrinking shape.</p>
+<p><strong>Worth knowing:</strong> a visual timer counts one block; it doesn't run a work and break cycle or keep a history. Left's Squares and Clock styles do both.</p>
+
+<h2>8. Apple's Focus modes (built in)</h2>
+<p>Focus modes, in Settings on every iPhone, silence notifications from the people and apps you choose. Each one (Work, Personal, Sleep or your own) can show its own Home Screen pages and Lock Screen, and can turn on by schedule, place or when you open an app.</p>
+<p>Don't confuse them with Left's Focus timer: a Focus mode decides <em>what can reach you</em>; a focus timer decides <em>how long you work</em>. They work well together. Our guide to <a href="/support/focus-modes-with-left">showing different Left widgets per Focus mode</a> covers the setup.</p>
+<p><strong>Best for:</strong> notifications that break in, and anyone who wants a free starting point.</p>
+
+<h2>9. Screen Time (built in)</h2>
+<p>Screen Time sets daily limits for apps and categories and a Downtime schedule when only the apps you allow can open. It's free and already on your phone.</p>
+<p><strong>Best for:</strong> a light, free app blocker.</p>
+<p><strong>Worth knowing:</strong> limits are easy to wave away with a tap. Asking someone else to set a Screen Time passcode makes them stick.</p>
+
+<h2>Three focus setups that work together</h2>
+<p>Each of these pairs a timer with a guard and takes about five minutes to set up.</p>
+<h3>If you can't start</h3>
+<ul>
+  <li>Shorten the first session. In Left, set Focus to 10 minutes; starting is the hard part, and you can extend once you're moving.</li>
+  <li>Put the Focus widget on your first Home Screen page, so starting is one tap on the Start button.</li>
+  <li>Name the very first action ("open the doc and write the heading"). Our guide to <a href="/blog/adhd-task-initiation-strategies">task initiation</a> has more ways in, and they help with or without ADHD.</li>
+</ul>
+<h3>If you start, then drift</h3>
+<ul>
+  <li>Switch the timer to Squares or Clock, so the time left is a shape you notice from across the desk.</li>
+  <li>Leave the phone face up with the Live Activity on the Lock Screen. A glance tells you where you are without unlocking.</li>
+  <li>Check My focus at the end of the week. If most sessions end early, make them shorter rather than forcing longer ones.</li>
+</ul>
+<h3>If your phone pulls you away</h3>
+<ul>
+  <li>Create a Work Focus mode that silences everything except the people who really need you.</li>
+  <li>Give it its own Home Screen page with only the Focus widget, your calendar and work apps.</li>
+  <li>Add a blocker for the one or two apps that win every time: Screen Time limits, one sec or Opal.</li>
+</ul>
+<p>For a broader look at work and break rhythms, see <a href="/blog/timer-interval-app-iphone">interval timer apps for focus and habits</a>.</p>
+
+<h2>Focus apps and ADHD</h2>
+<p>Many people with ADHD find a visible timer and an outside structure helpful, because they make time and starting points concrete. But these apps are tools, not treatment. If focus problems are getting in the way of work, study or daily life, a clinician can help you look at the full picture. Our guide on <a href="/blog/how-to-focus-adhd">how to focus with ADHD</a> covers practical steps beyond apps.</p>
+
+<h2>How we chose</h2>
+<ul>
+  <li><strong>By job, not by hype:</strong> we grouped focus apps by what they actually do, so you can compare timers with timers and blockers with blockers.</li>
+  <li><strong>Well known and current:</strong> we picked apps that are widely used and still maintained, plus Apple's free built-in tools.</li>
+  <li><strong>Kept general:</strong> features and prices change, so we describe what each app is for. Check the App Store page before you pay. No paid placements.</li>
+</ul>
+
+<h2>Which one should you pick?</h2>
+<ul>
+  <li>You can't start, and want the timer on your Lock Screen with a history: <strong>Left</strong>.</li>
+  <li>You want to name each session's goal: <strong>Session</strong>.</li>
+  <li>You want a plain Pomodoro timer: <strong>Flow</strong>, <strong>Be Focused</strong> or <strong>Focus Keeper</strong>.</li>
+  <li>A little game keeps you off your phone: <strong>Forest</strong>.</li>
+  <li>You need apps locked during work: <strong>Opal</strong>, or <strong>Screen Time</strong> for free.</li>
+  <li>You want a pause, not a wall: <strong>one sec</strong>.</li>
+  <li>You lose track of time: a <strong>visual timer</strong>, or Left's Squares style.</li>
+  <li>Notifications break in: <strong>Apple's Focus modes</strong>.</li>
+</ul>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best focus app for iPhone?</h3>
+<p>It depends on why you lose focus. If you struggle to start or keep track of time, a focus timer such as Left, Session or Focus Keeper helps. If your phone is the distraction, an app blocker such as Opal or one sec, or Apple's free Screen Time, works better.</p>
+<h3>What is a focus timer app?</h3>
+<p>A focus timer runs blocks of work and breaks, usually in the Pomodoro pattern of 25 minutes of focus and a 5-minute break, with a longer break after four sessions. Most let you change the lengths and keep a history of your sessions.</p>
+<h3>Is Left's Focus the same as iPhone Focus modes?</h3>
+<p>No. Apple's Focus modes silence notifications and change your Home Screen and Lock Screen. Left's Focus is a work and break timer, part of Left Premium. You can use both at once.</p>
+<h3>Does Left block apps?</h3>
+<p>No. Left's Focus timer doesn't block or limit other apps. If you need that, pair it with Screen Time, a Focus mode or an app blocker such as Opal or one sec.</p>
+<h3>Can I put a focus timer on my Lock Screen?</h3>
+<p>Yes. Left's Focus timer shows a Live Activity on the Lock Screen and in the Dynamic Island while a session runs, and its widget comes in Lock Screen sizes with Start and Pause buttons on the rectangular one.</p>
+<h3>Are there free focus apps for iPhone?</h3>
+<p>Apple's Focus modes, Screen Time and the Clock app's timer are free and already on your iPhone. Many focus apps are free to download with in-app purchases. Left is free to download, and its Focus timer is part of Left Premium.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
