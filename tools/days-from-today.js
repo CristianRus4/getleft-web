@@ -91,7 +91,7 @@
     const today = today0();
     offsets.innerHTML = offsets.dataset.ns.split(',').map(Number).map(n => {
       const d = addToDate(today, { days: n });
-      const href = offsets.dataset.pages.split(',').includes(String(n)) ? '/tools/' + n + '-days-from-today' : '';
+      const href = offsets.dataset.pages.split(',').includes(String(n)) ? location.pathname.replace(/[^/]*$/, '') + n + '-days-from-today' : '';
       const num = href ? '<a href="' + href + '">' + fmtNum(n) + '</a>' : fmtNum(n);
       return '<tr><td>' + num + '</td><td>' + toolEscape(formatDateLong(d)) + '</td><td>' + fmtNum(weekdaysBetween(today, d)) + '</td></tr>';
     }).join('');
