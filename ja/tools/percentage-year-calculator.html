@@ -253,9 +253,13 @@
 
   <main class="container tool-page">
     <h1>年間パーセント計算ツール</h1>
-    <p class="tool-lede">今年がちょうどどれだけ過ぎ、どれだけ先にあるかを、パーセントで表示します。1秒ごとに更新されます。</p>
+    <p class="tool-lede">今年がちょうどどれだけ過ぎて、どれだけ先に残っているかを、パーセンテージで表示します。1秒ごとに更新され、どの年でも使えます。</p>
 
     <div class="tool-widget">
+      <div class="tool-inline-fields" style="margin-bottom:18px;">
+        <label class="tool-inline-label" for="pct-year">年</label>
+        <select id="pct-year" style="flex:0 1 180px;"></select>
+      </div>
       <div id="pct-label"></div>
       <div class="tool-stat-row" style="margin-bottom:20px;">
         <div class="tool-stat">
@@ -287,6 +291,25 @@
           <div id="pct-date-result" class="tool-output-chip">-</div>
         </div>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="year" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>2026</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ja&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>年をロック画面に</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>共有</button>
+            <a class="tool-card__more" href="/ja/tools/">すべてのツール</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -297,6 +320,32 @@
       <h2>逆引き</h2>
       <p>上の欄に割合を入力すると、その割合に当たる日付がわかります。たとえば50％は1年の真ん中です。365日の通常の年では7月2日の正午、366日のうるう年では7月2日のちょうど始まりにあたります。</p>
 
+      <h2>1年の節目が来る時期</h2>
+      <p>この表は、1月1日の午前0時から数えた、現地の時計時間で年の各割合に到達する瞬間を示しています。通常の年は8,760時間なので、1%ごとに87.6時間、つまり3日半強です。うるう年は1%ごとに87.84時間なので、日付は通常の年より最大1日ずれます。</p>
+      <!-- tools:milestones:start -->
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>年の進み具合</th><th>2026</th><th>2027</th></tr></thead>
+          <tbody>
+          <tr><td>10%</td><td>2月6日（金）12:00</td><td>2月6日（土）12:00</td></tr>
+          <tr><td>20%</td><td>3月15日（日）00:00</td><td>3月15日（月）00:00</td></tr>
+          <tr><td>25%</td><td>4月2日（木）06:00</td><td>4月2日（金）06:00</td></tr>
+          <tr><td>30%</td><td>4月20日（月）12:00</td><td>4月20日（火）12:00</td></tr>
+          <tr><td>33.3%</td><td>5月2日（土）16:00</td><td>5月2日（日）16:00</td></tr>
+          <tr><td>40%</td><td>5月27日（水）00:00</td><td>5月27日（木）00:00</td></tr>
+          <tr><td>50%</td><td>7月2日（木）12:00</td><td>7月2日（金）12:00</td></tr>
+          <tr><td>60%</td><td>8月8日（土）00:00</td><td>8月8日（日）00:00</td></tr>
+          <tr><td>66.7%</td><td>9月1日（火）08:00</td><td>9月1日（水）08:00</td></tr>
+          <tr><td>70%</td><td>9月13日（日）12:00</td><td>9月13日（月）12:00</td></tr>
+          <tr><td>75%</td><td>10月1日（木）18:00</td><td>10月1日（金）18:00</td></tr>
+          <tr><td>80%</td><td>10月20日（火）00:00</td><td>10月20日（水）00:00</td></tr>
+          <tr><td>90%</td><td>11月25日（水）12:00</td><td>11月25日（木）12:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- tools:milestones:end -->
+      <p>4月上旬に年の4分の1、5月上旬に3分の1が過ぎ、9月の初めには3分の2に達します。年間の目標を立てている人にとって、ちょうどよい見直しの時期です。上で別の年を選ぶと、計算ツールでその年の数字を確認できます。</p>
+
       <h2>iPhoneで見る年間の進み具合</h2>
       <p>Leftの無料の<a href="/ja/year-progress-widget">年ウィジェット</a>なら、これをホーム画面やロック画面に置いておけます。1年を記号のグリッドで表し、過ぎた日は薄く表示されます。さらに残り時間か残りの割合のどちらかも表示できます。ロック画面の円形タイプでは、中央に数字が出ます。Leftは日単位で数えるため、上の秒単位の数値とは割合がわずかに異なる場合があります。</p>
       <p>今年がもうほとんど過ぎていることを、ロック画面でそっと確認できます。残りの時間を大切にしようと思えるはずです。</p>
@@ -306,16 +355,100 @@
       <ul>
         <li><strong>パーセント</strong>：抽象的で、比較しやすい（「今年の60％が過ぎたのに、目標は40％しか進んでいない」）。</li>
         <li><strong><a href="/ja/tools/time-left-in-year-calculator">残り時間</a></strong>：具体的で、先を見据えている（「87日と4時間」）。</li>
-        <li><strong><a href="/tools/time-passed-in-year-calculator">経過時間</a></strong>：過去を振り返る（「1月1日から278日」）。</li>
+        <li><strong><a href="/ja/tools/time-passed-in-year-calculator">経過時間</a></strong>：過去を振り返る（「1月1日から278日」）。</li>
       </ul>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-ja&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          今年をロック画面に表示する
-        </a>
-      </p>
+
+      <h2>年をロック画面に</h2>
+      <ol>
+        <li>iPhoneにLeftをインストールして<strong>残り時間</strong>を開くと、年はすでにグリッドとして表示されています。</li>
+        <li>ロック画面を長押しして<strong>カスタマイズ</strong>をタップし、<strong>ロック画面</strong>を選んで、ウィジェット欄をタップします。</li>
+        <li>Leftの<strong>年</strong>ウィジェットを追加し、パーセンテージと残り日数のどちらを表示するかを選びます。</li>
+      </ol>
+
+      <h2>よくある質問</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>1年のうち何パーセントが過ぎましたか？</summary>
+          <div class="faq-answer"><p>このページ上部のライブの数字が、あなたのタイムゾーンで秒単位まで答えます。大まかには、1日は通常の年の0.27%、1週間は約1.9%です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>年の50%は何月何日ですか？</summary>
+          <div class="faq-answer"><p>365日の通常の年では、ちょうど半分の時点は7月2日の正午です。うるう年では、7月2日の始まりの真夜中です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>うるう年だとパーセンテージは変わりますか？</summary>
+          <div class="faq-answer"><p>はい、わずかに変わります。うるう年は366日なので、1日の占める割合が小さくなります。3月1日以降は、同じ暦の日付が年の中で1日先に位置するため、パーセンテージは少し高くなり、最大で約4分の1ポイントの差になります。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Leftのウィジェットがこのページと少し違うのはなぜですか？</summary>
+          <div class="faq-answer"><p>Leftの年ウィジェットは丸1日単位で数えるので、1日に1回動きます。この計算ツールは秒単位で数えるので、常に動きます。両者の差は1日分以内、約0.27%です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>過去や未来の年も見られますか？</summary>
+          <div class="faq-answer"><p>はい。選択欄で年を選んでください。終わった年は100%、まだ始まっていない年は0%と表示され、日付の検索は選んだどの年でも使えます。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "1年のうち何パーセントが過ぎましたか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "このページ上部のライブの数字が、あなたのタイムゾーンで秒単位まで答えます。大まかには、1日は通常の年の0.27%、1週間は約1.9%です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "年の50%は何月何日ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365日の通常の年では、ちょうど半分の時点は7月2日の正午です。うるう年では、7月2日の始まりの真夜中です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "うるう年だとパーセンテージは変わりますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、わずかに変わります。うるう年は366日なので、1日の占める割合が小さくなります。3月1日以降は、同じ暦の日付が年の中で1日先に位置するため、パーセンテージは少し高くなり、最大で約4分の1ポイントの差になります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Leftのウィジェットがこのページと少し違うのはなぜですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Leftの年ウィジェットは丸1日単位で数えるので、1日に1回動きます。この計算ツールは秒単位で数えるので、常に動きます。両者の差は1日分以内、約0.27%です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "過去や未来の年も見られますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。選択欄で年を選んでください。終わった年は100%、まだ始まっていない年は0%と表示され、日付の検索は選んだどの年でも使えます。"
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>続きを読む</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ja/blog/best-year-progress-apps-iphone">iPhoneのおすすめ年間進捗アプリ</a>
+        <a class="tool-related-item" href="/ja/support/widget-iphone-lock-screen">Leftのウィジェットをロック画面に追加</a>
+        <a class="tool-related-item" href="/ja/year-progress-widget">iPhone用の年間進捗ウィジェット</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>関連ツール</h2>
       <div class="tool-related-items">
@@ -329,8 +462,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Leftをダウンロード</span>
-        <h2>大切なことに、気づきはじめよう。</h2>
-        <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        <h2>年をロック画面で見よう。</h2>
+        <p>Leftは、年、月、週、日を自動で埋まるグリッドとして描き、ホーム画面、ロック画面、Apple Watchのウィジェットで表示します。</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -460,7 +593,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{weeks}週{days}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"完了した日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{weeks}週{days}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"完了した日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"},"card":{"android":"Androidをお使いですか？ 選択肢を見る","copied":"リンクをコピーしました","daysLeft":{"one":"残り{count}日","other":"残り{count}日"},"handoff":"リンクをiPhoneに送る","handoffTitle":"iPhone用のLeft","hoursLeft":{"one":"今日はあと{count}時間","other":"今日はあと{count}時間"},"shareText":"{title}：{result}","weeksLeft":{"one":"残り{count}週間","other":"残り{count}週間"},"yearsLeft":{"one":"残り{count}年","other":"残り{count}年"}},"life":{"mark":"印を付けた週：{age}歳、{week}週目"},"preg":{"daysToGo":"出産までの日数","dueDate":"出産予定日（推定）：{date}","dueDateTitle":"出産予定日","weeksPregnant":"妊娠週数","weeksToGo":"出産までの週数"}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const pctPast = document.getElementById('pct-past');
@@ -468,35 +601,51 @@
     const daysLeft = document.getElementById('pct-days-left');
     const daysPast = document.getElementById('pct-days-past');
     const label = document.getElementById('pct-label');
+    const yearEl = document.getElementById('pct-year');
     const pctInput = document.getElementById('pct-input');
     const pctDateResult = document.getElementById('pct-date-result');
+    // Four decimals fit a desktop tile; two fit a phone.
+    const narrow = window.matchMedia('(max-width: 520px)');
+
+    const thisYear = new Date().getFullYear();
+    for (let y = thisYear - 25; y <= thisYear + 25; y++) {
+      const o = document.createElement('option');
+      o.value = String(y);
+      o.textContent = String(y);
+      if (y === thisYear) o.selected = true;
+      yearEl.appendChild(o);
+    }
+    const year = () => parseInt(yearEl.value, 10) || thisYear;
 
     function render() {
       const now = new Date();
-      const yr = now.getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1, 0, 0, 0, 0);
       const end   = new Date(yr + 1, 0, 1, 0, 0, 0, 0);
       const total = end - start;
-      const elapsed = now - start;
+      const elapsed = Math.min(total, Math.max(0, now - start));
       const pctDone = (elapsed / total) * 100;
       const pctRem  = 100 - pctDone;
+      const decimals = narrow.matches ? 2 : 4;
       label.textContent = toolT('result.yearDays', { year: yr, days: daysInYear(yr) });
-      pctPast.textContent = pctDone.toFixed(4) + '%';
-      pctLeft.textContent = pctRem.toFixed(4) + '%';
-      daysLeft.textContent = fmtNum(Math.ceil((end - now) / MS_DAY));
+      pctPast.textContent = pctDone.toFixed(decimals) + '%';
+      pctLeft.textContent = pctRem.toFixed(decimals) + '%';
+      daysLeft.textContent = fmtNum(Math.ceil((total - elapsed) / MS_DAY));
       daysPast.textContent = fmtNum(Math.floor(elapsed / MS_DAY));
     }
 
-    pctInput.addEventListener('input', () => {
+    function lookup() {
       const val = parseFloat(pctInput.value);
       if (isNaN(val) || val < 0 || val > 100) { pctDateResult.textContent = '-'; return; }
-      const yr = new Date().getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1).getTime();
       const end   = new Date(yr + 1, 0, 1).getTime();
       const target = new Date(start + (val / 100) * (end - start));
       pctDateResult.textContent = formatDateShort(target);
-    });
+    }
 
+    pctInput.addEventListener('input', lookup);
+    yearEl.addEventListener('change', () => { render(); lookup(); });
     tickEvery(1000, render);
   </script>
   <script defer src="/index.js"></script>

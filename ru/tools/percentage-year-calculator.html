@@ -253,9 +253,13 @@
 
   <main class="container tool-page">
     <h1>Калькулятор процента года</h1>
-    <p class="tool-lede">Ровно какая доля этого года уже прошла — и сколько ещё впереди — в процентах. Обновляется каждую секунду.</p>
+    <p class="tool-lede">Сколько именно этого года прошло — и сколько ещё впереди — в процентах. Обновляется каждую секунду и работает для любого года.</p>
 
     <div class="tool-widget">
+      <div class="tool-inline-fields" style="margin-bottom:18px;">
+        <label class="tool-inline-label" for="pct-year">Год</label>
+        <select id="pct-year" style="flex:0 1 180px;"></select>
+      </div>
       <div id="pct-label"></div>
       <div class="tool-stat-row" style="margin-bottom:20px;">
         <div class="tool-stat">
@@ -287,6 +291,25 @@
           <div id="pct-date-result" class="tool-output-chip">-</div>
         </div>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="year" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>2026</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ru&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Вынесите год на экран блокировки</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Поделиться</button>
+            <a class="tool-card__more" href="/ru/tools/">Все инструменты</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -297,6 +320,32 @@
       <h2>Обратный поиск</h2>
       <p>Введите любой процент в поле выше, чтобы найти дату, на которую он приходится. Например, 50% — середина года: в обычном 365-дневном году это полдень 2 июля, а в високосном 366-дневном — полдень 1 июля.</p>
 
+      <h2>Когда наступает каждая веха года</h2>
+      <p>В таблице показан момент достижения каждой доли года по местному времени с полуночи 1 января. В обычном году 8 760 часов, поэтому каждый 1% — это 87,6 часа, чуть больше трёх с половиной дней. В високосном году каждый 1% — это 87,84 часа, поэтому даты сдвигаются до дня по сравнению с обычным годом.</p>
+      <!-- tools:milestones:start -->
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>Доля года</th><th>2026</th><th>2027</th></tr></thead>
+          <tbody>
+          <tr><td>10%</td><td>пт, 6 февраля, 12:00</td><td>сб, 6 февраля, 12:00</td></tr>
+          <tr><td>20%</td><td>вс, 15 марта, 00:00</td><td>пн, 15 марта, 00:00</td></tr>
+          <tr><td>25%</td><td>чт, 2 апреля, 06:00</td><td>пт, 2 апреля, 06:00</td></tr>
+          <tr><td>30%</td><td>пн, 20 апреля, 12:00</td><td>вт, 20 апреля, 12:00</td></tr>
+          <tr><td>33.3%</td><td>сб, 2 мая, 16:00</td><td>вс, 2 мая, 16:00</td></tr>
+          <tr><td>40%</td><td>ср, 27 мая, 00:00</td><td>чт, 27 мая, 00:00</td></tr>
+          <tr><td>50%</td><td>чт, 2 июля, 12:00</td><td>пт, 2 июля, 12:00</td></tr>
+          <tr><td>60%</td><td>сб, 8 августа, 00:00</td><td>вс, 8 августа, 00:00</td></tr>
+          <tr><td>66.7%</td><td>вт, 1 сентября, 08:00</td><td>ср, 1 сентября, 08:00</td></tr>
+          <tr><td>70%</td><td>вс, 13 сентября, 12:00</td><td>пн, 13 сентября, 12:00</td></tr>
+          <tr><td>75%</td><td>чт, 1 октября, 18:00</td><td>пт, 1 октября, 18:00</td></tr>
+          <tr><td>80%</td><td>вт, 20 октября, 00:00</td><td>ср, 20 октября, 00:00</td></tr>
+          <tr><td>90%</td><td>ср, 25 ноября, 12:00</td><td>чт, 25 ноября, 12:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- tools:milestones:end -->
+      <p>Четверть года проходит в начале апреля, треть — в начале мая, две трети — к началу сентября. Если вы ставите годовые цели, это естественные моменты для проверки. Выберите выше другой год, чтобы увидеть его числа в калькуляторе.</p>
+
       <h2>Прогресс года на iPhone</h2>
       <p>Бесплатный <a href="/ru/year-progress-widget">виджет «Год»</a> в Left держит это на экране «Домой» или экране блокировки: год как сетка символов с уже прошедшими днями, плюс либо оставшееся время, либо процент.</p>
       <p>Видеть прямо на экране блокировки, что большая часть года уже прошла, — тихое, но действенное напоминание сделать остаток значимым.</p>
@@ -305,23 +354,107 @@
       <p>Три связанных инструмента дают разные взгляды на одну реальность:</p>
       <ul>
         <li><strong>Процент</strong> — абстрактно, для сравнения («год прошёл на 60%, а цели выполнены только на 40%»).</li>
-        <li><strong><a href="/tools/time-left-in-year-calculator">Оставшееся время</a></strong> — конкретно, вперёд («87 дней, 4 часа»).</li>
-        <li><strong><a href="/tools/time-passed-in-year-calculator">Прошедшее время</a></strong> — назад («278 дней с 1 января»).</li>
+        <li><strong><a href="/ru/tools/time-left-in-year-calculator">Оставшееся время</a></strong> — конкретно, вперёд («87 дней, 4 часа»).</li>
+        <li><strong><a href="/ru/tools/time-passed-in-year-calculator">Прошедшее время</a></strong> — назад («278 дней с 1 января»).</li>
       </ul>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-ru&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          Поместите год на экран блокировки
-        </a>
-      </p>
+
+      <h2>Вынесите год на экран блокировки</h2>
+      <ol>
+        <li>Установите Left на iPhone и откройте <strong>Осталось времени</strong>: год уже там в виде сетки.</li>
+        <li>Нажмите и удерживайте экран блокировки, нажмите <strong>Настроить</strong>, выберите <strong>Экран блокировки</strong> и нажмите область виджетов.</li>
+        <li>Добавьте виджет Left <strong>Год</strong> и выберите, показывать ли процент или оставшиеся дни.</li>
+      </ol>
+
+      <h2>Вопросы</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Какой процент года прошёл?</summary>
+          <div class="faq-answer"><p>Живая цифра вверху этой страницы отвечает с точностью до секунды в вашем часовом поясе. Приблизительно: каждый день — 0,27% обычного года, а каждая неделя — около 1,9%.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Какая дата — 50% года?</summary>
+          <div class="faq-answer"><p>В обычном 365-дневном году середина приходится на полдень 2 июля. В високосном — на полночь в начале 2 июля.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Меняет ли високосный год процент?</summary>
+          <div class="faq-answer"><p>Да, незначительно. В високосном году 366 дней, поэтому каждый день — меньшая его доля. С 1 марта та же календарная дата оказывается на день дальше в году, поэтому её процент немного выше — до четверти процентного пункта.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Почему виджет Left немного отличается от этой страницы?</summary>
+          <div class="faq-answer"><p>Виджет «Год» в Left считает целые дни, поэтому меняется раз в день. Этот калькулятор считает секунды, поэтому меняется постоянно. Они расходятся не более чем на день, примерно 0,27%.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Можно ли посмотреть прошлый или будущий год?</summary>
+          <div class="faq-answer"><p>Да. Выберите год в списке: завершившийся год показывает 100%, ещё не начавшийся — 0%, а поиск даты работает для любого выбранного года.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Какой процент года прошёл?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Живая цифра вверху этой страницы отвечает с точностью до секунды в вашем часовом поясе. Приблизительно: каждый день — 0,27% обычного года, а каждая неделя — около 1,9%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какая дата — 50% года?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В обычном 365-дневном году середина приходится на полдень 2 июля. В високосном — на полночь в начале 2 июля."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Меняет ли високосный год процент?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, незначительно. В високосном году 366 дней, поэтому каждый день — меньшая его доля. С 1 марта та же календарная дата оказывается на день дальше в году, поэтому её процент немного выше — до четверти процентного пункта."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Почему виджет Left немного отличается от этой страницы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Виджет «Год» в Left считает целые дни, поэтому меняется раз в день. Этот калькулятор считает секунды, поэтому меняется постоянно. Они расходятся не более чем на день, примерно 0,27%."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли посмотреть прошлый или будущий год?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Выберите год в списке: завершившийся год показывает 100%, ещё не начавшийся — 0%, а поиск даты работает для любого выбранного года."
+      }
+    }
+  ],
+  "inLanguage": "ru"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Читать дальше</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ru/blog/best-year-progress-apps-iphone">Лучшие приложения прогресса года для iPhone</a>
+        <a class="tool-related-item" href="/ru/support/widget-iphone-lock-screen">Добавьте виджет Left на экран блокировки</a>
+        <a class="tool-related-item" href="/ru/year-progress-widget">Виджет прогресса года для iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>Похожие инструменты</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/fiscal-year-progress-calculator">Прогресс финансового года</a>
         <a class="tool-related-item" href="/tools/quarter-countdown-calculator">Обратный отсчёт до конца квартала</a>
-        <a class="tool-related-item" href="/tools/time-left-in-year-calculator">Сколько осталось до конца года</a>
+        <a class="tool-related-item" href="/ru/tools/time-left-in-year-calculator">Сколько осталось до конца года</a>
         <a class="tool-related-item" href="/ru/tools/life-expectancy-calculator">Калькулятор ожидаемой продолжительности жизни</a>
       </div>
     </div>
@@ -329,8 +462,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Скачать Left</span>
-        <h2>Начните замечать то, что важно.</h2>
-        <p>Скачайте Left на iPhone, чтобы видеть оставшееся время, даты, которых ждёте, строить привычки, которые хотите сохранить, и становиться лучше.</p>
+        <h2>Смотрите год на экране блокировки.</h2>
+        <p>Left рисует год, месяц, неделю и день в виде сеток, которые заполняются сами, в виджетах на экране «Домой», экране блокировки и Apple Watch.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -460,7 +593,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Этот день наступил.","notYet":"Ещё нет","futureDate":"Эта дата ещё в будущем.","datePassed":"Эта дата уже прошла.","selectDate":"Выберите корректную дату.","selectBoth":"Выберите обе даты.","chooseTarget":"Выберите целевую дату выше.","deadlinePassed":"Дедлайн прошёл","pastDue":"Срок истёк","deadlineUrgent":"Срочный дедлайн","deadlineSoon":"Скоро","deadlineAhead":"Дедлайн впереди","fastComplete":"Голодание завершено!","weddingArrived":"Дата наступила","weekend":"Выходные!","itsWeekend":"Сейчас выходные! Наслаждайтесь.","workdayEnded":"Рабочий день закончился","workdayEndedHint":"Установите более позднее время, чтобы снова вести отсчёт.","upcoming":"Предстоит: {dates}","since":"С {date}","fastEnds":"Голодание заканчивается: {date}","sinceJan1":"С полуночи 1 января {year} г.","untilDec31":"До полуночи 31 декабря {year} г.","fiscalEnds":"Финансовый год заканчивается {date}","quarterEnds":"Квартал заканчивается {date}","weddingDate":"Дата свадьбы: {date}","departure":"Выезд: {date}","currentAge":"Текущий возраст: {years} лет, {months} мес., {days} дн.","hoursAndMinutes":"{hours} ч и {minutes} мин","minutesExtra":"ещё {minutes} мин, всего {total} мин","readingDetail":"{minutes} мин и {seconds} сек при {wpm} словах в минуту","workdaysAt":"{days} рабочих дней по {hours} ч в день","minutesSince":"всего {minutes} мин с {date}","schoolDays":"учебных дней","weekdaysMinusBreaks":"{weekdays} будних дней минус {breaks} дней каникул","businessAfter":"{count} рабочих дней после {date}","businessBefore":"{count} рабочих дней до {date}","futureTime":"Это время ещё в будущем.","unitEquals":"{amount} {from} — примерно {value} {to}","invalidTimestamp":"Некорректная метка времени.","invalidDate":"Некорректная дата.","local":"местное","pregFirst":"Первый триместр","pregSecond":"Второй триместр","pregThird":"Третий триместр","pregWeekDay":"{weeks} нед. {days} дн.","dueWas":"Предполагаемая дата родов была {date} — поздравляем!","yearDays":"Год {year} — всего {days} дней","easterDates":"Западная — {western}; православная — {orthodox}"},"stat":{"days":"дни","hours":"часы","min":"мин","sec":"сек","weeks":"недели","months":"месяцы","daysSince":"дней с","daysUntil":"дней до","yearAnniversary":"годовщина","elapsed":"прошло","left":"осталось","daysLeft":"дней осталось","weeksLeft":"недель осталось","yearsLeft":"лет осталось","streakDays":"пройденные дни","fullWeeks":"полных недель","approxMonths":"примерно месяцев","durationMin":"длительность, мин","elapsedMin":"прошло, мин","minutesLeft":"минут осталось","currentQuarter":"текущий квартал","remaining":"осталось","daysSober":"дней трезвости","daysToMilestone":"дней до следующей вехи","nextMilestone":"следующая веха","daysUntilDeparture":"дней до выезда","tripDays":"дней поездки"},"unit":{"months":{"one":"месяц","few":"месяца","many":"месяцев","other":"месяца"},"weeks":{"one":"неделя","few":"недели","many":"недель","other":"недели"},"days":{"one":"день","few":"дня","many":"дней","other":"дня"},"hours":{"one":"час","few":"часа","many":"часов","other":"часа"},"minutes":{"one":"минута","few":"минуты","many":"минут","other":"минуты"},"seconds":{"one":"секунда","few":"секунды","many":"секунд","other":"секунды"},"years":{"one":"год","few":"года","many":"лет","other":"года"}},"next":{"christmas":"Следующее Рождество: {date}","newYear":"Следующий Новый год: {date}","halloween":"Следующий Хеллоуин: {date}","thanksgiving":"Следующий День благодарения в США: {date}","valentines":"Следующий День святого Валентина: {date}","mothersDay":"Следующий День матери в США: {date}","fathersDay":"Следующий День отца в США: {date}","spring":"Следующее весеннее равноденствие: {date}","summer":"Следующее летнее солнцестояние: {date}","fall":"Следующее осеннее равноденствие: {date}","winter":"Следующее зимнее солнцестояние: {date}","westernEaster":"Следующая западная Пасха: {date}","orthodoxEaster":"Следующая православная Пасха: {date}","birthday":"Следующий день рождения: {date}","anniversary":"Следующая годовщина: {date}","saturday":"Следующая суббота: {date}","birthdayAway":{"one":"Следующий день рождения: {date} (через {count} день)","few":"Следующий день рождения: {date} (через {count} дня)","many":"Следующий день рождения: {date} (через {count} дней)","other":"Следующий день рождения: {date} (через {count} дня)"}},"sleep":{"bed9":"9 ч (6 циклов)","bed75":"7,5 ч (5 циклов, рекомендуется)","bed6":"6 ч (4 цикла)","bed45":"4,5 ч (3 цикла)","wake45":"4,5 ч","wake6":"6 ч","wake75":"7,5 ч (рекомендуется)","wake9":"9 ч"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Этот день наступил.","notYet":"Ещё нет","futureDate":"Эта дата ещё в будущем.","datePassed":"Эта дата уже прошла.","selectDate":"Выберите корректную дату.","selectBoth":"Выберите обе даты.","chooseTarget":"Выберите целевую дату выше.","deadlinePassed":"Дедлайн прошёл","pastDue":"Срок истёк","deadlineUrgent":"Срочный дедлайн","deadlineSoon":"Скоро","deadlineAhead":"Дедлайн впереди","fastComplete":"Голодание завершено!","weddingArrived":"Дата наступила","weekend":"Выходные!","itsWeekend":"Сейчас выходные! Наслаждайтесь.","workdayEnded":"Рабочий день закончился","workdayEndedHint":"Установите более позднее время, чтобы снова вести отсчёт.","upcoming":"Предстоит: {dates}","since":"С {date}","fastEnds":"Голодание заканчивается: {date}","sinceJan1":"С полуночи 1 января {year} г.","untilDec31":"До полуночи 31 декабря {year} г.","fiscalEnds":"Финансовый год заканчивается {date}","quarterEnds":"Квартал заканчивается {date}","weddingDate":"Дата свадьбы: {date}","departure":"Выезд: {date}","currentAge":"Текущий возраст: {years} лет, {months} мес., {days} дн.","hoursAndMinutes":"{hours} ч и {minutes} мин","minutesExtra":"ещё {minutes} мин, всего {total} мин","readingDetail":"{minutes} мин и {seconds} сек при {wpm} словах в минуту","workdaysAt":"{days} рабочих дней по {hours} ч в день","minutesSince":"всего {minutes} мин с {date}","schoolDays":"учебных дней","weekdaysMinusBreaks":"{weekdays} будних дней минус {breaks} дней каникул","businessAfter":"{count} рабочих дней после {date}","businessBefore":"{count} рабочих дней до {date}","futureTime":"Это время ещё в будущем.","unitEquals":"{amount} {from} — примерно {value} {to}","invalidTimestamp":"Некорректная метка времени.","invalidDate":"Некорректная дата.","local":"местное","pregFirst":"Первый триместр","pregSecond":"Второй триместр","pregThird":"Третий триместр","pregWeekDay":"{weeks} нед. {days} дн.","dueWas":"Предполагаемая дата родов была {date} — поздравляем!","yearDays":"Год {year} — всего {days} дней","easterDates":"Западная — {western}; православная — {orthodox}"},"stat":{"days":"дни","hours":"часы","min":"мин","sec":"сек","weeks":"недели","months":"месяцы","daysSince":"дней с","daysUntil":"дней до","yearAnniversary":"годовщина","elapsed":"прошло","left":"осталось","daysLeft":"дней осталось","weeksLeft":"недель осталось","yearsLeft":"лет осталось","streakDays":"пройденные дни","fullWeeks":"полных недель","approxMonths":"примерно месяцев","durationMin":"длительность, мин","elapsedMin":"прошло, мин","minutesLeft":"минут осталось","currentQuarter":"текущий квартал","remaining":"осталось","daysSober":"дней трезвости","daysToMilestone":"дней до следующей вехи","nextMilestone":"следующая веха","daysUntilDeparture":"дней до выезда","tripDays":"дней поездки"},"unit":{"months":{"one":"месяц","few":"месяца","many":"месяцев","other":"месяца"},"weeks":{"one":"неделя","few":"недели","many":"недель","other":"недели"},"days":{"one":"день","few":"дня","many":"дней","other":"дня"},"hours":{"one":"час","few":"часа","many":"часов","other":"часа"},"minutes":{"one":"минута","few":"минуты","many":"минут","other":"минуты"},"seconds":{"one":"секунда","few":"секунды","many":"секунд","other":"секунды"},"years":{"one":"год","few":"года","many":"лет","other":"года"}},"next":{"christmas":"Следующее Рождество: {date}","newYear":"Следующий Новый год: {date}","halloween":"Следующий Хеллоуин: {date}","thanksgiving":"Следующий День благодарения в США: {date}","valentines":"Следующий День святого Валентина: {date}","mothersDay":"Следующий День матери в США: {date}","fathersDay":"Следующий День отца в США: {date}","spring":"Следующее весеннее равноденствие: {date}","summer":"Следующее летнее солнцестояние: {date}","fall":"Следующее осеннее равноденствие: {date}","winter":"Следующее зимнее солнцестояние: {date}","westernEaster":"Следующая западная Пасха: {date}","orthodoxEaster":"Следующая православная Пасха: {date}","birthday":"Следующий день рождения: {date}","anniversary":"Следующая годовщина: {date}","saturday":"Следующая суббота: {date}","birthdayAway":{"one":"Следующий день рождения: {date} (через {count} день)","few":"Следующий день рождения: {date} (через {count} дня)","many":"Следующий день рождения: {date} (через {count} дней)","other":"Следующий день рождения: {date} (через {count} дня)"}},"sleep":{"bed9":"9 ч (6 циклов)","bed75":"7,5 ч (5 циклов, рекомендуется)","bed6":"6 ч (4 цикла)","bed45":"4,5 ч (3 цикла)","wake45":"4,5 ч","wake6":"6 ч","wake75":"7,5 ч (рекомендуется)","wake9":"9 ч"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const pctPast = document.getElementById('pct-past');
@@ -468,35 +601,51 @@
     const daysLeft = document.getElementById('pct-days-left');
     const daysPast = document.getElementById('pct-days-past');
     const label = document.getElementById('pct-label');
+    const yearEl = document.getElementById('pct-year');
     const pctInput = document.getElementById('pct-input');
     const pctDateResult = document.getElementById('pct-date-result');
+    // Four decimals fit a desktop tile; two fit a phone.
+    const narrow = window.matchMedia('(max-width: 520px)');
+
+    const thisYear = new Date().getFullYear();
+    for (let y = thisYear - 25; y <= thisYear + 25; y++) {
+      const o = document.createElement('option');
+      o.value = String(y);
+      o.textContent = String(y);
+      if (y === thisYear) o.selected = true;
+      yearEl.appendChild(o);
+    }
+    const year = () => parseInt(yearEl.value, 10) || thisYear;
 
     function render() {
       const now = new Date();
-      const yr = now.getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1, 0, 0, 0, 0);
       const end   = new Date(yr + 1, 0, 1, 0, 0, 0, 0);
       const total = end - start;
-      const elapsed = now - start;
+      const elapsed = Math.min(total, Math.max(0, now - start));
       const pctDone = (elapsed / total) * 100;
       const pctRem  = 100 - pctDone;
+      const decimals = narrow.matches ? 2 : 4;
       label.textContent = toolT('result.yearDays', { year: yr, days: daysInYear(yr) });
-      pctPast.textContent = pctDone.toFixed(4) + '%';
-      pctLeft.textContent = pctRem.toFixed(4) + '%';
-      daysLeft.textContent = fmtNum(Math.ceil((end - now) / MS_DAY));
+      pctPast.textContent = pctDone.toFixed(decimals) + '%';
+      pctLeft.textContent = pctRem.toFixed(decimals) + '%';
+      daysLeft.textContent = fmtNum(Math.ceil((total - elapsed) / MS_DAY));
       daysPast.textContent = fmtNum(Math.floor(elapsed / MS_DAY));
     }
 
-    pctInput.addEventListener('input', () => {
+    function lookup() {
       const val = parseFloat(pctInput.value);
       if (isNaN(val) || val < 0 || val > 100) { pctDateResult.textContent = '-'; return; }
-      const yr = new Date().getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1).getTime();
       const end   = new Date(yr + 1, 0, 1).getTime();
       const target = new Date(start + (val / 100) * (end - start));
       pctDateResult.textContent = formatDateShort(target);
-    });
+    }
 
+    pctInput.addEventListener('input', lookup);
+    yearEl.addEventListener('change', () => { render(); lookup(); });
     tickEvery(1000, render);
   </script>
   <script defer src="/index.js"></script>

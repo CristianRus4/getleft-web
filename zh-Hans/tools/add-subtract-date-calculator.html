@@ -285,6 +285,25 @@
         </div>
       </div>
       <div class="tool-result" id="as-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>你的日期</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hans&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>在 Left 中倒数到这个日期</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hans/tools/">所有工具</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -292,9 +311,19 @@
       <p>计算器会按顺序处理各个单位：先算年，再算月，最后算周和天。这对按月计算很重要：1月31日加 1 个月得到的是 2月28日（闰年是 2月29日），而不是 3月3日。</p>
       <p>周和天会合并成一个总天数相加。小时和分钟不会调整，结果始终是按你所在时区计算出的那一天的零点。</p>
 
+      <h2>月末与闰年</h2>
+      <p>各个月份的长度不同，所以当目标月份较短时，计算器会取该月最后一天。2027 年 1 月 31 日加 1 个月是 2027 年 2 月 28 日，2028 年 1 月 31 日加 1 个月是 2028 年 2 月 29 日，因为 2028 年是闰年。年份的处理方式相同：2028 年 2 月 29 日加 1 年是 2029 年 2 月 28 日。</p>
+      <p>这意味着月份运算并不总是可逆。1 月 31 日加 1 个月是 2 月 28 日，但 2 月 28 日减 1 个月是 1 月 28 日。如果确切天数很重要，比如 30 天的通知期，请直接输入天数而不是月数。</p>
+
+      <h2>一个实际示例</h2>
+      <p>从 2026 年 11 月 10 日开始，加 90 天是 2027 年 2 月 8 日星期一：到 11 月底还有 20 天，12 月 31 天，1 月 31 天，共 82 天，再加 8 天就到 2 月 8 日。如果改为加 3 个月，则是 2027 年 2 月 10 日，晚两天，因为这三个月共有 92 天。起始日本身是第 0 天，所以星期一加 1 天是星期二。</p>
+
+      <h2>工作日</h2>
+      <p>这个计算器会计算每个日历日，包括周末。如果期限按工作日设定，例如发票日期后 10 个工作日，请使用<a href="/zh-Hans/tools/business-days-from-date">从某日起算工作日计算器</a>，它会跳过周六和周日。</p>
+
       <h2>常见用途</h2>
       <ul>
-        <li><strong>30/60/90 天的截止日期</strong>：“从今天起 30 个工作日后是哪一天？”</li>
+        <li><strong>30/60/90 天期限</strong>——“从今天起 90 天后是几号？”</li>
         <li><strong>订阅和合同日期</strong>：一份 12 个月的合同什么时候到期？</li>
         <li><strong>退货期限</strong>：在某个日期买的东西，最晚哪一天可以退？</li>
         <li><strong>项目里程碑</strong>：从启动日期往后推，规划各个阶段</li>
@@ -302,16 +331,106 @@
       </ul>
 
       <h2>往回看：N 天前是几月几日？</h2>
-      <p>选择<strong>减</strong>模式就能回到过去。例如从今天起减去 90 天，就能知道 90 天前是哪一天。如果想专门查“过去某一天是几月几日”，可以用<a href="/tools/what-was-the-date">那天是几月几日</a>。</p>
+      <p>选择<strong>减</strong>模式就能回到过去。例如从今天起减去 90 天，就能知道 90 天前是哪一天。如果想专门查“过去某一天是几月几日”，可以用<a href="/zh-Hans/tools/what-was-the-date">那天是几月几日</a>。</p>
       <p>一旦你有了日期，请使用 <a href="/zh-Hans/countdown-widget">Left 倒计时小组件</a> 保持其可见。</p>
+
+      <h2>在 iPhone 上倒数到这个日期</h2>
+      <ol>
+        <li>在 iPhone 上安装 Left，打开<strong>即将到来</strong>，轻点<strong>添加即将到来的日期</strong>，再轻点<strong>新日期</strong>。</li>
+        <li>命名，并把<strong>开始</strong>设为你查到的日期。</li>
+        <li>打开<strong>获取提醒</strong>，例如提前 3 天。</li>
+        <li>把 Left 的<strong>即将到来</strong>小组件添加到主屏幕或锁屏，并在<strong>编辑小组件</strong>中选择日期。</li>
+      </ol>
+      <h2>常见问题</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>1 月 31 日加 1 个月是几号？</summary>
+          <div class="faq-answer"><p>2 月 28 日，闰年则是 2 月 29 日。当目标月份较短时，计算器会取该月最后一天，而不是顺延到 3 月。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>从今天起 90 天后是几号？</summary>
+          <div class="faq-answer"><p>选择“加”，在天数栏输入 90，日期就会出现。例如从 2026 年 11 月 10 日起，90 天后是 2027 年 2 月 8 日。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>加 3 个月和加 90 天一样吗？</summary>
+          <div class="faq-answer"><p>不会。三个日历月根据月份不同包含 89 到 92 天，所以两个结果可能相差几天。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>如何给日期加上工作日？</summary>
+          <div class="faq-answer"><p>请使用<a href="/zh-Hans/tools/business-days-from-date">从某日起算工作日计算器</a>。这个计算器也会把周末计算在内。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>会计入起始日吗？</summary>
+          <div class="faq-answer"><p>不一样。起始日是第 0 天，所以星期一加 1 天是星期二，加 7 天是下个星期一。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "1 月 31 日加 1 个月是几号？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2 月 28 日，闰年则是 2 月 29 日。当目标月份较短时，计算器会取该月最后一天，而不是顺延到 3 月。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "从今天起 90 天后是几号？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "选择“加”，在天数栏输入 90，日期就会出现。例如从 2026 年 11 月 10 日起，90 天后是 2027 年 2 月 8 日。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "加 3 个月和加 90 天一样吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不会。三个日历月根据月份不同包含 89 到 92 天，所以两个结果可能相差几天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何给日期加上工作日？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "请使用“从某日起算工作日”计算器。这个计算器也会把周末计算在内。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "会计入起始日吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不一样。起始日是第 0 天，所以星期一加 1 天是星期二，加 7 天是下个星期一。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>阅读更多</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hans/blog/best-countdown-widgets-iphone">最好用的 iPhone 倒计时小组件</a>
+        <a class="tool-related-item" href="/zh-Hans/support/organise-ahead-since">用“即将到来”和“事件”整理你的日期</a>
+        <a class="tool-related-item" href="/zh-Hans/countdown-widget">适用于 iPhone 的倒计时小组件</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>相关工具</h2>
       <div class="tool-related-items">
-        <a class="tool-related-item" href="/tools/business-days-from-date">按日期推算工作日</a>
-        <a class="tool-related-item" href="/tools/what-was-the-date">那天是几月几日？</a>
-        <a class="tool-related-item" href="/tools/date-units-converter">日期单位换算器</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/business-days-from-date">按日期推算工作日</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/what-was-the-date">那天是几月几日？</a>
+        <a class="tool-related-item" href="/zh-Hans/tools/date-units-converter">日期单位换算器</a>
         <a class="tool-related-item" href="/zh-Hans/tools/date-countdown-calculator">任意日期倒数日</a>
       </div>
     </div>
@@ -319,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">下载 Left</span>
-        <h2>开始留意真正重要的事。</h2>
-        <p>把 Left 下载到你的 iPhone，看见剩余的时间，期待你盼望的日子，建立想要坚持的习惯，成为更好的自己。</p>
+        <h2>把这个日期变成倒计时。</h2>
+        <p>知道日期后，把它添加到 Left 的“即将到来”，就能在主屏幕、锁屏和 Apple Watch 上看到剩余天数。</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -450,7 +569,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到啦。","notYet":"还没到","futureDate":"这个日期还没到。","datePassed":"这个日期已经过去了。","selectDate":"请选择有效的日期。","selectBoth":"请选择两个日期。","chooseTarget":"请先在上方选择目标日期。","deadlinePassed":"已过截止时间","pastDue":"已逾期","deadlineUrgent":"截止时间很紧迫","deadlineSoon":"快到截止时间了","deadlineAhead":"离截止时间还早","fastComplete":"断食完成！","weddingArrived":"这一天到了","weekend":"周末到啦！","itsWeekend":"周末到啦！好好享受吧。","workdayEnded":"今天的工作结束了","workdayEndedHint":"把时间设得晚一些，就可以重新开始倒计时。","upcoming":"接下来：{dates}","since":"自{date}起","fastEnds":"断食结束时间：{date}","sinceJan1":"自{year}年1月1日0点起","untilDec31":"到{year}年12月31日24点为止","fiscalEnds":"财政年度结束日：{date}","quarterEnds":"本季度结束日：{date}","weddingDate":"婚礼日期：{date}","departure":"出发日期：{date}","currentAge":"当前年龄：{years}岁{months}个月{days}天","hoursAndMinutes":"{hours}小时{minutes}分钟","minutesExtra":"多出{minutes}分钟，共{total}分钟","readingDetail":"按每分钟{wpm}个词计算，需要{minutes}分{seconds}秒","workdaysAt":"{days}个工作日，每天{hours}小时","minutesSince":"自{date}起共{minutes}分钟","schoolDays":"上课日","weekdaysMinusBreaks":"{weekdays}个工作日减去{breaks}天假期","businessAfter":"{date}之后的{count}个工作日","businessBefore":"{date}之前的{count}个工作日","futureTime":"这个时间还没到。","unitEquals":"{amount}{from}约等于{value}{to}","invalidTimestamp":"时间戳无效。","invalidDate":"日期无效。","local":"本地","pregFirst":"孕早期","pregSecond":"孕中期","pregThird":"孕晚期","pregWeekDay":"{weeks}周{days}天","dueWas":"预产期是{date}，恭喜！","yearDays":"{year}年共{days}天","easterDates":"西方教会：{western}；东正教：{orthodox}"},"stat":{"days":"天","hours":"小时","min":"分钟","sec":"秒","weeks":"周","months":"个月","daysSince":"已过天数","daysUntil":"距离天数","yearAnniversary":"周年","elapsed":"已过","left":"剩余","daysLeft":"剩余天数","weeksLeft":"剩余周数","yearsLeft":"剩余年数","streakDays":"已完成天数","fullWeeks":"整周数","approxMonths":"约合月数","durationMin":"时长（分钟）","elapsedMin":"已过分钟数","minutesLeft":"剩余分钟数","currentQuarter":"当前季度","remaining":"剩余","daysSober":"戒酒天数","daysToMilestone":"距下个里程碑","nextMilestone":"下个里程碑","daysUntilDeparture":"距出发天数","tripDays":"旅行天数"},"unit":{"months":{"one":"个月","other":"个月"},"weeks":{"one":"周","other":"周"},"days":{"one":"天","other":"天"},"hours":{"one":"小时","other":"小时"},"minutes":{"one":"分钟","other":"分钟"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一个圣诞节：{date}","newYear":"下一个元旦：{date}","halloween":"下一个万圣节：{date}","thanksgiving":"下一个美国感恩节：{date}","valentines":"下一个情人节：{date}","mothersDay":"下一个母亲节：{date}","fathersDay":"下一个父亲节：{date}","spring":"下一个春分：{date}","summer":"下一个夏至：{date}","fall":"下一个秋分：{date}","winter":"下一个冬至：{date}","westernEaster":"下一个西方复活节：{date}","orthodoxEaster":"下一个东正教复活节：{date}","birthday":"下一个生日：{date}","anniversary":"下一个纪念日：{date}","saturday":"下一个周六：{date}","birthdayAway":{"one":"下一个生日：{date}（还有{count}天）","other":"下一个生日：{date}（还有{count}天）"}},"sleep":{"bed9":"9小时（6个睡眠周期）","bed75":"7.5小时（5个睡眠周期，推荐）","bed6":"6小时（4个睡眠周期）","bed45":"4.5小时（3个睡眠周期）","wake45":"4.5小时","wake6":"6小时","wake75":"7.5小时（推荐）","wake9":"9小时"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到啦。","notYet":"还没到","futureDate":"这个日期还没到。","datePassed":"这个日期已经过去了。","selectDate":"请选择有效的日期。","selectBoth":"请选择两个日期。","chooseTarget":"请先在上方选择目标日期。","deadlinePassed":"已过截止时间","pastDue":"已逾期","deadlineUrgent":"截止时间很紧迫","deadlineSoon":"快到截止时间了","deadlineAhead":"离截止时间还早","fastComplete":"断食完成！","weddingArrived":"这一天到了","weekend":"周末到啦！","itsWeekend":"周末到啦！好好享受吧。","workdayEnded":"今天的工作结束了","workdayEndedHint":"把时间设得晚一些，就可以重新开始倒计时。","upcoming":"接下来：{dates}","since":"自{date}起","fastEnds":"断食结束时间：{date}","sinceJan1":"自{year}年1月1日0点起","untilDec31":"到{year}年12月31日24点为止","fiscalEnds":"财政年度结束日：{date}","quarterEnds":"本季度结束日：{date}","weddingDate":"婚礼日期：{date}","departure":"出发日期：{date}","currentAge":"当前年龄：{years}岁{months}个月{days}天","hoursAndMinutes":"{hours}小时{minutes}分钟","minutesExtra":"多出{minutes}分钟，共{total}分钟","readingDetail":"按每分钟{wpm}个词计算，需要{minutes}分{seconds}秒","workdaysAt":"{days}个工作日，每天{hours}小时","minutesSince":"自{date}起共{minutes}分钟","schoolDays":"上课日","weekdaysMinusBreaks":"{weekdays}个工作日减去{breaks}天假期","businessAfter":"{date}之后的{count}个工作日","businessBefore":"{date}之前的{count}个工作日","futureTime":"这个时间还没到。","unitEquals":"{amount}{from}约等于{value}{to}","invalidTimestamp":"时间戳无效。","invalidDate":"日期无效。","local":"本地","pregFirst":"孕早期","pregSecond":"孕中期","pregThird":"孕晚期","pregWeekDay":"{weeks}周{days}天","dueWas":"预产期是{date}，恭喜！","yearDays":"{year}年共{days}天","easterDates":"西方教会：{western}；东正教：{orthodox}"},"stat":{"days":"天","hours":"小时","min":"分钟","sec":"秒","weeks":"周","months":"个月","daysSince":"已过天数","daysUntil":"距离天数","yearAnniversary":"周年","elapsed":"已过","left":"剩余","daysLeft":"剩余天数","weeksLeft":"剩余周数","yearsLeft":"剩余年数","streakDays":"已完成天数","fullWeeks":"整周数","approxMonths":"约合月数","durationMin":"时长（分钟）","elapsedMin":"已过分钟数","minutesLeft":"剩余分钟数","currentQuarter":"当前季度","remaining":"剩余","daysSober":"戒酒天数","daysToMilestone":"距下个里程碑","nextMilestone":"下个里程碑","daysUntilDeparture":"距出发天数","tripDays":"旅行天数"},"unit":{"months":{"one":"个月","other":"个月"},"weeks":{"one":"周","other":"周"},"days":{"one":"天","other":"天"},"hours":{"one":"小时","other":"小时"},"minutes":{"one":"分钟","other":"分钟"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一个圣诞节：{date}","newYear":"下一个元旦：{date}","halloween":"下一个万圣节：{date}","thanksgiving":"下一个美国感恩节：{date}","valentines":"下一个情人节：{date}","mothersDay":"下一个母亲节：{date}","fathersDay":"下一个父亲节：{date}","spring":"下一个春分：{date}","summer":"下一个夏至：{date}","fall":"下一个秋分：{date}","winter":"下一个冬至：{date}","westernEaster":"下一个西方复活节：{date}","orthodoxEaster":"下一个东正教复活节：{date}","birthday":"下一个生日：{date}","anniversary":"下一个纪念日：{date}","saturday":"下一个周六：{date}","birthdayAway":{"one":"下一个生日：{date}（还有{count}天）","other":"下一个生日：{date}（还有{count}天）"}},"sleep":{"bed9":"9小时（6个睡眠周期）","bed75":"7.5小时（5个睡眠周期，推荐）","bed6":"6小时（4个睡眠周期）","bed45":"4.5小时（3个睡眠周期）","wake45":"4.5小时","wake6":"6小时","wake75":"7.5小时（推荐）","wake9":"9小时"},"preg":{"weeksPregnant":"周孕期","weeksToGo":"周后预产","daysToGo":"天后预产","dueDate":"预产期：{date}","dueDateTitle":"预产期"},"life":{"mark":"已标记：年龄 {age}，第 {week} 周"},"card":{"handoff":"把链接发送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"链接已拷贝","android":"在用 Android？查看你的选择","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"还剩 {count} 天","other":"还剩 {count} 天"},"hoursLeft":{"one":"今天还剩 {count} 小时","other":"今天还剩 {count} 小时"},"yearsLeft":{"one":"还剩 {count} 年","other":"还剩 {count} 年"},"weeksLeft":{"one":"还剩 {count} 周","other":"还剩 {count} 周"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const startEl = document.getElementById('as-start');
@@ -482,6 +601,7 @@
       const d = parseInt(daysEl.value) || 0;
       const out = addToDate(base, { years: sign*y, months: sign*mo, weeks: sign*wk, days: sign*d });
       const diff = Math.abs(Math.round((out - base) / 86400000));
+      toolPreviewDate(out);
       result.innerHTML = `
         <div class="tool-result-card">
           <div class="tool-result-big">${formatDateLong(out)}</div>

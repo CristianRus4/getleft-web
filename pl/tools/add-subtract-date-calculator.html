@@ -285,6 +285,25 @@
         </div>
       </div>
       <div class="tool-result" id="as-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Twoja data</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-pl&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Odliczaj do tej daty w Left</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Udostępnij</button>
+            <a class="tool-card__more" href="/pl/tools/">Wszystkie narzędzia</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -292,9 +311,19 @@
       <p>Kalkulator stosuje jednostki po kolei: najpierw lata, potem miesiące, a na końcu tygodnie i dni. Ma to znaczenie przy działaniach na miesiącach: dodanie 1 miesiąca do 31 stycznia daje 28 lutego (albo 29 w roku przestępnym), a nie 3 marca.</p>
       <p>Tygodnie i dni są łączone i dodawane jako zwykła liczba dni. Godziny i minuty nie są korygowane: wynikiem jest zawsze północ obliczonej daty w twojej strefie czasowej.</p>
 
+      <h2>Końce miesięcy i lata przestępne</h2>
+      <p>Miesiące nie mają tej samej długości, więc gdy miesiąc docelowy jest krótszy, kalkulator używa jego ostatniego dnia. 31 stycznia 2027 plus 1 miesiąc to 28 lutego 2027, a 31 stycznia 2028 plus 1 miesiąc to 29 lutego 2028, bo 2028 jest rokiem przestępnym. Z latami jest tak samo: 29 lutego 2028 plus 1 rok to 28 lutego 2029.</p>
+      <p>Oznacza to, że arytmetyka miesięcy nie zawsze jest odwracalna. 31 stycznia plus 1 miesiąc to 28 lutego, ale 28 lutego minus 1 miesiąc to 28 stycznia. Jeśli liczy się dokładna liczba dni, jak przy 30-dniowym okresie wypowiedzenia, wpisz dni zamiast miesięcy.</p>
+
+      <h2>Przykład krok po kroku</h2>
+      <p>Zaczynając od 10 listopada 2026, dodanie 90 dni daje poniedziałek, 8 lutego 2027: 20 dni do końca listopada, 31 w grudniu i 31 w styczniu to 82, a 8 kolejnych dociera do 8 lutego. Dodanie zamiast tego 3 miesięcy daje 10 lutego 2027 – dwa dni później, bo te trzy miesiące mają 92 dni. Sama data początkowa to dzień 0, więc dodanie 1 dnia do poniedziałku daje wtorek.</p>
+
+      <h2>Dni robocze</h2>
+      <p>Ten kalkulator liczy każdy dzień kalendarzowy, łącznie z weekendami. Jeśli termin jest podany w dniach roboczych, na przykład 10 dni roboczych od daty faktury, użyj <a href="/tools/business-days-from-date">kalkulatora dni roboczych od daty</a>, który pomija soboty i niedziele.</p>
+
       <h2>Typowe zastosowania</h2>
       <ul>
-        <li><strong>Terminy 30/60/90 dni</strong> – „jaka to data za 30 dni roboczych od dziś?”</li>
+        <li><strong>Terminy 30/60/90 dni</strong> – „jaka data wypada za 90 dni od dziś?”</li>
         <li><strong>Daty subskrypcji i umów</strong> – kiedy wygasa 12-miesięczna umowa?</li>
         <li><strong>Terminy zwrotów</strong> – do kiedy można zwrócić rzecz kupioną w danym dniu?</li>
         <li><strong>Kamienie milowe projektu</strong> – licz do przodu od daty startu, by rozplanować etapy</li>
@@ -302,15 +331,105 @@
       </ul>
 
       <h2>Spojrzenie wstecz: jaka to była data N dni temu?</h2>
-      <p>Użyj trybu <strong>Odejmij</strong>, aby cofnąć się w czasie. Na przykład odejmij 90 dni od dzisiaj, aby sprawdzić, jaka data była 90 dni temu. Osobne narzędzie do pytania „jaka to była data w przeszłości?” znajdziesz tutaj: <a href="/tools/what-was-the-date">jaka to była data</a>.</p>
+      <p>Użyj trybu <strong>Odejmij</strong>, aby cofnąć się w czasie. Na przykład odejmij 90 dni od dzisiaj, aby sprawdzić, jaka data była 90 dni temu. Osobne narzędzie do pytania „jaka to była data w przeszłości?” znajdziesz tutaj: <a href="/pl/tools/what-was-the-date">jaka to była data</a>.</p>
       <p>Gdy będziesz miał datę, trzymaj ją w widoku za pomocą <a href="/pl/countdown-widget">widżet odliczania</a>.</p>
+
+      <h2>Odliczaj do daty na iPhonie</h2>
+      <ol>
+        <li>Zainstaluj Left na iPhonie, otwórz <strong>Nadchodzące</strong>, stuknij <strong>Dodaj datę do Nadchodzące</strong>, a potem <strong>Nowa data</strong>.</li>
+        <li>Nazwij ją i ustaw <strong>Rozpoczyna się</strong> na znalezioną datę.</li>
+        <li>Włącz <strong>Uzyskaj przypomnienie</strong>, na przykład 3 dni wcześniej.</li>
+        <li>Dodaj widżet <strong>Nadchodzące</strong> z Left na ekran główny lub ekran blokady i wybierz datę w opcji <strong>Edytuj widżet</strong>.</li>
+      </ol>
+      <h2>Pytania</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Ile to 31 stycznia plus 1 miesiąc?</summary>
+          <div class="faq-answer"><p>28 lutego lub 29 lutego w roku przestępnym. Gdy miesiąc docelowy jest krótszy, kalkulator używa jego ostatniego dnia zamiast przechodzić na marzec.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Jaka data wypada za 90 dni od dziś?</summary>
+          <div class="faq-answer"><p>Wybierz Dodaj, wpisz 90 w polu dni i data się pojawi. Na przykład 90 dni po 10 listopada 2026 to 8 lutego 2027.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Czy dodanie 3 miesięcy to to samo co dodanie 90 dni?</summary>
+          <div class="faq-answer"><p>Nie. Trzy miesiące kalendarzowe mają od 89 do 92 dni w zależności od miesięcy, więc oba wyniki mogą się różnić o kilka dni.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Jak dodać dni robocze do daty?</summary>
+          <div class="faq-answer"><p>Użyj <a href="/tools/business-days-from-date">kalkulatora dni roboczych od daty</a>. Ten liczy też weekendy.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Czy liczy datę początkową?</summary>
+          <div class="faq-answer"><p>Nie. Data początkowa to dzień 0, więc dodanie 1 dnia do poniedziałku daje wtorek, a dodanie 7 dni – następny poniedziałek.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ile to 31 stycznia plus 1 miesiąc?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "28 lutego lub 29 lutego w roku przestępnym. Gdy miesiąc docelowy jest krótszy, kalkulator używa jego ostatniego dnia zamiast przechodzić na marzec."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jaka data wypada za 90 dni od dziś?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Wybierz Dodaj, wpisz 90 w polu dni i data się pojawi. Na przykład 90 dni po 10 listopada 2026 to 8 lutego 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy dodanie 3 miesięcy to to samo co dodanie 90 dni?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. Trzy miesiące kalendarzowe mają od 89 do 92 dni w zależności od miesięcy, więc oba wyniki mogą się różnić o kilka dni."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Jak dodać dni robocze do daty?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Użyj kalkulatora dni roboczych od daty. Ten liczy też weekendy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Czy liczy datę początkową?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nie. Data początkowa to dzień 0, więc dodanie 1 dnia do poniedziałku daje wtorek, a dodanie 7 dni – następny poniedziałek."
+      }
+    }
+  ],
+  "inLanguage": "pl"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Czytaj więcej</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/pl/blog/best-countdown-widgets-iphone">Najlepsze widżety odliczania na iPhone’a</a>
+        <a class="tool-related-item" href="/pl/support/organise-ahead-since">Uporządkuj swoje daty w sekcjach Nadchodzące i Od</a>
+        <a class="tool-related-item" href="/pl/countdown-widget">Widżet odliczania na iPhone’a</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>Powiązane narzędzia</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/business-days-from-date">Dni robocze od daty</a>
-        <a class="tool-related-item" href="/tools/what-was-the-date">Jaka to była data?</a>
+        <a class="tool-related-item" href="/pl/tools/what-was-the-date">Jaka to była data?</a>
         <a class="tool-related-item" href="/tools/date-units-converter">Konwerter jednostek czasu</a>
         <a class="tool-related-item" href="/pl/tools/date-countdown-calculator">Odliczanie do dowolnej daty</a>
       </div>
@@ -319,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Pobierz Left</span>
-        <h2>Zacznij zauważać to, co ważne.</h2>
-        <p>Pobierz Left na iPhone’a, by zobaczyć czas, który ci pozostał, i daty, na które czekasz, budować nawyki, które chcesz zachować, i stawać się lepszą wersją siebie.</p>
+        <h2>Zamień datę w odliczanie.</h2>
+        <p>Gdy znasz już datę, dodaj ją w sekcji Nadchodzące w Left i zobacz pozostałe dni na ekranie głównym, ekranie blokady i Apple Watch.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -447,7 +566,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Już jest.","notYet":"Jeszcze nie","futureDate":"Ta data jest w przyszłości.","datePassed":"Ta data już minęła.","selectDate":"Wybierz poprawną datę.","selectBoth":"Wybierz obie daty.","chooseTarget":"Wybierz powyżej datę docelową.","deadlinePassed":"Termin minął","pastDue":"Po terminie","deadlineUrgent":"Pilny termin","deadlineSoon":"Wkrótce","deadlineAhead":"Termin przed tobą","fastComplete":"Post zakończony!","weddingArrived":"Data nadeszła","weekend":"Weekend!","itsWeekend":"Mamy weekend! Ciesz się nim.","workdayEnded":"Dzień pracy się skończył","workdayEndedHint":"Ustaw późniejszą godzinę, aby znów odliczać.","upcoming":"Najbliższe: {dates}","since":"Od {date}","fastEnds":"Koniec postu: {date}","sinceJan1":"Od północy 1 stycznia {year}","untilDec31":"Do północy 31 grudnia {year}","fiscalEnds":"Rok obrotowy kończy się {date}","quarterEnds":"Kwartał kończy się {date}","weddingDate":"Data ślubu: {date}","departure":"Wyjazd: {date}","currentAge":"Aktualny wiek – lata: {years}, miesiące: {months}, dni: {days}","hoursAndMinutes":"{hours} godz. i {minutes} min","minutesExtra":"Dodatkowe minuty: {minutes}, łącznie minut: {total}","readingDetail":"{minutes} min i {seconds} s (tempo: {wpm} słów/min)","workdaysAt":"Dni robocze: {days}, po {hours} godz. dziennie","minutesSince":"Łącznie minut od {date}: {minutes}","schoolDays":"dni szkolne","weekdaysMinusBreaks":"Dni powszednie: {weekdays} minus dni przerw: {breaks}","businessAfter":"{count} dni rob. po {date}","businessBefore":"{count} dni rob. przed {date}","futureTime":"Ta godzina jest w przyszłości.","unitEquals":"{amount} {from} = około {value} {to}","invalidTimestamp":"Nieprawidłowy znacznik czasu.","invalidDate":"Nieprawidłowa data.","local":"lokalny","pregFirst":"Pierwszy trymestr","pregSecond":"Drugi trymestr","pregThird":"Trzeci trymestr","pregWeekDay":"{weeks} tc. {days} d.","dueWas":"Termin porodu był {date} – gratulacje!","yearDays":"Rok {year} – łącznie dni: {days}","easterDates":"Zachodnia – {western}; prawosławna – {orthodox}"},"stat":{"days":"dni","hours":"godz.","min":"min","sec":"s","weeks":"tygodni","months":"miesięcy","daysSince":"dni od","daysUntil":"dni do","yearAnniversary":"rocznica","elapsed":"upłynęło","left":"pozostało","daysLeft":"dni pozostało","weeksLeft":"tygodni pozostało","yearsLeft":"lat pozostało","streakDays":"dni ukończone","fullWeeks":"pełnych tygodni","approxMonths":"mies. (w przybliżeniu)","durationMin":"min trwania","elapsedMin":"min upłynęło","minutesLeft":"min pozostało","currentQuarter":"bieżący kwartał","remaining":"pozostało","daysSober":"dni trzeźwości","daysToMilestone":"dni do następnego etapu","nextMilestone":"następny etap","daysUntilDeparture":"dni do wyjazdu","tripDays":"dni podróży"},"unit":{"months":{"one":"miesiąc","few":"miesiące","many":"miesięcy","other":"miesiąca"},"weeks":{"one":"tydzień","few":"tygodnie","many":"tygodni","other":"tygodnia"},"days":{"one":"dzień","few":"dni","many":"dni","other":"dnia"},"hours":{"one":"godzina","few":"godziny","many":"godzin","other":"godziny"},"minutes":{"one":"minuta","few":"minuty","many":"minut","other":"minuty"},"seconds":{"one":"sekunda","few":"sekundy","many":"sekund","other":"sekundy"},"years":{"one":"rok","few":"lata","many":"lat","other":"roku"}},"next":{"christmas":"Następne Boże Narodzenie: {date}","newYear":"Następny Nowy Rok: {date}","halloween":"Następne Halloween: {date}","thanksgiving":"Następne Święto Dziękczynienia: {date}","valentines":"Następne Walentynki: {date}","mothersDay":"Następny Dzień Matki: {date}","fathersDay":"Następny Dzień Ojca: {date}","spring":"Następna równonoc wiosenna: {date}","summer":"Następne przesilenie letnie: {date}","fall":"Następna równonoc jesienna: {date}","winter":"Następne przesilenie zimowe: {date}","westernEaster":"Następna Wielkanoc zachodnia: {date}","orthodoxEaster":"Następna Wielkanoc prawosławna: {date}","birthday":"Najbliższe urodziny: {date}","anniversary":"Najbliższa rocznica: {date}","saturday":"Najbliższa sobota: {date}","birthdayAway":{"one":"Najbliższe urodziny: {date} (za {count} dzień)","few":"Najbliższe urodziny: {date} (za {count} dni)","many":"Najbliższe urodziny: {date} (za {count} dni)","other":"Najbliższe urodziny: {date} (za {count} dnia)"}},"sleep":{"bed9":"9 godz. (6 cykli)","bed75":"7,5 godz. (5 cykli, zalecane)","bed6":"6 godz. (4 cykle)","bed45":"4,5 godz. (3 cykle)","wake45":"4,5 godz.","wake6":"6 godz.","wake75":"7,5 godz. (zalecane)","wake9":"9 godz."}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Już jest.","notYet":"Jeszcze nie","futureDate":"Ta data jest w przyszłości.","datePassed":"Ta data już minęła.","selectDate":"Wybierz poprawną datę.","selectBoth":"Wybierz obie daty.","chooseTarget":"Wybierz powyżej datę docelową.","deadlinePassed":"Termin minął","pastDue":"Po terminie","deadlineUrgent":"Pilny termin","deadlineSoon":"Wkrótce","deadlineAhead":"Termin przed tobą","fastComplete":"Post zakończony!","weddingArrived":"Data nadeszła","weekend":"Weekend!","itsWeekend":"Mamy weekend! Ciesz się nim.","workdayEnded":"Dzień pracy się skończył","workdayEndedHint":"Ustaw późniejszą godzinę, aby znów odliczać.","upcoming":"Najbliższe: {dates}","since":"Od {date}","fastEnds":"Koniec postu: {date}","sinceJan1":"Od północy 1 stycznia {year}","untilDec31":"Do północy 31 grudnia {year}","fiscalEnds":"Rok obrotowy kończy się {date}","quarterEnds":"Kwartał kończy się {date}","weddingDate":"Data ślubu: {date}","departure":"Wyjazd: {date}","currentAge":"Aktualny wiek – lata: {years}, miesiące: {months}, dni: {days}","hoursAndMinutes":"{hours} godz. i {minutes} min","minutesExtra":"Dodatkowe minuty: {minutes}, łącznie minut: {total}","readingDetail":"{minutes} min i {seconds} s (tempo: {wpm} słów/min)","workdaysAt":"Dni robocze: {days}, po {hours} godz. dziennie","minutesSince":"Łącznie minut od {date}: {minutes}","schoolDays":"dni szkolne","weekdaysMinusBreaks":"Dni powszednie: {weekdays} minus dni przerw: {breaks}","businessAfter":"{count} dni rob. po {date}","businessBefore":"{count} dni rob. przed {date}","futureTime":"Ta godzina jest w przyszłości.","unitEquals":"{amount} {from} = około {value} {to}","invalidTimestamp":"Nieprawidłowy znacznik czasu.","invalidDate":"Nieprawidłowa data.","local":"lokalny","pregFirst":"Pierwszy trymestr","pregSecond":"Drugi trymestr","pregThird":"Trzeci trymestr","pregWeekDay":"{weeks} tc. {days} d.","dueWas":"Termin porodu był {date} – gratulacje!","yearDays":"Rok {year} – łącznie dni: {days}","easterDates":"Zachodnia – {western}; prawosławna – {orthodox}"},"stat":{"days":"dni","hours":"godz.","min":"min","sec":"s","weeks":"tygodni","months":"miesięcy","daysSince":"dni od","daysUntil":"dni do","yearAnniversary":"rocznica","elapsed":"upłynęło","left":"pozostało","daysLeft":"dni pozostało","weeksLeft":"tygodni pozostało","yearsLeft":"lat pozostało","streakDays":"dni ukończone","fullWeeks":"pełnych tygodni","approxMonths":"mies. (w przybliżeniu)","durationMin":"min trwania","elapsedMin":"min upłynęło","minutesLeft":"min pozostało","currentQuarter":"bieżący kwartał","remaining":"pozostało","daysSober":"dni trzeźwości","daysToMilestone":"dni do następnego etapu","nextMilestone":"następny etap","daysUntilDeparture":"dni do wyjazdu","tripDays":"dni podróży"},"unit":{"months":{"one":"miesiąc","few":"miesiące","many":"miesięcy","other":"miesiąca"},"weeks":{"one":"tydzień","few":"tygodnie","many":"tygodni","other":"tygodnia"},"days":{"one":"dzień","few":"dni","many":"dni","other":"dnia"},"hours":{"one":"godzina","few":"godziny","many":"godzin","other":"godziny"},"minutes":{"one":"minuta","few":"minuty","many":"minut","other":"minuty"},"seconds":{"one":"sekunda","few":"sekundy","many":"sekund","other":"sekundy"},"years":{"one":"rok","few":"lata","many":"lat","other":"roku"}},"next":{"christmas":"Następne Boże Narodzenie: {date}","newYear":"Następny Nowy Rok: {date}","halloween":"Następne Halloween: {date}","thanksgiving":"Następne Święto Dziękczynienia: {date}","valentines":"Następne Walentynki: {date}","mothersDay":"Następny Dzień Matki: {date}","fathersDay":"Następny Dzień Ojca: {date}","spring":"Następna równonoc wiosenna: {date}","summer":"Następne przesilenie letnie: {date}","fall":"Następna równonoc jesienna: {date}","winter":"Następne przesilenie zimowe: {date}","westernEaster":"Następna Wielkanoc zachodnia: {date}","orthodoxEaster":"Następna Wielkanoc prawosławna: {date}","birthday":"Najbliższe urodziny: {date}","anniversary":"Najbliższa rocznica: {date}","saturday":"Najbliższa sobota: {date}","birthdayAway":{"one":"Najbliższe urodziny: {date} (za {count} dzień)","few":"Najbliższe urodziny: {date} (za {count} dni)","many":"Najbliższe urodziny: {date} (za {count} dni)","other":"Najbliższe urodziny: {date} (za {count} dnia)"}},"sleep":{"bed9":"9 godz. (6 cykli)","bed75":"7,5 godz. (5 cykli, zalecane)","bed6":"6 godz. (4 cykle)","bed45":"4,5 godz. (3 cykle)","wake45":"4,5 godz.","wake6":"6 godz.","wake75":"7,5 godz. (zalecane)","wake9":"9 godz."},"card":{"android":"Masz Androida? Zobacz, co możesz zrobić","copied":"Skopiowano link","daysLeft":{"few":"Pozostały {count} dni","many":"Pozostało {count} dni","one":"Pozostał {count} dzień","other":"Pozostało {count} dnia"},"handoff":"Wyślij link na swojego iPhone’a","handoffTitle":"Left na iPhone’a","hoursLeft":{"few":"Dziś pozostały {count} godziny","many":"Dziś pozostało {count} godzin","one":"Dziś pozostała {count} godzina","other":"Dziś pozostało {count} godziny"},"shareText":"{title}: {result}","weeksLeft":{"few":"Pozostały {count} tygodnie","many":"Pozostało {count} tygodni","one":"Pozostał {count} tydzień","other":"Pozostało {count} tygodnia"},"yearsLeft":{"few":"Pozostały {count} lata","many":"Pozostało {count} lat","one":"Pozostał {count} rok","other":"Pozostało {count} roku"}},"life":{"mark":"Zaznaczono: wiek {age}, tydzień {week}"},"preg":{"daysToGo":"dni do końca","dueDate":"Szacowany termin porodu: {date}","dueDateTitle":"Termin porodu","weeksPregnant":"tygodni ciąży","weeksToGo":"tygodni do końca"}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const startEl = document.getElementById('as-start');
@@ -479,6 +598,7 @@
       const d = parseInt(daysEl.value) || 0;
       const out = addToDate(base, { years: sign*y, months: sign*mo, weeks: sign*wk, days: sign*d });
       const diff = Math.abs(Math.round((out - base) / 86400000));
+      toolPreviewDate(out);
       result.innerHTML = `
         <div class="tool-result-card">
           <div class="tool-result-big">${formatDateLong(out)}</div>

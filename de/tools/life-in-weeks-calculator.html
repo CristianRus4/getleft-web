@@ -1,0 +1,595 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Rechner für Leben in Wochen – Dein Leben als Raster aus Wochen | Left</title>
+  <meta name="description" content="Sieh dein Leben in Wochen: ein Raster aus jeder Woche ab deinem Geburtsdatum, mit gelebten Wochen, verbleibenden Wochen und verbleibenden Samstagen. Speichere es als Hintergrundbild."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/de/tools/life-in-weeks-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Rechner für Leben in Wochen – Dein Leben als Raster aus Wochen"  />
+  <meta property="og:description" content="Sieh dein Leben in Wochen: ein Raster aus jeder Woche ab deinem Geburtsdatum, mit gelebten Wochen, verbleibenden Wochen und verbleibenden Samstagen. Speichere es als Hintergrundbild."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/tools/life-in-weeks-calculator" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Rechner für Leben in Wochen – Dein Leben als Raster aus Wochen"  />
+  <meta name="twitter:description" content="Sieh dein Leben in Wochen: ein Raster aus jeder Woche ab deinem Geburtsdatum, mit gelebten Wochen, verbleibenden Wochen und verbleibenden Samstagen. Speichere es als Hintergrundbild."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Rechner für Leben in Wochen – Dein Leben als Raster aus Wochen",
+  "url": "https://getleft.app/tools/life-in-weeks-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Sieh dein Leben in Wochen: ein Raster aus jeder Woche ab deinem Geburtsdatum, mit gelebten Wochen, verbleibenden Wochen und verbleibenden Samstagen. Speichere es als Hintergrundbild.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "de"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Rechner für Leben in Wochen",
+      "item": "https://getleft.app/tools/life-in-weeks-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/de/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-de&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>Rechner für Leben in Wochen</h1>
+    <p class="tool-lede">Dein Leben als Raster aus Wochen: eine Zeile für jedes Jahr, ein Kästchen für jede Woche, und die bereits gelebten Wochen sind abgedunkelt.</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <div class="tool-widget__field">
+          <label for="liw-birth">Dein Geburtsdatum</label>
+          <input type="date" id="liw-birth" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="liw-span">Lebensspanne: <output id="liw-span-out" for="liw-span">80</output> Jahre</label>
+          <input type="range" id="liw-span" min="60" max="100" step="1" value="80" />
+        </div>
+      </div>
+      <p class="tool-fineprint" id="liw-avg-note" style="margin:-8px 0 18px;"><span id="liw-avg">80</span> ist der Durchschnitt für dein Alter in den WHO-Sterbetafeln von 2019.</p>
+      <div class="tool-result" id="liw-result" aria-live="polite">
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-lived">-</div><div class="tool-stat-label">gelebte Wochen</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-left" style="color:var(--accent);">-</div><div class="tool-stat-label">verbleibende Wochen</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-pct">-</div><div class="tool-stat-label">deiner Lebensspanne</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-sat">-</div><div class="tool-stat-label">Verbleibende Samstage</div></div>
+        </div>
+      </div>
+      <div class="liw-grid">
+        <canvas id="liw-canvas" role="img" aria-label="Dein Leben als Raster aus Wochen"></canvas>
+      </div>
+      <div class="tool-widget__row" style="margin-top:22px;">
+        <div class="tool-widget__field">
+          <label for="liw-mark">Datum markieren (optional)</label>
+          <input type="date" id="liw-mark" />
+        </div>
+        <p class="tool-meta" id="liw-mark-note"></p>
+      </div>
+      <div class="tool-quick-actions" style="margin-top:0;">
+        <button type="button" class="tool-quick-btn" id="liw-save-wallpaper">Als Hintergrundbild speichern</button>
+        <button type="button" class="tool-quick-btn" id="liw-save-square">Als quadratisches Bild speichern</button>
+      </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="life" aria-hidden="true">
+          <span class="tool-preview__title">Dein Leben</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-de&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Behalte dein Lebensraster auf deinem Sperrbildschirm</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Teilen</button>
+            <a class="tool-card__more" href="/de/tools/">Alle Tools</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Wie die Wochen gezählt werden</h2>
+      <p>Gib dein Geburtsdatum ein, und der Rechner zählt die Tage von da bis heute und teilt durch sieben. Jede Zeile des Rasters ist ein Jahr deines Lebens, von einem Geburtstag zum nächsten, in 52 Wochen geschnitten. Die gelebten Wochen sind abgedunkelt, die aktuelle Woche ist orange, und die noch kommenden Wochen sind gefüllt.</p>
+      <p>Ein Jahr hat 52 Wochen und einen Tag, im Schaltjahr zwei, daher lassen 52 Kästchen pro Zeile jedes Jahr ein oder zwei Tage aus. Die Zahlen über dem Raster tun das nicht: Gelebte und verbleibende Wochen sind exakte Zählungen ganzer Wochen. Bei einer Lebensspanne von 80 Jahren sind das 4.174 Wochen, während das Raster 4.160 Kästchen zeichnet.</p>
+      <p>Verbleibende Samstage zählt die Samstage ab morgen bis zum Ende der von dir gewählten Lebensspanne. Manche empfinden das als greifbarere Zahl als Wochen: Es ist ungefähr die Zahl der freien Wochenenden, die noch vor dir liegen.</p>
+
+      <h2>Woher die Idee kommt</h2>
+      <p>Ein Leben als Blatt voller Wochenkästchen darzustellen, wurde durch Tim Urbans Essay „Your Life in Weeks“ auf Wait But Why bekannt. Der Gedanke dahinter ist viel älter: <em>Memento mori</em>, die stoische Praxis, sich daran zu erinnern, dass Zeit begrenzt ist, um sie für das zu nutzen, was dir wichtig ist. Auf einer Seite gesehen wirkt ein Leben zugleich lang und endlich, und eine gewöhnliche Woche wirkt wie das, was sie ist: ein Kästchen von einigen Tausend.</p>
+      <p>Die meisten, die einen Lebenskalender führen, nutzen ihn nicht, um sich düster zu fühlen. Er hilft bei der Perspektive: Nein zu Dingen zu sagen, die nicht zählen, und Ja zu der Reise, dem Anruf oder dem Projekt, das immer wieder verschoben wird. Wenn dir Wochen zu hart vorkommen, kann Left dasselbe Leben auch in Monaten oder Jahren zeigen.</p>
+
+      <h2>Zur Lebensspanne</h2>
+      <p>Der Startwert stammt aus den WHO-Sterbetafeln von 2019 für die ganze Welt, gemittelt für Frauen und Männer. Es ist nicht die Lebenserwartung bei der Geburt: Es ist dein aktuelles Alter plus die durchschnittlich verbleibenden Jahre in diesem Alter, was etwas höher ist, weil du die Jahre hinter dir bereits gelebt hast. Er ist auf ein ganzes Jahr gerundet und bleibt zwischen 60 und 100.</p>
+      <p>Ein Durchschnitt sagt nichts Sicheres über einen einzelnen Menschen. Gesundheit, Gewohnheiten, Land und schlichter Zufall spielen alle eine Rolle, weshalb du den Schieberegler auf jede beliebige Lebensspanne stellen kannst. Für eine Schätzung, die den Lebensstil berücksichtigt, probiere den <a href="/de/tools/life-expectancy-calculator">Lebenserwartungsrechner</a>; um dein genaues Alter in Jahren, Monaten und Tagen zu sehen, nutze den <a href="/de/tools/age-calculator">Altersrechner</a>.</p>
+
+      <h2>Datum markieren</h2>
+      <p>Füge unter „Datum markieren“ ein Datum hinzu, um die Woche einzukreisen, in die es fällt: eine Hochzeit, einen Umzug, die Geburt eines Kindes oder einen Tag, der noch kommt, etwa einen geplanten Ruhestand oder einen 50. Geburtstag. Markierte Wochen in der Vergangenheit zeigen, wie weit du gekommen bist; markierte Wochen in der Zukunft zeigen, wie viele Kästchen bis dahin noch übrig sind.</p>
+
+      <h2>Behalte dein Lebensraster auf deinem iPhone</h2>
+      <p>Als Hintergrundbild speichern erzeugt ein Bild im Format eines Smartphones mit Platz für die Uhr oben; Als quadratisches Bild speichern erzeugt eines zum Teilen. Ein gespeichertes Bild ändert sich jedoch nicht, daher ist es nächste Woche ein Kästchen im Rückstand. Left hält das Raster von selbst aktuell:</p>
+      <ol>
+        <li>Installiere Left auf deinem iPhone, öffne <strong>Einstellungen</strong> und tippe auf <strong>Deine Lebensspanne</strong>.</li>
+        <li>Lege deinen <strong>Geburtstag</strong> fest und wähle unter <strong>Sehen Sie Ihr Leben in...</strong> die Option <strong>Wochen</strong>.</li>
+        <li>Öffne <strong>Verbleibende Zeit</strong> und wechsle zur Lebensansicht, um das Raster und deine verbleibenden Wochen zu sehen.</li>
+        <li>Füge das <strong>Leben</strong>- oder <strong>Du</strong>-Widget zu deinem Home-Bildschirm oder Sperrbildschirm hinzu oder richte das <a href="/de/support/wallpaper-shortcut">Hintergrundbild von Left</a> im Modus Leben ein, damit sich dein Sperrbildschirm selbst neu zeichnet.</li>
+      </ol>
+      <p>Left verwendet eine Lebensspanne von 80 Jahren, sofern du sie nicht änderst; du kannst in der App deine eigene Lebensspanne festlegen. Mehr zu den Optionen findest du im Leitfaden zum <a href="/de/life-calendar">Lebenskalender</a>, im <a href="/de/support/set-up-your-lifespan">Leitfaden zur Lebensspanne</a> und in unserem Vergleich von <a href="/de/blog/best-life-calendar-apps-iphone">Lebenskalender-Apps für das iPhone</a>.</p>
+
+      <h2>Fragen</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Ist das eine Vorhersage, wie lange ich leben werde?</summary>
+          <div class="faq-answer"><p>Nein. Die Lebensspanne ist ein Durchschnitt aus Sterbetafeln der Bevölkerung oder eine Zahl, die du wählst. Das Raster ist eine Möglichkeit, Zeit zu sehen, keine Prognose für einen einzelnen Menschen.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie viele Wochen hat ein Leben?</summary>
+          <div class="faq-answer"><p>Ein Leben von 80 Jahren sind 4.174 Wochen (29.220 Tage geteilt durch 7). Poster mit Leben in Wochen zeichnen 52 Kästchen pro Jahr, was 4.160 ergibt, weil ein Jahr 52 Wochen und ein oder zwei Tage hat.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Warum hat jede Zeile 52 Kästchen?</summary>
+          <div class="faq-answer"><p>Jede Zeile ist ein Jahr deines Lebens, von einem Geburtstag zum nächsten, aufgeteilt in 52 Wochen. Der eine oder die zwei zusätzlichen Tage pro Jahr werden in der Zeichnung weggelassen, aber in den Summen mitgezählt.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Welche Lebensspanne verwendet der Rechner?</summary>
+          <div class="faq-answer"><p>Für dein Alter der Durchschnitt aus den WHO-Sterbetafeln von 2019 (weltweit, Frauen und Männer gemittelt), auf ein ganzes Jahr gerundet. Bewege den Schieberegler, um eine beliebige Lebensspanne von 60 bis 100 zu verwenden.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wird mein Geburtsdatum gespeichert oder irgendwohin gesendet?</summary>
+          <div class="faq-answer"><p>Nein. Alles wird in deinem Browser berechnet. Wenn du Teilen nutzt, sind die Daten Teil des Links, teile ihn also nur mit Menschen, denen du sie anvertrauen möchtest.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie behalte ich mein Leben in Wochen auf meinem iPhone?</summary>
+          <div class="faq-answer"><p>Speichere das Raster von dieser Seite als Hintergrundbild oder installiere Left: Lege deinen Geburtstag in den Einstellungen fest, wähle, dein Leben in Wochen zu sehen, und füge ein Leben- oder Du-Widget oder das Hintergrundbild von Left hinzu, das sich selbst aktualisiert.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Ist das eine Vorhersage, wie lange ich leben werde?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Die Lebensspanne ist ein Durchschnitt aus Sterbetafeln der Bevölkerung oder eine Zahl, die du wählst. Das Raster ist eine Möglichkeit, Zeit zu sehen, keine Prognose für einen einzelnen Menschen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Wochen hat ein Leben?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ein Leben von 80 Jahren sind 4.174 Wochen (29.220 Tage geteilt durch 7). Poster mit Leben in Wochen zeichnen 52 Kästchen pro Jahr, was 4.160 ergibt, weil ein Jahr 52 Wochen und ein oder zwei Tage hat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum hat jede Zeile 52 Kästchen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Jede Zeile ist ein Jahr deines Lebens, von einem Geburtstag zum nächsten, aufgeteilt in 52 Wochen. Der eine oder die zwei zusätzlichen Tage pro Jahr werden in der Zeichnung weggelassen, aber in den Summen mitgezählt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Welche Lebensspanne verwendet der Rechner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für dein Alter der Durchschnitt aus den WHO-Sterbetafeln von 2019 (weltweit, Frauen und Männer gemittelt), auf ein ganzes Jahr gerundet. Bewege den Schieberegler, um eine beliebige Lebensspanne von 60 bis 100 zu verwenden."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wird mein Geburtsdatum gespeichert oder irgendwohin gesendet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Alles wird in deinem Browser berechnet. Wenn du Teilen nutzt, sind die Daten Teil des Links, teile ihn also nur mit Menschen, denen du sie anvertrauen möchtest."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie behalte ich mein Leben in Wochen auf meinem iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Speichere das Raster von dieser Seite als Hintergrundbild oder installiere Left: Lege deinen Geburtstag in den Einstellungen fest, wähle, dein Leben in Wochen zu sehen, und füge ein Leben- oder Du-Widget oder das Hintergrundbild von Left hinzu, das sich selbst aktualisiert."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Weiterlesen</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/blog/weeks-and-days-iphone-screen">So bringst du Wochen und Tage auf deinen iPhone-Bildschirm</a>
+        <a class="tool-related-item" href="/de/support/set-up-your-lifespan">Richte deine Lebensspanne in Left ein</a>
+        <a class="tool-related-item" href="/de/life-calendar">Lebenskalender: dein Leben in Wochen</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Verwandte Tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/tools/life-expectancy-calculator">Lebenserwartungsrechner</a>
+        <a class="tool-related-item" href="/de/tools/age-calculator">Altersrechner</a>
+        <a class="tool-related-item" href="/de/tools/percentage-year-calculator">Prozent des Jahres</a>
+        <a class="tool-related-item" href="/tools/retirement-countdown-calculator">Ruhestand-Countdown</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left laden</span>
+        <h2>Sieh dein Leben in Wochen.</h2>
+        <p>Left zeichnet dein Leben ab deinem Geburtstag als Raster, mit Leben-Widgets für deinen Home-Bildschirm, Sperrbildschirm und die Apple Watch und einem Hintergrundbild, das sich selbst aktualisiert.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-de&amp;mt=8" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Für iOS laden
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/de/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Es ist so weit.","notYet":"Noch nicht","futureDate":"Dieses Datum liegt in der Zukunft.","datePassed":"Dieses Datum ist vorbei.","selectDate":"Wähle ein gültiges Datum.","selectBoth":"Wähle beide Daten aus.","chooseTarget":"Wähle oben ein Zieldatum.","deadlinePassed":"Deadline verstrichen","pastDue":"Überfällig","deadlineUrgent":"Dringende Deadline","deadlineSoon":"Bald fällig","deadlineAhead":"Deadline steht an","fastComplete":"Fasten geschafft!","weddingArrived":"Das Datum ist gekommen","weekend":"Wochenende!","itsWeekend":"Es ist Wochenende! Genieße es.","workdayEnded":"Arbeitstag beendet","workdayEndedHint":"Wähle eine spätere Uhrzeit, um wieder herunterzuzählen.","upcoming":"Anstehend: {dates}","since":"Seit {date}","fastEnds":"Fasten endet: {date}","sinceJan1":"Seit dem 1. Januar {year}, Mitternacht","untilDec31":"Bis Mitternacht am 31. Dezember {year}","fiscalEnds":"Geschäftsjahr endet am {date}","quarterEnds":"Quartal endet am {date}","weddingDate":"Hochzeitsdatum: {date}","departure":"Abreise: {date}","currentAge":"Aktuelles Alter: {years} Jahre, {months} Monate, {days} Tage","hoursAndMinutes":"{hours} Stunden und {minutes} Minuten","minutesExtra":"{minutes} Minuten mehr, insgesamt {total} Minuten","readingDetail":"{minutes} Minuten und {seconds} Sekunden bei {wpm} Wörtern pro Minute","workdaysAt":"{days} Arbeitstage bei {hours} Stunden pro Tag","minutesSince":"Insgesamt {minutes} Minuten seit {date}","schoolDays":"Schultage","weekdaysMinusBreaks":"{weekdays} Wochentage minus {breaks} Ferientage","businessAfter":"{count} Arbeitstage nach {date}","businessBefore":"{count} Arbeitstage vor {date}","futureTime":"Diese Uhrzeit liegt in der Zukunft.","unitEquals":"{amount} {from} entsprechen etwa {value} {to}","invalidTimestamp":"Ungültiger Timestamp.","invalidDate":"Ungültiges Datum.","local":"lokal","pregFirst":"Erstes Trimester","pregSecond":"Zweites Trimester","pregThird":"Drittes Trimester","pregWeekDay":"{weeks} W. {days} T.","dueWas":"Geburtstermin war {date} – herzlichen Glückwunsch!","yearDays":"Jahr {year} – insgesamt {days} Tage","easterDates":"Westlich – {western}; orthodox – {orthodox}"},"stat":{"days":"Tage","hours":"Stunden","min":"Min","sec":"Sek","weeks":"Wochen","months":"Monate","daysSince":"Tage seit","daysUntil":"Tage bis","yearAnniversary":"Jahrestag","elapsed":"vergangen","left":"übrig","daysLeft":"Tage übrig","weeksLeft":"Wochen übrig","yearsLeft":"Jahre übrig","streakDays":"abgeschlossene Tage","fullWeeks":"volle Wochen","approxMonths":"ca. Monate","durationMin":"Dauer in Min","elapsedMin":"vergangene Min","minutesLeft":"Minuten übrig","currentQuarter":"aktuelles Quartal","remaining":"verbleibend","daysSober":"nüchterne Tage","daysToMilestone":"Tage bis zum nächsten Meilenstein","nextMilestone":"nächster Meilenstein","daysUntilDeparture":"Tage bis zur Abreise","tripDays":"Reisetage"},"unit":{"months":{"one":"Monat","other":"Monate"},"weeks":{"one":"Woche","other":"Wochen"},"days":{"one":"Tag","other":"Tage"},"hours":{"one":"Stunde","other":"Stunden"},"minutes":{"one":"Minute","other":"Minuten"},"seconds":{"one":"Sekunde","other":"Sekunden"},"years":{"one":"Jahr","other":"Jahre"}},"next":{"christmas":"Nächstes Weihnachten: {date}","newYear":"Nächstes Neujahr: {date}","halloween":"Nächstes Halloween: {date}","thanksgiving":"Nächstes Thanksgiving: {date}","valentines":"Nächster Valentinstag: {date}","mothersDay":"Nächster Muttertag: {date}","fathersDay":"Nächster Vatertag: {date}","spring":"Nächste Frühlings-Tagundnachtgleiche: {date}","summer":"Nächste Sommersonnenwende: {date}","fall":"Nächste Herbst-Tagundnachtgleiche: {date}","winter":"Nächste Wintersonnenwende: {date}","westernEaster":"Nächstes westliches Ostern: {date}","orthodoxEaster":"Nächstes orthodoxes Ostern: {date}","birthday":"Nächster Geburtstag: {date}","anniversary":"Nächster Jahrestag: {date}","saturday":"Nächster Samstag: {date}","birthdayAway":{"one":"Nächster Geburtstag: {date} (in {count} Tag)","other":"Nächster Geburtstag: {date} (in {count} Tagen)"}},"sleep":{"bed9":"9 Std. (6 Zyklen)","bed75":"7,5 Std. (5 Zyklen, empfohlen)","bed6":"6 Std. (4 Zyklen)","bed45":"4,5 Std. (3 Zyklen)","wake45":"4,5 Std.","wake6":"6 Std.","wake75":"7,5 Std. (empfohlen)","wake9":"9 Std."},"card":{"android":"Mit Android unterwegs? Sieh dir deine Optionen an","copied":"Link kopiert","daysLeft":{"one":"Noch {count} Tag","other":"Noch {count} Tage"},"handoff":"Sende den Link an dein iPhone","handoffTitle":"Left für das iPhone","hoursLeft":{"one":"Heute noch {count} Stunde","other":"Heute noch {count} Stunden"},"shareText":"{title}: {result}","weeksLeft":{"one":"Noch {count} Woche","other":"Noch {count} Wochen"},"yearsLeft":{"one":"Noch {count} Jahr","other":"Noch {count} Jahre"}},"life":{"mark":"Markiert: Alter {age}, Woche {week}"},"preg":{"daysToGo":"Tage noch","dueDate":"Voraussichtlicher Geburtstermin: {date}","dueDateTitle":"Geburtstermin","weeksPregnant":"Wochen schwanger","weeksToGo":"Wochen noch"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script src="/tools/life-in-weeks-calculator.js"></script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

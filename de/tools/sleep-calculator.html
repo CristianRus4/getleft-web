@@ -1,0 +1,662 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Schlafrechner – Beste Schlafens- und Aufstehzeiten | Left</title>
+  <meta name="description" content="Berechne die beste Zeit zum Schlafengehen oder Aufstehen anhand von 90-Minuten-Schlafzyklen. Finde Aufstehzeiten, die Schlafträgheit vermeiden und dich ausgeruht zurücklassen."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/de/tools/sleep-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Schlafrechner – Beste Schlafens- und Aufstehzeiten"  />
+  <meta property="og:description" content="Berechne die beste Zeit zum Schlafengehen oder Aufstehen anhand von 90-Minuten-Schlafzyklen. Finde Aufstehzeiten, die Schlafträgheit vermeiden und dich ausgeruht zurücklassen."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/tools/sleep-calculator" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Schlafrechner – Beste Schlafens- und Aufstehzeiten"  />
+  <meta name="twitter:description" content="Berechne die beste Zeit zum Schlafengehen oder Aufstehen anhand von 90-Minuten-Schlafzyklen. Finde Aufstehzeiten, die Schlafträgheit vermeiden und dich ausgeruht zurücklassen."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Schlafrechner – Beste Schlafens- und Aufstehzeiten",
+  "url": "https://getleft.app/tools/sleep-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Berechne die beste Zeit zum Schlafengehen oder Aufstehen anhand von 90-Minuten-Schlafzyklen. Finde Aufstehzeiten, die Schlafträgheit vermeiden und dich ausgeruht zurücklassen.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "de"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Schlafrechner",
+      "item": "https://getleft.app/tools/sleep-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/de/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-de&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>Schlafrechner</h1>
+    <p class="tool-lede">Finde die besten Zeiten zum Aufwachen oder Schlafengehen, basierend auf 90-Minuten-Schlafzyklen – damit du zwischen den Zyklen aufwachst und dich erfrischt fühlst.</p>
+
+    <div class="tool-widget">
+      <div class="tool-toggle" id="sleep-mode-toggle" style="margin-bottom:20px;">
+        <button class="is-active" data-mode="wake">Ich möchte aufwachen um …</button>
+        <button data-mode="sleep">Ich gehe schlafen um …</button>
+      </div>
+
+      <div id="wake-panel">
+        <div class="tool-widget__row">
+          <label for="sleep-wake-time">Aufstehzeit</label>
+          <input type="time" id="sleep-wake-time" value="07:00" />
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">Wann solltest du schlafen gehen? (inklusive 15 Min. zum Einschlafen)</p>
+        <div id="sleep-bedtimes" class="tool-result"></div>
+      </div>
+
+      <div id="sleep-panel" style="display:none;">
+        <div class="tool-widget__row">
+          <label for="sleep-bed-time">Schlafenszeit</label>
+          <input type="time" id="sleep-bed-time" value="23:00" />
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">Beste Aufstehzeiten: (inklusive 15 Min. zum Einschlafen)</p>
+        <div id="sleep-waketimes" class="tool-result"></div>
+      </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="day" aria-hidden="true">
+          <span class="tool-preview__title">Heute</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-de&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Sieh die verbleibenden Stunden deines Tages auf deinem Sperrbildschirm</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Teilen</button>
+            <a class="tool-card__more" href="/de/tools/">Alle Tools</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Wie Schlafzyklen funktionieren</h2>
+      <p>Schlaf verläuft in Zyklen von durchschnittlich etwa <strong>90 Minuten</strong> (bei dir können es 70–120 Minuten sein), die durch Leichtschlaf, Tiefschlaf (Slow-Wave-Schlaf) und REM-Schlaf führen. Das Aufwachen mitten im Zyklus – besonders im Tiefschlaf – verursacht <em>Schlafträgheit</em>: dieses benommene, desorientierte Gefühl, das 30 Minuten oder länger anhalten kann.</p>
+      <p>Am Ende eines vollständigen Zyklus aufzuwachen, wenn der Schlaf natürlich am leichtesten ist, fühlt sich viel natürlicher an. Dieser Rechner zeigt dir Aufstehzeiten, die mit den Zyklusgrenzen übereinstimmen.</p>
+
+      <h2>Der 15-Minuten-Puffer zum Einschlafen</h2>
+      <p>Der Rechner addiert 15 Minuten zu deiner Schlafenszeit, bevor der erste Zyklus beginnt. Das berücksichtigt die durchschnittliche Zeit, die ein gesunder Erwachsener zum Einschlafen braucht (bekannt als Einschlaflatenz). Schläfst du tendenziell schneller oder langsamer ein, passe die Zeiten entsprechend um 5–10 Minuten an.</p>
+
+      <h2>Ein durchgerechnetes Beispiel</h2>
+      <p>Angenommen, du musst um 7:00 aufwachen. Der Rechner zieht 15 Minuten zum Einschlafen ab, was 6:45 ergibt, und zählt dann in 90-Minuten-Schritten zurück:</p>
+      <ul>
+        <li>6 Zyklen (9 Stunden Schlaf): im Bett um <strong>21:45</strong></li>
+        <li>5 Zyklen (7,5 Stunden): im Bett um <strong>23:15</strong></li>
+        <li>4 Zyklen (6 Stunden): im Bett um <strong>00:45</strong></li>
+        <li>3 Zyklen (4,5 Stunden): im Bett um <strong>02:15</strong></li>
+      </ul>
+      <p>Der andere Modus rechnet vorwärts. Gehst du um 23:00 ins Bett, beginnt der erste Zyklus um 23:15, und die vorgeschlagenen Aufstehzeiten sind 03:45, 05:15, 06:45 und 08:15.</p>
+
+      <h2>Wie viele Zyklen brauchst du?</h2>
+      <ul>
+        <li><strong>4 Zyklen (6 Stunden)</strong> – weniger als die für die meisten Erwachsenen empfohlenen 7 Stunden</li>
+        <li><strong>5 Zyklen (7,5 Stunden)</strong> – ein häufiges Ziel für Erwachsene; gute geistige und körperliche Leistungsfähigkeit</li>
+        <li><strong>6 Zyklen (9 Stunden)</strong> – das obere Ende der 7 bis 9 Stunden, die vielen Erwachsenen empfohlen werden</li>
+      </ul>
+      <p>Die <a href="https://www.thensf.org/how-many-hours-of-sleep-do-you-really-need/" target="_blank" rel="noopener">National Sleep Foundation</a> empfiehlt Erwachsenen 7 oder mehr Stunden (7–9 Stunden für 18- bis 64-Jährige). Für Jugendliche sind es 8–10 Stunden, für Kinder mehr. Wenn du dich regelmäßig unausgeruht fühlst, hol dir ärztlichen Rat.</p>
+
+      <h2>Tipps für besseres Schlaf-Timing</h2>
+      <ul>
+        <li>Konstante Aufstehzeiten sind für die Regulierung deines zirkadianen Rhythmus wichtiger als konstante Schlafenszeiten</li>
+        <li>Vermeide Koffein 6–8 Stunden vor dem Schlafengehen; seine Halbwertszeit beträgt etwa 5–6 Stunden</li>
+        <li>Morgensonne setzt deine innere Uhr zurück und erleichtert das Einschlafen am Abend</li>
+        <li>Nutze Left, um 30 Minuten vor deiner Ziel-Schlafenszeit einen „Licht aus“-Countdown zu setzen</li>
+      </ul>
+      <p>Du zählst auf einen großen Tag herunter? Das <a href="/de/countdown-widget">Countdown-Widget von Left</a> legt ihn auf deinen Home-Bildschirm.</p>
+
+      <h2>Warum 90 Minuten nur ein Richtwert sind</h2>
+      <p>Der 90-Minuten-Zyklus ist ein Durchschnitt, kein fester Timer. Die Zykluslänge variiert von Person zu Person und von Nacht zu Nacht, und die Mischung ändert sich im Lauf der Nacht: Frühere Zyklen enthalten tendenziell mehr Tiefschlaf, spätere mehr REM-Schlaf. Alkohol, Koffein, Stress und ein lauter Raum können alle verändern, wie du schläfst. Sieh die Zeiten hier als Ausgangspunkt und passe sie um 10 oder 15 Minuten an, wenn du zur vorgeschlagenen Zeit oft benommen aufwachst.</p>
+
+      <h2>Mitternacht überschreiten und Zeitumstellung</h2>
+      <p>Der Rechner arbeitet nur mit Uhrzeiten, daher werden Schlafenszeiten vor Mitternacht und Aufstehzeiten danach für dich berücksichtigt. Das Datum kennt er jedoch nicht. In der Nacht der Zeitumstellung bekommst du eine Stunde mehr oder weniger Schlaf, als die Zeiten vermuten lassen, also addiere oder subtrahiere in dieser Nacht eine Stunde.</p>
+      <p>Dieser Rechner gibt keine medizinische Beratung. Wenn du oft schlecht schläfst oder tagsüber müde bist, hol dir ärztlichen Rat.</p>
+
+      <h2>Sieh den Rest deines Tages auf deinem iPhone</h2>
+      <p>Das Tag-Widget von Left zeigt die verbleibenden Stunden des Tages als Raster, wobei die vergangenen Stunden abgedunkelt sind, sodass sich der Abend leichter um eine Schlafenszeit planen lässt.</p>
+      <ol>
+        <li>Installiere Left und öffne es einmal.</li>
+        <li>Halte einen leeren Bereich deines Home-Bildschirms gedrückt, tippe auf <strong>Bearbeiten</strong> und dann auf <strong>Widget hinzufügen</strong>.</li>
+        <li>Suche nach <strong>Left</strong> und wähle <strong>Tag</strong>.</li>
+        <li>Halte für den Sperrbildschirm diesen gedrückt, tippe auf <strong>Anpassen</strong> und füge dann das <strong>Tag</strong>-Widget von Left hinzu.</li>
+      </ol>
+
+      <h2>Fragen</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Wann sollte ich ins Bett gehen, um um 7 Uhr aufzuwachen?</summary>
+          <div class="faq-answer"><p>Für 5 volle Zyklen (7,5 Stunden Schlaf) gehst du um 23:15 ins Bett, womit 15 Minuten zum Einschlafen bleiben. Bei 6 Zyklen ist es 21:45 und bei 4 Zyklen 00:45.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie lang ist ein Schlafzyklus?</summary>
+          <div class="faq-answer"><p>Im Durchschnitt etwa 90 Minuten, aber Zyklen variieren von etwa 70 bis 120 Minuten und verändern sich im Lauf der Nacht. Die Zeiten hier sind ein Richtwert, kein exakter Plan.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie viele Stunden Schlaf brauchen Erwachsene?</summary>
+          <div class="faq-answer"><p>Die American Academy of Sleep Medicine und die CDC empfehlen Erwachsenen 7 oder mehr Stunden pro Nacht. In Zyklen passt 5 Zyklen (7,5 Stunden) am besten.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Warum addiert der Rechner 15 Minuten?</summary>
+          <div class="faq-answer"><p>Die meisten brauchen eine Weile, um nach dem Hinlegen einzuschlafen, daher rechnet der Rechner 15 Minuten ein, bevor der erste Zyklus beginnt. Schläfst du meist schneller oder langsamer ein, verschiebe die Zeiten entsprechend.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Funktioniert es, wenn ich nach Mitternacht ins Bett gehe?</summary>
+          <div class="faq-answer"><p>Ja. Der Rechner arbeitet mit Uhrzeiten, daher werden Schlafens- und Aufstehzeiten vor und nach Mitternacht automatisch berücksichtigt. Er gleicht die Nacht der Zeitumstellung nicht aus.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wann sollte ich ins Bett gehen, um um 7 Uhr aufzuwachen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Für 5 volle Zyklen (7,5 Stunden Schlaf) gehst du um 23:15 ins Bett, womit 15 Minuten zum Einschlafen bleiben. Bei 6 Zyklen ist es 21:45 und bei 4 Zyklen 00:45."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie lang ist ein Schlafzyklus?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Im Durchschnitt etwa 90 Minuten, aber Zyklen variieren von etwa 70 bis 120 Minuten und verändern sich im Lauf der Nacht. Die Zeiten hier sind ein Richtwert, kein exakter Plan."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Stunden Schlaf brauchen Erwachsene?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die American Academy of Sleep Medicine und die CDC empfehlen Erwachsenen 7 oder mehr Stunden pro Nacht. In Zyklen passt 5 Zyklen (7,5 Stunden) am besten."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum addiert der Rechner 15 Minuten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die meisten brauchen eine Weile, um nach dem Hinlegen einzuschlafen, daher rechnet der Rechner 15 Minuten ein, bevor der erste Zyklus beginnt. Schläfst du meist schneller oder langsamer ein, verschiebe die Zeiten entsprechend."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Funktioniert es, wenn ich nach Mitternacht ins Bett gehe?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Der Rechner arbeitet mit Uhrzeiten, daher werden Schlafens- und Aufstehzeiten vor und nach Mitternacht automatisch berücksichtigt. Er gleicht die Nacht der Zeitumstellung nicht aus."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Weiterlesen</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/blog/home-screen-timer-iphone">So legst du einen Timer auf deinen Home-Bildschirm</a>
+        <a class="tool-related-item" href="/de/support/focus-timer-in-left">Nutze den Fokus-Timer in Left</a>
+        <a class="tool-related-item" href="/de/pomodoro-timer-iphone">Pomodoro-Timer für das iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Verwandte Tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/tools/countdown-timer">Countdown-Timer</a>
+        <a class="tool-related-item" href="/tools/hours-between-two-dates">Stunden zwischen zwei Daten</a>
+        <a class="tool-related-item" href="/tools/workday-countdown">Arbeitstag-Countdown</a>
+        <a class="tool-related-item" href="/de/tools/time-until-weekend">Zeit bis zum Wochenende</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left laden</span>
+        <h2>Behalte den Tag im Blick.</h2>
+        <p>Left zeigt als Widgets auf deinem Home-Bildschirm, Sperrbildschirm und der Apple Watch, wie viel von deinem Tag und deiner Woche noch übrig ist – neben deinen Countdowns und Gewohnheiten.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-de&amp;mt=8" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Für iOS laden
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/de/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Es ist so weit.","notYet":"Noch nicht","futureDate":"Dieses Datum liegt in der Zukunft.","datePassed":"Dieses Datum ist vorbei.","selectDate":"Wähle ein gültiges Datum.","selectBoth":"Wähle beide Daten aus.","chooseTarget":"Wähle oben ein Zieldatum.","deadlinePassed":"Deadline verstrichen","pastDue":"Überfällig","deadlineUrgent":"Dringende Deadline","deadlineSoon":"Bald fällig","deadlineAhead":"Deadline steht an","fastComplete":"Fasten geschafft!","weddingArrived":"Das Datum ist gekommen","weekend":"Wochenende!","itsWeekend":"Es ist Wochenende! Genieße es.","workdayEnded":"Arbeitstag beendet","workdayEndedHint":"Wähle eine spätere Uhrzeit, um wieder herunterzuzählen.","upcoming":"Anstehend: {dates}","since":"Seit {date}","fastEnds":"Fasten endet: {date}","sinceJan1":"Seit dem 1. Januar {year}, Mitternacht","untilDec31":"Bis Mitternacht am 31. Dezember {year}","fiscalEnds":"Geschäftsjahr endet am {date}","quarterEnds":"Quartal endet am {date}","weddingDate":"Hochzeitsdatum: {date}","departure":"Abreise: {date}","currentAge":"Aktuelles Alter: {years} Jahre, {months} Monate, {days} Tage","hoursAndMinutes":"{hours} Stunden und {minutes} Minuten","minutesExtra":"{minutes} Minuten mehr, insgesamt {total} Minuten","readingDetail":"{minutes} Minuten und {seconds} Sekunden bei {wpm} Wörtern pro Minute","workdaysAt":"{days} Arbeitstage bei {hours} Stunden pro Tag","minutesSince":"Insgesamt {minutes} Minuten seit {date}","schoolDays":"Schultage","weekdaysMinusBreaks":"{weekdays} Wochentage minus {breaks} Ferientage","businessAfter":"{count} Arbeitstage nach {date}","businessBefore":"{count} Arbeitstage vor {date}","futureTime":"Diese Uhrzeit liegt in der Zukunft.","unitEquals":"{amount} {from} entsprechen etwa {value} {to}","invalidTimestamp":"Ungültiger Timestamp.","invalidDate":"Ungültiges Datum.","local":"lokal","pregFirst":"Erstes Trimester","pregSecond":"Zweites Trimester","pregThird":"Drittes Trimester","pregWeekDay":"{weeks} W. {days} T.","dueWas":"Geburtstermin war {date} – herzlichen Glückwunsch!","yearDays":"Jahr {year} – insgesamt {days} Tage","easterDates":"Westlich – {western}; orthodox – {orthodox}"},"stat":{"days":"Tage","hours":"Stunden","min":"Min","sec":"Sek","weeks":"Wochen","months":"Monate","daysSince":"Tage seit","daysUntil":"Tage bis","yearAnniversary":"Jahrestag","elapsed":"vergangen","left":"übrig","daysLeft":"Tage übrig","weeksLeft":"Wochen übrig","yearsLeft":"Jahre übrig","streakDays":"abgeschlossene Tage","fullWeeks":"volle Wochen","approxMonths":"ca. Monate","durationMin":"Dauer in Min","elapsedMin":"vergangene Min","minutesLeft":"Minuten übrig","currentQuarter":"aktuelles Quartal","remaining":"verbleibend","daysSober":"nüchterne Tage","daysToMilestone":"Tage bis zum nächsten Meilenstein","nextMilestone":"nächster Meilenstein","daysUntilDeparture":"Tage bis zur Abreise","tripDays":"Reisetage"},"unit":{"months":{"one":"Monat","other":"Monate"},"weeks":{"one":"Woche","other":"Wochen"},"days":{"one":"Tag","other":"Tage"},"hours":{"one":"Stunde","other":"Stunden"},"minutes":{"one":"Minute","other":"Minuten"},"seconds":{"one":"Sekunde","other":"Sekunden"},"years":{"one":"Jahr","other":"Jahre"}},"next":{"christmas":"Nächstes Weihnachten: {date}","newYear":"Nächstes Neujahr: {date}","halloween":"Nächstes Halloween: {date}","thanksgiving":"Nächstes Thanksgiving: {date}","valentines":"Nächster Valentinstag: {date}","mothersDay":"Nächster Muttertag: {date}","fathersDay":"Nächster Vatertag: {date}","spring":"Nächste Frühlings-Tagundnachtgleiche: {date}","summer":"Nächste Sommersonnenwende: {date}","fall":"Nächste Herbst-Tagundnachtgleiche: {date}","winter":"Nächste Wintersonnenwende: {date}","westernEaster":"Nächstes westliches Ostern: {date}","orthodoxEaster":"Nächstes orthodoxes Ostern: {date}","birthday":"Nächster Geburtstag: {date}","anniversary":"Nächster Jahrestag: {date}","saturday":"Nächster Samstag: {date}","birthdayAway":{"one":"Nächster Geburtstag: {date} (in {count} Tag)","other":"Nächster Geburtstag: {date} (in {count} Tagen)"}},"sleep":{"bed9":"9 Std. (6 Zyklen)","bed75":"7,5 Std. (5 Zyklen, empfohlen)","bed6":"6 Std. (4 Zyklen)","bed45":"4,5 Std. (3 Zyklen)","wake45":"4,5 Std.","wake6":"6 Std.","wake75":"7,5 Std. (empfohlen)","wake9":"9 Std."},"card":{"android":"Mit Android unterwegs? Sieh dir deine Optionen an","copied":"Link kopiert","daysLeft":{"one":"Noch {count} Tag","other":"Noch {count} Tage"},"handoff":"Sende den Link an dein iPhone","handoffTitle":"Left für das iPhone","hoursLeft":{"one":"Heute noch {count} Stunde","other":"Heute noch {count} Stunden"},"shareText":"{title}: {result}","weeksLeft":{"one":"Noch {count} Woche","other":"Noch {count} Wochen"},"yearsLeft":{"one":"Noch {count} Jahr","other":"Noch {count} Jahre"}},"life":{"mark":"Markiert: Alter {age}, Woche {week}"},"preg":{"daysToGo":"Tage noch","dueDate":"Voraussichtlicher Geburtstermin: {date}","dueDateTitle":"Geburtstermin","weeksPregnant":"Wochen schwanger","weeksToGo":"Wochen noch"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const CYCLE = 90; // minutes
+    const LATENCY = 15; // minutes to fall asleep
+
+    const modeBtns = document.querySelectorAll('#sleep-mode-toggle button');
+    const wakePanel = document.getElementById('wake-panel');
+    const sleepPanel = document.getElementById('sleep-panel');
+    const wakeTimeEl = document.getElementById('sleep-wake-time');
+    const bedTimeEl = document.getElementById('sleep-bed-time');
+    const bedtimesEl = document.getElementById('sleep-bedtimes');
+    const waketimesEl = document.getElementById('sleep-waketimes');
+
+    modeBtns.forEach(b => b.addEventListener('click', () => {
+      modeBtns.forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      const mode = b.dataset.mode;
+      wakePanel.style.display = mode === 'wake' ? '' : 'none';
+      sleepPanel.style.display = mode === 'sleep' ? '' : 'none';
+      renderAll();
+    }));
+
+    function fmtTime(mins) {
+      const h = Math.floor(((mins % 1440) + 1440) % 1440 / 60);
+      const m = ((mins % 1440) + 1440) % 1440 % 60;
+      const ampm = h < 12 ? 'AM' : 'PM';
+      const h12 = h % 12 || 12;
+      return `${h12}:${pad(m)} ${ampm}`;
+    }
+
+    function timeToMins(str) {
+      const [h, m] = str.split(':').map(Number);
+      return h * 60 + m;
+    }
+
+    function renderBedtimes() {
+      const wakeMins = timeToMins(wakeTimeEl.value);
+      const cycles = [6, 5, 4, 3];
+      const labels = [toolT('sleep.bed9'), toolT('sleep.bed75'), toolT('sleep.bed6'), toolT('sleep.bed45')];
+      bedtimesEl.innerHTML = cycles.map((c, i) => {
+        const bedMin = wakeMins - LATENCY - c * CYCLE;
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
+          <span>${fmtTime(bedMin)}</span><span style="color:var(--text-secondary);font-size:13px;">${labels[i]}</span>
+        </div>`;
+      }).join('');
+    }
+
+    function renderWaketimes() {
+      const bedMins = timeToMins(bedTimeEl.value) + LATENCY;
+      const cycles = [3, 4, 5, 6];
+      const labels = [toolT('sleep.wake45'), toolT('sleep.wake6'), toolT('sleep.wake75'), toolT('sleep.wake9')];
+      waketimesEl.innerHTML = cycles.map((c, i) => {
+        const wakeMin = bedMins + c * CYCLE;
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
+          <span>${fmtTime(wakeMin)}</span><span style="color:var(--text-secondary);font-size:13px;">${labels[i]}</span>
+        </div>`;
+      }).join('');
+    }
+
+    function renderAll() {
+      renderBedtimes();
+      renderWaketimes();
+    }
+
+    wakeTimeEl.addEventListener('change', renderBedtimes);
+    bedTimeEl.addEventListener('change', renderWaketimes);
+    renderAll();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

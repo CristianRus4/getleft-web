@@ -269,12 +269,43 @@
       <div class="tool-result" id="db-result" aria-live="polite">
         <p style="color:var(--text-secondary);font-size:16px;">위에서 두 날짜를 모두 선택하세요.</p>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>날짜 사이 일수</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ko&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Left에서 이 날짜까지 카운트다운</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>공유</button>
+            <a class="tool-card__more" href="/ko/tools/">모든 도구</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
       <h2>계산 방식</h2>
       <p>계산기는 종료 날짜에서 시작 날짜를 빼 두 날짜 사이의 달력상 일수를 절댓값으로 알려 줍니다. 어느 날짜가 앞서는지는 상관없으며 순서에 관계없이 결과는 항상 양수입니다.</p>
-      <p>기본적으로 <em>양쪽 끝 날짜는 모두 포함하지 않습니다</em>. 1월 1일과 1월 3일을 입력하면 결과는 두 날짜 사이의 간격인 2일입니다. 기간을 계산할 때 가장 흔한 방식입니다.</p>
+      <p>양 끝 중 하나만 포함하고 둘 다는 포함하지 않습니다. 1월 1일과 1월 3일을 입력하면 결과는 2일(둘 사이의 간격)입니다. 이는 기간 계산에서 가장 흔한 관례입니다.</p>
+
+      <h2>양쪽 날짜 모두 세기</h2>
+      <p>어떤 질문은 첫날과 마지막 날이 모두 필요합니다. 1월 1일부터 1월 3일까지 열리는 콘퍼런스는 3일간 진행되고, 1일부터 3일까지 복용하는 약은 3일 동안 복용합니다. 이런 경우에는 결과에 1을 더하세요. 숙박은 반대입니다. 1월 1일부터 1월 3일까지의 호텔 숙박은 2박이며, 도구가 정확히 그렇게 보여 줍니다.</p>
+
+      <h2>계산 예시</h2>
+      <p>2026년 3월 1일부터 2026년 11월 10일까지는 254일입니다. 3월 1일부터 4월 1일까지는 31일입니다. 4월(30), 5월(31), 6월(30), 7월(31), 8월(31), 9월(30), 10월(31)을 더하면 245일 뒤에 11월 1일이 되고, 9일을 더하면 11월 10일이 됩니다. 3월 1일과 11월 10일을 모두 세면 255일입니다.</p>
+
+      <h2>윤년과 일광 절약 시간</h2>
+      <p>윤년은 자동으로 처리됩니다. 2월 1일부터 3월 1일까지는 2027년에는 28일, 2028년에는 29일이며, 1월 1일부터 이듬해 1월 1일까지 1년은 365일 또는 366일입니다. 도구는 달력상의 날을 세므로 일광 절약 시간 변경으로 23시간이나 25시간이 된 날도 하루로 셉니다.</p>
+
+      <h2>주와 개월로 변환하기</h2>
+      <p>결과 아래에서 도구는 일수를 온전한 주와 남은 일수로 나눕니다. 254일은 36주 2일입니다. 월은 28~31일로 다양해서 덜 정확합니다. 평균 월 길이인 30.44로 나누면 좋은 추정치가 나옵니다. 254일은 약 8.3개월입니다. 온전한 달력상의 개월 수는 달력에서 직접 세세요. 3월 1일부터 11월 1일까지는 8개월 하고 9일입니다.</p>
 
       <h2>활용 예시</h2>
       <ul>
@@ -291,15 +322,109 @@
 
       <h2>Left로 기간 확인하기</h2>
       <p>일수를 알았다면 Left의 <em>앞으로</em> 기능으로 목표 날짜를 설정해 홈 화면 위젯에서 매일 남은 일수를 확인할 수 있습니다. <em>경과</em> 기능으로 어떤 일 이후 며칠이 지났는지 셀 수도 있어 기념일, 금주 기록 등 "며칠 지났는지"가 궁금할 때 유용합니다.</p>
+      <ol>
+        <li>iPhone에 Left를 설치하고 <strong>앞으로</strong>를 열어 <strong>앞으로에 날짜 추가</strong>를 탭한 다음 <strong>새로운 날짜</strong>를 선택하세요.</li>
+        <li>이름을 붙이고 <strong>시작</strong>을 종료일로 설정하세요.</li>
+        <li><strong>알림 받기</strong>를 켜고, 예를 들어 일주일 전으로 설정하세요.</li>
+        <li>Left의 <strong>앞으로</strong> 위젯을 홈 화면이나 잠금 화면에 추가하고 <strong>위젯 편집</strong>에서 날짜를 선택하세요.</li>
+      </ol>
       <p>간격이 날짜로 이어지는 경우, <a href="/ko/countdown-widget">카운트다운 위젯</a>가 홈 화면에 표시합니다.</p>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-ko&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          Left에서 경과 일수 세기
-        </a>
-      </p>
+      <h2>자주 묻는 질문</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>시작일과 종료일을 모두 포함하나요?</summary>
+          <div class="faq-answer"><p>둘 다가 아니라 하나만 셉니다. 1월 1일부터 1월 3일까지는 2일입니다. 두 날을 모두 포함해야 한다면 결과에 1을 더하세요.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>계산기는 윤년을 반영하나요?</summary>
+          <div class="faq-answer"><p>네. 실제 달력상의 날을 세므로 2월 29일이 두 날짜 사이에 있으면 포함됩니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>일을 주로 바꾸려면 어떻게 하나요?</summary>
+          <div class="faq-answer"><p>7로 나누세요. 도구가 결과 아래에서 대신 계산해 줍니다. 254일은 36주 2일입니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>90일은 몇 개월인가요?</summary>
+          <div class="faq-answer"><p>약 3개월입니다. 한 달은 평균 30.44일이므로 90일은 약 2.96개월입니다. 정확히 달력상 3개월인지는 어떤 달들이 포함되는지에 따라 달라집니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>날짜 순서가 중요한가요?</summary>
+          <div class="faq-answer"><p>아니요. 나중 날짜를 먼저 입력해도 결과는 같은 양의 일수입니다.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>1년은 며칠인가요?</summary>
+          <div class="faq-answer"><p>365일이며, 윤년에는 366일입니다. 4로 나누어떨어지는 해는 윤년이지만, 100의 배수인 해는 400으로 나누어떨어져야 합니다. 다음 윤년은 2028년입니다.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "시작일과 종료일을 모두 포함하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "둘 다가 아니라 하나만 셉니다. 1월 1일부터 1월 3일까지는 2일입니다. 두 날을 모두 포함해야 한다면 결과에 1을 더하세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "계산기는 윤년을 반영하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. 실제 달력상의 날을 세므로 2월 29일이 두 날짜 사이에 있으면 포함됩니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "일을 주로 바꾸려면 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "7로 나누세요. 도구가 결과 아래에서 대신 계산해 줍니다. 254일은 36주 2일입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "90일은 몇 개월인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "약 3개월입니다. 한 달은 평균 30.44일이므로 90일은 약 2.96개월입니다. 정확히 달력상 3개월인지는 어떤 달들이 포함되는지에 따라 달라집니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "날짜 순서가 중요한가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "아니요. 나중 날짜를 먼저 입력해도 결과는 같은 양의 일수입니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "1년은 며칠인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365일이며, 윤년에는 366일입니다. 4로 나누어떨어지는 해는 윤년이지만, 100의 배수인 해는 400으로 나누어떨어져야 합니다. 다음 윤년은 2028년입니다."
+      }
+    }
+  ],
+  "inLanguage": "ko"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>더 읽기</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ko/blog/best-day-counter-apps-iphone">iPhone용 일수 세기 앱 비교</a>
+        <a class="tool-related-item" href="/ko/support/organise-ahead-since">앞으로와 경과에서 날짜를 정리하세요</a>
+        <a class="tool-related-item" href="/ko/countdown-widget">iPhone용 카운트다운 위젯</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>관련 도구</h2>
       <div class="tool-related-items">
@@ -313,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Left 다운로드</span>
-        <h2>소중한 것에 눈을 뜨는 시간.</h2>
-        <p>iPhone에서 Left를 다운로드하고 남은 시간과 기다리는 날짜를 확인하며, 지키고 싶은 습관을 쌓아 더 나은 나를 만들어 보세요.</p>
+        <h2>날짜를 카운트다운으로 바꿔 보세요.</h2>
+        <p>날짜를 알았다면 Left의 앞으로에 추가해 홈 화면, 잠금 화면, Apple Watch에서 남은 일수를 확인하세요.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -444,7 +569,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"그날이 되었습니다.","notYet":"아직 아닙니다","futureDate":"미래의 날짜입니다.","datePassed":"이미 지난 날짜입니다.","selectDate":"올바른 날짜를 선택해 주세요.","selectBoth":"두 날짜를 모두 선택해 주세요.","chooseTarget":"위에서 목표 날짜를 선택해 주세요.","deadlinePassed":"마감이 지났습니다","pastDue":"기한 초과","deadlineUrgent":"마감이 임박했습니다","deadlineSoon":"곧 마감입니다","deadlineAhead":"마감까지 여유가 있습니다","fastComplete":"단식 완료!","weddingArrived":"그날이 되었습니다","weekend":"주말입니다!","itsWeekend":"주말입니다! 즐거운 시간 보내세요.","workdayEnded":"근무가 끝났습니다","workdayEndedHint":"더 늦은 시간을 설정하면 다시 카운트다운할 수 있습니다.","upcoming":"다가오는 날짜: {dates}","since":"{date}부터","fastEnds":"단식 종료: {date}","sinceJan1":"{year}년 1월 1일 0시부터","untilDec31":"{year}년 12월 31일 24시까지","fiscalEnds":"회계연도 종료: {date}","quarterEnds":"분기 종료: {date}","weddingDate":"결혼식 날짜: {date}","departure":"출발: {date}","currentAge":"현재 나이: {years}년 {months}개월 {days}일","hoursAndMinutes":"{hours}시간 {minutes}분","minutesExtra":"{minutes}분 추가, 총 {total}분","readingDetail":"분당 {wpm}단어 기준 {minutes}분 {seconds}초","workdaysAt":"하루 {hours}시간 기준 근무일 {days}일","minutesSince":"{date}부터 총 {minutes}분","schoolDays":"수업일","weekdaysMinusBreaks":"평일 {weekdays}일에서 휴일 {breaks}일 제외","businessAfter":"{date}부터 {count}영업일 후","businessBefore":"{date}부터 {count}영업일 전","futureTime":"미래의 시간입니다.","unitEquals":"{amount} {from} = 약 {value} {to}","invalidTimestamp":"올바르지 않은 타임스탬프입니다.","invalidDate":"올바르지 않은 날짜입니다.","local":"현지","pregFirst":"임신 초기","pregSecond":"임신 중기","pregThird":"임신 후기","pregWeekDay":"{weeks}주 {days}일","dueWas":"출산 예정일은 {date}이었습니다. 축하합니다!","yearDays":"{year}년 - 총 {days}일","easterDates":"서방 교회 - {western}, 정교회 - {orthodox}"},"stat":{"days":"일","hours":"시간","min":"분","sec":"초","weeks":"주","months":"개월","daysSince":"일 경과","daysUntil":"일 남음","yearAnniversary":"주년","elapsed":"경과","left":"남음","daysLeft":"일 남음","weeksLeft":"주 남음","yearsLeft":"년 남음","streakDays":"완료된 일수","fullWeeks":"만 주","approxMonths":"약 개월","durationMin":"소요 시간(분)","elapsedMin":"경과 시간(분)","minutesLeft":"분 남음","currentQuarter":"현재 분기","remaining":"남음","daysSober":"금주 일수","daysToMilestone":"다음 기념일까지 일수","nextMilestone":"다음 기념일","daysUntilDeparture":"출발까지 일수","tripDays":"여행 일수"},"unit":{"months":{"one":"개월","other":"개월"},"weeks":{"one":"주","other":"주"},"days":{"one":"일","other":"일"},"hours":{"one":"시간","other":"시간"},"minutes":{"one":"분","other":"분"},"seconds":{"one":"초","other":"초"},"years":{"one":"년","other":"년"}},"next":{"christmas":"다음 크리스마스: {date}","newYear":"다음 새해: {date}","halloween":"다음 핼러윈: {date}","thanksgiving":"다음 미국 추수감사절: {date}","valentines":"다음 밸런타인데이: {date}","mothersDay":"다음 미국 어머니의 날: {date}","fathersDay":"다음 미국 아버지의 날: {date}","spring":"다음 춘분: {date}","summer":"다음 하지: {date}","fall":"다음 추분: {date}","winter":"다음 동지: {date}","westernEaster":"다음 서방 교회 부활절: {date}","orthodoxEaster":"다음 정교회 부활절: {date}","birthday":"다음 생일: {date}","anniversary":"다음 기념일: {date}","saturday":"다음 토요일: {date}","birthdayAway":{"one":"다음 생일: {date} ({count}일 남음)","other":"다음 생일: {date} ({count}일 남음)"}},"sleep":{"bed9":"9시간 (6주기)","bed75":"7.5시간 (5주기, 권장)","bed6":"6시간 (4주기)","bed45":"4.5시간 (3주기)","wake45":"4.5시간","wake6":"6시간","wake75":"7.5시간 (권장)","wake9":"9시간"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"그날이 되었습니다.","notYet":"아직 아닙니다","futureDate":"미래의 날짜입니다.","datePassed":"이미 지난 날짜입니다.","selectDate":"올바른 날짜를 선택해 주세요.","selectBoth":"두 날짜를 모두 선택해 주세요.","chooseTarget":"위에서 목표 날짜를 선택해 주세요.","deadlinePassed":"마감이 지났습니다","pastDue":"기한 초과","deadlineUrgent":"마감이 임박했습니다","deadlineSoon":"곧 마감입니다","deadlineAhead":"마감까지 여유가 있습니다","fastComplete":"단식 완료!","weddingArrived":"그날이 되었습니다","weekend":"주말입니다!","itsWeekend":"주말입니다! 즐거운 시간 보내세요.","workdayEnded":"근무가 끝났습니다","workdayEndedHint":"더 늦은 시간을 설정하면 다시 카운트다운할 수 있습니다.","upcoming":"다가오는 날짜: {dates}","since":"{date}부터","fastEnds":"단식 종료: {date}","sinceJan1":"{year}년 1월 1일 0시부터","untilDec31":"{year}년 12월 31일 24시까지","fiscalEnds":"회계연도 종료: {date}","quarterEnds":"분기 종료: {date}","weddingDate":"결혼식 날짜: {date}","departure":"출발: {date}","currentAge":"현재 나이: {years}년 {months}개월 {days}일","hoursAndMinutes":"{hours}시간 {minutes}분","minutesExtra":"{minutes}분 추가, 총 {total}분","readingDetail":"분당 {wpm}단어 기준 {minutes}분 {seconds}초","workdaysAt":"하루 {hours}시간 기준 근무일 {days}일","minutesSince":"{date}부터 총 {minutes}분","schoolDays":"수업일","weekdaysMinusBreaks":"평일 {weekdays}일에서 휴일 {breaks}일 제외","businessAfter":"{date}부터 {count}영업일 후","businessBefore":"{date}부터 {count}영업일 전","futureTime":"미래의 시간입니다.","unitEquals":"{amount} {from} = 약 {value} {to}","invalidTimestamp":"올바르지 않은 타임스탬프입니다.","invalidDate":"올바르지 않은 날짜입니다.","local":"현지","pregFirst":"임신 초기","pregSecond":"임신 중기","pregThird":"임신 후기","pregWeekDay":"{weeks}주 {days}일","dueWas":"출산 예정일은 {date}이었습니다. 축하합니다!","yearDays":"{year}년 - 총 {days}일","easterDates":"서방 교회 - {western}, 정교회 - {orthodox}"},"stat":{"days":"일","hours":"시간","min":"분","sec":"초","weeks":"주","months":"개월","daysSince":"일 경과","daysUntil":"일 남음","yearAnniversary":"주년","elapsed":"경과","left":"남음","daysLeft":"일 남음","weeksLeft":"주 남음","yearsLeft":"년 남음","streakDays":"완료된 일수","fullWeeks":"만 주","approxMonths":"약 개월","durationMin":"소요 시간(분)","elapsedMin":"경과 시간(분)","minutesLeft":"분 남음","currentQuarter":"현재 분기","remaining":"남음","daysSober":"금주 일수","daysToMilestone":"다음 기념일까지 일수","nextMilestone":"다음 기념일","daysUntilDeparture":"출발까지 일수","tripDays":"여행 일수"},"unit":{"months":{"one":"개월","other":"개월"},"weeks":{"one":"주","other":"주"},"days":{"one":"일","other":"일"},"hours":{"one":"시간","other":"시간"},"minutes":{"one":"분","other":"분"},"seconds":{"one":"초","other":"초"},"years":{"one":"년","other":"년"}},"next":{"christmas":"다음 크리스마스: {date}","newYear":"다음 새해: {date}","halloween":"다음 핼러윈: {date}","thanksgiving":"다음 미국 추수감사절: {date}","valentines":"다음 밸런타인데이: {date}","mothersDay":"다음 미국 어머니의 날: {date}","fathersDay":"다음 미국 아버지의 날: {date}","spring":"다음 춘분: {date}","summer":"다음 하지: {date}","fall":"다음 추분: {date}","winter":"다음 동지: {date}","westernEaster":"다음 서방 교회 부활절: {date}","orthodoxEaster":"다음 정교회 부활절: {date}","birthday":"다음 생일: {date}","anniversary":"다음 기념일: {date}","saturday":"다음 토요일: {date}","birthdayAway":{"one":"다음 생일: {date} ({count}일 남음)","other":"다음 생일: {date} ({count}일 남음)"}},"sleep":{"bed9":"9시간 (6주기)","bed75":"7.5시간 (5주기, 권장)","bed6":"6시간 (4주기)","bed45":"4.5시간 (3주기)","wake45":"4.5시간","wake6":"6시간","wake75":"7.5시간 (권장)","wake9":"9시간"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const fromEl = document.getElementById('db-from');

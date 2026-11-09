@@ -285,6 +285,25 @@
         </div>
       </div>
       <div class="tool-result" id="as-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>あなたの日付</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ja&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>この日付までをLeftでカウントダウン</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>共有</button>
+            <a class="tool-card__more" href="/ja/tools/">すべてのツール</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -292,9 +311,19 @@
       <p>計算は、年、月、週と日の順に各単位を適用します。月の計算ではこれが重要で、1月31日に1か月を足すと3月3日ではなく2月28日（うるう年は29日）になります。</p>
       <p>週と日はまとめて日数として加算されます。時間と分は調整されず、結果は常に、お使いのタイムゾーンでの計算後の日付の0時になります。</p>
 
+      <h2>月末とうるう年</h2>
+      <p>月の長さはそれぞれ違うため、移動先の月のほうが短いときは、その月の最終日になります。2027年1月31日の1か月後は2027年2月28日、2028年1月31日の1か月後は2028年2月29日です。2028年はうるう年だからです。年の場合も同じで、2028年2月29日の1年後は2029年2月28日になります。</p>
+      <p>つまり、月の計算は必ずしも元に戻りません。1月31日の1か月後は2月28日ですが、2月28日の1か月前は1月28日です。30日間の予告期間のように正確な日数が重要な場合は、月ではなく日数で入力してください。</p>
+
+      <h2>計算例</h2>
+      <p>2026年11月10日から90日を加えると、2027年2月8日（月）になります。11月の残り20日、12月の31日、1月の31日で82日、さらに8日進むと2月8日です。代わりに3か月を加えると2027年2月10日で、2日遅くなります。この3か月は92日あるからです。開始日そのものが0日目なので、月曜日に1日を加えると火曜日になります。</p>
+
+      <h2>営業日</h2>
+      <p>この計算ツールは、週末も含めてカレンダー上のすべての日を数えます。請求書の日付から営業日10日のように、期限が営業日で決まっている場合は、土日を除く<a href="/tools/business-days-from-date">日付からの営業日</a>計算ツールをお使いください。</p>
+
       <h2>よくある使いみち</h2>
       <ul>
-        <li><strong>30日・60日・90日の期限</strong>：「今日から30営業日後は何日？」</li>
+        <li><strong>30・60・90日の期限</strong>：「今日から90日後は何日？」</li>
         <li><strong>サブスクや契約の日付</strong>：12か月契約はいつ終わる？</li>
         <li><strong>返品期限</strong>：ある日に買った商品を返品できる最終日は？</li>
         <li><strong>プロジェクトの節目</strong>：開始日から数えて、各フェーズを計画する</li>
@@ -302,15 +331,105 @@
       </ul>
 
       <h2>さかのぼって調べる：N日前の日付は？</h2>
-      <p>過去にさかのぼるには<strong>減算</strong>モードを使います。たとえば今日から90日を引くと、90日前の日付がわかります。過去の日付に特化したツールは<a href="/tools/what-was-the-date">何日前・何日後の日付</a>をご覧ください。</p>
+      <p>過去にさかのぼるには<strong>減算</strong>モードを使います。たとえば今日から90日を引くと、90日前の日付がわかります。過去の日付に特化したツールは<a href="/ja/tools/what-was-the-date">何日前・何日後の日付</a>をご覧ください。</p>
       <p>日付が分かったら、<a href="/ja/countdown-widget">Leftカウントダウンウィジェット</a>で常に表示させておきましょう。</p>
+
+      <h2>iPhoneで日付までをカウントダウン</h2>
+      <ol>
+        <li>iPhoneにLeftをインストールして<strong>これから</strong>を開き、<strong>これからに日付を追加</strong>、<strong>新しい日付</strong>の順にタップします。</li>
+        <li>名前を付けて、<strong>始まります</strong>に見つけた日付を設定します。</li>
+        <li><strong>リマインダーを受け取る</strong>をオンにします。たとえば3日前に設定します。</li>
+        <li>Leftの<strong>これから</strong>ウィジェットをホーム画面かロック画面に追加し、<strong>ウィジェットを編集</strong>で日付を選びます。</li>
+      </ol>
+      <h2>よくある質問</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>1月31日の1か月後は何日ですか？</summary>
+          <div class="faq-answer"><p>2月28日、うるう年なら2月29日です。移動先の月のほうが短いときは、3月にはみ出さず、その月の最終日になります。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>今日から90日後は何日ですか？</summary>
+          <div class="faq-answer"><p>「加算」を選び、日数欄に90と入力すると日付が表示されます。たとえば2026年11月10日から90日後は、2027年2月8日です。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>3か月を加えるのと90日を加えるのは同じですか？</summary>
+          <div class="faq-answer"><p>いいえ。暦の上での3か月は月によって89〜92日になるため、2つの答えは数日ずれることがあります。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>日付に営業日を加えるには？</summary>
+          <div class="faq-answer"><p><a href="/tools/business-days-from-date">日付からの営業日</a>計算ツールをお使いください。こちらは週末も数えます。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>開始日は数えますか？</summary>
+          <div class="faq-answer"><p>いいえ。開始日は0日目として数えるので、月曜日に1日を加えると火曜日、7日を加えると翌週の月曜日になります。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "1月31日の1か月後は何日ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2月28日、うるう年なら2月29日です。移動先の月のほうが短いときは、3月にはみ出さず、その月の最終日になります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "今日から90日後は何日ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「加算」を選び、日数欄に90と入力すると日付が表示されます。たとえば2026年11月10日から90日後は、2027年2月8日です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "3か月を加えるのと90日を加えるのは同じですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。暦の上での3か月は月によって89〜92日になるため、2つの答えは数日ずれることがあります。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日付に営業日を加えるには？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "「日付からの営業日」計算ツールをお使いください。こちらは週末も数えます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "開始日は数えますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "いいえ。開始日は0日目として数えるので、月曜日に1日を加えると火曜日、7日を加えると翌週の月曜日になります。"
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>続きを読む</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ja/blog/best-countdown-widgets-iphone">iPhoneのおすすめカウントダウンウィジェット</a>
+        <a class="tool-related-item" href="/ja/support/organise-ahead-since">「これから」と「経過」で日付を整理</a>
+        <a class="tool-related-item" href="/ja/countdown-widget">iPhone用カウントダウンウィジェット</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>関連ツール</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/business-days-from-date">ある日付からの営業日数</a>
-        <a class="tool-related-item" href="/tools/what-was-the-date">何日前・何日後の日付</a>
+        <a class="tool-related-item" href="/ja/tools/what-was-the-date">何日前・何日後の日付</a>
         <a class="tool-related-item" href="/tools/date-units-converter">日付の単位変換</a>
         <a class="tool-related-item" href="/ja/tools/date-countdown-calculator">どんな日付までもカウントダウン</a>
       </div>
@@ -319,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Leftをダウンロード</span>
-        <h2>大切なことに、気づきはじめよう。</h2>
-        <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        <h2>日付をカウントダウンにしましょう。</h2>
+        <p>日付がわかったら、Leftの「これから」に追加して、残り日数をホーム画面、ロック画面、Apple Watchで確認しましょう。</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -450,7 +569,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{weeks}週{days}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"完了した日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{weeks}週{days}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"完了した日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"},"card":{"android":"Androidをお使いですか？ 選択肢を見る","copied":"リンクをコピーしました","daysLeft":{"one":"残り{count}日","other":"残り{count}日"},"handoff":"リンクをiPhoneに送る","handoffTitle":"iPhone用のLeft","hoursLeft":{"one":"今日はあと{count}時間","other":"今日はあと{count}時間"},"shareText":"{title}：{result}","weeksLeft":{"one":"残り{count}週間","other":"残り{count}週間"},"yearsLeft":{"one":"残り{count}年","other":"残り{count}年"}},"life":{"mark":"印を付けた週：{age}歳、{week}週目"},"preg":{"daysToGo":"出産までの日数","dueDate":"出産予定日（推定）：{date}","dueDateTitle":"出産予定日","weeksPregnant":"妊娠週数","weeksToGo":"出産までの週数"}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const startEl = document.getElementById('as-start');
@@ -482,6 +601,7 @@
       const d = parseInt(daysEl.value) || 0;
       const out = addToDate(base, { years: sign*y, months: sign*mo, weeks: sign*wk, days: sign*d });
       const diff = Math.abs(Math.round((out - base) / 86400000));
+      toolPreviewDate(out);
       result.innerHTML = `
         <div class="tool-result-card">
           <div class="tool-result-big">${formatDateLong(out)}</div>

@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>ISO-Kalenderwoche – Welche Woche des Jahres ist es? | Left</title>
+  <meta name="description" content="Die wievielte ISO-Kalenderwoche ist heute? Finde die ISO-8601-Kalenderwoche für jedes Datum. Kostenloser Kalenderwochenrechner mit aktuellen und vergangenen Wochen."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/de/tools/iso-week-number" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/iso-week-number" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/iso-week-number" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/iso-week-number" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/iso-week-number" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/iso-week-number" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/iso-week-number" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/iso-week-number" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/iso-week-number" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/iso-week-number" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/iso-week-number" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/iso-week-number" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/iso-week-number" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/iso-week-number" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/iso-week-number" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/iso-week-number" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/iso-week-number" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/iso-week-number" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/iso-week-number" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="ISO-Kalenderwoche – Welche Woche des Jahres ist es?"  />
+  <meta property="og:description" content="Die wievielte ISO-Kalenderwoche ist heute? Finde die ISO-8601-Kalenderwoche für jedes Datum. Kostenloser Kalenderwochenrechner mit aktuellen und vergangenen Wochen."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/tools/iso-week-number" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ISO-Kalenderwoche – Welche Woche des Jahres ist es?"  />
+  <meta name="twitter:description" content="Die wievielte ISO-Kalenderwoche ist heute? Finde die ISO-8601-Kalenderwoche für jedes Datum. Kostenloser Kalenderwochenrechner mit aktuellen und vergangenen Wochen."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ISO-Kalenderwoche – Welche Woche des Jahres ist es?",
+  "url": "https://getleft.app/tools/iso-week-number",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Die wievielte ISO-Kalenderwoche ist heute? Finde die ISO-8601-Kalenderwoche für jedes Datum. Kostenloser Kalenderwochenrechner mit aktuellen und vergangenen Wochen.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "de"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ISO-Kalenderwoche",
+      "item": "https://getleft.app/tools/iso-week-number"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/de/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-de&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>ISO-Kalenderwoche</h1>
+    <p class="tool-lede">Die wievielte Woche des Jahres ist es? Finde die ISO-8601-Kalenderwoche für heute oder jedes Datum.</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <div class="tool-widget__field">
+          <label for="wn-date">Datum</label>
+          <input type="date" id="wn-date" />
+        </div>
+      </div>
+      <div class="tool-result" id="wn-result" aria-live="polite"></div>
+      <p id="wn-range"></p>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Woche</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-de&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Sieh die Woche auf deinem Sperrbildschirm</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Teilen</button>
+            <a class="tool-card__more" href="/de/tools/">Alle Tools</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Was ist eine ISO-Kalenderwoche?</h2>
+      <p>ISO 8601 legt eine Standardweise fest, Wochen in einem Jahr zu nummerieren. Nach diesem Standard gilt:</p>
+      <ul>
+        <li>Wochen laufen <strong>von Montag bis Sonntag</strong></li>
+        <li>Woche 1 ist die Woche mit dem <strong>ersten Donnerstag des Jahres</strong> (gleichbedeutend: die Woche mit dem 4. Januar)</li>
+        <li>Ein Jahr hat entweder 52 oder 53 ISO-Wochen</li>
+        <li>Das ISO-Jahr kann vom Kalenderjahr abweichen – Tage ganz am Anfang oder Ende des Jahres können zum vorherigen oder nächsten ISO-Jahr gehören</li>
+      </ul>
+
+      <h2>Warum beginnt Woche 1 manchmal im Dezember?</h2>
+      <p>Fällt der 1. Januar auf einen Freitag, Samstag oder Sonntag, gehört er zur letzten Woche des vorherigen ISO-Jahres, und Woche 1 beginnt am ersten Montag danach (2. bis 4. Januar). Fällt der 1. Januar auf einen Montag bis Donnerstag, ist Woche 1 die Woche, die ihn enthält und die Ende Dezember beginnen kann.</p>
+
+      <h2>Wer nutzt ISO-Kalenderwochen?</h2>
+      <p>ISO-Kalenderwochen sind in der europäischen Wirtschaft, Fertigung und Logistik üblich. Die Sprintplanung in Softwareteams bezieht sich oft auf Kalenderwochen. Finanzberichte, akademische Kalender und Sendepläne sind in vielen Ländern an ISO-Wochen ausgerichtet.</p>
+
+      <h2>Wochen in einem Jahr</h2>
+      <p>Die meisten Jahre haben 52 ISO-Wochen. Ein Jahr hat 53 Wochen, wenn der 1. Januar ein Donnerstag ist oder (in einem Schaltjahr) ein Mittwoch oder Donnerstag. Zu den kommenden Jahren mit 53 Wochen gehören 2032 und 2037.</p>
+      <p>2026 ist selbst ein Jahr mit 53 Wochen, weil der 1. Januar 2026 ein Donnerstag war. Jüngste und kommende Jahre mit 53 Wochen sind 2015, 2020, 2026, 2032, 2037 und 2043. Über den vollen 400-Jahre-Zyklus des Gregorianischen Kalenders haben 71 Jahre 53 Wochen, es kommt also etwa alle fünf bis sechs Jahre vor.</p>
+
+      <h2>Wie die Wochennummer berechnet wird</h2>
+      <p>Der Rechner findet die Woche von Montag bis Sonntag, zu der dein Datum gehört, und betrachtet den Donnerstag dieser Woche. Das Jahr, in das dieser Donnerstag fällt, ist das ISO-Jahr. Die Wochennummer gibt an, wie viele Donnerstage dieses Jahr bisher hatte, diesen eingeschlossen.</p>
+      <p>Ein durchgerechnetes Beispiel: Dienstag, 10. November 2026. Seine Woche läuft von Montag, 9. November, bis Sonntag, 15. November. Der Donnerstag dieser Woche ist der 12. November, Tag 316 des Jahres 2026. Die Tage 1 bis 7 enthalten den ersten Donnerstag, die Tage 8 bis 14 den zweiten und so weiter, daher enthält Tag 316 den 46. Donnerstag. Das Datum liegt in Woche 46 von 2026, in der ISO-8601-Schreibweise <code>2026-W46-2</code>, wobei die abschließende 2 für Dienstag steht (Montag ist 1, Sonntag ist 7).</p>
+
+      <h2>Wochen über den Jahreswechsel</h2>
+      <p>Weil eine Woche immer von Montag bis Sonntag läuft, reichen die erste und die letzte Woche eines Jahres oft ins Nachbarjahr hinein. Zwei echte Beispiele:</p>
+      <ul>
+        <li>Dienstag, der 31. Dezember 2024, liegt in <strong>Woche 1 von 2025</strong>. Diese Woche lief von Montag, dem 30. Dezember 2024, bis Sonntag, dem 5. Januar 2025, und ihr Donnerstag war der 2. Januar 2025.</li>
+        <li>Freitag, 1. Januar 2027, bis Sonntag, 3. Januar 2027, liegen in <strong>Woche 53 von 2026</strong>. Woche 1 von 2027 beginnt am Montag, 4. Januar 2027.</li>
+      </ul>
+      <p>Deshalb zeigt der Rechner das ISO-Jahr neben der Wochennummer. Prüfe bei Daten in den letzten Dezembertagen oder den ersten Januartagen beides.</p>
+
+      <h2>ISO-Wochen und US-Wochennummern</h2>
+      <p>Viele US-Kalender und -Apps nutzen ein anderes System: Wochen beginnen am Sonntag, und Woche 1 ist jene Woche, die den 1. Januar enthält, auch wenn sie nur einen Tag lang ist. Nach diesem System kann ein Jahr 54 Wochen berühren; 2028 tut das, weil es ein Schaltjahr ist, das an einem Samstag beginnt und an einem Sonntag endet.</p>
+      <p>Die beiden Systeme weichen oft um eine Woche voneinander ab. Sonntag, der 15. November 2026, ist der letzte Tag der ISO-Woche 46, aber der erste Tag der Woche 47 in einem Kalender mit Sonntag als Wochenbeginn. Um den Jahreswechsel können sie auch beim Jahr abweichen: Der 1. Januar 2027 ist im US-System Woche 1 von 2027 und nach ISO Woche 53 von 2026. Wenn du eine Wochennummer mit Menschen in anderen Ländern teilst, sage, welches System du meinst, oder nenne die Daten.</p>
+      <p>In Excel und Google Sheets liefert <code>=ISOWEEKNUM(A1)</code> die ISO-Woche. Das einfache <code>=WEEKNUM(A1)</code> beginnt die Wochen am Sonntag und kann daher eine andere Zahl liefern.</p>
+
+      <h2>Zeitzonen</h2>
+      <p>Der Rechner nutzt das Datum deines Geräts. Spät an einem Sonntag in einer Zeitzone ist es in einer anderen vielleicht schon Montag, sodass zwei Personen für einige Stunden in verschiedenen Wochen sein können.</p>
+
+      <h2>Behalte die Woche auf deinem iPhone im Blick</h2>
+      <ol>
+        <li>Installiere Left und öffne es einmal.</li>
+        <li>Halte einen leeren Bereich deines Home-Bildschirms gedrückt, tippe auf <strong>Bearbeiten</strong> und dann auf <strong>Widget hinzufügen</strong>.</li>
+        <li>Suche nach <strong>Left</strong> und wähle <strong>Woche</strong>, um zu sehen, wie viel von dieser Woche übrig ist, oder <strong>Jahr</strong> für das ganze Jahr.</li>
+        <li>Um das Aussehen zu ändern, halte das Widget gedrückt und tippe auf <strong>Widget bearbeiten</strong>.</li>
+      </ol>
+      <p>Die Seite zum <a href="/de/year-progress-widget">Jahresfortschritt-Widget</a> zeigt auch die Sperrbildschirm-Versionen.</p>
+
+      <h2>Fragen</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Die wievielte Kalenderwoche ist heute?</summary>
+          <div class="faq-answer"><p>Der Rechner öffnet sich mit dem heutigen Datum und zeigt dessen ISO-Kalenderwoche, ISO-Jahr und die Daten der Woche von Montag bis Sonntag. Zum Beispiel liegt Dienstag, der 10. November 2026, in Woche 46 des Jahres 2026.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Hat dieses Jahr 52 oder 53 Wochen?</summary>
+          <div class="faq-answer"><p>2026 hat 53 ISO-Wochen, weil der 1. Januar 2026 ein Donnerstag war. 2027 hat 52, und die nächsten Jahre mit 53 Wochen sind 2032 und 2037.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie ist Woche 1 definiert?</summary>
+          <div class="faq-answer"><p>Woche 1 ist die Woche von Montag bis Sonntag, die den ersten Donnerstag des Jahres enthält. Das ist immer dieselbe Woche wie die, die den 4. Januar enthält.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Warum liegt der 31. Dezember in Woche 1?</summary>
+          <div class="faq-answer"><p>Fällt der 31. Dezember auf einen Montag, Dienstag oder Mittwoch, enthält seine Woche den ersten Donnerstag des nächsten Jahres und zählt daher als Woche 1 des nächsten Jahres. Der 31. Dezember 2024 liegt in Woche 1 von 2025.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Sind US-Wochennummern dieselben wie ISO-Kalenderwochen?</summary>
+          <div class="faq-answer"><p>Nicht immer. US-Kalender beginnen Wochen meist am Sonntag und zählen die Woche mit dem 1. Januar als Woche 1, sodass die beiden Systeme um eine Woche abweichen können, und Anfang Januar um ein Jahr.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie bekomme ich die ISO-Kalenderwoche in Excel oder Google Sheets?</summary>
+          <div class="faq-answer"><p>Nutze =ISOWEEKNUM(A1) in beiden Apps. =WEEKNUM(A1) ohne zweites Argument beginnt die Wochen am Sonntag und kann daher eine andere Zahl liefern.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Die wievielte Kalenderwoche ist heute?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Der Rechner öffnet sich mit dem heutigen Datum und zeigt dessen ISO-Kalenderwoche, ISO-Jahr und die Daten der Woche von Montag bis Sonntag. Zum Beispiel liegt Dienstag, der 10. November 2026, in Woche 46 des Jahres 2026."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hat dieses Jahr 52 oder 53 Wochen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "2026 hat 53 ISO-Wochen, weil der 1. Januar 2026 ein Donnerstag war. 2027 hat 52, und die nächsten Jahre mit 53 Wochen sind 2032 und 2037."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie ist Woche 1 definiert?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Woche 1 ist die Woche von Montag bis Sonntag, die den ersten Donnerstag des Jahres enthält. Das ist immer dieselbe Woche wie die, die den 4. Januar enthält."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Warum liegt der 31. Dezember in Woche 1?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Fällt der 31. Dezember auf einen Montag, Dienstag oder Mittwoch, enthält seine Woche den ersten Donnerstag des nächsten Jahres und zählt daher als Woche 1 des nächsten Jahres. Der 31. Dezember 2024 liegt in Woche 1 von 2025."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Sind US-Wochennummern dieselben wie ISO-Kalenderwochen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nicht immer. US-Kalender beginnen Wochen meist am Sonntag und zählen die Woche mit dem 1. Januar als Woche 1, sodass die beiden Systeme um eine Woche abweichen können, und Anfang Januar um ein Jahr."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie bekomme ich die ISO-Kalenderwoche in Excel oder Google Sheets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nutze =ISOWEEKNUM(A1) in beiden Apps. =WEEKNUM(A1) ohne zweites Argument beginnt die Wochen am Sonntag und kann daher eine andere Zahl liefern."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Weiterlesen</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/blog/weeks-and-days-iphone-screen">So bringst du Wochen und Tage auf deinen iPhone-Bildschirm</a>
+        <a class="tool-related-item" href="/de/support/widget-iphone-lock-screen">Füge ein Left-Widget zu deinem Sperrbildschirm hinzu</a>
+        <a class="tool-related-item" href="/de/year-progress-widget">Jahresfortschritt-Widget für das iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Verwandte Tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/weeks-until-date">Wochen bis zu einem Datum</a>
+        <a class="tool-related-item" href="/de/tools/days-between-two-dates">Tage zwischen zwei Daten</a>
+        <a class="tool-related-item" href="/de/tools/time-left-in-year-calculator">Verbleibende Zeit im Jahr</a>
+        <a class="tool-related-item" href="/de/tools/percentage-year-calculator">Prozent des Jahres</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left laden</span>
+        <h2>Sieh das Jahr auf deinem Sperrbildschirm.</h2>
+        <p>Left zeichnet Jahr, Monat, Woche und Tag als Raster, die sich von selbst füllen, als Widgets auf deinem Home-Bildschirm, Sperrbildschirm und der Apple Watch.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-de&amp;mt=8" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Für iOS laden
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/de/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Es ist so weit.","notYet":"Noch nicht","futureDate":"Dieses Datum liegt in der Zukunft.","datePassed":"Dieses Datum ist vorbei.","selectDate":"Wähle ein gültiges Datum.","selectBoth":"Wähle beide Daten aus.","chooseTarget":"Wähle oben ein Zieldatum.","deadlinePassed":"Deadline verstrichen","pastDue":"Überfällig","deadlineUrgent":"Dringende Deadline","deadlineSoon":"Bald fällig","deadlineAhead":"Deadline steht an","fastComplete":"Fasten geschafft!","weddingArrived":"Das Datum ist gekommen","weekend":"Wochenende!","itsWeekend":"Es ist Wochenende! Genieße es.","workdayEnded":"Arbeitstag beendet","workdayEndedHint":"Wähle eine spätere Uhrzeit, um wieder herunterzuzählen.","upcoming":"Anstehend: {dates}","since":"Seit {date}","fastEnds":"Fasten endet: {date}","sinceJan1":"Seit dem 1. Januar {year}, Mitternacht","untilDec31":"Bis Mitternacht am 31. Dezember {year}","fiscalEnds":"Geschäftsjahr endet am {date}","quarterEnds":"Quartal endet am {date}","weddingDate":"Hochzeitsdatum: {date}","departure":"Abreise: {date}","currentAge":"Aktuelles Alter: {years} Jahre, {months} Monate, {days} Tage","hoursAndMinutes":"{hours} Stunden und {minutes} Minuten","minutesExtra":"{minutes} Minuten mehr, insgesamt {total} Minuten","readingDetail":"{minutes} Minuten und {seconds} Sekunden bei {wpm} Wörtern pro Minute","workdaysAt":"{days} Arbeitstage bei {hours} Stunden pro Tag","minutesSince":"Insgesamt {minutes} Minuten seit {date}","schoolDays":"Schultage","weekdaysMinusBreaks":"{weekdays} Wochentage minus {breaks} Ferientage","businessAfter":"{count} Arbeitstage nach {date}","businessBefore":"{count} Arbeitstage vor {date}","futureTime":"Diese Uhrzeit liegt in der Zukunft.","unitEquals":"{amount} {from} entsprechen etwa {value} {to}","invalidTimestamp":"Ungültiger Timestamp.","invalidDate":"Ungültiges Datum.","local":"lokal","pregFirst":"Erstes Trimester","pregSecond":"Zweites Trimester","pregThird":"Drittes Trimester","pregWeekDay":"{weeks} W. {days} T.","dueWas":"Geburtstermin war {date} – herzlichen Glückwunsch!","yearDays":"Jahr {year} – insgesamt {days} Tage","easterDates":"Westlich – {western}; orthodox – {orthodox}"},"stat":{"days":"Tage","hours":"Stunden","min":"Min","sec":"Sek","weeks":"Wochen","months":"Monate","daysSince":"Tage seit","daysUntil":"Tage bis","yearAnniversary":"Jahrestag","elapsed":"vergangen","left":"übrig","daysLeft":"Tage übrig","weeksLeft":"Wochen übrig","yearsLeft":"Jahre übrig","streakDays":"abgeschlossene Tage","fullWeeks":"volle Wochen","approxMonths":"ca. Monate","durationMin":"Dauer in Min","elapsedMin":"vergangene Min","minutesLeft":"Minuten übrig","currentQuarter":"aktuelles Quartal","remaining":"verbleibend","daysSober":"nüchterne Tage","daysToMilestone":"Tage bis zum nächsten Meilenstein","nextMilestone":"nächster Meilenstein","daysUntilDeparture":"Tage bis zur Abreise","tripDays":"Reisetage"},"unit":{"months":{"one":"Monat","other":"Monate"},"weeks":{"one":"Woche","other":"Wochen"},"days":{"one":"Tag","other":"Tage"},"hours":{"one":"Stunde","other":"Stunden"},"minutes":{"one":"Minute","other":"Minuten"},"seconds":{"one":"Sekunde","other":"Sekunden"},"years":{"one":"Jahr","other":"Jahre"}},"next":{"christmas":"Nächstes Weihnachten: {date}","newYear":"Nächstes Neujahr: {date}","halloween":"Nächstes Halloween: {date}","thanksgiving":"Nächstes Thanksgiving: {date}","valentines":"Nächster Valentinstag: {date}","mothersDay":"Nächster Muttertag: {date}","fathersDay":"Nächster Vatertag: {date}","spring":"Nächste Frühlings-Tagundnachtgleiche: {date}","summer":"Nächste Sommersonnenwende: {date}","fall":"Nächste Herbst-Tagundnachtgleiche: {date}","winter":"Nächste Wintersonnenwende: {date}","westernEaster":"Nächstes westliches Ostern: {date}","orthodoxEaster":"Nächstes orthodoxes Ostern: {date}","birthday":"Nächster Geburtstag: {date}","anniversary":"Nächster Jahrestag: {date}","saturday":"Nächster Samstag: {date}","birthdayAway":{"one":"Nächster Geburtstag: {date} (in {count} Tag)","other":"Nächster Geburtstag: {date} (in {count} Tagen)"}},"sleep":{"bed9":"9 Std. (6 Zyklen)","bed75":"7,5 Std. (5 Zyklen, empfohlen)","bed6":"6 Std. (4 Zyklen)","bed45":"4,5 Std. (3 Zyklen)","wake45":"4,5 Std.","wake6":"6 Std.","wake75":"7,5 Std. (empfohlen)","wake9":"9 Std."},"card":{"android":"Mit Android unterwegs? Sieh dir deine Optionen an","copied":"Link kopiert","daysLeft":{"one":"Noch {count} Tag","other":"Noch {count} Tage"},"handoff":"Sende den Link an dein iPhone","handoffTitle":"Left für das iPhone","hoursLeft":{"one":"Heute noch {count} Stunde","other":"Heute noch {count} Stunden"},"shareText":"{title}: {result}","weeksLeft":{"one":"Noch {count} Woche","other":"Noch {count} Wochen"},"yearsLeft":{"one":"Noch {count} Jahr","other":"Noch {count} Jahre"}},"life":{"mark":"Markiert: Alter {age}, Woche {week}"},"preg":{"daysToGo":"Tage noch","dueDate":"Voraussichtlicher Geburtstermin: {date}","dueDateTitle":"Geburtstermin","weeksPregnant":"Wochen schwanger","weeksToGo":"Wochen noch"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const dateEl = document.getElementById('wn-date');
+    const result = document.getElementById('wn-result');
+    const rangeEl = document.getElementById('wn-range');
+
+    dateEl.value = toLocalDateInput(new Date());
+
+    function render() {
+      if (!dateEl.value) { result.innerHTML = ''; rangeEl.textContent = ''; return; }
+      const d = new Date(dateEl.value + 'T00:00:00');
+      if (isNaN(d)) return;
+      const { week, year } = isoWeek(d);
+      // Compute Monday of this ISO week
+      const dayOfWeek = d.getDay() || 7; // Mon=1..Sun=7
+      const monday = new Date(d);
+      monday.setDate(d.getDate() - dayOfWeek + 1);
+      const sunday = new Date(monday);
+      sunday.setDate(monday.getDate() + 6);
+      result.innerHTML = `
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num">W${week}</div><div class="tool-stat-label">ISO week</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${year}</div><div class="tool-stat-label">ISO year</div></div>
+        </div>`;
+      rangeEl.textContent = `Week ${week} of ${year}: ${formatDateShort(monday)} – ${formatDateShort(sunday)}`;
+    }
+
+    dateEl.addEventListener('change', render);
+    render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

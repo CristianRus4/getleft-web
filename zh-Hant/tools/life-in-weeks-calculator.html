@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>人生週數計算機——把你的人生畫成週的格狀圖 | Left</title>
+  <meta name="description" content="查看你以週為單位的人生：從你出生日期起的每一週組成的格狀圖，標出已度過的週、剩餘的週和剩餘的星期六。可儲存為桌布。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="人生週數計算機——把你的人生畫成週的格狀圖"  />
+  <meta property="og:description" content="查看你以週為單位的人生：從你出生日期起的每一週組成的格狀圖，標出已度過的週、剩餘的週和剩餘的星期六。可儲存為桌布。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/tools/life-in-weeks-calculator" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="人生週數計算機——把你的人生畫成週的格狀圖"  />
+  <meta name="twitter:description" content="查看你以週為單位的人生：從你出生日期起的每一週組成的格狀圖，標出已度過的週、剩餘的週和剩餘的星期六。可儲存為桌布。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "人生週數計算機——把你的人生畫成週的格狀圖",
+  "url": "https://getleft.app/tools/life-in-weeks-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "查看你以週為單位的人生：從你出生日期起的每一週組成的格狀圖，標出已度過的週、剩餘的週和剩餘的星期六。可儲存為桌布。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "zh-Hant"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "工具",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "人生週數計算機",
+      "item": "https://getleft.app/tools/life-in-weeks-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>人生週數計算機</h1>
+    <p class="tool-lede">你的人生是週的格狀圖：每年一列，每週一個格子，已度過的週會變暗。</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <div class="tool-widget__field">
+          <label for="liw-birth">你的出生日期</label>
+          <input type="date" id="liw-birth" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="liw-span">壽命：<output id="liw-span-out" for="liw-span">80</output> 歲</label>
+          <input type="range" id="liw-span" min="60" max="100" step="1" value="80" />
+        </div>
+      </div>
+      <p class="tool-fineprint" id="liw-avg-note" style="margin:-8px 0 18px;"><span id="liw-avg">80</span> 是世衛組織 2019 年生命表中你這個年齡的平均值。</p>
+      <div class="tool-result" id="liw-result" aria-live="polite">
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-lived">-</div><div class="tool-stat-label">已度過的週數</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-left" style="color:var(--accent);">-</div><div class="tool-stat-label">剩餘週數</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-pct">-</div><div class="tool-stat-label">占你壽命的比例</div></div>
+          <div class="tool-stat"><div class="tool-stat-num" id="liw-sat">-</div><div class="tool-stat-label">剩餘的星期六</div></div>
+        </div>
+      </div>
+      <div class="liw-grid">
+        <canvas id="liw-canvas" role="img" aria-label="你的人生是週的格狀圖"></canvas>
+      </div>
+      <div class="tool-widget__row" style="margin-top:22px;">
+        <div class="tool-widget__field">
+          <label for="liw-mark">標記日期（選填）</label>
+          <input type="date" id="liw-mark" />
+        </div>
+        <p class="tool-meta" id="liw-mark-note"></p>
+      </div>
+      <div class="tool-quick-actions" style="margin-top:0;">
+        <button type="button" class="tool-quick-btn" id="liw-save-wallpaper">儲存為桌布</button>
+        <button type="button" class="tool-quick-btn" id="liw-save-square">儲存為方形圖片</button>
+      </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="life" aria-hidden="true">
+          <span class="tool-preview__title">你的人生</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>把你的人生格狀圖放在鎖定畫面上</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hant/tools/">所有工具</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>週數是如何計算的</h2>
+      <p>輸入你的出生日期，計算機會統計從那時到今天的天數並除以七。格狀圖的每一列是你人生中的一年，從一個生日到下一個生日，切成 52 週。你已度過的週會變暗，你目前所在的週是橘色，未來的週是實心的。</p>
+      <p>一年是 52 週零一天，閏年則是兩天，所以每列 52 個格子每年會漏掉一兩天。格狀圖上方的數字不會：已度過的週和剩餘的週都是整週的精確計數。對於 80 年的壽命，那是 4,174 週，而格狀圖畫出 4,160 個格子。</p>
+      <p>剩餘的星期六統計從明天起到你所選壽命結束之間的星期六。有些人覺得它比週數更具體：大致就是前面還有多少個自由的週末。</p>
+
+      <h2>這個想法從何而來</h2>
+      <p>把一生畫成一張週格表，是由 Tim Urban 在 Wait But Why 上的文章《Your Life in Weeks》推廣開來的。它背後的想法要古老得多：<em>memento mori</em>（勿忘你終有一死），斯多葛學派提醒自己時間有限的實踐，好讓你把時間花在對自己重要的事情上。放在一頁上看，一個人生既顯得漫長又有限，而普通的一週也顯出了它的本來面目：幾千個格子中的一個。</p>
+      <p>大多數使用人生日曆的人並不是為了感到沮喪。它有助於建立視角：對不重要的事說不，對一再推遲的旅行、電話或專案說好。如果以週顯示太過直白，Left 可以用月或年顯示同一段人生。</p>
+
+      <h2>關於壽命</h2>
+      <p>起始值來自世界衛生組織 2019 年全球生命表，取女性和男性的平均值。它不是出生時的預期壽命：它是你目前的年齡加上該年齡的平均剩餘年數，略高一些，因為你已經度過了身後的那些年。它被取整到整年，並保持在 60 到 100 之間。</p>
+      <p>平均值無法確切說明某一個人。健康、習慣、國家和單純的運氣都很重要，所以你可以把滑桿移到任何你喜歡的壽命。若想得到考慮生活方式的估算，請試試<a href="/zh-Hant/tools/life-expectancy-calculator">預期壽命計算機</a>；若想查看精確到年、月、日的年齡，請使用<a href="/zh-Hant/tools/age-calculator">年齡計算機</a>。</p>
+
+      <h2>標記日期</h2>
+      <p>在「標記日期」中新增一個日期，即可圈出它所在的週：婚禮、搬家、孩子的出生，或尚未到來的日子，例如計畫中的退休或 50 歲生日。過去被標記的週顯示你走了多遠；未來被標記的週顯示到那時還剩多少個格子。</p>
+
+      <h2>把你的人生格狀圖放在 iPhone 上</h2>
+      <p>「儲存為桌布」會產生一張手機尺寸的圖片，頂部為時鐘留出空間；「儲存為方形圖片」則產生一張用於分享的圖片。不過儲存下來的圖片不會變化，所以下週它就落後一個格子。Left 會自動保持格狀圖最新：</p>
+      <ol>
+        <li>在 iPhone 上安裝 Left，打開<strong>設定</strong>並點一下<strong>你的壽命</strong>。</li>
+        <li>設定你的<strong>生日</strong>，並在<strong>以…查看你的人生</strong>下選擇<strong>週</strong>。</li>
+        <li>打開<strong>剩餘時間</strong>並切換到人生檢視，查看格狀圖和你剩餘的週數。</li>
+        <li>把<strong>人生</strong>或<strong>我</strong>小工具加到主畫面或鎖定畫面，或以人生模式設定 <a href="/zh-Hant/support/wallpaper-shortcut">Left 桌布</a>，讓你的鎖定畫面自己重繪。</li>
+      </ol>
+      <p>Left 預設使用 80 年的壽命，你可以在 App 中設定自己的壽命。更多選項請參閱<a href="/zh-Hant/life-calendar">人生日曆</a>指南、<a href="/zh-Hant/support/set-up-your-lifespan">壽命設定指南</a>以及我們對 <a href="/zh-Hant/blog/best-life-calendar-apps-iphone">iPhone 人生日曆 App</a> 的比較。</p>
+
+      <h2>常見問題</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>這是在預測我能活多久嗎？</summary>
+          <div class="faq-answer"><p>不是。壽命是來自人口生命表的平均值，或是你選擇的數字。格狀圖是觀察時間的一種方式，不是對任何一個人的預測。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>一生有多少週？</summary>
+          <div class="faq-answer"><p>80 歲的人生是 4,174 週（29,220 天除以 7）。人生週數海報每年畫 52 個格子，共 4,160 個，因為一年是 52 週零一兩天。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>為什麼每一列有 52 個格子？</summary>
+          <div class="faq-answer"><p>每一列是你人生中的一年，從一個生日到下一個生日，分為 52 週。每年多出的一兩天不畫進圖裡，但會計入總數。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>計算機使用什麼壽命？</summary>
+          <div class="faq-answer"><p>對於你的年齡，取世界衛生組織 2019 年生命表（全球，女性和男性平均）的平均值，取整到整年。移動滑桿可使用 60 到 100 之間的任何壽命。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>我的出生日期會被儲存或傳送到別處嗎？</summary>
+          <div class="faq-answer"><p>不會。一切都在你的瀏覽器中計算。如果你使用「分享」，日期會成為連結的一部分，所以只分享給你願意告知的人。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>如何在 iPhone 上保留我的人生週數？</summary>
+          <div class="faq-answer"><p>你可以在本頁把格狀圖儲存為桌布，或安裝 Left：在設定中設定你的生日，選擇以週查看你的人生，然後加入人生或我小工具，或會自動更新的 Left 桌布。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "這是在預測我能活多久嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不是。壽命是來自人口生命表的平均值，或是你選擇的數字。格狀圖是觀察時間的一種方式，不是對任何一個人的預測。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一生有多少週？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "80 歲的人生是 4,174 週（29,220 天除以 7）。人生週數海報每年畫 52 個格子，共 4,160 個，因為一年是 52 週零一兩天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "為什麼每一列有 52 個格子？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "每一列是你人生中的一年，從一個生日到下一個生日，分為 52 週。每年多出的一兩天不畫進圖裡，但會計入總數。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算機使用什麼壽命？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "對於你的年齡，取世界衛生組織 2019 年生命表（全球，女性和男性平均）的平均值，取整到整年。移動滑桿可使用 60 到 100 之間的任何壽命。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的出生日期會被儲存或傳送到別處嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不會。一切都在你的瀏覽器中計算。如果你使用「分享」，日期會成為連結的一部分，所以只分享給你願意告知的人。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何在 iPhone 上保留我的人生週數？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "你可以在本頁把格狀圖儲存為桌布，或安裝 Left：在設定中設定你的生日，選擇以週查看你的人生，然後加入人生或我小工具，或會自動更新的 Left 桌布。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>閱讀更多</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/blog/weeks-and-days-iphone-screen">如何把週數和天數加到 iPhone 螢幕</a>
+        <a class="tool-related-item" href="/zh-Hant/support/set-up-your-lifespan">在 Left 中設定你的壽命</a>
+        <a class="tool-related-item" href="/zh-Hant/life-calendar">人生日曆：以週為單位的人生</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>相關工具</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/tools/life-expectancy-calculator">預期壽命計算機</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/age-calculator">年齡計算機</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/percentage-year-calculator">今年已過百分之幾</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/retirement-countdown-calculator">退休倒數</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">下載 Left</span>
+        <h2>查看你以週為單位的人生。</h2>
+        <p>Left 以你的生日為起點，把你的人生畫成格狀圖，並提供適用於主畫面、鎖定畫面和 Apple Watch 的人生小工具，以及會自動更新的桌布。</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 下載 Left" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            下載 iOS 版
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"},"preg":{"weeksPregnant":"週孕期","weeksToGo":"週後預產","daysToGo":"天後預產","dueDate":"預產期：{date}","dueDateTitle":"預產期"},"life":{"mark":"已標記：年齡 {age}，第 {week} 週"},"card":{"handoff":"把連結傳送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"連結已拷貝","android":"在用 Android？查看你的選擇","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"還剩 {count} 天","other":"還剩 {count} 天"},"hoursLeft":{"one":"今天還剩 {count} 小時","other":"今天還剩 {count} 小時"},"yearsLeft":{"one":"還剩 {count} 年","other":"還剩 {count} 年"},"weeksLeft":{"one":"還剩 {count} 週","other":"還剩 {count} 週"}}};</script>
+  <script src="/tools/tools.js"></script>
+  <script src="/tools/life-in-weeks-calculator.js"></script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

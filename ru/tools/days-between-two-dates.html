@@ -269,12 +269,43 @@
       <div class="tool-result" id="db-result" aria-live="polite">
         <p style="color:var(--text-secondary);font-size:16px;">Выберите обе даты выше.</p>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Дней между</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ru&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Ведите обратный отсчёт до этой даты в Left</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Поделиться</button>
+            <a class="tool-card__more" href="/ru/tools/">Все инструменты</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
       <h2>Как работает расчёт</h2>
       <p>Калькулятор вычитает дату начала из даты окончания и возвращает абсолютное число календарных дней между ними. Неважно, какая дата раньше — можно вводить в любом порядке, результат всегда положительный.</p>
-      <p>По умолчанию счёт <em>не включает ни одну из конечных дат</em>: если ввести 1 и 3 января, результат — 2 дня (промежуток между ними). Это самое распространённое соглашение для расчёта длительности.</p>
+      <p>В счёт входит одна из границ, но не обе: если ввести 1 января и 3 января, результат — 2 дня (промежуток между ними). Это самое распространённое соглашение для расчёта длительности.</p>
+
+      <h2>Счёт с обоими днями</h2>
+      <p>Для некоторых вопросов нужны и первый, и последний день. Конференция с 1 по 3 января длится 3 дня, а курс лекарства с 1-го по 3-е принимают 3 дня. В таких случаях прибавьте к результату 1. С ночами наоборот: проживание в отеле с 1 по 3 января — это 2 ночи, ровно то, что показывает инструмент.</p>
+
+      <h2>Пример расчёта</h2>
+      <p>С 1 марта 2026 года по 10 ноября 2026 года — 254 дня. С 1 марта по 1 апреля — 31 день. Прибавив апрель (30), май (31), июнь (30), июль (31), август (31), сентябрь (30) и октябрь (31), вы дойдёте до 1 ноября за 245 дней, а ещё 9 дней — до 10 ноября. Если считать и 1 марта, и 10 ноября, получится 255 дней.</p>
+
+      <h2>Високосные годы и летнее время</h2>
+      <p>Високосные годы учитываются автоматически. С 1 февраля по 1 марта — 28 дней в 2027 году и 29 дней в 2028 году, а полный год с 1 января по 1 января — 365 или 366 дней. Инструмент считает календарные дни, поэтому день длиной 23 или 25 часов из-за перехода на летнее время всё равно считается одним днём.</p>
+
+      <h2>Перевод в недели и месяцы</h2>
+      <p>Под результатом инструмент разбивает дни на полные недели и оставшиеся дни: 254 дня — это 36 недель и 2 дня. Месяцы менее точны, потому что длятся от 28 до 31 дня. Деление на 30,44 — среднюю длину месяца — даёт хорошую оценку: 254 дня — это около 8,3 месяца. Для целых календарных месяцев посчитайте их по календарю: с 1 марта по 1 ноября — 8 месяцев плюс 9 дней.</p>
 
       <h2>Типичные случаи</h2>
       <ul>
@@ -291,15 +322,109 @@
 
       <h2>Отслеживайте промежуток с Left</h2>
       <p>Когда вы знаете число дней, функция <em>Впереди</em> в Left позволяет задать целевую дату и каждый день видеть оставшийся счётчик в виджете на экране «Домой». Режим <em>С начала</em> показывает, сколько дней прошло с события — удобно для годовщин, трезвости или любого вопроса «сколько дней прошло».</p>
+      <ol>
+        <li>Установите Left на iPhone, откройте <strong>Впереди</strong> и нажмите <strong>Добавить дату в «Впереди»</strong>, затем <strong>Новая дата</strong>.</li>
+        <li>Дайте имя и установите <strong>Начинается</strong> на вашу конечную дату.</li>
+        <li>Включите <strong>Получить напоминание</strong>, например за неделю.</li>
+        <li>Добавьте виджет Left <strong>Впереди</strong> на экран «Домой» или экран блокировки и выберите дату в <strong>Изменить виджет</strong>.</li>
+      </ol>
       <p>Если промежуток ведет к дате, <a href="/ru/countdown-widget">виджет обратного отсчёта</a> сохраняет его на вашем экране «Домой».</p>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-ru&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          Считайте дни с начала в Left
-        </a>
-      </p>
+      <h2>Вопросы</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Учитываются ли начальная и конечная даты?</summary>
+          <div class="faq-answer"><p>Он считает один из них, а не оба: с 1 по 3 января — 2 дня. Если нужно включить оба дня, прибавьте к результату 1.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Учитывает ли калькулятор високосные годы?</summary>
+          <div class="faq-answer"><p>Да. Он считает реальные календарные дни, поэтому 29 февраля учитывается, когда попадает между вашими датами.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Как перевести дни в недели?</summary>
+          <div class="faq-answer"><p>Разделите на 7. Инструмент делает это за вас под результатом: 254 дня — это 36 недель и 2 дня.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Сколько месяцев в 90 днях?</summary>
+          <div class="faq-answer"><p>Около 3. В среднем месяц длится 30,44 дня, поэтому 90 дней — это около 2,96 месяца; равно ли это ровно 3 календарным месяцам, зависит от того, какие месяцы входят.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Важен ли порядок дат?</summary>
+          <div class="faq-answer"><p>Нет. Можно ввести сначала более позднюю дату, и результат будет тем же положительным числом дней.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Сколько дней в году?</summary>
+          <div class="faq-answer"><p>365, а в високосный год — 366. Год високосный, если делится на 4, кроме годов-столетий, которые должны делиться на 400; следующий — 2028.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Учитываются ли начальная и конечная даты?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Он считает один из них, а не оба: с 1 по 3 января — 2 дня. Если нужно включить оба дня, прибавьте к результату 1."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Учитывает ли калькулятор високосные годы?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. Он считает реальные календарные дни, поэтому 29 февраля учитывается, когда попадает между вашими датами."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как перевести дни в недели?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Разделите на 7. Инструмент делает это за вас под результатом: 254 дня — это 36 недель и 2 дня."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько месяцев в 90 днях?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Около 3. В среднем месяц длится 30,44 дня, поэтому 90 дней — это около 2,96 месяца; равно ли это ровно 3 календарным месяцам, зависит от того, какие месяцы входят."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Важен ли порядок дат?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Можно ввести сначала более позднюю дату, и результат будет тем же положительным числом дней."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько дней в году?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365, а в високосный год — 366. Год високосный, если делится на 4, кроме годов-столетий, которые должны делиться на 400; следующий — 2028."
+      }
+    }
+  ],
+  "inLanguage": "ru"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Читать дальше</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ru/blog/best-day-counter-apps-iphone">Приложения-счётчики дней для iPhone: сравнение</a>
+        <a class="tool-related-item" href="/ru/support/organise-ahead-since">Упорядочьте свои даты в «Впереди» и «С начала»</a>
+        <a class="tool-related-item" href="/ru/countdown-widget">Виджет обратного отсчёта для iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>Похожие инструменты</h2>
       <div class="tool-related-items">
@@ -313,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Скачать Left</span>
-        <h2>Начните замечать то, что важно.</h2>
-        <p>Скачайте Left на iPhone, чтобы видеть оставшееся время, даты, которых ждёте, строить привычки, которые хотите сохранить, и становиться лучше.</p>
+        <h2>Превратите дату в обратный отсчёт.</h2>
+        <p>Зная дату, добавьте её в «Впереди» в Left и видите оставшиеся дни на экране «Домой», экране блокировки и Apple Watch.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -444,7 +569,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Этот день наступил.","notYet":"Ещё нет","futureDate":"Эта дата ещё в будущем.","datePassed":"Эта дата уже прошла.","selectDate":"Выберите корректную дату.","selectBoth":"Выберите обе даты.","chooseTarget":"Выберите целевую дату выше.","deadlinePassed":"Дедлайн прошёл","pastDue":"Срок истёк","deadlineUrgent":"Срочный дедлайн","deadlineSoon":"Скоро","deadlineAhead":"Дедлайн впереди","fastComplete":"Голодание завершено!","weddingArrived":"Дата наступила","weekend":"Выходные!","itsWeekend":"Сейчас выходные! Наслаждайтесь.","workdayEnded":"Рабочий день закончился","workdayEndedHint":"Установите более позднее время, чтобы снова вести отсчёт.","upcoming":"Предстоит: {dates}","since":"С {date}","fastEnds":"Голодание заканчивается: {date}","sinceJan1":"С полуночи 1 января {year} г.","untilDec31":"До полуночи 31 декабря {year} г.","fiscalEnds":"Финансовый год заканчивается {date}","quarterEnds":"Квартал заканчивается {date}","weddingDate":"Дата свадьбы: {date}","departure":"Выезд: {date}","currentAge":"Текущий возраст: {years} лет, {months} мес., {days} дн.","hoursAndMinutes":"{hours} ч и {minutes} мин","minutesExtra":"ещё {minutes} мин, всего {total} мин","readingDetail":"{minutes} мин и {seconds} сек при {wpm} словах в минуту","workdaysAt":"{days} рабочих дней по {hours} ч в день","minutesSince":"всего {minutes} мин с {date}","schoolDays":"учебных дней","weekdaysMinusBreaks":"{weekdays} будних дней минус {breaks} дней каникул","businessAfter":"{count} рабочих дней после {date}","businessBefore":"{count} рабочих дней до {date}","futureTime":"Это время ещё в будущем.","unitEquals":"{amount} {from} — примерно {value} {to}","invalidTimestamp":"Некорректная метка времени.","invalidDate":"Некорректная дата.","local":"местное","pregFirst":"Первый триместр","pregSecond":"Второй триместр","pregThird":"Третий триместр","pregWeekDay":"{weeks} нед. {days} дн.","dueWas":"Предполагаемая дата родов была {date} — поздравляем!","yearDays":"Год {year} — всего {days} дней","easterDates":"Западная — {western}; православная — {orthodox}"},"stat":{"days":"дни","hours":"часы","min":"мин","sec":"сек","weeks":"недели","months":"месяцы","daysSince":"дней с","daysUntil":"дней до","yearAnniversary":"годовщина","elapsed":"прошло","left":"осталось","daysLeft":"дней осталось","weeksLeft":"недель осталось","yearsLeft":"лет осталось","streakDays":"пройденные дни","fullWeeks":"полных недель","approxMonths":"примерно месяцев","durationMin":"длительность, мин","elapsedMin":"прошло, мин","minutesLeft":"минут осталось","currentQuarter":"текущий квартал","remaining":"осталось","daysSober":"дней трезвости","daysToMilestone":"дней до следующей вехи","nextMilestone":"следующая веха","daysUntilDeparture":"дней до выезда","tripDays":"дней поездки"},"unit":{"months":{"one":"месяц","few":"месяца","many":"месяцев","other":"месяца"},"weeks":{"one":"неделя","few":"недели","many":"недель","other":"недели"},"days":{"one":"день","few":"дня","many":"дней","other":"дня"},"hours":{"one":"час","few":"часа","many":"часов","other":"часа"},"minutes":{"one":"минута","few":"минуты","many":"минут","other":"минуты"},"seconds":{"one":"секунда","few":"секунды","many":"секунд","other":"секунды"},"years":{"one":"год","few":"года","many":"лет","other":"года"}},"next":{"christmas":"Следующее Рождество: {date}","newYear":"Следующий Новый год: {date}","halloween":"Следующий Хеллоуин: {date}","thanksgiving":"Следующий День благодарения в США: {date}","valentines":"Следующий День святого Валентина: {date}","mothersDay":"Следующий День матери в США: {date}","fathersDay":"Следующий День отца в США: {date}","spring":"Следующее весеннее равноденствие: {date}","summer":"Следующее летнее солнцестояние: {date}","fall":"Следующее осеннее равноденствие: {date}","winter":"Следующее зимнее солнцестояние: {date}","westernEaster":"Следующая западная Пасха: {date}","orthodoxEaster":"Следующая православная Пасха: {date}","birthday":"Следующий день рождения: {date}","anniversary":"Следующая годовщина: {date}","saturday":"Следующая суббота: {date}","birthdayAway":{"one":"Следующий день рождения: {date} (через {count} день)","few":"Следующий день рождения: {date} (через {count} дня)","many":"Следующий день рождения: {date} (через {count} дней)","other":"Следующий день рождения: {date} (через {count} дня)"}},"sleep":{"bed9":"9 ч (6 циклов)","bed75":"7,5 ч (5 циклов, рекомендуется)","bed6":"6 ч (4 цикла)","bed45":"4,5 ч (3 цикла)","wake45":"4,5 ч","wake6":"6 ч","wake75":"7,5 ч (рекомендуется)","wake9":"9 ч"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Этот день наступил.","notYet":"Ещё нет","futureDate":"Эта дата ещё в будущем.","datePassed":"Эта дата уже прошла.","selectDate":"Выберите корректную дату.","selectBoth":"Выберите обе даты.","chooseTarget":"Выберите целевую дату выше.","deadlinePassed":"Дедлайн прошёл","pastDue":"Срок истёк","deadlineUrgent":"Срочный дедлайн","deadlineSoon":"Скоро","deadlineAhead":"Дедлайн впереди","fastComplete":"Голодание завершено!","weddingArrived":"Дата наступила","weekend":"Выходные!","itsWeekend":"Сейчас выходные! Наслаждайтесь.","workdayEnded":"Рабочий день закончился","workdayEndedHint":"Установите более позднее время, чтобы снова вести отсчёт.","upcoming":"Предстоит: {dates}","since":"С {date}","fastEnds":"Голодание заканчивается: {date}","sinceJan1":"С полуночи 1 января {year} г.","untilDec31":"До полуночи 31 декабря {year} г.","fiscalEnds":"Финансовый год заканчивается {date}","quarterEnds":"Квартал заканчивается {date}","weddingDate":"Дата свадьбы: {date}","departure":"Выезд: {date}","currentAge":"Текущий возраст: {years} лет, {months} мес., {days} дн.","hoursAndMinutes":"{hours} ч и {minutes} мин","minutesExtra":"ещё {minutes} мин, всего {total} мин","readingDetail":"{minutes} мин и {seconds} сек при {wpm} словах в минуту","workdaysAt":"{days} рабочих дней по {hours} ч в день","minutesSince":"всего {minutes} мин с {date}","schoolDays":"учебных дней","weekdaysMinusBreaks":"{weekdays} будних дней минус {breaks} дней каникул","businessAfter":"{count} рабочих дней после {date}","businessBefore":"{count} рабочих дней до {date}","futureTime":"Это время ещё в будущем.","unitEquals":"{amount} {from} — примерно {value} {to}","invalidTimestamp":"Некорректная метка времени.","invalidDate":"Некорректная дата.","local":"местное","pregFirst":"Первый триместр","pregSecond":"Второй триместр","pregThird":"Третий триместр","pregWeekDay":"{weeks} нед. {days} дн.","dueWas":"Предполагаемая дата родов была {date} — поздравляем!","yearDays":"Год {year} — всего {days} дней","easterDates":"Западная — {western}; православная — {orthodox}"},"stat":{"days":"дни","hours":"часы","min":"мин","sec":"сек","weeks":"недели","months":"месяцы","daysSince":"дней с","daysUntil":"дней до","yearAnniversary":"годовщина","elapsed":"прошло","left":"осталось","daysLeft":"дней осталось","weeksLeft":"недель осталось","yearsLeft":"лет осталось","streakDays":"пройденные дни","fullWeeks":"полных недель","approxMonths":"примерно месяцев","durationMin":"длительность, мин","elapsedMin":"прошло, мин","minutesLeft":"минут осталось","currentQuarter":"текущий квартал","remaining":"осталось","daysSober":"дней трезвости","daysToMilestone":"дней до следующей вехи","nextMilestone":"следующая веха","daysUntilDeparture":"дней до выезда","tripDays":"дней поездки"},"unit":{"months":{"one":"месяц","few":"месяца","many":"месяцев","other":"месяца"},"weeks":{"one":"неделя","few":"недели","many":"недель","other":"недели"},"days":{"one":"день","few":"дня","many":"дней","other":"дня"},"hours":{"one":"час","few":"часа","many":"часов","other":"часа"},"minutes":{"one":"минута","few":"минуты","many":"минут","other":"минуты"},"seconds":{"one":"секунда","few":"секунды","many":"секунд","other":"секунды"},"years":{"one":"год","few":"года","many":"лет","other":"года"}},"next":{"christmas":"Следующее Рождество: {date}","newYear":"Следующий Новый год: {date}","halloween":"Следующий Хеллоуин: {date}","thanksgiving":"Следующий День благодарения в США: {date}","valentines":"Следующий День святого Валентина: {date}","mothersDay":"Следующий День матери в США: {date}","fathersDay":"Следующий День отца в США: {date}","spring":"Следующее весеннее равноденствие: {date}","summer":"Следующее летнее солнцестояние: {date}","fall":"Следующее осеннее равноденствие: {date}","winter":"Следующее зимнее солнцестояние: {date}","westernEaster":"Следующая западная Пасха: {date}","orthodoxEaster":"Следующая православная Пасха: {date}","birthday":"Следующий день рождения: {date}","anniversary":"Следующая годовщина: {date}","saturday":"Следующая суббота: {date}","birthdayAway":{"one":"Следующий день рождения: {date} (через {count} день)","few":"Следующий день рождения: {date} (через {count} дня)","many":"Следующий день рождения: {date} (через {count} дней)","other":"Следующий день рождения: {date} (через {count} дня)"}},"sleep":{"bed9":"9 ч (6 циклов)","bed75":"7,5 ч (5 циклов, рекомендуется)","bed6":"6 ч (4 цикла)","bed45":"4,5 ч (3 цикла)","wake45":"4,5 ч","wake6":"6 ч","wake75":"7,5 ч (рекомендуется)","wake9":"9 ч"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const fromEl = document.getElementById('db-from');

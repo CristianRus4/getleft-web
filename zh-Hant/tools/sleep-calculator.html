@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>睡眠計算機——最佳就寢與起床時間 | Left</title>
+  <meta name="description" content="根據 90 分鐘的睡眠週期，計算最佳的入睡或起床時間。找到能避開睡眠慣性、讓你精神飽滿的起床時間。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="睡眠計算機——最佳就寢與起床時間"  />
+  <meta property="og:description" content="根據 90 分鐘的睡眠週期，計算最佳的入睡或起床時間。找到能避開睡眠慣性、讓你精神飽滿的起床時間。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/tools/sleep-calculator" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="睡眠計算機——最佳就寢與起床時間"  />
+  <meta name="twitter:description" content="根據 90 分鐘的睡眠週期，計算最佳的入睡或起床時間。找到能避開睡眠慣性、讓你精神飽滿的起床時間。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "睡眠計算機——最佳就寢與起床時間",
+  "url": "https://getleft.app/tools/sleep-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "根據 90 分鐘的睡眠週期，計算最佳的入睡或起床時間。找到能避開睡眠慣性、讓你精神飽滿的起床時間。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "zh-Hant"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "工具",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "睡眠計算機",
+      "item": "https://getleft.app/tools/sleep-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>睡眠計算機</h1>
+    <p class="tool-lede">根據 90 分鐘的睡眠週期，找到最佳的起床或入睡時間——讓你在週期之間醒來，感覺神清氣爽。</p>
+
+    <div class="tool-widget">
+      <div class="tool-toggle" id="sleep-mode-toggle" style="margin-bottom:20px;">
+        <button class="is-active" data-mode="wake">我想在…起床</button>
+        <button data-mode="sleep">我打算在…睡覺</button>
+      </div>
+
+      <div id="wake-panel">
+        <div class="tool-widget__row">
+          <label for="sleep-wake-time">起床時間</label>
+          <input type="time" id="sleep-wake-time" value="07:00" />
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">你應該什麼時候睡覺？（含 15 分鐘入睡時間）</p>
+        <div id="sleep-bedtimes" class="tool-result"></div>
+      </div>
+
+      <div id="sleep-panel" style="display:none;">
+        <div class="tool-widget__row">
+          <label for="sleep-bed-time">就寢時間</label>
+          <input type="time" id="sleep-bed-time" value="23:00" />
+        </div>
+        <p style="font-size:13px;color:var(--text-secondary);margin-bottom:12px;">最佳起床時間：（含 15 分鐘入睡時間）</p>
+        <div id="sleep-waketimes" class="tool-result"></div>
+      </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="day" aria-hidden="true">
+          <span class="tool-preview__title">今天</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>在鎖定畫面上查看一天剩餘的小時數</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hant/tools/">所有工具</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>睡眠週期是如何運作的</h2>
+      <p>睡眠以平均約<strong>90 分鐘</strong>的週期進行（你的可能是 70–120 分鐘），依序經過淺睡眠、深睡眠（慢波睡眠）和快速動眼睡眠。在週期中途醒來，尤其是在深睡眠期間，會造成<em>睡眠慣性</em>：那種昏昏沉沉、迷迷糊糊的感覺，可能持續 30 分鐘或更久。</p>
+      <p>在一個完整週期結束時醒來，也就是睡眠自然最淺的時候，感覺要自然得多。這個計算機顯示與週期邊界對齊的起床時間。</p>
+
+      <h2>15 分鐘的入睡緩衝</h2>
+      <p>計算機在開始第一個週期之前，會在你的就寢時間上加 15 分鐘。這是健康成年人入睡所需的平均時間（稱為入睡潛伏期）。如果你往往入睡更快或更慢，請相應地把時間調整 5–10 分鐘。</p>
+
+      <h2>一個實際範例</h2>
+      <p>假設你需要在早上 7:00 起床。計算機先減去 15 分鐘入睡時間，得到早上 6:45，然後以 90 分鐘為步長往回推：</p>
+      <ul>
+        <li>6 個週期（9 小時睡眠）：<strong>晚上 9:45</strong> 前上床</li>
+        <li>5 個週期（7.5 小時）：<strong>晚上 11:15</strong> 前上床</li>
+        <li>4 個週期（6 小時）：<strong>凌晨 12:45</strong> 前上床</li>
+        <li>3 個週期（4.5 小時）：<strong>凌晨 2:15</strong> 前上床</li>
+      </ul>
+      <p>另一種模式是向前推算。如果你晚上 11:00 上床，第一個週期在晚上 11:15 開始，建議的起床時間是凌晨 3:45、5:15、6:45 和 8:15。</p>
+
+      <h2>你需要多少個週期？</h2>
+      <ul>
+        <li><strong>4 個週期（6 小時）</strong>——少於大多數成年人建議的 7 小時</li>
+        <li><strong>5 個週期（7.5 小時）</strong>——成年人的常見目標；認知和身體表現良好</li>
+        <li><strong>6 個週期（9 小時）</strong>——許多成年人被建議睡眠的 7 到 9 小時範圍的上限</li>
+      </ul>
+      <p><a href="https://www.thensf.org/how-many-hours-of-sleep-do-you-really-need/" target="_blank" rel="noopener">美國國家睡眠基金會</a>建議成年人睡 7 小時或以上（18–64 歲為 7–9 小時）。青少年 8–10 小時；兒童更多。如果你經常感到沒休息好，請去看醫師。</p>
+
+      <h2>更好掌握睡眠時間的小撇步</h2>
+      <ul>
+        <li>對於調節晝夜節律，固定的起床時間比固定的就寢時間更重要</li>
+        <li>睡前 6–8 小時避免咖啡因；它的半衰期約為 5–6 小時</li>
+        <li>接觸晨光會重置你的生理時鐘，讓晚上更容易入睡</li>
+        <li>用 Left 設定一個在目標就寢時間前 30 分鐘的「熄燈」倒數</li>
+      </ul>
+      <p>在倒數一個重要的日子嗎？<a href="/zh-Hant/countdown-widget">Left 倒數小工具</a>把它放在你的主畫面上。</p>
+
+      <h2>為什麼 90 分鐘只是參考</h2>
+      <p>90 分鐘的週期是平均值，不是固定的計時器。週期長度因人而異、因夜而異，並且隨著夜晚的推進而變化：較早的週期往往包含更多深睡眠，較晚的則包含更多快速動眼睡眠。酒精、咖啡因、壓力和嘈雜的房間都會改變你的睡眠。請把這裡的時間當作起點，如果你經常在建議的時間醒來時昏昏沉沉，就調整 10 或 15 分鐘。</p>
+
+      <h2>跨越午夜與時鐘調整</h2>
+      <p>計算機只依鐘點運作，所以午夜之前的就寢時間和之後的起床時間會為你處理好。不過它不知道日期。在因日光節約時間而調整時鐘的那一夜，你的睡眠會比時間顯示的多或少一個小時，所以那天晚上請加上或減去一個小時。</p>
+      <p>這個計算機不提供醫療建議。如果你經常難以入睡或白天感到疲倦，請諮詢醫師。</p>
+
+      <h2>在 iPhone 上查看你一天剩餘的時間</h2>
+      <p>Left 的「日」小工具以格狀圖的形式顯示一天剩餘的小時，已過去的小時會變暗，這讓圍繞就寢時間安排晚上更容易。</p>
+      <ol>
+        <li>安裝 Left 並打開一次。</li>
+        <li>按住主畫面的空白處，點一下<strong>編輯</strong>，再點一下<strong>加入小工具</strong>。</li>
+        <li>搜尋<strong>Left</strong>並選擇<strong>日</strong>。</li>
+        <li>對於鎖定畫面，按住它，點一下<strong>自訂</strong>，然後加入 Left 的<strong>日</strong>小工具。</li>
+      </ol>
+
+      <h2>常見問題</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>我想早上 7 點起床，應該幾點睡？</summary>
+          <div class="faq-answer"><p>要睡滿 5 個週期（7.5 小時睡眠），請在晚上 11:15 上床，這裡預留了 15 分鐘入睡。6 個週期是晚上 9:45，4 個週期是凌晨 12:45。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>一個睡眠週期有多長？</summary>
+          <div class="faq-answer"><p>平均約 90 分鐘，但週期長度大約在 70 到 120 分鐘之間變化，並會在夜間發生變化。這裡的時間是參考，不是精確的時間表。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>成年人需要多少小時的睡眠？</summary>
+          <div class="faq-answer"><p>美國睡眠醫學會和 CDC 建議成年人每晚睡 7 小時或以上。依週期算，5 個週期（7.5 小時）最接近。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>為什麼計算機要加 15 分鐘？</summary>
+          <div class="faq-answer"><p>大多數人上床後需要一段時間才能入睡，所以計算機在第一個週期開始前預留了 15 分鐘。如果你通常入睡更快或更慢，請相應調整時間。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>如果我午夜之後才睡，它還能用嗎？</summary>
+          <div class="faq-answer"><p>可以。計算機依鐘點運作，所以午夜前後的就寢和起床時間都會自動處理。它不會針對時鐘調整的那一夜做調整。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "我想早上 7 點起床，應該幾點睡？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "要睡滿 5 個週期（7.5 小時睡眠），請在晚上 11:15 上床，這裡預留了 15 分鐘入睡。6 個週期是晚上 9:45，4 個週期是凌晨 12:45。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一個睡眠週期有多長？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "平均約 90 分鐘，但週期長度大約在 70 到 120 分鐘之間變化，並會在夜間發生變化。這裡的時間是參考，不是精確的時間表。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "成年人需要多少小時的睡眠？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "美國睡眠醫學會和 CDC 建議成年人每晚睡 7 小時或以上。依週期算，5 個週期（7.5 小時）最接近。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "為什麼計算機要加 15 分鐘？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "大多數人上床後需要一段時間才能入睡，所以計算機在第一個週期開始前預留了 15 分鐘。如果你通常入睡更快或更慢，請相應調整時間。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如果我午夜之後才睡，它還能用嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。計算機依鐘點運作，所以午夜前後的就寢和起床時間都會自動處理。它不會針對時鐘調整的那一夜做調整。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>閱讀更多</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/blog/home-screen-timer-iphone">如何把計時器放在主畫面上</a>
+        <a class="tool-related-item" href="/zh-Hant/support/focus-timer-in-left">使用 Left 的專注計時器</a>
+        <a class="tool-related-item" href="/zh-Hant/pomodoro-timer-iphone">iPhone 番茄鐘</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>相關工具</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/tools/countdown-timer">倒數計時器</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/hours-between-two-dates">兩個日期相差幾小時</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/workday-countdown">下班倒數</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/time-until-weekend">距離週末還有多久</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">下載 Left</span>
+        <h2>讓這一天一直在眼前。</h2>
+        <p>Left 把你一天和一週還剩多少，以小工具的形式顯示在主畫面、鎖定畫面和 Apple Watch 上，就在你的倒數和習慣旁邊。</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 下載 Left" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            下載 iOS 版
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"},"preg":{"weeksPregnant":"週孕期","weeksToGo":"週後預產","daysToGo":"天後預產","dueDate":"預產期：{date}","dueDateTitle":"預產期"},"life":{"mark":"已標記：年齡 {age}，第 {week} 週"},"card":{"handoff":"把連結傳送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"連結已拷貝","android":"在用 Android？查看你的選擇","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"還剩 {count} 天","other":"還剩 {count} 天"},"hoursLeft":{"one":"今天還剩 {count} 小時","other":"今天還剩 {count} 小時"},"yearsLeft":{"one":"還剩 {count} 年","other":"還剩 {count} 年"},"weeksLeft":{"one":"還剩 {count} 週","other":"還剩 {count} 週"}}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const CYCLE = 90; // minutes
+    const LATENCY = 15; // minutes to fall asleep
+
+    const modeBtns = document.querySelectorAll('#sleep-mode-toggle button');
+    const wakePanel = document.getElementById('wake-panel');
+    const sleepPanel = document.getElementById('sleep-panel');
+    const wakeTimeEl = document.getElementById('sleep-wake-time');
+    const bedTimeEl = document.getElementById('sleep-bed-time');
+    const bedtimesEl = document.getElementById('sleep-bedtimes');
+    const waketimesEl = document.getElementById('sleep-waketimes');
+
+    modeBtns.forEach(b => b.addEventListener('click', () => {
+      modeBtns.forEach(x => x.classList.remove('is-active'));
+      b.classList.add('is-active');
+      const mode = b.dataset.mode;
+      wakePanel.style.display = mode === 'wake' ? '' : 'none';
+      sleepPanel.style.display = mode === 'sleep' ? '' : 'none';
+      renderAll();
+    }));
+
+    function fmtTime(mins) {
+      const h = Math.floor(((mins % 1440) + 1440) % 1440 / 60);
+      const m = ((mins % 1440) + 1440) % 1440 % 60;
+      const ampm = h < 12 ? 'AM' : 'PM';
+      const h12 = h % 12 || 12;
+      return `${h12}:${pad(m)} ${ampm}`;
+    }
+
+    function timeToMins(str) {
+      const [h, m] = str.split(':').map(Number);
+      return h * 60 + m;
+    }
+
+    function renderBedtimes() {
+      const wakeMins = timeToMins(wakeTimeEl.value);
+      const cycles = [6, 5, 4, 3];
+      const labels = [toolT('sleep.bed9'), toolT('sleep.bed75'), toolT('sleep.bed6'), toolT('sleep.bed45')];
+      bedtimesEl.innerHTML = cycles.map((c, i) => {
+        const bedMin = wakeMins - LATENCY - c * CYCLE;
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
+          <span>${fmtTime(bedMin)}</span><span style="color:var(--text-secondary);font-size:13px;">${labels[i]}</span>
+        </div>`;
+      }).join('');
+    }
+
+    function renderWaketimes() {
+      const bedMins = timeToMins(bedTimeEl.value) + LATENCY;
+      const cycles = [3, 4, 5, 6];
+      const labels = [toolT('sleep.wake45'), toolT('sleep.wake6'), toolT('sleep.wake75'), toolT('sleep.wake9')];
+      waketimesEl.innerHTML = cycles.map((c, i) => {
+        const wakeMin = bedMins + c * CYCLE;
+        return `<div style="display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:15px;">
+          <span>${fmtTime(wakeMin)}</span><span style="color:var(--text-secondary);font-size:13px;">${labels[i]}</span>
+        </div>`;
+      }).join('');
+    }
+
+    function renderAll() {
+      renderBedtimes();
+      renderWaketimes();
+    }
+
+    wakeTimeEl.addEventListener('change', renderBedtimes);
+    bedTimeEl.addEventListener('change', renderWaketimes);
+    renderAll();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

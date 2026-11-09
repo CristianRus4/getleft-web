@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Geburtstermin-Rechner – nach Periode, Ultraschall oder IVF | Left</title>
+  <meta name="description" content="Wann kommt mein Baby? Finde deinen Geburtstermin anhand deiner letzten Periode, des Empfängnisdatums, eines Ultraschalls zur Terminbestimmung oder eines IVF-Transfers, mit deiner aktuellen Schwangerschaftswoche und einem Live-Countdown."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/de/tools/pregnancy-due-date-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Geburtstermin-Rechner – nach Periode, Ultraschall oder IVF"  />
+  <meta property="og:description" content="Wann kommt mein Baby? Finde deinen Geburtstermin anhand deiner letzten Periode, des Empfängnisdatums, eines Ultraschalls zur Terminbestimmung oder eines IVF-Transfers, mit deiner aktuellen Schwangerschaftswoche und einem Live-Countdown."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/de/tools/pregnancy-due-date-calculator" />
+  <meta property="og:locale" content="de_DE" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Geburtstermin-Rechner – nach Periode, Ultraschall oder IVF"  />
+  <meta name="twitter:description" content="Wann kommt mein Baby? Finde deinen Geburtstermin anhand deiner letzten Periode, des Empfängnisdatums, eines Ultraschalls zur Terminbestimmung oder eines IVF-Transfers, mit deiner aktuellen Schwangerschaftswoche und einem Live-Countdown."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Geburtstermin-Rechner – nach Periode, Ultraschall oder IVF",
+  "url": "https://getleft.app/tools/pregnancy-due-date-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Wann kommt mein Baby? Finde deinen Geburtstermin anhand deiner letzten Periode, des Empfängnisdatums, eines Ultraschalls zur Terminbestimmung oder eines IVF-Transfers, mit deiner aktuellen Schwangerschaftswoche und einem Live-Countdown.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "de"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Geburtstermin-Rechner für die Schwangerschaft",
+      "item": "https://getleft.app/tools/pregnancy-due-date-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Hauptnavigation">
+    <div class="container nav-inner">
+      <a href="/de/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/de/#features" class="nav-link">Funktionen</a>
+          <a href="/de/tools/" class="nav-link">Tools</a>
+          <a href="/de/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-de&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Laden</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>Geburtstermin-Rechner für die Schwangerschaft</h1>
+    <p class="tool-lede">Finde deinen Geburtstermin anhand deiner letzten Periode, des Empfängnisdatums, eines Ultraschalls zur Terminbestimmung oder eines IVF-Transfers, mit deiner aktuellen Schwangerschaftswoche und einem Live-Countdown.</p>
+
+    <div class="tool-widget">
+      <div class="tool-toggle" id="preg-method" role="group" aria-label="Datierungsmethode" style="flex-wrap:wrap;margin-bottom:22px;">
+        <button class="is-active" data-method="lmp">Letzte Periode</button>
+        <button data-method="conception">Empfängnis</button>
+        <button data-method="scan">Ultraschall zur Terminbestimmung</button>
+        <button data-method="ivf">IVF-Transfer</button>
+      </div>
+      <div class="tool-widget__row" data-for="lmp">
+        <div class="tool-widget__field">
+          <label for="preg-lmp">Erster Tag der letzten Periode</label>
+          <input type="date" id="preg-lmp" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-cycle">Übliche Zykluslänge (Tage)</label>
+          <input type="number" id="preg-cycle" min="21" max="45" value="28" inputmode="numeric" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="conception" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-conception">Empfängnisdatum</label>
+          <input type="date" id="preg-conception" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="scan" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-scan">Datum des Ultraschalls</label>
+          <input type="date" id="preg-scan" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-scan-weeks">Wochen und Tage beim Ultraschall</label>
+          <div class="tool-compact-group">
+            <input type="number" id="preg-scan-weeks" min="4" max="42" value="12" inputmode="numeric" aria-label="Wochen"  />
+            <span class="tool-compact-suffix">W</span>
+            <input type="number" id="preg-scan-days" min="0" max="6" value="0" inputmode="numeric" aria-label="Tage"  />
+            <span class="tool-compact-suffix">T</span>
+          </div>
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="ivf" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-transfer">Datum des Embryotransfers</label>
+          <input type="date" id="preg-transfer" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-embryo">Alter des Embryos beim Transfer</label>
+          <select id="preg-embryo">
+            <option value="5">Tag 5 (Blastozyste)</option>
+            <option value="3">Tag 3</option>
+            <option value="6">Tag 6</option>
+          </select>
+        </div>
+      </div>
+      <div class="tool-result" id="preg-result" aria-live="polite"></div>
+      <p id="preg-trimester"></p>
+      <p class="tool-fineprint"><em>Dies ist eine Schätzung. Deine Hebamme oder dein Arzt bestätigt deinen Geburtstermin, meist anhand eines Ultraschalls zur Terminbestimmung im ersten Trimester (angeboten etwa in der 10. bis 14. Woche).</em></p>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Geburtstermin</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-de&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Zähle in Left bis zum Geburtstermin herunter</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Teilen</button>
+            <a class="tool-card__more" href="/de/tools/">Alle Tools</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Wie der Geburtstermin berechnet wird</h2>
+      <p>Die Standardmethode (Naegele-Regel) addiert <strong>280 Tage (40 Wochen)</strong> zum ersten Tag deiner letzten Regelblutung. Ärzte und Hebammen nutzen dieselbe Regel für eine erste Schätzung, vor einem Ultraschall zur Terminbestimmung. Beträgt dein Zyklus nicht 28 Tage, gib deine übliche Zykluslänge ein: Der Rechner verschiebt das Datum um die Differenz (bei einem 32-Tage-Zyklus um vier Tage nach hinten).</p>
+      <p>Die 40-Wochen-Zählung beginnt mit deiner letzten Periode – obwohl die Empfängnis typischerweise etwa in Woche 2 stattfindet. Dein medizinisch gemessenes „Gestationsalter“ liegt daher immer etwa 2 Wochen vor dem Alter deines Embryos.</p>
+      <h2>Vier Wege, eine Schwangerschaft zu datieren</h2>
+      <p>Wähle die Methode, die zu dem passt, was du weißt. Alle vier liefern dieselbe Art von Antwort: einen Geburtstermin 40 Wochen nach dem Beginn der Schwangerschaftszählung, deine Woche und deinen Tag heute und die verbleibende Zeit.</p>
+      <ul>
+        <li><strong>Letzte Periode:</strong> der erste Tag deiner letzten Periode plus 280 Tage, angepasst an deine Zykluslänge.</li>
+        <li><strong>Empfängnis:</strong> das Empfängnisdatum plus 266 Tage (38 Wochen). Nutze es, wenn du weißt, wann du deinen Eisprung hattest oder schwanger geworden bist.</li>
+        <li><strong>Ultraschall zur Terminbestimmung:</strong> Gib das Datum des Ultraschalls und die Wochen und Tage ein, die dir dabei genannt wurden. Der Rechner zählt bis zum Beginn der Schwangerschaft zurück und 40 Wochen vorwärts.</li>
+        <li><strong>IVF-Transfer:</strong> das Transferdatum plus 266 Tage, minus das Alter des Embryos. Eine Blastozyste an Tag 5 ergibt einen Geburtstermin 261 Tage nach dem Transfer, ein Embryo an Tag 3 263 Tage.</li>
+      </ul>
+      <h2>Datierung per Ultraschall oder per letzter Periode</h2>
+      <p>Die Methode der letzten Periode nimmt an, dass du 14 Tage nach Beginn deiner Periode einen Eisprung hattest. Bei vielen ist das nicht so: Zyklen variieren, und manche kennen das genaue Datum ihrer letzten Periode nicht. Ein Ultraschall misst stattdessen das Baby. Früh in der Schwangerschaft wachsen Babys in sehr ähnlichem Tempo, daher datiert die zwischen etwa der 10. und 14. Woche gemessene Scheitel-Steiß-Länge eine Schwangerschaft auf etwa eine Woche genau.</p>
+      <p>Deshalb gewinnt der Ultraschall meist, wenn die beiden voneinander abweichen. Das American College of Obstetricians and Gynecologists rät, den Geburtstermin auf das Datum des Ultraschalls zu ändern, wenn ein Ultraschall im ersten Trimester um mehr als 7 Tage vom Datum der letzten Periode abweicht (mehr als 5 Tage vor 9 Wochen). Spätere Ultraschalluntersuchungen sind für die Datierung weniger genau, weil die Größen der Babys mit dem Wachstum auseinanderlaufen. Hat deine Hebamme oder dein Arzt deinen Geburtstermin festgelegt, nutze die Ultraschall-Methode mit den dort genannten Zahlen, und diese Seite stimmt damit überein.</p>
+      <h2>Trimester</h2>
+      <ul>
+        <li><strong>Erstes Trimester:</strong> Woche 1–12 (ab letzter Periode bis ~84 Tage)</li>
+        <li><strong>Zweites Trimester:</strong> Woche 13–26 (~85 bis ~182 Tage)</li>
+        <li><strong>Drittes Trimester:</strong> Woche 27–40 (~183 Tage bis zum Geburtstermin)</li>
+      </ul>
+      <h2>Wie genau ist dieses Datum?</h2>
+      <p>Nur etwa 4 % der Babys werden an ihrem genauen Geburtstermin geboren. Der errechnete Geburtstermin (ET) ist die Mitte eines normalen Geburtsfensters, das typischerweise von 38 bis 42 Wochen reicht. Ein Ultraschall zur Terminbestimmung im ersten Trimester liefert ein genaueres Datum, besonders wenn deine Zykluslänge von der üblichen Annahme von 28 Tagen abweicht oder du dir bei deiner letzten Periode unsicher bist.</p>
+      <h2>Quellen</h2>
+      <p>Naegele-Regel und Datierung per Ultraschall: American College of Obstetricians and Gynecologists, <a href="https://www.acog.org/clinical/guidance/committee-opinion/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">Committee Opinion 700, Methods for Estimating the Due Date</a>. Für eine zweite Einschätzung des Datums siehe den <a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener">Geburtstermin-Rechner des NHS</a> und den <a href="https://www.tommys.org/pregnancy-information/calculators-tools-resources/pregnancy-due-date-calculator" target="_blank" rel="noopener">Geburtstermin-Rechner von Tommy's</a> (Tommy's weist darauf hin, dass nur etwa 4 von 100 Babys am Geburtstermin geboren werden). Dieses Tool ist keine medizinische Beratung: Frag deine Hebamme oder deinen Arzt zu deiner Schwangerschaft.</p>
+      <h2>Verfolge den Countdown mit Left</h2>
+      <p>Füge deinen Geburtstermin als Countdown in Left hinzu und lege ihn auf deinen Home-Bildschirm oder Sperrbildschirm. Jeden Morgen siehst du genau, wie viele Tage noch bleiben – und nach der Geburt wechselst du in den Modus „Seit“ von Left, um zu verfolgen, wie viele Tage alt dein Baby ist.</p>
+      <ol>
+        <li>Installiere Left auf deinem iPhone, öffne <strong>Kommende</strong>, tippe auf <strong>Kommenden Termin hinzufügen</strong> und dann auf <strong>Neuer Termin</strong>.</li>
+        <li>Gib ihm einen Namen, setze <strong>Beginnt</strong> auf deinen Geburtstermin und aktiviere <strong>Erinnerung erhalten</strong>, wenn du vor dem Tag einen Anstoß möchtest.</li>
+        <li>Füge das <strong>Kommende</strong>-Widget von Left deinem Home-Bildschirm oder Sperrbildschirm hinzu und wähle den Geburtstermin unter <strong>Widget bearbeiten</strong>.</li>
+      </ol>
+      <p>Um den Geburtstermin im Blick zu behalten, füge mit Left ein <a href="/de/countdown-widget">Countdown-Widget</a> zu deinem Home-Bildschirm hinzu. Dein Partner oder deine Partnerin kann denselben Countdown mit einem <a href="/de/support/joint-ahead-dates">gemeinsamen Termin</a> verfolgen.</p>
+      <h2>Fragen</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Wie genau ist ein Geburtstermin?</summary>
+          <div class="faq-answer"><p>Er ist eine Schätzung, keine Frist. Nur etwa 4 von 100 Babys kommen genau am Termin; die meisten werden in den Wochen davor oder danach geboren. Ein Ultraschall zur Terminbestimmung im ersten Trimester liefert das verlässlichste Datum.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Was, wenn mein Zyklus unregelmäßig ist?</summary>
+          <div class="faq-answer"><p>Die Naegele-Regel geht davon aus, dass der Eisprung etwa 14 Tage nach Beginn deiner Periode stattfindet, daher macht ein unregelmäßiger Zyklus die Methode der letzten Periode weniger verlässlich. Nutze die Ultraschall-Methode, sobald du einen Ultraschall zur Terminbestimmung hattest, oder frag deine Hebamme oder einen Arzt.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wann findet der Ultraschall zur Terminbestimmung statt?</summary>
+          <div class="faq-answer"><p>In Großbritannien bietet der NHS ihn etwa in der 10. bis 14. Woche an. Frühe Ultraschalluntersuchungen messen das Baby vom Kopf bis zum Steiß (Scheitel-Steiß-Länge), was den Geburtstermin gut vorhersagt, weil Babys früh in ähnlichem Tempo wachsen.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie viele Wochen sind „voll ausgetragen“?</summary>
+          <div class="faq-answer"><p>Als voll ausgetragen gelten 39 Wochen 0 Tage bis 40 Wochen 6 Tage. Kinder, die ab 37 Wochen geboren werden, gelten als früh termingeboren, bei 41 Wochen als spät termingeboren und ab 42 Wochen als übertragen.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Wie wird ein Geburtstermin bei IVF berechnet?</summary>
+          <div class="faq-answer"><p>Ab dem Transferdatum: Die Empfängnis wird als der Tag gezählt, an dem der Embryo entstanden ist. Eine Blastozyste an Tag 5, transferiert am 1. März, ergibt einen Geburtstermin 261 Tage später, am 17. November (in einem Jahr ohne Schalttag).</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Speichert der Rechner meine Daten?</summary>
+          <div class="faq-answer"><p>Nein. Die Berechnung läuft in deinem Browser, und nichts, was du eingibst, wird irgendwohin gesendet.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Wie genau ist ein Geburtstermin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Er ist eine Schätzung, keine Frist. Nur etwa 4 von 100 Babys kommen genau am Termin; die meisten werden in den Wochen davor oder danach geboren. Ein Ultraschall zur Terminbestimmung im ersten Trimester liefert das verlässlichste Datum."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Was, wenn mein Zyklus unregelmäßig ist?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Die Naegele-Regel geht davon aus, dass der Eisprung etwa 14 Tage nach Beginn deiner Periode stattfindet, daher macht ein unregelmäßiger Zyklus die Methode der letzten Periode weniger verlässlich. Nutze die Ultraschall-Methode, sobald du einen Ultraschall zur Terminbestimmung hattest, oder frag deine Hebamme oder einen Arzt."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wann findet der Ultraschall zur Terminbestimmung statt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In Großbritannien bietet der NHS ihn etwa in der 10. bis 14. Woche an. Frühe Ultraschalluntersuchungen messen das Baby vom Kopf bis zum Steiß (Scheitel-Steiß-Länge), was den Geburtstermin gut vorhersagt, weil Babys früh in ähnlichem Tempo wachsen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie viele Wochen sind „voll ausgetragen“?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Als voll ausgetragen gelten 39 Wochen 0 Tage bis 40 Wochen 6 Tage. Kinder, die ab 37 Wochen geboren werden, gelten als früh termingeboren, bei 41 Wochen als spät termingeboren und ab 42 Wochen als übertragen."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wie wird ein Geburtstermin bei IVF berechnet?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ab dem Transferdatum: Die Empfängnis wird als der Tag gezählt, an dem der Embryo entstanden ist. Eine Blastozyste an Tag 5, transferiert am 1. März, ergibt einen Geburtstermin 261 Tage später, am 17. November (in einem Jahr ohne Schalttag)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Speichert der Rechner meine Daten?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nein. Die Berechnung läuft in deinem Browser, und nichts, was du eingibst, wird irgendwohin gesendet."
+      }
+    }
+  ],
+  "inLanguage": "de"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Weiterlesen</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/de/blog/best-countdown-widgets-iphone">Die besten Countdown-Widgets für das iPhone</a>
+        <a class="tool-related-item" href="/de/support/joint-ahead-dates">Teile einen Countdown mit gemeinsamen Terminen</a>
+        <a class="tool-related-item" href="/de/countdown-widget">Countdown-Widget für das iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Verwandte Tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/weeks-until-date">Wochen bis zu einem Datum</a>
+        <a class="tool-related-item" href="/de/tools/date-countdown-calculator">Countdown zu jedem Datum</a>
+        <a class="tool-related-item" href="/de/tools/days-between-two-dates">Tage zwischen zwei Daten</a>
+        <a class="tool-related-item" href="/de/tools/age-calculator">Altersrechner</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Left laden</span>
+        <h2>Behalte den Countdown im Blick.</h2>
+        <p>Füge das Datum in Left unter Kommende hinzu, und ein Widget zählt es auf deinem Home-Bildschirm, Sperrbildschirm und der Apple Watch herunter, mit einer Erinnerung vor dem Tag.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-Code – tippen für Anleitung">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanne den Code oder suche im App Store nach <strong>„Left“</strong>.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-de&amp;mt=8" target="_blank" rel="noopener" aria-label="Left im App Store laden" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Für iOS laden
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> Menschen, die jeden Moment zählen lassen.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Fußzeile">
+          <a href="/de/support">Hilfe</a>
+          <a href="/terms">Bedingungen</a>
+          <a href="/de/privacy">Datenschutz</a>
+          <a href="/de/press">Presse</a>
+          <a href="/de/contact">Kontakt</a>
+          <a href="/de/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/de/blog/">Blog</a>
+          <a href="#" data-consent-open>Cookie-Einstellungen</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>DE</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="true">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Es ist so weit.","notYet":"Noch nicht","futureDate":"Dieses Datum liegt in der Zukunft.","datePassed":"Dieses Datum ist vorbei.","selectDate":"Wähle ein gültiges Datum.","selectBoth":"Wähle beide Daten aus.","chooseTarget":"Wähle oben ein Zieldatum.","deadlinePassed":"Deadline verstrichen","pastDue":"Überfällig","deadlineUrgent":"Dringende Deadline","deadlineSoon":"Bald fällig","deadlineAhead":"Deadline steht an","fastComplete":"Fasten geschafft!","weddingArrived":"Das Datum ist gekommen","weekend":"Wochenende!","itsWeekend":"Es ist Wochenende! Genieße es.","workdayEnded":"Arbeitstag beendet","workdayEndedHint":"Wähle eine spätere Uhrzeit, um wieder herunterzuzählen.","upcoming":"Anstehend: {dates}","since":"Seit {date}","fastEnds":"Fasten endet: {date}","sinceJan1":"Seit dem 1. Januar {year}, Mitternacht","untilDec31":"Bis Mitternacht am 31. Dezember {year}","fiscalEnds":"Geschäftsjahr endet am {date}","quarterEnds":"Quartal endet am {date}","weddingDate":"Hochzeitsdatum: {date}","departure":"Abreise: {date}","currentAge":"Aktuelles Alter: {years} Jahre, {months} Monate, {days} Tage","hoursAndMinutes":"{hours} Stunden und {minutes} Minuten","minutesExtra":"{minutes} Minuten mehr, insgesamt {total} Minuten","readingDetail":"{minutes} Minuten und {seconds} Sekunden bei {wpm} Wörtern pro Minute","workdaysAt":"{days} Arbeitstage bei {hours} Stunden pro Tag","minutesSince":"Insgesamt {minutes} Minuten seit {date}","schoolDays":"Schultage","weekdaysMinusBreaks":"{weekdays} Wochentage minus {breaks} Ferientage","businessAfter":"{count} Arbeitstage nach {date}","businessBefore":"{count} Arbeitstage vor {date}","futureTime":"Diese Uhrzeit liegt in der Zukunft.","unitEquals":"{amount} {from} entsprechen etwa {value} {to}","invalidTimestamp":"Ungültiger Timestamp.","invalidDate":"Ungültiges Datum.","local":"lokal","pregFirst":"Erstes Trimester","pregSecond":"Zweites Trimester","pregThird":"Drittes Trimester","pregWeekDay":"{weeks} W. {days} T.","dueWas":"Geburtstermin war {date} – herzlichen Glückwunsch!","yearDays":"Jahr {year} – insgesamt {days} Tage","easterDates":"Westlich – {western}; orthodox – {orthodox}"},"stat":{"days":"Tage","hours":"Stunden","min":"Min","sec":"Sek","weeks":"Wochen","months":"Monate","daysSince":"Tage seit","daysUntil":"Tage bis","yearAnniversary":"Jahrestag","elapsed":"vergangen","left":"übrig","daysLeft":"Tage übrig","weeksLeft":"Wochen übrig","yearsLeft":"Jahre übrig","streakDays":"abgeschlossene Tage","fullWeeks":"volle Wochen","approxMonths":"ca. Monate","durationMin":"Dauer in Min","elapsedMin":"vergangene Min","minutesLeft":"Minuten übrig","currentQuarter":"aktuelles Quartal","remaining":"verbleibend","daysSober":"nüchterne Tage","daysToMilestone":"Tage bis zum nächsten Meilenstein","nextMilestone":"nächster Meilenstein","daysUntilDeparture":"Tage bis zur Abreise","tripDays":"Reisetage"},"unit":{"months":{"one":"Monat","other":"Monate"},"weeks":{"one":"Woche","other":"Wochen"},"days":{"one":"Tag","other":"Tage"},"hours":{"one":"Stunde","other":"Stunden"},"minutes":{"one":"Minute","other":"Minuten"},"seconds":{"one":"Sekunde","other":"Sekunden"},"years":{"one":"Jahr","other":"Jahre"}},"next":{"christmas":"Nächstes Weihnachten: {date}","newYear":"Nächstes Neujahr: {date}","halloween":"Nächstes Halloween: {date}","thanksgiving":"Nächstes Thanksgiving: {date}","valentines":"Nächster Valentinstag: {date}","mothersDay":"Nächster Muttertag: {date}","fathersDay":"Nächster Vatertag: {date}","spring":"Nächste Frühlings-Tagundnachtgleiche: {date}","summer":"Nächste Sommersonnenwende: {date}","fall":"Nächste Herbst-Tagundnachtgleiche: {date}","winter":"Nächste Wintersonnenwende: {date}","westernEaster":"Nächstes westliches Ostern: {date}","orthodoxEaster":"Nächstes orthodoxes Ostern: {date}","birthday":"Nächster Geburtstag: {date}","anniversary":"Nächster Jahrestag: {date}","saturday":"Nächster Samstag: {date}","birthdayAway":{"one":"Nächster Geburtstag: {date} (in {count} Tag)","other":"Nächster Geburtstag: {date} (in {count} Tagen)"}},"sleep":{"bed9":"9 Std. (6 Zyklen)","bed75":"7,5 Std. (5 Zyklen, empfohlen)","bed6":"6 Std. (4 Zyklen)","bed45":"4,5 Std. (3 Zyklen)","wake45":"4,5 Std.","wake6":"6 Std.","wake75":"7,5 Std. (empfohlen)","wake9":"9 Std."},"card":{"android":"Mit Android unterwegs? Sieh dir deine Optionen an","copied":"Link kopiert","daysLeft":{"one":"Noch {count} Tag","other":"Noch {count} Tage"},"handoff":"Sende den Link an dein iPhone","handoffTitle":"Left für das iPhone","hoursLeft":{"one":"Heute noch {count} Stunde","other":"Heute noch {count} Stunden"},"shareText":"{title}: {result}","weeksLeft":{"one":"Noch {count} Woche","other":"Noch {count} Wochen"},"yearsLeft":{"one":"Noch {count} Jahr","other":"Noch {count} Jahre"}},"life":{"mark":"Markiert: Alter {age}, Woche {week}"},"preg":{"daysToGo":"Tage noch","dueDate":"Voraussichtlicher Geburtstermin: {date}","dueDateTitle":"Geburtstermin","weeksPregnant":"Wochen schwanger","weeksToGo":"Wochen noch"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const methodBtns = document.querySelectorAll('#preg-method button');
+    const lmpEl = document.getElementById('preg-lmp');
+    const cycleEl = document.getElementById('preg-cycle');
+    const conceptionEl = document.getElementById('preg-conception');
+    const scanEl = document.getElementById('preg-scan');
+    const scanWeeksEl = document.getElementById('preg-scan-weeks');
+    const scanDaysEl = document.getElementById('preg-scan-days');
+    const transferEl = document.getElementById('preg-transfer');
+    const embryoEl = document.getElementById('preg-embryo');
+    const result = document.getElementById('preg-result');
+    const trimEl = document.getElementById('preg-trimester');
+    let method = 'lmp';
+
+    // Defaults describe the same pregnancy, about 8 weeks along, in every method.
+    const today0 = new Date(); today0.setHours(0, 0, 0, 0);
+    const shift = days => { const d = new Date(today0); d.setDate(d.getDate() + days); return toLocalDateInput(d); };
+    lmpEl.value = shift(-56);
+    conceptionEl.value = shift(-42);
+    scanEl.value = shift(0);
+    scanWeeksEl.value = 8;
+    transferEl.value = shift(-37);
+    [lmpEl, conceptionEl, scanEl, transferEl].forEach(el => { el.max = shift(0); });
+
+    function day(value) {
+      if (!value) return null;
+      const d = new Date(value + 'T00:00:00');
+      return isNaN(d) ? null : d;
+    }
+    // Whole calendar days, so a daylight-saving change never moves a date by one.
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    function clampInt(el, min, max, fallback) {
+      const n = parseInt(el.value, 10);
+      return Math.min(max, Math.max(min, isNaN(n) ? fallback : n));
+    }
+
+    // Every method gives a "gestational start": the day pregnancy weeks are
+    // counted from (two weeks before conception). The due date is 280 days later.
+    function gestationalStart() {
+      if (method === 'conception') { const c = day(conceptionEl.value); return c && addDays(c, -14); }
+      if (method === 'scan') {
+        const sc = day(scanEl.value);
+        if (!sc) return null;
+        return addDays(sc, -(clampInt(scanWeeksEl, 4, 42, 12) * 7 + clampInt(scanDaysEl, 0, 6, 0)));
+      }
+      if (method === 'ivf') {
+        const t = day(transferEl.value);
+        // Transfer of a day-N embryo: conception was N days earlier.
+        return t && addDays(t, -(14 + (parseInt(embryoEl.value, 10) || 5)));
+      }
+      const l = day(lmpEl.value);
+      // A cycle longer or shorter than 28 days moves ovulation, and the due date, by the difference.
+      return l && addDays(l, clampInt(cycleEl, 21, 45, 28) - 28);
+    }
+
+    function render() {
+      document.querySelectorAll('[data-for]').forEach(row => { row.hidden = row.dataset.for !== method; });
+      const start = gestationalStart();
+      if (!start) { result.innerHTML = ''; trimEl.textContent = ''; toolPreview(null); return; }
+      const due = addDays(start, 280);
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const daysPregnant = Math.max(0, Math.round((today - start) / MS_DAY));
+      const weeksPregnant = Math.floor(daysPregnant / 7);
+      const daysMod = daysPregnant % 7;
+      const daysUntilDue = Math.max(0, Math.round((due - today) / MS_DAY));
+      const weeksUntilDue = Math.floor(daysUntilDue / 7);
+
+      let trimester = '';
+      if (daysPregnant <= 84) trimester = toolT('result.pregFirst');
+      else if (daysPregnant <= 182) trimester = toolT('result.pregSecond');
+      else trimester = toolT('result.pregThird');
+      trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { weeks: weeksPregnant, days: daysMod }) : '');
+      toolPreviewDate(due, toolT('preg.dueDateTitle'));
+
+      if (daysUntilDue <= 0) {
+        result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">${toolEscape(toolT('result.dueWas', { date: formatDateShort(due) }))}</div>`;
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num">${weeksPregnant}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksPregnant'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${weeksUntilDue}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksToGo'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(daysUntilDue)}</div><div class="tool-stat-label">${toolEscape(toolT('preg.daysToGo'))}</div></div>
+        </div>
+        <p class="tool-result-sub">${toolEscape(toolT('preg.dueDate', { date: formatDateLong(due) }))}</p>`;
+    }
+
+    methodBtns.forEach(b => b.addEventListener('click', () => {
+      methodBtns.forEach(x => x.classList.toggle('is-active', x === b));
+      method = b.dataset.method;
+      render();
+    }));
+    [lmpEl, cycleEl, conceptionEl, scanEl, scanWeeksEl, scanDaysEl, transferEl, embryoEl].forEach(el => {
+      el.addEventListener('input', render);
+      el.addEventListener('change', render);
+    });
+    render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie-Einwilligung">
+  <p class="left-consent__text">Wir nutzen Google Analytics, um zu verstehen, welche Seiten weiterhelfen. Keine Werbung, kein seitenübergreifendes Tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Analyse erlauben</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nein, danke</button>
+    <a class="left-consent__link" href="/de/privacy#website" data-consent-privacy>Datenschutz</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

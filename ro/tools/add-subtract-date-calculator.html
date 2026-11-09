@@ -285,6 +285,25 @@
         </div>
       </div>
       <div class="tool-result" id="as-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Data ta</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ro&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Numără invers până la această dată în Left</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Distribuie</button>
+            <a class="tool-card__more" href="/ro/tools/">Toate uneltele</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -292,9 +311,19 @@
       <p>Calculatorul aplică fiecare unitate în ordine: întâi anii, apoi lunile, apoi săptămânile și zilele. Contează la aritmetica lunilor — adăugând 1 lună la 31 ianuarie obții 28 februarie (sau 29 într-un an bisect), nu 3 martie.</p>
       <p>Săptămânile și zilele se combină și se adaugă ca un număr plat de zile. Orele și minutele nu se ajustează — rezultatul e mereu miezul nopții din data calculată, în fusul tău local.</p>
 
+      <h2>Sfârșituri de lună și ani bisecți</h2>
+      <p>Lunile nu au aceeași lungime, așa că, atunci când luna țintă este mai scurtă, calculatorul folosește ultima ei zi. 31 ianuarie 2027 plus 1 lună este 28 februarie 2027, iar 31 ianuarie 2028 plus 1 lună este 29 februarie 2028, pentru că 2028 este an bisect. Anii funcționează la fel: 29 februarie 2028 plus 1 an este 28 februarie 2029.</p>
+      <p>Asta înseamnă că aritmetica lunilor nu se inversează mereu. 31 ianuarie plus 1 lună este 28 februarie, dar 28 februarie minus 1 lună este 28 ianuarie. Dacă numărul exact de zile contează, ca la un preaviz de 30 de zile, introdu zile în loc de luni.</p>
+
+      <h2>Un exemplu rezolvat</h2>
+      <p>Pornind de la 10 noiembrie 2026, adăugarea a 90 de zile ajunge la luni, 8 februarie 2027: 20 de zile până la sfârșitul lui noiembrie, 31 în decembrie și 31 în ianuarie fac 82, iar încă 8 ajung la 8 februarie. Adăugând în schimb 3 luni obții 10 februarie 2027 - cu două zile mai târziu, pentru că cele trei luni au 92 de zile. Data de început este ziua 0, așa că adăugând 1 zi la o zi de luni obții marți.</p>
+
+      <h2>Zile lucrătoare</h2>
+      <p>Acest calculator numără fiecare zi calendaristică, inclusiv weekendurile. Dacă un termen este stabilit în zile lucrătoare, de exemplu 10 zile lucrătoare de la data unei facturi, folosește <a href="/tools/business-days-from-date">calculatorul de zile lucrătoare de la o dată</a>, care sare peste sâmbete și duminici.</p>
+
       <h2>Utilizări obișnuite</h2>
       <ul>
-        <li><strong>Termene de 30/60/90 de zile</strong> — „ce dată e peste 30 de zile lucrătoare de azi?”</li>
+        <li><strong>Termene de 30/60/90 de zile</strong> - „ce dată este peste 90 de zile de azi?”</li>
         <li><strong>Date de abonament și contract</strong> — când expiră un contract de 12 luni?</li>
         <li><strong>Ferestre de retur</strong> — care e ultima zi să returnezi un produs cumpărat la o dată anume?</li>
         <li><strong>Repere de proiect</strong> — numără înainte de la o dată de start ca să mapezi fazele</li>
@@ -302,15 +331,105 @@
       </ul>
 
       <h2>Privind înapoi: ce dată a fost acum N zile?</h2>
-      <p>Folosește modul <strong>Scade</strong> ca să mergi înapoi în timp. De exemplu, scade 90 de zile din azi ca să afli ce dată a fost acum 90 de zile. Pentru o unealtă dedicată „ce dată a fost în trecut?”, vezi <a href="/tools/what-was-the-date">ce dată a fost</a>.</p>
+      <p>Folosește modul <strong>Scade</strong> ca să mergi înapoi în timp. De exemplu, scade 90 de zile din azi ca să afli ce dată a fost acum 90 de zile. Pentru o unealtă dedicată „ce dată a fost în trecut?”, vezi <a href="/ro/tools/what-was-the-date">ce dată a fost</a>.</p>
       <p>Odată ce ai data, păstreaz-o vizibilă cu <a href="/ro/countdown-widget">widget-ul de numărătoare inversă Left</a>.</p>
+
+      <h2>Numără invers până la dată pe iPhone</h2>
+      <ol>
+        <li>Instalează Left pe iPhone, deschide <strong>Viitoare</strong> și atinge <strong>Adaugă o dată Viitoare</strong>, apoi <strong>Dată nouă</strong>.</li>
+        <li>Dă-i un nume și setează <strong>Începe</strong> la data găsită.</li>
+        <li>Activează <strong>Primește un memento</strong>, de exemplu cu 3 zile înainte.</li>
+        <li>Adaugă widgetul <strong>Viitoare</strong> din Left pe ecranul principal sau pe ecranul de blocare și alege data în <strong>Editați widgetul</strong>.</li>
+      </ol>
+      <h2>Întrebări</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Cât face 31 ianuarie plus 1 lună?</summary>
+          <div class="faq-answer"><p>28 februarie sau 29 februarie într-un an bisect. Când luna țintă este mai scurtă, calculatorul folosește ultima ei zi în loc să treacă în martie.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Ce dată este peste 90 de zile de azi?</summary>
+          <div class="faq-answer"><p>Alege Adună, introdu 90 în câmpul de zile și data apare. De exemplu, de la 10 noiembrie 2026, peste 90 de zile este 8 februarie 2027.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Este adăugarea a 3 luni același lucru cu adăugarea a 90 de zile?</summary>
+          <div class="faq-answer"><p>Nu. Trei luni calendaristice au între 89 și 92 de zile, în funcție de luni, așa că cele două răspunsuri pot diferi cu câteva zile.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Cum adaug zile lucrătoare la o dată?</summary>
+          <div class="faq-answer"><p>Folosește <a href="/tools/business-days-from-date">calculatorul de zile lucrătoare de la o dată</a>. Acesta numără și weekendurile.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Se numără data de început?</summary>
+          <div class="faq-answer"><p>Nu. Data de început este ziua 0, așa că adăugând 1 zi la o zi de luni obții marți, iar adăugând 7 zile obții următoarea zi de luni.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cât face 31 ianuarie plus 1 lună?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "28 februarie sau 29 februarie într-un an bisect. Când luna țintă este mai scurtă, calculatorul folosește ultima ei zi în loc să treacă în martie."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ce dată este peste 90 de zile de azi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Alege Adună, introdu 90 în câmpul de zile și data apare. De exemplu, de la 10 noiembrie 2026, peste 90 de zile este 8 februarie 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Este adăugarea a 3 luni același lucru cu adăugarea a 90 de zile?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nu. Trei luni calendaristice au între 89 și 92 de zile, în funcție de luni, așa că cele două răspunsuri pot diferi cu câteva zile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Cum adaug zile lucrătoare la o dată?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Folosește calculatorul de zile lucrătoare de la o dată. Acesta numără și weekendurile."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Se numără data de început?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nu. Data de început este ziua 0, așa că adăugând 1 zi la o zi de luni obții marți, iar adăugând 7 zile obții următoarea zi de luni."
+      }
+    }
+  ],
+  "inLanguage": "ro"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Citește mai mult</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ro/blog/best-countdown-widgets-iphone">Cele mai bune widgeturi de numărătoare inversă pentru iPhone</a>
+        <a class="tool-related-item" href="/ro/support/organise-ahead-since">Organizează-ți datele în Viitoare și De la</a>
+        <a class="tool-related-item" href="/ro/countdown-widget">Widget de numărătoare inversă pentru iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>Unelte asemănătoare</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/tools/business-days-from-date">Zile lucrătoare de la o dată</a>
-        <a class="tool-related-item" href="/tools/what-was-the-date">Ce dată a fost?</a>
+        <a class="tool-related-item" href="/ro/tools/what-was-the-date">Ce dată a fost?</a>
         <a class="tool-related-item" href="/tools/date-units-converter">Convertor de unități de dată</a>
         <a class="tool-related-item" href="/ro/tools/date-countdown-calculator">Numărătoare inversă până la orice dată</a>
       </div>
@@ -319,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Descarcă Left</span>
-        <h2>Începe să observi ce contează.</h2>
-        <p>Descarcă Left pe iPhone ca să vezi timpul care ți-a rămas, datele pe care le aștepți, să-ți construiești obiceiurile pe care vrei să le păstrezi și să devii o versiune mai bună a ta.</p>
+        <h2>Transformă data într-o numărătoare inversă.</h2>
+        <p>Odată ce știi data, adaug-o în Viitoare din Left și vezi zilele rămase pe ecranul principal, pe ecranul de blocare și pe Apple Watch.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -450,7 +569,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Ziua a sosit.","notYet":"Nu încă","futureDate":"Această dată e în viitor.","datePassed":"Această dată a trecut.","selectDate":"Alege o dată validă.","selectBoth":"Alege ambele date.","chooseTarget":"Alege mai sus o dată țintă.","deadlinePassed":"Termenul a trecut","pastDue":"Depășit","deadlineUrgent":"Termen urgent","deadlineSoon":"Se apropie","deadlineAhead":"Termenul e încă departe","fastComplete":"Postul s-a terminat!","weddingArrived":"Data a sosit","weekend":"Weekend!","itsWeekend":"E weekend! Bucură-te.","workdayEnded":"Ziua de muncă s-a terminat","workdayEndedHint":"Alege o oră mai târzie ca să numeri din nou invers.","upcoming":"Urmează: {dates}","since":"De la {date}","fastEnds":"Postul se termină: {date}","sinceJan1":"De la miezul nopții din 1 ianuarie {year}","untilDec31":"Până la miezul nopții din 31 decembrie {year}","fiscalEnds":"Anul fiscal se termină: {date}","quarterEnds":"Trimestrul se termină: {date}","weddingDate":"Data nunții: {date}","departure":"Plecare: {date}","currentAge":"Vârsta actuală: {years} ani, {months} luni, {days} zile","hoursAndMinutes":"{hours} ore și {minutes} minute","minutesExtra":"{minutes} minute în plus, {total} minute în total","readingDetail":"{minutes} minute și {seconds} secunde la {wpm} cuvinte pe minut","workdaysAt":"{days} zile lucrătoare la {hours} ore pe zi","minutesSince":"{minutes} minute în total de la {date}","schoolDays":"Zile de școală","weekdaysMinusBreaks":"{weekdays} zile lucrătoare minus {breaks} zile libere","businessAfter":"{count} zile lucrătoare după {date}","businessBefore":"{count} zile lucrătoare înainte de {date}","futureTime":"Această oră e în viitor.","unitEquals":"{amount} {from} echivalează cu aproximativ {value} {to}","invalidTimestamp":"Marcaj de timp nevalid.","invalidDate":"Dată nevalidă.","local":"local","pregFirst":"Primul trimestru","pregSecond":"Al doilea trimestru","pregThird":"Al treilea trimestru","pregWeekDay":"{weeks} săpt. {days} z","dueWas":"Termenul estimat a fost {date} — felicitări!","yearDays":"Anul {year} — {days} zile în total","easterDates":"Occidental — {western}; ortodox — {orthodox}"},"stat":{"days":"zile","hours":"ore","min":"min","sec":"sec","weeks":"săptămâni","months":"luni","daysSince":"zile de la","daysUntil":"zile până la","yearAnniversary":"aniversare anuală","elapsed":"trecut","left":"rămas","daysLeft":"zile rămase","weeksLeft":"săptămâni rămase","yearsLeft":"ani rămași","streakDays":"zile completate","fullWeeks":"săptămâni întregi","approxMonths":"luni aproximative","durationMin":"durată (min)","elapsedMin":"minute trecute","minutesLeft":"minute rămase","currentQuarter":"trimestrul curent","remaining":"rămas","daysSober":"zile sobre","daysToMilestone":"zile până la următorul prag","nextMilestone":"următorul prag","daysUntilDeparture":"zile până la plecare","tripDays":"zile de călătorie"},"unit":{"months":{"one":"lună","few":"luni","other":"de luni"},"weeks":{"one":"săptămână","few":"săptămâni","other":"de săptămâni"},"days":{"one":"zi","few":"zile","other":"de zile"},"hours":{"one":"oră","few":"ore","other":"de ore"},"minutes":{"one":"minut","few":"minute","other":"de minute"},"seconds":{"one":"secundă","few":"secunde","other":"de secunde"},"years":{"one":"an","few":"ani","other":"de ani"}},"next":{"christmas":"Următorul Crăciun: {date}","newYear":"Următorul An Nou: {date}","halloween":"Următorul Halloween: {date}","thanksgiving":"Următorul Thanksgiving în SUA: {date}","valentines":"Următoarea Zi a îndrăgostiților: {date}","mothersDay":"Următoarea Ziua Mamei în SUA: {date}","fathersDay":"Următoarea Ziua Tatălui în SUA: {date}","spring":"Următorul echinocțiu de primăvară: {date}","summer":"Următorul solstițiu de vară: {date}","fall":"Următorul echinocțiu de toamnă: {date}","winter":"Următorul solstițiu de iarnă: {date}","westernEaster":"Următorul Paște occidental: {date}","orthodoxEaster":"Următorul Paște ortodox: {date}","birthday":"Următoarea zi de naștere: {date}","anniversary":"Următoarea aniversare: {date}","saturday":"Următoarea sâmbătă: {date}","birthdayAway":{"one":"Următoarea zi de naștere: {date} (peste {count} zi)","few":"Următoarea zi de naștere: {date} (peste {count} zile)","other":"Următoarea zi de naștere: {date} (peste {count} de zile)"}},"sleep":{"bed9":"9 ore (6 cicluri)","bed75":"7,5 ore (5 cicluri, recomandat)","bed6":"6 ore (4 cicluri)","bed45":"4,5 ore (3 cicluri)","wake45":"4,5 ore","wake6":"6 ore","wake75":"7,5 ore (recomandat)","wake9":"9 ore"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Ziua a sosit.","notYet":"Nu încă","futureDate":"Această dată e în viitor.","datePassed":"Această dată a trecut.","selectDate":"Alege o dată validă.","selectBoth":"Alege ambele date.","chooseTarget":"Alege mai sus o dată țintă.","deadlinePassed":"Termenul a trecut","pastDue":"Depășit","deadlineUrgent":"Termen urgent","deadlineSoon":"Se apropie","deadlineAhead":"Termenul e încă departe","fastComplete":"Postul s-a terminat!","weddingArrived":"Data a sosit","weekend":"Weekend!","itsWeekend":"E weekend! Bucură-te.","workdayEnded":"Ziua de muncă s-a terminat","workdayEndedHint":"Alege o oră mai târzie ca să numeri din nou invers.","upcoming":"Urmează: {dates}","since":"De la {date}","fastEnds":"Postul se termină: {date}","sinceJan1":"De la miezul nopții din 1 ianuarie {year}","untilDec31":"Până la miezul nopții din 31 decembrie {year}","fiscalEnds":"Anul fiscal se termină: {date}","quarterEnds":"Trimestrul se termină: {date}","weddingDate":"Data nunții: {date}","departure":"Plecare: {date}","currentAge":"Vârsta actuală: {years} ani, {months} luni, {days} zile","hoursAndMinutes":"{hours} ore și {minutes} minute","minutesExtra":"{minutes} minute în plus, {total} minute în total","readingDetail":"{minutes} minute și {seconds} secunde la {wpm} cuvinte pe minut","workdaysAt":"{days} zile lucrătoare la {hours} ore pe zi","minutesSince":"{minutes} minute în total de la {date}","schoolDays":"Zile de școală","weekdaysMinusBreaks":"{weekdays} zile lucrătoare minus {breaks} zile libere","businessAfter":"{count} zile lucrătoare după {date}","businessBefore":"{count} zile lucrătoare înainte de {date}","futureTime":"Această oră e în viitor.","unitEquals":"{amount} {from} echivalează cu aproximativ {value} {to}","invalidTimestamp":"Marcaj de timp nevalid.","invalidDate":"Dată nevalidă.","local":"local","pregFirst":"Primul trimestru","pregSecond":"Al doilea trimestru","pregThird":"Al treilea trimestru","pregWeekDay":"{weeks} săpt. {days} z","dueWas":"Termenul estimat a fost {date} — felicitări!","yearDays":"Anul {year} — {days} zile în total","easterDates":"Occidental — {western}; ortodox — {orthodox}"},"stat":{"days":"zile","hours":"ore","min":"min","sec":"sec","weeks":"săptămâni","months":"luni","daysSince":"zile de la","daysUntil":"zile până la","yearAnniversary":"aniversare anuală","elapsed":"trecut","left":"rămas","daysLeft":"zile rămase","weeksLeft":"săptămâni rămase","yearsLeft":"ani rămași","streakDays":"zile completate","fullWeeks":"săptămâni întregi","approxMonths":"luni aproximative","durationMin":"durată (min)","elapsedMin":"minute trecute","minutesLeft":"minute rămase","currentQuarter":"trimestrul curent","remaining":"rămas","daysSober":"zile sobre","daysToMilestone":"zile până la următorul prag","nextMilestone":"următorul prag","daysUntilDeparture":"zile până la plecare","tripDays":"zile de călătorie"},"unit":{"months":{"one":"lună","few":"luni","other":"de luni"},"weeks":{"one":"săptămână","few":"săptămâni","other":"de săptămâni"},"days":{"one":"zi","few":"zile","other":"de zile"},"hours":{"one":"oră","few":"ore","other":"de ore"},"minutes":{"one":"minut","few":"minute","other":"de minute"},"seconds":{"one":"secundă","few":"secunde","other":"de secunde"},"years":{"one":"an","few":"ani","other":"de ani"}},"next":{"christmas":"Următorul Crăciun: {date}","newYear":"Următorul An Nou: {date}","halloween":"Următorul Halloween: {date}","thanksgiving":"Următorul Thanksgiving în SUA: {date}","valentines":"Următoarea Zi a îndrăgostiților: {date}","mothersDay":"Următoarea Ziua Mamei în SUA: {date}","fathersDay":"Următoarea Ziua Tatălui în SUA: {date}","spring":"Următorul echinocțiu de primăvară: {date}","summer":"Următorul solstițiu de vară: {date}","fall":"Următorul echinocțiu de toamnă: {date}","winter":"Următorul solstițiu de iarnă: {date}","westernEaster":"Următorul Paște occidental: {date}","orthodoxEaster":"Următorul Paște ortodox: {date}","birthday":"Următoarea zi de naștere: {date}","anniversary":"Următoarea aniversare: {date}","saturday":"Următoarea sâmbătă: {date}","birthdayAway":{"one":"Următoarea zi de naștere: {date} (peste {count} zi)","few":"Următoarea zi de naștere: {date} (peste {count} zile)","other":"Următoarea zi de naștere: {date} (peste {count} de zile)"}},"sleep":{"bed9":"9 ore (6 cicluri)","bed75":"7,5 ore (5 cicluri, recomandat)","bed6":"6 ore (4 cicluri)","bed45":"4,5 ore (3 cicluri)","wake45":"4,5 ore","wake6":"6 ore","wake75":"7,5 ore (recomandat)","wake9":"9 ore"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const startEl = document.getElementById('as-start');
@@ -482,6 +601,7 @@
       const d = parseInt(daysEl.value) || 0;
       const out = addToDate(base, { years: sign*y, months: sign*mo, weeks: sign*wk, days: sign*d });
       const diff = Math.abs(Math.round((out - base) / 86400000));
+      toolPreviewDate(out);
       result.innerHTML = `
         <div class="tool-result-card">
           <div class="tool-result-big">${formatDateLong(out)}</div>

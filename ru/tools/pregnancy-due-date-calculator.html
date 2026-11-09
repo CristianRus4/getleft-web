@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Калькулятор предполагаемой даты родов — по месячным, УЗИ или ЭКО | Left</title>
+  <meta name="description" content="Когда мой малыш должен родиться? Узнайте предполагаемую дату родов по последним месячным, дате зачатия, УЗИ для определения срока или переносу ЭКО, с текущей неделей и обратным отсчётом в реальном времени."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/ru/tools/pregnancy-due-date-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/pregnancy-due-date-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Калькулятор предполагаемой даты родов — по месячным, УЗИ или ЭКО"  />
+  <meta property="og:description" content="Когда мой малыш должен родиться? Узнайте предполагаемую дату родов по последним месячным, дате зачатия, УЗИ для определения срока или переносу ЭКО, с текущей неделей и обратным отсчётом в реальном времени."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ru/tools/pregnancy-due-date-calculator" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Калькулятор предполагаемой даты родов — по месячным, УЗИ или ЭКО"  />
+  <meta name="twitter:description" content="Когда мой малыш должен родиться? Узнайте предполагаемую дату родов по последним месячным, дате зачатия, УЗИ для определения срока или переносу ЭКО, с текущей неделей и обратным отсчётом в реальном времени."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Калькулятор предполагаемой даты родов — по месячным, УЗИ или ЭКО",
+  "url": "https://getleft.app/tools/pregnancy-due-date-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Когда мой малыш должен родиться? Узнайте предполагаемую дату родов по последним месячным, дате зачатия, УЗИ для определения срока или переносу ЭКО, с текущей неделей и обратным отсчётом в реальном времени.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "ru"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Инструменты",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Калькулятор предполагаемой даты родов",
+      "item": "https://getleft.app/tools/pregnancy-due-date-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Основное меню">
+    <div class="container nav-inner">
+      <a href="/ru/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ru/#features" class="nav-link">Возможности</a>
+          <a href="/ru/tools/" class="nav-link">Инструменты</a>
+          <a href="/ru/blog/" class="nav-link">Блог</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-ru&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Скачать</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>Калькулятор предполагаемой даты родов</h1>
+    <p class="tool-lede">Узнайте предполагаемую дату родов по последним месячным, дате зачатия, УЗИ для определения срока или переносу ЭКО, с текущей неделей и обратным отсчётом в реальном времени.</p>
+
+    <div class="tool-widget">
+      <div class="tool-toggle" id="preg-method" role="group" aria-label="Метод датировки" style="flex-wrap:wrap;margin-bottom:22px;">
+        <button class="is-active" data-method="lmp">Последние месячные</button>
+        <button data-method="conception">Зачатие</button>
+        <button data-method="scan">УЗИ для определения срока</button>
+        <button data-method="ivf">Перенос ЭКО</button>
+      </div>
+      <div class="tool-widget__row" data-for="lmp">
+        <div class="tool-widget__field">
+          <label for="preg-lmp">Первый день последних месячных</label>
+          <input type="date" id="preg-lmp" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-cycle">Обычная длина цикла (дней)</label>
+          <input type="number" id="preg-cycle" min="21" max="45" value="28" inputmode="numeric" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="conception" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-conception">Дата зачатия</label>
+          <input type="date" id="preg-conception" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="scan" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-scan">Дата УЗИ</label>
+          <input type="date" id="preg-scan" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-scan-weeks">Недели и дни на УЗИ</label>
+          <div class="tool-compact-group">
+            <input type="number" id="preg-scan-weeks" min="4" max="42" value="12" inputmode="numeric" aria-label="Недели"  />
+            <span class="tool-compact-suffix">нед.</span>
+            <input type="number" id="preg-scan-days" min="0" max="6" value="0" inputmode="numeric" aria-label="Дни"  />
+            <span class="tool-compact-suffix">д</span>
+          </div>
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="ivf" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-transfer">Дата переноса эмбриона</label>
+          <input type="date" id="preg-transfer" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-embryo">Возраст эмбриона при переносе</label>
+          <select id="preg-embryo">
+            <option value="5">День 5 (бластоциста)</option>
+            <option value="3">День 3</option>
+            <option value="6">День 6</option>
+          </select>
+        </div>
+      </div>
+      <div class="tool-result" id="preg-result" aria-live="polite"></div>
+      <p id="preg-trimester"></p>
+      <p class="tool-fineprint"><em>Это оценка. Ваша акушерка или врач подтвердят предполагаемую дату родов, как правило, по УЗИ для определения срока в первом триместре (его предлагают примерно на 10–14 неделе).</em></p>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Предполагаемая дата родов</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ru&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Ведите обратный отсчёт до предполагаемой даты родов в Left</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Поделиться</button>
+            <a class="tool-card__more" href="/ru/tools/">Все инструменты</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Как рассчитывается предполагаемая дата родов</h2>
+      <p>Стандартный метод (правило Негеле) прибавляет <strong>280 дней (40 недель)</strong> к первому дню последних месячных. Врачи и акушерки используют то же правило для первой оценки, до УЗИ для определения срока. Если ваш цикл не равен 28 дням, введите обычную длину цикла: калькулятор сдвигает дату на разницу (для 32-дневного цикла — на четыре дня позже).</p>
+      <p>Отсчёт 40 недель начинается от последних месячных — хотя зачатие обычно происходит примерно на 2-й неделе. Поэтому ваш «гестационный возраст» в медицинском измерении всегда примерно на 2 недели опережает возраст эмбриона.</p>
+      <h2>Четыре способа датировать беременность</h2>
+      <p>Выберите метод, соответствующий тому, что вам известно. Все четыре дают один и тот же ответ: предполагаемая дата родов через 40 недель после начала отсчёта беременности, ваша неделя и день сегодня и оставшееся время.</p>
+      <ul>
+        <li><strong>Последние месячные:</strong> первый день последних месячных плюс 280 дней с поправкой на длину вашего цикла.</li>
+        <li><strong>Зачатие:</strong> дата зачатия плюс 266 дней (38 недель). Используйте, если знаете, когда была овуляция или зачатие.</li>
+        <li><strong>УЗИ для определения срока:</strong> введите дату УЗИ и недели и дни, которые назвал специалист по УЗИ. Калькулятор отсчитывает назад до начала беременности и вперёд на 40 недель.</li>
+        <li><strong>Перенос ЭКО:</strong> дата переноса плюс 266 дней минус возраст эмбриона. Бластоциста 5-го дня даёт предполагаемую дату через 261 день после переноса, эмбрион 3-го дня — через 263 дня.</li>
+      </ul>
+      <h2>Датировка по УЗИ и по последним месячным</h2>
+      <p>Метод по последним месячным предполагает, что овуляция была через 14 дней после начала месячных. У многих это не так: циклы различаются, а некоторые не знают точной даты последних месячных. УЗИ вместо этого измеряет малыша. На ранних сроках малыши растут с очень похожей скоростью, поэтому копчико-теменной размер, измеренный примерно на 10–14 неделе, определяет срок беременности с точностью около недели.</p>
+      <p>Поэтому, когда они расходятся, обычно побеждает УЗИ. American College of Obstetricians and Gynecologists советует изменить предполагаемую дату на дату по УЗИ, когда УЗИ первого триместра отличается от даты по последним месячным более чем на 7 дней (более чем на 5 дней до 9 недель). Более поздние УЗИ менее точны для датировки, потому что размеры детей расходятся по мере роста. Когда ваша акушерка или врач установили предполагаемую дату, используйте метод по УЗИ с их цифрами, и эта страница будет согласна с ними.</p>
+      <h2>Триместры</h2>
+      <ul>
+        <li><strong>Первый триместр:</strong> недели 1–12 (от последних месячных до ~84 дней)</li>
+        <li><strong>Второй триместр:</strong> недели 13–26 (~85–~182 дня)</li>
+        <li><strong>Третий триместр:</strong> недели 27–40 (~183 дня до предполагаемой даты)</li>
+      </ul>
+      <h2>Насколько точна эта дата?</h2>
+      <p>Только около 4% детей рождаются точно в предполагаемую дату. Предполагаемая дата родов (EDD) — середина нормального окна родов, которое обычно длится от 38 до 42 недель. УЗИ для определения срока в первом триместре даёт более точную дату, особенно когда длина вашего цикла отличается от стандартного допущения в 28 дней или вы не уверены в дате последних месячных.</p>
+      <h2>Источники</h2>
+      <p>Правило Негеле и датировка по УЗИ: American College of Obstetricians and Gynecologists, <a href="https://www.acog.org/clinical/guidance/committee-opinion/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">Committee Opinion 700, Methods for Estimating the Due Date</a>. Для второго мнения о дате см. <a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener">калькулятор даты родов NHS</a> и <a href="https://www.tommys.org/pregnancy-information/calculators-tools-resources/pregnancy-due-date-calculator" target="_blank" rel="noopener">калькулятор Tommy's</a> (Tommy's отмечает, что только около 4 из 100 детей рождаются в предполагаемую дату). Этот инструмент не является медицинской рекомендацией: спросите акушерку или врача о вашей беременности.</p>
+      <h2>Следите за отсчётом с Left</h2>
+      <p>Добавьте предполагаемую дату родов как отсчёт в Left и закрепите на экране «Домой» или экране блокировки. Каждое утро вы будете видеть, сколько дней осталось, — а после родов переключитесь на режим «С начала» в Left, чтобы отслеживать, сколько дней малышу.</p>
+      <ol>
+        <li>Установите Left на iPhone, откройте <strong>Впереди</strong> и нажмите <strong>Добавить дату в «Впереди»</strong>, затем <strong>Новая дата</strong>.</li>
+        <li>Дайте имя, установите <strong>Начинается</strong> на предполагаемую дату родов и включите <strong>Получить напоминание</strong>, если хотите, чтобы вас предупредили до этого дня.</li>
+        <li>Добавьте виджет Left <strong>Впереди</strong> на экран «Домой» или экран блокировки и выберите предполагаемую дату родов в <strong>Изменить виджет</strong>.</li>
+      </ol>
+      <p>Чтобы держать предполагаемую дату родов перед глазами, добавьте <a href="/ru/countdown-widget">виджет обратного отсчёта</a> на экран «Домой» с помощью Left. Партнёр может следить за тем же отсчётом с помощью <a href="/ru/support/joint-ahead-dates">общей даты «Впереди»</a>.</p>
+      <h2>Вопросы</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Насколько точна предполагаемая дата родов?</summary>
+          <div class="faq-answer"><p>Это оценка, а не крайний срок. Только около 4 из 100 детей появляются точно в этот день; большинство рождается в течение недель до или после. УЗИ для определения срока в первом триместре даёт самую надёжную дату.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>А если цикл нерегулярный?</summary>
+          <div class="faq-answer"><p>Правило Негеле предполагает овуляцию примерно через 14 дней после начала месячных, поэтому нерегулярный цикл делает метод по последним месячным менее надёжным. Используйте метод по УЗИ, как только у вас будет УЗИ для определения срока, или спросите акушерку или врача.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Когда проводится УЗИ для определения срока?</summary>
+          <div class="faq-answer"><p>В Великобритании NHS предлагает его примерно на 10–14 неделе. Раннее УЗИ измеряет малыша от макушки до копчика (копчико-теменной размер), что хорошо предсказывает дату родов, потому что на ранних сроках малыши растут с похожей скоростью.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Сколько недель считается доношенной беременностью?</summary>
+          <div class="faq-answer"><p>Доношенная беременность — от 39 недель 0 дней до 40 недель 6 дней. Дети, рождённые с 37 недель, — ранний срок, на 41 неделе — поздний срок, а с 42 недель — переношенные.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Как рассчитывается предполагаемая дата родов при ЭКО?</summary>
+          <div class="faq-answer"><p>От даты переноса: зачатие считается днём создания эмбриона, поэтому бластоциста 5-го дня, перенесённая 1 марта, даёт предполагаемую дату через 261 день, 17 ноября (в невисокосный год).</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Сохраняет ли калькулятор мои даты?</summary>
+          <div class="faq-answer"><p>Нет. Расчёт выполняется в вашем браузере, и ничего из введённого никуда не отправляется.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Насколько точна предполагаемая дата родов?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Это оценка, а не крайний срок. Только около 4 из 100 детей появляются точно в этот день; большинство рождается в течение недель до или после. УЗИ для определения срока в первом триместре даёт самую надёжную дату."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "А если цикл нерегулярный?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Правило Негеле предполагает овуляцию примерно через 14 дней после начала месячных, поэтому нерегулярный цикл делает метод по последним месячным менее надёжным. Используйте метод по УЗИ, как только у вас будет УЗИ для определения срока, или спросите акушерку или врача."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Когда проводится УЗИ для определения срока?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "В Великобритании NHS предлагает его примерно на 10–14 неделе. Раннее УЗИ измеряет малыша от макушки до копчика (копчико-теменной размер), что хорошо предсказывает дату родов, потому что на ранних сроках малыши растут с похожей скоростью."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сколько недель считается доношенной беременностью?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Доношенная беременность — от 39 недель 0 дней до 40 недель 6 дней. Дети, рождённые с 37 недель, — ранний срок, на 41 неделе — поздний срок, а с 42 недель — переношенные."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как рассчитывается предполагаемая дата родов при ЭКО?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "От даты переноса: зачатие считается днём создания эмбриона, поэтому бластоциста 5-го дня, перенесённая 1 марта, даёт предполагаемую дату через 261 день, 17 ноября (в невисокосный год)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Сохраняет ли калькулятор мои даты?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Нет. Расчёт выполняется в вашем браузере, и ничего из введённого никуда не отправляется."
+      }
+    }
+  ],
+  "inLanguage": "ru"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Читать дальше</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ru/blog/best-countdown-widgets-iphone">Лучшие виджеты обратного отсчёта для iPhone</a>
+        <a class="tool-related-item" href="/ru/support/joint-ahead-dates">Делитесь обратным отсчётом с общими датами «Впереди»</a>
+        <a class="tool-related-item" href="/ru/countdown-widget">Виджет обратного отсчёта для iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Похожие инструменты</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/weeks-until-date">Недель до даты</a>
+        <a class="tool-related-item" href="/ru/tools/date-countdown-calculator">Обратный отсчёт до любой даты</a>
+        <a class="tool-related-item" href="/ru/tools/days-between-two-dates">Дней между двумя датами</a>
+        <a class="tool-related-item" href="/ru/tools/age-calculator">Калькулятор возраста</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Скачать Left</span>
+        <h2>Держите обратный отсчёт перед глазами.</h2>
+        <p>Добавьте дату в «Впереди» в Left, и виджет будет вести отсчёт на экране «Домой», экране блокировки и Apple Watch, с напоминанием перед днём.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-код: нажмите, чтобы увидеть инструкцию">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Отсканируйте код или найдите <strong>«Left»</strong> в App Store.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-ru&amp;mt=8" target="_blank" rel="noopener" aria-label="Скачать Left в App Store" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Скачать для iOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> людей делают каждый момент значимым.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Нижняя часть страницы">
+          <a href="/ru/support">Поддержка</a>
+          <a href="/terms">Условия</a>
+          <a href="/ru/privacy">Конфиденциальность</a>
+          <a href="/ru/press">Пресса</a>
+          <a href="/ru/contact">Контакты</a>
+          <a href="/ru/tools/">Инструменты</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ru/blog/">Блог</a>
+          <a href="#" data-consent-open>Настройки cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RU</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="true">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Этот день наступил.","notYet":"Ещё нет","futureDate":"Эта дата ещё в будущем.","datePassed":"Эта дата уже прошла.","selectDate":"Выберите корректную дату.","selectBoth":"Выберите обе даты.","chooseTarget":"Выберите целевую дату выше.","deadlinePassed":"Дедлайн прошёл","pastDue":"Срок истёк","deadlineUrgent":"Срочный дедлайн","deadlineSoon":"Скоро","deadlineAhead":"Дедлайн впереди","fastComplete":"Голодание завершено!","weddingArrived":"Дата наступила","weekend":"Выходные!","itsWeekend":"Сейчас выходные! Наслаждайтесь.","workdayEnded":"Рабочий день закончился","workdayEndedHint":"Установите более позднее время, чтобы снова вести отсчёт.","upcoming":"Предстоит: {dates}","since":"С {date}","fastEnds":"Голодание заканчивается: {date}","sinceJan1":"С полуночи 1 января {year} г.","untilDec31":"До полуночи 31 декабря {year} г.","fiscalEnds":"Финансовый год заканчивается {date}","quarterEnds":"Квартал заканчивается {date}","weddingDate":"Дата свадьбы: {date}","departure":"Выезд: {date}","currentAge":"Текущий возраст: {years} лет, {months} мес., {days} дн.","hoursAndMinutes":"{hours} ч и {minutes} мин","minutesExtra":"ещё {minutes} мин, всего {total} мин","readingDetail":"{minutes} мин и {seconds} сек при {wpm} словах в минуту","workdaysAt":"{days} рабочих дней по {hours} ч в день","minutesSince":"всего {minutes} мин с {date}","schoolDays":"учебных дней","weekdaysMinusBreaks":"{weekdays} будних дней минус {breaks} дней каникул","businessAfter":"{count} рабочих дней после {date}","businessBefore":"{count} рабочих дней до {date}","futureTime":"Это время ещё в будущем.","unitEquals":"{amount} {from} — примерно {value} {to}","invalidTimestamp":"Некорректная метка времени.","invalidDate":"Некорректная дата.","local":"местное","pregFirst":"Первый триместр","pregSecond":"Второй триместр","pregThird":"Третий триместр","pregWeekDay":"{weeks} нед. {days} дн.","dueWas":"Предполагаемая дата родов была {date} — поздравляем!","yearDays":"Год {year} — всего {days} дней","easterDates":"Западная — {western}; православная — {orthodox}"},"stat":{"days":"дни","hours":"часы","min":"мин","sec":"сек","weeks":"недели","months":"месяцы","daysSince":"дней с","daysUntil":"дней до","yearAnniversary":"годовщина","elapsed":"прошло","left":"осталось","daysLeft":"дней осталось","weeksLeft":"недель осталось","yearsLeft":"лет осталось","streakDays":"пройденные дни","fullWeeks":"полных недель","approxMonths":"примерно месяцев","durationMin":"длительность, мин","elapsedMin":"прошло, мин","minutesLeft":"минут осталось","currentQuarter":"текущий квартал","remaining":"осталось","daysSober":"дней трезвости","daysToMilestone":"дней до следующей вехи","nextMilestone":"следующая веха","daysUntilDeparture":"дней до выезда","tripDays":"дней поездки"},"unit":{"months":{"one":"месяц","few":"месяца","many":"месяцев","other":"месяца"},"weeks":{"one":"неделя","few":"недели","many":"недель","other":"недели"},"days":{"one":"день","few":"дня","many":"дней","other":"дня"},"hours":{"one":"час","few":"часа","many":"часов","other":"часа"},"minutes":{"one":"минута","few":"минуты","many":"минут","other":"минуты"},"seconds":{"one":"секунда","few":"секунды","many":"секунд","other":"секунды"},"years":{"one":"год","few":"года","many":"лет","other":"года"}},"next":{"christmas":"Следующее Рождество: {date}","newYear":"Следующий Новый год: {date}","halloween":"Следующий Хеллоуин: {date}","thanksgiving":"Следующий День благодарения в США: {date}","valentines":"Следующий День святого Валентина: {date}","mothersDay":"Следующий День матери в США: {date}","fathersDay":"Следующий День отца в США: {date}","spring":"Следующее весеннее равноденствие: {date}","summer":"Следующее летнее солнцестояние: {date}","fall":"Следующее осеннее равноденствие: {date}","winter":"Следующее зимнее солнцестояние: {date}","westernEaster":"Следующая западная Пасха: {date}","orthodoxEaster":"Следующая православная Пасха: {date}","birthday":"Следующий день рождения: {date}","anniversary":"Следующая годовщина: {date}","saturday":"Следующая суббота: {date}","birthdayAway":{"one":"Следующий день рождения: {date} (через {count} день)","few":"Следующий день рождения: {date} (через {count} дня)","many":"Следующий день рождения: {date} (через {count} дней)","other":"Следующий день рождения: {date} (через {count} дня)"}},"sleep":{"bed9":"9 ч (6 циклов)","bed75":"7,5 ч (5 циклов, рекомендуется)","bed6":"6 ч (4 цикла)","bed45":"4,5 ч (3 цикла)","wake45":"4,5 ч","wake6":"6 ч","wake75":"7,5 ч (рекомендуется)","wake9":"9 ч"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const methodBtns = document.querySelectorAll('#preg-method button');
+    const lmpEl = document.getElementById('preg-lmp');
+    const cycleEl = document.getElementById('preg-cycle');
+    const conceptionEl = document.getElementById('preg-conception');
+    const scanEl = document.getElementById('preg-scan');
+    const scanWeeksEl = document.getElementById('preg-scan-weeks');
+    const scanDaysEl = document.getElementById('preg-scan-days');
+    const transferEl = document.getElementById('preg-transfer');
+    const embryoEl = document.getElementById('preg-embryo');
+    const result = document.getElementById('preg-result');
+    const trimEl = document.getElementById('preg-trimester');
+    let method = 'lmp';
+
+    // Defaults describe the same pregnancy, about 8 weeks along, in every method.
+    const today0 = new Date(); today0.setHours(0, 0, 0, 0);
+    const shift = days => { const d = new Date(today0); d.setDate(d.getDate() + days); return toLocalDateInput(d); };
+    lmpEl.value = shift(-56);
+    conceptionEl.value = shift(-42);
+    scanEl.value = shift(0);
+    scanWeeksEl.value = 8;
+    transferEl.value = shift(-37);
+    [lmpEl, conceptionEl, scanEl, transferEl].forEach(el => { el.max = shift(0); });
+
+    function day(value) {
+      if (!value) return null;
+      const d = new Date(value + 'T00:00:00');
+      return isNaN(d) ? null : d;
+    }
+    // Whole calendar days, so a daylight-saving change never moves a date by one.
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    function clampInt(el, min, max, fallback) {
+      const n = parseInt(el.value, 10);
+      return Math.min(max, Math.max(min, isNaN(n) ? fallback : n));
+    }
+
+    // Every method gives a "gestational start": the day pregnancy weeks are
+    // counted from (two weeks before conception). The due date is 280 days later.
+    function gestationalStart() {
+      if (method === 'conception') { const c = day(conceptionEl.value); return c && addDays(c, -14); }
+      if (method === 'scan') {
+        const sc = day(scanEl.value);
+        if (!sc) return null;
+        return addDays(sc, -(clampInt(scanWeeksEl, 4, 42, 12) * 7 + clampInt(scanDaysEl, 0, 6, 0)));
+      }
+      if (method === 'ivf') {
+        const t = day(transferEl.value);
+        // Transfer of a day-N embryo: conception was N days earlier.
+        return t && addDays(t, -(14 + (parseInt(embryoEl.value, 10) || 5)));
+      }
+      const l = day(lmpEl.value);
+      // A cycle longer or shorter than 28 days moves ovulation, and the due date, by the difference.
+      return l && addDays(l, clampInt(cycleEl, 21, 45, 28) - 28);
+    }
+
+    function render() {
+      document.querySelectorAll('[data-for]').forEach(row => { row.hidden = row.dataset.for !== method; });
+      const start = gestationalStart();
+      if (!start) { result.innerHTML = ''; trimEl.textContent = ''; toolPreview(null); return; }
+      const due = addDays(start, 280);
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const daysPregnant = Math.max(0, Math.round((today - start) / MS_DAY));
+      const weeksPregnant = Math.floor(daysPregnant / 7);
+      const daysMod = daysPregnant % 7;
+      const daysUntilDue = Math.max(0, Math.round((due - today) / MS_DAY));
+      const weeksUntilDue = Math.floor(daysUntilDue / 7);
+
+      let trimester = '';
+      if (daysPregnant <= 84) trimester = toolT('result.pregFirst');
+      else if (daysPregnant <= 182) trimester = toolT('result.pregSecond');
+      else trimester = toolT('result.pregThird');
+      trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { weeks: weeksPregnant, days: daysMod }) : '');
+      toolPreviewDate(due, toolT('preg.dueDateTitle'));
+
+      if (daysUntilDue <= 0) {
+        result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">${toolEscape(toolT('result.dueWas', { date: formatDateShort(due) }))}</div>`;
+        return;
+      }
+
+      result.innerHTML = `
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num">${weeksPregnant}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksPregnant'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${weeksUntilDue}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksToGo'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(daysUntilDue)}</div><div class="tool-stat-label">${toolEscape(toolT('preg.daysToGo'))}</div></div>
+        </div>
+        <p class="tool-result-sub">${toolEscape(toolT('preg.dueDate', { date: formatDateLong(due) }))}</p>`;
+    }
+
+    methodBtns.forEach(b => b.addEventListener('click', () => {
+      methodBtns.forEach(x => x.classList.toggle('is-active', x === b));
+      method = b.dataset.method;
+      render();
+    }));
+    [lmpEl, cycleEl, conceptionEl, scanEl, scanWeeksEl, scanDaysEl, transferEl, embryoEl].forEach(el => {
+      el.addEventListener('input', render);
+      el.addEventListener('change', render);
+    });
+    render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Согласие на использование cookie">
+  <p class="left-consent__text">Мы используем Google Analytics, чтобы понимать, какие страницы помогают людям. Без рекламы и без отслеживания между сайтами.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Разрешить аналитику</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Нет, спасибо</button>
+    <a class="left-consent__link" href="/ru/privacy#website" data-consent-privacy>Конфиденциальность</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

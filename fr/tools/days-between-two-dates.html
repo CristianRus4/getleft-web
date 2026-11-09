@@ -269,12 +269,43 @@
       <div class="tool-result" id="db-result" aria-live="polite">
         <p style="color:var(--text-secondary);font-size:16px;">Sélectionne les deux dates ci-dessus.</p>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>Jours entre</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-fr&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Décompte jusqu’à cette date dans Left</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Partager</button>
+            <a class="tool-card__more" href="/fr/tools/">Tous les outils</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
       <h2>Comment fonctionne le calcul</h2>
       <p>Le calculateur soustrait la date de début de la date de fin et renvoie le nombre absolu de jours calendaires qui les séparent. Peu importe quelle date vient en premier : tu peux les saisir dans n’importe quel ordre, le résultat est toujours positif.</p>
-      <p>Par défaut, le décompte <em>n’inclut aucune des deux dates</em> : si tu saisis le 1er janvier et le 3 janvier, le résultat est de 2 jours (l’écart entre les deux). C’est la convention la plus courante pour les calculs de durée.</p>
+      <p>Le décompte inclut une des deux extrémités, pas les deux : si tu saisis le 1er et le 3 janvier, le résultat est de 2 jours (l’écart entre les deux). C’est la convention la plus courante pour les calculs de durée.</p>
+
+      <h2>Compter les deux jours</h2>
+      <p>Certaines questions demandent le premier et le dernier jour. Une conférence qui va du 1er au 3 janvier dure 3 jours, et un traitement pris du 1er au 3 est pris pendant 3 jours. Dans ces cas, ajoute 1 au résultat. Les nuits fonctionnent à l’inverse : un séjour d’hôtel du 1er au 3 janvier fait 2 nuits, ce qui est exactement ce qu’affiche l’outil.</p>
+
+      <h2>Un exemple concret</h2>
+      <p>Du 1er mars 2026 au 10 novembre 2026, il y a 254 jours. Du 1er mars au 1er avril, il y a 31 jours. En ajoutant avril (30), mai (31), juin (30), juillet (31), août (31), septembre (30) et octobre (31), on arrive au 1er novembre après 245 jours, et 9 jours de plus mènent au 10 novembre. En comptant à la fois le 1er mars et le 10 novembre, cela fait 255 jours.</p>
+
+      <h2>Années bissextiles et changement d’heure</h2>
+      <p>Les années bissextiles sont gérées automatiquement. Du 1er février au 1er mars, il y a 28 jours en 2027 et 29 jours en 2028, et une année complète du 1er janvier au 1er janvier fait 365 ou 366 jours. L’outil compte des jours calendaires : une journée de 23 ou 25 heures à cause d’un changement d’heure compte quand même pour un jour.</p>
+
+      <h2>Conversion en semaines et en mois</h2>
+      <p>Sous le résultat, l’outil répartit les jours en semaines complètes et jours restants : 254 jours font 36 semaines et 2 jours. Les mois sont moins précis, car ils durent de 28 à 31 jours. Diviser par 30,44, la durée moyenne d’un mois, donne une bonne estimation : 254 jours font environ 8,3 mois. Pour des mois calendaires entiers, compte-les plutôt sur le calendrier : du 1er mars au 1er novembre, il y a 8 mois, plus 9 jours.</p>
 
       <h2>Utilisations courantes</h2>
       <ul>
@@ -291,15 +322,109 @@
 
       <h2>Suis l’écart avec Left</h2>
       <p>Une fois que tu connais le nombre de jours, la section <em>À venir</em> de Left te permet de définir une date cible et de voir chaque jour le décompte restant dans le widget de ton écran d’accueil. Tu peux aussi utiliser la section <em>Depuis</em> pour suivre le nombre de jours écoulés depuis un événement, utile pour les anniversaires de couple, le suivi de sobriété ou toute question du type « jours depuis ».</p>
+      <ol>
+        <li>Installe Left sur ton iPhone, ouvre <strong>À venir</strong> et touche <strong>Ajouter une date À venir</strong>, puis <strong>Nouvelle date</strong>.</li>
+        <li>Donne-lui un nom et règle <strong>Commence</strong> sur ta date de fin.</li>
+        <li>Active <strong>Recevoir un rappel</strong>, par exemple une semaine avant.</li>
+        <li>Ajoute le widget <strong>À venir</strong> de Left à ton écran d’accueil ou à ton écran verrouillé et choisis la date dans <strong>Modifier le widget</strong>.</li>
+      </ol>
       <p>Si l'écart mène à une date, le <a href="/fr/countdown-widget">widget de compte à rebours</a> le garde sur ton écran d’accueil.</p>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-fr&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          Compte les jours depuis dans Left
-        </a>
-      </p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Compte-t-il la date de début et la date de fin ?</summary>
+          <div class="faq-answer"><p>Il en compte un seul, pas les deux : du 1er au 3 janvier, il y a 2 jours. Si tu dois inclure les deux jours, ajoute 1 au résultat.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Le calculateur tient-il compte des années bissextiles ?</summary>
+          <div class="faq-answer"><p>Oui. Il compte les vrais jours du calendrier, donc le 29 février est inclus chaque fois qu’il tombe entre tes deux dates.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Comment convertir des jours en semaines ?</summary>
+          <div class="faq-answer"><p>Divise par 7. L’outil le fait pour toi sous le résultat : 254 jours font 36 semaines et 2 jours.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Combien de mois y a-t-il dans 90 jours ?</summary>
+          <div class="faq-answer"><p>Environ 3. Un mois dure en moyenne 30,44 jours, donc 90 jours font environ 2,96 mois ; savoir si cela fait exactement 3 mois calendaires dépend des mois concernés.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>L’ordre des dates a-t-il de l’importance ?</summary>
+          <div class="faq-answer"><p>Non. Tu peux saisir la date la plus tardive en premier et le résultat reste le même nombre positif de jours.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Combien de jours y a-t-il dans une année ?</summary>
+          <div class="faq-answer"><p>365, ou 366 les années bissextiles. Une année est bissextile si elle est divisible par 4, sauf les années séculaires, qui doivent être divisibles par 400 ; la prochaine est 2028.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Compte-t-il la date de début et la date de fin ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Il en compte un seul, pas les deux : du 1er au 3 janvier, il y a 2 jours. Si tu dois inclure les deux jours, ajoute 1 au résultat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le calculateur tient-il compte des années bissextiles ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Il compte les vrais jours du calendrier, donc le 29 février est inclus chaque fois qu’il tombe entre tes deux dates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Comment convertir des jours en semaines ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divise par 7. L’outil le fait pour toi sous le résultat : 254 jours font 36 semaines et 2 jours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de mois y a-t-il dans 90 jours ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Environ 3. Un mois dure en moyenne 30,44 jours, donc 90 jours font environ 2,96 mois ; savoir si cela fait exactement 3 mois calendaires dépend des mois concernés."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "L’ordre des dates a-t-il de l’importance ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Non. Tu peux saisir la date la plus tardive en premier et le résultat reste le même nombre positif de jours."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Combien de jours y a-t-il dans une année ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365, ou 366 les années bissextiles. Une année est bissextile si elle est divisible par 4, sauf les années séculaires, qui doivent être divisibles par 400 ; la prochaine est 2028."
+      }
+    }
+  ],
+  "inLanguage": "fr"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>En savoir plus</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/fr/blog/best-day-counter-apps-iphone">Les applis de compteur de jours pour iPhone, comparées</a>
+        <a class="tool-related-item" href="/fr/support/organise-ahead-since">Organise tes dates dans À venir et Depuis</a>
+        <a class="tool-related-item" href="/fr/countdown-widget">Widget de compte à rebours pour iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>Outils associés</h2>
       <div class="tool-related-items">
@@ -313,8 +438,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">Télécharger Left</span>
-        <h2>Commence à voir ce qui compte.</h2>
-        <p>Télécharge Left sur ton iPhone pour voir le temps qu’il te reste, les dates que tu attends avec impatience, construire les habitudes que tu veux garder et devenir une meilleure version de toi.</p>
+        <h2>Transforme la date en compte à rebours.</h2>
+        <p>Une fois la date trouvée, ajoute-la à À venir dans Left et vois les jours restants sur ton écran d’accueil, ton écran verrouillé et ton Apple Watch.</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -441,7 +566,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"On y est !","notYet":"Pas encore","futureDate":"Cette date est dans le futur.","datePassed":"Cette date est passée.","selectDate":"Sélectionne une date valide.","selectBoth":"Sélectionne les deux dates.","chooseTarget":"Choisis une date cible ci-dessus.","deadlinePassed":"Échéance dépassée","pastDue":"En retard","deadlineUrgent":"Échéance urgente","deadlineSoon":"Bientôt","deadlineAhead":"Échéance à venir","fastComplete":"Jeûne terminé !","weddingArrived":"La date est arrivée","weekend":"Week-end !","itsWeekend":"C’est le week-end ! Profites-en.","workdayEnded":"Journée de travail terminée","workdayEndedHint":"Choisis une heure plus tardive pour relancer le compte à rebours.","upcoming":"À venir : {dates}","since":"Depuis le {date}","fastEnds":"Fin du jeûne : {date}","sinceJan1":"Depuis le 1er janvier {year} à minuit","untilDec31":"Jusqu’à minuit le 31 décembre {year}","fiscalEnds":"L’exercice fiscal se termine le {date}","quarterEnds":"Le trimestre se termine le {date}","weddingDate":"Date du mariage : {date}","departure":"Départ : {date}","currentAge":"Âge actuel : {years} ans, {months} mois, {days} jours","hoursAndMinutes":"{hours} heures et {minutes} minutes","minutesExtra":"{minutes} minutes en plus, {total} minutes au total","readingDetail":"{minutes} minutes et {seconds} secondes à {wpm} mots par minute","workdaysAt":"{days} jours ouvrés à {hours} heures par jour","minutesSince":"{minutes} minutes au total depuis le {date}","schoolDays":"jours d’école","weekdaysMinusBreaks":"{weekdays} jours de semaine moins {breaks} jours de pause","businessAfter":"{count} jours ouvrés après le {date}","businessBefore":"{count} jours ouvrés avant le {date}","futureTime":"Cette heure est dans le futur.","unitEquals":"{amount} {from} équivaut à environ {value} {to}","invalidTimestamp":"Timestamp non valide.","invalidDate":"Date non valide.","local":"local","pregFirst":"Premier trimestre","pregSecond":"Deuxième trimestre","pregThird":"Troisième trimestre","pregWeekDay":"{weeks} sem {days} j","dueWas":"La date prévue était le {date} – félicitations !","yearDays":"Année {year} – {days} jours au total","easterDates":"Occidentales – {western} ; orthodoxes – {orthodox}"},"stat":{"days":"jours","hours":"heures","min":"min","sec":"s","weeks":"semaines","months":"mois","daysSince":"jours depuis","daysUntil":"jours avant","yearAnniversary":"ans d’anniversaire","elapsed":"écoulé","left":"restant","daysLeft":"jours restants","weeksLeft":"semaines restantes","yearsLeft":"années restantes","streakDays":"jours complétés","fullWeeks":"semaines entières","approxMonths":"mois (approx.)","durationMin":"min de durée","elapsedMin":"min écoulées","minutesLeft":"minutes restantes","currentQuarter":"trimestre en cours","remaining":"restant","daysSober":"jours de sobriété","daysToMilestone":"jours avant le prochain cap","nextMilestone":"prochain cap","daysUntilDeparture":"jours avant le départ","tripDays":"jours de voyage"},"unit":{"months":{"one":"mois","many":"mois","other":"mois"},"weeks":{"one":"semaine","many":"semaines","other":"semaines"},"days":{"one":"jour","many":"jours","other":"jours"},"hours":{"one":"heure","many":"heures","other":"heures"},"minutes":{"one":"minute","many":"minutes","other":"minutes"},"seconds":{"one":"seconde","many":"secondes","other":"secondes"},"years":{"one":"an","many":"ans","other":"ans"}},"next":{"christmas":"Prochain Noël : {date}","newYear":"Prochain Nouvel An : {date}","halloween":"Prochain Halloween : {date}","thanksgiving":"Prochain Thanksgiving : {date}","valentines":"Prochaine Saint-Valentin : {date}","mothersDay":"Prochaine fête des Mères : {date}","fathersDay":"Prochaine fête des Pères : {date}","spring":"Prochain équinoxe de printemps : {date}","summer":"Prochain solstice d’été : {date}","fall":"Prochain équinoxe d’automne : {date}","winter":"Prochain solstice d’hiver : {date}","westernEaster":"Prochaines Pâques occidentales : {date}","orthodoxEaster":"Prochaines Pâques orthodoxes : {date}","birthday":"Prochain anniversaire : {date}","anniversary":"Prochain anniversaire de couple : {date}","saturday":"Prochain samedi : {date}","birthdayAway":{"one":"Prochain anniversaire : {date} (dans {count} jour)","many":"Prochain anniversaire : {date} (dans {count} jours)","other":"Prochain anniversaire : {date} (dans {count} jours)"}},"sleep":{"bed9":"9 h (6 cycles)","bed75":"7 h 30 (5 cycles, recommandé)","bed6":"6 h (4 cycles)","bed45":"4 h 30 (3 cycles)","wake45":"4 h 30","wake6":"6 h","wake75":"7 h 30 (recommandé)","wake9":"9 h"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"On y est !","notYet":"Pas encore","futureDate":"Cette date est dans le futur.","datePassed":"Cette date est passée.","selectDate":"Sélectionne une date valide.","selectBoth":"Sélectionne les deux dates.","chooseTarget":"Choisis une date cible ci-dessus.","deadlinePassed":"Échéance dépassée","pastDue":"En retard","deadlineUrgent":"Échéance urgente","deadlineSoon":"Bientôt","deadlineAhead":"Échéance à venir","fastComplete":"Jeûne terminé !","weddingArrived":"La date est arrivée","weekend":"Week-end !","itsWeekend":"C’est le week-end ! Profites-en.","workdayEnded":"Journée de travail terminée","workdayEndedHint":"Choisis une heure plus tardive pour relancer le compte à rebours.","upcoming":"À venir : {dates}","since":"Depuis le {date}","fastEnds":"Fin du jeûne : {date}","sinceJan1":"Depuis le 1er janvier {year} à minuit","untilDec31":"Jusqu’à minuit le 31 décembre {year}","fiscalEnds":"L’exercice fiscal se termine le {date}","quarterEnds":"Le trimestre se termine le {date}","weddingDate":"Date du mariage : {date}","departure":"Départ : {date}","currentAge":"Âge actuel : {years} ans, {months} mois, {days} jours","hoursAndMinutes":"{hours} heures et {minutes} minutes","minutesExtra":"{minutes} minutes en plus, {total} minutes au total","readingDetail":"{minutes} minutes et {seconds} secondes à {wpm} mots par minute","workdaysAt":"{days} jours ouvrés à {hours} heures par jour","minutesSince":"{minutes} minutes au total depuis le {date}","schoolDays":"jours d’école","weekdaysMinusBreaks":"{weekdays} jours de semaine moins {breaks} jours de pause","businessAfter":"{count} jours ouvrés après le {date}","businessBefore":"{count} jours ouvrés avant le {date}","futureTime":"Cette heure est dans le futur.","unitEquals":"{amount} {from} équivaut à environ {value} {to}","invalidTimestamp":"Timestamp non valide.","invalidDate":"Date non valide.","local":"local","pregFirst":"Premier trimestre","pregSecond":"Deuxième trimestre","pregThird":"Troisième trimestre","pregWeekDay":"{weeks} sem {days} j","dueWas":"La date prévue était le {date} – félicitations !","yearDays":"Année {year} – {days} jours au total","easterDates":"Occidentales – {western} ; orthodoxes – {orthodox}"},"stat":{"days":"jours","hours":"heures","min":"min","sec":"s","weeks":"semaines","months":"mois","daysSince":"jours depuis","daysUntil":"jours avant","yearAnniversary":"ans d’anniversaire","elapsed":"écoulé","left":"restant","daysLeft":"jours restants","weeksLeft":"semaines restantes","yearsLeft":"années restantes","streakDays":"jours complétés","fullWeeks":"semaines entières","approxMonths":"mois (approx.)","durationMin":"min de durée","elapsedMin":"min écoulées","minutesLeft":"minutes restantes","currentQuarter":"trimestre en cours","remaining":"restant","daysSober":"jours de sobriété","daysToMilestone":"jours avant le prochain cap","nextMilestone":"prochain cap","daysUntilDeparture":"jours avant le départ","tripDays":"jours de voyage"},"unit":{"months":{"one":"mois","many":"mois","other":"mois"},"weeks":{"one":"semaine","many":"semaines","other":"semaines"},"days":{"one":"jour","many":"jours","other":"jours"},"hours":{"one":"heure","many":"heures","other":"heures"},"minutes":{"one":"minute","many":"minutes","other":"minutes"},"seconds":{"one":"seconde","many":"secondes","other":"secondes"},"years":{"one":"an","many":"ans","other":"ans"}},"next":{"christmas":"Prochain Noël : {date}","newYear":"Prochain Nouvel An : {date}","halloween":"Prochain Halloween : {date}","thanksgiving":"Prochain Thanksgiving : {date}","valentines":"Prochaine Saint-Valentin : {date}","mothersDay":"Prochaine fête des Mères : {date}","fathersDay":"Prochaine fête des Pères : {date}","spring":"Prochain équinoxe de printemps : {date}","summer":"Prochain solstice d’été : {date}","fall":"Prochain équinoxe d’automne : {date}","winter":"Prochain solstice d’hiver : {date}","westernEaster":"Prochaines Pâques occidentales : {date}","orthodoxEaster":"Prochaines Pâques orthodoxes : {date}","birthday":"Prochain anniversaire : {date}","anniversary":"Prochain anniversaire de couple : {date}","saturday":"Prochain samedi : {date}","birthdayAway":{"one":"Prochain anniversaire : {date} (dans {count} jour)","many":"Prochain anniversaire : {date} (dans {count} jours)","other":"Prochain anniversaire : {date} (dans {count} jours)"}},"sleep":{"bed9":"9 h (6 cycles)","bed75":"7 h 30 (5 cycles, recommandé)","bed6":"6 h (4 cycles)","bed45":"4 h 30 (3 cycles)","wake45":"4 h 30","wake6":"6 h","wake75":"7 h 30 (recommandé)","wake9":"9 h"},"card":{"android":"Sur Android ? Découvre tes options","copied":"Lien copié","daysLeft":{"many":"{count} jours restants","one":"{count} jour restant","other":"{count} jours restants"},"handoff":"Envoie le lien sur ton iPhone","handoffTitle":"Left pour iPhone","hoursLeft":{"many":"{count} heures restantes aujourd’hui","one":"{count} heure restante aujourd’hui","other":"{count} heures restantes aujourd’hui"},"shareText":"{title} : {result}","weeksLeft":{"many":"{count} semaines restantes","one":"{count} semaine restante","other":"{count} semaines restantes"},"yearsLeft":{"many":"{count} ans restants","one":"{count} an restant","other":"{count} ans restants"}},"life":{"mark":"Repère : âge {age}, semaine {week}"},"preg":{"daysToGo":"jours restants","dueDate":"Date d’accouchement prévue : {date}","dueDateTitle":"Date d’accouchement","weeksPregnant":"semaines de grossesse","weeksToGo":"semaines restantes"}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const fromEl = document.getElementById('db-from');

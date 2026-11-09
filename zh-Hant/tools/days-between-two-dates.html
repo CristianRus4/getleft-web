@@ -269,12 +269,43 @@
       <div class="tool-result" id="db-result" aria-live="polite">
         <p style="color:var(--text-secondary);font-size:16px;">請先在上方選擇兩個日期。</p>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>相隔天數</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>在 Left 中倒數到這個日期</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hant/tools/">所有工具</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
       <h2>計算方式</h2>
       <p>計算機會用結束日期減去起始日期，得出兩者之間日曆天數的絕對值。哪個日期比較早都沒關係，你可以用任何順序輸入，結果一定是正數。</p>
-      <p>預設<em>兩端的日期都不計入</em>：如果你輸入 1 月 1 日和 1 月 3 日，結果是 2 天（兩者之間的間隔）。這是計算時間長度時最常見的慣例。</p>
+      <p>計數包含其中一個端點，但不是兩個都包含：如果輸入 1 月 1 日和 1 月 3 日，結果是 2 天（兩者之間的間隔）。這是計算時長時最常見的慣例。</p>
+
+      <h2>同時計入兩天</h2>
+      <p>有些問題需要同時包含第一天和最後一天。從 1 月 1 日持續到 1 月 3 日的會議共 3 天，從 1 日服藥到 3 日的療程是服藥 3 天。對於這類情況，請在結果上加 1。住宿晚數則相反：1 月 1 日到 1 月 3 日的飯店住宿是 2 晚，正是工具顯示的結果。</p>
+
+      <h2>一個實際範例</h2>
+      <p>從 2026 年 3 月 1 日到 2026 年 11 月 10 日是 254 天。3 月 1 日到 4 月 1 日是 31 天。再加上 4 月（30）、5 月（31）、6 月（30）、7 月（31）、8 月（31）、9 月（30）和 10 月（31），245 天後到達 11 月 1 日，再過 9 天到 11 月 10 日。如果 3 月 1 日和 11 月 10 日都計入，則是 255 天。</p>
+
+      <h2>閏年與日光節約時間</h2>
+      <p>閏年會自動處理。2 月 1 日到 3 月 1 日在 2027 年是 28 天，在 2028 年是 29 天，從 1 月 1 日到下一個 1 月 1 日的整年是 365 或 366 天。工具計算的是日曆日，所以因日光節約時間變化而長達 23 或 25 小時的一天仍算作一天。</p>
+
+      <h2>換算成週和月</h2>
+      <p>在結果下方，工具會把天數拆分為整週和剩餘天數：254 天是 36 週又 2 天。月份不太精確，因為月份有 28 到 31 天。除以平均月長 30.44 可得到不錯的估算：254 天約為 8.3 個月。如需整日曆月，請直接在日曆上數：3 月 1 日到 11 月 1 日是 8 個月，再加 9 天。</p>
 
       <h2>常見用途</h2>
       <ul>
@@ -287,34 +318,128 @@
       </ul>
 
       <h2>週、月和工作天</h2>
-      <p>需要其他單位嗎？試試<a href="/tools/hours-between-two-dates">兩個日期相差幾小時</a>計算機、<a href="/zh-Hant/tools/business-days-calculator">工作天計算機</a>，或<a href="/tools/weeks-until-date">距離某日還有幾週</a>工具。</p>
+      <p>需要其他單位嗎？試試<a href="/zh-Hant/tools/hours-between-two-dates">兩個日期相差幾小時</a>計算機、<a href="/zh-Hant/tools/business-days-calculator">工作天計算機</a>，或<a href="/zh-Hant/tools/weeks-until-date">距離某日還有幾週</a>工具。</p>
 
       <h2>用 Left 追蹤這段時間</h2>
       <p>知道天數之後，可以用 Left 的<em>即將到來</em>功能設定目標日期，每天在主畫面小工具上看到剩餘的天數。你也可以用<em>事件</em>功能追蹤某件事發生後過了多少天，適合紀念日、戒酒追蹤，或任何「已經過了幾天」的問題。</p>
+      <ol>
+        <li>在 iPhone 上安裝 Left，打開<strong>即將到來</strong>並點一下<strong>新增即將到來的日期</strong>，再點<strong>新日期</strong>。</li>
+        <li>命名，並把<strong>開始</strong>設為你的結束日期。</li>
+        <li>開啟<strong>取得提醒</strong>，例如提前一週。</li>
+        <li>把 Left 的<strong>即將到來</strong>小工具加到主畫面或鎖定畫面，並在<strong>編輯小工具</strong>中選擇日期。</li>
+      </ol>
       <p>如果間隔是倒數到某個日期，<a href="/zh-Hant/countdown-widget">倒數小工具</a> 會將其保留在你的 主畫面。</p>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          在 Left 中計算已過天數
-        </a>
-      </p>
+      <h2>常見問題</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>會同時計入起始日和結束日嗎？</summary>
+          <div class="faq-answer"><p>只計其中一個，不是兩個都計：1 月 1 日到 1 月 3 日是 2 天。如果需要包含首尾兩天，請在結果上加 1。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>計算機會考慮閏年嗎？</summary>
+          <div class="faq-answer"><p>會。它依真實的日曆日計算，所以只要 2 月 29 日落在兩個日期之間，就會被計入。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>如何把天數換算成週數？</summary>
+          <div class="faq-answer"><p>除以 7。工具會在結果下方為你完成：254 天是 36 週又 2 天。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>90 天是幾個月？</summary>
+          <div class="faq-answer"><p>約 3 個月。平均每月 30.44 天，所以 90 天約為 2.96 個月；是否恰好是 3 個日曆月，取決於涉及哪幾個月份。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>日期的先後順序重要嗎？</summary>
+          <div class="faq-answer"><p>不會。你可以先輸入較晚的日期，結果是同樣的正數天數。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>一年有多少天？</summary>
+          <div class="faq-answer"><p>365 天，閏年為 366 天。能被 4 整除的年份是閏年，但世紀年必須能被 400 整除；下一個閏年是 2028 年。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "會同時計入起始日和結束日嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "只計其中一個，不是兩個都計：1 月 1 日到 1 月 3 日是 2 天。如果需要包含首尾兩天，請在結果上加 1。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算機會考慮閏年嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "會。它依真實的日曆日計算，所以只要 2 月 29 日落在兩個日期之間，就會被計入。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何把天數換算成週數？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "除以 7。工具會在結果下方為你完成：254 天是 36 週又 2 天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "90 天是幾個月？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "約 3 個月。平均每月 30.44 天，所以 90 天約為 2.96 個月；是否恰好是 3 個日曆月，取決於涉及哪幾個月份。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "日期的先後順序重要嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "不會。你可以先輸入較晚的日期，結果是同樣的正數天數。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一年有多少天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365 天，閏年為 366 天。能被 4 整除的年份是閏年，但世紀年必須能被 400 整除；下一個閏年是 2028 年。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>閱讀更多</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/blog/best-day-counter-apps-iphone">iPhone 上的天數計數 App 比較</a>
+        <a class="tool-related-item" href="/zh-Hant/support/organise-ahead-since">用「即將到來」和「事件」整理你的日期</a>
+        <a class="tool-related-item" href="/zh-Hant/countdown-widget">適用於 iPhone 的倒數小工具</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>相關工具</h2>
       <div class="tool-related-items">
         <a class="tool-related-item" href="/zh-Hant/tools/days-since-date">某日至今已過幾天</a>
-        <a class="tool-related-item" href="/tools/business-days-from-date">指定日期起算工作天</a>
-        <a class="tool-related-item" href="/tools/hours-between-two-dates">兩個日期相差幾小時</a>
-        <a class="tool-related-item" href="/tools/date-units-converter">日期單位轉換器</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/business-days-from-date">指定日期起算工作天</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/hours-between-two-dates">兩個日期相差幾小時</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/date-units-converter">日期單位轉換器</a>
       </div>
     </div>
 
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">下載 Left</span>
-        <h2>開始留意真正重要的事。</h2>
-        <p>在 iPhone 上下載 Left，看見自己剩下的時間和期待的日子，養成想持續的習慣，成為更好的自己。</p>
+        <h2>把這個日期變成倒數。</h2>
+        <p>知道日期後，把它加入 Left 的「即將到來」，就能在主畫面、鎖定畫面和 Apple Watch 上看到剩餘天數。</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -442,7 +567,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"},"preg":{"weeksPregnant":"週孕期","weeksToGo":"週後預產","daysToGo":"天後預產","dueDate":"預產期：{date}","dueDateTitle":"預產期"},"life":{"mark":"已標記：年齡 {age}，第 {week} 週"},"card":{"handoff":"把連結傳送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"連結已拷貝","android":"在用 Android？查看你的選擇","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"還剩 {count} 天","other":"還剩 {count} 天"},"hoursLeft":{"one":"今天還剩 {count} 小時","other":"今天還剩 {count} 小時"},"yearsLeft":{"one":"還剩 {count} 年","other":"還剩 {count} 年"},"weeksLeft":{"one":"還剩 {count} 週","other":"還剩 {count} 週"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const fromEl = document.getElementById('db-from');

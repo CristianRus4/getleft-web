@@ -253,9 +253,13 @@
 
   <main class="container tool-page">
     <h1>今年進度百分比計算機</h1>
-    <p class="tool-lede">以百分比表示今年確切已經過了多少，還剩多少。每秒更新。</p>
+    <p class="tool-lede">這一年到底已經過去了多少，還剩多少，以百分比表示。每秒更新，適用於任何年份。</p>
 
     <div class="tool-widget">
+      <div class="tool-inline-fields" style="margin-bottom:18px;">
+        <label class="tool-inline-label" for="pct-year">年份</label>
+        <select id="pct-year" style="flex:0 1 180px;"></select>
+      </div>
       <div id="pct-label"></div>
       <div class="tool-stat-row" style="margin-bottom:20px;">
         <div class="tool-stat">
@@ -287,6 +291,25 @@
           <div id="pct-date-result" class="tool-output-chip">-</div>
         </div>
       </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="year" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>2026</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>把這一年放在鎖定畫面上</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hant/tools/">所有工具</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
     </div>
 
     <div class="tool-prose">
@@ -297,6 +320,32 @@
       <h2>反向查詢</h2>
       <p>在上方欄位輸入任何百分比，就能找出該百分比落在哪一天。例如 50% 是一年的中點：在 365 天的一般年份落在 7 月 2 日中午，在 366 天的閏年則落在 7 月 2 日的最開始。</p>
 
+      <h2>一年中各個里程碑出現的時間</h2>
+      <p>表格顯示全年每一個比例到達的時刻，依本地鐘點，從 1 月 1 日午夜起算。平年有 8,760 小時，所以每 1% 是 87.6 小時，略多於三天半。閏年每 1% 是 87.84 小時，所以日期與平年相比最多相差一天。</p>
+      <!-- tools:milestones:start -->
+      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>占全年的比例</th><th>2026</th><th>2027</th></tr></thead>
+          <tbody>
+          <tr><td>10%</td><td>2 月 6 日，星期五 12:00</td><td>2 月 6 日，星期六 12:00</td></tr>
+          <tr><td>20%</td><td>3 月 15 日，星期日 00:00</td><td>3 月 15 日，星期一 00:00</td></tr>
+          <tr><td>25%</td><td>4 月 2 日，星期四 06:00</td><td>4 月 2 日，星期五 06:00</td></tr>
+          <tr><td>30%</td><td>4 月 20 日，星期一 12:00</td><td>4 月 20 日，星期二 12:00</td></tr>
+          <tr><td>33.3%</td><td>5 月 2 日，星期六 16:00</td><td>5 月 2 日，星期日 16:00</td></tr>
+          <tr><td>40%</td><td>5 月 27 日，星期三 00:00</td><td>5 月 27 日，星期四 00:00</td></tr>
+          <tr><td>50%</td><td>7 月 2 日，星期四 12:00</td><td>7 月 2 日，星期五 12:00</td></tr>
+          <tr><td>60%</td><td>8 月 8 日，星期六 00:00</td><td>8 月 8 日，星期日 00:00</td></tr>
+          <tr><td>66.7%</td><td>9 月 1 日，星期二 08:00</td><td>9 月 1 日，星期三 08:00</td></tr>
+          <tr><td>70%</td><td>9 月 13 日，星期日 12:00</td><td>9 月 13 日，星期一 12:00</td></tr>
+          <tr><td>75%</td><td>10 月 1 日，星期四 18:00</td><td>10 月 1 日，星期五 18:00</td></tr>
+          <tr><td>80%</td><td>10 月 20 日，星期二 00:00</td><td>10 月 20 日，星期三 00:00</td></tr>
+          <tr><td>90%</td><td>11 月 25 日，星期三 12:00</td><td>11 月 25 日，星期四 12:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <!-- tools:milestones:end -->
+      <p>四月初過去四分之一，五月初過去三分之一，九月初過去三分之二。如果你設定了年度目標，這些就是自然的檢查時機。請在上方選擇另一年，在計算機中查看它的數字。</p>
+
       <h2>iPhone 上的年度進度</h2>
       <p>Left 免費的<a href="/zh-Hant/year-progress-widget">「年份」小工具</a>能把這些放在你的主畫面或鎖定畫面：一整年以一格格符號呈現，已經過去的日子會變淡，並顯示剩餘時間或剩餘百分比。在鎖定畫面上，圓形版本會把數字顯示在中間。Left 以整天計算，所以它的百分比可能和上面精確到秒的數字略有差異。</p>
       <p>直接在鎖定畫面上看到一年已經過了大半，是一個安靜但有效的提醒，讓你把剩下的日子過得更有意義。</p>
@@ -305,23 +354,107 @@
       <p>這裡的三個相關工具，用不同的角度看同一個現實：</p>
       <ul>
         <li><strong>百分比</strong>：抽象、適合比較（「這一年我過了 60%，但目標只完成了 40%」）。</li>
-        <li><strong><a href="/tools/time-left-in-year-calculator">剩餘時間</a></strong>：具體、著眼未來（「87 天又 4 小時」）。</li>
-        <li><strong><a href="/tools/time-passed-in-year-calculator">已過時間</a></strong>：回顧過去（「1 月 1 日至今 278 天」）。</li>
+        <li><strong><a href="/zh-Hant/tools/time-left-in-year-calculator">剩餘時間</a></strong>：具體、著眼未來（「87 天又 4 小時」）。</li>
+        <li><strong><a href="/zh-Hant/tools/time-passed-in-year-calculator">已過時間</a></strong>：回顧過去（「1 月 1 日至今 278 天」）。</li>
       </ul>
-      <p class="tool-cta" style="margin:20px 0 0;">
-        <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener" style="white-space:normal;height:auto;min-height:48px;text-align:center;">
-          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
-          把這一年放到鎖定畫面
-        </a>
-      </p>
+
+      <h2>把這一年放在鎖定畫面上</h2>
+      <ol>
+        <li>在 iPhone 上安裝 Left 並打開<strong>剩餘時間</strong>：這一年已經以格狀圖的形式在那裡了。</li>
+        <li>按住鎖定畫面，點一下<strong>自訂</strong>，選擇<strong>鎖定畫面</strong>並點一下小工具區域。</li>
+        <li>加入 Left 的<strong>年</strong>小工具，並選擇顯示百分比還是剩餘天數。</li>
+      </ol>
+
+      <h2>常見問題</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>這一年已經過去了百分之多少？</summary>
+          <div class="faq-answer"><p>本頁頂部的即時數字會依你的時區精確到秒來回答。大致來說，每一天是平年的 0.27%，每一週約 1.9%。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>哪一天是一年的 50%？</summary>
+          <div class="faq-answer"><p>在 365 天的平年，一半的時刻是 7 月 2 日中午。在閏年是 7 月 2 日開始的午夜。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>閏年會改變這個百分比嗎？</summary>
+          <div class="faq-answer"><p>會，略有變化。閏年有 366 天，所以每一天占的比例更小。從 3 月 1 日起，同一個日曆日期在年中的位置會晚一天，所以它的百分比略高，最多高出約四分之一個百分點。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>為什麼 Left 的小工具與本頁略有不同？</summary>
+          <div class="faq-answer"><p>Left 的「年」小工具依整天計算，所以每天移動一次。這個計算機依秒計算，所以一直在移動。兩者相差不超過一天的量，約 0.27%。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>我能查看過去或未來的年份嗎？</summary>
+          <div class="faq-answer"><p>可以。在選擇器中選一個年份：已結束的年份顯示 100%，尚未開始的年份顯示 0%，日期查詢對你選的任何年份都有效。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "這一年已經過去了百分之多少？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "本頁頂部的即時數字會依你的時區精確到秒來回答。大致來說，每一天是平年的 0.27%，每一週約 1.9%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "哪一天是一年的 50%？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在 365 天的平年，一半的時刻是 7 月 2 日中午。在閏年是 7 月 2 日開始的午夜。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "閏年會改變這個百分比嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "會，略有變化。閏年有 366 天，所以每一天占的比例更小。從 3 月 1 日起，同一個日曆日期在年中的位置會晚一天，所以它的百分比略高，最多高出約四分之一個百分點。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "為什麼 Left 的小工具與本頁略有不同？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left 的「年」小工具依整天計算，所以每天移動一次。這個計算機依秒計算，所以一直在移動。兩者相差不超過一天的量，約 0.27%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我能查看過去或未來的年份嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。在選擇器中選一個年份：已結束的年份顯示 100%，尚未開始的年份顯示 0%，日期查詢對你選的任何年份都有效。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
     </div>
 
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>閱讀更多</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/blog/best-year-progress-apps-iphone">最好用的 iPhone 年度進度 App</a>
+        <a class="tool-related-item" href="/zh-Hant/support/widget-iphone-lock-screen">把 Left 小工具加到鎖定畫面</a>
+        <a class="tool-related-item" href="/zh-Hant/year-progress-widget">iPhone 年度進度小工具</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
     <div class="tool-related">
       <h2>相關工具</h2>
       <div class="tool-related-items">
-        <a class="tool-related-item" href="/tools/fiscal-year-progress-calculator">會計年度進度</a>
-        <a class="tool-related-item" href="/tools/quarter-countdown-calculator">季度倒數</a>
-        <a class="tool-related-item" href="/tools/time-left-in-year-calculator">今年剩餘時間</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/fiscal-year-progress-calculator">會計年度進度</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/quarter-countdown-calculator">季度倒數</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/time-left-in-year-calculator">今年剩餘時間</a>
         <a class="tool-related-item" href="/zh-Hant/tools/life-expectancy-calculator">預期壽命計算機</a>
       </div>
     </div>
@@ -329,8 +462,8 @@
     <section class="download-block">
       <div class="section-head">
         <span class="eyebrow">下載 Left</span>
-        <h2>開始留意真正重要的事。</h2>
-        <p>在 iPhone 上下載 Left，看見自己剩下的時間和期待的日子，養成想持續的習慣，成為更好的自己。</p>
+        <h2>在鎖定畫面上查看這一年。</h2>
+        <p>Left 把年、月、週和日畫成會自動填滿的格狀圖，以小工具的形式呈現在主畫面、鎖定畫面和 Apple Watch 上。</p>
       </div>
       <div class="download-actions">
         <div class="download-group">
@@ -458,7 +591,7 @@
     </div>
   </footer>
 
-  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"}};</script>
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"},"preg":{"weeksPregnant":"週孕期","weeksToGo":"週後預產","daysToGo":"天後預產","dueDate":"預產期：{date}","dueDateTitle":"預產期"},"life":{"mark":"已標記：年齡 {age}，第 {week} 週"},"card":{"handoff":"把連結傳送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"連結已拷貝","android":"在用 Android？查看你的選擇","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"還剩 {count} 天","other":"還剩 {count} 天"},"hoursLeft":{"one":"今天還剩 {count} 小時","other":"今天還剩 {count} 小時"},"yearsLeft":{"one":"還剩 {count} 年","other":"還剩 {count} 年"},"weeksLeft":{"one":"還剩 {count} 週","other":"還剩 {count} 週"}}};</script>
   <script src="/tools/tools.js"></script>
   <script>
     const pctPast = document.getElementById('pct-past');
@@ -466,35 +599,51 @@
     const daysLeft = document.getElementById('pct-days-left');
     const daysPast = document.getElementById('pct-days-past');
     const label = document.getElementById('pct-label');
+    const yearEl = document.getElementById('pct-year');
     const pctInput = document.getElementById('pct-input');
     const pctDateResult = document.getElementById('pct-date-result');
+    // Four decimals fit a desktop tile; two fit a phone.
+    const narrow = window.matchMedia('(max-width: 520px)');
+
+    const thisYear = new Date().getFullYear();
+    for (let y = thisYear - 25; y <= thisYear + 25; y++) {
+      const o = document.createElement('option');
+      o.value = String(y);
+      o.textContent = String(y);
+      if (y === thisYear) o.selected = true;
+      yearEl.appendChild(o);
+    }
+    const year = () => parseInt(yearEl.value, 10) || thisYear;
 
     function render() {
       const now = new Date();
-      const yr = now.getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1, 0, 0, 0, 0);
       const end   = new Date(yr + 1, 0, 1, 0, 0, 0, 0);
       const total = end - start;
-      const elapsed = now - start;
+      const elapsed = Math.min(total, Math.max(0, now - start));
       const pctDone = (elapsed / total) * 100;
       const pctRem  = 100 - pctDone;
+      const decimals = narrow.matches ? 2 : 4;
       label.textContent = toolT('result.yearDays', { year: yr, days: daysInYear(yr) });
-      pctPast.textContent = pctDone.toFixed(4) + '%';
-      pctLeft.textContent = pctRem.toFixed(4) + '%';
-      daysLeft.textContent = fmtNum(Math.ceil((end - now) / MS_DAY));
+      pctPast.textContent = pctDone.toFixed(decimals) + '%';
+      pctLeft.textContent = pctRem.toFixed(decimals) + '%';
+      daysLeft.textContent = fmtNum(Math.ceil((total - elapsed) / MS_DAY));
       daysPast.textContent = fmtNum(Math.floor(elapsed / MS_DAY));
     }
 
-    pctInput.addEventListener('input', () => {
+    function lookup() {
       const val = parseFloat(pctInput.value);
       if (isNaN(val) || val < 0 || val > 100) { pctDateResult.textContent = '-'; return; }
-      const yr = new Date().getFullYear();
+      const yr = year();
       const start = new Date(yr, 0, 1).getTime();
       const end   = new Date(yr + 1, 0, 1).getTime();
       const target = new Date(start + (val / 100) * (end - start));
       pctDateResult.textContent = formatDateShort(target);
-    });
+    }
 
+    pctInput.addEventListener('input', lookup);
+    yearEl.addEventListener('change', () => { render(); lookup(); });
     tickEvery(1000, render);
   </script>
   <script defer src="/index.js"></script>

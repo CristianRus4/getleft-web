@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>間欠的断食の計算ツール：16:8、18:6、OMAD | Left</title>
+  <meta name="description" content="間欠的断食の時間帯を計算します。最後に食べた時刻と断食のプロトコルを入力すると、断食がちょうど何時に終わるかがわかります。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/ja/tools/intermittent-fasting-duration-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/intermittent-fasting-duration-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/intermittent-fasting-duration-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="間欠的断食の計算ツール：16:8、18:6、OMAD"  />
+  <meta property="og:description" content="間欠的断食の時間帯を計算します。最後に食べた時刻と断食のプロトコルを入力すると、断食がちょうど何時に終わるかがわかります。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ja/tools/intermittent-fasting-duration-calculator" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="間欠的断食の計算ツール：16:8、18:6、OMAD"  />
+  <meta name="twitter:description" content="間欠的断食の時間帯を計算します。最後に食べた時刻と断食のプロトコルを入力すると、断食がちょうど何時に終わるかがわかります。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "間欠的断食の計算ツール：16:8、18:6、OMAD",
+  "url": "https://getleft.app/tools/intermittent-fasting-duration-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "間欠的断食の時間帯を計算します。最後に食べた時刻と断食のプロトコルを入力すると、断食がちょうど何時に終わるかがわかります。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "ja"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ツール",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "間欠的断食の時間計算ツール",
+      "item": "https://getleft.app/tools/intermittent-fasting-duration-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>間欠的断食の時間計算ツール</h1>
+    <p class="tool-lede">最後に食べた時刻と断食のプロトコルを入力します。断食がちょうど何時に終わり、残りがどれくらいかがわかります。</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <label for="if-last-ate">最後に食べた時刻</label>
+        <input type="datetime-local" id="if-last-ate" />
+      </div>
+      <div class="tool-widget__row">
+        <label for="if-protocol">断食のプロトコル</label>
+        <select id="if-protocol">
+          <option value="16">16:8（16時間断食）</option>
+          <option value="18">18:6（18時間断食）</option>
+          <option value="20">20:4（20時間断食）</option>
+          <option value="24">24時間（1日1食）</option>
+          <option value="36">36時間（長時間）</option>
+          <option value="custom">カスタム…</option>
+        </select>
+      </div>
+      <div id="if-custom-row" class="tool-widget__row" style="display:none;">
+        <label for="if-custom-hrs">断食時間のカスタム</label>
+        <input type="number" id="if-custom-hrs" min="1" max="120" value="16" />
+      </div>
+      <div class="tool-result" id="if-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title>断食</span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ja&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>断食の経過をロック画面で確認する</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>共有</button>
+            <a class="tool-card__more" href="/ja/tools/">すべてのツール</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>よくある断食のプロトコル</h2>
+      <ul>
+        <li><strong>16:8</strong>：16時間断食し、8時間の時間帯内に食べます。最も人気のあるプロトコルで、食事の時間帯を正午から午後8時に設定すると、多くの生活スタイルに合います。</li>
+        <li><strong>18:6</strong>：より厳しい型で、18時間の断食で、食事の時間帯は6時間になります。経験を積んだ間欠的断食の実践者に人気です。</li>
+        <li><strong>20:4（ウォリアー・ダイエット）</strong>：20時間断食し、夕方に4時間の食事の時間帯があります。大きな食事を1回とることが多いです。</li>
+        <li><strong>OMAD（1日1食）</strong>：23〜24時間の断食です。1回の食事での栄養密度に気を配る必要があります。</li>
+        <li><strong>36時間</strong>：長時間の断食で、毎日ではなく、たまに行うのがふつうです。長い断食はリスクが高まるため、試す前に医師に相談してください。</li>
+        <li><strong>5:2</strong>：断食の時間帯ではありません。週5日は普通に食べ、連続しない2日間は約500〜600キロカロリーに抑えます。この計算ツールは時間を数えるため、5:2には対応していません。</li>
+      </ul>
+
+      <h2>計算ツールのしくみ</h2>
+      <p>最後に食べた時刻とプロトコルを選びます。計算ツールは、その時刻にプロトコルの断食時間を加えて、残りの時間、分、秒、断食が終わる時刻、進み具合を表示します。断食が終わったあとは、終わった時刻と、断食を続けた合計時間が表示されます。</p>
+      <p>計算例：2026年11月10日（火）の午後7:30に最後に食べて、18:6を選んだとします。断食は18時間後の11月11日（水）の午後1:30に終わります。水曜日の午前9:00には13.5時間が経過しているので、計算ツールは75%完了、残り4時間30分と表示します。同じ開始時刻でも、16:8なら午前11:30に、20:4なら午後3:30に終わります。</p>
+      <p>食事の時間帯は、断食のあとに続きます。16:8で断食が午後12:00に終わる場合、8時間の時間帯は午後8:00までで、次の断食はそこから始まります。リストにないものは、<strong>カスタム</strong>を選んで時間数を入力します。</p>
+
+      <h2>現地時間、真夜中、旅行</h2>
+      <p>計算ツールは、お使いのデバイスの時計とタイムゾーンを使います。最後の食事の欄には日付が含まれるので、真夜中をまたぐ断食も、特別な手順なしで使えます。</p>
+      <p>実際の時間を数えるので、夏時間で時計が切り替わる夜は、時計上で終了時刻が1時間ずれます。米国では2027年3月14日（日）に時計が進むため、土曜日の午後8:00からの16時間の断食は、午後1:00に終わります。断食中にタイムゾーンをまたいで移動する場合は、最後の食事を、スマホが今設定されているタイムゾーンでの時刻として入力してください。</p>
+
+      <h2>断食はあなたに合っていますか？</h2>
+      <p>断食は誰にでも向いているわけではありません。妊娠中や授乳中の方、18歳未満の方、糖尿病などの持病がある方、摂食障害の経験がある方、定期的に薬を飲んでいる方は、断食をする前に医師に相談してください。メイヨー・クリニックには<a href="https://www.mayoclinic.org/healthy-lifestyle/nutrition-and-healthy-eating/expert-answers/intermittent-fasting/faq-20441303" target="_blank" rel="noopener">間欠的断食の概要</a>があります。この計算ツールは時刻を計算するだけで、医学的なアドバイスではありません。</p>
+
+      <h2>何が断食を破りますか？</h2>
+      <p>カロリーの摂取は断食を破ります。水、ブラックコーヒー、無糖のお茶は、一般に断食中でも問題ないと考えられています。牛乳、クリーム、砂糖など、カロリーのあるものを加えると、断食は終わります。長い断食では、カロリーゼロの電解質を認める実践者もいます。</p>
+
+      <h2>Leftで断食を記録する</h2>
+      <p>断食の終了時刻を、Leftにカウントダウンとして追加しましょう。ロック画面のウィジェットが、断食の残り時間を正確に表示するので、アプリを開いたり暗算したりする必要がありません。</p>
+      <ol>
+        <li>Leftで<strong>これから</strong>を開き、<strong>これからに日付を追加</strong>、<strong>新しい日付</strong>の順にタップします。</li>
+        <li>名前を付けて、<strong>始まります</strong>を断食が終わる時刻に設定します。</li>
+        <li>終わる前に知らせてほしいときは、<strong>リマインダーを受け取る</strong>をオンにします。</li>
+        <li>ロック画面を長押しして<strong>カスタマイズ</strong>をタップし、Leftの<strong>これから</strong>ウィジェットを追加して、<strong>ウィジェットを編集</strong>で断食を選びます。</li>
+      </ol>
+      <p>Leftには、ライブアクティビティ付きの断食タイマーもあります。断食はLeft Premiumに含まれます。断食の終了までを無料でカウントダウンするには、<a href="/ja/countdown-widget">カウントダウンウィジェット</a>をご覧ください。</p>
+      <h2>よくある質問</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>どれくらい断食していますか？</summary>
+          <div class="faq-answer"><p>最後に食べた時刻を入力すると、計算ツールが断食の進み具合と残り時間を表示します。断食が終わったあとは、断食を続けた合計時間が表示されます。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>16:8と18:6の違いは何ですか？</summary>
+          <div class="faq-answer"><p>16:8は、断食16時間と食事の時間帯8時間のことです。18:6は、断食18時間と食事の時間帯6時間のことです。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>OMADとは何ですか？</summary>
+          <div class="faq-answer"><p>OMADは1日1食（one meal a day）のことです。たいてい約23時間の断食で、残りの1時間ほどに1回食事をします。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>何が断食を破りますか？</summary>
+          <div class="faq-answer"><p>考え方はさまざまで、この計算ツールは判断しません。時間を数えるだけなので、選んだプランか医師のアドバイスに従ってください。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>計算ツールは私のタイムゾーンを使いますか？</summary>
+          <div class="faq-answer"><p>はい。最後に食べた時刻をお使いのデバイスの現地タイムゾーンで読み取り、同じタイムゾーンで終了時刻を表示します。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Leftに断食タイマーはありますか？</summary>
+          <div class="faq-answer"><p>はい。Leftの断食はLeft Premiumに含まれ、ロック画面とApple Watchにライブアクティビティを表示します。終了時刻を「これから」のカウントダウンとして追加し、ロック画面のウィジェットに表示することもできます。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "どれくらい断食していますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "最後に食べた時刻を入力すると、計算ツールが断食の進み具合と残り時間を表示します。断食が終わったあとは、断食を続けた合計時間が表示されます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "16:8と18:6の違いは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "16:8は、断食16時間と食事の時間帯8時間のことです。18:6は、断食18時間と食事の時間帯6時間のことです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "OMADとは何ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "OMADは1日1食（one meal a day）のことです。たいてい約23時間の断食で、残りの1時間ほどに1回食事をします。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "何が断食を破りますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "考え方はさまざまで、この計算ツールは判断しません。時間を数えるだけなので、選んだプランか医師のアドバイスに従ってください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "計算ツールは私のタイムゾーンを使いますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。最後に食べた時刻をお使いのデバイスの現地タイムゾーンで読み取り、同じタイムゾーンで終了時刻を表示します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Leftに断食タイマーはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Leftの断食はLeft Premiumに含まれ、ロック画面とApple Watchにライブアクティビティを表示します。終了時刻を「これから」のカウントダウンとして追加し、ロック画面のウィジェットに表示することもできます。"
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+    </div>
+
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>続きを読む</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ja/blog/best-fasting-tracker-apps-iphone">iPhone用の断食トラッカーアプリを比較</a>
+        <a class="tool-related-item" href="/ja/support/fasting-in-left">Leftでの断食のしくみ</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>関連ツール</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ja/tools/end-of-fasting-calculator">断食の終了時刻の計算</a>
+        <a class="tool-related-item" href="/ja/tools/fasting-countdown">断食カウントダウン</a>
+        <a class="tool-related-item" href="/tools/hours-between-two-dates">2つの日付の間の時間数</a>
+        <a class="tool-related-item" href="/ja/tools/sleep-calculator">睡眠時間の計算</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Leftをダウンロード</span>
+        <h2>断食の経過を、ロック画面で確認しましょう。</h2>
+        <p>Leftの断食は、断食の残り時間を、ロック画面とApple Watchのライブアクティビティで表示します。</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App StoreでLeftをダウンロード" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            iOS版をダウンロード
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"その日が来ました。","notYet":"まだです","futureDate":"その日付は未来です。","datePassed":"その日付は過ぎています。","selectDate":"有効な日付を選んでください。","selectBoth":"2つの日付を選んでください。","chooseTarget":"上で目標の日付を選んでください。","deadlinePassed":"期限を過ぎました","pastDue":"期限切れ","deadlineUrgent":"期限が迫っています","deadlineSoon":"もうすぐ期限です","deadlineAhead":"期限まで余裕があります","fastComplete":"断食完了！","weddingArrived":"その日が来ました","weekend":"週末です！","itsWeekend":"週末です！ゆっくり楽しんでください。","workdayEnded":"勤務時間が終わりました","workdayEndedHint":"もっと遅い時刻を設定すると、再びカウントダウンできます。","upcoming":"今後の予定：{dates}","since":"{date}から","fastEnds":"断食の終了：{date}","sinceJan1":"{year}年1月1日の0時から","untilDec31":"{year}年12月31日の24時まで","fiscalEnds":"会計年度の終了：{date}","quarterEnds":"四半期の終了：{date}","weddingDate":"結婚式の日：{date}","departure":"出発：{date}","currentAge":"現在の年齢：{years}年{months}か月{days}日","hoursAndMinutes":"{hours}時間{minutes}分","minutesExtra":"{minutes}分多く、合計{total}分","readingDetail":"1分あたり{wpm}語で{minutes}分{seconds}秒","workdaysAt":"1日{hours}時間で{days}日の勤務日","minutesSince":"{date}から合計{minutes}分","schoolDays":"登校日","weekdaysMinusBreaks":"平日{weekdays}日から休み{breaks}日を引いた日数","businessAfter":"{date}の{count}営業日後","businessBefore":"{date}の{count}営業日前","futureTime":"その時刻は未来です。","unitEquals":"{amount}{from}は約{value}{to}です","invalidTimestamp":"タイムスタンプが正しくありません。","invalidDate":"日付が正しくありません。","local":"ローカル","pregFirst":"妊娠初期","pregSecond":"妊娠中期","pregThird":"妊娠後期","pregWeekDay":"{weeks}週{days}日","dueWas":"出産予定日は{date}でした。おめでとうございます！","yearDays":"{year}年は全{days}日","easterDates":"西方教会：{western}、正教会：{orthodox}"},"stat":{"days":"日","hours":"時間","min":"分","sec":"秒","weeks":"週間","months":"か月","daysSince":"経過日数","daysUntil":"あと日数","yearAnniversary":"周年","elapsed":"経過","left":"残り","daysLeft":"残り日数","weeksLeft":"残り週数","yearsLeft":"残り年数","streakDays":"完了した日数","fullWeeks":"満週数","approxMonths":"約何か月","durationMin":"所要時間（分）","elapsedMin":"経過時間（分）","minutesLeft":"残り時間（分）","currentQuarter":"現在の四半期","remaining":"残り","daysSober":"断酒日数","daysToMilestone":"次の節目まで","nextMilestone":"次の節目","daysUntilDeparture":"出発まであと日数","tripDays":"旅行日数"},"unit":{"months":{"one":"か月","other":"か月"},"weeks":{"one":"週間","other":"週間"},"days":{"one":"日","other":"日"},"hours":{"one":"時間","other":"時間"},"minutes":{"one":"分","other":"分"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"次のクリスマス：{date}","newYear":"次のお正月：{date}","halloween":"次のハロウィン：{date}","thanksgiving":"次の米国の感謝祭：{date}","valentines":"次のバレンタインデー：{date}","mothersDay":"次の母の日：{date}","fathersDay":"次の父の日：{date}","spring":"次の春分：{date}","summer":"次の夏至：{date}","fall":"次の秋分：{date}","winter":"次の冬至：{date}","westernEaster":"次の西方教会のイースター：{date}","orthodoxEaster":"次の正教会のイースター：{date}","birthday":"次の誕生日：{date}","anniversary":"次の記念日：{date}","saturday":"次の土曜日：{date}","birthdayAway":{"one":"次の誕生日：{date}（あと{count}日）","other":"次の誕生日：{date}（あと{count}日）"}},"sleep":{"bed9":"9時間（6サイクル）","bed75":"7.5時間（5サイクル、おすすめ）","bed6":"6時間（4サイクル）","bed45":"4.5時間（3サイクル）","wake45":"4.5時間","wake6":"6時間","wake75":"7.5時間（おすすめ）","wake9":"9時間"},"card":{"android":"Androidをお使いですか？ 選択肢を見る","copied":"リンクをコピーしました","daysLeft":{"one":"残り{count}日","other":"残り{count}日"},"handoff":"リンクをiPhoneに送る","handoffTitle":"iPhone用のLeft","hoursLeft":{"one":"今日はあと{count}時間","other":"今日はあと{count}時間"},"shareText":"{title}：{result}","weeksLeft":{"one":"残り{count}週間","other":"残り{count}週間"},"yearsLeft":{"one":"残り{count}年","other":"残り{count}年"}},"life":{"mark":"印を付けた週：{age}歳、{week}週目"},"preg":{"daysToGo":"出産までの日数","dueDate":"出産予定日（推定）：{date}","dueDateTitle":"出産予定日","weeksPregnant":"妊娠週数","weeksToGo":"出産までの週数"}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const lastAteEl = document.getElementById('if-last-ate');
+    const protocolEl = document.getElementById('if-protocol');
+    const customRow = document.getElementById('if-custom-row');
+    const customHrs = document.getElementById('if-custom-hrs');
+    const result = document.getElementById('if-result');
+    let cancelTick = null;
+
+    // Default: 8 hours ago
+    const def = new Date(Date.now() - 8 * 3600000);
+    lastAteEl.value = toLocalInput(def);
+
+    protocolEl.addEventListener('change', () => {
+      customRow.style.display = protocolEl.value === 'custom' ? '' : 'none';
+      render();
+    });
+
+    function getFastHours() {
+      if (protocolEl.value === 'custom') return parseFloat(customHrs.value) || 16;
+      return parseFloat(protocolEl.value);
+    }
+
+    function render() {
+      if (!lastAteEl.value) { result.innerHTML = ''; return; }
+      const lastAte = new Date(lastAteEl.value);
+      if (isNaN(lastAte)) return;
+      const fastHrs = getFastHours();
+      const endTime = new Date(lastAte.getTime() + fastHrs * 3600000);
+      const now = Date.now();
+      const msElapsed = now - lastAte.getTime();
+      const msRemaining = endTime.getTime() - now;
+      const hrsElapsed = msElapsed / 3600000;
+      const pctDone = Math.min(100, Math.max(0, (hrsElapsed / fastHrs) * 100));
+
+      if (msRemaining <= 0) {
+        result.innerHTML = `
+          <div class="tool-result-big" style="font-size:1.3rem;">${toolEscape(toolT('result.fastComplete'))}</div>
+          <p style="margin-top:8px;font-size:14px;color:var(--text-secondary);">
+            Your ${fastHrs}-hour fast ended at ${formatDateTime(endTime)}.
+            You've been fasting for ${hrsElapsed.toFixed(1)} hours.
+          </p>`;
+        return;
+      }
+
+      const b = breakdown(msRemaining);
+      result.innerHTML = `
+        <div class="tool-stat-row">
+          <div class="tool-stat"><div class="tool-stat-num">${b.hours + b.days * 24}</div><div class="tool-stat-label">hours left</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${pad(b.minutes)}</div><div class="tool-stat-label">min</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${pad(b.seconds)}</div><div class="tool-stat-label">sec</div></div>
+        </div>
+        <div style="margin-top:12px;background:var(--bg-muted);border-radius:8px;overflow:hidden;height:8px;">
+          <div style="height:100%;width:${pctDone.toFixed(1)}%;background:var(--accent);transition:width .5s;"></div>
+        </div>
+        <p style="margin-top:8px;font-size:14px;color:var(--text-secondary);">
+          ${pctDone.toFixed(0)}% complete · Fast ends ${formatDateTime(endTime)}
+        </p>`;
+    }
+
+    function startTick() {
+      if (cancelTick) cancelTick();
+      cancelTick = tickEvery(1000, render);
+    }
+
+    lastAteEl.addEventListener('change', startTick);
+    customHrs.addEventListener('input', render);
+    startTick();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

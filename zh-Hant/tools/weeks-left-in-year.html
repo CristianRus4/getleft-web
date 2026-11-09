@@ -1,0 +1,667 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>今年剩餘週數：距離 12 月 31 日還有幾週 | Left</title>
+  <meta name="description" content="今年還剩幾週？查看距離 12 月 31 日剩餘的週數、天數、工作天和週末，以及本週是第幾週，還有一張全年週數的方格圖。"  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="今年剩餘週數：距離 12 月 31 日還有幾週"  />
+  <meta property="og:description" content="今年還剩幾週？查看距離 12 月 31 日剩餘的週數、天數、工作天和週末，以及本週是第幾週，還有一張全年週數的方格圖。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/tools/weeks-left-in-year" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="今年剩餘週數：距離 12 月 31 日還有幾週"  />
+  <meta name="twitter:description" content="今年還剩幾週？查看距離 12 月 31 日剩餘的週數、天數、工作天和週末，以及本週是第幾週，還有一張全年週數的方格圖。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "今年剩餘週數：距離 12 月 31 日還有幾週",
+  "url": "https://getleft.app/tools/weeks-left-in-year",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "今年還剩幾週？查看距離 12 月 31 日剩餘的週數、天數、工作天和週末，以及本週是第幾週，還有一張全年週數的方格圖。",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "zh-Hant"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "工具",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "今年剩餘週數",
+      "item": "https://getleft.app/tools/weeks-left-in-year"
+    }
+  ]
+}
+</script>
+  <style>
+.pp-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 24px; align-items: stretch; }
+    .pp-actions .pp-cta { flex: 1 1 260px; white-space: normal; height: auto; min-height: 52px; text-align: center; justify-content: center; }
+    .pp-share { appearance: none; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 52px; padding: 0 22px; border-radius: var(--radius-pill); border: 1px solid var(--hairline); background: var(--bg); color: var(--text); font: inherit; font-size: 16px; font-weight: 600; cursor: pointer; }
+    .pp-share:hover { border-color: var(--text-secondary); }
+    .pp-share::before { content: ''; width: 18px; height: 18px; background: currentColor; -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12'/%3E%3Cpath d='m7 8 5-5 5 5'/%3E%3Cpath d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7'/%3E%3C/svg%3E") center / contain no-repeat; mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 3v12'/%3E%3Cpath d='m7 8 5-5 5 5'/%3E%3Cpath d='M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7'/%3E%3C/svg%3E") center / contain no-repeat; }
+    .tool-prose .pp-inline { display: inline-flex; margin: 4px 0 24px; } .tool-prose .pp-cta { white-space: normal; height: auto; min-height: 52px; text-align: center; }
+    .pp-table { width: 100%; border-collapse: collapse; margin: 8px 0 24px; font-size: 16px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+    .pp-table th, .pp-table td { text-align: left; padding: 10px 16px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .pp-table th { font-weight: 650; }
+    .pp-table tr.is-current td { font-weight: 700; }
+    .tool-stat.is-key { background: var(--accent); color: #fff; }
+    .tool-stat.is-key .tool-stat-label { color: rgba(255,255,255,.85); }
+    @media (max-width: 520px) { .tool-stat { min-height: 120px; padding: 18px 10px 16px; } }
+    .wly-grid-wrap { margin-top: 22px; padding: 18px; border-radius: 26px; background: var(--bg); border: 1px solid var(--hairline); }
+    .wly-grid-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; font-weight: 700; margin-bottom: 12px; }
+    .wly-grid-head span:last-child { color: var(--text-secondary); font-weight: 600; font-variant-numeric: tabular-nums; }
+    .wly-grid { display: grid; grid-template-columns: repeat(13, 1fr); gap: 6px; }
+    .wly-grid i { aspect-ratio: 1; border-radius: 30%; background: var(--text); }
+    .wly-grid i.is-past { background: var(--text-secondary); opacity: .25; }
+    .wly-grid i.is-now { background: var(--accent); }
+    #wly-sub { margin-top: 14px; color: var(--text-secondary); font-size: 17px; }
+  </style>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要導覽">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>今年剩餘週數</h1>
+    <p class="tool-lede">距離 12 月 31 日剩餘的週數、天數、工作天和週末。</p>
+    
+    <div class="tool-widget">
+      <div id="wly-label"></div>
+      <div class="tool-result" id="wly-result" aria-live="polite"></div>
+      <p id="wly-sub"></p>
+      <div class="wly-grid-wrap" id="wly-grid"></div>
+      <div class="pp-actions">
+      <a class="dl-btn pp-cta" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+        <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        在主畫面看到剩餘週數
+      </a>
+      <button type="button" class="pp-share" id="wly-share">分享</button>
+    </div>
+      <div class="pp-strings" id="wly-strings" hidden>
+      <span data-s="week">現在是 {weeks} 週中的第 {week} 週。今年在 {date} 結束。</span>
+      <span data-s="weeksLeft">剩餘週數</span>
+      <span data-s="daysLeft">剩餘天數</span>
+      <span data-s="workLeft">剩餘工作天</span>
+      <span data-s="weekendsLeft">剩餘週末</span>
+      <span data-s="fullWeeks">剩餘完整週數：{weeks}，另加 {days}。</span>
+      <span data-s="gridHead">{year} 年的週</span>
+      <span data-s="shareText">{year} 年剩餘週數：{weeks}</span>
+      <span data-s="copied">已複製連結</span>
+    </div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview" data-tool-preview="number" aria-hidden="true">
+          <span class="tool-preview__title" data-preview-title></span>
+          <span class="tool-preview__num" data-preview-num>–</span>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Put this countdown on your Home Screen</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>分享</button>
+            <a class="tool-card__more" href="/zh-Hant/tools/">All tools</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>剩餘週數怎麼計算</h2>
+      <p>工具會依你所在時區，數出從明天到 12 月 31 日的天數，再除以 7。例如 2026 年 11 月 10 日還剩 51 天：7 個完整的週加 2 天，也就是 7.3 週。</p>
+      <p>工作天是週一到週五。國定假日不會扣除，因為各國不同；<a href="/zh-Hant/tools/business-days-calculator">工作天計算機</a>可以計算任意兩個日期之間的工作天。只要週末兩天中還有至少一天沒到，這個週末就算還沒過完。</p>
+      <p>方格圖依週數顯示一年的每一週：已過的週會變淡，本週會突顯，還沒到的週則維持原色。這和 Left 的「年份」小工具以週顯示一年時畫出的圖是一樣的。</p>
+      <h2>週數，以及為什麼有些年份有 53 週</h2>
+      <p>工具使用 ISO 8601 週數，這是歐洲和亞洲大部分地區採用的標準。一週從週一開始，第 1 週是包含 1 月第一個星期四的那一週。因此大多數年份有 52 週，但從星期四開始的年份，或從星期三開始的閏年，會有 53 週。</p>
+      <p>接下來有 53 週的年份：<span id="wly-53"></span>。</p>
+      <p>在美國和其他一些國家，日曆通常以星期日作為一週的開頭，並把 1 月 1 日所在的那一週算作第 1 週，所以它們的週數可能會差 1。<a href="/zh-Hant/tools/iso-week-number">ISO 週數工具</a>可以查出任何日期的週數。</p>
+      <h3>今年每個月 1 日的剩餘週數</h3>
+      <table class="pp-table">
+        <thead><tr><th>日期</th><th>剩餘天數</th><th>剩餘週數</th></tr></thead>
+        <tbody id="wly-table"></tbody>
+      </table>
+      <h2>在 iPhone 上看到剩餘週數</h2>
+      <p>Left 的「年份」小工具會把一年畫成方格，並讓已過的時間變淡。設為週之後，每週會有一個符號，旁邊寫著剩餘週數。它是免費的，在主畫面和鎖定畫面都能使用。</p>
+      <ol>
+        <li>安裝 Left。長按主畫面的空白處，點<strong>編輯</strong>，再點<strong>加入小工具</strong>。</li>
+        <li>搜尋 Left，選擇<strong>年份</strong>小工具，挑選尺寸，然後點<strong>加入小工具</strong>。</li>
+        <li>長按小工具，點<strong>編輯小工具</strong>，並把<strong>顯示時間為</strong>設為週。</li>
+      </ol>
+      <p><a href="/zh-Hant/year-progress-widget">年度進度小工具</a>頁面介紹了各種尺寸和鎖定畫面版本，<a href="/zh-Hant/support/widget-iphone-home-screen">加入主畫面小工具</a>有附螢幕截圖的步驟。如果想讓整個鎖定畫面都是週數，Left 桌布可以把一年以週來繪製，並每天重新繪製：請見<a href="/zh-Hant/days-left-wallpaper">剩餘天數桌布</a>。<a href="/zh-Hant/blog/what-is-year-progress">什麼是年度進度</a>說明了為什麼看著一年流逝會有幫助，<a href="/zh-Hant/blog/best-year-progress-apps-iphone">最好的年度進度 App</a>則比較了各種選擇。</p>
+      <a class="dl-btn pp-cta pp-inline" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener">
+        <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+        取得「年份」小工具
+      </a>
+      <h2>常見問題</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>今年還剩幾週？</summary>
+          <div class="faq-answer"><p>把距離 12 月 31 日剩餘的天數除以 7。2026 年 11 月 10 日還剩 51 天，也就是 7.3 週。上方的工具會顯示今天的數字。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>現在是今年的第幾週？</summary>
+          <div class="faq-answer"><p>工具顯示的是本週的 ISO 8601 週數，一週從週一開始，第 1 週包含 1 月的第一個星期四。以星期日為一週開頭的日曆，顯示的週數可能會多一或少一。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>一年有 52 週還是 53 週？</summary>
+          <div class="faq-answer"><p>一個日曆年是 52 週又 1 天，閏年則是 52 週又 2 天。在 ISO 週數編號中，大多數年份有 52 週，有些年份有 53 週，例如 2026、2032 和 2037 年。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>今年還剩幾個工作天？</summary>
+          <div class="faq-answer"><p>工具會數出從明天到 12 月 31 日之間的每個週一到週五。國定假日不會扣除，請自行扣掉你工作地點適用的假日。</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>可以在 iPhone 上看到今年剩餘週數嗎？</summary>
+          <div class="faq-answer"><p>可以。加入 Left 免費的「年份」小工具，並把「顯示時間為」設為週。它會在主畫面或鎖定畫面顯示每週一個符號，以及剩餘週數。</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "今年還剩幾週？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "把距離 12 月 31 日剩餘的天數除以 7。2026 年 11 月 10 日還剩 51 天，也就是 7.3 週。上方的工具會顯示今天的數字。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "現在是今年的第幾週？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "工具顯示的是本週的 ISO 8601 週數，一週從週一開始，第 1 週包含 1 月的第一個星期四。以星期日為一週開頭的日曆，顯示的週數可能會多一或少一。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一年有 52 週還是 53 週？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "一個日曆年是 52 週又 1 天，閏年則是 52 週又 2 天。在 ISO 週數編號中，大多數年份有 52 週，有些年份有 53 週，例如 2026、2032 和 2037 年。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "今年還剩幾個工作天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "工具會數出從明天到 12 月 31 日之間的每個週一到週五。國定假日不會扣除，請自行扣掉你工作地點適用的假日。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以在 iPhone 上看到今年剩餘週數嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。加入 Left 免費的「年份」小工具，並把「顯示時間為」設為週。它會在主畫面或鎖定畫面顯示每週一個符號，以及剩餘週數。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+    </div>
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Read more</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/blog/best-countdown-widgets-iphone">The best countdown widgets for iPhone</a>
+        <a class="tool-related-item" href="/zh-Hant/support/organise-ahead-since">Organise your dates in Ahead and Since</a>
+        <a class="tool-related-item" href="/zh-Hant/countdown-widget">Countdown widget for iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>相關工具</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/zh-Hant/tools/iso-week-number">ISO 週數</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/percentage-year-calculator">今年已過百分之幾</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/time-left-in-year-calculator">今年剩餘時間</a>
+        <a class="tool-related-item" href="/zh-Hant/tools/days-left-in-month">本月剩餘天數</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">下載 Left</span>
+        <h2>Keep the countdown in sight.</h2>
+        <p>Add the date to Ahead in Left and a widget counts it down on your Home Screen, Lock Screen and Apple Watch, with a reminder before the day.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 碼，點一下看說明">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">掃描或在 App Store 搜尋<strong>「Left」</strong>。</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 下載 Left" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            下載 iOS 版
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand"><span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正讓每一刻都有意義。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span></div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"到囉。","notYet":"還沒到","futureDate":"這個日期還沒到。","datePassed":"這個日期已經過了。","selectDate":"請選擇有效的日期。","selectBoth":"請選擇兩個日期。","chooseTarget":"請先在上方選擇目標日期。","deadlinePassed":"已超過截止時間","pastDue":"已逾期","deadlineUrgent":"截止時間迫在眉睫","deadlineSoon":"快到截止時間了","deadlineAhead":"離截止時間還早","fastComplete":"斷食完成！","weddingArrived":"這一天到了","weekend":"週末到囉！","itsWeekend":"週末到囉！好好享受吧。","workdayEnded":"今天的工作結束了","workdayEndedHint":"把時間設晚一點，就能重新開始倒數。","upcoming":"接下來：{dates}","since":"自 {date} 起","fastEnds":"斷食結束時間：{date}","sinceJan1":"自 {year} 年 1 月 1 日 0 點起","untilDec31":"到 {year} 年 12 月 31 日 24 點為止","fiscalEnds":"會計年度結束日：{date}","quarterEnds":"本季結束日：{date}","weddingDate":"婚禮日期：{date}","departure":"出發日期：{date}","currentAge":"目前年齡：{years} 歲 {months} 個月 {days} 天","hoursAndMinutes":"{hours} 小時 {minutes} 分鐘","minutesExtra":"多出 {minutes} 分鐘，共 {total} 分鐘","readingDetail":"以每分鐘 {wpm} 字計算，需要 {minutes} 分 {seconds} 秒","workdaysAt":"{days} 個工作天，每天 {hours} 小時","minutesSince":"自 {date} 起共 {minutes} 分鐘","schoolDays":"上課日","weekdaysMinusBreaks":"{weekdays} 個平日減去 {breaks} 天假期","businessAfter":"{date} 之後的第 {count} 個工作天","businessBefore":"{date} 之前的第 {count} 個工作天","futureTime":"這個時間還沒到。","unitEquals":"{amount} {from} 約等於 {value} {to}","invalidTimestamp":"時間戳記無效。","invalidDate":"日期無效。","local":"本地","pregFirst":"懷孕第一期","pregSecond":"懷孕第二期","pregThird":"懷孕第三期","pregWeekDay":"{weeks}週{days}天","dueWas":"預產期是 {date}，恭喜！","yearDays":"{year} 年共 {days} 天","easterDates":"西方教會：{western}；東正教：{orthodox}"},"stat":{"days":"天","hours":"小時","min":"分鐘","sec":"秒","weeks":"週","months":"個月","daysSince":"已過天數","daysUntil":"還有天數","yearAnniversary":"週年","elapsed":"已過","left":"剩餘","daysLeft":"剩餘天數","weeksLeft":"剩餘週數","yearsLeft":"剩餘年數","streakDays":"已完成天數","fullWeeks":"整週數","approxMonths":"約合月數","durationMin":"時長（分鐘）","elapsedMin":"已過分鐘數","minutesLeft":"剩餘分鐘數","currentQuarter":"本季","remaining":"剩餘","daysSober":"戒酒天數","daysToMilestone":"距離下一個里程碑","nextMilestone":"下一個里程碑","daysUntilDeparture":"距離出發天數","tripDays":"旅行天數"},"unit":{"months":{"one":"個月","other":"個月"},"weeks":{"one":"週","other":"週"},"days":{"one":"天","other":"天"},"hours":{"one":"小時","other":"小時"},"minutes":{"one":"分鐘","other":"分鐘"},"seconds":{"one":"秒","other":"秒"},"years":{"one":"年","other":"年"}},"next":{"christmas":"下一個聖誕節：{date}","newYear":"下一個新年：{date}","halloween":"下一個萬聖節：{date}","thanksgiving":"下一個美國感恩節：{date}","valentines":"下一個情人節：{date}","mothersDay":"下一個母親節：{date}","fathersDay":"下一個父親節：{date}","spring":"下一個春分：{date}","summer":"下一個夏至：{date}","fall":"下一個秋分：{date}","winter":"下一個冬至：{date}","westernEaster":"下一個西方復活節：{date}","orthodoxEaster":"下一個東正教復活節：{date}","birthday":"下一個生日：{date}","anniversary":"下一個紀念日：{date}","saturday":"下一個星期六：{date}","birthdayAway":{"one":"下一個生日：{date}（還有 {count} 天）","other":"下一個生日：{date}（還有 {count} 天）"}},"sleep":{"bed9":"9 小時（6 個睡眠週期）","bed75":"7.5 小時（5 個睡眠週期，建議）","bed6":"6 小時（4 個睡眠週期）","bed45":"4.5 小時（3 個睡眠週期）","wake45":"4.5 小時","wake6":"6 小時","wake75":"7.5 小時（建議）","wake9":"9 小時"},"preg":{"weeksPregnant":"週孕期","weeksToGo":"週後預產","daysToGo":"天後預產","dueDate":"預產期：{date}","dueDateTitle":"預產期"},"life":{"mark":"已標記：年齡 {age}，第 {week} 週"},"card":{"handoff":"把連結傳送到你的 iPhone","handoffTitle":"iPhone 版 Left","copied":"連結已拷貝","android":"在用 Android？查看你的選擇","shareText":"{title}：{result}","today":"今天","daysLeft":{"one":"還剩 {count} 天","other":"還剩 {count} 天"},"hoursLeft":{"one":"今天還剩 {count} 小時","other":"今天還剩 {count} 小時"},"yearsLeft":{"one":"還剩 {count} 年","other":"還剩 {count} 年"},"weeksLeft":{"one":"還剩 {count} 週","other":"還剩 {count} 週"}}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+      const ppStr = document.getElementById('wly-strings');
+      function s(key, vars) {
+        const el = ppStr && ppStr.querySelector('[data-s="' + key + '"]');
+        return toolInterpolate(el ? el.textContent.trim() : key, vars);
+      }
+      function ppShare(btn, getUrl, getText) {
+        btn.addEventListener('click', async () => {
+          const url = getUrl();
+          try {
+            if (navigator.share) { await navigator.share({ title: document.title, text: getText(), url }); return; }
+            await navigator.clipboard.writeText(url);
+            const old = btn.textContent;
+            btn.textContent = s('copied');
+            setTimeout(() => { btn.textContent = old; }, 1800);
+          } catch (e) { /* share sheet dismissed */ }
+        });
+      }
+      const label = document.getElementById('wly-label');
+      const result = document.getElementById('wly-result');
+      const sub = document.getElementById('wly-sub');
+      const grid = document.getElementById('wly-grid');
+      const loc = toolFormatLocale();
+      const dec1 = new Intl.NumberFormat(loc, { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      const day0 = d => new Date(d.getFullYear(), d.getMonth(), d.getDate());
+      const isoWeeksIn = y => { const d = new Date(y, 0, 1).getDay(); return d === 4 || (d === 3 && isLeap(y)) ? 53 : 52; };
+  
+      // Days, working days and weekends after `from` up to December 31 of its year.
+      function left(from) {
+        const y = from.getFullYear();
+        let days = 0, work = 0;
+        const weekends = new Set();
+        for (let d = new Date(y, from.getMonth(), from.getDate() + 1); d.getFullYear() === y; d.setDate(d.getDate() + 1)) {
+          days++;
+          const w = d.getDay();
+          if (w === 0 || w === 6) weekends.add(toLocalDateInput(new Date(y, d.getMonth(), d.getDate() - (w === 0 ? 1 : 0))));
+          else work++;
+        }
+        return { days, work, weekends: weekends.size };
+      }
+      const tile = (n, lbl, key) => '<div class="tool-stat' + (key ? ' is-key' : '') + '"><div class="tool-stat-num">' + n + '</div><div class="tool-stat-label">' + toolEscape(lbl) + '</div></div>';
+  
+      function render() {
+        const now = new Date();
+        const today = day0(now);
+        const y = today.getFullYear();
+        const c = left(today);
+        const iw = isoWeek(today), wk = iw.week, iy = iw.year, total = isoWeeksIn(iy);
+        label.textContent = s('week', { week: wk, weeks: total, date: formatDateLong(new Date(y, 11, 31)) });
+        result.innerHTML = '<div class="tool-stat-row">' +
+          tile(dec1.format(c.days / 7), s('weeksLeft'), true) + tile(fmtNum(c.days), s('daysLeft')) +
+          tile(fmtNum(c.work), s('workLeft')) + tile(fmtNum(c.weekends), s('weekendsLeft')) + '</div>';
+        const fw = Math.floor(c.days / 7), rd = c.days % 7;
+        sub.textContent = s('fullWeeks', { weeks: fmtNum(fw), days: fmtNum(rd) + ' ' + toolPlural('unit.days', rd) });
+        let cells = '';
+        for (let i = 1; i <= total; i++) cells += '<i class="' + (i < wk ? 'is-past' : i === wk ? 'is-now' : '') + '"></i>';
+        grid.innerHTML = '<div class="wly-grid-head"><span>' + toolEscape(s('gridHead', { year: iy })) + '</span><span>' + fmtNum(Math.max(0, total - wk)) + ' / ' + total + '</span></div><div class="wly-grid" aria-hidden="true">' + cells + '</div>';
+      }
+  
+      function renderExtras() {
+        const y = new Date().getFullYear();
+        let rows = '';
+        for (let m = 0; m < 12; m++) {
+          const d = new Date(y, m, 1), c = left(d);
+          rows += '<tr><td>' + toolEscape(d.toLocaleDateString(loc, { year: 'numeric', month: 'long', day: 'numeric' })) + '</td><td>' + fmtNum(c.days) + '</td><td>' + dec1.format(c.days / 7) + '</td></tr>';
+        }
+        document.getElementById('wly-table').innerHTML = rows;
+        const list = [];
+        for (let yy = y; list.length < 4; yy++) if (isoWeeksIn(yy) === 53) list.push(yy);
+        document.getElementById('wly-53').textContent = new Intl.ListFormat(loc, { type: 'conjunction' }).format(list.map(String));
+      }
+  
+      ppShare(document.getElementById('wly-share'), () => location.origin + location.pathname,
+        () => s('shareText', { year: new Date().getFullYear(), weeks: result.querySelector('.tool-stat-num').textContent }));
+      renderExtras();
+      tickEvery(60000, render);
+    </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
