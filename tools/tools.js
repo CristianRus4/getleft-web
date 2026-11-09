@@ -368,6 +368,20 @@ const LEFT_TOOL_STRINGS_EN = {
     wake75: '7.5 hrs (recommended)',
     wake9: '9 hrs',
   },
+  // Result card under every tool: widget preview, share, and the link handoff
+  // for visitors who are not on an iPhone.
+  card: {
+    handoff: 'Send the link to your iPhone',
+    handoffTitle: 'Left for iPhone',
+    copied: 'Link copied',
+    android: 'On Android? See your options',
+    shareText: '{title}: {result}',
+    today: 'today',
+    daysLeft: { one: '{count} day left', other: '{count} days left' },
+    hoursLeft: { one: '{count} hour left today', other: '{count} hours left today' },
+    yearsLeft: { one: '{count} year left', other: '{count} years left' },
+    weeksLeft: { one: '{count} week left', other: '{count} weeks left' },
+  },
 };
 
 const LEFT_TOOL_RUNTIME = { lang: null, plural: null, number: null };
@@ -504,4 +518,352 @@ function tickEvery(intervalMs, fn) {
 // Build a Tools index card link.
 function relatedToolsCard(items) {
   return items.map(it => `<a class="tool-related-item" href="/tools/${it.slug}">${it.title}</a>`).join('');
+}
+
+/* ─────────── Result card: widget preview, share, handoff ─────────── */
+// The build (scripts/lib/tool-template.mjs) writes a [data-tool-card] block
+// under every tool's result: a preview of the result as a Left widget, the
+// App Store button and a Share button. Without JavaScript it is a plain
+// App Store link. Pages never need to call anything here; toolPreview() is
+// for pages whose result is not a single number.
+
+function toolIsIOS() {
+  const ua = navigator.userAgent || '';
+  if (/iPhone|iPod|iPad/.test(ua)) return true;
+  return /Macintosh/.test(ua) && (navigator.maxTouchPoints || 0) > 1; // iPadOS asks for desktop pages
+}
+function toolIsAndroid() { return /Android/i.test(navigator.userAgent || ''); }
+
+// GA4 event through the gtag that analytics.js manages (no-op without consent).
+function toolTrack(name, params) {
+  try {
+    if (typeof window.gtag !== 'function') return;
+    window.gtag('event', name, Object.assign({
+      locale: document.documentElement.lang || '',
+      page_path: location.pathname,
+      content_type: 'tool',
+    }, params || {}));
+  } catch { /* analytics is optional */ }
+}
+
+// Set the preview explicitly. Without a call, a "number" preview mirrors the
+// first stat or big number in the result.
+//   toolPreview({ num: '42', label: 'days', title: 'Trip' })  number widget
+//   toolPreview({ lived: 34.2, total: 80 })                     life widget, in years
+//   toolPreview(null)                                           back to automatic
+const LEFT_TOOL_PREVIEW = { data: null, queued: false, keys: new WeakMap() };
+function toolPreview(data) {
+  LEFT_TOOL_PREVIEW.data = data || null;
+  toolPreviewQueue();
+}
+// Number preview for a result that is a date: days until it, or days since.
+function toolPreviewDate(date, title) {
+  if (!(date instanceof Date) || isNaN(date)) { toolPreview(null); return; }
+  const days = Math.round((startOfDay(date) - startOfDay(new Date())) / MS_DAY);
+  toolPreview({
+    num: fmtNum(Math.abs(days)),
+    label: toolT(days < 0 ? 'stat.daysSince' : 'stat.daysUntil'),
+    title,
+  });
+}
+
+function toolPreviewQueue() {
+  if (LEFT_TOOL_PREVIEW.queued) return;
+  LEFT_TOOL_PREVIEW.queued = true;
+  const run = () => { LEFT_TOOL_PREVIEW.queued = false; toolPreviewRender(); };
+  if (typeof requestAnimationFrame === 'function') requestAnimationFrame(run); else setTimeout(run, 16);
+}
+
+function toolCleanText(s) { return String(s == null ? '' : s).replace(/\s+/g, ' ').trim(); }
+
+// { num, label } from the page's own result, or null.
+function toolPreviewFromResult(card) {
+  const widget = card.closest('.tool-widget') || document;
+  const sel = card.getAttribute('data-preview-src');
+  let el = null;
+  if (sel) el = widget.querySelector(sel);
+  else {
+    const result = widget.querySelector('.tool-result');
+    el = (result && result.querySelector('.tool-stat, .tool-result-big')) || widget.querySelector('.tool-stat, .tool-result-big');
+    // A countdown under a day reads "0 days": show the first unit that is not zero.
+    if (el && el.classList.contains('tool-stat')) {
+      const row = Array.from(el.parentNode.querySelectorAll(':scope > .tool-stat'));
+      const nonZero = row.find(s => !/^[\s0.,:]*$/.test((s.querySelector('.tool-stat-num') || s).textContent));
+      if (nonZero) el = nonZero;
+    }
+  }
+  if (!el || card.contains(el)) return null;
+  if (el.classList.contains('tool-stat-num')) el = el.closest('.tool-stat') || el;
+  let num = '', label = '';
+  if (el.classList.contains('tool-stat')) {
+    const n = el.querySelector('.tool-stat-num');
+    const l = el.querySelector('.tool-stat-label');
+    num = n ? n.textContent : el.textContent;
+    label = l ? l.textContent : '';
+  } else {
+    const copy = el.cloneNode(true);
+    copy.querySelectorAll('.tool-result-unit').forEach(u => { label = u.textContent; u.remove(); });
+    num = copy.textContent;
+  }
+  num = toolCleanText(num);
+  if (!num || /^[-–—]+$/.test(num)) return null;
+  return { num, label: toolCleanText(label) };
+}
+
+function toolSetText(root, sel, text) {
+  const el = root.querySelector(sel);
+  if (el && el.textContent !== text) el.textContent = text;
+}
+
+// Dot grid in Left's style: done dots faint, the current one in the accent
+// colour, the rest solid. cols 0 fits the grid to the canvas. Redraws only
+// when the inputs change.
+function toolDrawDots(canvas, total, done, cols) {
+  const w = canvas.clientWidth, h = canvas.clientHeight;
+  if (!w || !h || !canvas.getContext) return;
+  const dark = typeof matchMedia === 'function' && matchMedia('(prefers-color-scheme: dark)').matches;
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const key = [total, Math.floor(done), cols, w, h, dpr, dark].join('|');
+  if (LEFT_TOOL_PREVIEW.keys.get(canvas) === key) return;
+  LEFT_TOOL_PREVIEW.keys.set(canvas, key);
+  canvas.width = Math.round(w * dpr);
+  canvas.height = Math.round(h * dpr);
+  const ctx = canvas.getContext('2d');
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  ctx.clearRect(0, 0, w, h);
+  const ink = getComputedStyle(canvas).color || (dark ? '#F5F5F5' : '#0D0D0D');
+  const accent = (getComputedStyle(document.documentElement).getPropertyValue('--accent') || '').trim() || '#FF4F00';
+  if (!cols) cols = Math.max(1, Math.round(Math.sqrt(total * w / h)));
+  const rows = Math.ceil(total / cols);
+  const cell = Math.min(w / cols, h / rows);
+  const r = Math.max(0.6, cell * 0.34);
+  const ox = (w - cell * cols) / 2, oy = (h - cell * rows) / 2;
+  const current = Math.min(Math.floor(done), total - 1);
+  for (let i = 0; i < total; i++) {
+    const x = ox + (i % cols + 0.5) * cell;
+    const y = oy + (Math.floor(i / cols) + 0.5) * cell;
+    ctx.globalAlpha = i < current ? 0.2 : 1;
+    ctx.fillStyle = i === current ? accent : ink;
+    ctx.beginPath();
+    ctx.arc(x, y, r, 0, Math.PI * 2);
+    ctx.fill();
+  }
+  ctx.globalAlpha = 1;
+}
+
+function toolPreviewRender() {
+  document.querySelectorAll('[data-tool-card]').forEach(card => {
+    const box = card.querySelector('[data-tool-preview]');
+    if (!box) return;
+    const kind = box.getAttribute('data-tool-preview');
+    const canvas = box.querySelector('canvas');
+    const d = LEFT_TOOL_PREVIEW.data;
+    const now = new Date();
+    if (kind === 'year') {
+      const y = now.getFullYear();
+      const total = daysInYear(y);
+      const dayIndex = Math.floor((startOfDay(now) - startOfYear(now)) / MS_DAY + 0.5);
+      toolSetText(box, '[data-preview-title]', String(y));
+      toolSetText(box, '[data-preview-label]', toolPlural('card.daysLeft', total - dayIndex));
+      if (canvas) toolDrawDots(canvas, total, dayIndex, 0);
+      return;
+    }
+    if (kind === 'day') {
+      const hour = now.getHours();
+      toolSetText(box, '[data-preview-label]', toolPlural('card.hoursLeft', 24 - hour));
+      if (canvas) toolDrawDots(canvas, 24, hour, 0);
+      return;
+    }
+    if (kind === 'life') {
+      const total = Math.max(1, Math.round((d && d.total) || 80));
+      const lived = Math.max(0, Math.min(total, (d && d.lived) || 0));
+      if (d && d.weeks) toolSetText(box, '[data-preview-label]', toolPlural('card.weeksLeft', Math.max(0, Math.round(d.weeks))));
+      else toolSetText(box, '[data-preview-label]', toolPlural('card.yearsLeft', Math.max(0, Math.floor(total - lived))));
+      box.classList.toggle('is-empty', !d);
+      if (canvas) toolDrawDots(canvas, total, d ? lived : 0, 0);
+      return;
+    }
+    const v = (d && d.num != null) ? { num: toolCleanText(d.num), label: toolCleanText(d.label) } : toolPreviewFromResult(card);
+    if (d && d.title) toolSetText(box, '[data-preview-title]', toolCleanText(d.title));
+    toolSetText(box, '[data-preview-num]', v ? v.num : '–');
+    toolSetText(box, '[data-preview-label]', v ? v.label : '');
+    box.classList.toggle('is-long', !!v && v.num.length > 6);
+    box.classList.toggle('is-empty', !v);
+  });
+}
+
+// ── Share: the page URL with the current inputs, so the link reopens this result.
+
+function toolStateGroups(widget) {
+  return Array.from(widget.querySelectorAll('.tool-units[id], .tool-toggle[id], .tool-tabs[id], [role="group"][id], [role="tablist"][id]'))
+    .filter(g => !g.closest('[data-tool-card]') && g.querySelector('button'));
+}
+function toolActiveIndex(group) {
+  const btns = Array.from(group.querySelectorAll('button'));
+  return btns.findIndex(b => b.classList.contains('is-active') || b.getAttribute('aria-selected') === 'true' || b.getAttribute('aria-pressed') === 'true');
+}
+function toolStateFields(widget) {
+  return Array.from(widget.querySelectorAll('input[id], select[id], textarea[id]')).filter(el => {
+    if (el.closest('[data-tool-card]')) return false;
+    return !/^(button|submit|reset|file|password|hidden|image)$/i.test(el.type || '');
+  });
+}
+
+function toolStateQuery() {
+  const widget = document.querySelector('.tool-widget');
+  if (!widget) return '';
+  const params = new URLSearchParams();
+  toolStateGroups(widget).forEach(g => {
+    const i = toolActiveIndex(g);
+    if (i >= 0 && i !== g.__leftDefault) params.set(g.id, String(i));
+  });
+  toolStateFields(widget).forEach(el => {
+    if (el.type === 'checkbox' || el.type === 'radio') {
+      if (el.checked !== el.defaultChecked) params.set(el.id, el.checked ? '1' : '0');
+    } else if (el.value !== '') params.set(el.id, el.value);
+  });
+  return params.toString();
+}
+
+function toolRestoreState() {
+  const widget = document.querySelector('.tool-widget');
+  if (!widget) return;
+  toolStateGroups(widget).forEach(g => { g.__leftDefault = toolActiveIndex(g); });
+  let q;
+  try { q = new URLSearchParams(location.search); } catch { return; }
+  let touched = false;
+  toolStateGroups(widget).forEach(g => {
+    if (!q.has(g.id)) return;
+    const b = g.querySelectorAll('button')[parseInt(q.get(g.id), 10)];
+    if (b) { b.click(); touched = true; }
+  });
+  toolStateFields(widget).forEach(el => {
+    if (!q.has(el.id)) return;
+    const value = q.get(el.id);
+    if (el.type === 'checkbox' || el.type === 'radio') el.checked = value === '1';
+    else el.value = value;
+    el.dispatchEvent(new Event('input', { bubbles: true }));
+    el.dispatchEvent(new Event('change', { bubbles: true }));
+    touched = true;
+  });
+  if (touched) {
+    const submit = widget.querySelector('.tool-submit');
+    if (submit) submit.click();
+  }
+}
+
+// The element (or text node) holding a button's visible label.
+function toolLabelNode(btn) {
+  const slot = btn.querySelector('[data-cta-label]');
+  if (slot) return slot;
+  if (!btn.querySelector('svg')) return btn;
+  return Array.from(btn.childNodes).reverse().find(n => n.nodeType === 3 && n.textContent.trim()) || btn;
+}
+
+function toolFlash(btn, text) {
+  const label = toolLabelNode(btn);
+  if (!btn.__leftLabel) btn.__leftLabel = label.textContent;
+  label.textContent = text;
+  clearTimeout(btn.__leftFlash);
+  btn.__leftFlash = setTimeout(() => { label.textContent = btn.__leftLabel; }, 2200);
+}
+
+function toolCopy(text, btn) {
+  const done = () => toolFlash(btn, toolT('card.copied'));
+  const fallback = () => {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.setAttribute('readonly', '');
+    ta.style.cssText = 'position:fixed;top:-1000px;opacity:0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch { /* nothing else to try */ }
+    ta.remove();
+    done();
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(text).then(done, fallback);
+  else fallback();
+}
+
+function toolShareOrCopy(data, btn) {
+  if (navigator.share) {
+    navigator.share(data).catch(e => { if (!e || e.name !== 'AbortError') toolCopy(data.url, btn); });
+  } else toolCopy(data.url, btn);
+}
+
+function toolShareResult(btn) {
+  const qs = toolStateQuery();
+  const url = location.origin + location.pathname + (qs ? '?' + qs : '');
+  const h1 = document.querySelector('.tool-page h1');
+  const title = toolCleanText(h1 ? h1.textContent : document.title);
+  const card = btn.closest('[data-tool-card]');
+  const box = card && card.querySelector('[data-tool-preview]');
+  let result = '';
+  if (box && !box.classList.contains('is-empty')) {
+    const num = box.querySelector('[data-preview-num]');
+    const label = box.querySelector('[data-preview-label]');
+    result = toolCleanText((num ? num.textContent + ' ' : '') + (label ? label.textContent : ''));
+  }
+  toolTrack('share_click', { method: navigator.share ? 'share' : 'copy' });
+  toolShareOrCopy({ title, text: result ? toolT('card.shareText', { title, result }) : title, url }, btn);
+}
+
+// ── Handoff: Left is iPhone-only, so elsewhere the App Store buttons send the
+// link to the visitor's iPhone (share sheet or clipboard) instead of opening a
+// page they cannot install from. Placement "handoff" in analytics and campaigns.
+
+function toolSetupHandoff() {
+  if (toolIsIOS()) return;
+  const label = toolT('card.handoff');
+  document.querySelectorAll('.tool-page a[data-cta="result"], .tool-page a[data-cta="end"]').forEach(a => {
+    const href = (a.getAttribute('href') || '').replace(/(ct=[\w-]*?)-(?:result|end)-/, '$1-handoff-');
+    a.setAttribute('data-cta', 'handoff');
+    a.setAttribute('aria-label', label);
+    const node = toolLabelNode(a);
+    node.textContent = node === a || node.nodeType === 1 ? label : ' ' + label + ' ';
+    a.addEventListener('click', e => {
+      e.preventDefault();
+      toolShareOrCopy({ title: toolT('card.handoffTitle'), url: href }, a);
+    });
+  });
+  if (!toolIsAndroid()) return;
+  document.querySelectorAll('[data-tool-card] .tool-card__body').forEach(body => {
+    if (body.querySelector('.tool-card__alt')) return;
+    const p = document.createElement('p');
+    p.className = 'tool-card__alt';
+    const link = document.createElement('a');
+    link.href = '/android'; // the English page sends visitors on to their language
+    link.textContent = toolT('card.android');
+    p.appendChild(link);
+    body.appendChild(p);
+  });
+}
+
+function toolCardInit() {
+  toolRestoreState();
+  toolSetupHandoff();
+  const cards = document.querySelectorAll('[data-tool-card]');
+  if (!cards.length) return;
+  cards.forEach(card => {
+    const share = card.querySelector('[data-tool-share]');
+    if (share) share.addEventListener('click', () => toolShareResult(share));
+    const widget = card.closest('.tool-widget');
+    if (widget && typeof MutationObserver === 'function') {
+      new MutationObserver(muts => {
+        if (muts.some(m => !card.contains(m.target))) toolPreviewQueue();
+      }).observe(widget, { subtree: true, childList: true, characterData: true });
+    }
+  });
+  setInterval(toolPreviewQueue, 60000);
+  window.addEventListener('resize', toolPreviewQueue, { passive: true });
+  if (typeof matchMedia === 'function') {
+    const mq = matchMedia('(prefers-color-scheme: dark)');
+    if (mq.addEventListener) mq.addEventListener('change', toolPreviewQueue);
+  }
+  toolPreviewRender();
+}
+
+if (typeof document !== 'undefined') {
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', toolCardInit);
+  else setTimeout(toolCardInit, 0);
 }

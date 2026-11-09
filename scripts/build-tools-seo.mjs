@@ -5,6 +5,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { applyToolTemplate } from './lib/tool-template.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..');
@@ -1459,6 +1460,15 @@ async function main() {
     html = normalizeExistingBody(tool.slug, html);
     html = replaceHead(html, merged);
     await fs.writeFile(file, html);
+  }
+
+  // Shared blocks (result card, read more, closing block) on every tool page,
+  // including pages that are not in the lists above yet.
+  for (const file of (await fs.readdir(toolsDir)).filter(f => f.endsWith('.html') && f !== 'index.html')) {
+    const full = path.join(toolsDir, file);
+    const html = await fs.readFile(full, 'utf8');
+    const next = applyToolTemplate(file.replace(/\.html$/, ''), html);
+    if (next !== html) await fs.writeFile(full, next);
   }
 
   await fs.writeFile(path.join(toolsDir, 'index.html'), toolsIndexPage());
