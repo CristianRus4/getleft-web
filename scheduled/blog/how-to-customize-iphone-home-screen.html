@@ -1,0 +1,604 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Customize Your iPhone Home Screen (iOS 26) | Left</title>
+  <meta name="description" content="How to customize your iPhone Home Screen in iOS 26: wallpaper, icon styles, free app placement, hidden pages, widgets, Focus pages and a first page with a purpose." />
+  <link rel="canonical" href="https://getleft.app/blog/how-to-customize-iphone-home-screen" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-customize-iphone-home-screen" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-customize-iphone-home-screen" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Customize Your iPhone Home Screen (iOS 26)" />
+  <meta property="og:description" content="How to customize your iPhone Home Screen in iOS 26: wallpaper, icon styles, free app placement, hidden pages, widgets, Focus pages and a first page with a purpose." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/how-to-customize-iphone-home-screen" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/widgetsmith-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Customize Your iPhone Home Screen (iOS 26)" />
+  <meta name="twitter:description" content="How to customize your iPhone Home Screen in iOS 26: wallpaper, icon styles, free app placement, hidden pages, widgets, Focus pages and a first page with a purpose." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/widgetsmith-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Customize Your iPhone Home Screen in iOS 26",
+  "description": "How to customize your iPhone Home Screen in iOS 26: wallpaper, icon styles, free app placement, hidden pages, widgets, Focus pages and a first page with a purpose.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-customize-iphone-home-screen",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Customize Your iPhone Home Screen in iOS 26",
+      "item": "https://getleft.app/blog/how-to-customize-iphone-home-screen"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I customize my Home Screen on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long-press an empty spot on the Home Screen until the icons jiggle. From there you can move apps anywhere on the grid, add widgets, hide pages, and tap Edit then Customize to change the icon style. Wallpaper is set together with the Lock Screen, from the Lock Screen gallery or Settings."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make my iPhone app icons bigger without names?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long-press the Home Screen, tap Edit, then Customize, and choose the larger icon size. Icons and widgets get bigger and the app names underneath disappear."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I leave empty spaces on my iPhone Home Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In iOS 26 you can drag apps to any cell on the grid and leave gaps around them. Icons still snap to the grid, so you can't place one between two cells."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I hide a Home Screen page on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Long-press the Home Screen, tap the dots above the dock, and uncheck the page you want to hide. Tap Done. Its apps stay installed and the page comes back when you check it again."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do custom icons made with Shortcuts slow down opening apps?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Slightly. A custom icon runs a shortcut, so Shortcuts appears briefly before the app opens, and the icon doesn't show notification badges. It's fine for a few apps but adds up if you replace every icon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is iOS Focus mode the same as Left's Focus timer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Apple's Focus modes are an iOS setting that silences notifications and can switch your Home Screen pages. Left's Focus is a Pomodoro-style timer inside the app and doesn't change your Home Screen layout."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Customize Your iPhone Home Screen in iOS 26</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 11 min read</p>
+<p>You look at your Home Screen dozens of times a day, usually for a second or two on the way to something else. Most people never set it up on purpose. Apps land wherever iOS puts them, page two fills with things you opened once, and the first page ends up as a grid of red badges.</p>
+<p>iOS 26 gives you more control than any version before it: icon styles, apps placed anywhere on the grid, resizable widgets, pages that change with your Focus mode. This guide walks through each of those with concrete steps, then ends with the part most guides skip: deciding what your first page is <em>for</em>.</p>
+<figure class="post-hero"><img src="/images/blog/widgetsmith-alternatives-hero.webp" alt="A sunlit white wall arranged with many small framed prints, pastel artworks and potted plants on slim shelves." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/assorted-color-framed-paintings-on-the-wall-KuudDjBHIlA" rel="noopener">Photo: Jonny Caspari on Unsplash</a></figcaption></figure>
+
+<h2>Before you start: clear the clutter</h2>
+<p>Customizing a crowded Home Screen just gives you a nicer-looking crowd. Spend five minutes trimming first.</p>
+<ol>
+  <li>Long-press an empty spot on the Home Screen until the icons jiggle.</li>
+  <li>For any app you rarely open, tap the minus on its icon and choose <strong>Remove from Home Screen</strong>. The app stays installed and moves to the App Library.</li>
+  <li>Drag the apps you use every day toward the bottom of the screen and into the dock, where your thumb reaches them.</li>
+  <li>Tap <strong>Done</strong>.</li>
+</ol>
+<p>A good test: if you can't say why an app is on the first page, it doesn't need to be there. You can still find it in seconds by swiping down to search or swiping left to the App Library.</p>
+
+<h2>Wallpaper and Lock Screen pairing</h2>
+<p>On iPhone, the Lock Screen and Home Screen wallpapers come as a pair. You set them up together, and you can keep several pairs and switch between them.</p>
+<ol>
+  <li>Long-press the Lock Screen (unlock with Face ID first, but don't swipe up), then tap <strong>Customize</strong>, or <strong>+</strong> to start a new one.</li>
+  <li>Edit the Lock Screen: photo or color, clock style, and widgets under the clock.</li>
+  <li>Choose the Home Screen side of the pair. You can use the same image, a blurred version of it, a plain color or gradient, or a different photo.</li>
+</ol>
+<p>You can also do this from <strong>Settings</strong> &gt; <strong>Wallpaper</strong>.</p>
+<p>A practical tip: the busier your Home Screen, the calmer its wallpaper should be. A detailed photo looks great on the Lock Screen, where only the clock and a few widgets sit on top of it. Behind a full grid of icons, the same photo turns into noise. Blurring the Home Screen side, or using a solid color picked from the photo, keeps the pair matched while letting icons and widgets stay readable.</p>
+<p>If you want your Lock Screen to show something that changes on its own, such as how much of the year has gone, the <a href="/blog/left-wallpaper-guide">Left Wallpaper guide</a> shows how to set a wallpaper that updates itself through the Shortcuts app.</p>
+
+<h2>Change how app icons look</h2>
+<p>iOS lets you restyle every icon and widget on the Home Screen at once.</p>
+<ol>
+  <li>Long-press an empty spot on the Home Screen.</li>
+  <li>Tap <strong>Edit</strong> in the top corner, then <strong>Customize</strong>.</li>
+  <li>Pick a style from the panel at the bottom of the screen.</li>
+</ol>
+<p>The styles:</p>
+<ul>
+  <li><strong>Default:</strong> the colorful icons each app ships with.</li>
+  <li><strong>Dark:</strong> darker icon backgrounds that are easier on the eyes at night. Apps that provide a dark icon use it; others are darkened automatically.</li>
+  <li><strong>Clear:</strong> glass-like icons and widgets that let the wallpaper show through. This is the most striking look in iOS 26, and the one where wallpaper choice matters most.</li>
+  <li><strong>Tinted:</strong> every icon in a single color you choose, with a picker for the hue and its strength.</li>
+</ul>
+<p>Some styles can follow your iPhone's light or dark appearance, or stay fixed in one. The same panel has a size option. The larger setting makes icons and widgets bigger and hides the app names under them, which looks clean and is easier to tap, but only works if you know your apps by their icons. If you use Tinted or Clear, that gets harder, since many icons end up looking alike.</p>
+<p>Widgets follow these styles too. For the steps to make widgets see-through, see <a href="/support/widget-transparent-iphone">how to make widgets transparent</a>.</p>
+
+<h2>Put apps anywhere on the grid</h2>
+<p>For years, iPhone apps filled from the top-left and snapped together. Now you can leave empty space.</p>
+<ol>
+  <li>Long-press an empty spot until the icons jiggle.</li>
+  <li>Drag an app to any free cell on the grid. It stays there, with gaps around it.</li>
+  <li>Tap <strong>Done</strong>.</li>
+</ol>
+<p>Apps still sit on the grid, so you can't place an icon between two cells. But you can now keep the top half of a page empty to show off a wallpaper, line apps up along the bottom edge, or frame a widget with space around it.</p>
+<p>Gaps are useful for more than looks. A Home Screen with a few apps around the bottom and nothing at the top is easier to use one-handed, and it means the first thing your eye lands on is the wallpaper or a widget rather than another icon.</p>
+
+<h2>Hide pages and use the App Library</h2>
+<p>You don't have to delete a Home Screen page to get it out of the way. You can hide it and bring it back later.</p>
+<ol>
+  <li>Long-press an empty spot until the icons jiggle.</li>
+  <li>Tap the row of dots above the dock. iOS shows all your pages side by side.</li>
+  <li>Uncheck a page to hide it. Drag pages to reorder them.</li>
+  <li>Tap <strong>Done</strong>.</li>
+</ol>
+<p>Hidden pages are perfect for seasonal setups (a travel page you only want during trips) or for a cleanup you're not sure about yet.</p>
+<p>The App Library is the last page, past all your Home Screens. It holds every installed app, sorted into automatic categories, with a search field at the top. To stop new apps from landing on your Home Screen, go to <strong>Settings</strong> &gt; <strong>Home Screen &amp; App Library</strong> and choose to keep newly downloaded apps in the App Library only. Once you do, nothing appears on your Home Screen unless you put it there.</p>
+<p>You can also lock an app behind Face ID, or hide it so it only appears in a hidden folder at the bottom of the App Library. Long-press the app icon to find those options.</p>
+
+<h2>Widgets: add, resize, stack and edit</h2>
+<p>Widgets are where the Home Screen goes from a launcher to something that tells you things. The basics:</p>
+<ul>
+  <li><strong>Add one:</strong> long-press an empty spot, tap <strong>Edit</strong>, then <strong>Add Widget</strong>. Search for an app, swipe through its widget sizes, and tap the one you want.</li>
+  <li><strong>Sizes:</strong> small (the space of four app icons), medium (eight), and large (sixteen). In edit mode you can drag a widget's corner handle to change its size, and some app icons can turn into a widget straight from their long-press menu.</li>
+  <li><strong>Stacks:</strong> drag a widget onto another of the same size to stack them. Swipe up or down on the stack to flip between them. One stack of three small widgets uses the space of one.</li>
+  <li><strong>Smart Stack:</strong> a stack that iOS rotates for you, showing what it thinks you need at that time of day. Long-press it and tap <strong>Edit Stack</strong> to reorder widgets or turn off automatic rotation and suggestions.</li>
+  <li><strong>Edit a widget:</strong> long-press it and tap <strong>Edit Widget</strong> to choose what it shows: which countdown, which habit, which city's weather.</li>
+  <li><strong>Interactive widgets:</strong> some widgets have buttons or checkboxes you can tap without opening the app, such as ticking off a to-do, playing a podcast, or logging a habit.</li>
+</ul>
+<p>Our step-by-step guide to <a href="/blog/how-to-add-widgets-iphone">adding widgets on iPhone</a> covers the Lock Screen, StandBy and troubleshooting in more detail.</p>
+<p>Two rules of thumb. First, a Smart Stack is good for things you might want and bad for things you must see; if a widget matters, give it a fixed spot. Second, more than three or four widgets on one page and they stop registering. You end up scrolling past them like a feed.</p>
+
+<h2>Different Home Screens for different Focus modes</h2>
+<p>Apple's Focus modes (Work, Personal, Sleep, Do Not Disturb and any you create) can each show their own Home Screen pages. Turn on Work and your iPhone shows only the work page; turn it off and your regular pages return. This is an iOS feature and has nothing to do with Left's Focus timer, which is a Pomodoro-style timer inside the app.</p>
+<ol>
+  <li>Go to <strong>Settings</strong> &gt; <strong>Focus</strong> and pick a Focus.</li>
+  <li>Find the option to customize screens and choose which Home Screen pages appear while that Focus is on.</li>
+  <li>Optionally, link a Lock Screen to the same Focus from the Lock Screen gallery.</li>
+  <li>Add a schedule so the Focus turns on by itself at set times or places.</li>
+</ol>
+<p>A simple version: a work page with your calendar, mail and the next deadline, and an evening page with books, music and nothing that buzzes. If you want a countdown or habit widget that changes with each Focus, <a href="/support/focus-modes-with-left">this guide to Left widgets per Focus mode</a> walks through it.</p>
+
+<h2>Custom app icons with Shortcuts</h2>
+<p>If the four icon styles aren't enough, you can make an icon from any image using the Shortcuts app.</p>
+<ol>
+  <li>Open Shortcuts, tap <strong>+</strong> to make a new shortcut, and add the <strong>Open App</strong> action.</li>
+  <li>Choose the app you want to open.</li>
+  <li>Use the shortcut's share or details menu to add it to the Home Screen.</li>
+  <li>Give it a name and tap the icon to choose a photo or image as the new icon.</li>
+  <li>Remove the original app icon from the Home Screen so you don't have two.</li>
+</ol>
+<p>The trade-off is real: tapping the custom icon runs a shortcut, so Shortcuts flashes up first before the real app opens. You also lose notification badges on that icon. It's fine for a handful of apps you want to match a theme. For a whole Home Screen, it adds a small delay to every tap, every day. Our <a href="/blog/iphone-aesthetic-widgets-guide">aesthetic Home Screen guide</a> covers themes, color palettes and when they're worth that cost.</p>
+
+<h2>Design your first page around what you want to notice</h2>
+<p>Most Home Screen advice stops at looks. But your first page is the one screen you see every time you unlock your phone, often without meaning to. That makes it valuable space. Instead of asking "what looks good here?", ask "what do I want to notice every day without going looking for it?"</p>
+<p>For most people the answer is a short list:</p>
+<ul>
+  <li><strong>Time:</strong> how much of the day, week or year is left. Not to stress you out, but because time feels endless until you see it.</li>
+  <li><strong>Today's habits:</strong> the two or three things you've decided to do daily, and whether you've done them yet.</li>
+  <li><strong>The next date that matters:</strong> a trip, an exam, a deadline, a birthday.</li>
+  <li><strong>One streak:</strong> something you're quitting or keeping up, counting up by itself.</li>
+</ul>
+<p>Everything else, including most apps, can live on page two or in the App Library. The first page becomes a dashboard you glance at, not a menu you dig through.</p>
+
+<h3>A worked example with Left widgets</h3>
+<p>Here's one way to build that first page with <strong>Left</strong>, an iPhone app for time awareness that shows how much time is left, countdowns, habits and streaks, all with widgets. The layout uses a calm, blurred wallpaper and the Clear or Default icon style.</p>
+<div class="table-wrap"><table><thead><tr><th>Spot on the page</th><th>Widget</th><th>What you notice</th></tr></thead><tbody>
+<tr><td>Top row, left</td><td>Time Left year grid (small)</td><td>How much of the year has gone, one square per day</td></tr>
+<tr><td>Top row, right</td><td>Ahead countdown (small)</td><td>Days until the next date that matters</td></tr>
+<tr><td>Middle</td><td>Habits list (medium)</td><td>Up to 4 of today's habits and which are done</td></tr>
+<tr><td>Above the dock</td><td>Four apps you open daily</td><td>Nothing; they're just within reach</td></tr>
+<tr><td>Dock</td><td>Phone, Messages, Camera, browser</td><td>Nothing; muscle memory</td></tr>
+</tbody></table></div>
+<p>To set it up:</p>
+<ol>
+  <li>In Left, open <strong>Ahead</strong> and add the date you're counting down to. Name it specifically: "Lisbon, May 14" beats "Trip".</li>
+  <li>Open <strong>Since</strong> and add the habits you want on the page, such as "Read 10 pages" or "Stretch for one minute". Type what you want to do to find a template, or tap <strong>Build from scratch</strong>.</li>
+  <li>On the Home Screen, long-press an empty spot, tap <strong>Edit</strong> &gt; <strong>Add Widget</strong>, search for Left, and add a small year grid, a small countdown, and a medium Habits list.</li>
+  <li>Long-press the countdown widget, tap <strong>Edit Widget</strong>, and pick your date.</li>
+  <li>Arrange the widgets at the top and leave a gap between them and the apps below, so each part reads on its own.</li>
+</ol>
+<p>Variations: swap the countdown for a Streak widget if quitting something is your main goal, or for a month or day grid if the year feels too abstract. The <a href="/year-progress-widget">year progress widget</a> page shows the grid styles. For the Lock Screen, add a circular Habits widget under the clock so you can check today's list without unlocking.</p>
+<p>Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get Left's Home Screen widgets</a></p>
+
+<h2>Keep it working after the first week</h2>
+<ul>
+  <li><strong>Change something when you stop seeing it.</strong> A widget you've stopped noticing isn't doing its job. Move it, resize it, or swap it for something new.</li>
+  <li><strong>Retire finished things.</strong> When a countdown ends or a habit sticks, take it off the first page so the next one gets your attention.</li>
+  <li><strong>Turn off badges you don't act on.</strong> In <strong>Settings</strong> &gt; <strong>Notifications</strong>, switch off badges for apps whose red dot you ignore anyway. A calm first page stays calm.</li>
+  <li><strong>Keep one page for one purpose.</strong> If the first page is for noticing, resist adding "just one more" app to it.</li>
+</ul>
+
+<h2>Questions</h2>
+<h3>How do I customize my Home Screen on iPhone?</h3>
+<p>Long-press an empty spot on the Home Screen until the icons jiggle. From there you can move apps anywhere on the grid, add widgets, hide pages, and tap Edit then Customize to change the icon style. Wallpaper is set together with the Lock Screen, from the Lock Screen gallery or Settings.</p>
+<h3>How do I make my iPhone app icons bigger without names?</h3>
+<p>Long-press the Home Screen, tap Edit, then Customize, and choose the larger icon size. Icons and widgets get bigger and the app names underneath disappear.</p>
+<h3>Can I leave empty spaces on my iPhone Home Screen?</h3>
+<p>Yes. In iOS 26 you can drag apps to any cell on the grid and leave gaps around them. Icons still snap to the grid, so you can't place one between two cells.</p>
+<h3>How do I hide a Home Screen page on iPhone?</h3>
+<p>Long-press the Home Screen, tap the dots above the dock, and uncheck the page you want to hide. Tap Done. Its apps stay installed and the page comes back when you check it again.</p>
+<h3>Do custom icons made with Shortcuts slow down opening apps?</h3>
+<p>Slightly. A custom icon runs a shortcut, so Shortcuts appears briefly before the app opens, and the icon doesn't show notification badges. It's fine for a few apps but adds up if you replace every icon.</p>
+<h3>Is iOS Focus mode the same as Left's Focus timer?</h3>
+<p>No. Apple's Focus modes are an iOS setting that silences notifications and can switch your Home Screen pages. Left's Focus is a Pomodoro-style timer inside the app and doesn't change your Home Screen layout.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
