@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Habit Tracker for ADHD: An iPhone Setup That Sticks | Left</title>
+  <meta name="description" content="Why most habit trackers fail people with ADHD, and how to set up a habit tracker for ADHD on iPhone that stays visible, forgives misses and takes one tap." />
+  <link rel="canonical" href="https://getleft.app/blog/habit-tracker-adhd" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/habit-tracker-adhd" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/habit-tracker-adhd" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Habit Tracker for ADHD: An iPhone Setup That Sticks" />
+  <meta property="og:description" content="Why most habit trackers fail people with ADHD, and how to set up a habit tracker for ADHD on iPhone that stays visible, forgives misses and takes one tap." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/habit-tracker-adhd" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/habitify-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Habit Tracker for ADHD: An iPhone Setup That Sticks" />
+  <meta name="twitter:description" content="Why most habit trackers fail people with ADHD, and how to set up a habit tracker for ADHD on iPhone that stays visible, forgives misses and takes one tap." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/habitify-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Habit Tracker for ADHD: How to Set Up One on iPhone That You'll Keep Using",
+  "description": "Why most habit trackers fail people with ADHD, and how to set up a habit tracker for ADHD on iPhone that stays visible, forgives misses and takes one tap.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/habit-tracker-adhd",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Habit Tracker for ADHD: How to Set Up One on iPhone That You'll Keep Using",
+      "item": "https://getleft.app/blog/habit-tracker-adhd"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best habit tracker for ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The best one is the one you can see without opening it and that doesn't punish a missed day. Look for Lock Screen and Home Screen widgets, one-tap logging, persistent reminders and a consistency measure besides the streak. Left, Streaks, HabitKit, Tiimo and Habitica each suit different people."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many habits should I track if I have ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with one, and add a second only after the first has run for about two weeks without much effort. A short list fits on a single widget and is rarely all unchecked, which keeps you opening it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are streaks bad for ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Not always, but a streak alone can backfire because one missed day resets it to zero. Pair it with something more forgiving, like a completion grid or Left's habit strength, and decide in advance that after a miss you simply log the next day."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stop forgetting to log my habits?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put the habit where you already look and make logging one tap. A Home Screen or Lock Screen widget you can tap, a watch complication, or a persistent reminder that stays on screen until you log all close the \"I'll do it later\" gap."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a habit tracker help with ADHD symptoms?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A habit tracker can make routines easier to see and remember, but it is not a treatment for ADHD. If daily tasks stay hard despite a simple setup, talk to a doctor or ADHD specialist."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Habit Tracker for ADHD: How to Set Up One on iPhone That You'll Keep Using</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 10 min read</p>
+<p>The usual story goes like this. You download a habit tracker on a good evening, add eight habits, pick colors, set reminders for each one, and feel briefly organized. Three days later you miss one. A week later the app is in a folder. A month later you download a different one and do it all again.</p>
+<p>If you have ADHD, or just recognize yourself in that loop, the problem usually isn't the habits and it isn't you. Most habit trackers are built for people who already find routine easy: they reward unbroken chains, assume you'll remember to open the app, and front-load all the effort into setup day. This guide covers why that design works against an ADHD brain, what a tracker setup that works with it looks like on iPhone, a few apps worth trying, and a step-by-step setup in Left.</p>
+<figure class="post-hero"><img src="/images/blog/habitify-alternatives-hero.webp" alt="Two open bullet journals on a white table, one with a hand-lettered monthly drinking-tea tracker with circled days, next to a pink highlighter and a cup of tea." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/white-ceramic-teacup-with-beverage-beside-pink-marker-on-pritner-p-pe-A65Gqv38pYo" rel="noopener">Photo: Estée Janssens on Unsplash</a></figcaption></figure>
+<p>One note before we start: this is practical advice about apps and routines, not medical advice. If daily tasks feel impossible no matter what system you use, that's worth raising with a clinician.</p>
+
+<h2>Why most habit trackers fail ADHD brains</h2>
+<p>None of these are character flaws. They're common experiences that a lot of people with ADHD describe, and they collide with how most trackers are designed.</p>
+<h3>The streak punishes one miss</h3>
+<p>A streak counter is a single number that drops to zero the moment you skip a day. Twenty-nine good days and one bad one looks the same as never having started. For anyone prone to all-or-nothing thinking, that zero reads as "I failed," and the easiest way to stop feeling that is to stop opening the app.</p>
+<h3>Too many habits at once</h3>
+<p>Setup day is the most motivated you'll ever be, so it's tempting to track everything: water, reading, flossing, journaling, exercise, bedtime. By day four the list is mostly unchecked, and a screen full of misses is a reason to look away.</p>
+<h3>Out of sight, out of mind</h3>
+<p>If a habit lives inside an app, it exists only when you remember to open that app. Many people with ADHD find that what isn't in front of them effectively doesn't exist. Reminders don't fully fix this: a notification that arrives mid-task gets swiped away, and the habit goes with it.</p>
+<h3>Setup fatigue and fading novelty</h3>
+<p>Apps that ask for categories, icons, colors, goals and notes for every habit burn your energy before you've done anything. And a new app is interesting for a week or two. When the novelty fades, the app needs to keep working without your enthusiasm.</p>
+
+<h2>What an ADHD-friendly habit tracker setup looks like</h2>
+<p>These work in almost any app. Make the tracker do the remembering, and keep the bar low enough that a bad day still counts.</p>
+<h3>1. Track one or two habits, not ten</h3>
+<p>Start with one habit you actually care about. Add a second only after the first has run for a couple of weeks without much effort. A short list fits on one widget, gets checked at a glance, and is rarely all red.</p>
+<h3>2. Set a tiny floor</h3>
+<p>Define each habit by the smallest version that still counts. "Read 1 page," not "read for 30 minutes." "Put on running shoes," not "run 5 km." "Take meds" is already tiny; keep it that way. On good days you'll do more. On bad days the floor keeps the habit alive, and that's what builds it.</p>
+<h3>3. Put it where your eyes already go</h3>
+<p>Your Lock Screen, your Home Screen's first page, your watch face. A widget that shows today's habit, unchecked, is a reminder that never times out. If you can log from the widget itself, even better: seeing it and doing something about it happen in the same second.</p>
+<h3>4. Use reminders that stay</h3>
+<p>Pick reminder times that match real moments ("after I sit down at my desk," "after dinner"), and use more than one if a habit has a long window. For habits you tend to forget late in the day, a persistent reminder that stays on screen until you log is far harder to ignore than a banner.</p>
+<h3>5. Measure consistency, not perfection</h3>
+<p>Look for a tracker that shows something besides the streak: a completion grid, days completed versus missed, or a consistency score. Five days out of seven is a habit taking shape. A measure that reflects that, instead of resetting to zero, keeps a missed day from undoing your motivation. Decide now what you'll do after a miss: nothing special, just log the next one.</p>
+<h3>6. Log with one tap, where you are</h3>
+<p>Every step between doing a habit and recording it is a chance to forget. Logging from a widget, a watch complication or Siri removes the "I'll log it later" gap. If you wear an Apple Watch, a tap on the wrist right after the walk is about as easy as it gets.</p>
+<h3>7. Let someone else see it</h3>
+<p>Many people with ADHD find tasks easier with another person around, which is the idea behind body doubling. A lighter version for habits is letting one friend follow your progress. You don't need anyone to nag you; knowing someone can see the habit is often enough. Keep it to one or two habits, so it stays encouraging rather than stressful.</p>
+
+<h3>The setup at a glance</h3>
+<div class="table-wrap"><table><thead><tr><th>What usually goes wrong</th><th>What to set up instead</th></tr></thead><tbody>
+<tr><td>Eight habits on day one</td><td>One habit, a second after two weeks</td></tr>
+<tr><td>Ambitious targets</td><td>A floor you can hit on your worst day</td></tr>
+<tr><td>Habits hidden inside an app</td><td>A Lock Screen or Home Screen widget, or a watch complication</td></tr>
+<tr><td>One reminder that gets swiped away</td><td>Reminders tied to real moments, plus one that stays on screen</td></tr>
+<tr><td>A streak that resets to zero</td><td>A grid or consistency score that remembers your good days</td></tr>
+<tr><td>Logging "later"</td><td>One tap from a widget, the watch or Siri</td></tr>
+<tr><td>Doing it alone</td><td>One friend who can see one habit</td></tr>
+</tbody></table></div>
+<p>If you want the reward side of this (how to make finishing a habit feel worth it), our <a href="/blog/adhd-reward-system">ADHD reward system guide</a> covers that in depth.</p>
+
+<h2>Habit tracker apps worth trying with ADHD</h2>
+<p>No habit tracker is made for ADHD in a clinical sense, but some fit the principles above better than others. We make Left, so we've put it first. Here's why, and when another app suits you better.</p>
+<ul>
+  <li><strong>Best for visibility and forgiving progress:</strong> Left.</li>
+  <li><strong>Best short daily checklist, paid once:</strong> Streaks.</li>
+  <li><strong>Best for seeing the pattern instead of the streak:</strong> HabitKit.</li>
+  <li><strong>Best for visual daily routines:</strong> Tiimo.</li>
+  <li><strong>Best if a game keeps you coming back:</strong> Habitica.</li>
+</ul>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/left.webp" alt="Left app icon" width="48" height="48" loading="lazy" decoding="async" /><span>1. Left: visible habits that forgive a missed day</span></h2>
+<p>Left is a time awareness app for iPhone with an Apple Watch app. Each habit shows <strong>habit strength</strong>, a consistency measure that is more forgiving than a streak that drops to zero, next to the streak and a completion grid. Widgets put habits on the Home Screen and Lock Screen, and you can log from the widget, the watch or Siri. The setup steps below show how it fits each principle.</p>
+<p><strong>Best for:</strong> people who need habits in view all day and want a missed day to cost less.</p>
+<p><strong>Price:</strong> Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> habit strength alongside streaks; log from a widget, the watch or Siri; persistent reminders; friends who can follow a habit (Left Premium).</p>
+<p><strong>Cons:</strong> only 2 free habits; no streak freeze; needs iOS 26; no Android app.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get the habit tracker</a></p>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/streaks.webp" alt="Streaks app icon" width="48" height="48" loading="lazy" decoding="async" /><span>2. Streaks</span></h2>
+<p>A long-standing iPhone and Apple Watch habit app that deliberately caps how many tasks you can have, which suits the "fewer habits" rule. Habits linked to the Health app can complete themselves.</p>
+<p><strong>Best for:</strong> a short daily checklist without a subscription.</p>
+<p><strong>Pros:</strong> enforced short list; Health auto-completion; polished Watch app.</p>
+<p><strong>Cons:</strong> as the name says, it centers the streak, which can sting after a miss; no free version.</p>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/habit-tracker.webp" alt="HabitKit app icon" width="48" height="48" loading="lazy" decoding="async" /><span>3. HabitKit</span></h2>
+<p>HabitKit shows each habit as a grid of colored squares, one per day, so you see the overall pattern rather than one number. A missed square is just a gap in a mostly filled grid.</p>
+<p><strong>Best for:</strong> people who are motivated by seeing a pattern fill in.</p>
+<p><strong>Pros:</strong> clean, visual, quick to set up.</p>
+<p><strong>Cons:</strong> grids reward the long run, so the first week has little to look at; it shows progress more than it prompts you.</p>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/tiimo.webp" alt="Tiimo app icon" width="48" height="48" loading="lazy" decoding="async" /><span>4. Tiimo</span></h2>
+<p>Tiimo is a visual daily planner designed with neurodivergent people in mind. Routines are laid out as colorful blocks on a timeline, which helps if the hard part is knowing when to start.</p>
+<p><strong>Best for:</strong> building habits into a visual day plan.</p>
+<p><strong>Pros:</strong> built around visual structure; good for routines with several steps.</p>
+<p><strong>Cons:</strong> a planner first, so long-term habit stats aren't its focus; much of it is subscription-based.</p>
+
+<h2>5. Habitica</h2>
+<p>Habitica turns habits and to-dos into a role-playing game: you earn experience and gold for doing things and lose health for skipping them, and you can join a party with friends.</p>
+<p><strong>Best for:</strong> people who stick with games longer than with checklists.</p>
+<p><strong>Pros:</strong> playful; built-in social accountability; available beyond iPhone.</p>
+<p><strong>Cons:</strong> setup is heavy; the game can become the hobby instead of the habit; penalties may feel like the punishing streak in another form.</p>
+<p>For a broader comparison without the ADHD lens, see the <a href="/blog/best-habit-tracker-apps-iphone">best habit tracker apps for iPhone</a>.</p>
+
+<h2>How to set up an ADHD-friendly habit tracker in Left</h2>
+<p>This takes about five minutes. Do it once, then leave the setup alone for two weeks.</p>
+<ol>
+  <li><strong>Pick one habit and its floor.</strong> Write the smallest version: "Read 1 page," "Stretch for one minute," "Take meds."</li>
+  <li><strong>Create it.</strong> Open <strong>Since</strong>, tap <strong>+</strong>, and type the habit to find a ready-made template, or choose <strong>Build from scratch</strong>. Use the floor as the name, so the bar is what you see.</li>
+  <li><strong>Choose a realistic schedule.</strong> Daily habits can run every day, on weekdays, on specific days, or a number of days per week. "4 days a week" leaves room for bad days without counting them as failures.</li>
+  <li><strong>Turn on Get reminders.</strong> Add up to 4 reminders, each with its own days and time. Tie them to moments you already have, like lunch or when you get home.</li>
+  <li><strong>Turn on Get a persistent reminder.</strong> Set <strong>Before what time?</strong> to your real cutoff, such as 10 pm. If the habit still isn't logged, a Live Activity appears an hour before and stays on your Lock Screen.</li>
+  <li><strong>Add the Habit widget.</strong> Put it on your Home Screen's first page in the <strong>Text</strong> layout, so you can tap today's circle to log, and add the Lock Screen rectangular version too. The <a href="/support/widget-iphone-lock-screen">Lock Screen widget guide</a> shows how.</li>
+  <li><strong>Add it to your watch face.</strong> If you wear an Apple Watch, add the <strong>Habit</strong> complication for this habit, so logging is one tap from your wrist.</li>
+  <li><strong>Watch habit strength, not just the streak.</strong> Open the habit after a week and look at habit strength and the completion grid. That's the honest picture of how it's going.</li>
+  <li><strong>Optional: add one friend.</strong> With Left Premium, a friend can follow your habit. <a href="/support/accountability-with-friends">Accountability with friends</a> explains the setup.</li>
+</ol>
+<p>The <a href="/habit-tracker">habit tracker page</a> shows what the widgets look like before you add them.</p>
+
+<h2>A two-week plan that keeps it small</h2>
+<ul>
+  <li><strong>Days 1 to 7:</strong> one habit, the floor only. If you do more, great, but the log counts either way.</li>
+  <li><strong>Day 8:</strong> check habit strength. If it's mostly filled in, keep going. If it's mostly empty, make the floor smaller or move the reminder to a better moment. Don't add anything yet.</li>
+  <li><strong>Day 14:</strong> if the first habit runs without much thought, add a second, set up the same way. If it doesn't, stay with one.</li>
+  <li><strong>Any time it feels like a chore:</strong> archive the habit to pause it instead of deleting it or quitting the app. Archived days count as skipped, and your history stays.</li>
+</ul>
+<p>If your mornings or evenings are where habits fall apart, pair this with a visible sense of time: <a href="/blog/adhd-time-blindness-iphone">ADHD time blindness on iPhone</a> covers widgets that make the day's hours easier to see. And if nothing sticks despite a small, visible setup, that's useful information to bring to a doctor or ADHD specialist, not a sign you need a better app.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best habit tracker for ADHD?</h3>
+<p>The best one is the one you can see without opening it and that doesn't punish a missed day. Look for Lock Screen and Home Screen widgets, one-tap logging, persistent reminders and a consistency measure besides the streak. Left, Streaks, HabitKit, Tiimo and Habitica each suit different people.</p>
+<h3>How many habits should I track if I have ADHD?</h3>
+<p>Start with one, and add a second only after the first has run for about two weeks without much effort. A short list fits on a single widget and is rarely all unchecked, which keeps you opening it.</p>
+<h3>Are streaks bad for ADHD?</h3>
+<p>Not always, but a streak alone can backfire because one missed day resets it to zero. Pair it with something more forgiving, like a completion grid or Left's habit strength, and decide in advance that after a miss you simply log the next day.</p>
+<h3>How do I stop forgetting to log my habits?</h3>
+<p>Put the habit where you already look and make logging one tap. A Home Screen or Lock Screen widget you can tap, a watch complication, or a persistent reminder that stays on screen until you log all close the "I'll do it later" gap.</p>
+<h3>Can a habit tracker help with ADHD symptoms?</h3>
+<p>A habit tracker can make routines easier to see and remember, but it is not a treatment for ADHD. If daily tasks stay hard despite a simple setup, talk to a doctor or ADHD specialist.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

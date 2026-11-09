@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Project Deadline Tracker: See Collisions Early on iPhone | Left</title>
+  <meta name="description" content="A project deadline tracker for people juggling several projects: map 8 weeks of deadlines, spot collisions early, add buffers and keep days left on your iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/project-deadline-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/project-deadline-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/project-deadline-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Project Deadline Tracker: See Collisions Early on iPhone" />
+  <meta property="og:description" content="A project deadline tracker for people juggling several projects: map 8 weeks of deadlines, spot collisions early, add buffers and keep days left on your iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/project-deadline-tracker" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Project Deadline Tracker: See Collisions Early on iPhone" />
+  <meta name="twitter:description" content="A project deadline tracker for people juggling several projects: map 8 weeks of deadlines, spot collisions early, add buffers and keep days left on your iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/project-timeline-visualization-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Project Deadline Tracker: How to See Deadline Collisions Before They Hit, on iPhone",
+  "description": "A project deadline tracker for people juggling several projects: map 8 weeks of deadlines, spot collisions early, add buffers and keep days left on your iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/project-deadline-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Project Deadline Tracker: How to See Deadline Collisions Before They Hit, on iPhone",
+      "item": "https://getleft.app/blog/project-deadline-tracker"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a project deadline tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A project deadline tracker is one place that shows every deadline and milestone across all your projects, so you can see which weeks are overloaded. It can be a list on paper, a project management tool or a countdown app on your phone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track deadlines for several projects at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put every deadline and milestone from every project on one list of the next 6 to 8 weeks, one row per week. Count the items in each week, and treat any week with a fixed deadline plus another milestone as a collision to fix early."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How much buffer should I add before a deadline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Set your own target a few working days before the real deadline, and give each project its own buffer. Projects with outside dependencies, such as client feedback, need more."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When should I ask to move a deadline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "As soon as you see a collision, ideally weeks ahead rather than days. Name the deliverable, propose one specific new date, give a one-line reason and offer something now, such as a partial version."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left a project management app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Left has no tasks assigned to people, no dependencies and no Gantt charts. It works as a personal layer next to a project management tool and a calendar, keeping each deadline visible as days left in widgets, a Live Activity and on Apple Watch."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Project Deadline Tracker: How to See Deadline Collisions Before They Hit, on iPhone</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 8 min read</p>
+<p>If you run one project, tracking its deadline is easy. You know the date, you work toward it, you hit it or you don't. The trouble starts with three or four projects at once. Each deadline looks fine on its own. Then two of them land in the same week, a third has a milestone due the Monday after, and suddenly nothing is fine.</p>
+<p>That's the real risk when you juggle projects: not one deadline, but deadlines bunching up. A useful project deadline tracker is built to show you the bunching weeks in advance, while you can still move things. This guide covers the map, a ten-minute weekly review, asking for more time, and which tools fit which job, including the iPhone app we make.</p>
+<figure class="post-hero"><img src="/images/blog/project-timeline-visualization-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/opened-planner-page-NzOQdPFVdIA" rel="noopener">Jessica Lewis / Unsplash</a></figcaption></figure>
+
+<h2>Why several fine deadlines add up to a bad week</h2>
+<p>Most tools show deadlines one project at a time. The client project lives in one board, the internal report in another, the side project in your head. Each one gets planned as if it were the only thing you're doing.</p>
+<p>Work also doesn't spread evenly. Most of the effort lands in the week or two before a deadline, whatever the plan said. So the load you feel isn't the date itself but its shadow, the stretch just before it. Two deadlines ten days apart can still cast overlapping shadows.</p>
+<p>The fix is to put every deadline, from every project, on one line.</p>
+
+<h2>Build a deadline map for the next 8 weeks</h2>
+<p>A deadline map is a list of the next 6 to 8 weeks, one row per week, with every deadline and milestone written in the week it falls. Paper or a phone note is fine.</p>
+<ol>
+  <li>List every active project, work and personal.</li>
+  <li>For each one, write the final deadline and 2 to 4 milestones before it.</li>
+  <li>Put each item in its week. Mark anything with a fixed external date (a launch, a filing, a talk) so you know it can't move.</li>
+  <li>Count the items per week.</li>
+</ol>
+<p>Here's a map for someone running four projects: a client website relaunch, a quarterly board report, a grant application and a conference talk.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Week</th><th>Due</th><th>Items</th></tr></thead>
+  <tbody>
+    <tr><td>1</td><td>Nothing</td><td>0</td></tr>
+    <tr><td>2</td><td>Website: design sign-off</td><td>1</td></tr>
+    <tr><td>3</td><td>Report: data pulled. Grant: budget drafted</td><td>2</td></tr>
+    <tr><td>4</td><td>Website: content in. Report: first draft. Talk: outline</td><td>3</td></tr>
+    <tr><td>5</td><td>Report: final (fixed). Grant: narrative draft</td><td>2</td></tr>
+    <tr><td>6</td><td>Website: staging review. Grant: submit (fixed). Talk: slides</td><td>3</td></tr>
+    <tr><td>7</td><td>Website: launch (fixed). Talk: rehearsal</td><td>2</td></tr>
+    <tr><td>8</td><td>Talk: on stage (fixed)</td><td>1</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Every single deadline here is reasonable. Weeks 4 through 7 are not. Meanwhile week 1 is empty, and empty weeks vanish into email.</p>
+<p>For Gantt-style and calendar layouts, see the <a href="/blog/project-timeline-visualization">project timeline visualization</a> guide. For deadlines alone, the weekly list is enough.</p>
+
+<h2>Spot collisions while they're still cheap</h2>
+<p>A collision is any week with a fixed deadline plus another real milestone, or three items of any kind. In the map above, weeks 4 and 6 are collisions, and week 5 is close.</p>
+<p>You have three ways to fix one, roughly in order of preference:</p>
+<ul>
+  <li><strong>Pull work forward.</strong> Move milestones into the empty weeks. The talk outline can happen in week 1. The grant budget can move to week 2.</li>
+  <li><strong>Cut scope.</strong> Does the board report need a new section this quarter, or can it reuse last quarter's structure?</li>
+  <li><strong>Move a deadline.</strong> Only the ones that aren't fixed, and only early. More on that below.</li>
+</ul>
+<p>The earlier you see a collision, the more of these options you have. Six weeks out, all three work. Three days out, you're left with long evenings.</p>
+
+<h2>Treat milestones as mini-deadlines</h2>
+<p>A project with only a final date gives you one warning, and it comes too late. Milestones give you earlier warnings. If the staging review slips in week 6, you know the launch in week 7 is at risk while there's still a week to react.</p>
+<p>Good milestones are finished things, not activities. "Content in" is a milestone. "Work on content" isn't, because you can never tell whether it's done. Two to four per project is plenty.</p>
+
+<h2>Put buffers where they protect you</h2>
+<p>Keep two dates for anything that matters: the real deadline and your own, a few working days earlier. You aim for your own date. The gap between the two is the buffer, and it absorbs the sick day, the late feedback, the file that won't export.</p>
+<p>Give each project its own buffer rather than one shared cushion at the end of the month. Shared buffers get used by whichever project complains first. Count the buffer in working days, not calendar days, because a weekend in the middle is not three days of slack. The <a href="/tools/business-days-calculator">business days calculator</a> does that arithmetic.</p>
+
+<h2>Days left beats dates for urgency</h2>
+<p>Dates are good for planning and for talking to other people: "We launch on the 14th." They're bad at creating urgency, because "the 14th" asks you to do mental math every time you see it.</p>
+<p>"23 days left" doesn't. And "16 working days left" is even more honest. Keep dates in your plan and your calendar, and put days left wherever you look during the day. The <a href="/tools/deadline-countdown-calculator">deadline countdown calculator</a> gives you both numbers for any date.</p>
+
+<h2>The 10-minute weekly deadline review</h2>
+<p>Same time every week, such as Friday after lunch.</p>
+<ol>
+  <li><strong>Minutes 1 to 3: add anything new.</strong> New projects, new dates someone mentioned in a meeting, milestones you forgot.</li>
+  <li><strong>Minutes 4 to 6: check the next 3 weeks.</strong> Count items per week. Mark any collision.</li>
+  <li><strong>Minutes 7 to 8: check milestones due this week.</strong> Done, on track or slipping. A slipping milestone is your early warning.</li>
+  <li><strong>Minutes 9 to 10: decide one fix.</strong> Pull something forward, cut something, or write the email asking to move a date.</li>
+</ol>
+<p>This review is about dates only. For the wider weekly routine across several projects (priorities, next actions, a daily reset), see <a href="/blog/keep-track-multiple-projects">how to keep track of multiple projects</a>.</p>
+
+<h2>How to renegotiate a deadline early</h2>
+<p>Asking for more time two weeks out is a scheduling conversation. Asking the day before is an apology. Most people would rather hear early.</p>
+<p>Keep the message short and give the other person something to say yes to:</p>
+<ul>
+  <li><strong>What:</strong> which deliverable.</li>
+  <li><strong>New date:</strong> one specific date, not "a bit later".</li>
+  <li><strong>Why, in one line:</strong> "It lands the same week as the grant submission."</li>
+  <li><strong>What they get now:</strong> a partial version, an earlier review, or a firm commitment to the new date.</li>
+</ul>
+<p>For example: "The staging review is due the 3rd, the same week as a fixed grant submission. Could we move it to the 7th? I can send the homepage and pricing pages on the 3rd so you can start reviewing." Then update your map the moment they reply.</p>
+
+<h2>Which tool fits which job</h2>
+<p>No single app does all of this well. Three layers cover it:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Situation</th><th>Tool</th><th>Why</th></tr></thead>
+  <tbody>
+    <tr><td>Team projects with shared tasks</td><td>A project management tool (Asana, Trello, Notion-style boards)</td><td>Tasks assigned to people, dependencies, comments, timelines.</td></tr>
+    <tr><td>Fixed dates and meetings</td><td>Your calendar</td><td>Launches, reviews and talks happen at a time and place.</td></tr>
+    <tr><td>Seeing every deadline at a glance</td><td>A personal layer on your phone</td><td>Days left for each deadline on screens you already look at, across all projects.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Neither a project tool nor a calendar shows you, at a glance, that three projects peak in the same fortnight. The personal layer does.</p>
+
+<h2>Left as your personal deadline layer</h2>
+<p>We make Left, an iPhone app for time awareness, so take this section with that in mind. Left is not a project management tool. It has no tasks assigned to people, no dependencies and no Gantt charts. What it does well is keep every deadline you care about visible as days left.</p>
+<ol>
+  <li><strong>Add one Ahead countdown per deadline.</strong> In <strong>Ahead</strong>, tap <strong>+</strong> and set the date: "Website launch", "Board report", "Grant submission". Use the date you're aiming for, buffer included.</li>
+  <li><strong>Add milestones as todos.</strong> Each Ahead item has notes and todos. Put the milestones in as todos ("Content in, week 4") and keep the brief or contact details in the notes.</li>
+  <li><strong>Order the list.</strong> Sort Ahead by <strong>Closest</strong> so the nearest deadline sits on top, or long press an item, tap <strong>Reorganise items</strong> and drag them into the order you want.</li>
+  <li><strong>Put countdowns on your screens.</strong> Add Ahead countdown widgets to the Home Screen and Lock Screen, so two or three deadlines show their days left every time you pick up your phone. The <a href="/countdown-widget">countdown widget</a> page shows the styles.</li>
+  <li><strong>Turn on Get ready for the start.</strong> In the hours before a deadline, a Live Activity shows the time left on your Lock Screen and in the Dynamic Island.</li>
+  <li><strong>Check from your wrist.</strong> The Apple Watch app has an Ahead screen, and the Ahead complication puts a countdown on your watch face.</li>
+</ol>
+<p>Three Left Premium features help with the work itself. <strong>Planner</strong> shows today's calendar events, reminders and habits together, so today's review meeting sits next to the task you scheduled for it. <strong>Focus</strong> is a Pomodoro-style timer for the deep work sessions that milestones need. And <strong>Joint Ahead</strong> lets you share a date with a friend or colleague, so a launch day shows on both of your phones.</p>
+<p>Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy. With four projects, you'd need Premium to give each its own countdown.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Track your deadlines on iPhone</a></p>
+
+<h2>Questions</h2>
+<h3>What is a project deadline tracker?</h3>
+<p>A project deadline tracker is one place that shows every deadline and milestone across all your projects, so you can see which weeks are overloaded. It can be a list on paper, a project management tool or a countdown app on your phone.</p>
+<h3>How do I track deadlines for several projects at once?</h3>
+<p>Put every deadline and milestone from every project on one list of the next 6 to 8 weeks, one row per week. Count the items in each week, and treat any week with a fixed deadline plus another milestone as a collision to fix early.</p>
+<h3>How much buffer should I add before a deadline?</h3>
+<p>Set your own target a few working days before the real deadline, and give each project its own buffer. Projects with outside dependencies, such as client feedback, need more.</p>
+<h3>When should I ask to move a deadline?</h3>
+<p>As soon as you see a collision, ideally weeks ahead rather than days. Name the deliverable, propose one specific new date, give a one-line reason and offer something now, such as a partial version.</p>
+<h3>Is Left a project management app?</h3>
+<p>No. Left has no tasks assigned to people, no dependencies and no Gantt charts. It works as a personal layer next to a project management tool and a calendar, keeping each deadline visible as days left in widgets, a Live Activity and on Apple Watch.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

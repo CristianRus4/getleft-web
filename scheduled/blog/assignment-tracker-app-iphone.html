@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Assignment Tracker for Students: iPhone Setup That Works | Left</title>
+  <meta name="description" content="An assignment tracker for students that works backward from due dates: start-by dates, checkpoints, a weekly review, and the iPhone apps to run it with." />
+  <link rel="canonical" href="https://getleft.app/blog/assignment-tracker-app-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/assignment-tracker-app-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/assignment-tracker-app-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Assignment Tracker for Students: iPhone Setup That Works" />
+  <meta property="og:description" content="An assignment tracker for students that works backward from due dates: start-by dates, checkpoints, a weekly review, and the iPhone apps to run it with." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/assignment-tracker-app-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/time-management-tips-students-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Assignment Tracker for Students: iPhone Setup That Works" />
+  <meta name="twitter:description" content="An assignment tracker for students that works backward from due dates: start-by dates, checkpoints, a weekly review, and the iPhone apps to run it with." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/time-management-tips-students-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Assignment Tracker for Students: An iPhone Setup That Gets Work Started on Time",
+  "description": "An assignment tracker for students that works backward from due dates: start-by dates, checkpoints, a weekly review, and the iPhone apps to run it with.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/assignment-tracker-app-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Assignment Tracker for Students: An iPhone Setup That Gets Work Started on Time",
+      "item": "https://getleft.app/blog/assignment-tracker-app-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best assignment tracker for students on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The best setup is usually two apps: one capture list for every assignment, such as Apple Reminders or a student planner like My Study Life, and a countdown app such as Left for the big items. The capture list holds the details; the countdowns keep days left visible so you start on time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know when to start an assignment?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Work backward from the due date. Subtract the number of days the work will take, then subtract a buffer of about a third of that, and never less than one day. The result is your start-by date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I split big assignments into smaller tasks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Anything that needs more than about three days of work should have dated checkpoints, such as outline, draft and edit. Checkpoints make it easier to start and show you early if you're falling behind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Apple Reminders work as an assignment tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, for capturing assignments. Make a list per course, add due dates and times, and use subtasks for checkpoints. It shows due dates rather than days left, so add a second reminder on each start-by date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left a full student planner?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Left has no class timetable or grades. It handles countdowns to big assignments and exams, with checkpoints as todos, plus a daily study habit, and works best next to Reminders or a student planner."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Assignment Tracker for Students: An iPhone Setup That Gets Work Started on Time</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 7 min read</p>
+<p>Most students know when their assignments are due. The syllabus says so, the course page says so, and a planner app will happily list every date for you. Assignments still end up written the night before.</p>
+<p>The due date isn't the problem. The gap between "assigned" and "due" is. Three weeks feels like plenty, so nothing happens in week one, a little happens in week two, and week three turns into a scramble. A good assignment tracker is built around that gap: how many days are left, and when you need to start. This guide shows how to set one up on your iPhone, with or without the app we make.</p>
+<figure class="post-hero"><img src="/images/blog/time-management-tips-students-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://www.pexels.com/photo/open-books-lying-on-desk-9871139/" rel="noopener">Ron Lach / Pexels</a></figcaption></figure>
+
+<h2>Why a list of due dates isn't enough</h2>
+<p>A due-date list treats a 10-question problem set and a 3,000-word research paper the same way: one line, one date. Sorted by due date, the problem set sits at the top and the paper waits below it, even when the paper needs starting first.</p>
+<p>It also hides time. "Due Dec 4" is a fact you have to do math on. "17 days left" is something you feel. And people routinely underestimate how long work takes (psychologists call it the planning fallacy), so the date you think you can start is usually too late.</p>
+<p>The fix is to track one extra date per assignment: the day you have to start.</p>
+
+<h2>What to capture for each assignment</h2>
+<p>Keep it to five fields. Anything more and you'll stop filling them in.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Field</th><th>Example</th><th>Why it matters</th></tr></thead>
+  <tbody>
+    <tr><td>Course</td><td>History 201</td><td>Lets you see which class is crowding your week.</td></tr>
+    <tr><td>Due date and time</td><td>Friday the 28th, 11:59 pm</td><td>The hard edge. Note the time: "Friday" might mean 9 am.</td></tr>
+    <tr><td>Size</td><td>7 work days</td><td>Your honest estimate of how many study days it needs.</td></tr>
+    <tr><td>Start-by date</td><td>The 18th</td><td>The date that actually drives your plan.</td></tr>
+    <tr><td>Checkpoints</td><td>Outline, draft, edit</td><td>Only for big assignments. Turns one deadline into several small ones.</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Work backward: the start-by date</h2>
+<p>The formula is simple:</p>
+<p><strong>Start by = due date − work days − buffer</strong></p>
+<p>Work days are the days you'll actually spend on it at your normal pace, not hours. Buffer is for everything you didn't plan: a busy week in another class, a cold, a source that takes longer to find. A good default is about a third of the work days, and never less than one day. If you've missed deadlines before, use more.</p>
+<p>Here's one month with four assignments:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Assignment</th><th>Due</th><th>Work days</th><th>Buffer</th><th>Start by</th></tr></thead>
+  <tbody>
+    <tr><td>Calculus problem set</td><td>12th</td><td>2</td><td>1</td><td>9th</td></tr>
+    <tr><td>Biology lab report</td><td>20th</td><td>4</td><td>2</td><td>14th</td></tr>
+    <tr><td>History essay, 2,000 words</td><td>28th</td><td>7</td><td>3</td><td>18th</td></tr>
+    <tr><td>Psychology final exam</td><td>30th</td><td>10</td><td>3</td><td>17th</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Sorted by due date, the exam comes last. Sorted by start-by date, it comes before the essay. That reordering is the whole point of working backward. To count days that skip weekends, the <a href="/tools/school-days-calculator">school days calculator</a> does the arithmetic.</p>
+
+<h2>Split big assignments into checkpoints</h2>
+<p>Anything with more than three work days gets checkpoints: small, dated pieces you can finish in one sitting. The history essay above, started on the 18th, might look like this:</p>
+<ul>
+  <li><strong>20th:</strong> topic and thesis sentence.</li>
+  <li><strong>22nd:</strong> sources found, outline done.</li>
+  <li><strong>25th:</strong> rough first draft, however bad.</li>
+  <li><strong>27th:</strong> edited and submitted, a day early.</li>
+</ul>
+<p>Checkpoints do two things. They make starting easier, because "write a thesis sentence" is less scary than "write an essay". And they tell you early when you're behind. Missing the outline on the 22nd is a warning you can still act on.</p>
+
+<h2>A simple assignment system</h2>
+<p>Four parts. None of them needs a special app.</p>
+<ol>
+  <li><strong>One capture place.</strong> Every assignment goes into the same list the moment it's announced, with the five fields above. Not a screenshot, not the course page, not your memory.</li>
+  <li><strong>Countdowns for the big items.</strong> Papers, projects and exams get a visible countdown, so "days left" is in front of you without opening anything. Small homework doesn't need one.</li>
+  <li><strong>A weekly review, Sunday, 15 minutes.</strong> Add anything new. Set start-by dates. Check which items start this week and which checkpoints are due. If two big things overlap, move a start date earlier now, not later.</li>
+  <li><strong>A daily study habit.</strong> A fixed block, such as "Study 45 minutes after class" on weekdays. The system tells you what to work on; the habit makes sure you sit down. For more on structuring the week, see these <a href="/blog/time-management-tips-students">time management tips for students</a>.</li>
+</ol>
+
+<h2>Apps for an assignment tracker on iPhone</h2>
+<p>We make Left, so we've put it first. Here's why, and when another app suits you better. In short:</p>
+<ul>
+  <li><strong>Best for seeing days left and starting on time:</strong> Left.</li>
+  <li><strong>Best free capture list, already on your phone:</strong> Apple Reminders.</li>
+  <li><strong>Best for a full class timetable with homework and exams:</strong> My Study Life.</li>
+  <li><strong>Best if you also want grades and GPA:</strong> Power Planner.</li>
+</ul>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/left.webp" alt="Left app icon" width="48" height="48" loading="lazy" decoding="async" /><span>1. Left: countdowns and a study habit</span></h2>
+<p>Left is an iPhone app for time awareness. For assignments, its <strong>Ahead</strong> countdowns cover the big items and <strong>Since</strong> covers the daily study habit.</p>
+<p><strong>Best for:</strong> students who know their due dates but keep starting too late.</p>
+<p><strong>Pros:</strong> countdown widgets on the Home Screen and Lock Screen; notes and todos on each countdown for checkpoints; a Live Activity in the last 4 hours before a deadline; a study habit with streaks and reminders.</p>
+<p><strong>Cons:</strong> not a full assignment manager. No course timetable, no grades, no list of every small homework item. The free plan includes 2 countdowns, so tracking more big assignments at once needs Left Premium.</p>
+
+<h2>2. Apple Reminders: the built-in capture list</h2>
+<p>Reminders comes with your iPhone and does the capture job well. Make a list per course, give each assignment a due date and time, and add subtasks for checkpoints.</p>
+<p><strong>Best for:</strong> the one place every assignment goes in.</p>
+<p><strong>Pros:</strong> free, already installed, syncs through iCloud, works with Siri and has widgets.</p>
+<p><strong>Cons:</strong> it shows due dates, not how many days are left, and it has no idea when you should start unless you add a separate start reminder yourself.</p>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/my-study-life.webp" alt="My Study Life app icon" width="48" height="48" loading="lazy" decoding="async" /><span>3. My Study Life: an all-in-one student planner</span></h2>
+<p>A planner built for school: your class timetable, homework and exams in one app.</p>
+<p><strong>Best for:</strong> students who want the whole semester, classes included, in one place.</p>
+<p><strong>Pros:</strong> designed around how school actually works, so courses, classes and tasks connect.</p>
+<p><strong>Cons:</strong> like most planners, it's organized around due dates; the working-backward part is still on you. Setting up a full timetable takes time.</p>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/power-planner.webp" alt="Power Planner app icon" width="48" height="48" loading="lazy" decoding="async" /><span>4. Power Planner: homework next to grades</span></h2>
+<p>A student planner that keeps homework and exams alongside grades and GPA.</p>
+<p><strong>Best for:</strong> students who want to see how each assignment affects their grade.</p>
+<p><strong>Pros:</strong> grades and assignments in one app, so you can see which work matters most.</p>
+<p><strong>Cons:</strong> more than you need if you only want to start on time, and it's still built around due dates rather than start dates.</p>
+
+<h2>Which one should you pick?</h2>
+<p>Use two, not five. A capture app (Reminders or a student planner) holds every assignment. Left sits on top for the handful of big ones, keeping their days left on your screens and the study habit going. If you don't want another app, Reminders alone works: add a second reminder on each start-by date.</p>
+
+<h2>Set it up in Left</h2>
+<ol>
+  <li><strong>Add each big assignment to Ahead.</strong> Tap <strong>+</strong> in Ahead and set the due date, such as "History essay". Do the same for exams. The <a href="/blog/best-exam-countdown-apps-iphone">exam countdown apps</a> roundup covers exams in more detail.</li>
+  <li><strong>Add checkpoints as todos.</strong> On the Ahead item, add a todo for each checkpoint ("Thesis by the 20th") and use notes for the brief, word count or rubric link.</li>
+  <li><strong>Put the countdown on your screens.</strong> Add an Ahead widget to the Home Screen or Lock Screen, so "17 days left" is visible every time you pick up your phone. The <a href="/countdown-widget">countdown widget</a> page shows the styles.</li>
+  <li><strong>Turn on Get ready for the start.</strong> In the hours before the deadline, a Live Activity shows the time left on your Lock Screen and in the Dynamic Island. Useful for 11:59 pm submissions.</li>
+  <li><strong>Create a study habit in Since.</strong> "Study 45 minutes", on weekdays, or a weekly habit like "Study session, 5 times a week" if your schedule moves around. Add a reminder at the time you usually sit down.</li>
+</ol>
+<p>With Left Premium, two more features help. <strong>Planner</strong> shows today's calendar events, reminders and habits together, so assignments you keep in Reminders appear next to your classes and your study habit. <strong>Focus</strong> is a Pomodoro-style timer for the study sessions themselves.</p>
+<p>Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Count down to your deadlines</a></p>
+<p>If starting is the hard part for you, the <a href="/blog/adhd-students-study-tools-iphone">study tools for students with ADHD</a> guide has more on breaking work into first steps.</p>
+
+<h2>Questions</h2>
+<h3>What is the best assignment tracker for students on iPhone?</h3>
+<p>The best setup is usually two apps: one capture list for every assignment, such as Apple Reminders or a student planner like My Study Life, and a countdown app such as Left for the big items. The capture list holds the details; the countdowns keep days left visible so you start on time.</p>
+<h3>How do I know when to start an assignment?</h3>
+<p>Work backward from the due date. Subtract the number of days the work will take, then subtract a buffer of about a third of that, and never less than one day. The result is your start-by date.</p>
+<h3>Should I split big assignments into smaller tasks?</h3>
+<p>Yes. Anything that needs more than about three days of work should have dated checkpoints, such as outline, draft and edit. Checkpoints make it easier to start and show you early if you're falling behind.</p>
+<h3>Can Apple Reminders work as an assignment tracker?</h3>
+<p>Yes, for capturing assignments. Make a list per course, add due dates and times, and use subtasks for checkpoints. It shows due dates rather than days left, so add a second reminder on each start-by date.</p>
+<h3>Is Left a full student planner?</h3>
+<p>No. Left has no class timetable or grades. It handles countdowns to big assignments and exams, with checkpoints as todos, plus a daily study habit, and works best next to Reminders or a student planner.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
