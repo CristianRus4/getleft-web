@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>How Many Weeks Until Memorial Day? Live Countdown | Left</title>
+  <meta name="description" content="How many weeks until Memorial Day? A live countdown in weeks and days to the last Monday of May, with Memorial Day dates for the next five years." />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/tools/weeks-until-memorial-day" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/weeks-until-memorial-day" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/weeks-until-memorial-day" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="How Many Weeks Until Memorial Day? Live Countdown" />
+  <meta property="og:description" content="How many weeks until Memorial Day? A live countdown in weeks and days to the last Monday of May, with Memorial Day dates for the next five years." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/tools/weeks-until-memorial-day" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How Many Weeks Until Memorial Day? Live Countdown" />
+  <meta name="twitter:description" content="How many weeks until Memorial Day? A live countdown in weeks and days to the last Monday of May, with Memorial Day dates for the next five years." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <link rel="stylesheet" href="/tools/seasonal.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "How Many Weeks Until Memorial Day? Live Countdown",
+  "url": "https://getleft.app/tools/weeks-until-memorial-day",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "How many weeks until Memorial Day? A live countdown in weeks and days to the last Monday of May, with Memorial Day dates for the next five years.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Weeks until Memorial Day",
+      "item": "https://getleft.app/tools/weeks-until-memorial-day"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-en&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>How many weeks until Memorial Day?</h1>
+    <p class="tool-lede">A live countdown in weeks and days to Memorial Day, the last Monday of May.</p>
+
+    <div class="tool-widget sx-widget">
+      <p class="sx-when" id="md-when">Memorial Day 2027 is Monday, May 31, 2027.</p>
+      <div class="tool-result" id="md-result" aria-live="polite"></div>
+      <div class="sx-second"><span id="md-second-label">Weeks and days</span><strong id="md-second"></strong></div>
+      <div class="tool-units" id="md-units" role="group" aria-label="Display unit">
+        <button type="button" data-unit="weeks" class="is-active" aria-pressed="true">Weeks</button>
+        <button type="button" data-unit="days" aria-pressed="false">Days</button>
+        <button type="button" data-unit="all" aria-pressed="false">Days · Hours · Min · Sec</button>
+        <button type="button" data-unit="hours" aria-pressed="false">Hours</button>
+        <button type="button" data-unit="minutes" aria-pressed="false">Minutes</button>
+        <button type="button" data-unit="seconds" aria-pressed="false">Seconds</button>
+      </div>
+      <div class="sx-cta">
+        <div class="sx-preview" aria-hidden="true">
+          <span class="sx-preview__title">Memorial Day</span>
+          <span class="sx-preview__bottom"><span class="sx-preview__num" data-sx-num>&nbsp;</span> <span class="sx-preview__unit" data-sx-unit>&nbsp;</span><span class="sx-preview__date" data-sx-date>&nbsp;</span></span>
+        </div>
+        <div class="sx-cta__actions">
+          <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-en&amp;mt=8" target="_blank" rel="noopener">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span>Put the Memorial Day countdown on your Home Screen</span>
+          </a>
+          <button type="button" class="sx-share" data-sx-share>Share</button>
+        </div>
+      </div>
+      <p class="sx-list-title">The US summer holidays</p>
+      <div class="sx-list" id="md-summer">
+        <div class="sx-row" data-holiday="memorial"><span>Memorial Day</span><span></span><span></span></div>
+        <div class="sx-row" data-holiday="july4"><span>Independence Day</span><span></span><span></span></div>
+        <div class="sx-row" data-holiday="labor"><span>Labor Day</span><span></span><span></span></div>
+      </div>
+      <div hidden class="sx-strings">
+        <span data-sx="when">Memorial Day {year} is {date}.</span>
+        <span data-sx="today">Today is Memorial Day {year}, a day to remember those who died serving in the US armed forces.</span>
+        <span data-sx="big">Today</span>
+        <span data-sx="todayRow">Today</span>
+        <span data-sx="weeksDays">Weeks and days</span>
+        <span data-sx="weekend">Long weekend</span>
+        <span data-sx="copied">Link copied</span>
+      </div>
+    </div>
+
+    <div class="tool-prose">
+      <h2>Memorial Day, the last Monday of May</h2>
+      <p>Memorial Day is a US federal holiday to honor and remember the men and women who died while serving in the US armed forces. Many Americans visit cemeteries and memorials, place flags on graves, and attend services and parades. At 3 p.m. local time, the National Moment of Remembrance asks everyone to pause for a minute of silence.</p>
+      <p>The long weekend is also seen as the <strong>unofficial start of summer</strong>: many pools and beaches open for the season, and it is one of the busiest travel weekends of the year.</p>
+
+      <h2>How the date is set</h2>
+      <p>Since 1971 Memorial Day has been observed on the <strong>last Monday of May</strong>; before that it was held on May 30. Because it is tied to a weekday, the date moves between <strong>May 25 and May 31</strong>. In 2027 it is May 31, in 2028 May 29, in 2029 May 28 and in 2030 May 27.</p>
+
+      <h2>How the countdown works</h2>
+      <p>The big number shows the <strong>whole weeks</strong> left, and the line under it gives the exact weeks and days. Choose <strong>Days</strong> for the total in days, or the full counter for days, hours, minutes and seconds. The page counts down to midnight at the start of Memorial Day in your device’s time zone.</p>
+      <p>On Memorial Day itself the page shows the day instead of a counter, and from the Tuesday after it counts down to the next year. The list under the counter shows how far away the three big US summer holidays are: Memorial Day, the <a href="/tools/days-until-july-4th">Fourth of July</a> and <a href="/tools/days-until-labor-day">Labor Day</a>. To count the weeks to any other date, use the <a href="/tools/weeks-until-date">weeks until a date</a> calculator.</p>
+
+      <h2>Memorial Day for the next five years</h2>
+      <div class="sx-table-wrap">
+        <table class="sx-table">
+          <thead><tr><th>Year</th><th>Memorial Day</th><th>Long weekend</th></tr></thead>
+          <tbody id="md-years">
+          <tr><td>2027</td><td>Monday, May 31</td><td>Sat, May 29 – Mon, May 31</td></tr>
+          <tr><td>2028</td><td>Monday, May 29</td><td>Sat, May 27 – Mon, May 29</td></tr>
+          <tr><td>2029</td><td>Monday, May 28</td><td>Sat, May 26 – Mon, May 28</td></tr>
+          <tr><td>2030</td><td>Monday, May 27</td><td>Sat, May 25 – Mon, May 27</td></tr>
+          <tr><td>2031</td><td>Monday, May 26</td><td>Sat, May 24 – Mon, May 26</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>How Memorial Day is observed</h2>
+      <p>By custom, the US flag flies at half-staff from sunrise until noon on Memorial Day, then is raised to full staff for the rest of the day. Volunteers place small flags on the graves of service members at national cemeteries, and many towns hold a parade or a wreath-laying ceremony. Red poppies, worn or placed at memorials, are a common symbol of remembrance.</p>
+      <p>For many families the weekend is also a time to be together, at a cookout or on a first trip of the season, while taking a moment to remember those who gave their lives.</p>
+
+      <h2>Put the Memorial Day countdown on your Home Screen</h2>
+      <ol>
+        <li>Install Left on your iPhone and open <strong>Ahead</strong>.</li>
+        <li>Tap <strong>Add a date ahead</strong>, choose <strong>New date</strong>, name it Memorial Day and set <strong>Starts</strong> to this year’s date from the table above.</li>
+        <li>Add Left’s <strong>Ahead</strong> widget to your Home Screen or Lock Screen and choose the date in <strong>Edit Widget</strong>.</li>
+      </ol>
+      <p>Because Memorial Day moves every year, add next year’s date once this one has passed. The <a href="/support/widget-iphone-home-screen">Home Screen widget guide</a> covers each step, and the <a href="/countdown-widget">countdown widget</a> page shows the other styles.</p>
+
+      <h2>Read more</h2>
+      <ul class="sx-more">
+        <li><a href="/blog/best-countdown-widgets-iphone">The best countdown widgets for iPhone</a></li>
+        <li><a href="/support/organise-ahead-since">Organise your dates in Ahead and Since</a></li>
+        <li><a href="/support/widget-iphone-lock-screen">Add a widget to your iPhone Lock Screen</a></li>
+      </ul>
+
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How many weeks until Memorial Day?</summary>
+          <div class="faq-answer"><p>The countdown at the top of this page shows the whole weeks left, with the exact weeks and days under it, in your time zone. Memorial Day 2027 is Monday, May 31, 2027.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>When is Memorial Day 2028?</summary>
+          <div class="faq-answer"><p>Memorial Day 2028 is Monday, May 29, 2028. It is always the last Monday of May, so it falls between May 25 and May 31.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What is the difference between Memorial Day and Veterans Day?</summary>
+          <div class="faq-answer"><p>Memorial Day, in May, honors the military personnel who died while serving. Veterans Day, on November 11, honors everyone who has served in the US armed forces.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why is Memorial Day called the start of summer?</summary>
+          <div class="faq-answer"><p>It is the first long weekend of the warm season, when many pools, beaches and parks open. Astronomical summer starts later, at the June solstice around June 20 or 21; the <a href="/tools/days-until-summer">days until summer</a> page counts down to it.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How many weeks until Memorial Day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The countdown at the top of this page shows the whole weeks left, with the exact weeks and days under it, in your time zone. Memorial Day 2027 is Monday, May 31, 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is Memorial Day 2028?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Memorial Day 2028 is Monday, May 29, 2028. It is always the last Monday of May, so it falls between May 25 and May 31."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Memorial Day and Veterans Day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Memorial Day, in May, honors the military personnel who died while serving. Veterans Day, on November 11, honors everyone who has served in the US armed forces."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is Memorial Day called the start of summer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is the first long weekend of the warm season, when many pools, beaches and parks open. Astronomical summer starts later, at the June solstice around June 20 or 21; the days until summer page counts down to it."
+      }
+    }
+  ]
+}
+      </script>
+    </div>
+
+    <div class="tool-related">
+      <h2>Related tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/days-until-july-4th">Days until the 4th of July</a>
+        <a class="tool-related-item" href="/tools/days-until-labor-day">Days until Labor Day</a>
+        <a class="tool-related-item" href="/tools/weeks-until-date">Weeks until a date</a>
+        <a class="tool-related-item" href="/tools/days-until-summer">Days until summer</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Download Left</span>
+        <h2>Count down to what you’re looking forward to.</h2>
+        <p>Left keeps Memorial Day, birthdays, trips and every other date you’re waiting for on your Home Screen, Lock Screen and Apple Watch.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-en&amp;mt=8" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Download for iOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/tools/tools.js"></script>
+  <script src="/tools/seasonal.js"></script>
+  <script>
+    function nthWeekday(y, m, wd, n) { // n = 1..5, or -1 for the last one in the month
+      if (n > 0) return new Date(y, m, 1 + (wd - new Date(y, m, 1).getDay() + 7) % 7 + (n - 1) * 7);
+      const last = new Date(y, m + 1, 0);
+      return new Date(y, m, last.getDate() - (last.getDay() - wd + 7) % 7);
+    }
+    function memorialDay(y) {
+      const day = nthWeekday(y, 4, 1, -1);
+      return { year: y, day, sat: new Date(y, 4, day.getDate() - 2) };
+    }
+    function upcoming(today) {
+      const f = memorialDay(today.getFullYear());
+      return f.day >= today ? f : memorialDay(today.getFullYear() + 1);
+    }
+    const SUMMER = { memorial: y => nthWeekday(y, 4, 1, -1), july4: y => new Date(y, 6, 4), labor: y => nthWeekday(y, 8, 1, 1) };
+    const unitsEl = document.getElementById('md-units');
+    const getUnit = sxUnits(unitsEl, () => render());
+    const whenEl = document.getElementById('md-when');
+    const result = document.getElementById('md-result');
+    const secondLabel = document.getElementById('md-second-label');
+    const secondEl = document.getElementById('md-second');
+    const preview = document.querySelector('.sx-preview');
+    const summerList = document.getElementById('md-summer');
+    const summerRows = Array.from(summerList.querySelectorAll('[data-holiday]'));
+    const short = d => sxFormat(d, { weekday: 'short', month: 'short', day: 'numeric' });
+    const monthDay = d => sxFormat(d, { weekday: 'long', month: 'long', day: 'numeric' });
+    sxShare(document.querySelector('[data-sx-share]'));
+    let tableFrom = null;
+    let summerOrder = '';
+    function weeksAndDays(ms) {
+      const days = breakdown(Math.max(0, ms)).totalDay;
+      const w = Math.floor(days / 7), d = days % 7;
+      return fmtNum(w) + ' ' + toolPlural('unit.weeks', w) + ', ' + fmtNum(d) + ' ' + toolPlural('unit.days', d);
+    }
+    function renderSummer(now, today) {
+      const items = summerRows.map(row => {
+        const fn = SUMMER[row.dataset.holiday];
+        let d = fn(today.getFullYear());
+        if (d < today) d = fn(today.getFullYear() + 1);
+        return { row, d };
+      }).sort((a, b) => a.d - b.d);
+      for (const { row, d } of items) {
+        const isToday = d.getTime() === today.getTime();
+        row.classList.toggle('is-now', isToday);
+        row.children[1].textContent = isToday ? sxText('todayRow') : sxDuration(d - now);
+        row.children[2].textContent = sxDateLong(d);
+      }
+      const order = items.map(x => x.row.dataset.holiday).join();
+      if (order !== summerOrder) { summerOrder = order; items.forEach(x => summerList.appendChild(x.row)); }
+    }
+    function render() {
+      const now = new Date();
+      const today = startOfDay(now);
+      const f = upcoming(today);
+      const isDay = f.day.getTime() === today.getTime();
+      if (isDay) {
+        whenEl.textContent = sxText('today', { year: f.year });
+        result.innerHTML = '<div class="tool-result-big">' + toolEscape(sxText('big')) + '</div>';
+        secondLabel.textContent = sxText('weekend');
+        secondEl.textContent = short(f.sat) + ' – ' + short(f.day);
+      } else {
+        whenEl.textContent = sxText('when', { year: f.year, date: sxDateLong(f.day) });
+        const unit = getUnit();
+        renderCountdown(result, f.day - now, unit === 'weeks' && f.day - now < 7 * MS_DAY ? 'days' : unit);
+        secondLabel.textContent = sxText('weeksDays');
+        secondEl.textContent = weeksAndDays(f.day - now);
+      }
+      unitsEl.style.display = isDay ? 'none' : '';
+      sxPreview(preview, f.day - now, sxDateShort(f.day));
+      if (isDay) {
+        preview.querySelector('[data-sx-num]').textContent = fmtNum(0);
+        preview.querySelector('[data-sx-unit]').textContent = toolPlural('unit.days', 0);
+      }
+      renderSummer(now, today);
+      if (tableFrom !== f.year) {
+        tableFrom = f.year;
+        const rows = [];
+        for (let y = f.year; y < f.year + 5; y++) { const g = memorialDay(y); rows.push([String(y), monthDay(g.day), short(g.sat) + ' – ' + short(g.day)]); }
+        sxFillTable(document.getElementById('md-years'), rows);
+      }
+    }
+    tickEvery(1000, render);
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
