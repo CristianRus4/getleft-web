@@ -1,0 +1,591 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Best Productivity Apps for iPhone (2026) | Left</title>
+  <meta name="description" content="The best productivity apps for iPhone, picked by job: tasks, calendar, notes, focus, habits and time awareness, plus the Apple built-ins that tie them together." />
+  <link rel="canonical" href="https://getleft.app/blog/best-productivity-apps-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/best-productivity-apps-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/best-productivity-apps-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Best Productivity Apps for iPhone (2026)" />
+  <meta property="og:description" content="The best productivity apps for iPhone, picked by job: tasks, calendar, notes, focus, habits and time awareness, plus the Apple built-ins that tie them together." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/best-productivity-apps-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/workplace-productivity-habits-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Best Productivity Apps for iPhone (2026)" />
+  <meta name="twitter:description" content="The best productivity apps for iPhone, picked by job: tasks, calendar, notes, focus, habits and time awareness, plus the Apple built-ins that tie them together." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/workplace-productivity-habits-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "The Best Productivity Apps for iPhone in 2026, One App per Job",
+  "description": "The best productivity apps for iPhone, picked by job: tasks, calendar, notes, focus, habits and time awareness, plus the Apple built-ins that tie them together.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/best-productivity-apps-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "The Best Productivity Apps for iPhone in 2026, One App per Job",
+      "item": "https://getleft.app/blog/best-productivity-apps-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best productivity app for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There isn't one app that does everything well. Most people do best with one app per job: a task app such as Reminders, Things 3 or Todoist, a calendar, a notes app, and Left for time awareness, habits and focus."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are Apple's built-in apps good enough for productivity?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For many people, yes. Reminders, Calendar and Notes cover tasks, scheduling and notes well. What they don't cover is habits, focus timing and seeing how much time is left, which is where a dedicated app helps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left a to-do list app?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Left is a time awareness app with habits, countdowns, a Pomodoro-style Focus timer and a Planner. Planner shows your Apple Reminders and Todoist tasks next to your calendar and habits, but you keep using Reminders or Todoist for the tasks themselves."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between Focus modes and a focus timer?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Focus modes are an iOS feature that silences notifications and can switch Home Screen pages. A focus timer, like Left's Focus, counts down work sessions and breaks. Many people use both at once."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>The Best Productivity Apps for iPhone in 2026, One App per Job</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 11 min read</p>
+<p>There is no single best productivity app for iPhone, and the apps that try to be one usually do five things adequately. What works is a small setup: one app for each job, each doing that job properly, with nothing overlapping. A task app holds what you have to do. A calendar holds when. Notes hold what you know. Then a few smaller tools keep you on track: a focus timer, a habit tracker, and something that shows how much time you actually have left.</p>
+<p>This guide is organized that way: for each job, what the built-in Apple app already covers and which dedicated apps do it better. At the end there's a simple stack that works for most people.</p>
+<figure class="post-hero"><img src="/images/blog/workplace-productivity-habits-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/desk-with-globe-lamp-and-supplies-by-window-bZqWrQCXr2Q" rel="noopener">Trương Tuyết Ly / Unsplash</a></figcaption></figure>
+<p><strong>Disclosure:</strong> we make Left, so we've put it first. Here's why, and where another app suits you better.</p>
+
+<h2>One app per job</h2>
+<p>Most productivity setups fail in one of two ways. Either everything lives in one giant app you stop opening, or the same task sits in three apps and none of them is the truth. Splitting by job fixes both. Each job answers one question:</p>
+<div class="table-wrap"><table><thead><tr><th>Job</th><th>The question it answers</th><th>Built into iPhone</th><th>Worth a look</th></tr></thead><tbody>
+<tr><td>Tasks</td><td>What do I have to do?</td><td>Reminders</td><td>Things 3, Todoist, TickTick</td></tr>
+<tr><td>Calendar and planning</td><td>When am I doing it?</td><td>Calendar</td><td>Fantastical, Structured, Left Planner</td></tr>
+<tr><td>Notes</td><td>Where did I put that?</td><td>Notes</td><td>Notion, Obsidian</td></tr>
+<tr><td>Focus</td><td>How do I start and keep going?</td><td>Clock timer, Focus modes</td><td>Left Focus, Forest</td></tr>
+<tr><td>Habits</td><td>Am I doing the small things every day?</td><td>None</td><td>Left, Streaks, Productive</td></tr>
+<tr><td>Time awareness</td><td>How much time do I have left?</td><td>None</td><td>Left</td></tr>
+</tbody></table></div>
+<p>Apple's built-ins cover the first three jobs well enough for many people, and barely touch the last three.</p>
+
+<h2>Quick verdict</h2>
+<ul>
+  <li><strong>Best for time awareness, habits and countdowns:</strong> Left.</li>
+  <li><strong>Best task manager for Apple-only users:</strong> Things 3.</li>
+  <li><strong>Best task manager if you also use Android, Windows or the web:</strong> Todoist.</li>
+  <li><strong>Best all-in-one tasks, calendar and timer:</strong> TickTick.</li>
+  <li><strong>Best calendar upgrade:</strong> Fantastical.</li>
+  <li><strong>Best for time-blocking your day:</strong> Structured.</li>
+  <li><strong>Best notes app for most people:</strong> Apple Notes.</li>
+  <li><strong>Best notes for long-term thinking:</strong> Obsidian.</li>
+</ul>
+
+<h2 class="app-heading"><img class="app-icon" src="/images/apps/left.webp" alt="Left app icon" width="48" height="48" loading="lazy" decoding="async" /><span>1. Left: time awareness, habits and a view of your day</span></h2>
+<p>Left is an iPhone app, with an Apple Watch app, for seeing time and acting on it. It isn't a task manager and it isn't a notes app. It covers the jobs your task and notes apps don't:</p>
+<ul>
+  <li><strong>Time awareness:</strong> <strong>Time Left</strong> shows the year, month, week, day, hour and even your life as a grid of dots that fills in as time passes. Put the day grid on your Home Screen and "I have all afternoon" turns into "the afternoon is two-thirds gone". These grids and their widgets are free.</li>
+  <li><strong>Countdowns:</strong> <strong>Ahead</strong> counts down to deadlines, exams, trips and launches, with notes and a short todo list on each date. In the last four hours, <strong>Get the final countdown</strong> puts a Live Activity on your Lock Screen.</li>
+  <li><strong>Habits and number goals:</strong> <strong>Since</strong> holds habits ("Inbox zero by 5 pm", "Plan tomorrow, weekdays"), streaks for things you're quitting, and <strong>Aims</strong> for numbers you count up or down, such as study hours or pages written, with a target and a deadline.</li>
+  <li><strong>Planner:</strong> today's calendar events, Apple Reminders and habits in one view, with Todoist tasks too if you connect your account. You can tick off a reminder or a Todoist task right from Planner. Planner is part of Left Premium.</li>
+  <li><strong>Focus:</strong> a Pomodoro-style timer, 25 minutes of work and a 5-minute break by default, with a Live Activity, a widget and a history of your sessions. Focus is part of Left Premium.</li>
+</ul>
+<p>Left sits next to your task app, not instead of it.</p>
+<p><strong>Best for:</strong> people whose problem isn't writing tasks down but noticing the day slipping, keeping small routines, and seeing deadlines coming.</p>
+<p><strong>Price:</strong> Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+<p><strong>Pros:</strong> covers time awareness, countdowns, habits and focus in one app; dozens of Home Screen, Lock Screen and StandBy widgets; Planner pulls in Reminders and Todoist rather than replacing them; Apple Watch app with complications.</p>
+<p><strong>Cons:</strong> not a task manager or a notes app, so you still need those; Planner and Focus need Left Premium; iPhone and Apple Watch only, with no iPad, Mac or Android app; needs iOS 26.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Get Left for iPhone</a></p>
+
+<h2>Tasks: the app that holds what you have to do</h2>
+<p>A task app has one job: be the single place every to-do goes, so your head doesn't have to hold them. Pick one and send everything there. The best one is the one you trust enough to stop keeping a second list.</p>
+
+<h3>Apple Reminders</h3>
+<p>Reminders is better than its reputation: lists, subtasks, tags, smart lists, shared lists and location-based reminders, synced through iCloud with no account to set up.</p>
+<p><strong>Best for:</strong> anyone who hasn't yet hit a wall with it. Start here.</p>
+<p><strong>Pros:</strong> free, built in, works with Siri, Shortcuts and plenty of other apps, including Left's Planner.</p>
+<p><strong>Cons:</strong> Apple devices only; weaker at projects with many stages; no real "plan my week" view.</p>
+
+<h3 class="app-heading"><img class="app-icon" src="/images/apps/things-3.webp" alt="Things 3 app icon" width="48" height="48" loading="lazy" decoding="async" /><span>Things 3</span></h3>
+<p>Things is a calm, carefully designed task manager for Apple devices. Tasks flow through Today, Upcoming, Anytime and Someday, and bigger work lives in projects grouped into areas of your life.</p>
+<p><strong>Best for:</strong> one person on Apple devices who wants a task app that feels pleasant to open.</p>
+<p><strong>Pros:</strong> excellent design; a clear daily list; paid once rather than a subscription.</p>
+<p><strong>Cons:</strong> Apple-only; no shared lists for working with other people; bought separately for each platform.</p>
+
+<h3>Todoist</h3>
+<p>Todoist is the cross-platform choice. It runs almost everywhere, understands typed dates like "every Monday at 9", and handles projects, labels, filters and shared projects well.</p>
+<p><strong>Best for:</strong> people who switch between iPhone and Android, Windows or a browser, or share task lists with others.</p>
+<p><strong>Pros:</strong> fast natural-language entry; works on nearly every platform; connects to many other tools, including Left's Planner.</p>
+<p><strong>Cons:</strong> some of the useful features need the paid plan; less visually calm than Things.</p>
+
+<h3 class="app-heading"><img class="app-icon" src="/images/apps/ticktick-to-do-list-calendar.webp" alt="TickTick app icon" width="48" height="48" loading="lazy" decoding="async" /><span>TickTick</span></h3>
+<p>TickTick combines a task manager with a calendar view, a built-in Pomodoro timer and a habit tracker, across many platforms.</p>
+<p><strong>Best for:</strong> people who would rather have one app cover tasks, scheduling and focus than run several.</p>
+<p><strong>Pros:</strong> a lot in one place; cross-platform; a free tier to try it on.</p>
+<p><strong>Cons:</strong> the all-in-one approach means each part is less specialized; it can become the giant app you stop opening.</p>
+<p>For a deeper look at reminder-style apps, including ones that nag until you act, see the <a href="/blog/best-reminder-apps-iphone">best reminder apps for iPhone</a>.</p>
+
+<h2>Calendar and planning: when you're doing it</h2>
+<p>Tasks without times tend to sit on a list for weeks. A calendar turns "write the report" into "write the report, Tuesday 9 to 11". You don't need to schedule every task, only the ones that need a block of real time.</p>
+
+<h3>Apple Calendar</h3>
+<p>The built-in Calendar handles iCloud, Google and Exchange accounts side by side, shows up in widgets and Siri, and is fine for most people.</p>
+<p><strong>Pros:</strong> free; reads all your accounts; works everywhere on iPhone. <strong>Cons:</strong> slower to add events; no tasks next to your events.</p>
+
+<h3>Fantastical</h3>
+<p>Fantastical is a calendar app for people who live in their calendar. You type "Lunch with Sam Friday at 1" and it creates the event, and it can show your reminders and tasks alongside events.</p>
+<p><strong>Pros:</strong> fast event entry; a clearer daily and weekly view. <strong>Cons:</strong> the best features are part of a subscription; overkill if your calendar has three events a week.</p>
+
+<h3 class="app-heading"><img class="app-icon" src="/images/apps/structured.webp" alt="Structured app icon" width="48" height="48" loading="lazy" decoding="async" /><span>Structured</span></h3>
+<p>Structured lays your day out as a visual timeline of time blocks, mixing tasks and calendar events, so you can see whether your plan fits in the hours you have.</p>
+<p><strong>Pros:</strong> makes time-blocking quick on a phone; a clear picture of the day. <strong>Cons:</strong> another place to plan if you already use a calendar heavily.</p>
+<p>If you'd rather not move to a new calendar at all, Left's <strong>Planner</strong> reads the Calendar, Reminders and Todoist you already use and puts them next to your habits. The <a href="/blog/left-planner-guide">Planner guide</a> shows how to set it up. If planning itself is the hard part, <a href="/blog/best-planner-adhd">how to choose a planner for ADHD</a> covers the formats that tend to stick.</p>
+
+<h2>Notes: where you put what you know</h2>
+<p>Notes are for ideas, meeting notes, reference and anything that isn't a task. Keep tasks out of your notes app, or they'll be forgotten there.</p>
+<ul>
+  <li><strong>Apple Notes:</strong> fast, free and built in, with folders, tags, checklists, document scanning and Quick Note. For most people it's all they need.</li>
+  <li><strong>Notion:</strong> a workspace of pages and databases. Powerful for projects, wikis and team docs, but best set up on a bigger screen; on iPhone it's better for reading and quick edits than for building.</li>
+  <li><strong>Obsidian:</strong> notes stored as plain Markdown files that you link to each other. Ideal if you want your notes to last decades and grow into a web of ideas, less ideal if you just want a shopping list.</li>
+</ul>
+<p>Rule of thumb: if you can't say what Apple Notes is failing to do for you, stay with Apple Notes.</p>
+
+<h2>Focus: starting and staying on one thing</h2>
+<p>A focus timer turns "work on the report" into "work on the report for 25 minutes", which is much easier to start. Two different tools get confused here, so it's worth separating them:</p>
+<ul>
+  <li><strong>Apple's Focus modes</strong> (Settings, then Focus) silence notifications and can switch to a different Home Screen page while you work. They are not a timer.</li>
+  <li><strong>A focus timer</strong> counts down a work session and a break. The Clock app's timer works in a pinch. Left's <strong>Focus</strong> is a Pomodoro-style timer with adjustable session and break lengths, a Live Activity, a widget with Start and Pause buttons, and a history of your sessions. Focus is part of Left Premium. Forest takes a different approach: it grows a virtual tree while you stay off your phone, which suits people whose main distraction is the phone itself.</li>
+</ul>
+<p>The two work well together: a Work Focus mode to quiet the phone, and a timer to give the session a shape. More on the timer side on the <a href="/pomodoro-timer-iphone">Pomodoro timer for iPhone</a> page.</p>
+
+<h2>Habits: the small things that keep the system running</h2>
+<p>A productivity setup lives or dies on a few routines: a weekly review, planning tomorrow before you stop, clearing the inbox. Those are habits, and a task app handles them badly because recurring tasks pile up as overdue and carry no sense of progress.</p>
+<ul>
+  <li><strong>Left:</strong> flexible schedules, up to 4 reminders per habit, and habit strength, which doesn't drop to zero after one missed day. Try "Plan tomorrow, weekdays at 5 pm" and "Weekly review, once a week".</li>
+  <li><strong>Streaks:</strong> a well-known, paid-once habit app with a short daily checklist and Apple Health auto-completion.</li>
+  <li><strong>Productive:</strong> groups habits into morning, afternoon and evening routines.</li>
+</ul>
+<p>Keep the list to three or four habits that support your work. Ten habits is a second job.</p>
+
+<h2>Time awareness: seeing how much time is left</h2>
+<p>This is the job most setups skip. You can have a perfect task list and still lose an afternoon because nothing told you it was passing. A day grid on your Home Screen, like Left's Time Left widget, shows how much of today is gone; a countdown widget keeps your next deadline in view for weeks, not just the day before. Put one on your Lock Screen and you'll see it dozens of times a day, which is the point.</p>
+
+<h2>The Apple built-ins that tie it together</h2>
+<ul>
+  <li><strong>Reminders</strong> and <strong>Calendar</strong> are the hubs many other apps read from, including Fantastical and Left's Planner. Even if you use another task app, keeping a few things in Reminders costs nothing.</li>
+  <li><strong>Focus modes</strong> give you a quiet work phone and a separate personal one, each with its own Home Screen and Lock Screen.</li>
+  <li><strong>Shortcuts</strong> glues apps together. One shortcut can turn on Work Focus, start a timer and open your task list. Many apps, Left included, add their own actions, so you can log a habit with Siri without opening the app.</li>
+</ul>
+
+<h2>A simple stack that works</h2>
+<p>If you want one setup to start with and adjust later, use this:</p>
+<ol>
+  <li><strong>Tasks:</strong> Apple Reminders. Move to Things 3 if you want more structure on Apple devices, or Todoist if you need other platforms.</li>
+  <li><strong>Calendar:</strong> Apple Calendar. Block time for the two or three tasks each week that need it.</li>
+  <li><strong>Notes:</strong> Apple Notes.</li>
+  <li><strong>Time, habits and focus:</strong> Left. Add the Time Left day grid and a countdown to your next deadline as widgets, set up two habits ("Plan tomorrow" and "Weekly review"), and use Planner and Focus if you go Premium.</li>
+  <li><strong>Glue:</strong> a Work Focus mode with its own Home Screen page holding your task list, calendar and Left widgets.</li>
+</ol>
+<p>That's three free built-ins and one app. Most people never need more. If you work on a Mac as well, the <a href="/blog/best-productivity-apps-mac">best productivity apps for Mac</a> lists the desktop side, and if ADHD shapes how you work, the <a href="/blog/best-productivity-apps-adhd">best productivity apps for ADHD</a> builds a stack around that.</p>
+
+<h2>How to choose</h2>
+<ul>
+  <li><strong>Start with the built-in app for each job.</strong> Replace it only when you can name what it's failing to do.</li>
+  <li><strong>One app per job.</strong> If two apps both hold tasks, one of them will be wrong. Pick one and delete the other.</li>
+  <li><strong>Check your platforms.</strong> Apple-only apps like Things are lovely until you need a Windows laptop at work. Cross-platform apps like Todoist cost a little polish and save a migration later.</li>
+  <li><strong>Fill the gaps before you swap.</strong> Most setups don't need a better task app; they need the missing pieces: a focus timer, two habits, and something that shows the time going by.</li>
+</ul>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best productivity app for iPhone?</h3>
+<p>There isn't one app that does everything well. Most people do best with one app per job: a task app such as Reminders, Things 3 or Todoist, a calendar, a notes app, and Left for time awareness, habits and focus.</p>
+<h3>Are Apple's built-in apps good enough for productivity?</h3>
+<p>For many people, yes. Reminders, Calendar and Notes cover tasks, scheduling and notes well. What they don't cover is habits, focus timing and seeing how much time is left, which is where a dedicated app helps.</p>
+<h3>Is Left a to-do list app?</h3>
+<p>No. Left is a time awareness app with habits, countdowns, a Pomodoro-style Focus timer and a Planner. Planner shows your Apple Reminders and Todoist tasks next to your calendar and habits, but you keep using Reminders or Todoist for the tasks themselves.</p>
+<h3>What's the difference between Focus modes and a focus timer?</h3>
+<p>Focus modes are an iOS feature that silences notifications and can switch Home Screen pages. A focus timer, like Left's Focus, counts down work sessions and breaks. Many people use both at once.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
