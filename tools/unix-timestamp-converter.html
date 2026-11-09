@@ -249,6 +249,116 @@
 
       <h2>UTC vs. local time</h2>
       <p>Unix timestamps are always in UTC. The date displayed by this tool is converted to your <em>local</em> time zone, so the same timestamp may show a different date and time depending on where you are.</p>
+
+      <h2>How the conversion works</h2>
+      <p>Unix time treats every day as exactly 86,400 seconds. To turn a timestamp into a date, divide by 86,400: the whole part is the number of days since January 1, 1970, and the remainder is the time of day in UTC.</p>
+      <p>A worked example with <code>1700000000</code>: 1,700,000,000 ÷ 86,400 = 19,675 days with 80,000 seconds left over. 19,675 days after January 1, 1970 is November 14, 2023, and 80,000 seconds is 22 hours, 13 minutes and 20 seconds. So the timestamp is Tuesday, November 14, 2023 at 22:13:20 UTC. In New York that is 5:13:20 PM the same day; in Tokyo it is 7:13:20 AM on Wednesday, November 15.</p>
+      <p>The other direction uses your device's time zone. If you enter midnight on January 1, 2027 in London, the result is <code>1798761600</code>. The same local time in New York is five hours later in UTC, so it gives <code>1798779600</code>.</p>
+
+      <h2>Edge cases</h2>
+      <ul>
+        <li><strong>Negative timestamps</strong> - dates before 1970 count backwards. <code>-86400</code> is December 31, 1969 at 00:00:00 UTC. The converter accepts negative values.</li>
+        <li><strong>Leap seconds</strong> - Unix time does not count them. Every day is 86,400 seconds, so a leap second never appears as its own timestamp.</li>
+        <li><strong>Daylight saving</strong> - when clocks go back, a local time such as 1:30 AM happens twice, and when they go forward, a time such as 2:30 AM does not exist. For those times the browser picks one valid moment, so check the UTC result if it matters.</li>
+        <li><strong>Milliseconds</strong> - values above 1,000,000,000,000 are read as milliseconds and rounded down to whole seconds. To keep the milliseconds, use the <a href="/tools/unix-milliseconds-converter">Unix milliseconds converter</a>.</li>
+      </ul>
+      <p>For the 2038 limit itself: the largest signed 32-bit value, <code>2147483647</code>, is January 19, 2038 at 03:14:07 UTC. One second later, a 32-bit counter wraps to <code>-2147483648</code>, which reads as December 13, 1901 at 20:45:52 UTC.</p>
+
+      <h2>Practical uses</h2>
+      <p>Developers use a converter like this to read timestamps in logs and database rows, to check when a token or cookie expires, and to set a precise moment for a scheduled job. A smaller milestone is close, too: Unix time passes <code>1800000000</code> on January 15, 2027 at 08:00 UTC.</p>
+
+      <h2>Count down to a timestamp on your iPhone</h2>
+      <p>If a timestamp marks something you care about, such as a certificate expiry, an API shutdown or a launch, you can keep it in view with Left.</p>
+      <ol>
+        <li>Convert the timestamp above to see its local date and time.</li>
+        <li>In Left, open <strong>Ahead</strong> and tap <strong>Add a date ahead</strong>, then <strong>New date</strong>.</li>
+        <li>Name it and set <strong>Starts</strong> to that date and time. Turn on <strong>Get a reminder</strong> if you want a warning beforehand.</li>
+        <li>Add the <strong>Ahead</strong> widget to your Home Screen, or to your Lock Screen with <strong>Customize</strong>, and pick the date in <strong>Edit Widget</strong>.</li>
+      </ol>
+
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>What is the current Unix timestamp?</summary>
+          <div class="faq-answer"><p>The number at the top of the converter is the current Unix time in seconds, and it updates every second. In November 2026 it is a little under 1.8 billion.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is a Unix timestamp in seconds or milliseconds?</summary>
+          <div class="faq-answer"><p>Standard Unix time is in seconds, which is 10 digits today. JavaScript and many APIs use milliseconds, which is 13 digits; the Unix milliseconds converter handles those with full precision.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What happens to Unix time in 2038?</summary>
+          <div class="faq-answer"><p>A signed 32-bit counter of seconds reaches its maximum, 2,147,483,647, on January 19, 2038 at 03:14:07 UTC. One second later it wraps to a negative number that reads as December 13, 1901. Systems that store time as a 64-bit number are not affected.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does a Unix timestamp have a time zone?</summary>
+          <div class="faq-answer"><p>No. It counts seconds from a moment defined in UTC, so the same timestamp means the same instant everywhere. Only the way it is displayed changes with your time zone.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Can a Unix timestamp be negative?</summary>
+          <div class="faq-answer"><p>Yes. Negative values count back from January 1, 1970. For example, -86400 is December 31, 1969 at 00:00:00 UTC.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does Unix time count leap seconds?</summary>
+          <div class="faq-answer"><p>No. Unix time treats every day as exactly 86,400 seconds, so leap seconds are left out.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the current Unix timestamp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The number at the top of the converter is the current Unix time in seconds, and it updates every second. In November 2026 it is a little under 1.8 billion."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a Unix timestamp in seconds or milliseconds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Standard Unix time is in seconds, which is 10 digits today. JavaScript and many APIs use milliseconds, which is 13 digits; the Unix milliseconds converter handles those with full precision."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What happens to Unix time in 2038?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A signed 32-bit counter of seconds reaches its maximum, 2,147,483,647, on January 19, 2038 at 03:14:07 UTC. One second later it wraps to a negative number that reads as December 13, 1901. Systems that store time as a 64-bit number are not affected."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a Unix timestamp have a time zone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. It counts seconds from a moment defined in UTC, so the same timestamp means the same instant everywhere. Only the way it is displayed changes with your time zone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can a Unix timestamp be negative?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Negative values count back from January 1, 1970. For example, -86400 is December 31, 1969 at 00:00:00 UTC."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Unix time count leap seconds?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Unix time treats every day as exactly 86,400 seconds, so leap seconds are left out."
+      }
+    }
+  ]
+}
+      </script>
     </div>
 
     <!-- tools:more:start -->

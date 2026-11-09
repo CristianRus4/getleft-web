@@ -162,14 +162,66 @@ function nextSeasonDate(season, hemi = 'N', from = new Date()) {
   // For Southern Hemisphere: spring/fall and summer/winter are reversed.
   const flip = { spring: 'fall', fall: 'spring', summer: 'winter', winter: 'summer' };
   const lookupSeason = hemi === 'S' ? flip[season] : season;
-  let year = from.getFullYear();
-  while (year <= 2035) {
-    const iso = SEASONS_N[year] && SEASONS_N[year][lookupSeason];
+  const event = { spring: 'march', summer: 'june', fall: 'september', winter: 'december' }[lookupSeason];
+  for (let year = from.getFullYear(); year <= from.getFullYear() + 1; year++) {
+    let iso = SEASONS_N[year] && SEASONS_N[year][lookupSeason];
+    // After the table ends, the UTC date of the computed moment.
+    if (!iso) { const t = seasonInstant(year, event); iso = t && t.toISOString().slice(0, 10); }
     if (iso) {
       const d = new Date(iso + 'T00:00:00');
       if (d > from) return d;
     }
-    year++;
+  }
+  return null;
+}
+
+// Exact moment of an equinox or solstice, any year 1000-3000, as a Date (UTC
+// instant). event: 'march' | 'june' | 'september' | 'december'. Our own
+// implementation of the method in Jean Meeus, Astronomical Algorithms (2nd ed.),
+// chapter 27: a mean instant from a polynomial, corrected by 24 periodic terms.
+// Good to about a minute for the years people ask about.
+const SEASON_TERMS = [
+  [485, 324.96, 1934.136], [203, 337.23, 32964.467], [199, 342.08, 20.186], [182, 27.85, 445267.112],
+  [156, 73.14, 45036.886], [136, 171.52, 22518.443], [77, 222.54, 65928.934], [74, 296.72, 3034.906],
+  [70, 243.58, 9037.513], [58, 119.81, 33718.147], [52, 297.17, 150.678], [50, 21.02, 2281.226],
+  [45, 247.54, 29929.562], [44, 325.15, 31555.956], [29, 60.93, 4443.417], [18, 155.12, 67555.328],
+  [17, 288.79, 4562.452], [16, 198.04, 62894.029], [14, 199.76, 31436.921], [12, 95.39, 14577.848],
+  [12, 287.11, 31931.756], [12, 320.81, 34777.259], [9, 227.73, 1222.114], [8, 15.45, 16859.074],
+];
+const SEASON_MEAN = {
+  march:     [2451623.80984, 365242.37404, 0.05169, -0.00411, -0.00057],
+  june:      [2451716.56767, 365241.62603, 0.00325, 0.00888, -0.00030],
+  september: [2451810.21715, 365242.01767, -0.11575, 0.00337, 0.00078],
+  december:  [2451900.05952, 365242.74049, -0.06223, -0.00823, 0.00032],
+};
+function seasonInstant(year, event) {
+  const c = SEASON_MEAN[event];
+  if (!c) return null;
+  const Y = (year - 2000) / 1000;
+  const jde0 = c[0] + c[1] * Y + c[2] * Y * Y + c[3] * Y ** 3 + c[4] * Y ** 4;
+  const T = (jde0 - 2451545.0) / 36525;
+  const rad = Math.PI / 180;
+  const W = (35999.373 * T - 2.47) * rad;
+  const dl = 1 + 0.0334 * Math.cos(W) + 0.0007 * Math.cos(2 * W);
+  let S = 0;
+  for (const [A, B, C] of SEASON_TERMS) S += A * Math.cos((B + C * T) * rad);
+  const jde = jde0 + 0.00001 * S / dl; // Terrestrial Time
+  // Universal Time: subtract delta T (Espenak and Meeus polynomial for 2005-2050,
+  // held near today's ~69 s outside that range; seconds do not change the minute shown).
+  const t = Math.min(Math.max(year, 2005), 2050) - 2000;
+  const deltaT = Math.min(62.92 + 0.32217 * t + 0.005589 * t * t, 69 + 0.7 * Math.max(0, year - 2026)) ;
+  return new Date(Math.round((jde - 2440587.5) * MS_DAY - deltaT * 1000));
+}
+
+// Next start of `season` for a hemisphere as the exact astronomical moment.
+function nextSeasonInstant(season, hemi = 'N', from = new Date()) {
+  const north = { spring: 'march', summer: 'june', fall: 'september', winter: 'december' };
+  const south = { spring: 'september', summer: 'december', fall: 'march', winter: 'june' };
+  const event = (hemi === 'S' ? south : north)[season];
+  if (!event) return null;
+  for (let y = from.getFullYear() - 1; y <= from.getFullYear() + 1; y++) {
+    const d = seasonInstant(y, event);
+    if (d > from) return d;
   }
   return null;
 }
@@ -368,6 +420,13 @@ const LEFT_TOOL_STRINGS_EN = {
     wake75: '7.5 hrs (recommended)',
     wake9: '9 hrs',
   },
+  preg: {
+    weeksPregnant: 'weeks pregnant',
+    weeksToGo: 'weeks to go',
+    daysToGo: 'days to go',
+    dueDate: 'Estimated due date: {date}',
+    dueDateTitle: 'Due date',
+  },
   // Result card under every tool: widget preview, share, and the link handoff
   // for visitors who are not on an iPhone.
   card: {
@@ -461,6 +520,10 @@ function formatDateLong(d) {
 }
 function formatDateShort(d) {
   return d.toLocaleDateString(toolFormatLocale(), { year: 'numeric', month: 'short', day: 'numeric' });
+}
+// "Saturday, March 20, 2027 at 9:25 AM" in the visitor's time zone.
+function formatDateTimeLong(d) {
+  return d.toLocaleString(toolFormatLocale(), { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: '2-digit' });
 }
 function formatDateTime(d) {
   return d.toLocaleString(toolFormatLocale(), { year: 'numeric', month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' });
@@ -718,6 +781,7 @@ function toolStateQuery() {
     if (i >= 0 && i !== g.__leftDefault) params.set(g.id, String(i));
   });
   toolStateFields(widget).forEach(el => {
+    if (el.closest('[hidden]')) return; // a switched-off method's fields
     if (el.type === 'checkbox' || el.type === 'radio') {
       if (el.checked !== el.defaultChecked) params.set(el.id, el.checked ? '1' : '0');
     } else if (el.value !== '') params.set(el.id, el.value);

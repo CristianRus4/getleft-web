@@ -230,7 +230,19 @@
     <div class="tool-prose">
       <h2>How the calculation works</h2>
       <p>The calculator subtracts the start date from the end date and returns the absolute number of calendar days between them. It doesn't matter which date is earlier - you can enter them in either order and the result is always positive.</p>
-      <p>The count is <em>inclusive of neither endpoint</em> by default: if you enter January 1 and January 3, the result is 2 days (the gap between them). This is the most common convention for duration calculations.</p>
+      <p>The count includes one endpoint but not both: if you enter January 1 and January 3, the result is 2 days (the gap between them). This is the most common convention for duration calculations.</p>
+
+      <h2>Counting both days</h2>
+      <p>Some questions need both the first and the last day. A conference that runs from January 1 to January 3 lasts 3 days, and a course of medicine taken from the 1st to the 3rd is taken on 3 days. For those, add 1 to the result. Nights work the other way: a hotel stay from January 1 to January 3 is 2 nights, which is exactly what the tool shows.</p>
+
+      <h2>A worked example</h2>
+      <p>From March 1, 2026 to November 10, 2026 is 254 days. March 1 to April 1 is 31 days. Adding April (30), May (31), June (30), July (31), August (31), September (30) and October (31) brings you to November 1 after 245 days, and 9 more days reach November 10. Counting both March 1 and November 10, it is 255 days.</p>
+
+      <h2>Leap years and daylight saving</h2>
+      <p>Leap years are handled automatically. February 1 to March 1 is 28 days in 2027 and 29 days in 2028, and a full year from January 1 to January 1 is 365 or 366 days. The tool counts calendar days, so a day that is 23 or 25 hours long because of a daylight saving change still counts as one day.</p>
+
+      <h2>Converting to weeks and months</h2>
+      <p>Under the result, the tool splits the days into full weeks and leftover days: 254 days is 36 weeks and 2 days. Months are less exact, because they run from 28 to 31 days. Dividing by 30.44, the average month length, gives a good estimate: 254 days is about 8.3 months. For whole calendar months, count them on the calendar instead: March 1 to November 1 is 8 months, plus 9 days.</p>
 
       <h2>Common uses</h2>
       <ul>
@@ -247,7 +259,96 @@
 
       <h2>Track the gap with Left</h2>
       <p>Once you know the number of days, Left's <em>Ahead</em> feature lets you set a target date and see the remaining count on your Home Screen widget every day. You can also use the <em>Since</em> feature to track how many days have passed since an event - useful for anniversaries, sobriety tracking, or any "days since" question.</p>
+      <ol>
+        <li>Install Left on your iPhone, open <strong>Ahead</strong> and tap <strong>Add a date ahead</strong>, then <strong>New date</strong>.</li>
+        <li>Name it and set <strong>Starts</strong> to your end date.</li>
+        <li>Turn on <strong>Get a reminder</strong>, for example a week before.</li>
+        <li>Add Left's <strong>Ahead</strong> widget to your Home Screen or Lock Screen and pick the date in <strong>Edit Widget</strong>.</li>
+      </ol>
       <p>If the gap is leading up to a date, the <a href="/countdown-widget">Left countdown widget</a> keeps it on your Home Screen.</p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Does it count the start date and the end date?</summary>
+          <div class="faq-answer"><p>It counts one of them, not both: January 1 to January 3 is 2 days. If you need to include both days, add 1 to the result.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does the calculator account for leap years?</summary>
+          <div class="faq-answer"><p>Yes. It counts real calendar days, so February 29 is included whenever it falls between your dates.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How do I convert days into weeks?</summary>
+          <div class="faq-answer"><p>Divide by 7. The tool does this for you under the result: 254 days is 36 weeks and 2 days.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many months are in 90 days?</summary>
+          <div class="faq-answer"><p>About 3. Months average 30.44 days, so 90 days is about 2.96 months; whether it is exactly 3 calendar months depends on which months it covers.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does the order of the dates matter?</summary>
+          <div class="faq-answer"><p>No. You can enter the later date first and the result is the same positive number of days.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many days are in a year?</summary>
+          <div class="faq-answer"><p>365, or 366 in a leap year. A year is a leap year if it divides by 4, except century years, which must divide by 400; the next one is 2028.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does it count the start date and the end date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It counts one of them, not both: January 1 to January 3 is 2 days. If you need to include both days, add 1 to the result."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator account for leap years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. It counts real calendar days, so February 29 is included whenever it falls between your dates."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert days into weeks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide by 7. The tool does this for you under the result: 254 days is 36 weeks and 2 days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many months are in 90 days?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "About 3. Months average 30.44 days, so 90 days is about 2.96 months; whether it is exactly 3 calendar months depends on which months it covers."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the order of the dates matter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. You can enter the later date first and the result is the same positive number of days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days are in a year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "365, or 366 in a leap year. A year is a leap year if it divides by 4, except century years, which must divide by 400; the next one is 2028."
+      }
+    }
+  ]
+}
+      </script>
     </div>
 
     <!-- tools:more:start -->

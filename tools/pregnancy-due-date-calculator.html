@@ -94,8 +94,8 @@
 <!-- left:smart-banner:end -->
   <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
   <meta name="left:content-type" content="tool" />
-  <title>Pregnancy Due Date Calculator - When Is My Baby Due | Left</title>
-  <meta name="description" content="Calculate your pregnancy due date from your last menstrual period. See your due date, current week of pregnancy, and a live countdown." />
+  <title>Pregnancy Due Date Calculator - By Period, Scan or IVF | Left</title>
+  <meta name="description" content="When is my baby due? Find your due date from your last period, conception date, dating scan or IVF transfer, with your current week and a live countdown." />
   <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
   <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
   <meta name="color-scheme" content="light dark" />
@@ -109,8 +109,8 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
   <link rel="manifest" href="/favicon/site.webmanifest" />
   <meta name="robots" content="index,follow" />
-  <meta property="og:title" content="Pregnancy Due Date Calculator - When Is My Baby Due" />
-  <meta property="og:description" content="Calculate your pregnancy due date from your last menstrual period. See your due date, current week of pregnancy, and a live countdown." />
+  <meta property="og:title" content="Pregnancy Due Date Calculator - By Period, Scan or IVF" />
+  <meta property="og:description" content="When is my baby due? Find your due date from your last period, conception date, dating scan or IVF transfer, with your current week and a live countdown." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://getleft.app/tools/pregnancy-due-date-calculator" />
   <meta property="og:locale" content="en_US" />
@@ -119,8 +119,8 @@
   <meta property="og:image:height" content="630" />
   <meta property="og:site_name" content="Left" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Pregnancy Due Date Calculator - When Is My Baby Due" />
-  <meta name="twitter:description" content="Calculate your pregnancy due date from your last menstrual period. See your due date, current week of pregnancy, and a live countdown." />
+  <meta name="twitter:title" content="Pregnancy Due Date Calculator - By Period, Scan or IVF" />
+  <meta name="twitter:description" content="When is my baby due? Find your due date from your last period, conception date, dating scan or IVF transfer, with your current week and a live countdown." />
   <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
   <link rel="stylesheet" href="/style.css" />
   <link rel="stylesheet" href="/tools/tools.css" />
@@ -128,7 +128,7 @@
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
-  "name": "Pregnancy Due Date Calculator - When Is My Baby Due",
+  "name": "Pregnancy Due Date Calculator - By Period, Scan or IVF",
   "url": "https://getleft.app/tools/pregnancy-due-date-calculator",
   "applicationCategory": "UtilityApplication",
   "operatingSystem": "All",
@@ -137,7 +137,7 @@
     "price": "0",
     "priceCurrency": "USD"
   },
-  "description": "Calculate your pregnancy due date from your last menstrual period. See your due date, current week of pregnancy, and a live countdown.",
+  "description": "When is my baby due? Find your due date from your last period, conception date, dating scan or IVF transfer, with your current week and a live countdown.",
   "publisher": {
     "@type": "Organization",
     "name": "Left"
@@ -190,19 +190,62 @@
 
   <main class="container tool-page">
     <h1>Pregnancy due date calculator</h1>
-    <p class="tool-lede">Enter the first day of your last menstrual period to find your estimated due date, current week, and a live countdown.</p>
+    <p class="tool-lede">Find your due date from your last period, conception date, a dating scan or an IVF transfer, with your current week and a live countdown.</p>
 
     <div class="tool-widget">
-      <div class="tool-widget__row">
-        <label for="preg-lmp">First day of last period (LMP)</label>
-        <input type="date" id="preg-lmp" />
+      <div class="tool-toggle" id="preg-method" role="group" aria-label="Dating method" style="flex-wrap:wrap;margin-bottom:22px;">
+        <button class="is-active" data-method="lmp">Last period</button>
+        <button data-method="conception">Conception</button>
+        <button data-method="scan">Dating scan</button>
+        <button data-method="ivf">IVF transfer</button>
       </div>
-      <div class="tool-widget__row">
-        <label for="preg-cycle">Usual cycle length (days)</label>
-        <input type="number" id="preg-cycle" min="21" max="45" value="28" />
+      <div class="tool-widget__row" data-for="lmp">
+        <div class="tool-widget__field">
+          <label for="preg-lmp">First day of last period</label>
+          <input type="date" id="preg-lmp" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-cycle">Usual cycle length (days)</label>
+          <input type="number" id="preg-cycle" min="21" max="45" value="28" inputmode="numeric" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="conception" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-conception">Conception date</label>
+          <input type="date" id="preg-conception" />
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="scan" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-scan">Date of the scan</label>
+          <input type="date" id="preg-scan" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-scan-weeks">Weeks and days at the scan</label>
+          <div class="tool-compact-group">
+            <input type="number" id="preg-scan-weeks" min="4" max="42" value="12" inputmode="numeric" aria-label="Weeks" />
+            <span class="tool-compact-suffix">w</span>
+            <input type="number" id="preg-scan-days" min="0" max="6" value="0" inputmode="numeric" aria-label="Days" />
+            <span class="tool-compact-suffix">d</span>
+          </div>
+        </div>
+      </div>
+      <div class="tool-widget__row" data-for="ivf" hidden>
+        <div class="tool-widget__field">
+          <label for="preg-transfer">Embryo transfer date</label>
+          <input type="date" id="preg-transfer" />
+        </div>
+        <div class="tool-widget__field">
+          <label for="preg-embryo">Embryo age at transfer</label>
+          <select id="preg-embryo">
+            <option value="5">Day 5 (blastocyst)</option>
+            <option value="3">Day 3</option>
+            <option value="6">Day 6</option>
+          </select>
+        </div>
       </div>
       <div class="tool-result" id="preg-result" aria-live="polite"></div>
-      <p id="preg-trimester" style="margin-top:12px;font-size:14px;color:var(--text-secondary);"></p>
+      <p id="preg-trimester"></p>
       <p class="tool-fineprint"><em>This is an estimate. Your midwife or doctor will confirm your due date, usually from a dating scan in the first trimester (offered at around 10 to 14 weeks).</em></p>
       <!-- tools:card:start -->
       <div class="tool-card-cta" data-tool-card>
@@ -229,23 +272,118 @@
       <h2>How the due date is calculated</h2>
       <p>The standard method (Naegele's Rule) adds <strong>280 days (40 weeks)</strong> to the first day of your last menstrual period. Doctors and midwives use the same rule for a first estimate, before a dating scan. If your cycle is not 28 days long, enter your usual cycle length: the calculator moves the date by the difference (for a 32-day cycle, four days later).</p>
       <p>The 40-week count starts from your LMP - even though conception typically happens around week 2. So your "gestational age" as measured medically is always about 2 weeks ahead of your embryonic age.</p>
-
+      <h2>Four ways to date a pregnancy</h2>
+      <p>Choose the method that matches what you know. All four give the same kind of answer: a due date 40 weeks after the start of the pregnancy count, your week and day today, and the time to go.</p>
+      <ul>
+        <li><strong>Last period:</strong> the first day of your last period plus 280 days, adjusted for your cycle length.</li>
+        <li><strong>Conception:</strong> the conception date plus 266 days (38 weeks). Use it if you know when you ovulated or conceived.</li>
+        <li><strong>Dating scan:</strong> enter the scan date and the weeks and days the sonographer gave you. The calculator counts back to the start of the pregnancy and forward 40 weeks.</li>
+        <li><strong>IVF transfer:</strong> the transfer date plus 266 days, minus the embryo's age. A day-5 blastocyst gives a due date 261 days after transfer, a day-3 embryo 263 days.</li>
+      </ul>
+      <h2>Dating by scan versus by last period</h2>
+      <p>The last-period method assumes you ovulated 14 days after your period started. Many people don't: cycles vary, and some don't know the exact date of their last period. A scan measures the baby instead. Early in pregnancy babies grow at a very similar rate, so the crown-rump length measured between about 10 and 14 weeks dates a pregnancy to within about a week.</p>
+      <p>That is why, when the two disagree, the scan usually wins. The American College of Obstetricians and Gynecologists advises changing the due date to the scan's date when a first-trimester scan differs from the last-period date by more than 7 days (more than 5 days before 9 weeks). Later scans are less precise for dating, because babies' sizes spread out as they grow. Once your midwife or doctor has set your due date, use the scan method with their numbers and this page will agree with them.</p>
       <h2>Trimesters</h2>
       <ul>
         <li><strong>First trimester:</strong> Weeks 1–12 (LMP to ~84 days)</li>
         <li><strong>Second trimester:</strong> Weeks 13–26 (~85 to ~182 days)</li>
         <li><strong>Third trimester:</strong> Weeks 27–40 (~183 days to due date)</li>
       </ul>
-
       <h2>How accurate is this date?</h2>
       <p>Only about 4% of babies are born on their exact due date. The estimated due date (EDD) is the midpoint of a normal delivery window that typically spans from 38 to 42 weeks. A dating scan in the first trimester gives a more accurate date, particularly when your cycle length differs from the standard 28-day assumption or you are unsure of your last period.</p>
-
       <h2>Sources</h2>
       <p>Naegele's rule and ultrasound dating: American College of Obstetricians and Gynecologists, <a href="https://www.acog.org/clinical/guidance/committee-opinion/2017/05/methods-for-estimating-the-due-date" target="_blank" rel="noopener">Committee Opinion 700, Methods for Estimating the Due Date</a>. For a second opinion on the date, see the <a href="https://www.nhs.uk/pregnancy/finding-out/due-date-calculator/" target="_blank" rel="noopener">NHS due date calculator</a> and <a href="https://www.tommys.org/pregnancy-information/calculators-tools-resources/pregnancy-due-date-calculator" target="_blank" rel="noopener">Tommy's due date calculator</a> (Tommy's notes that only around 4 in 100 babies are born on their due date). This tool is not medical advice: ask your midwife or doctor about your pregnancy.</p>
-
       <h2>Track the countdown with Left</h2>
       <p>Add your due date as a countdown in Left and pin it to your Home Screen or Lock Screen. Every morning you'll see exactly how many days remain - and after the birth, switch to Left's "Since" mode to track how many days old your baby is.</p>
-      <p>To keep the due date in sight, add a <a href="/countdown-widget">countdown widget</a> to your Home Screen with Left.</p>
+      <ol>
+        <li>Install Left on your iPhone, open <strong>Ahead</strong> and tap <strong>Add a date ahead</strong>, then <strong>New date</strong>.</li>
+        <li>Name it, set <strong>Starts</strong> to your due date and turn on <strong>Get a reminder</strong> if you want a nudge before the day.</li>
+        <li>Add Left's <strong>Ahead</strong> widget to your Home Screen or Lock Screen and pick the due date in <strong>Edit Widget</strong>.</li>
+      </ol>
+      <p>To keep the due date in sight, add a <a href="/countdown-widget">countdown widget</a> to your Home Screen with Left. A partner can follow the same countdown with a <a href="/support/joint-ahead-dates">Joint Ahead date</a>.</p>
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>How accurate is a due date?</summary>
+          <div class="faq-answer"><p>It is an estimate, not a deadline. Only about 4 in 100 babies arrive on the exact day; most are born in the weeks either side of it. A first-trimester dating scan gives the most reliable date.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>What if my cycle is irregular?</summary>
+          <div class="faq-answer"><p>Naegele's rule assumes ovulation about 14 days after your period started, so an irregular cycle makes the last-period method less reliable. Use the scan method once you have a dating scan, or ask your midwife or doctor.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>When is the dating scan?</summary>
+          <div class="faq-answer"><p>In the UK the NHS offers it at around 10 to 14 weeks. Early scans measure the baby from head to bottom (the crown-rump length), which predicts the due date well because babies grow at a similar rate early on.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many weeks is full term?</summary>
+          <div class="faq-answer"><p>Full term is 39 weeks 0 days to 40 weeks 6 days. Babies born from 37 weeks are early term, at 41 weeks late term, and from 42 weeks post-term.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How is an IVF due date calculated?</summary>
+          <div class="faq-answer"><p>From the transfer date: conception is counted as the day the embryo was created, so a day-5 blastocyst transferred on 1 March gives a due date 261 days later, on 17 November (in a non-leap year).</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Does the calculator store my dates?</summary>
+          <div class="faq-answer"><p>No. The calculation runs in your browser and nothing you enter is sent anywhere.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How accurate is a due date?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It is an estimate, not a deadline. Only about 4 in 100 babies arrive on the exact day; most are born in the weeks either side of it. A first-trimester dating scan gives the most reliable date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if my cycle is irregular?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Naegele's rule assumes ovulation about 14 days after your period started, so an irregular cycle makes the last-period method less reliable. Use the scan method once you have a dating scan, or ask your midwife or doctor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "When is the dating scan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In the UK the NHS offers it at around 10 to 14 weeks. Early scans measure the baby from head to bottom (the crown-rump length), which predicts the due date well because babies grow at a similar rate early on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many weeks is full term?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Full term is 39 weeks 0 days to 40 weeks 6 days. Babies born from 37 weeks are early term, at 41 weeks late term, and from 42 weeks post-term."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is an IVF due date calculated?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "From the transfer date: conception is counted as the day the embryo was created, so a day-5 blastocyst transferred on 1 March gives a due date 261 days later, on 17 November (in a non-leap year)."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the calculator store my dates?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. The calculation runs in your browser and nothing you enter is sent anywhere."
+      }
+    }
+  ]
+}
+      </script>
     </div>
 
     <!-- tools:more:start -->
@@ -404,33 +542,71 @@
 
   <script src="/tools/tools.js"></script>
   <script>
+    const methodBtns = document.querySelectorAll('#preg-method button');
     const lmpEl = document.getElementById('preg-lmp');
     const cycleEl = document.getElementById('preg-cycle');
+    const conceptionEl = document.getElementById('preg-conception');
+    const scanEl = document.getElementById('preg-scan');
+    const scanWeeksEl = document.getElementById('preg-scan-weeks');
+    const scanDaysEl = document.getElementById('preg-scan-days');
+    const transferEl = document.getElementById('preg-transfer');
+    const embryoEl = document.getElementById('preg-embryo');
     const result = document.getElementById('preg-result');
     const trimEl = document.getElementById('preg-trimester');
+    let method = 'lmp';
 
-    // Default to ~8 weeks ago
-    const def = new Date();
-    def.setDate(def.getDate() - 56);
-    lmpEl.value = toLocalDateInput(def);
-    lmpEl.max = toLocalDateInput(new Date());
+    // Defaults describe the same pregnancy, about 8 weeks along, in every method.
+    const today0 = new Date(); today0.setHours(0, 0, 0, 0);
+    const shift = days => { const d = new Date(today0); d.setDate(d.getDate() + days); return toLocalDateInput(d); };
+    lmpEl.value = shift(-56);
+    conceptionEl.value = shift(-42);
+    scanEl.value = shift(0);
+    scanWeeksEl.value = 8;
+    transferEl.value = shift(-37);
+    [lmpEl, conceptionEl, scanEl, transferEl].forEach(el => { el.max = shift(0); });
+
+    function day(value) {
+      if (!value) return null;
+      const d = new Date(value + 'T00:00:00');
+      return isNaN(d) ? null : d;
+    }
+    // Whole calendar days, so a daylight-saving change never moves a date by one.
+    function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+    function clampInt(el, min, max, fallback) {
+      const n = parseInt(el.value, 10);
+      return Math.min(max, Math.max(min, isNaN(n) ? fallback : n));
+    }
+
+    // Every method gives a "gestational start": the day pregnancy weeks are
+    // counted from (two weeks before conception). The due date is 280 days later.
+    function gestationalStart() {
+      if (method === 'conception') { const c = day(conceptionEl.value); return c && addDays(c, -14); }
+      if (method === 'scan') {
+        const sc = day(scanEl.value);
+        if (!sc) return null;
+        return addDays(sc, -(clampInt(scanWeeksEl, 4, 42, 12) * 7 + clampInt(scanDaysEl, 0, 6, 0)));
+      }
+      if (method === 'ivf') {
+        const t = day(transferEl.value);
+        // Transfer of a day-N embryo: conception was N days earlier.
+        return t && addDays(t, -(14 + (parseInt(embryoEl.value, 10) || 5)));
+      }
+      const l = day(lmpEl.value);
+      // A cycle longer or shorter than 28 days moves ovulation, and the due date, by the difference.
+      return l && addDays(l, clampInt(cycleEl, 21, 45, 28) - 28);
+    }
 
     function render() {
-      if (!lmpEl.value) { result.innerHTML = ''; trimEl.textContent = ''; return; }
-      const lmpInput = new Date(lmpEl.value + 'T00:00:00');
-      if (isNaN(lmpInput)) return;
-      // A cycle longer or shorter than 28 days moves ovulation, and the due date, by the difference.
-      const cycle = Math.min(45, Math.max(21, parseInt(cycleEl.value, 10) || 28));
-      // Whole calendar days, so a daylight-saving change never moves the date by one.
-      const lmp = new Date(lmpInput.getFullYear(), lmpInput.getMonth(), lmpInput.getDate() + (cycle - 28));
-      const due = new Date(lmp.getTime());
-      due.setDate(due.getDate() + 280);
+      document.querySelectorAll('[data-for]').forEach(row => { row.hidden = row.dataset.for !== method; });
+      const start = gestationalStart();
+      if (!start) { result.innerHTML = ''; trimEl.textContent = ''; toolPreview(null); return; }
+      const due = addDays(start, 280);
       const now = new Date();
       const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-      const daysPregnant = Math.max(0, Math.round((today - lmp) / 86400000));
+      const daysPregnant = Math.max(0, Math.round((today - start) / MS_DAY));
       const weeksPregnant = Math.floor(daysPregnant / 7);
       const daysMod = daysPregnant % 7;
-      const daysUntilDue = Math.max(0, Math.round((due - today) / 86400000));
+      const daysUntilDue = Math.max(0, Math.round((due - today) / MS_DAY));
       const weeksUntilDue = Math.floor(daysUntilDue / 7);
 
       let trimester = '';
@@ -438,6 +614,7 @@
       else if (daysPregnant <= 182) trimester = toolT('result.pregSecond');
       else trimester = toolT('result.pregThird');
       trimEl.textContent = trimester + (daysPregnant < 280 ? ' · ' + toolT('result.pregWeekDay', { weeks: weeksPregnant, days: daysMod }) : '');
+      toolPreviewDate(due, toolT('preg.dueDateTitle'));
 
       if (daysUntilDue <= 0) {
         result.innerHTML = `<div class="tool-result-big" style="font-size:1.4rem;">${toolEscape(toolT('result.dueWas', { date: formatDateShort(due) }))}</div>`;
@@ -446,15 +623,22 @@
 
       result.innerHTML = `
         <div class="tool-stat-row">
-          <div class="tool-stat"><div class="tool-stat-num">${weeksPregnant}</div><div class="tool-stat-label">weeks pregnant</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${weeksUntilDue}</div><div class="tool-stat-label">weeks to go</div></div>
-          <div class="tool-stat"><div class="tool-stat-num">${daysUntilDue}</div><div class="tool-stat-label">days to go</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${weeksPregnant}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksPregnant'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${weeksUntilDue}</div><div class="tool-stat-label">${toolEscape(toolT('preg.weeksToGo'))}</div></div>
+          <div class="tool-stat"><div class="tool-stat-num">${fmtNum(daysUntilDue)}</div><div class="tool-stat-label">${toolEscape(toolT('preg.daysToGo'))}</div></div>
         </div>
-        <p style="margin-top:12px;font-size:14px;color:var(--text-secondary);">Estimated due date: <strong>${formatDateLong(due)}</strong></p>`;
+        <p class="tool-result-sub">${toolEscape(toolT('preg.dueDate', { date: formatDateLong(due) }))}</p>`;
     }
 
-    lmpEl.addEventListener('change', render);
-    cycleEl.addEventListener('input', render);
+    methodBtns.forEach(b => b.addEventListener('click', () => {
+      methodBtns.forEach(x => x.classList.toggle('is-active', x === b));
+      method = b.dataset.method;
+      render();
+    }));
+    [lmpEl, cycleEl, conceptionEl, scanEl, scanWeeksEl, scanDaysEl, transferEl, embryoEl].forEach(el => {
+      el.addEventListener('input', render);
+      el.addEventListener('change', render);
+    });
     render();
   </script>
   <script defer src="/index.js"></script>

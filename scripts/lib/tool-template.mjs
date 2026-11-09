@@ -15,6 +15,9 @@
 // Every block sits between <!-- tools:NAME:start/end --> comments and is
 // rewritten on each build, so edit this file, never the blocks in the pages.
 
+import { readFileSync } from 'node:fs';
+import vm from 'node:vm';
+
 const APP_URL = 'https://apps.apple.com/app/id6740155884';
 const APPLE_SVG = '<svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>';
 
@@ -263,7 +266,158 @@ export function toolConfig(slug, html) {
   return cfg;
 }
 
+// ─── Generated tables (refreshed on every build, so they never go stale) ───
+
+const MONTHS = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const WEEKDAYS = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const pad2 = n => String(n).padStart(2, '0');
+
+// Build date (New Zealand day, set by scripts/build.mjs) as a year number.
+function buildYear() {
+  const env = process.env.BUILD_DATE;
+  return env && /^\d{4}-/.test(env) ? Number(env.slice(0, 4)) : new Date().getFullYear();
+}
+
+function replaceBlock(html, name, inner) {
+  const re = new RegExp(`(<!-- tools:${name}:start -->)[\\s\\S]*?([ \\t]*<!-- tools:${name}:end -->)`);
+  return html.replace(re, (m, open, close) => `${open}\n${inner}\n${close}`);
+}
+
+// Percentage of the year: the moment each share of the year is reached,
+// this year and next (local clock time, no daylight-saving shift).
+function milestonesTable() {
+  const y = buildYear();
+  const years = [y, y + 1];
+  const rows = [[10, '10%'], [20, '20%'], [25, '25%'], [30, '30%'], [100 / 3, '33.3%'], [40, '40%'], [50, '50%'], [60, '60%'], [200 / 3, '66.7%'], [70, '70%'], [75, '75%'], [80, '80%'], [90, '90%']];
+  const at = (year, pct) => {
+    const days = (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0 ? 366 : 365;
+    const d = new Date(Date.UTC(year, 0, 1) + Math.round(pct / 100 * days * 1440) * 60000);
+    return `${WEEKDAYS[d.getUTCDay()]}, ${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}`;
+  };
+  const head = `<tr><th>Share of the year</th>${years.map(v => `<th>${v}</th>`).join('')}</tr>`;
+  const body = rows.map(([pct, label]) => `          <tr><td>${label}</td>${years.map(v => `<td>${at(v, pct)}</td>`).join('')}</tr>`).join('\n');
+  return `      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead>${head}</thead>
+          <tbody>
+${body}
+          </tbody>
+        </table>
+      </div>`;
+}
+
+// The date rules the pages use in the browser, loaded from tools/tools.js so
+// the tables and the live countdowns can never disagree.
+let toolsJs = null;
+function rules() {
+  if (!toolsJs) {
+    const ctx = {};
+    vm.createContext(ctx);
+    const src = readFileSync(new URL('../../tools/tools.js', import.meta.url), 'utf8');
+    vm.runInContext(`${src}\n;this.api = { easterDate, orthodoxEasterDate, thanksgivingDate, mothersDayDate, fathersDayDate, seasonInstant };`, ctx);
+    toolsJs = ctx.api;
+  }
+  return toolsJs;
+}
+
+function buildIso() {
+  const env = process.env.BUILD_DATE;
+  if (env && /^\d{4}-\d{2}-\d{2}$/.test(env)) return env;
+  const d = new Date();
+  return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+}
+const isoOf = d => `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+const WEEKDAYS_LONG = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+const longDate = d => `${MONTHS[d.getMonth()]} ${d.getDate()}, ${d.getFullYear()}`; // December 25, 2026
+const dayMonth = d => `${WEEKDAYS_LONG[d.getDay()]}, ${MONTHS[d.getMonth()]} ${d.getDate()}`; // Sunday, March 28
+const weekday = d => WEEKDAYS_LONG[d.getDay()];
+const nthWeekday = (y, month, weekdayIndex, n) => {
+  const first = new Date(y, month, 1);
+  return new Date(y, month, 1 + ((weekdayIndex - first.getDay() + 7) % 7) + (n - 1) * 7);
+};
+
+// Five rows from the first year whose `main` date is today or later.
+function fiveYears(main, cells) {
+  const today = buildIso();
+  let y = buildYear() - 1;
+  while (isoOf(main(y)) < today) y += 1;
+  return [0, 1, 2, 3, 4].map(i => cells(y + i));
+}
+
+const CELL = 'style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);"';
+// Rewrites the rows of the first table in the page's prose; the header stays
+// hand-written. Cell text matches the hand-typed format, so translations of
+// rows that were already there are kept.
+function refreshTbody(html, rows) {
+  const prose = html.indexOf('<div class="tool-prose">');
+  if (prose < 0) return html;
+  const open = html.indexOf('<tbody>', prose);
+  const close = html.indexOf('</tbody>', open);
+  if (open < 0 || close < 0) return html;
+  const body = rows.map(r => `          <tr>${r.map(c => `<td ${CELL}>${c}</td>`).join('')}</tr>`).join('\n');
+  return `${html.slice(0, open)}<tbody>\n${body}\n          ${html.slice(close)}`;
+}
+
+const fixedDay = (month, day) => html => refreshTbody(html, fiveYears(
+  y => new Date(y, month, day),
+  y => { const d = new Date(y, month, day); return [String(y), longDate(d), weekday(d)]; }
+));
+
+// Season pages: the exact UTC moment for each hemisphere, five years.
+function seasonsTable(northEvent, southEvent, northLabel, southLabel) {
+  const { seasonInstant } = rules();
+  const today = buildIso();
+  let y = buildYear();
+  const utcIso = d => d.toISOString().slice(0, 10);
+  if (utcIso(seasonInstant(y, northEvent)) < today && utcIso(seasonInstant(y, southEvent)) < today) y += 1;
+  const fmt = d => `${MONTHS[d.getUTCMonth()]} ${d.getUTCDate()}, ${d.getUTCFullYear()}, ${pad2(d.getUTCHours())}:${pad2(d.getUTCMinutes())}`;
+  const rows = [0, 1, 2, 3, 4].map(i => {
+    const minute = e => new Date(Math.round(seasonInstant(y + i, e) / 60000) * 60000);
+    return `          <tr><td>${fmt(minute(northEvent))}</td><td>${fmt(minute(southEvent))}</td></tr>`;
+  }).join('\n');
+  return `      <div class="tool-table-wrap">
+        <table class="tool-table">
+          <thead><tr><th>${northLabel}</th><th>${southLabel}</th></tr></thead>
+          <tbody>
+${rows}
+          </tbody>
+        </table>
+      </div>`;
+}
+
+const GENERATED = {
+  'percentage-year-calculator': html => replaceBlock(html, 'milestones', milestonesTable()),
+  'days-until-spring': html => replaceBlock(html, 'seasons', seasonsTable('march', 'september', 'Northern Hemisphere: March equinox (UTC)', 'Southern Hemisphere: September equinox (UTC)')),
+  'days-until-summer': html => replaceBlock(html, 'seasons', seasonsTable('june', 'december', 'Northern Hemisphere: June solstice (UTC)', 'Southern Hemisphere: December solstice (UTC)')),
+  'days-until-fall': html => replaceBlock(html, 'seasons', seasonsTable('september', 'march', 'Northern Hemisphere: September equinox (UTC)', 'Southern Hemisphere: March equinox (UTC)')),
+  'days-until-winter': html => replaceBlock(html, 'seasons', seasonsTable('december', 'june', 'Northern Hemisphere: December solstice (UTC)', 'Southern Hemisphere: June solstice (UTC)')),
+  'christmas-countdown-widget': fixedDay(11, 25),
+  'days-until-halloween': fixedDay(9, 31),
+  'days-until-valentines': fixedDay(1, 14),
+  'days-until-new-year': html => refreshTbody(html, fiveYears(
+    y => new Date(y + 1, 0, 1),
+    y => { const d = new Date(y + 1, 0, 1); return [longDate(d), weekday(d), `${weekday(new Date(y, 11, 31))}, ${longDate(new Date(y, 11, 31))}`]; }
+  )),
+  'days-until-easter': html => refreshTbody(html, fiveYears(
+    y => rules().easterDate(y),
+    y => [String(y), dayMonth(rules().easterDate(y)), dayMonth(rules().orthodoxEasterDate(y))]
+  )),
+  'days-until-thanksgiving': html => refreshTbody(html, fiveYears(
+    y => rules().thanksgivingDate(y),
+    y => [String(y), dayMonth(rules().thanksgivingDate(y)), dayMonth(nthWeekday(y, 9, 1, 2))]
+  )),
+  'days-until-mothers-day': html => refreshTbody(html, fiveYears(
+    y => rules().mothersDayDate(y),
+    y => { const e = rules().easterDate(y); return [String(y), dayMonth(rules().mothersDayDate(y)), dayMonth(new Date(e.getFullYear(), e.getMonth(), e.getDate() - 21))]; }
+  )),
+  'days-until-fathers-day': html => refreshTbody(html, fiveYears(
+    y => rules().fathersDayDate(y),
+    y => [String(y), dayMonth(rules().fathersDayDate(y)), dayMonth(nthWeekday(y, 8, 0, 1))]
+  )),
+};
+
 export function applyToolTemplate(slug, html) {
+  if (GENERATED[slug]) html = GENERATED[slug](html);
   const cfg = toolConfig(slug, html);
 
   // 1. Result card: drop the old buttons and the previous card, then append
