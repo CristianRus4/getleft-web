@@ -1,0 +1,552 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>ADHD Motivation: Use Interest, Urgency and Novelty on iPhone | Left</title>
+  <meta name="description" content="ADHD motivation tends to follow interest, novelty, challenge, urgency and people. How to borrow each one for boring tasks, with a concrete iPhone setup." />
+  <link rel="canonical" href="https://getleft.app/blog/adhd-motivation-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/adhd-motivation-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/adhd-motivation-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="ADHD Motivation: Use Interest, Urgency and Novelty on iPhone" />
+  <meta property="og:description" content="ADHD motivation tends to follow interest, novelty, challenge, urgency and people. How to borrow each one for boring tasks, with a concrete iPhone setup." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/adhd-motivation-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/smart-goals-visual-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ADHD Motivation: Use Interest, Urgency and Novelty on iPhone" />
+  <meta name="twitter:description" content="ADHD motivation tends to follow interest, novelty, challenge, urgency and people. How to borrow each one for boring tasks, with a concrete iPhone setup." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/smart-goals-visual-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "ADHD Motivation: Work With Interest, Urgency and Novelty on iPhone",
+  "description": "ADHD motivation tends to follow interest, novelty, challenge, urgency and people. How to borrow each one for boring tasks, with a concrete iPhone setup.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/adhd-motivation-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "ADHD Motivation: Work With Interest, Urgency and Novelty on iPhone",
+      "item": "https://getleft.app/blog/adhd-motivation-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is an interest-based nervous system?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "It's a way some clinicians describe ADHD motivation: attention and drive switch on for things that are interesting, new, challenging, urgent or shared with other people, more than for things that are merely important. It's a useful framework, not a formal diagnosis or settled science."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there an app that fixes ADHD motivation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No app fixes it, but apps can add the missing drivers to boring tasks. Countdowns add urgency, goals with numbers add challenge, shared habits add people, and changing widgets or timer styles adds novelty."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why can I focus on some things for hours but not start easy tasks?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many people with ADHD describe exactly this. Tasks with interest, novelty, challenge or urgency get attention easily, while simple but dull tasks have none of these, so they're hard to start even when they're quick."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I make a deadline feel urgent when it's weeks away?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Split it into smaller deadlines a few days apart, make each one visible as a countdown on your Lock Screen, and tell someone the date. A near, visible, shared deadline feels far more real than a distant one in a calendar."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does a new app work for a week and then stop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Novelty wears off, and the app turns into background. Keep the method and refresh what you see: move or resize widgets, change the wallpaper, or switch the timer style."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>ADHD Motivation: Work With Interest, Urgency and Novelty on iPhone</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 9 min read</p>
+<p>If you have ADHD, you probably know the pattern. The tax return that matters a lot sits untouched for weeks. Then the night before it's due, you do it in three hours, focused and fast. Or you spend a whole Saturday on a new hobby while a five-minute email waits.</p>
+<p>It looks like laziness from the outside. It isn't. Many clinicians describe ADHD motivation as <strong>interest-based rather than importance-based</strong>: knowing a task matters doesn't reliably switch your brain on, but certain conditions do. This guide names those conditions and shows how to borrow each one for the boring jobs, with a specific setup on your iPhone.</p>
+
+<figure class="post-hero"><img src="/images/blog/smart-goals-visual-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/glass-jars-on-a-wooden-shelf-in-a-kitchen-6654122/" rel="noopener">Arina Krasnikova / Pexels</a></figcaption></figure>
+
+<h2>The five things that switch motivation on</h2>
+<p>The framework comes from clinical observation, and it's widely used by ADHD coaches and therapists. It isn't settled science, and not every person fits it. But it matches what a lot of people with ADHD report about their own days. Tasks tend to get done when they are:</p>
+<ul>
+  <li><strong>Urgent.</strong> The deadline is close enough to feel.</li>
+  <li><strong>New.</strong> Something about the task, the tool or the place is fresh.</li>
+  <li><strong>Challenging.</strong> There's a number to beat or a puzzle to solve.</li>
+  <li><strong>Interesting.</strong> You'd want to do it even if nobody asked.</li>
+  <li><strong>Shared.</strong> Another person is involved, waiting or watching.</li>
+</ul>
+<p>You'll sometimes see this shortened to INCUP (interest, novelty, challenge, urgency, and passion or people). The practical idea is simple: a boring task has none of these, so you add one on purpose. You don't need all five. One is often enough to get started, and starting is most of the battle. If starting is your main problem, our guide to <a href="/blog/adhd-task-initiation-strategies">ADHD task initiation strategies</a> goes deeper on that first minute.</p>
+
+<h2>Urgency: make the deadline close and visible</h2>
+<p>Urgency is the most reliable driver, and the most abused. Waiting for panic works, but it costs sleep and quality. The trick is to create a smaller, earlier, real deadline so the urgency arrives while there's still time to do the work well.</p>
+<p>Three ways to borrow urgency:</p>
+<ul>
+  <li><strong>Break the big deadline into near ones.</strong> A report due in a month has no pull today. "First draft by Thursday" does. Each piece gets its own date.</li>
+  <li><strong>Put the date where you'll see it.</strong> A deadline in a calendar app you rarely open isn't urgent. A countdown on your Lock Screen that says "3 days" every time you pick up your phone is.</li>
+  <li><strong>Make the deadline someone else's too.</strong> Tell a colleague you'll send the draft Thursday at 4. An artificial deadline with another person attached behaves much more like a real one.</li>
+</ul>
+<p><strong>On iPhone:</strong> in Left, add each near deadline as an Ahead countdown. Each one shows how much time is left and a progress bar from the day you set it, so you can see the gap closing. Put the nearest one on your Lock Screen as a widget, and turn on reminders for the day before. When the date gets close, the final countdown can run as a Live Activity, so it sits on the Lock Screen and in the Dynamic Island without you opening anything.</p>
+<p>Time blindness makes urgency harder to feel in the first place: "next Friday" and "in three weeks" can feel the same. If that sounds familiar, read <a href="/blog/adhd-time-blindness-iphone">how widgets help with ADHD time blindness</a>.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Put a countdown on your Lock Screen</a></p>
+
+<h2>Novelty: change the surface, not the task</h2>
+<p>A new system works brilliantly for about ten days. Then it becomes furniture and your brain stops seeing it. That doesn't mean the system was wrong. Keep the task and the method, and change something you see:</p>
+<ul>
+  <li><strong>Rotate widgets.</strong> Change the size, the page or the view every couple of weeks.</li>
+  <li><strong>Change the wallpaper.</strong> A new Lock Screen is the cheapest novelty there is. Left's free wallpaper can show your year, month or life as a grid that updates itself.</li>
+  <li><strong>Change the timer.</strong> If you use a focus timer, a different look can make the same 25 minutes feel new. Left's Focus timer, part of Left Premium, has four styles: Digital, Clock, Squares (one square per minute that drains away) and Pulse. Use one style for a week, then switch.</li>
+  <li><strong>Change the place.</strong> A different room, café or desk counts too. Novelty doesn't have to come from the phone.</li>
+</ul>
+<p>A useful rule: when you notice you've stopped looking at something, change its look within a day. Don't wait until you've abandoned it.</p>
+
+<h2>Challenge: give yourself a number to beat</h2>
+<p>"Work on the essay" has nothing to push against. "Write 400 words before lunch" does. Make the target a stretch you'll hit more often than not.</p>
+<ul>
+  <li><strong>Count something.</strong> Pages, words, minutes, boxes packed, emails cleared. If it can be counted, it can be beaten.</li>
+  <li><strong>Race yesterday, not other people.</strong> Beating your own Tuesday is motivating. Comparing yourself with a productive friend usually isn't.</li>
+  <li><strong>Use a run, lightly.</strong> A streak turns "did I do it today?" into a small challenge. Keep the daily bar low so the challenge stays fun.</li>
+</ul>
+<p><strong>On iPhone:</strong> an Aim in Left is a goal with a number. Set a unit and a target, for example "hours studied, target 20 by the end of the month", and log each session with one tap or by entering an amount. The progress history shows you yesterday's number, so there's always something to beat. For daily actions, a habit with a streak does the same job. If you use the Focus timer, "My focus" shows your last 7 days, another number to beat.</p>
+
+<h2>Interest: pair the boring thing with something you like</h2>
+<p>You can't always make a task interesting, but you can attach it to something that is. This is sometimes called temptation bundling: you only get the thing you like while you're doing the thing you don't.</p>
+<ul>
+  <li>Your favorite podcast is only for washing up and folding laundry.</li>
+  <li>The good coffee is only for the admin hour.</li>
+  <li>The new album is only for the commute to the gym.</li>
+  <li>Expense reports happen in the nice café, never at the kitchen table.</li>
+</ul>
+<p>Or find the interesting angle inside the task: turn a tidy-up into a 15-minute speed run, or treat a messy spreadsheet as a puzzle. Interest only has to last the first ten minutes.</p>
+<p>A word on rewards: pairing is different from a reward at the end. Pairing makes the task itself more pleasant right now. If you want to build a proper reward loop, our <a href="/blog/adhd-reward-system">ADHD reward system guide</a> covers how to make rewards small, immediate and forgiving.</p>
+
+<h2>People: let someone else hold part of the weight</h2>
+<p>Many people with ADHD find it easier to show up for someone else than for themselves. Use that on purpose.</p>
+<ul>
+  <li><strong>Body doubling.</strong> Work alongside someone, in person or on a video call, while each of you does your own task. You don't talk much. Their presence keeps you anchored. Our guide to <a href="/blog/adhd-body-doubling-apps">body doubling apps and alternatives</a> lists the services and the low-tech versions.</li>
+  <li><strong>A check-in.</strong> Send a friend a message when you start and when you finish. Ten seconds each, and surprisingly effective.</li>
+  <li><strong>Shared progress.</strong> Let one person see one habit or streak. Not everything, just the one that slips most.</li>
+</ul>
+<p><strong>On iPhone:</strong> Friends in Left, part of Left Premium, lets you add a friend by invite link or @username and share a specific habit or streak with them. They see whether you complete or miss it and can send support. For shared deadlines, a Joint Ahead date is one countdown that appears in each person's Ahead, which suits a project you're both finishing.</p>
+
+<h2>What not to rely on</h2>
+<p>Some motivators work badly with ADHD. Stop building plans on them.</p>
+<ul>
+  <li><strong>Willpower.</strong> "I'll just make myself do it" assumes importance is enough to switch you on. For an interest-based brain it often isn't. Plan for the version of you who doesn't feel like it.</li>
+  <li><strong>Distant rewards.</strong> A treat at the end of the month barely registers today. If a reward is part of the plan, make it small and soon.</li>
+  <li><strong>Guilt.</strong> Guilt can force one late-night push, but it teaches you to avoid the task, the app and the person who reminds you of it. A plan you feel bad looking at is a plan you'll stop looking at.</li>
+</ul>
+
+<h2>A week using all five</h2>
+<p>Here's one way it might look. Say you need to clear a backlog of admin: a tax return, two forms and a pile of email, all due in about three weeks.</p>
+<ul>
+  <li><strong>Monday.</strong> Split the backlog into three near deadlines: forms by Thursday, email cleared by Sunday, tax return by next Friday. Add each one as an Ahead countdown and put the nearest on your Lock Screen. (Urgency)</li>
+  <li><strong>Tuesday.</strong> Set an Aim: "admin hours, target 6 this week". Do the first hour in your favorite café with the good coffee, then log it. (Challenge, interest)</li>
+  <li><strong>Wednesday.</strong> Book an hour of body doubling with a friend who has their own work to do. Start the Focus timer and get through the first form. (People)</li>
+  <li><strong>Thursday.</strong> Text the same friend: "Second form sent." The first deadline is met while there's still time to spare. (People, urgency)</li>
+  <li><strong>Friday.</strong> Low energy. Do one 25-minute session only, with a podcast saved for email days. Log it. One session counts. (Interest)</li>
+  <li><strong>Saturday.</strong> The countdowns already feel like part of the wallpaper. Switch the Focus timer to Squares, move the widget, and do a 20-minute email speed run against Tuesday's count. (Novelty, challenge)</li>
+  <li><strong>Sunday.</strong> Check the Aim: 5 of 6 hours. Close enough. Next week's target is 5, not 8. The tax return countdown is now the one on your Lock Screen.</li>
+</ul>
+<p>Nothing in that week depends on feeling motivated first. Each day borrows one driver and makes the start a little easier.</p>
+
+<h2>Tool, not treatment</h2>
+<p>These ideas can make boring work easier to start, and an iPhone setup can keep them in front of you. They don't replace care. If low motivation is constant, affects your work or relationships, or comes with low mood, talk to a clinician. Some of what looks like low motivation can have other causes worth checking.</p>
+<p>Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy. If you want to compare Left with other ADHD tools, such as visual planners, coaching apps or app blockers, see our list of the <a href="/blog/best-apps-for-adhd-iphone">best apps for ADHD on iPhone</a>.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is an interest-based nervous system?</h3>
+<p>It's a way some clinicians describe ADHD motivation: attention and drive switch on for things that are interesting, new, challenging, urgent or shared with other people, more than for things that are merely important. It's a useful framework, not a formal diagnosis or settled science.</p>
+<h3>Is there an app that fixes ADHD motivation?</h3>
+<p>No app fixes it, but apps can add the missing drivers to boring tasks. Countdowns add urgency, goals with numbers add challenge, shared habits add people, and changing widgets or timer styles adds novelty.</p>
+<h3>Why can I focus on some things for hours but not start easy tasks?</h3>
+<p>Many people with ADHD describe exactly this. Tasks with interest, novelty, challenge or urgency get attention easily, while simple but dull tasks have none of these, so they're hard to start even when they're quick.</p>
+<h3>How do I make a deadline feel urgent when it's weeks away?</h3>
+<p>Split it into smaller deadlines a few days apart, make each one visible as a countdown on your Lock Screen, and tell someone the date. A near, visible, shared deadline feels far more real than a distant one in a calendar.</p>
+<h3>Why does a new app work for a week and then stop?</h3>
+<p>Novelty wears off, and the app turns into background. Keep the method and refresh what you see: move or resize widgets, change the wallpaper, or switch the timer style.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
