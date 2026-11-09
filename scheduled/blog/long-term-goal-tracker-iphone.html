@@ -1,0 +1,566 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Track Long-Term Goals on iPhone (Without Quitting) | Left</title>
+  <meta name="description" content="A long-term goal tracker setup for iPhone: give the goal a date, a number and a weekly rhythm, then keep time left, progress and this week&#x27;s action in view." />
+  <link rel="canonical" href="https://getleft.app/blog/long-term-goal-tracker-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/long-term-goal-tracker-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/long-term-goal-tracker-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Track Long-Term Goals on iPhone (Without Quitting)" />
+  <meta property="og:description" content="A long-term goal tracker setup for iPhone: give the goal a date, a number and a weekly rhythm, then keep time left, progress and this week&#x27;s action in view." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/long-term-goal-tracker-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/stay-consistent-with-goals-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Track Long-Term Goals on iPhone (Without Quitting)" />
+  <meta name="twitter:description" content="A long-term goal tracker setup for iPhone: give the goal a date, a number and a weekly rhythm, then keep time left, progress and this week&#x27;s action in view." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/stay-consistent-with-goals-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Track Long-Term Goals on iPhone (Without Losing Interest)",
+  "description": "A long-term goal tracker setup for iPhone: give the goal a date, a number and a weekly rhythm, then keep time left, progress and this week's action in view.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/long-term-goal-tracker-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Track Long-Term Goals on iPhone (Without Losing Interest)",
+      "item": "https://getleft.app/blog/long-term-goal-tracker-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best way to track a long-term goal on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Give the goal a date, a number and a weekly rhythm, then keep all three visible: a countdown to the date, a progress tracker for the number, and a habit for the weekly action. Widgets on the Home Screen and Lock Screen keep them in view without opening an app."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I stay motivated on a goal that takes years?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Don't rely on motivation. Focus on a weekly action you control, make progress visible so small steps still register, and check your pace once a month so you catch a slide early and fix it with a small change."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if I'm on track for a long-term goal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compare the share of time gone with the share of the goal done. If half the time has passed and you're at least halfway to your number, you're on pace. In Left, an Aim with a deadline also shows whether you're on track, ahead or behind."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I track a goal where the number goes down, like paying off debt?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In Left, choose a count-down Aim, enter the amount left as the starting number, and log each payment. The Aim shows what's left and the percentage cleared."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many long-term goals should I track at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One or two. Each long-term goal needs its own countdown, number and habit, and more than two usually means none of them gets a fixed weekly slot."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Track Long-Term Goals on iPhone (Without Losing Interest)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 9 min read</p>
+<p>Long-term goals rarely fail on day one or in the final month. They fail in the middle. Month seven of a two-year savings plan. Week 22 of a novel. The second year of a part-time degree. The deadline is too far away to feel, the progress is too small to notice, and nothing breaks if you skip this week. So you skip this week, and then the next.</p>
+<p>This guide is a setup for that boring middle: give the goal a date, a number and a weekly rhythm, then keep time left, progress made and this week's action in view. It includes two worked examples with real numbers, a monthly pace check, and an honest note on where Left fits and where a project tool or spreadsheet is better.</p>
+
+<figure class="post-hero"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-window-sill-with-a-potted-plant-next-to-it-2Hka5fVDT3g" rel="noopener">Amy Harrison / Unsplash</a></figcaption></figure>
+
+<h2>Why long-term goals stall in the middle</h2>
+<ul>
+  <li><strong>The deadline stops feeling real.</strong> "October 2028" is a fact you know, not a pressure you feel. A date 100 weeks away doesn't change what you do on a Tuesday.</li>
+  <li><strong>Progress becomes invisible.</strong> Early on, every step is a big share of the total. Later, one more week barely moves the number.</li>
+  <li><strong>The action has no slot.</strong> "Save more" and "write when I can" have no day and no size. So urgent things win.</li>
+</ul>
+<p>Motivation won't carry you through 24 months of this. Visibility and rhythm can, because they don't depend on how you feel this week.</p>
+
+<h2>Give the goal a date, a number and a weekly rhythm</h2>
+<p>Before you open any app, write the goal in three parts:</p>
+<ol>
+  <li><strong>A date.</strong> The day it's done: a race, a final exam, a move-in date, or simply a deadline you choose. No natural date? Pick one and treat it as a plan, not a promise.</li>
+  <li><strong>A number.</strong> What you can count: money saved, words written, kilometers run, modules passed, debt left.</li>
+  <li><strong>A weekly rhythm.</strong> The repeated action that moves the number, with a size and a slot. "Four 400-word sessions a week" is a rhythm. "Write more" isn't.</li>
+</ol>
+<p>The rhythm comes from simple math: <strong>(target minus where you are now) divided by weeks left = your weekly pace.</strong> Our <a href="/tools/weeks-until-date">weeks until a date calculator</a> gives you the weeks. Then size the weekly action so you could still do it in a bad week.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Goal</th><th>Date</th><th>Number</th><th>Rhythm</th></tr></thead>
+  <tbody>
+    <tr><td>A part-time degree</td><td>Final exams</td><td>Modules passed, up to 18</td><td>Four study sessions a week</td></tr>
+    <tr><td>A house deposit</td><td>The date you want to buy</td><td>Money saved, up to 24,000</td><td>A transfer every payday, a short weekly spending check</td></tr>
+    <tr><td>A first marathon</td><td>Race day</td><td>Training km, up to 900</td><td>Three runs a week</td></tr>
+    <tr><td>A novel draft</td><td>Your own deadline</td><td>Words written, up to 80,000</td><td>Four writing sessions a week</td></tr>
+    <tr><td>Paying off a debt</td><td>Debt-free date</td><td>Debt left, down to 0</td><td>A fixed payment every payday</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Keep three things in view</h2>
+<p>Each part answers one question and needs its own place on your phone:</p>
+<ul>
+  <li><strong>Time left: how far away is it?</strong> A countdown to the date. It turns "October 2028" into "103 weeks" and shows how much of the runway is used.</li>
+  <li><strong>Progress made: how far have I come?</strong> The number, with a target and a percentage, so week 40 looks different from week 4.</li>
+  <li><strong>This week's action: did I do my part?</strong> A habit you tick off. It keeps your attention on what you control.</li>
+</ul>
+<p>Put the first two side by side and you get the <strong>pace check</strong>: compare the share of time gone with the share of the goal done. If 40% of the time has passed and you're 45% of the way there, you're ahead. If you're at 30%, you're behind, and you know it in month nine rather than month twenty.</p>
+
+<h2>How to set it up on iPhone with Left</h2>
+<p>Left has a tool for each of the three. Here's the setup for one goal; it takes about ten minutes.</p>
+<ol>
+  <li><strong>Add the date as an Ahead countdown.</strong> Name it specifically ("House deposit, Oct 2028"), add a photo of what you're working toward, and set reminders. Ahead shows progress from the day you create it to the date, so set it up on the same day you start tracking the number. You can also save the date to your calendar.</li>
+  <li><strong>Add the number as an Aim.</strong> In Since, create an Aim, choose count up (saved, written, run) or count down (debt left), and set the unit, the target, the start date and the deadline. Set a default step that matches your rhythm, such as 400 words, so logging a session is one tap. With a deadline set, the Aim also shows whether you're on track, ahead or behind. Our <a href="/support/aims-in-left">guide to Aims in Left</a> covers every option.</li>
+  <li><strong>Add the rhythm as a habit.</strong> Habits can be daily, weekly, monthly or on specific days, and some can need more than one completion per period, so "three runs a week" is a single weekly habit with three checks.</li>
+  <li><strong>Put it where you look.</strong> A medium Aim widget on your first Home Screen page, the Ahead countdown on the Lock Screen, and a habit widget that shows what's still unchecked today. Left has dozens of widgets, so pick the smallest that still shows the number.</li>
+  <li><strong>Add perspective, if it helps you.</strong> Left's Time Left views show the year, or your whole life, as a grid where the past dims. Seeing a four-year degree as a short strip of your life can make it feel both more urgent and more doable. The free Left Wallpaper puts the year or life view on your Lock Screen.</li>
+</ol>
+<p>With an Apple Watch, you can tick off the habit from your wrist right after a run or a writing session. For more on the number side, see <a href="/blog/aim-goal-tracker-left">Aim in Left: track any goal you can count</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Set up your first Aim</a></p>
+
+<h2>Worked example: a house deposit in two years</h2>
+<p>Say it's November 2026. You want a 24,000 deposit by 31 October 2028, and you already have 3,000 put aside.</p>
+<ul>
+  <li><strong>Date:</strong> an Ahead countdown to 31 October 2028, with a photo of the kind of street you'd like to live on. Today that's about 103 weeks away.</li>
+  <li><strong>Number:</strong> a count-up Aim for the 21,000 still to save, deadline 31 October 2028. Leaving the 3,000 out keeps the Aim's percentage directly comparable with the countdown's.</li>
+  <li><strong>Pace:</strong> 21,000 left over 24 paydays is 875 a month, or roughly 205 a week.</li>
+  <li><strong>Rhythm:</strong> a monthly habit, "Move 875 to the deposit account", on payday, plus a weekly habit for a ten-minute spending check on Sunday evening. Automate the transfer at your bank if you can, and use the habit as the moment you log it.</li>
+</ul>
+<p>In month nine, the countdown shows about 37% of the time gone. If the Aim reads 8,750 (42%), you're ahead, and a lean month won't sink you. If it reads 6,125 (29%), you've missed about two transfers, and you know it now, not in month twenty. This whole setup fits in the free plan: one countdown, one Aim and two habits.</p>
+
+<h2>Worked example: a novel draft by next November</h2>
+<p>You want an 80,000-word first draft by 1 November 2027. From 9 November 2026, that's 51 weeks.</p>
+<ul>
+  <li><strong>Pace:</strong> 80,000 divided by 51 is about 1,570 words a week.</li>
+  <li><strong>Rhythm:</strong> four sessions of 400 words, on set days (Monday, Tuesday, Thursday, Saturday). That's 1,600 a week, with a small buffer. Make it a habit on those days.</li>
+  <li><strong>Number:</strong> a count-up Aim in words, target 80,000, default step 400. A normal session is one tap.</li>
+  <li><strong>Date:</strong> an Ahead countdown to 1 November 2027.</li>
+</ul>
+<p>At the start of May 2027, 25 weeks in, the countdown shows 49% of the time gone, so you'd want to be near 39,000 words. Say the Aim reads 31,000 instead (39%). You're about 8,000 words behind, which is five weeks of sessions. Adding a fifth weekly session for the remaining 26 weeks adds about 10,400 words and closes the gap without heroic weekends. A small change, made early.</p>
+
+<h2>The monthly pace check</h2>
+<p>Once a month, take ten minutes and compare two numbers: the countdown's progress and the Aim's percentage.</p>
+<ul>
+  <li><strong>Ahead or level:</strong> change nothing.</li>
+  <li><strong>A little behind:</strong> add one small action to the weekly rhythm, like the fifth writing session above. Don't plan to double up next week; that rarely happens.</li>
+  <li><strong>Well behind for two checks in a row:</strong> change the plan on purpose. Move the date, lower the number, or make the weekly action smaller and more certain. An honestly resized goal beats a quietly abandoned one.</li>
+</ul>
+<p>Missed a week? Log nothing for it, tick the next session as normal, and let the monthly check deal with the gap.</p>
+
+<h2>What a long-term goal app needs</h2>
+<p>Whatever app you use, check it for:</p>
+<ul>
+  <li><strong>A countdown to a date</strong> that shows how much of the time is used, not just the days left.</li>
+  <li><strong>A number with a unit and a target</strong>, counting up or down (for debt).</li>
+  <li><strong>Fast logging</strong>: one tap for a normal session, with room to enter a real amount.</li>
+  <li><strong>A progress history</strong> so you can see the trend, not just today's total.</li>
+  <li><strong>A recurring action</strong> that can be weekly or on set days, not only daily.</li>
+  <li><strong>Widgets</strong> for the Home Screen and Lock Screen, so the goal is visible without opening anything.</li>
+  <li><strong>A way to restart or archive</strong> without losing what you learned from the first attempt.</li>
+</ul>
+<p>Our round-up of the <a href="/blog/best-goal-tracking-apps-iphone">best goal tracking apps for iPhone</a> compares apps against needs like these.</p>
+
+<h2>Where Left fits, and where something else is better</h2>
+<p>Left fits personal goals that boil down to a date, a number and a habit: saving, paying off debt, training for a race, writing, studying. It's built for seeing them at a glance.</p>
+<p>It isn't the right home for every long goal:</p>
+<ul>
+  <li><strong>Goals made of many dependent tasks</strong>, like a renovation or a thesis with chapters and feedback rounds, need a project tool. Keep the plan there and put just the deadline and one number in Left.</li>
+  <li><strong>Money goals with moving parts</strong>, like several accounts or interest, are better in a spreadsheet or budgeting app.</li>
+  <li><strong>Training that needs a plan</strong>, like marathon sessions that change week by week, belongs in a running plan app or with a coach.</li>
+</ul>
+<p>Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy. One long-term goal fits in the free plan.</p>
+<p>For more widget layouts and routines by lifestyle, see our <a href="/blog/goal-progress-tracker-setup">goal progress tracker setup guide</a>. If the life view is what keeps you going, the <a href="/life-calendar">life calendar widget</a> page shows how it works.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best way to track a long-term goal on iPhone?</h3>
+<p>Give the goal a date, a number and a weekly rhythm, then keep all three visible: a countdown to the date, a progress tracker for the number, and a habit for the weekly action. Widgets on the Home Screen and Lock Screen keep them in view without opening an app.</p>
+<h3>How do I stay motivated on a goal that takes years?</h3>
+<p>Don't rely on motivation. Focus on a weekly action you control, make progress visible so small steps still register, and check your pace once a month so you catch a slide early and fix it with a small change.</p>
+<h3>How do I know if I'm on track for a long-term goal?</h3>
+<p>Compare the share of time gone with the share of the goal done. If half the time has passed and you're at least halfway to your number, you're on pace. In Left, an Aim with a deadline also shows whether you're on track, ahead or behind.</p>
+<h3>Can I track a goal where the number goes down, like paying off debt?</h3>
+<p>Yes. In Left, choose a count-down Aim, enter the amount left as the starting number, and log each payment. The Aim shows what's left and the percentage cleared.</p>
+<h3>How many long-term goals should I track at once?</h3>
+<p>One or two. Each long-term goal needs its own countdown, number and habit, and more than two usually means none of them gets a fixed weekly slot.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
