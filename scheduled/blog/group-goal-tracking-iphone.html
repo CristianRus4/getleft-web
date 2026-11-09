@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Group Goal Tracking on iPhone: Shared Goals That Stick | Left</title>
+  <meta name="description" content="How to set a shared goal with friends, a partner or family, the three shapes group goals take, and how to track each one on iPhone without a leaderboard." />
+  <link rel="canonical" href="https://getleft.app/blog/group-goal-tracking-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/group-goal-tracking-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/group-goal-tracking-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Group Goal Tracking on iPhone: Shared Goals That Stick" />
+  <meta property="og:description" content="How to set a shared goal with friends, a partner or family, the three shapes group goals take, and how to track each one on iPhone without a leaderboard." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/group-goal-tracking-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/habitkit-vs-left-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Group Goal Tracking on iPhone: Shared Goals That Stick" />
+  <meta name="twitter:description" content="How to set a shared goal with friends, a partner or family, the three shapes group goals take, and how to track each one on iPhone without a leaderboard." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/habitkit-vs-left-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Group Goal Tracking on iPhone: Shared Goals That Stick",
+  "description": "How to set a shared goal with friends, a partner or family, the three shapes group goals take, and how to track each one on iPhone without a leaderboard.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/group-goal-tracking-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Group Goal Tracking on iPhone: Shared Goals That Stick",
+      "item": "https://getleft.app/blog/group-goal-tracking-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good group goal tracking app for iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For small groups of friends, partners or family, look for an app that shares a date and individual habits without public rankings. Left does this with Joint Ahead dates and habits or streaks shared with friends, which are part of Left Premium. For work teams, a project management or OKR tool fits better."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you set a collaborative goal with friends?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Agree on one shared date, give each person an action they own, share only the one habit or streak that matters, and decide in advance what happens after a miss. Keep the group to two to six people."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can friends see all my habits in Left?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Friends only see the specific habit, streak or Joint Ahead date you share with them, and you can stop sharing at any time. Your other items, including your Aims, stay private."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is group goal tracking free in Left?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Friends, sharing and Joint Ahead dates are part of Left Premium, which is a subscription or a lifetime purchase. Prices are shown in the app before you buy."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do my friends need an iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Left is an iPhone app (with an Apple Watch app) and needs iOS 26, and each friend needs Left and a Left account to accept invites."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Group Goal Tracking on iPhone: Shared Goals That Stick</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 10 min read</p>
+<p>Most "group goal" apps are built for work: objectives, key results, owners, status meetings. That's the wrong tool when the group is you and three friends saving for a trip, two people trying to run every day this month, or a couple paying off a card together.</p>
+<p>Small groups of people who care about each other need something lighter. One date everyone can see, each person doing their own part, and a way to cheer each other on without turning it into a contest. This guide covers how to set a shared goal well, the three shapes group goals usually take, and how to track each one on iPhone, using <strong>Left</strong> as the worked example.</p>
+
+<figure class="post-hero"><img src="/images/blog/habitkit-vs-left-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/top-view-of-two-coffee-cups-on-sunlit-table-35835482/" rel="noopener">Engin Akyurt / Pexels</a></figcaption></figure>
+
+<h2>Five rules for a shared goal that lasts</h2>
+<p>Collaborative goal setting goes wrong in predictable ways: the goal is vague, one person carries it, or the visibility turns into pressure. These five rules prevent most of that.</p>
+<ol>
+  <li><strong>One shared date.</strong> The group agrees on a single date: the trip, the race, the exam, the day the card hits zero. Everyone counts to the same day. A goal with four different dates is four goals.</li>
+  <li><strong>Individual actions.</strong> The date is shared, the work isn't. Each person owns something they can do on their own: run three times a week, put a set amount aside each payday, study for 30 minutes. "We'll get fit" has no owner. "I run Monday, Wednesday and Saturday" does.</li>
+  <li><strong>Light visibility.</strong> Friends should see the one thing that matters for this goal, not your whole life. Did you run today? Is the streak still going? That's enough to start a conversation, and little enough that nobody feels watched.</li>
+  <li><strong>Support, not scoring.</strong> Skip public leaderboards that rank people. In a small group, the person at the bottom of the board is usually the one who needed encouragement most, and a ranking tells them they're losing. A quick "you've got this" does more than a position on a list.</li>
+  <li><strong>Agree what a miss means, up front.</strong> Decide together before you start: one missed day is normal, two in a row gets a check-in, nobody gets told off. Saying it out loud early makes the first miss boring instead of awkward.</li>
+</ol>
+<p>Keep the group small, too. Two to six people is the range where everyone notices everyone else. Past that, shared visibility becomes background noise.</p>
+
+<h2>The three shapes of group goals</h2>
+<p>Almost every shared goal between friends, partners or family fits one of three shapes. Each needs something different.</p>
+
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Shape</th><th>Examples</th><th>What's shared</th><th>In Left</th></tr></thead>
+  <tbody>
+    <tr><td>A date we're all counting to</td><td>Group trip, wedding, race day, exam, a reunion</td><td>The date itself</td><td>A Joint Ahead date</td></tr>
+    <tr><td>Each of us doing the same habit</td><td>A 30-day running challenge, daily study, a dry month</td><td>Each person's habit or streak</td><td>Habits or streaks shared with each other</td></tr>
+    <tr><td>One person's goal, friends watching</td><td>Quitting smoking, writing a thesis, a daily walk after an injury</td><td>One habit or streak</td><td>A habit or streak with one or two watchers</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>1. A date we're all counting to</h3>
+<p>The goal is an event, and everyone wants the same countdown. What everyone needs is the date in view, so the plan feels real and the bookings get done in time.</p>
+<p>In Left, this is a <strong>Joint Ahead date</strong>: an Ahead countdown shared with one or more friends. The person who creates it is the admin, and once friends accept, the same date appears in everyone's Ahead, with the countdown, the progress since it was set, and a photo. Each person can put it on their own Home Screen or Lock Screen widget. The <a href="/support/joint-ahead-dates">Joint Ahead dates guide</a> walks through invites, accepting and leaving.</p>
+
+<h3>2. Each of us doing the same habit</h3>
+<p>Two or more people commit to the same action: run every day for 30 days, study every weekday evening, no alcohol in January. Everyone does their own version, and the point is knowing the others are doing it too.</p>
+<p>In Left, each person creates their own habit or streak in Since and shares it with the others. A friend who accepts becomes a <strong>watcher</strong>: for a habit they see whether you complete or miss it, for a streak they see whether it's still going or has restarted, and they can send support or congratulations. Share both ways and you're both watching and both being watched.</p>
+
+<h3>3. One person's goal, friends watching</h3>
+<p>Sometimes the goal belongs to one person and the others are there to back them up. Your sister is quitting smoking. A friend is writing a thesis and wants someone to notice if the daily writing stops.</p>
+<p>In Left, that person shares one habit or streak with one or two friends. The friends don't track anything themselves. They see the one item, get a notification if they've turned that on, and send support when it helps. The <a href="/support/accountability-with-friends">accountability with friends guide</a> covers what watchers see and how to stop sharing later.</p>
+
+<h3>The measurable part: each person's own Aims</h3>
+<p>Many shared goals also have a number: money saved, kilometers run, debt left, books read. In Left that's an <strong>Aim</strong>, a countable goal with a unit, a target, a start date and an optional deadline, counting up or down. Aims belong to the person who makes them and aren't shared with friends in the app. The group shares the date and the daily action; each person keeps their own number. If you want to show progress, you can share an Aim as an image card in the chat you already use. The <a href="/support/aims-in-left">Aims guide</a> covers count-up and count-down goals.</p>
+
+<h2>Setting it up in Left</h2>
+<p>Friends, shared habits and streaks, and Joint Ahead dates are part of Left Premium. Everyone in the group needs Left on an iPhone and a Left account.</p>
+<ol>
+  <li><strong>Sign in.</strong> Open <strong>Friends</strong> and tap <strong>Sign in with Apple</strong>. This gives you a profile and a username.</li>
+  <li><strong>Add each other.</strong> In Friends, tap <strong>+</strong>, then send <strong>Your invite link</strong> to the group chat, or use <strong>Search by @username</strong>. Each person accepts the request.</li>
+  <li><strong>For a shared date:</strong> open <strong>Ahead</strong>, tap <strong>+</strong> and choose <strong>Add a date ahead</strong> (or open an existing date). Turn on <strong>Friends</strong>, tap <strong>Add a friend</strong>, pick everyone, and save. Invites appear in each friend's <strong>Requests</strong> until they accept.</li>
+  <li><strong>For a shared habit or streak:</strong> open <strong>Since</strong>, create the habit or streak (or open one), turn on <strong>Friends</strong>, tap <strong>Add a friend</strong>, and save. Friends show as Invited, then Watching once they accept.</li>
+  <li><strong>For your own number:</strong> in Since, tap <strong>+</strong> and choose an Aim. Set the unit, the target, and a deadline that matches the shared date.</li>
+  <li><strong>Choose your notifications.</strong> In <strong>Settings → Friends</strong>, pick which friend activity can notify you: completions, misses, support, invites. Turn off anything that starts to feel like nagging.</li>
+</ol>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Start a shared goal in Left</a></p>
+
+<h2>What friends can and can't see</h2>
+<p>Adding a friend in Left doesn't open your app to them. Friends only see the items you choose to share with them, one by one.</p>
+<ul>
+  <li><strong>They can see</strong> the shared habit (done or missed), the shared streak (going or restarted), and Joint Ahead dates they've joined.</li>
+  <li><strong>They can't see</strong> your other habits, streaks, Aims or Ahead dates, or the other friends you've invited to watch an item.</li>
+  <li><strong>You can stop sharing any time.</strong> Remove the friend from the item's Friends section. A watcher can also leave on their own, and anyone can leave a Joint Ahead date without deleting it for the others.</li>
+</ul>
+
+<h2>Three worked examples</h2>
+
+<h3>A group trip: four friends, Lisbon in June</h3>
+<p>One person creates a Joint Ahead date called "Lisbon", from the departure day to the day home, with a photo of the city, and invites the other three. The same countdown now sits in all four Ahead lists. Our post on <a href="/blog/countdown-next-trip-with-friends">counting down to a trip with friends</a> has the widget and Live Activity details.</p>
+<p>The individual actions are the bookings and the money. Each person owns one job (flights, the apartment, the day trip, the dinner reservation) and agrees a date for it in the group chat. Anyone saving for the trip creates their own Aim, "Lisbon fund", counting up to their own target with the same deadline.</p>
+
+<h3>A 30-day running habit between two friends</h3>
+<p>Sam and Priya want to run for at least 20 minutes a day for 30 days. Each creates a daily habit, "Run 20 min", and shares it with the other. Both accept, so both are watching. When Priya's habit is still unchecked at 7 pm, Sam can send support. When Sam logs a run, Priya can send congratulations. If either of them wants a fixed end, they add a Joint Ahead date for day 30, or for the 5K they've signed up to.</p>
+<p>The rule they agree on day one: miss one day, fine; miss two in a row, the other one texts. No ranking, no "you're behind." If you'd rather track a run of days than a ticked habit, a streak works the same way. <a href="/blog/how-to-build-a-streak">How to build a streak</a> explains when to use which.</p>
+
+<h3>A couple paying off debt</h3>
+<p>Alex and Jo have 8,000 left on a credit card and want it gone by the end of next year. The shared part is the finish line: a Joint Ahead date called "Card paid off", with both of them in it.</p>
+<p>The numbers stay individual. Alex pays from his salary and Jo from hers, so each creates a count-down Aim starting at their half and logs each payment. Once a month they sit down together, compare the two Aims, and adjust if one of them has had a rough month. If one partner wants backup on a spending habit, say a weekly "check the budget" habit, they share it with the other as a watcher.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+  <li><strong>Turning it into a contest.</strong> Comparing totals feels motivating for the person in front and deflating for everyone else. Compare against your own plan, not each other.</li>
+  <li><strong>Sharing everything.</strong> Share the one habit or streak that matters for this goal. Five shared items per person in a group of four is twenty things to watch, and nobody watches twenty things.</li>
+  <li><strong>The watcher becomes the manager.</strong> A watcher's job is support. If every miss gets a message, the person stops logging honestly.</li>
+  <li><strong>A group goal that's really one person's.</strong> If only one of you cares, it's shape three. Set it up that way and the others can support without pretending.</li>
+</ul>
+
+<h2>When you need something else</h2>
+<ul>
+  <li><strong>Work teams.</strong> If you're tracking team objectives, owners and deliverables, use a project management or OKR tool. Left has no team or workspace features.</li>
+  <li><strong>Big public challenges.</strong> Running clubs with dozens of members, or a step challenge across an office, suit fitness apps with clubs and challenge boards.</li>
+  <li><strong>Talking.</strong> Left has no group chat. Keep the conversation in Messages or WhatsApp, and use Left for the date and the daily check-ins.</li>
+  <li><strong>Working side by side.</strong> If a study group needs company while they work, not just visibility afterwards, see our guide to <a href="/blog/adhd-body-doubling-apps">body doubling apps</a>.</li>
+</ul>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is a good group goal tracking app for iPhone?</h3>
+<p>For small groups of friends, partners or family, look for an app that shares a date and individual habits without public rankings. Left does this with Joint Ahead dates and habits or streaks shared with friends, which are part of Left Premium. For work teams, a project management or OKR tool fits better.</p>
+<h3>How do you set a collaborative goal with friends?</h3>
+<p>Agree on one shared date, give each person an action they own, share only the one habit or streak that matters, and decide in advance what happens after a miss. Keep the group to two to six people.</p>
+<h3>Can friends see all my habits in Left?</h3>
+<p>No. Friends only see the specific habit, streak or Joint Ahead date you share with them, and you can stop sharing at any time. Your other items, including your Aims, stay private.</p>
+<h3>Is group goal tracking free in Left?</h3>
+<p>Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Friends, sharing and Joint Ahead dates are part of Left Premium, which is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+<h3>Do my friends need an iPhone?</h3>
+<p>Yes. Left is an iPhone app (with an Apple Watch app) and needs iOS 26, and each friend needs Left and a Left account to accept invites.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
