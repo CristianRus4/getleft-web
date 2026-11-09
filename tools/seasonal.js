@@ -144,6 +144,7 @@ function sxPreview(root, ms, dateText) {
   if (num) num.textContent = fmtNum(n);
   if (unit) unit.textContent = toolPlural(useHours ? 'unit.hours' : 'unit.days', n);
   if (date && dateText) date.textContent = dateText;
+  root.classList.toggle('is-long', n >= 100);
 }
 
 /* ─────────── Share ─────────── */
