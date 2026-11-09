@@ -1,0 +1,533 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Quarterly Goal Tracker: Set and Track 90-Day Goals | Left</title>
+  <meta name="description" content="A quarterly goal tracker that works: how to set 90-day goals, turn them into weekly numbers, and keep the quarter&#x27;s deadline visible on your iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/quarterly-goal-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/quarterly-goal-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/quarterly-goal-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Quarterly Goal Tracker: Set and Track 90-Day Goals" />
+  <meta property="og:description" content="A quarterly goal tracker that works: how to set 90-day goals, turn them into weekly numbers, and keep the quarter&#x27;s deadline visible on your iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/quarterly-goal-tracker" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-year-progress-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quarterly Goal Tracker: Set and Track 90-Day Goals" />
+  <meta name="twitter:description" content="A quarterly goal tracker that works: how to set 90-day goals, turn them into weekly numbers, and keep the quarter&#x27;s deadline visible on your iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-year-progress-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Quarterly Goal Tracker: How to Set and Track 90-Day Goals on iPhone",
+  "description": "A quarterly goal tracker that works: how to set 90-day goals, turn them into weekly numbers, and keep the quarter's deadline visible on your iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/quarterly-goal-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Quarterly Goal Tracker: How to Set and Track 90-Day Goals on iPhone",
+      "item": "https://getleft.app/blog/quarterly-goal-tracker"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a quarterly goal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A goal you plan to finish within one quarter, about 13 weeks or 90 days. Quarters are long enough to achieve something meaningful and short enough that the deadline feels real from the first week."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many quarterly goals should I set?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One to three. Each extra goal splits your attention, and three is usually the most people can make steady weekly progress on."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track quarterly goals on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Turn each goal into a number with a deadline on the quarter's last day, track the weekly habit that gets you there, and keep a countdown to quarter end visible. In Left, that's an Aim, a weekly habit and an Ahead countdown, each available as a widget."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I fall behind in the middle of the quarter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Check your pace weekly so you notice early. Then make one change: add a session, lower the target to something realistic, or drop a goal to protect the others."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should quarterly goals follow the calendar quarters?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They don't have to. Calendar quarters (January to March and so on) are easy to remember, but any 13-week block works, such as a training cycle or a school term."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Quarterly Goal Tracker: How to Set and Track 90-Day Goals on iPhone</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 7 min read</p>
+<p>Yearly goals have a timing problem. In January, December feels so far away that nothing is urgent, so the first months drift. By October, it's too late to catch up. A quarter fixes that. Thirteen weeks is long enough to finish something real and short enough that week 2 already matters.</p>
+<p>That's why companies plan in quarters, and why it works just as well for personal goals. This guide covers how to choose quarterly goals, how to break them into weekly numbers you can actually track, and how to set up a quarterly goal tracker on your iPhone that shows both your progress and how much of the quarter is left.</p>
+<figure class="post-hero"><img src="/images/blog/best-year-progress-apps-iphone-hero.webp" alt="An open year planner with columns for January to June, beside a cup of coffee on a warm brown desk" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/flat-lay-photography-of-book-and-teacup-b_Qt9f2egBM" rel="noopener">Photo: NORTHFOLK on Unsplash</a></figcaption></figure>
+
+<h2>Why 90 days works</h2>
+<ul>
+  <li><strong>The deadline is always close.</strong> In a quarter, there's no "I'll start next month": next month is a third of the time.</li>
+  <li><strong>Mistakes are cheap.</strong> If a goal was wrong, you lose 13 weeks, not a year, and you get a clean restart four times a year.</li>
+  <li><strong>It matches real life.</strong> Seasons, school terms, work cycles and training blocks often run about three months.</li>
+  <li><strong>The pace is visible.</strong> At week 6 you should be close to halfway. If you're at 20%, you know now, not in December.</li>
+</ul>
+
+<h2>How to set quarterly goals</h2>
+<ol>
+  <li><strong>Start from the year.</strong> Write down the 2 or 3 things you want by year end. Each quarter should move one of them forward.</li>
+  <li><strong>Pick no more than three goals.</strong> One is often better. Every extra goal halves the attention each one gets.</li>
+  <li><strong>Give each goal a number.</strong> "Get fitter" becomes "run 150 km". "Grow the side project" becomes "10 paying customers". If you can't count it, you can't track it. <a href="/blog/smart-goals-guide">SMART goals</a> help here.</li>
+  <li><strong>Add the habit that gets you there.</strong> The number is the outcome; the habit is what you do each week. 150 km needs about three runs a week.</li>
+  <li><strong>Write the weekly target.</strong> Divide the number by 13. 150 km is about 11.5 km a week. That's the number to check every Sunday.</li>
+</ol>
+
+<h2>Example: one quarter, three goals</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Goal</th><th>Number by quarter end</th><th>Weekly target</th><th>Habit</th></tr></thead>
+  <tbody>
+    <tr><td>Run a half marathon in spring</td><td>150 km run</td><td>~11.5 km</td><td>Run 3 times a week</td></tr>
+    <tr><td>Clear the credit card</td><td>$2,600 paid off</td><td>$200</td><td>Transfer on payday</td></tr>
+    <tr><td>Read more</td><td>6 books</td><td>1 book every 2 weeks</td><td>Read 20 minutes daily</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>What a quarterly goal tracker needs to show</h2>
+<p>A spreadsheet can hold the numbers, but you won't open it on a Tuesday. A useful tracker shows four things without you looking for them:</p>
+<ul>
+  <li><strong>Progress:</strong> where you are against the target, as a number and a percentage.</li>
+  <li><strong>Time left:</strong> how many days remain in the quarter.</li>
+  <li><strong>Pace:</strong> whether you're ahead or behind for the date.</li>
+  <li><strong>The weekly habit:</strong> whether you did this week's runs, transfers or reading.</li>
+</ul>
+<p>Progress without time left is misleading: 50% sounds good until you see 80% of the quarter has gone.</p>
+
+<h2>Set up a quarterly goal tracker on iPhone with Left</h2>
+<p>Left, an iPhone app we make, covers all four with three of its features. You can rebuild the same idea with other apps; the structure is what matters.</p>
+<h3>1. Each goal as an Aim with the quarter's deadline</h3>
+<ol>
+  <li>Open Left, go to <strong>Since</strong>, tap <strong>+</strong> and choose an Aim.</li>
+  <li>Choose <strong>count up</strong> for things you add (kilometers, books, customers) or <strong>count down</strong> for things you reduce (a card balance).</li>
+  <li>Set the unit, the target and a <strong>deadline</strong> on the last day of the quarter.</li>
+  <li>Set the default log amount to a typical step (5 km, 1 book, $200), so logging is one tap.</li>
+</ol>
+<p>With a deadline, the Aim shows whether you're on track, ahead or behind, plus the amount left and the percentage done. That's the pace check, done for you. The <a href="/support/aims-in-left">Aims guide</a> has every setting.</p>
+<h3>2. The weekly habit</h3>
+<p>In <strong>Since</strong>, create a habit with a weekly period and a count: "Run, 3 times a week". Weekly habits can be done on any days in the week, which suits real schedules better than fixed days.</p>
+<h3>3. A countdown to quarter end</h3>
+<p>In <strong>Ahead</strong>, add the quarter's last day ("Q1 ends"). Add it as a widget next to your Aim widgets, so "38 days left" and "61% done" sit side by side. The <a href="/tools/quarter-countdown-calculator">quarter countdown calculator</a> shows how much of the current quarter is left right now.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Track your quarterly goals</a></p>
+
+<h2>The weekly review (10 minutes, Sunday)</h2>
+<ol>
+  <li>Open each Aim. Ahead, on track or behind?</li>
+  <li>Check the weekly habit: did you hit the count?</li>
+  <li>If you're behind, pick one fix for the coming week: an extra session, a smaller weekly target, or dropping a goal.</li>
+  <li>Glance at the countdown. Thirteen weeks becomes twelve faster than it sounds.</li>
+</ol>
+<p>Weekly reviews are where quarterly goals are won. A goal that's 10% behind in week 4 is easy to recover; in week 11 it isn't. For more on keeping going when motivation dips, read <a href="/blog/stay-consistent-with-goals">how to stay consistent with goals</a>.</p>
+
+<h2>At the end of the quarter</h2>
+<ul>
+  <li><strong>Score honestly.</strong> 70% of an ambitious goal is often a better quarter than 100% of an easy one.</li>
+  <li><strong>Keep or archive.</strong> Archive Aims you've finished or dropped. If a goal continues, restart the Aim for the new quarter.</li>
+  <li><strong>Keep the habit.</strong> The habit usually outlasts the goal. Running three times a week doesn't need to stop because the 150 km are done.</li>
+  <li><strong>Set the next three.</strong> Do it before the new quarter starts, not in week 2.</li>
+</ul>
+<p>Want to see the bigger picture too? A year progress widget shows how much of the year has passed, which puts each quarter in context. See the <a href="/year-progress-widget">year progress widget</a>.</p>
+
+<h2>Questions</h2>
+<h3>What is a quarterly goal?</h3>
+<p>A goal you plan to finish within one quarter, about 13 weeks or 90 days. Quarters are long enough to achieve something meaningful and short enough that the deadline feels real from the first week.</p>
+<h3>How many quarterly goals should I set?</h3>
+<p>One to three. Each extra goal splits your attention, and three is usually the most people can make steady weekly progress on.</p>
+<h3>How do I track quarterly goals on iPhone?</h3>
+<p>Turn each goal into a number with a deadline on the quarter's last day, track the weekly habit that gets you there, and keep a countdown to quarter end visible. In Left, that's an Aim, a weekly habit and an Ahead countdown, each available as a widget.</p>
+<h3>What if I fall behind in the middle of the quarter?</h3>
+<p>Check your pace weekly so you notice early. Then make one change: add a session, lower the target to something realistic, or drop a goal to protect the others.</p>
+<h3>Should quarterly goals follow the calendar quarters?</h3>
+<p>They don't have to. Calendar quarters (January to March and so on) are easy to remember, but any 13-week block works, such as a training cycle or a school term.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
