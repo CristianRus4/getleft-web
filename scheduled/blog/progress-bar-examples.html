@@ -1,0 +1,575 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026) | Left</title>
+  <meta name="description" content="Progress bar examples for real life: 12 kinds for goals, savings and time, when each works, and how to make a progress bar on paper, in Sheets or on iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/progress-bar-examples" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/progress-bar-examples" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/progress-bar-examples" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026)" />
+  <meta property="og:description" content="Progress bar examples for real life: 12 kinds for goals, savings and time, when each works, and how to make a progress bar on paper, in Sheets or on iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/progress-bar-examples" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/habitkit-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026)" />
+  <meta name="twitter:description" content="Progress bar examples for real life: 12 kinds for goals, savings and time, when each works, and how to make a progress bar on paper, in Sheets or on iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/habitkit-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026)",
+  "description": "Progress bar examples for real life: 12 kinds for goals, savings and time, when each works, and how to make a progress bar on paper, in Sheets or on iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/progress-bar-examples",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026)",
+      "item": "https://getleft.app/blog/progress-bar-examples"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do you make a progress bar in Google Sheets?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put your current amount in one cell (say B2) and the target in another (C2), then use =SPARKLINE(B2,{\"charttype\",\"bar\";\"max\",C2}). It draws a bar inside the cell that fills as B2 grows. For a text bar, REPT repeats ▓ and ░ characters in proportion to B2/C2."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you calculate the percentage for a progress bar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Divide what's done by the total and multiply by 100. $7,200 saved toward $10,000 is 72%. For time, divide the days that have passed by the days in the period: November 9 is day 313 of 2026, so the year is about 86% done by the end of that day. The percentage of the year calculator does this for any date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a progress ring better than a progress bar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neither wins everywhere. A bar is easier to read precisely and to compare with other bars, because people judge length better than angle. A ring fits small spaces and suits goals that reset, like a daily step count. If precision matters, use a bar; if space is tight, use a ring with the number inside."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can you put a progress bar on your iPhone Home Screen?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes, with a widget. Apple's Fitness widget shows your Activity rings, but for your own goals you need a widget app. In Left, an Aim widget shows a progress bar toward a target, Ahead Bars and Ahead Circle show time until a date, and the Time Left grids show the year, month or day. The goal progress tracker setup guide walks through it."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do you type a text progress bar like ▓▓▓░░?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use the dark shade character ▓ for done and the light shade ░ for remaining, or the full block █ for a heavier look. Copy them from this page. On iPhone, you can save a ready-made bar as a text replacement in Settings → General → Keyboard → Text Replacement. Ten characters make a bar with 10% steps; add the percentage after it so the bar is never ambiguous."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Progress Bar Examples: 12 Kinds for Goals, Time and Money (2026)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 8 min read</p>
+<p>Most progress bar examples online are about loading screens. This page is about the other kind: the bar that shows how far you are through a goal, a savings target, a project or the year. Below are 12 progress bar examples, what each one is good for, where each one falls short, and three practical ways to make a progress bar yourself: on paper, in a spreadsheet and on your iPhone Home Screen.</p>
+<figure class="post-hero"><img src="/images/blog/habitkit-alternatives-hero.webp" alt="A printed yearly calendar showing all twelve months as grids of small day squares, clipped to a notebook on a light grey desk beside dried flowers." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/text-eaeKesI3TJQ" rel="noopener">Photo: Paico Oficial on Unsplash</a></figcaption></figure>
+
+<h2>First, decide what 100% means</h2>
+<p>A progress bar is a ratio: done divided by total. The bar only means something if the total is clear. Real-life totals come in four kinds:</p>
+<ul>
+<li><strong>Count:</strong> 14 of 24 books, 70 of 100 km.</li>
+<li><strong>Amount:</strong> $3,200 of a $10,000 emergency fund.</li>
+<li><strong>Steps:</strong> 4 of 7 stages of a kitchen renovation.</li>
+<li><strong>Time:</strong> days gone out of the days in a year, a semester or a training plan.</li>
+</ul>
+
+<h2>12 progress bar examples for real life</h2>
+
+<h3>1. The classic linear bar</h3>
+<div role="img" aria-label="Linear progress bar at 70 percent" style="max-width:320px;height:12px;border-radius:6px;background:rgba(128,128,128,0.25);overflow:hidden;margin:12px 0 16px"><div style="width:70%;height:100%;border-radius:6px;background:currentColor"></div></div>
+<p><strong>Good for:</strong> any single goal with a fixed total, like 7,000 of 10,000 dollars saved. Everyone reads it instantly, and length is the easiest visual quantity to judge.</p>
+<p><strong>Weak spot:</strong> 70% of a reading goal and 70% of a mortgage look identical. Put the real numbers next to it ("7,000 / 10,000") or it says very little.</p>
+
+<h3>2. Segmented (stepped) bar</h3>
+<div role="img" aria-label="Segmented progress bar, 3 of 5 steps done" style="display:flex;gap:4px;max-width:320px;margin:12px 0 16px"><span style="flex:1;height:12px;border-radius:3px;background:currentColor"></span><span style="flex:1;height:12px;border-radius:3px;background:currentColor"></span><span style="flex:1;height:12px;border-radius:3px;background:currentColor"></span><span style="flex:1;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="flex:1;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span></div>
+<p><strong>Good for:</strong> goals made of distinct steps: a five-chapter thesis, a 12-week course, a move broken into stages. Each block that fills in is a small, visible win.</p>
+<p><strong>Weak spot:</strong> steps are rarely equal. If chapter 4 is twice the work of the others, the bar overstates your progress after chapter 3. Keep steps roughly the same size, or use a linear bar.</p>
+
+<h3>3. Circular ring</h3>
+<div role="img" aria-label="Circular progress ring at 70 percent" style="width:64px;height:64px;border-radius:50%;background:conic-gradient(currentColor 0 70%, rgba(128,128,128,0.25) 70% 100%);display:flex;align-items:center;justify-content:center;margin:12px 0 16px"><div style="width:46px;height:46px;border-radius:50%;background:var(--bg)"></div></div>
+<p><strong>Good for:</strong> small spaces, like a watch face or a small widget, and goals that reset, like a daily step count. A closed ring feels finished in a way a full bar doesn't.</p>
+<p><strong>Weak spot:</strong> people judge angles less accurately than lengths, so 60% and 70% look closer on a ring than on a bar. Put the number inside or next to it.</p>
+
+<h3>4. Nested rings</h3>
+<p>Apple's Activity rings in the Fitness app are the best-known example: Move, Exercise and Stand in one compact shape that refills every day.</p>
+<p><strong>Good for:</strong> two or three related daily goals you want to see together.</p>
+<p><strong>Weak spot:</strong> past three rings it becomes a target pattern. And because the rings reset daily, they show today, not the trend.</p>
+
+<h3>5. Grid of dots or squares</h3>
+<div role="img" aria-label="Grid of 30 days with 8 filled" style="display:grid;grid-template-columns:repeat(10,12px);gap:5px;margin:12px 0 16px"><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:currentColor"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span><span style="width:12px;height:12px;border-radius:3px;background:rgba(128,128,128,0.25)"></span></div>
+<p><strong>Good for:</strong> time. November as 30 squares (8 done on the morning of the 9th), a year as 365 squares, or a life in weeks, about 4,700 squares for 90 years. Each square is one real unit, so you count instead of estimate. If you want the math behind it, see <a href="/blog/what-is-year-progress">what year progress is and how it's calculated</a>.</p>
+<p><strong>Weak spot:</strong> it needs room. 365 squares in a small widget get tiny, and a grid shows how much, not whether you're on pace.</p>
+
+<h3>6. Stacked bar</h3>
+<div role="img" aria-label="Stacked progress bar: 30 percent from savings, 20 percent from a bonus, 15 percent from a side job, 35 percent to go" style="display:flex;max-width:320px;height:12px;border-radius:6px;overflow:hidden;background:rgba(128,128,128,0.25);margin:12px 0 16px"><span style="width:30%;background:currentColor"></span><span style="width:20%;background:currentColor;opacity:0.6"></span><span style="width:15%;background:currentColor;opacity:0.35"></span></div>
+<p><strong>Good for:</strong> one total fed by several sources. A $10,000 down payment with $3,000 from savings, $2,000 from a bonus and $1,500 from a side job: one bar, three shades, 65% in total.</p>
+<p><strong>Weak spot:</strong> the middle segments are hard to compare by eye. Keep it to three or four parts and label each one.</p>
+
+<h3>7. Thermometer</h3>
+<div role="img" aria-label="Thermometer progress bar filled to 60 percent" style="width:18px;height:96px;border-radius:9px;background:rgba(128,128,128,0.25);display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;margin:12px 0 16px"><div style="height:60%;background:currentColor"></div></div>
+<p><strong>Good for:</strong> shared goals shown to a group: a school fundraiser, a team savings pot, a charity walk. It fills from the bottom toward a goal line and reads from across a room.</p>
+<p><strong>Weak spot:</strong> it takes vertical space and suggests one fixed target. If the goal moves, redraw it instead of drawing past the top.</p>
+
+<h3>8. Milestone bar</h3>
+<p>A linear bar with labeled marks along it: 5K, 10K, half marathon, marathon. Or a $1,000 starter fund, then one month of expenses, then three.</p>
+<p><strong>Good for:</strong> long goals where the finish is far away. The next mark is always closer than the end, which keeps the bar from feeling stuck.</p>
+<p><strong>Weak spot:</strong> too many labels crowd it. Three to five milestones is plenty.</p>
+
+<h3>9. Countdown bar that empties</h3>
+<div role="img" aria-label="Countdown bar with 30 percent of the time left" style="max-width:320px;height:12px;border-radius:6px;background:rgba(128,128,128,0.25);overflow:hidden;margin:12px 0 16px"><div style="width:30%;height:100%;border-radius:6px;background:currentColor"></div></div>
+<p>The same bar in reverse: it starts full and drains as a date gets closer. "30% of the semester left."</p>
+<p><strong>Good for:</strong> deadlines, where the thing that matters is time remaining.</p>
+<p><strong>Weak spot:</strong> a draining bar reads like a warning. For something you're looking forward to, such as a trip, a bar that fills toward the day feels better.</p>
+
+<h3>10. Text bar made of ▓ and ░</h3>
+<p><span role="img" aria-label="Text progress bar at 70 percent" style="font-family:ui-monospace,Menlo,monospace;font-size:20px">▓▓▓▓▓▓▓░░░ 70%</span></p>
+<p><strong>Good for:</strong> anywhere that only takes text: a note, a message, a social bio, a spreadsheet cell. Ten characters give 10% steps; twenty give 5% steps.</p>
+<p><strong>Weak spot:</strong> it's coarse, and some fonts draw the two characters at different widths, so the bar can look uneven. Use a monospaced font when you can.</p>
+
+<h3>11. Percentage only</h3>
+<p><span style="font-size:40px;font-weight:700;line-height:1">86%</span></p>
+<p>Sometimes the number is the bar. That's roughly how much of 2026 is done by the end of November 9.</p>
+<p><strong>Good for:</strong> tight spots like the Lock Screen, and figures people already understand, like year progress.</p>
+<p><strong>Weak spot:</strong> a percentage hides scale. 86% of a 10 km run and 86% of a 10-year loan feel very different, and the number alone doesn't say which.</p>
+
+<h3>12. Pace bar: progress against time</h3>
+<div role="img" aria-label="Pace bars: work done 40 percent, time used 60 percent" style="max-width:320px;margin:12px 0 16px"><div style="font-size:13px;margin-bottom:4px">Work</div><div style="height:10px;border-radius:5px;background:rgba(128,128,128,0.25);overflow:hidden;margin-bottom:10px"><div style="width:40%;height:100%;background:currentColor"></div></div><div style="font-size:13px;margin-bottom:4px">Time</div><div style="height:10px;border-radius:5px;background:rgba(128,128,128,0.25);overflow:hidden"><div style="width:60%;height:100%;background:currentColor;opacity:0.5"></div></div></div>
+<p>Two bars stacked: one for the work done, one for the time used.</p>
+<p><strong>Good for:</strong> any goal with a deadline. If the time bar is ahead of the work bar, you're behind; if the work bar leads, you have slack. Say your goal is 24 books this year: in early November you're about 86% through the year, so you'd want to be near 20 books.</p>
+<p><strong>Weak spot:</strong> it assumes steady progress. Goals with a slow start or a big final push, like exam prep or a training plan, will look behind for a while by design.</p>
+
+<h2>Which progress bar fits which goal</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Goal</th><th>Total measured in</th><th>Best fit</th></tr></thead>
+<tbody>
+<tr><td>Savings or debt payoff</td><td>Amount</td><td>Linear, stacked or thermometer</td></tr>
+<tr><td>Books, workouts, distance</td><td>Count</td><td>Linear with numbers, or pace bar</td></tr>
+<tr><td>Course, thesis, renovation</td><td>Steps</td><td>Segmented or milestone</td></tr>
+<tr><td>The year, a month, a semester</td><td>Time passed</td><td>Grid or percentage</td></tr>
+<tr><td>Trip, exam or launch date</td><td>Time left</td><td>Countdown bar or ring</td></tr>
+<tr><td>Daily habit</td><td>Today only</td><td>Ring</td></tr>
+</tbody>
+</table>
+</div>
+<p>Whichever you pick, three rules keep it honest: show the real numbers beside the bar, don't quietly change the total, and update it often enough that it moves.</p>
+
+<h2>How to make a progress bar: three practical ways</h2>
+
+<h3>On paper or in a bullet journal</h3>
+<ol>
+<li>Pick the total and divide it into 10 or 20 equal parts. A $5,000 goal becomes 20 boxes of $250.</li>
+<li>Draw the boxes in a row for a segmented bar, or as a 10 by 10 grid where each square is 1%.</li>
+<li>Shade a box each time you cross a step. Writing the date inside turns the bar into a log.</li>
+<li>Mark two or three milestones in a different color.</li>
+</ol>
+<p>Shading a box by hand feels good. The catch is that the bar only exists where the notebook is.</p>
+
+<h3>In a spreadsheet</h3>
+<p><strong>Google Sheets:</strong> with your current amount in B2 and the target in C2, <code>=SPARKLINE(B2,{"charttype","bar";"max",C2})</code> draws a bar inside the cell. Add a <code>"color1"</code> option to change its color.</p>
+<p><strong>Excel:</strong> select the cells, then Home → Conditional Formatting → Data Bars. By default the bars scale to the largest value in the selection, so open Manage Rules → Edit Rule and set the maximum to your target number.</p>
+<p><strong>Text bar in either:</strong> <code>=REPT("▓",ROUND(MIN(B2/C2,1)*10,0))&amp;REPT("░",10-ROUND(MIN(B2/C2,1)*10,0))</code> builds a 10-character bar that stops at full even if you pass the target.</p>
+
+<h3>On your iPhone Home Screen</h3>
+<p>Paper and spreadsheets wait for you to go and look. A widget puts the bar where your eyes already land dozens of times a day, which is most of the point of <a href="/blog/visual-goals-track-on-screens">keeping goals visual</a>. In Left, three features cover the examples above:</p>
+<ul>
+<li><strong>Countable goals: Aim.</strong> Give it a unit, a target and an optional deadline, then log with a tap (one tap can add one book or $50). Left shows the amount, what's left and the percentage complete, and with a deadline, whether you're on track. Widgets can show the number, target, percentage and a progress bar. Details in <a href="/support/aims-in-left">how Aim works in Left</a>.</li>
+<li><strong>Time until a date: Ahead.</strong> Add a date in Ahead, then pick a widget: Ahead Bars shows countdowns as bars, Ahead Circle as a ring, and the Ahead widget can show a percentage. The <a href="/countdown-widget">countdown widget page</a> has the full steps.</li>
+<li><strong>The year, month, week and day: Time Left.</strong> These are the grids from example 5, and the year, month and day grid widgets are free. See the <a href="/year-progress-widget">year progress widget</a>.</li>
+</ul>
+<p>Left is free to download. The free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium, a subscription or lifetime purchase, unlocks unlimited items. For a fuller walkthrough of a goal widget setup, see the <a href="/blog/goal-progress-tracker-setup">goal progress tracker setup guide</a>.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Track a goal in Left</a></p>
+
+<h2>Questions</h2>
+<h3>How do you make a progress bar in Google Sheets?</h3>
+<p>Put your current amount in one cell (say B2) and the target in another (C2), then use <code>=SPARKLINE(B2,{"charttype","bar";"max",C2})</code>. It draws a bar inside the cell that fills as B2 grows. For a text bar, <code>REPT</code> repeats ▓ and ░ characters in proportion to B2/C2.</p>
+<h3>How do you calculate the percentage for a progress bar?</h3>
+<p>Divide what's done by the total and multiply by 100. $7,200 saved toward $10,000 is 72%. For time, divide the days that have passed by the days in the period: November 9 is day 313 of 2026, so the year is about 86% done by the end of that day. The <a href="/tools/percentage-year-calculator">percentage of the year calculator</a> does this for any date.</p>
+<h3>Is a progress ring better than a progress bar?</h3>
+<p>Neither wins everywhere. A bar is easier to read precisely and to compare with other bars, because people judge length better than angle. A ring fits small spaces and suits goals that reset, like a daily step count. If precision matters, use a bar; if space is tight, use a ring with the number inside.</p>
+<h3>Can you put a progress bar on your iPhone Home Screen?</h3>
+<p>Yes, with a widget. Apple's Fitness widget shows your Activity rings, but for your own goals you need a widget app. In Left, an Aim widget shows a progress bar toward a target, Ahead Bars and Ahead Circle show time until a date, and the Time Left grids show the year, month or day. The <a href="/blog/goal-progress-tracker-setup">goal progress tracker setup guide</a> walks through it.</p>
+<h3>How do you type a text progress bar like ▓▓▓░░?</h3>
+<p>Use the dark shade character ▓ for done and the light shade ░ for remaining, or the full block █ for a heavier look. Copy them from this page. On iPhone, you can save a ready-made bar as a text replacement in Settings → General → Keyboard → Text Replacement. Ten characters make a bar with 10% steps; add the percentage after it so the bar is never ambiguous.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
