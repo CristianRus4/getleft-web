@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Executive Function Tools on iPhone: One for Each Skill | Left</title>
+  <meta name="description" content="Executive function is a set of skills. For each one, see what breaks and a tool that does the job for you: paper, built-in iPhone features or an app." />
+  <link rel="canonical" href="https://getleft.app/blog/executive-function-apps-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/executive-function-apps-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/executive-function-apps-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Executive Function Tools on iPhone: One for Each Skill" />
+  <meta property="og:description" content="Executive function is a set of skills. For each one, see what breaks and a tool that does the job for you: paper, built-in iPhone features or an app." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/executive-function-apps-iphone" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/productivity-tools-visual-focus-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Executive Function Tools on iPhone: One for Each Skill" />
+  <meta name="twitter:description" content="Executive function is a set of skills. For each one, see what breaks and a tool that does the job for you: paper, built-in iPhone features or an app." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/productivity-tools-visual-focus-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Executive Function Tools on iPhone: One for Each Skill",
+  "description": "Executive function is a set of skills. For each one, see what breaks and a tool that does the job for you: paper, built-in iPhone features or an app.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/executive-function-apps-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Executive Function Tools on iPhone: One for Each Skill",
+      "item": "https://getleft.app/blog/executive-function-apps-iphone"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are executive function tools?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They are anything that does an executive function job outside your head: a list that remembers for you, a timer that tracks time, a calendar that plans the day. They can be paper, built-in phone features or apps."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What are the main executive function skills?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lists vary, but most include planning and prioritizing, working memory, time management, task initiation, sustained attention, emotional regulation, flexibility and organization, and sticking with goals over time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Are there free executive function tools on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Reminders, Calendar, Clock timers, Focus modes, Screen Time and Shortcuts are all built in. Left's Time Left views and time grid widgets are free, and its free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do executive function tools help with ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Many people with ADHD find them useful, because they take load off the skills ADHD tends to affect. They are support, not treatment, so they work best alongside whatever care you have."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a different app for every skill?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Most people do well with a few built-in features, one or two apps and some paper. Start with the skill that causes you the most trouble and add tools only when the first one has stuck."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Executive Function Tools on iPhone: One for Each Skill</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 11 min read</p>
+<p>Executive function is the set of mental skills that gets you from "I should do that" to "done". It covers planning, remembering, keeping track of time, starting, staying on task, handling frustration and adapting when plans change. When one of those skills is weak, trying harder rarely fixes it. A tool outside your head usually does.</p>
+<p>This guide takes the skills one at a time. For each one you get a plain description of what goes wrong, a low-tech tool and an iPhone tool, from features already on your phone to apps worth trying. It's useful for ADHD, autism, a brain injury, burnout, or simply a full life. None of it is a treatment: think of it as scaffolding. We make Left, so we point to it where it honestly fits, and to other tools where they fit better.</p>
+
+<figure class="post-hero"><img src="/images/blog/productivity-tools-visual-focus-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/minimalist-photography-of-hand-tools-hanged-on-wall-NP9kbCXeVK0" rel="noopener">Katie Rodriguez / Unsplash</a></figcaption></figure>
+
+<h2>The rule behind every tool: outside your head, in your line of sight</h2>
+<p>Executive function tools work by moving a job from your brain into the world. A list holds what your memory would drop. A timer counts the minutes you would lose. A countdown on your Lock Screen remembers the deadline so you don't have to.</p>
+<p>The second half of the rule matters as much as the first. A list you never open is a list you don't have. So for every tool below, ask two questions: does it hold the job for me, and will I see it without deciding to look?</p>
+<p>That's why the iPhone is a good home for these tools. You already look at it dozens of times a day. The Lock Screen, the Home Screen, StandBy on your nightstand and your Apple Watch are all places your eyes go anyway. Put the tool there and it works even on the days your brain doesn't.</p>
+
+<h2>The skills and their tools at a glance</h2>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Skill</th><th>What breaks</th><th>Low-tech tool</th><th>iPhone tool</th></tr></thead>
+  <tbody>
+    <tr><td>Time awareness</td><td>Time is only "now" or "not now"</td><td>Analog clock, kitchen timer</td><td>Visual time widgets, countdowns, Clock timers</td></tr>
+    <tr><td>Planning and prioritizing</td><td>Everything looks equally urgent</td><td>An index card with three tasks</td><td>Calendar, a task manager, one day view</td></tr>
+    <tr><td>Working memory</td><td>Things vanish the moment you look away</td><td>Sticky notes where the task happens</td><td>Reminders by time or place, habit widgets</td></tr>
+    <tr><td>Task initiation</td><td>You know what to do but can't begin</td><td>A written first step, a 10-minute timer</td><td>Task breakdown apps, a focus timer, body doubling</td></tr>
+    <tr><td>Sustained attention</td><td>You drift and don't notice</td><td>Phone in another room</td><td>Focus modes, app blockers, a timer on the Lock Screen</td></tr>
+    <tr><td>Emotional regulation</td><td>One setback swallows the day</td><td>An "if this, then that" card</td><td>Breathing on Apple Watch, forgiving trackers</td></tr>
+    <tr><td>Flexibility and organization</td><td>A changed plan ends the day; nothing has a home</td><td>A whiteboard, one inbox tray</td><td>One capture list, Shortcuts, visual planners</td></tr>
+    <tr><td>Goal persistence</td><td>Long goals fade halfway</td><td>A jar of marbles, a chart on the fridge</td><td>Measurable goals and habits with widgets</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>1. Time awareness</h2>
+<p><strong>What breaks:</strong> ten minutes and an hour feel the same until it's too late. Deadlines sit in "not yet" until they jump straight to "panic". This is often called time blindness, and we cover it in depth in <a href="/blog/adhd-time-blindness-iphone">ADHD time blindness and how widgets help</a>.</p>
+<p><strong>Low-tech:</strong> an analog clock in every room where you work, because a clock face shows time as space, not just a number. A wind-up kitchen timer or a visual timer with a colored disc that shrinks does the same for a single task.</p>
+<p><strong>On iPhone:</strong> say "Hey Siri, set a timer for 20 minutes" and the countdown sits on your Lock Screen while it runs. For the bigger picture, use a widget that shows time passing rather than the time of day.</p>
+<p>This is where Left fits best. Its <strong>Time Left</strong> views show the day, week, month and year as grids of symbols: the past dims and what remains stays solid. As a Home Screen or Lock Screen widget, "it's 3 pm" becomes "most of today is gone, and these squares are what's left". For dates, <strong>Ahead</strong> counts down to deadlines, trips and events, with progress from the day you set it, and the final countdown can run as a Live Activity. Both live in widgets. The Time Left views and their time grid widgets are free; countdown widgets need Left Premium.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Put time on your Home Screen</a></p>
+
+<h2>2. Planning and prioritizing</h2>
+<p><strong>What breaks:</strong> you have a list of forty things and they all look equally important. You can't tell what to do first, or how long any of it will take, so you do the easiest thing or nothing.</p>
+<p><strong>Low-tech:</strong> an index card with three tasks for today, and everything else on a separate "later" page you don't look at during the day. A whiteboard with the week's fixed points (appointments, deadlines, the bins) by the front door.</p>
+<p><strong>On iPhone:</strong> use one simple rule. If it happens at a time, it goes in Calendar. If it doesn't, it goes in Reminders or a task manager such as Todoist or Things. Each morning, pick three from the list and give each one a slot. If you think in pictures, visual planners such as Tiimo and Structured lay the day out as a timeline, which makes it obvious when you've planned twelve hours of work into six.</p>
+<p>The weak spot of that setup is that your plan ends up spread across several apps. Left's <strong>Planner</strong>, part of Left Premium, pulls them into one day view: Apple Calendar events, Apple Reminders and Todoist tasks next to your habits, Aims and Ahead dates, with a short daily summary at the top. You can tick off a reminder from the interactive Planner widget without opening anything. It's a view, not a full task manager, so your tasks still live in Reminders or Todoist. For choosing a planner format in the first place, see <a href="/blog/best-planner-adhd">how to choose a planner for ADHD</a>.</p>
+
+<h2>3. Working memory</h2>
+<p><strong>What breaks:</strong> you walk into a room and forget why. "Buy batteries" disappears before you find a pen. Your medication, a call you promised to make or the form in your bag slips away as soon as something else takes your attention.</p>
+<p><strong>Low-tech:</strong> put the note where the task happens, not where you keep notes. A sticky note on the front door for things to take, a bowl by the door for keys, the form on top of your shoes.</p>
+<p><strong>On iPhone:</strong> capture first, sort later. Say "Hey Siri, remind me to call the dentist at 9" or "remind me to take the parcel when I leave home", and Reminders holds it by time or by place. Add the Reminders widget to your Home Screen so the list stays in view. For things you do every day, like medication or watering plants, a habit widget works better than a reminder, because it shows what's still unchecked today instead of buzzing once and disappearing. Left's habit widgets do this, and our guide to <a href="/blog/visual-reminders-adhd-apple-setup">visual reminders on iPhone</a> walks through a full setup.</p>
+
+<h2>4. Task initiation</h2>
+<p><strong>What breaks:</strong> you know what to do, you may even want to do it, and you still can't start. Usually the task is too vague ("sort out taxes") or too big to see a first step.</p>
+<p><strong>Low-tech:</strong> write the first physical step, so small it feels silly: "open the laptop, open the tax folder". Then set a kitchen timer for ten minutes and give yourself permission to stop when it rings. Most of the time you won't.</p>
+<p><strong>On iPhone:</strong> if you can't find the first step, Goblin Tools is built for this: you give it a vague task and it breaks it into small steps. If you start better with company, try body doubling, which means working alongside another person, in the room or on a video call. Our article on <a href="/blog/adhd-body-doubling-apps">body doubling apps and alternatives</a> covers the options.</p>
+<p>A focus timer gives the start a shape. Left's <strong>Focus</strong> timer, part of Left Premium, runs Pomodoro-style blocks and starts from a Home Screen or Lock Screen widget, so beginning is one tap. Its Squares style shows one square per minute that drains as you go. For a hard start, set the focus length to 10 minutes instead of the default 25. There are more ways to get going in <a href="/blog/adhd-task-initiation-strategies">ADHD task initiation strategies</a>.</p>
+
+<h2>5. Sustained attention</h2>
+<p><strong>What breaks:</strong> you start, then drift. Twenty minutes later you're in a different app with no memory of deciding to go there.</p>
+<p><strong>Low-tech:</strong> put the phone in another room. Keep one tab open. Keep a "parking lot" sheet next to you and write stray thoughts there instead of acting on them.</p>
+<p><strong>On iPhone:</strong> Apple's Focus modes silence notifications and can hide Home Screen pages while you work, and Screen Time can set limits on the apps that pull you away. If you need more friction than that, app blockers such as Opal or one sec add it. A timer helps too, as long as you can see it: Left's Focus timer runs as a Live Activity on the Lock Screen and in the Dynamic Island, so picking up your phone shows how much of the block is left. Left doesn't block apps, so pair it with a Focus mode if your phone is the main distraction.</p>
+
+<h2>6. Emotional regulation</h2>
+<p><strong>What breaks:</strong> one frustration, one missed day or one bad email takes over, and the whole plan goes with it. This is executive function too: managing the feeling so you can carry on with the task.</p>
+<p><strong>Low-tech:</strong> decide in advance what you'll do when it happens, and write it on a card. "If I feel overwhelmed, I stand up, drink a glass of water and pick the smallest next step." A short walk works better than you'd expect.</p>
+<p><strong>On iPhone:</strong> the Mindfulness app on Apple Watch can guide a one-minute breathing session, and the Health app lets you log how you feel if spotting patterns helps you. Just as important, pick tools that don't punish you. A tracker that turns a missed day into a wall of red teaches you to avoid it. In Left, a habit can be weekly or set for specific days, so "three times a week" stays achievable, and a streak you reset simply starts counting again.</p>
+
+<h2>7. Flexibility and organization</h2>
+<p><strong>What breaks:</strong> a meeting moves and the rest of the day falls apart. Or your notes, tasks and plans live in eight places, so you never trust any of them.</p>
+<p><strong>Low-tech:</strong> one home for each kind of thing: one tray for paper, one hook for keys, one notebook. On the whiteboard, keep a "minimum version" of the day: the two things that matter if everything else goes wrong.</p>
+<p><strong>On iPhone:</strong> choose one capture list and stop adding apps. Use Shortcuts to take repeated decisions off your plate: a personal automation can run at a set time or when you arrive somewhere, and Focus modes can switch on by themselves on a schedule or at a location. When plans change, visual planners like Tiimo and Structured make rescheduling a drag rather than a rethink.</p>
+
+<h2>8. Goal persistence</h2>
+<p><strong>What breaks:</strong> a goal that takes months, like saving for a deposit or reading 20 books, fades halfway because you can't see it moving.</p>
+<p><strong>Low-tech:</strong> a jar you drop a marble into for every step, or a chart on the fridge you color in.</p>
+<p><strong>On iPhone:</strong> make the progress countable and visible. Left's <strong>Aims</strong> are goals with a unit and a target: count up for books read, money saved or hours studied, or count down for debt left. You log with one tap, see your progress history, and put the Aim in a widget so the number is on your Home Screen. For repeated actions rather than totals, a habit does the same job.</p>
+
+<h2>Build a small kit, not a big system</h2>
+<p>The fastest way to fail with executive function tools is to set up all of them on a Sunday and abandon them by Wednesday. Pick the one skill that costs you most this week, add one tool for it and live with it for two weeks before adding another.</p>
+<p>A kit that covers most days fits on two screens:</p>
+<ul>
+  <li><strong>Lock Screen:</strong> a Time Left day widget and your nearest deadline as a countdown.</li>
+  <li><strong>Home Screen:</strong> a Reminders or Planner widget for today, and a habit widget for the routines you keep forgetting.</li>
+  <li><strong>For work:</strong> a Focus mode that hides distractions, plus a timer you can see.</li>
+  <li><strong>Off the phone:</strong> a notebook for capture and an analog clock where you work.</li>
+</ul>
+<p>Left is free to download. The free plan includes the Time Left views, the time grid widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Widgets that show something you create, such as a countdown or a habit, need Left Premium. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+<p>If you've tried the tools and daily life still feels like a wall, an occupational therapist or your clinician can help you build supports around how you actually work. For a wider look at apps, see our list of the <a href="/blog/best-apps-for-adhd-iphone">best apps for ADHD on iPhone</a>.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What are executive function tools?</h3>
+<p>They are anything that does an executive function job outside your head: a list that remembers for you, a timer that tracks time, a calendar that plans the day. They can be paper, built-in phone features or apps.</p>
+<h3>What are the main executive function skills?</h3>
+<p>Lists vary, but most include planning and prioritizing, working memory, time management, task initiation, sustained attention, emotional regulation, flexibility and organization, and sticking with goals over time.</p>
+<h3>Are there free executive function tools on iPhone?</h3>
+<p>Yes. Reminders, Calendar, Clock timers, Focus modes, Screen Time and Shortcuts are all built in. Left's Time Left views and time grid widgets are free, and its free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims.</p>
+<h3>Do executive function tools help with ADHD?</h3>
+<p>Many people with ADHD find them useful, because they take load off the skills ADHD tends to affect. They are support, not treatment, so they work best alongside whatever care you have.</p>
+<h3>Do I need a different app for every skill?</h3>
+<p>No. Most people do well with a few built-in features, one or two apps and some paper. Start with the skill that causes you the most trouble and add tools only when the first one has stuck.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

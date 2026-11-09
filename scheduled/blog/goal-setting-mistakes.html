@@ -1,0 +1,542 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>9 Common Goal-Setting Mistakes (and the Fix for Each) | Left</title>
+  <meta name="description" content="Nine common goal-setting mistakes, each with an example goal, why it fails, a rewritten version and a 30-second test, plus a five-minute goal check." />
+  <link rel="canonical" href="https://getleft.app/blog/goal-setting-mistakes" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/goal-setting-mistakes" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/goal-setting-mistakes" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="9 Common Goal-Setting Mistakes (and the Fix for Each)" />
+  <meta property="og:description" content="Nine common goal-setting mistakes, each with an example goal, why it fails, a rewritten version and a 30-second test, plus a five-minute goal check." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/goal-setting-mistakes" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-goal-tracking-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="9 Common Goal-Setting Mistakes (and the Fix for Each)" />
+  <meta name="twitter:description" content="Nine common goal-setting mistakes, each with an example goal, why it fails, a rewritten version and a 30-second test, plus a five-minute goal check." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-goal-tracking-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "9 Common Mistakes in Goal Setting (and the Fix for Each)",
+  "description": "Nine common goal-setting mistakes, each with an example goal, why it fails, a rewritten version and a 30-second test, plus a five-minute goal check.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/goal-setting-mistakes",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "9 Common Mistakes in Goal Setting (and the Fix for Each)",
+      "item": "https://getleft.app/blog/goal-setting-mistakes"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the most common mistake in goal setting?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Writing an outcome with no action attached, like \"get fit\" or \"save more\". Without a weekly action that has a size and a time slot, the goal depends on remembering and feeling like it, and both run out fast."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many goals should I set at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "One to three active goals for the next three months is a good limit for most people. Keep the others on a written \"later\" list and promote one when an active goal finishes or becomes routine."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it a failure to change a goal's target or deadline?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. Resizing a goal based on your real pace is part of goal setting, not a sign of failure. A goal you adjust and finish is worth more than one you keep unchanged and drop."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I track the result or the habit?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both. The result tells you whether you're getting there, and the habit tells you whether you're doing the work this week. Tracking only the result means you notice problems too late to fix them."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is this different from SMART goals?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "SMART is a template for writing one goal. These mistakes also cover what happens after you write it: how many goals you carry, how you handle misses, whether you see the goal every day, and whether you review it."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>9 Common Mistakes in Goal Setting (and the Fix for Each)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 11 min read</p>
+<p>Most goals don't fail because the person lacked discipline. They fail because of how they were written on day one, and the flaw shows up weeks later as drift or a quiet decision to stop looking.</p>
+<p>This guide covers the nine mistakes we see most often. Each one comes with an example goal, why it fails, a rewritten version, and a 30-second test you can run on your own goals right now. At the end there's a five-minute goal check that runs all nine tests on one goal. Where an iPhone setup helps, we'll show how <strong>Left</strong> handles it, and where pen and paper is enough, we'll say that too.</p>
+
+<figure class="post-hero"><img src="/images/blog/best-goal-tracking-apps-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/colorful-fountain-pens-neatly-arranged-in-a-gray-pen-case-xNjiG7lfbpo" rel="noopener">jason hu / Unsplash</a></figcaption></figure>
+
+<h2>1. An outcome with no action</h2>
+<p><strong>What it looks like:</strong> "Get conversational in Spanish."</p>
+<p><strong>Why it fails:</strong> The goal describes where you want to end up, not what you'll do this week. With no action attached, each day starts with the same vague question - "what should I do about Spanish?" - and on a busy day the answer is "nothing".</p>
+<p><strong>The fix:</strong> Keep the outcome, and attach the action that produces it, with a size and a slot. "Hold a 15-minute conversation in Spanish by 30 June 2027. Each week: three 20-minute app lessons on weekday mornings and one conversation class on Saturday."</p>
+<p><strong>30-second test:</strong> Ask yourself what you'll do for this goal next Tuesday, and when. If you can't answer in one sentence, the goal has no action yet.</p>
+
+<h2>2. No date</h2>
+<p><strong>What it looks like:</strong> "Run a half marathon one day."</p>
+<p><strong>Why it fails:</strong> Without a date there is no pace. You can't tell whether you're early, late or on track, so every week feels optional. "One day" also never gets closer, because it moves with you.</p>
+<p><strong>The fix:</strong> Pick a real date. A booked race, an exam, a move-in day or simply a date you choose. "Finish a half marathon on 18 April 2027, race entry booked." Then work out how many weeks you have; our <a href="/tools/weeks-until-date">weeks until a date calculator</a> does the counting.</p>
+<p><strong>30-second test:</strong> Say how many weeks are left on the goal. If you can't, or the answer is "it depends", give it a date.</p>
+<p>In Left, an <strong>Ahead</strong> countdown holds that date. It shows the days left and a progress bar from the day you set it to the deadline, you can add a photo and reminders, and you can save the date to your calendar. A <a href="/countdown-widget">countdown widget</a> on your Lock Screen keeps it in view.</p>
+
+<h2>3. No number, or the wrong number</h2>
+<p><strong>What it looks like:</strong> "Read more." Or the opposite: "Read 52 books this year" from someone who finished six last year.</p>
+<p><strong>Why it fails:</strong> With no number you can't tell whether you've done it, so the goal never finishes and never feels won. A number that's far too high fails differently: by March you're so far behind that the maths says it's over, and you stop. A third version counts the wrong thing, like pages when your real problem is that you never sit down to read.</p>
+<p><strong>The fix:</strong> Choose a unit that matches the behavior you want, and set the target near your recent best, then a bit higher. "Read 12 books in 2027" is double last year and still about one a month. If the problem is starting at all, count sessions or minutes instead: "Read for 20 minutes on 150 days in 2027."</p>
+<p><strong>30-second test:</strong> Could a stranger check on 31 December whether you hit it? And is the target within about one and a half to two times what you've actually done before? If either answer is no, change the number.</p>
+<p>This is what <strong>Aims</strong> in Left are for: a countable goal with a unit, a target, a start date and an optional deadline. It can count up (books read, km run, hours studied) or down (debt left). You log with one tap using a default step, or enter an amount, and the progress history shows how it's moved. Our <a href="/blog/aim-goal-tracker-left">guide to Aims</a> walks through example setups.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Track a goal with Aims</a></p>
+
+<h2>4. Too many goals at once</h2>
+<p><strong>What it looks like:</strong> A January list with eight items: run a half marathon, learn Spanish, save for a deposit, read 30 books, write a novel, meditate daily, cook at home more, call family weekly.</p>
+<p><strong>Why it fails:</strong> Each goal is fine alone. Together they need more hours than your week has, and they compete for the same evenings. You end up doing a little of each, none moves far enough to feel like progress, and the whole list starts to feel like a debt.</p>
+<p><strong>The fix:</strong> Pick one to three active goals for the next three months. Put the rest on a "later" list, written down so you don't lose them. When an active goal finishes or settles into routine, promote one from the list. The rewrite here isn't one goal, it's a shorter list: "Active until March: half marathon, deposit savings. Later: Spanish, novel, the rest."</p>
+<p><strong>30-second test:</strong> Add up the hours a week your active goals need. If it's more than you spent on them last week plus a couple of hours, you have too many.</p>
+
+<h2>5. A goal that's someone else's</h2>
+<p><strong>What it looks like:</strong> "Get promoted to team lead by next year," set because that's the expected next step, or "Run a marathon" because three colleagues did.</p>
+<p><strong>Why it fails:</strong> Borrowed goals run on outside pressure. That works while someone is watching and fades when they aren't.</p>
+<p><strong>The fix:</strong> Find the part you actually want and write the goal around that. If what you want from the promotion is more say over projects: "Lead one project from start to finish by September 2027." If what you want from the marathon is to feel fit: "Run 10 km without stopping by May." Sometimes the honest fix is to drop the goal.</p>
+<p><strong>30-second test:</strong> Imagine nobody would ever know whether you reached it. If you'd still want it, it's yours. Also listen to how you say it out loud. If "I should" slips in, look closer.</p>
+
+<h2>6. All-or-nothing rules</h2>
+<p><strong>What it looks like:</strong> "Meditate every day in 2027."</p>
+<p><strong>Why it fails:</strong> The goal has one failure point and you will hit it: a flu, a night flight, a child awake at 3am. After the first miss the goal is technically lost, so there's no reason to continue on day two. Rules like this turn one bad day into a quit.</p>
+<p><strong>The fix:</strong> Build the miss into the goal. Set a weekly count instead of a daily one, set a small minimum, and add a recovery rule. "Meditate on 5 days a week, at least 2 minutes. If I miss a day, the next day counts the same as any other. Never miss twice in a row."</p>
+<p><strong>30-second test:</strong> Ask what happens to the goal on the day you're ill. If the answer is "it's failed", rewrite it.</p>
+<p>Left's <strong>habits</strong> support this shape. A habit can be daily, weekly, monthly or on specific days, and some can need more than one completion per period, so "5 times a week" is a goal you can hit with two days off. If you're not sure whether something should be a habit or a streak, see <a href="/support/streaks-vs-habits">streaks vs habits</a>. For the recovery side, our guide on <a href="/blog/stay-consistent-with-goals">staying consistent without willpower</a> goes deeper.</p>
+
+<h2>7. Tracking only the end result</h2>
+<p><strong>What it looks like:</strong> "Save 6,000 for a deposit by December," checked properly for the first time in October.</p>
+<p><strong>Why it fails:</strong> The end result moves slowly and you only look at it rarely, so by the time you notice a problem there's no time left to fix it. You also never get the small wins that keep effort going.</p>
+<p><strong>The fix:</strong> Track two things: the result, and the action that drives it. "Save 6,000 by 15 December 2027: log the balance every payday, and transfer 250 on the 1st and 15th of each month." Now you see the total grow twice a month, and you know straight away if a transfer was skipped.</p>
+<p><strong>30-second test:</strong> When did the number you track for this goal last change? If it's been more than two weeks, you're tracking too far from the work.</p>
+<p>In Left this is an Aim for the total plus a habit for the transfer. The Aim shows the money saved against the target; the habit shows whether this period's transfer is done.</p>
+
+<h2>8. Out of sight, out of mind</h2>
+<p><strong>What it looks like:</strong> A goal written in a notes app in January and opened again in November.</p>
+<p><strong>Why it fails:</strong> You can't act on a goal you've forgotten exists. Days fill with what's in front of you, and a goal in a file you have to go and find loses.</p>
+<p><strong>The fix:</strong> Put the goal where your eyes already go. On a phone that means the Lock Screen and the first Home Screen page. On paper it means the fridge or the edge of your monitor. The rewrite isn't a new sentence, it's a new place: "Book count on the Lock Screen, today's reading habit on the Home Screen."</p>
+<p><strong>30-second test:</strong> Without opening any app or notebook, point to where you'll see this goal tomorrow. If you can't, it's out of sight.</p>
+<p>Left has dozens of Home Screen and Lock Screen widgets, including widgets for Aims, habits and Ahead countdowns (part of Left Premium; the time grid widgets are free). Habit widgets show what's still unchecked today. <strong>Left Wallpaper</strong> puts your year, month or life on the Lock Screen and updates itself through a short Shortcuts automation. For a full layout, see <a href="/blog/visual-goals-track-on-screens">visual goals on your iPhone screens</a>.</p>
+
+<h2>9. Never reviewing or resizing</h2>
+<p><strong>What it looks like:</strong> "Write an 80,000-word novel draft by 30 June 2027." It's February, the draft is at 12,000 words, and the plan hasn't changed since September.</p>
+<p><strong>Why it fails:</strong> Plans meet real life and drift. Without a review, the gap between plan and reality grows quietly until it's too big to face, and the goal gets dropped instead of adjusted.</p>
+<p><strong>The fix:</strong> Book a short monthly review and give yourself three honest options: keep, resize or drop. Resizing is not failing. Here, 68,000 words in 20 weeks is 3,400 a week, against a real pace of about 1,000. So: "Write a 40,000-word draft by 30 June 2027, then decide about the rest." Or keep 80,000 and move the date.</p>
+<p><strong>30-second test:</strong> When did you last change this goal's target or date on purpose? If the answer is never and you're behind, it's due a review.</p>
+<p>For a fuller weekly review routine, including when to abandon a goal, our <a href="/blog/smart-goals-guide">SMART goals guide</a> covers it step by step.</p>
+
+<h2>The five-minute goal check</h2>
+<p>Write down the goal that matters most to you right now and run these nine checks, about 30 seconds each, fixing it as you go.</p>
+<ol>
+  <li><strong>Action.</strong> Can you say what you'll do next Tuesday, and when? If not, add a weekly action with a size and a slot.</li>
+  <li><strong>Date.</strong> Can you say how many weeks are left? If not, set a date.</li>
+  <li><strong>Number.</strong> Could a stranger check it, and is the target within reach of your recent best? If not, pick a unit and resize.</li>
+  <li><strong>Load.</strong> Do your active goals fit in the hours you actually have? If not, move some to a "later" list.</li>
+  <li><strong>Ownership.</strong> Would you still want it if nobody knew? If not, rewrite it around what you want, or drop it.</li>
+  <li><strong>Misses.</strong> Does the goal survive a sick day? If not, switch to a weekly count with a minimum.</li>
+  <li><strong>Tracking.</strong> Has the number you track changed in the last two weeks? If not, track the action as well as the result.</li>
+  <li><strong>Visibility.</strong> Can you point to where you'll see it tomorrow? If not, put it on your Lock Screen or Home Screen.</li>
+  <li><strong>Review.</strong> Is there a date in your calendar to check it again? If not, add a monthly review.</li>
+</ol>
+<p>Here's the check run on "Get better with money." It fails action, date, number and tracking. After five minutes it reads: "Pay off the 3,200 left on my credit card by 31 August 2027. Pay 400 on the 1st of each month and log the balance right after. Check the plan on the first Sunday of each month." In Left, that's one Aim counting down from 3,200, one monthly habit for the payment, and an Ahead countdown to 31 August on the Lock Screen.</p>
+<p>If you'd like to try that setup: Left is free to download. The free plan includes the Time Left views, the time grid widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Widgets that show something you create, such as a countdown or a habit, need Left Premium. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy. If your goal is a large project with many tasks and dependencies, a project tool or a spreadsheet will serve you better. Left is for keeping the number, the date and the weekly action in front of you.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the most common mistake in goal setting?</h3>
+<p>Writing an outcome with no action attached, like "get fit" or "save more". Without a weekly action that has a size and a time slot, the goal depends on remembering and feeling like it, and both run out fast.</p>
+<h3>How many goals should I set at once?</h3>
+<p>One to three active goals for the next three months is a good limit for most people. Keep the others on a written "later" list and promote one when an active goal finishes or becomes routine.</p>
+<h3>Is it a failure to change a goal's target or deadline?</h3>
+<p>No. Resizing a goal based on your real pace is part of goal setting, not a sign of failure. A goal you adjust and finish is worth more than one you keep unchanged and drop.</p>
+<h3>Should I track the result or the habit?</h3>
+<p>Both. The result tells you whether you're getting there, and the habit tells you whether you're doing the work this week. Tracking only the result means you notice problems too late to fix them.</p>
+<h3>How is this different from SMART goals?</h3>
+<p>SMART is a template for writing one goal. These mistakes also cover what happens after you write it: how many goals you carry, how you handle misses, whether you see the goal every day, and whether you review it.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

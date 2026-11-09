@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Achieve Goals Faster Without Burning Out (2026) | Left</title>
+  <meta name="description" content="Seven ways to reach a goal sooner by removing delays instead of working harder, with a 6-week sprint worked example, a weekly pace check and an iPhone setup." />
+  <link rel="canonical" href="https://getleft.app/blog/how-to-achieve-goals-faster" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-achieve-goals-faster" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-achieve-goals-faster" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Achieve Goals Faster Without Burning Out (2026)" />
+  <meta property="og:description" content="Seven ways to reach a goal sooner by removing delays instead of working harder, with a 6-week sprint worked example, a weekly pace check and an iPhone setup." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/how-to-achieve-goals-faster" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/aim-goal-tracker-left-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Achieve Goals Faster Without Burning Out (2026)" />
+  <meta name="twitter:description" content="Seven ways to reach a goal sooner by removing delays instead of working harder, with a 6-week sprint worked example, a weekly pace check and an iPhone setup." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/aim-goal-tracker-left-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Achieve Your Goals Faster Without Burning Out",
+  "description": "Seven ways to reach a goal sooner by removing delays instead of working harder, with a 6-week sprint worked example, a weekly pace check and an iPhone setup.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-achieve-goals-faster",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Achieve Your Goals Faster Without Burning Out",
+      "item": "https://getleft.app/blog/how-to-achieve-goals-faster"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How can I achieve my goals faster without working more hours?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Remove the delays around the work: start sooner, cut the goal to one number, check your pace weekly and fix one bottleneck at a time. Most goals finish sooner because less time is lost, not because more hours go in."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a 6-week sprint better than a yearly goal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For most goals with a clear number, yes. Six weeks keeps the deadline close enough to feel urgent and gives you room for one bad week. You can still have a yearly goal and break it into sprints."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I know if I'm on track with a goal?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Compare the share of time gone with the share of the goal done. If goal done is behind by more than about 10 points, change one thing that week rather than waiting."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many goals should I work on at once?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "If speed matters, one main goal per sprint, with other goals paused or kept at a maintenance level. You can rotate the main goal from one sprint to the next."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What if I fall behind in the middle of a sprint?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Work out the required pace for the weeks left and find the one thing that slowed you down. If the required pace is unrealistic, shrink the target or move the end date once, and keep going."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Achieve Your Goals Faster Without Burning Out</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 10 min read</p>
+<p>When a goal is moving slowly, the usual answer is to push harder: longer evenings, earlier alarms, more willpower. That works for about a week. Then you're tired, the goal stalls, and you've lost more time than you gained.</p>
+<p>Goals rarely take long because the work itself is slow. They take long because of the gaps around the work. This guide shows you where that time goes, gives you seven levers that close the gaps, and walks through a 6-week sprint with real numbers. At the end there's a section on when going faster is the wrong aim altogether. Where an iPhone helps, we'll show how <strong>Left</strong> fits; where a sticky note does the job, we'll say so.</p>
+
+<figure class="post-hero"><img src="/images/blog/aim-goal-tracker-left-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/five-numbered-metal-tags-on-a-light-wall-STqrAvANYRA" rel="noopener">Declan Sun / Unsplash</a></figcaption></figure>
+
+<h2>Where the time actually goes</h2>
+<p>Look back at a goal that took twice as long as you planned. Most of the extra time usually falls into four delays:</p>
+<ul>
+  <li><strong>Time lost before starting.</strong> The weeks between deciding and doing. "I'll start after the holidays" is often the single biggest delay in the whole project.</li>
+  <li><strong>Time lost to the wrong work.</strong> Effort that feels productive but doesn't move the result: reorganizing notes, researching tools, polishing the parts that are already fine.</li>
+  <li><strong>Time lost restarting after a stall.</strong> One bad week turns into three, and when you come back you have to rebuild the context you had.</li>
+  <li><strong>Time lost before you notice you're off track.</strong> If you only check progress at the end of the year, you can be behind for months without knowing.</li>
+</ul>
+<p>None of these is fixed by working harder. Each is fixed by changing the setup. That's what the seven levers below do.</p>
+
+<h2>Seven levers that make goals move faster</h2>
+
+<h3>1. Cut the goal to the one number that matters</h3>
+<p>"Get my side business going" has a dozen possible measures, so every week you can feel busy without knowing whether it moved. Pick the single number that best shows the result, and let the rest serve it.</p>
+<p>Example: "Grow my newsletter" becomes "Reach 500 subscribers." Posting schedule, design and topics all still matter, but they're judged by one question: does this get me closer to 500? If you need help writing the goal itself, our <a href="/blog/smart-goals-guide">SMART goals guide</a> covers the rewrite step by step.</p>
+
+<h3>2. Set a nearer date</h3>
+<p>Work expands to fill the time you give it. "This year" gives a goal twelve months to drift, and the first three of them rarely feel urgent. A 6-week sprint is long enough to make real progress and short enough that the end date is always in view.</p>
+<p>Example: instead of "read 24 books this year," run "read 4 books by December 21." Six weeks, one clear number, and the end date is close enough to feel. When the sprint ends, set the next one. If you want to know exactly how many weeks you have to a date, the <a href="/tools/weeks-until-date">weeks until a date calculator</a> does the arithmetic.</p>
+
+<h3>3. Front-load the work in the first week</h3>
+<p>Motivation is highest at the start, and the start is when most people ease in. Do the opposite. Aim for roughly a fifth of the total in week one, not a sixth. That early lead absorbs the bad week that almost always arrives in week three or four.</p>
+<p>Example: a 6-week target of 24 runs is 4 a week. Plan 5 or 6 in week one. If the middle of the sprint goes badly, you're still on pace.</p>
+
+<h3>4. Shorten the feedback loop with a weekly pace check</h3>
+<p>This is the lever most people skip, and it's the one that saves the most time. Once a week, compare two percentages:</p>
+<ul>
+  <li><strong>Time gone:</strong> days elapsed divided by total days in the sprint.</li>
+  <li><strong>Goal done:</strong> current number divided by the target.</li>
+</ul>
+<p>If goal done is equal to or ahead of time gone, you're on pace. If it's behind by more than about 10 points, change one thing this week: remove a bottleneck, shrink the scope, or move the work to a better time of day. Don't just promise to try harder. Then work out the required pace for the rest of the sprint: what's left divided by the weeks left. That one number tells you what this week has to look like.</p>
+<p>Checking weekly means you're never more than seven days off track before you notice. Checking at the end of the quarter means you can be off for twelve weeks.</p>
+
+<h3>5. Remove one bottleneck at a time</h3>
+<p>Most stalls come from one specific thing, not general slowness. Ask: "What stopped me last time I sat down to do this?" Fix that one thing, then wait a week before fixing the next.</p>
+<p>Example: you want to run three times a week, but you keep skipping. The bottleneck isn't fitness, it's that your shoes and kit are in a cupboard upstairs and you run before work. Leave them by the door the night before. One change, measured for a week.</p>
+
+<h3>6. Pause two other goals for now</h3>
+<p>Running five goals at once means each one gets a fifth of your attention, and they all move slowly. If one goal matters most right now, put two others on hold for the length of the sprint. Write them down so you don't lose them, and give them a restart date.</p>
+<p>This feels like going slower. In practice, one goal finished in six weeks beats three goals each a third done in six months.</p>
+
+<h3>7. Make the next action obvious and visible</h3>
+<p>"Work on the book" is not an action. "Write 400 words of chapter 3" is. Decide the next action at the end of each session, while you still remember where you were, and put it where you'll see it tomorrow: a note on the desk, the first line of the document, or your Home Screen. This is the cheapest fix for the restart delay, because you never sit down wondering what to do.</p>
+
+<h2>A 6-week sprint, worked through</h2>
+<p>Here's how the levers look on a real goal. Sam wants to finish a first draft of a short book, about 24,000 words. The original plan was "sometime next year." The sprint version is 24,000 words in 42 days, from November 10 to December 21. The even pace is 4,000 words a week. Sam plans 5,000 for week one to front-load, and pauses two other goals (a language course and a home project) until January.</p>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>End of week</th><th>Words total</th><th>Time gone</th><th>Goal done</th><th>What Sam did</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>1</td><td>5,200</td><td>17%</td><td>22%</td><td>Ahead. Kept the plan.</td></tr>
+    <tr><td>2</td><td>9,400</td><td>33%</td><td>39%</td><td>Ahead. Kept the plan.</td></tr>
+    <tr><td>3</td><td>11,000</td><td>50%</td><td>46%</td><td>Behind for the first time. Looked for the cause: rewriting old chapters before writing new ones.</td></tr>
+    <tr><td>4</td><td>15,600</td><td>67%</td><td>65%</td><td>Rule: no editing until the draft is done. Required pace now 4,200 a week.</td></tr>
+    <tr><td>5</td><td>20,100</td><td>83%</td><td>84%</td><td>Back on pace. Wrote the next sentence to start with at the end of each session.</td></tr>
+    <tr><td>6</td><td>24,300</td><td>100%</td><td>101%</td><td>Draft finished on December 20.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>Three things to notice. The week-one lead meant the bad week cost nothing permanent. The weekly check caught the problem after seven days, not at the end. And the fix was one specific bottleneck, not more hours. Sam wrote about the same number of hours each week throughout; what changed was how much of that time went to the draft.</p>
+
+<h2>Setting up a sprint on iPhone</h2>
+<p>You can run all of this on paper. A phone helps with two things paper is bad at: keeping the deadline in view and doing the pace maths for you. Here's how it maps onto <strong>Left</strong>:</p>
+<ul>
+  <li><strong>An Ahead countdown for the sprint end date.</strong> Ahead counts down to a date and shows progress from the day you set it, so "December 21" becomes "14 days left" with a bar that's already two-thirds full. That bar is your time-gone percentage, without the maths. You can add a reminder for your weekly check and save the date to your calendar.</li>
+  <li><strong>An Aim for the number.</strong> An Aim has a unit, a target, a start date and a deadline: 24,000 words, by December 21. Log each session with one tap using a default step, or type the exact amount. The progress history shows whether your week was a good one. Aims also count down, which suits goals like debt left to pay. Our <a href="/blog/aim-goal-tracker-left">guide to Aims in Left</a> has more setups.</li>
+  <li><strong>A habit for the weekly action.</strong> If the goal depends on a repeated action, such as three writing sessions or three runs a week, make it a weekly habit and mark each one done. The habit widget shows what's still unchecked today.</li>
+  <li><strong>Widgets for visibility.</strong> Put the countdown and the Aim on your Home Screen or Lock Screen, so you see the pace every time you pick up your phone. Left has dozens of widgets; widgets for countdowns and Aims are part of Left Premium. For placement ideas, see our <a href="/blog/goal-progress-tracker-setup">goal progress tracker setup guide</a>.</li>
+  <li><strong>The Time Left year view for perspective.</strong> Between sprints, a glance at the year grid shows how many weeks remain. It's a good prompt for choosing the next sprint, and a reminder that six weeks is a real share of the year. The <a href="/tools/time-left-in-year-calculator">time left in the year calculator</a> gives the same number on the web.</li>
+</ul>
+<p>Left is free to download. The free plan includes the Time Left views, the time grid widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Widgets that show something you create, such as a countdown or a habit, need Left Premium. That's enough to run one sprint in the app. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+<p>If you'd rather use a spreadsheet or a notes app, that's fine too. What matters is that the deadline and the number are somewhere you look every day.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Set up your sprint in Left</a></p>
+
+<h2>When speed is the wrong goal</h2>
+<p>Some goals get worse when you rush them. Before you start a sprint, check whether yours is one of these:</p>
+<ul>
+  <li><strong>Habits.</strong> The point of a habit is that it lasts. Building one faster usually means building it bigger, which makes it easier to drop. Start small and let it run; our guide on <a href="/blog/stay-consistent-with-goals">staying consistent with goals</a> is the better read here.</li>
+  <li><strong>Health and fitness.</strong> Bodies adapt at their own pace. Ramping up running distance or cutting food sharply to hit a date is how injuries and rebounds happen. If the goal is about weight, recovery or a medical condition, agree a sensible pace with your doctor or physio.</li>
+  <li><strong>Learning that needs time.</strong> Languages, instruments and deep skills improve with spaced practice and sleep in between. Cramming more hours into six weeks gives less than the same hours spread over six months. Here, use the levers for consistency (a visible next action, one bottleneck at a time) and drop the deadline pressure.</li>
+  <li><strong>Anything where quality is the goal.</strong> A first draft can be fast. A final edit, a hard conversation or a big decision usually shouldn't be.</li>
+</ul>
+<p>A simple test: if finishing early would leave you with a worse result, speed is the wrong measure. Choose a pace you could keep for a year instead.</p>
+
+<h2>Your sprint in five minutes</h2>
+<ol>
+  <li>Write the goal as one number with a unit.</li>
+  <li>Set an end date about six weeks out.</li>
+  <li>Divide the number by six for the weekly pace, and plan a little more for week one.</li>
+  <li>Name two goals you're pausing until the sprint ends.</li>
+  <li>Write tomorrow's first action and put it where you'll see it.</li>
+  <li>Pick a day for the weekly pace check: time gone versus goal done.</li>
+</ol>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>How can I achieve my goals faster without working more hours?</h3>
+<p>Remove the delays around the work: start sooner, cut the goal to one number, check your pace weekly and fix one bottleneck at a time. Most goals finish sooner because less time is lost, not because more hours go in.</p>
+<h3>Is a 6-week sprint better than a yearly goal?</h3>
+<p>For most goals with a clear number, yes. Six weeks keeps the deadline close enough to feel urgent and gives you room for one bad week. You can still have a yearly goal and break it into sprints.</p>
+<h3>How do I know if I'm on track with a goal?</h3>
+<p>Compare the share of time gone with the share of the goal done. If goal done is behind by more than about 10 points, change one thing that week rather than waiting.</p>
+<h3>How many goals should I work on at once?</h3>
+<p>If speed matters, one main goal per sprint, with other goals paused or kept at a maintenance level. You can rotate the main goal from one sprint to the next.</p>
+<h3>What if I fall behind in the middle of a sprint?</h3>
+<p>Work out the required pace for the weeks left and find the one thing that slowed you down. If the required pace is unrealistic, shrink the target or move the end date once, and keep going.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

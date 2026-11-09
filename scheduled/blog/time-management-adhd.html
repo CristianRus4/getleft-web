@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Time Management for ADHD: A System You Can See (2026) | Left</title>
+  <meta name="description" content="A three-part time management system for ADHD: see time, size it, protect it. With an iPhone setup, a sample day and a 10-minute weekly reset." />
+  <link rel="canonical" href="https://getleft.app/blog/time-management-adhd" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/time-management-adhd" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/time-management-adhd" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Time Management for ADHD: A System You Can See (2026)" />
+  <meta property="og:description" content="A three-part time management system for ADHD: see time, size it, protect it. With an iPhone setup, a sample day and a 10-minute weekly reset." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/time-management-adhd" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/home-screen-timer-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Time Management for ADHD: A System You Can See (2026)" />
+  <meta name="twitter:description" content="A three-part time management system for ADHD: see time, size it, protect it. With an iPhone setup, a sample day and a 10-minute weekly reset." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/home-screen-timer-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Time Management for ADHD: A System You Can See (2026)",
+  "description": "A three-part time management system for ADHD: see time, size it, protect it. With an iPhone setup, a sample day and a 10-minute weekly reset.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/time-management-adhd",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Time Management for ADHD: A System You Can See (2026)",
+      "item": "https://getleft.app/blog/time-management-adhd"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best time management technique for ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "There's no single best technique, but the ones that work share a trait: they put time outside your head. Visible timers, countdowns, short focus blocks and alarms for transitions tend to beat lists and willpower alone."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I estimate time better with ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Stop relying on your gut. Time common tasks once to learn your real durations, multiply new tasks by 2 or 3, and add a 10 to 15 minute buffer for every transition."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is the Pomodoro technique good for ADHD?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For many people, yes, because a block with a visible end is easier to start. If 25 minutes feels too long, start with 10 or 15 and build up."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can my iPhone help with ADHD time management?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Put a day or week widget and a deadline countdown on the Lock Screen, use a focus timer with a Live Activity, set up a Work Focus mode for notifications, and use labelled Clock alarms for hard transitions."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Left free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Left is free to download, and the free plan includes the Time Left views, the time grid widgets and 2 countdowns. Focus and Planner are part of Left Premium, a subscription or a lifetime purchase. Prices are shown in the app before you buy."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Time Management for ADHD: A System You Can See (2026)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 10 min read</p>
+<p>Most time management advice quietly assumes one thing: that you can feel time passing. Prioritized lists, five-year plans and "just block out the afternoon" all rely on an internal sense of how long things take and how close a deadline is. With ADHD, that sense is often missing. Time tends to come in two sizes: now, and not now.</p>
+<p>So the fix isn't more discipline. It's a system that does the feeling for you, from the outside. This guide sets out one in three parts: <strong>see</strong> time, <strong>size</strong> time and <strong>protect</strong> time. Then it puts the whole thing on an iPhone, walks through a sample day and ends with a 10-minute weekly reset. If you want the background on why time feels this way first, start with our guide to <a href="/blog/adhd-time-blindness-iphone">ADHD time blindness</a>. This one is about what to do with it.</p>
+
+<figure class="post-hero"><img src="/images/blog/home-screen-timer-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/black-and-white-analog-egg-timer-vZawEq0Eexo" rel="noopener">Marcelo Leal / Unsplash</a></figcaption></figure>
+
+<h2>Why classic time management misfires with ADHD</h2>
+<p>The <a href="/blog/time-management-best-practices">standard time management methods</a> are good methods. They just lean on three abilities that ADHD makes unreliable:</p>
+<ul>
+<li><strong>A prioritized list assumes you know when.</strong> Knowing a task is important doesn't tell you when to start it. Without a felt deadline, "important" stays on the list until it turns into "urgent".</li>
+<li><strong>Long-range planning assumes the future feels real.</strong> A deadline in three weeks is abstract. It becomes real the night before, which is when the planning finally happens.</li>
+<li><strong>Willpower assumes a start signal.</strong> Most methods expect you to notice it's time and begin. If the internal "it's time" never fires, the plan never starts.</li>
+</ul>
+<p>Each part of the system below replaces one of those signals with something outside your head.</p>
+
+<div class="table-wrap">
+<table>
+<thead><tr><th>Part</th><th>What it replaces</th><th>What it looks like</th></tr></thead>
+<tbody>
+<tr><td>See time</td><td>The felt sense of the day, week and deadlines</td><td>Visual timers, day and week widgets, countdowns on the Lock Screen</td></tr>
+<tr><td>Size time</td><td>Gut estimates of how long things take</td><td>Estimate, measure, multiply, add buffers</td></tr>
+<tr><td>Protect time</td><td>The internal start and stop signal</td><td>Short focus blocks, Focus modes, alarms, body doubling</td></tr>
+</tbody>
+</table>
+</div>
+
+<h2>Part 1: See time</h2>
+<p>If you can't feel time, make it something you look at. The goal is simple: at any glance at your phone, you should be able to answer three questions without opening an app. How much of today is left? Where am I in the week? What's the next deadline, and how close is it?</p>
+
+<h3>See the day</h3>
+<p>A visual timer turns minutes into a shape that shrinks. A kitchen timer works. So does a day widget that shows the hours as a grid, with the hours that have passed dimmed. In <strong>Left</strong>, that's the Time Left day view: you see 9 solid hours left in the day rather than reading "3:12 pm" and having to work it out.</p>
+
+<h3>See the week</h3>
+<p>Weeks are where ADHD plans go missing. Monday feels like it has endless room, then it's Thursday. A week widget that shows the days as blocks, with the past ones dimmed, makes "two days left this week" visible every time you unlock. Our guide to <a href="/blog/weeks-and-days-iphone-screen">adding weeks and days to your iPhone screen</a> covers the options, including the week number.</p>
+
+<h3>See the deadlines</h3>
+<p>Put the next one or two deadlines on the Lock Screen as countdowns. "6 days to the tax return" seen 80 times a day lands in a way a calendar entry never does. Left's Ahead countdowns show the days left and how much of the run-up has gone since you set the date, can remind you ahead of time, and the final countdown can run as a Live Activity. Keep the whole "see" layer to three things at most, or your eyes start skipping them.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Put your week on the Lock Screen</a></p>
+
+<h2>Part 2: Size time</h2>
+<p>Seeing time tells you how much is left. Sizing tells you how much a task will take out of it. Most people with ADHD underestimate, and not by a little. The answer isn't to guess better. It's to stop guessing.</p>
+
+<h3>Estimate, then measure once</h3>
+<p>Pick three tasks you do often: answering email, a load of laundry, a weekly report. Before each one, write down your guess. Then time it. A stopwatch or any focus timer with a history is enough. You only need to do this once or twice per task.</p>
+<p>A worked example: you guess the expense report takes 30 minutes. It takes 70. Your multiplier for that kind of task is a little over 2. Next time, you book 70 minutes and it fits.</p>
+
+<h3>Use a multiplier when you have no data</h3>
+<p>For tasks you haven't measured, use a rule of thumb rather than your gut:</p>
+<ul>
+<li><strong>Familiar task:</strong> your guess times 1.5.</li>
+<li><strong>New or vague task:</strong> your guess times 3. If it involves other people, waiting or a first draft, it's vague.</li>
+<li><strong>Anything you've been avoiding:</strong> plan the first 10 minutes only. The estimate gets clearer once you've started.</li>
+</ul>
+
+<h3>Count transitions as tasks</h3>
+<p>The time between things is where ADHD days leak. Finding your keys, switching from email to writing, getting out the door: each takes 5 to 15 minutes that nobody plans for. Add a 10-minute buffer between blocks, and 15 before anything with a fixed start, like leaving for an appointment.</p>
+
+<h3>Plan backwards from fixed times</h3>
+<p>For anything with a hard time, work back to a start time. Appointment at 9:00, 20 minutes away: leave at 8:30 (travel plus a 10-minute buffer), so start getting ready at 8:10, so stop what you're doing at 8:05. The start time, 8:05, is the one that goes on an alarm. The appointment time alone doesn't help you.</p>
+
+<h2>Part 3: Protect time</h2>
+<p>Once a block is sized and on the plan, it needs a fence: a clear start, a visible end and fewer ways for the world to get in.</p>
+
+<h3>Short focus blocks with a visible end</h3>
+<p>A block with a visible end is easier to start, because it's not open-ended. The classic Pomodoro is 25 minutes of focus and 5 of break, with a longer break after four rounds. If 25 feels like a wall, start at 10 or 15 and grow from there. What matters is that the end is in sight.</p>
+<p>Any Pomodoro timer does the job. Left's Focus timer, part of Left Premium, adds a few things that suit ADHD: a Squares style with one square per minute that drains as you work, a Live Activity on the Lock Screen and Dynamic Island, a notification at the end of each phase and a "My focus" history that doubles as your estimate data from Part 2. Durations run from 1 to 60 minutes, so a 10-minute block is fine. If you tend to hyperfocus straight through breaks, leave "Keep going when time ends" off so the phase actually stops. More on the timer is on our <a href="/pomodoro-timer-iphone">Pomodoro timer for iPhone</a> page.</p>
+<p>Left doesn't block apps or play sounds. If your phone itself is the leak, pair it with a dedicated app blocker or Screen Time limits.</p>
+
+<h3>Apple Focus modes for notifications</h3>
+<p>Set up a Work Focus in Settings so only the people and apps you choose can reach you during focus blocks. It's built in, and it removes the "just one notification" detour that eats half a block.</p>
+
+<h3>Alarms for transitions</h3>
+<p>Notifications are easy to swipe away mid-hyperfocus. Alarms are not. Use labelled alarms in the Clock app for the transitions that matter: "Stop and eat lunch", "Start getting ready, leave at 8:30", "Wrap up, pickup in 30". One alarm per hard transition, not one for every block, or you'll start dismissing them on reflex.</p>
+
+<h3>Body doubling</h3>
+<p>Working alongside another person, in the room or on a video call, is a friendlier external anchor that keeps a block going. Our guide to <a href="/blog/adhd-body-doubling-apps">body doubling apps and alternatives</a> covers the options.</p>
+
+<h2>The iPhone setup, step by step</h2>
+<p>Here's the whole system on one phone. It takes about 20 minutes to set up.</p>
+<ol>
+<li><strong>Lock Screen:</strong> add an Ahead countdown for your next deadline and the Time Left day widget. That covers "how close is it" and "how much of today is left".</li>
+<li><strong>Home Screen:</strong> add the Time Left week widget near the top, and a focus timer widget beside it. Left's Focus widget has Start and Pause buttons, so you can begin a block without opening the app. Any timer widget works.</li>
+<li><strong>Focus mode:</strong> in Settings, create a Work Focus that allows only the few people and apps you need.</li>
+<li><strong>Alarms:</strong> add labelled alarms for your two or three hard transitions of the day, using the backwards-planned times from Part 2.</li>
+<li><strong>Weekly reset:</strong> add a weekly habit called "Weekly reset" in Left, on the day you'll do it. The habit widget shows it unchecked until it's done.</li>
+</ol>
+<p>Left is free to download. The free plan includes the Time Left views, the time grid widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Widgets that show something you create, such as a countdown or a habit, need Left Premium. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+
+<h2>A sample day, transitions included</h2>
+<p>This is a workday for someone working from home. Notice that transitions get their own rows, and that a good part of the day is left loose on purpose. A plan packed to the minute fails by 10 am.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Time</th><th>What</th><th>Anchor</th></tr></thead>
+<tbody>
+<tr><td>8:00</td><td>Morning routine</td><td>Three steps, nothing more</td></tr>
+<tr><td>8:45</td><td>Transition: look at the Lock Screen, pick the first task</td><td>Day widget, next countdown</td></tr>
+<tr><td>9:00</td><td>Focus block 1 and 2, hardest task (25 + 5, twice)</td><td>Focus timer, Work Focus on</td></tr>
+<tr><td>10:00</td><td>Transition: stand up, water, 10 minutes</td><td>End-of-phase notification</td></tr>
+<tr><td>10:10</td><td>Email and admin, 30 minutes</td><td>Timer visible</td></tr>
+<tr><td>10:40</td><td>Loose time: catch-up, overruns, a walk</td><td>None</td></tr>
+<tr><td>11:30</td><td>Focus block 3</td><td>Focus timer or a body-doubling session</td></tr>
+<tr><td>12:30</td><td>Lunch</td><td>Alarm: "Stop and eat lunch"</td></tr>
+<tr><td>13:30</td><td>Meetings and calls</td><td>Calendar alerts 10 minutes before</td></tr>
+<tr><td>15:00</td><td>Loose time or focus block 4</td><td>Your call</td></tr>
+<tr><td>16:30</td><td>Shutdown: write tomorrow's first task, glance at the week</td><td>Alarm: "Wrap up"</td></tr>
+</tbody>
+</table>
+</div>
+<p>Three focus blocks on a good day is a strong day. If mornings are where the plan falls apart, our <a href="/blog/adhd-morning-routine-iphone">ADHD morning routine guide</a> builds the first hour.</p>
+
+<h2>The weekly 10-minute reset</h2>
+<p>Daily plans drift. A short weekly reset pulls them back. Same day, same time, 10 minutes on a timer:</p>
+<ol>
+<li><strong>Look at the week (2 minutes).</strong> Calendar and week widget. What's fixed? Where are the open days?</li>
+<li><strong>Check the deadlines (3 minutes).</strong> Anything due in the next two weeks gets a countdown and a backwards-planned start date. A deadline without a start date is a wish.</li>
+<li><strong>Check your estimates (2 minutes).</strong> What ran over? Update the multiplier for that kind of task. If you use a focus timer with a history, look at how many blocks you actually did.</li>
+<li><strong>Pick three (2 minutes).</strong> Three things that would make the week count. Not ten.</li>
+<li><strong>Set the anchors (1 minute).</strong> Add or move the alarms for the week's hard transitions.</li>
+</ol>
+<p>If you want calendar events, reminders and habits on one screen for this, Left's Planner (part of Left Premium) shows Apple Calendar, Apple Reminders and Todoist next to your habits and countdowns. A paper planner works too; our guide to <a href="/blog/best-planner-adhd">choosing a planner for ADHD</a> helps you pick the format that will last.</p>
+
+<h2>What a system can and can't do</h2>
+<p>This system makes time visible and gives you external start and stop signals. That helps a lot of people a lot. But Left is a tool, not a treatment, and no app setup replaces support for ADHD itself. If time keeps costing you jobs, money or relationships despite good systems, a clinician can talk through options like medication, therapy or coaching.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>What is the best time management technique for ADHD?</h3>
+<p>There's no single best technique, but the ones that work share a trait: they put time outside your head. Visible timers, countdowns, short focus blocks and alarms for transitions tend to beat lists and willpower alone.</p>
+<h3>How can I estimate time better with ADHD?</h3>
+<p>Stop relying on your gut. Time common tasks once to learn your real durations, multiply new tasks by 2 or 3, and add a 10 to 15 minute buffer for every transition.</p>
+<h3>Is the Pomodoro technique good for ADHD?</h3>
+<p>For many people, yes, because a block with a visible end is easier to start. If 25 minutes feels too long, start with 10 or 15 and build up.</p>
+<h3>How can my iPhone help with ADHD time management?</h3>
+<p>Put a day or week widget and a deadline countdown on the Lock Screen, use a focus timer with a Live Activity, set up a Work Focus mode for notifications, and use labelled Clock alarms for hard transitions.</p>
+<h3>Is Left free?</h3>
+<p>Left is free to download, and the free plan includes the Time Left views, the time grid widgets and 2 countdowns. Focus and Planner are part of Left Premium, a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
