@@ -427,6 +427,9 @@ const LEFT_TOOL_STRINGS_EN = {
     dueDate: 'Estimated due date: {date}',
     dueDateTitle: 'Due date',
   },
+  life: {
+    mark: 'Marked: age {age}, week {week}',
+  },
   // Result card under every tool: widget preview, share, and the link handoff
   // for visitors who are not on an iPhone.
   card: {

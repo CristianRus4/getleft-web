@@ -49,6 +49,7 @@ const existingTools = [
   { slug: 'sleep-calculator', title: 'Sleep Calculator - Best Bedtime & Wake-Up Times | Left', h1: 'Sleep calculator', desc: 'Calculate the best time to go to sleep or wake up based on 90-minute sleep cycles. Find wake-up times that avoid sleep inertia and leave you feeling rested.', cardTitle: 'Sleep calculator', cardDesc: 'Best bedtimes and wake-up times from 90-minute sleep cycles.' },
   { slug: 'intermittent-fasting-duration-calculator', title: 'Intermittent Fasting Duration Calculator - 16:8, 18:6, OMAD | Left', h1: 'Intermittent fasting duration calculator', desc: 'Calculate your intermittent fasting window. Enter when you last ate and your fasting protocol to see when your fast ends.', cardTitle: 'Fasting duration', cardDesc: 'When your 16:8, 18:6 or custom fast ends from the time you last ate.' },
   { slug: 'end-of-fasting-calculator', title: 'End of Fasting Calculator - When Does My Fast End? | Left', h1: 'End of fasting calculator', desc: 'Calculate exactly when your fast ends. Enter your fast start time and duration to get the precise end time and a live countdown.', cardTitle: 'End of fasting calculator', cardDesc: 'When does your 16:8, 18:6, or custom fast end?' },
+  { slug: 'life-in-weeks-calculator', title: 'Life in Weeks Calculator - Your Life as a Grid of Weeks | Left', h1: 'Life in weeks calculator', desc: 'See your life in weeks: a grid of every week from your birth date, with weeks lived, weeks left and Saturdays left. Save it as a wallpaper.', cardTitle: 'Life in weeks', cardDesc: 'Your life as a grid of weeks, with weeks lived and left.' },
   { slug: 'fasting-countdown', title: 'Fasting Countdown - Live Timer Until Your Fast Ends | Left', h1: 'Fasting countdown', desc: 'Live fasting countdown timer. Set your fast end time and watch the countdown tick down in hours, minutes, and seconds. Free fasting timer.', cardTitle: 'Live fasting countdown', cardDesc: 'Real-time countdown of an in-progress fast.' },
 ];
 
@@ -987,14 +988,15 @@ const relatedOverrides = {
   'business-days-calculator': ['business-days-from-date', 'working-hours-calculator', 'school-days-calculator', 'deadline-countdown-calculator'],
   'add-subtract-date-calculator': ['business-days-from-date', 'what-was-the-date', 'date-units-converter', 'date-countdown-calculator'],
   'what-was-the-date': ['days-since-date', 'add-subtract-date-calculator', 'days-between-two-dates', 'iso-week-number'],
-  'age-calculator': ['retirement-countdown-calculator', 'life-expectancy-calculator', 'days-until-birthday', 'days-since-date'],
+  'age-calculator': ['life-in-weeks-calculator', 'life-expectancy-calculator', 'days-until-birthday', 'retirement-countdown-calculator'],
+  'life-in-weeks-calculator': ['life-expectancy-calculator', 'age-calculator', 'percentage-year-calculator', 'retirement-countdown-calculator'],
   'unix-timestamp-converter': ['unix-milliseconds-converter', 'time-zone-meeting-planner', 'hours-between-two-dates', 'date-countdown-calculator'],
   'sleep-calculator': ['countdown-timer', 'hours-between-two-dates', 'workday-countdown', 'time-until-weekend'],
   'time-until-weekend': ['workday-countdown', 'business-days-calculator', 'working-hours-calculator', 'time-left-in-year-calculator'],
   'time-left-in-year-calculator': ['quarter-countdown-calculator', 'fiscal-year-progress-calculator', 'percentage-year-calculator', 'days-until-new-year'],
   'percentage-year-calculator': ['fiscal-year-progress-calculator', 'quarter-countdown-calculator', 'time-left-in-year-calculator', 'life-expectancy-calculator'],
   'weeks-until-date': ['semester-countdown-calculator', 'vacation-countdown', 'pregnancy-due-date-calculator', 'iso-week-number'],
-  'life-expectancy-calculator': ['retirement-countdown-calculator', 'age-calculator', 'percentage-year-calculator', 'date-countdown-calculator'],
+  'life-expectancy-calculator': ['life-in-weeks-calculator', 'age-calculator', 'retirement-countdown-calculator', 'percentage-year-calculator'],
   'fasting-countdown': ['hours-since-date', 'end-of-fasting-calculator', 'intermittent-fasting-duration-calculator', 'sleep-calculator'],
   'end-of-fasting-calculator': ['fasting-countdown', 'hours-since-date', 'intermittent-fasting-duration-calculator', 'countdown-timer'],
 };
@@ -1026,7 +1028,7 @@ const groups = [
   },
   {
     name: 'Life & health',
-    slugs: ['life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator', 'fasting-countdown'],
+    slugs: ['life-in-weeks-calculator', 'life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator', 'fasting-countdown'],
   },
 ];
 
