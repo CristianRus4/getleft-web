@@ -979,7 +979,34 @@ const SEO_OVERRIDES = {
 const allTools = [...existingTools, ...newTools].map(
   t => (SEO_OVERRIDES[t.slug] ? { ...t, ...SEO_OVERRIDES[t.slug] } : t)
 );
-const toolBySlug = new Map(allTools.map(t => [t.slug, t]));
+// Hand-built pages that are only listed on the tools index and in llms.txt.
+const indexOnlyTools = [
+  { slug: "days-until-anzac-day", cardTitle: "How many days until Anzac Day?" },
+  { slug: "days-until-black-friday", cardTitle: "How many days until Black Friday?" },
+  { slug: "days-until-boxing-day", cardTitle: "How many days until Boxing Day?" },
+  { slug: "days-until-chinese-new-year", cardTitle: "How many days until Chinese New Year?" },
+  { slug: "days-until-diwali", cardTitle: "How many days until Diwali?" },
+  { slug: "days-until-eid", cardTitle: "How many days until Eid?" },
+  { slug: "days-until-hanukkah", cardTitle: "How many days until Hanukkah?" },
+  { slug: "days-until-july-4th", cardTitle: "How many days until the 4th of July?" },
+  { slug: "days-until-labor-day", cardTitle: "How many days until Labor Day?" },
+  { slug: "days-until-new-years-eve", cardTitle: "How many days until New Year’s Eve?" },
+  { slug: "days-until-pride-month", cardTitle: "How many days until Pride Month?" },
+  { slug: "days-until-ramadan", cardTitle: "How many days until Ramadan?" },
+  { slug: "days-until-super-bowl", cardTitle: "How many days until the Super Bowl?" },
+  { slug: "weeks-until-memorial-day", cardTitle: "How many weeks until Memorial Day?" },
+  { slug: "120-days-from-today", cardTitle: "What is 120 days from today?" },
+  { slug: "30-days-from-today", cardTitle: "What is 30 days from today?" },
+  { slug: "45-days-from-today", cardTitle: "What is 45 days from today?" },
+  { slug: "60-days-from-today", cardTitle: "What is 60 days from today?" },
+  { slug: "90-days-from-today", cardTitle: "What is 90 days from today?" },
+  { slug: "days-from-today", cardTitle: "Days from today" },
+  { slug: "days-left-in-month", cardTitle: "Days left in the month" },
+  { slug: "weeks-left-in-year", cardTitle: "Weeks left in the year" },
+  { slug: "year-progress-wallpaper", cardTitle: "Year progress wallpaper" },
+];
+const listedTools = [...allTools, ...indexOnlyTools];
+const toolBySlug = new Map(listedTools.map(t => [t.slug, t]));
 
 const relatedOverrides = {
   'date-countdown-calculator': ['deadline-countdown-calculator', 'vacation-countdown', 'wedding-countdown', 'days-between-two-dates'],
@@ -1004,11 +1031,11 @@ const relatedOverrides = {
 const groups = [
   {
     name: 'Countdowns',
-    slugs: ['date-countdown-calculator', 'time-left-in-year-calculator', 'time-passed-in-year-calculator', 'percentage-year-calculator', 'christmas-countdown-widget', 'days-until-easter', 'days-until-spring', 'days-until-summer', 'days-until-fall', 'days-until-winter', 'days-until-new-year', 'days-until-halloween', 'days-until-valentines', 'days-until-thanksgiving', 'days-until-mothers-day', 'days-until-fathers-day', 'days-until-birthday', 'time-until-weekend'],
+    slugs: ['date-countdown-calculator', 'time-left-in-year-calculator', 'time-passed-in-year-calculator', 'percentage-year-calculator', 'christmas-countdown-widget', 'days-until-easter', 'days-until-spring', 'days-until-summer', 'days-until-fall', 'days-until-winter', 'days-until-new-year', 'days-until-halloween', 'days-until-valentines', 'days-until-thanksgiving', 'days-until-mothers-day', 'days-until-fathers-day', 'days-until-birthday', 'time-until-weekend', 'days-until-anzac-day', 'days-until-black-friday', 'days-until-boxing-day', 'days-until-chinese-new-year', 'days-until-diwali', 'days-until-eid', 'days-until-hanukkah', 'days-until-july-4th', 'days-until-labor-day', 'days-until-new-years-eve', 'days-until-pride-month', 'days-until-ramadan', 'days-until-super-bowl', 'weeks-until-memorial-day'],
   },
   {
     name: 'Date math',
-    slugs: ['days-between-two-dates', 'hours-between-two-dates', 'weeks-until-date', 'business-days-calculator', 'add-subtract-date-calculator', 'what-was-the-date', 'age-calculator', 'iso-week-number', 'minutes-between-two-times', 'time-between-two-times'],
+    slugs: ['days-between-two-dates', 'hours-between-two-dates', 'weeks-until-date', 'business-days-calculator', 'add-subtract-date-calculator', 'what-was-the-date', 'age-calculator', 'iso-week-number', 'minutes-between-two-times', 'time-between-two-times', '120-days-from-today', '30-days-from-today', '45-days-from-today', '60-days-from-today', '90-days-from-today', 'days-from-today', 'days-left-in-month', 'weeks-left-in-year'],
   },
   {
     name: 'Since & streaks',
@@ -1028,7 +1055,7 @@ const groups = [
   },
   {
     name: 'Life & health',
-    slugs: ['life-in-weeks-calculator', 'life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator', 'fasting-countdown'],
+    slugs: ['life-in-weeks-calculator', 'life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator', 'fasting-countdown', 'year-progress-wallpaper'],
   },
 ];
 
@@ -1233,7 +1260,8 @@ function itemListJsonLd() {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Left free time tools',
-    itemListElement: allTools.map((tool, index) => ({
+    numberOfItems: listedTools.length,
+    itemListElement: listedTools.map((tool, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: tool.cardTitle,
@@ -1294,7 +1322,7 @@ function toolsIndexPage() {
       <div class="tools-grid">
 ${group.slugs.map(slug => {
     const tool = toolBySlug.get(slug);
-    return `        <a class="tool-card" href="/tools/${slug}"><div class="tool-card-title">${escapeHtml(tool.cardTitle)}</div><p class="tool-card-desc">${escapeHtml(tool.cardDesc)}</p></a>`;
+    return `        <a class="tool-card" href="/tools/${slug}"><div class="tool-card-title">${escapeHtml(tool.cardTitle)}</div>${tool.cardDesc ? `<p class="tool-card-desc">${escapeHtml(tool.cardDesc)}</p>` : ''}</a>`;
   }).join('\n')}
       </div>
     </section>`).join('\n\n');
@@ -1421,7 +1449,7 @@ function toolsListMarkdown() {
     lines.push(`### ${group.name}`);
     for (const slug of group.slugs) {
       const tool = toolBySlug.get(slug);
-      lines.push(`- [${tool.cardTitle}](${SITE}/tools/${slug}): ${tool.cardDesc}`);
+      lines.push(`- [${tool.cardTitle}](${SITE}/tools/${slug})${tool.cardDesc ? `: ${tool.cardDesc}` : ''}`);
     }
     lines.push('');
   }
