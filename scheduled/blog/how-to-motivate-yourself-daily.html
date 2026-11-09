@@ -1,0 +1,563 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Motivate Yourself Every Day (Even on Bad Days) | Left</title>
+  <meta name="description" content="Daily motivation is built, not found. A four-part daily loop, a plan for low days, and a two-minute morning and evening setup on your iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/how-to-motivate-yourself-daily" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-motivate-yourself-daily" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-motivate-yourself-daily" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Motivate Yourself Every Day (Even on Bad Days)" />
+  <meta property="og:description" content="Daily motivation is built, not found. A four-part daily loop, a plan for low days, and a two-minute morning and evening setup on your iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/how-to-motivate-yourself-daily" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-home-screen-widgets-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Motivate Yourself Every Day (Even on Bad Days)" />
+  <meta name="twitter:description" content="Daily motivation is built, not found. A four-part daily loop, a plan for low days, and a two-minute morning and evening setup on your iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-home-screen-widgets-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Motivate Yourself Every Day (When You Don't Feel Like It)",
+  "description": "Daily motivation is built, not found. A four-part daily loop, a plan for low days, and a two-minute morning and evening setup on your iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-motivate-yourself-daily",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Motivate Yourself Every Day (When You Don't Feel Like It)",
+      "item": "https://getleft.app/blog/how-to-motivate-yourself-daily"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I motivate myself when I don't feel like doing anything?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Don't wait for the feeling. Do the two-minute version of one task, and let that count as a win. Motivation usually shows up once you've started, and if it doesn't, you've still done something."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do I lose motivation every day by the afternoon?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Usually the plan was too big for the day you actually had. Do your starter early, and keep the evening task to a two-minute floor you can finish when tired."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is it better to rely on discipline or motivation?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Neither holds up every day. A small routine with a visible cue, a tiny first step and a quick log works on days when both discipline and motivation are low."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many daily habits should I track?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Start with one to three. More than that and the evening log feels like a chore, and the cue on your Lock Screen gets crowded. Add another only once the first ones run without effort."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can my iPhone remind me to stay motivated without notifications?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Lock Screen widgets and a wallpaper that shows the year or a countdown put the cue where you look anyway, so you get a nudge every time you pick up your phone without another alert."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Motivate Yourself Every Day (When You Don't Feel Like It)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 9 min read</p>
+<p>Most advice about motivation assumes you have to feel ready before you start. So you wait for the feeling: the right playlist, the right mood, a fresh Monday. Some days it shows up. Most days it doesn't, and the thing you meant to do slides to tomorrow.</p>
+<p>A more useful view: motivation usually arrives <em>after</em> you start, not before. You don't find it. You build the conditions that make starting easy, and the feeling tends to follow. This guide gives you a four-part daily loop, a plan for low days and bad weeks, and a two-minute morning and evening you can set up on your iPhone today.</p>
+
+<figure class="post-hero"><img src="/images/blog/best-home-screen-widgets-iphone-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/plants-and-flowers-on-sunny-windowsill-cq8SP-zwcoQ" rel="noopener">Tatiana Tochilova / Unsplash</a></figcaption></figure>
+
+<h2>Action comes first, motivation catches up</h2>
+<p>Think of the walk you didn't want to take and enjoyed ten minutes in, or the email you dreaded that took four minutes. The resistance lives almost entirely in the gap before you begin. Once you're moving, the task becomes concrete, and concrete tasks feel smaller than imagined ones.</p>
+<p>So stop asking "how do I get motivated?" and ask "how do I make starting so easy that I'll do it anyway?" You can change what you see, how big the first step is, what happens when you finish, and why it matters. Those are the four parts of the loop.</p>
+<p>This is about the daily start: getting today's thing going. If your problem is keeping a goal alive over months, our guide to <a href="/blog/stay-consistent-with-goals">staying consistent with goals without willpower</a> covers that longer game.</p>
+
+<h2>The daily loop: four parts</h2>
+
+<h3>1. A cue you can't miss</h3>
+<p>Most good intentions die not from laziness but from not coming to mind at the right moment. You need a cue that finds you. Your Lock Screen is ideal: you see it dozens of times a day anyway. Put something there you actually care about:</p>
+<ul>
+  <li><strong>A countdown to something you're looking forward to.</strong> A trip, a race, a birthday, the day the course ends. "18 days" pulls you toward the day in a way a calendar entry doesn't.</li>
+  <li><strong>The year or the week running out.</strong> Seeing that the year is 86% gone, or that it's already Thursday, is a gentle nudge rather than a nag. Our explainer on <a href="/blog/what-is-year-progress">what year progress is</a> covers why this works for so many people.</li>
+  <li><strong>The progress of one goal.</strong> "142 of 300 km" or "11 of 24 books" tells you exactly where you stand, and makes the next small step obvious.</li>
+</ul>
+<p>Pick one or two. A Lock Screen crowded with five numbers turns into wallpaper you stop reading.</p>
+
+<h3>2. A starter small enough for your worst day</h3>
+<p>Every daily action needs a two-minute version: the smallest piece of it you could do while tired, busy or low. Not the ideal version, the floor.</p>
+<ul>
+  <li>Run 5 km → put your running shoes on and step outside.</li>
+  <li>Study for an hour → open the notes and read one page.</li>
+  <li>Write 500 words → write one sentence.</li>
+  <li>Tidy the home → clear one surface.</li>
+</ul>
+<p>On a normal day you start with the two-minute version and keep going, which you usually will. On a bad day you do it and stop, and it still counts. That matters: if the small version doesn't count, your brain learns it's a trick and stops falling for it.</p>
+
+<h3>3. Evidence of progress at the end of the day</h3>
+<p>Motivation feeds on proof. When you can see that yesterday's effort went somewhere, today's start feels less pointless. When effort disappears without a trace, it's hard to care tomorrow.</p>
+<p>So close each day with a ten-second log: tick the habit, add the pages or the km. Over a few weeks it builds a record you can't argue with, which is exactly what you need on a day when you feel like you never do anything.</p>
+
+<h3>4. A reason that's yours</h3>
+<p>"I should exercise" is a reason borrowed from someone else. "I want to keep up with my kids on the beach in July" is yours. Borrowed reasons wear out by mid-week. Your own reasons last, especially when they're tied to a date or a person.</p>
+<p>Try finishing this sentence for each daily action: "I'm doing this so that, by <em>[date]</em>, <em>[person or thing I care about]</em>…" Then connect the reason to the cue. If the reason is a holiday in July, the countdown on your Lock Screen should be that holiday. Now every glance at your phone reminds you of the action and the reason at once.</p>
+
+<h2>Set up the loop on your iPhone</h2>
+<p>You can build this with paper and a calendar. A phone makes the cue automatic, which is the part most people struggle with. Here's how the four parts map to <strong>Left</strong>, the app we make:</p>
+<ul>
+  <li><strong>The cue:</strong> an <strong>Ahead</strong> countdown to the thing you're looking forward to, as a Lock Screen widget. Each countdown shows the time left and a progress bar from the day you set it. Or use the free <a href="/blog/left-wallpaper-guide">Left Wallpaper</a>, which turns your Lock Screen into a year or life grid that updates itself each day through a short Shortcuts automation.</li>
+  <li><strong>The starter:</strong> a <strong>habit</strong> named after the two-minute version ("Shoes on", "One page"). You only tick the floor, so a low day still counts.</li>
+  <li><strong>The evidence:</strong> habits and <strong>Aims</strong>. An Aim is a countable goal with a target, such as books read or km run. You log it with one tap, or enter an amount, and it keeps your progress history.</li>
+  <li><strong>The reason:</strong> the date lives in Ahead, and the countdown, the habit and the Aim sit next to each other in widgets, so the action and the reason are on the same screen.</li>
+</ul>
+<p>Left has dozens of Home Screen and Lock Screen widgets, and habit widgets show what's still unchecked today. Our guide to <a href="/blog/visual-goals-track-on-screens">tracking goals visually across your screens</a> shows more layouts.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Set up your daily cue</a></p>
+
+<h2>A two-minute morning and a two-minute evening</h2>
+<p>Here's what the loop looks like on an ordinary day, with one goal: reading 24 books this year.</p>
+<p><strong>Morning (two minutes)</strong></p>
+<ol>
+  <li><strong>Glance.</strong> You pick up your phone. The Lock Screen shows the year grid with under two months left, and a widget with "Books: 19 of 24". No app opened, no decision made.</li>
+  <li><strong>Choose the starter.</strong> Decide when today's "one page" happens. Tie it to something that already happens: with the first coffee, on the train, before you check messages at lunch.</li>
+  <li><strong>Do it if you can.</strong> If you have two minutes now, read the page now. Starting in the morning, even tiny, takes the pressure off the rest of the day.</li>
+</ol>
+<p><strong>Evening (two minutes)</strong></p>
+<ol>
+  <li><strong>Check what's unchecked.</strong> The habit widget shows whether "One page" is still open. If it is, read one page in bed. That's the whole requirement.</li>
+  <li><strong>Log the evidence.</strong> Tick the habit. If you finished a book, log it on the Aim with one tap and watch the number move.</li>
+  <li><strong>Set tomorrow's starter.</strong> Leave the book on your pillow, the shoes by the door, the notes open on the desk. Tomorrow's two minutes start tonight.</li>
+</ol>
+<p>If mornings are hard for you in general, our <a href="/blog/adhd-morning-routine-iphone">ADHD-friendly morning routine</a> pairs well with this: three small steps, visible cues and no strict order.</p>
+
+<h2>The low-day plan</h2>
+<p>Some days you wake up flat. Decide in advance what those days look like, so you don't negotiate with yourself when your energy is lowest.</p>
+<ul>
+  <li><strong>Name it.</strong> "Low day." Saying it plainly takes away the extra layer of guilt.</li>
+  <li><strong>Drop to the floor.</strong> Only the two-minute versions today. Not the full workout, not the hour of study.</li>
+  <li><strong>Pick one, not all.</strong> If you have three daily habits, choose the one that matters most and let the others go without a fight.</li>
+  <li><strong>Still log it.</strong> A ticked floor on a bad day is worth more than it looks. It keeps the identity of "someone who shows up" intact.</li>
+</ul>
+
+<h2>When nothing works for a week</h2>
+<p>A whole week where the loop doesn't fire is information, not a verdict on your discipline. Check these in order:</p>
+<ol>
+  <li><strong>Is the cue still visible?</strong> After a few weeks your eyes slide past the same widget. Move it, change its size, or swap the countdown for a new one.</li>
+  <li><strong>Is the starter still small?</strong> "One page" quietly grew into "a chapter". Shrink it back.</li>
+  <li><strong>Is the reason still true?</strong> Maybe the trip was cancelled or the goal no longer fits. Change the reason, or drop the goal on purpose instead of letting it rot.</li>
+  <li><strong>Is your life just full right now?</strong> Illness, a move, a new baby, exam season. Pause the habit for a set time with a restart date, rather than failing at it daily.</li>
+</ol>
+<p>If low motivation lasts for weeks, spills into everything, and comes with poor sleep or a loss of interest in things you usually enjoy, it may be more than a motivation problem. That's a good moment to talk to a doctor or another health professional. An app can help you structure a day, but it isn't a treatment.</p>
+
+<h2>Rewards and streaks: why they help some people and backfire for others</h2>
+<p>Streaks and small rewards turn invisible effort into something you can see, and for many people a climbing number is enough to get them going. But they don't suit everyone, so it's worth knowing which way you lean.</p>
+<p><strong>They tend to help when:</strong></p>
+<ul>
+  <li>You like seeing a number go up, and a missed day doesn't wreck your mood.</li>
+  <li>The reward is small and arrives right after the action, not weeks later.</li>
+  <li>The thing you're tracking is something you don't enjoy yet, like flossing or a new exercise habit.</li>
+</ul>
+<p><strong>They tend to backfire when:</strong></p>
+<ul>
+  <li><strong>The streak becomes a debt.</strong> At day 90 you start dreading the habit, because breaking the run feels worse than skipping. You're now protecting a number, not doing the thing.</li>
+  <li><strong>You think in all or nothing.</strong> One miss feels like proof the whole effort failed, so you quit entirely.</li>
+  <li><strong>You already enjoy the activity.</strong> Turning something you love, like reading for pleasure, into a scored task can make it feel like homework.</li>
+</ul>
+<p>If streaks backfire for you, track totals instead of runs. An Aim that counts "books this year" or "km this month" rewards every action and never resets to zero. If streaks help, use them for the one or two habits that need a push, and see our guide on <a href="/blog/how-to-build-a-streak">how to build a streak</a> for the setup and what to do when one breaks.</p>
+
+<p>Left is free to download. The free plan includes the Time Left views, the widgets, the wallpaper and 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium is a subscription or a lifetime purchase. Prices are shown in the app before you buy.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Download Left</a></p>
+
+<h2>Questions</h2>
+<h3>How do I motivate myself when I don't feel like doing anything?</h3>
+<p>Don't wait for the feeling. Do the two-minute version of one task, and let that count as a win. Motivation usually shows up once you've started, and if it doesn't, you've still done something.</p>
+<h3>Why do I lose motivation every day by the afternoon?</h3>
+<p>Usually the plan was too big for the day you actually had. Do your starter early, and keep the evening task to a two-minute floor you can finish when tired.</p>
+<h3>Is it better to rely on discipline or motivation?</h3>
+<p>Neither holds up every day. A small routine with a visible cue, a tiny first step and a quick log works on days when both discipline and motivation are low.</p>
+<h3>How many daily habits should I track?</h3>
+<p>Start with one to three. More than that and the evening log feels like a chore, and the cue on your Lock Screen gets crowded. Add another only once the first ones run without effort.</p>
+<h3>Can my iPhone remind me to stay motivated without notifications?</h3>
+<p>Yes. Lock Screen widgets and a wallpaper that shows the year or a countdown put the cue where you look anyway, so you get a nudge every time you pick up your phone without another alert.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
