@@ -1,0 +1,715 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>How Many Days Until Diwali? Live Countdown | Left</title>
+  <meta name="description" content="How many days until Diwali? A live countdown to Lakshmi Puja, the dates of all five days, and when Diwali falls for the next five years." />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/tools/days-until-diwali" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/days-until-diwali" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/days-until-diwali" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="How Many Days Until Diwali? Live Countdown" />
+  <meta property="og:description" content="How many days until Diwali? A live countdown to Lakshmi Puja, the dates of all five days, and when Diwali falls for the next five years." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/tools/days-until-diwali" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How Many Days Until Diwali? Live Countdown" />
+  <meta name="twitter:description" content="How many days until Diwali? A live countdown to Lakshmi Puja, the dates of all five days, and when Diwali falls for the next five years." />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <link rel="stylesheet" href="/tools/seasonal.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "How Many Days Until Diwali? Live Countdown",
+  "url": "https://getleft.app/tools/days-until-diwali",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "How many days until Diwali? A live countdown to Lakshmi Puja, the dates of all five days, and when Diwali falls for the next five years.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  }
+}
+  </script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Tools",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Days until Diwali",
+      "item": "https://getleft.app/tools/days-until-diwali"
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-en&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>How many days until Diwali?</h1>
+    <p class="tool-lede">A live countdown to Lakshmi Puja, the main day of Diwali, with the dates of all five days.</p>
+
+    <div class="tool-widget sx-widget">
+      <p class="sx-when" id="dw-when">Diwali 2027 is on Friday, October 29, 2027.</p>
+      <div class="tool-result" id="dw-result" aria-live="polite"></div>
+      <div class="sx-second"><span id="dw-second-label">The festival begins with Dhanteras</span><strong id="dw-second">Wednesday, October 27, 2027</strong></div>
+      <div class="tool-units" id="dw-units" role="group" aria-label="Display unit">
+        <button type="button" data-unit="all" class="is-active" aria-pressed="true">Days · Hours · Min · Sec</button>
+        <button type="button" data-unit="weeks" aria-pressed="false">Weeks</button>
+        <button type="button" data-unit="days" aria-pressed="false">Days only</button>
+        <button type="button" data-unit="hours" aria-pressed="false">Hours</button>
+        <button type="button" data-unit="minutes" aria-pressed="false">Minutes</button>
+        <button type="button" data-unit="seconds" aria-pressed="false">Seconds</button>
+      </div>
+      <div class="sx-cta">
+        <div class="sx-preview" aria-hidden="true">
+          <span class="sx-preview__title">Diwali</span>
+          <span class="sx-preview__bottom"><span class="sx-preview__num" data-sx-num>&nbsp;</span> <span class="sx-preview__unit" data-sx-unit>&nbsp;</span><span class="sx-preview__date" data-sx-date>&nbsp;</span></span>
+        </div>
+        <div class="sx-cta__actions">
+          <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-en&amp;mt=8" target="_blank" rel="noopener">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            <span>Count down to Diwali on your Home Screen</span>
+          </a>
+          <button type="button" class="sx-share" data-sx-share>Share</button>
+        </div>
+      </div>
+      <p class="sx-list-title" id="dw-list-title">The five days</p>
+      <div class="sx-list" id="dw-days">
+        <div class="sx-row" data-day="dhanteras"><span>Dhanteras</span><span></span><span></span></div>
+        <div class="sx-row" data-day="naraka"><span>Naraka Chaturdashi (Choti Diwali)</span><span></span><span></span></div>
+        <div class="sx-row" data-day="lakshmi"><span>Lakshmi Puja, the main day</span><span></span><span></span></div>
+        <div class="sx-row" data-day="govardhan"><span>Govardhan Puja</span><span></span><span></span></div>
+        <div class="sx-row" data-day="bhai"><span>Bhai Dooj</span><span></span><span></span></div>
+      </div>
+      <div hidden class="sx-strings">
+        <span data-sx="when">Diwali {year} is on {date}.</span>
+        <span data-sx="begun">Diwali {year} has begun: today is {name}.</span>
+        <span data-sx="today">Today is Lakshmi Puja, the main day of Diwali {year}.</span>
+        <span data-sx="after">Diwali {year} continues today with {name}.</span>
+        <span data-sx="big">Happy Diwali!</span>
+        <span data-sx="starts">The festival begins with Dhanteras</span>
+        <span data-sx="ends">Last day, Bhai Dooj</span>
+        <span data-sx="next">Next Diwali, {year}</span>
+        <span data-sx="noDate">The date of Diwali for {year} isn’t confirmed yet.</span>
+        <span data-sx="dhanteras">Dhanteras</span>
+        <span data-sx="naraka">Naraka Chaturdashi</span>
+        <span data-sx="govardhan">Govardhan Puja</span>
+        <span data-sx="bhai">Bhai Dooj</span>
+        <span data-sx="copied">Link copied</span>
+      </div>
+    </div>
+
+    <div class="tool-prose">
+      <h2>When is Diwali?</h2>
+      <p>Diwali, or Deepavali, the festival of lights, is celebrated by Hindus, Sikhs and Jains, and by many others in India and around the world. Its main day is <strong>Lakshmi Puja</strong>, when homes are lit with diyas and families pray to Lakshmi, the goddess of prosperity. In 2027 that is <strong>Friday, October 29, 2027</strong>.</p>
+      <p>Diwali is really a five-day festival, from Dhanteras to Bhai Dooj. The countdown above runs to Lakshmi Puja, and the list under it shows the date of each of the five days.</p>
+
+      <h2>How the date of Diwali is set</h2>
+      <p>Diwali follows the Hindu lunisolar calendar. Lakshmi Puja falls on <strong>Amavasya</strong>, the new moon of the month of Kartika, so in the Gregorian calendar it moves every year, between mid-October and mid-November.</p>
+      <p>A day in the Hindu calendar is counted by the lunar day, the tithi, which does not start at midnight. When a tithi begins or ends partway through a day, panchangs can place a festival on different days, so dates can differ by a day between regions and calendars. In some years two observances fall on the same day: in 2028, Naraka Chaturdashi and Lakshmi Puja are both on October 17.</p>
+
+      <h2>How this countdown works</h2>
+      <p>The dates come from a published panchang for New Delhi, checked for every year in the table. The page counts down to the start of the day of Lakshmi Puja in your own time zone, using your device’s clock.</p>
+      <p>Lakshmi Puja itself is performed in the evening, and the best time, the muhurat, depends on where you live. For the exact time in your city, or if your family follows a regional calendar, check a local panchang or your temple.</p>
+
+      <h2>Diwali for the next five years</h2>
+      <div class="sx-table-wrap">
+        <table class="sx-table">
+          <thead><tr><th>Year</th><th>Diwali (Lakshmi Puja)</th><th>Dhanteras</th><th>Bhai Dooj</th></tr></thead>
+          <tbody id="dw-years">
+          <tr><td>2027</td><td>Fri, Oct 29</td><td>Wed, Oct 27</td><td>Sun, Oct 31</td></tr>
+          <tr><td>2028</td><td>Tue, Oct 17</td><td>Sun, Oct 15</td><td>Thu, Oct 19</td></tr>
+          <tr><td>2029</td><td>Mon, Nov 5</td><td>Sun, Nov 4</td><td>Wed, Nov 7</td></tr>
+          <tr><td>2030</td><td>Sat, Oct 26</td><td>Thu, Oct 24</td><td>Mon, Oct 28</td></tr>
+          <tr><td>2031</td><td>Fri, Nov 14</td><td>Wed, Nov 12</td><td>Sun, Nov 16</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>The five days of Diwali</h2>
+      <p><strong>Dhanteras</strong> opens the festival; it is a traditional day to buy gold, silver or new utensils. <strong>Naraka Chaturdashi</strong>, also called Choti Diwali, follows. In South India, and in Malaysia and Singapore, this is often the day celebrated as Deepavali. <strong>Lakshmi Puja</strong> is the main night of lamps, prayers, sweets and fireworks. <strong>Govardhan Puja</strong>, with its offering of food known as Annakut, comes next, and <strong>Bhai Dooj</strong> closes the festival as a day for brothers and sisters.</p>
+      <p>Diwali is a public holiday in India and in countries such as Nepal, Sri Lanka, Malaysia, Singapore, Mauritius, Fiji, Trinidad and Tobago and Guyana.</p>
+
+      <h2>Put the Diwali countdown on your Home Screen</h2>
+      <ol>
+        <li>Install Left on your iPhone and open <strong>Ahead</strong>.</li>
+        <li>Tap <strong>Add a date ahead</strong>, choose <strong>New date</strong>, name it Diwali and set <strong>Starts</strong> to the day of Lakshmi Puja.</li>
+        <li>Add Left’s <strong>Ahead</strong> widget to your Home Screen or Lock Screen and choose the date in <strong>Edit Widget</strong>.</li>
+      </ol>
+      <p>Because Diwali moves every year, add the next year’s date once this one has passed; the table above has them. The <a href="/support/widget-iphone-home-screen">Home Screen widget guide</a> covers each step, and the <a href="/countdown-widget">countdown widget</a> page shows the widget styles.</p>
+
+      <h2>Read more</h2>
+      <ul class="sx-more">
+        <li><a href="/blog/best-countdown-widgets-iphone">The best countdown widgets for iPhone</a></li>
+        <li><a href="/support/organise-ahead-since">Organise your dates in Ahead and Since</a></li>
+        <li><a href="/support/widget-iphone-lock-screen">Add a widget to your iPhone Lock Screen</a></li>
+      </ul>
+
+      <h2>Questions</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>When is Diwali in 2027?</summary>
+          <div class="faq-answer"><p>Lakshmi Puja, the main day of Diwali, is on Friday, October 29, 2027. The five-day festival runs from Dhanteras on October 27, 2027 to Bhai Dooj on October 31, 2027.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Why does the date of Diwali change every year?</summary>
+          <div class="faq-answer"><p>Diwali follows the Hindu lunisolar calendar: Lakshmi Puja is on Amavasya, the new moon of Kartika. The lunar months drift against the Gregorian calendar, so Diwali falls on a different date each year, between mid-October and mid-November.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Is Diwali on the same day everywhere?</summary>
+          <div class="faq-answer"><p>Mostly, but not always. Panchangs and regions can differ by a day, and in South India, Malaysia and Singapore Deepavali is often celebrated on Naraka Chaturdashi, which can be the day before. This page uses a published panchang for New Delhi.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>How many days does Diwali last?</summary>
+          <div class="faq-answer"><p>Five days: Dhanteras, Naraka Chaturdashi, Lakshmi Puja, Govardhan Puja and Bhai Dooj. In some years two of them fall on the same date, so the festival can span four calendar days instead of five.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "When is Diwali in 2027?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lakshmi Puja, the main day of Diwali, is on Friday, October 29, 2027. The five-day festival runs from Dhanteras on October 27, 2027 to Bhai Dooj on October 31, 2027."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does the date of Diwali change every year?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Diwali follows the Hindu lunisolar calendar: Lakshmi Puja is on Amavasya, the new moon of Kartika. The lunar months drift against the Gregorian calendar, so Diwali falls on a different date each year, between mid-October and mid-November."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is Diwali on the same day everywhere?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Mostly, but not always. Panchangs and regions can differ by a day, and in South India, Malaysia and Singapore Deepavali is often celebrated on Naraka Chaturdashi, which can be the day before. This page uses a published panchang for New Delhi."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How many days does Diwali last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Five days: Dhanteras, Naraka Chaturdashi, Lakshmi Puja, Govardhan Puja and Bhai Dooj. In some years two of them fall on the same date, so the festival can span four calendar days instead of five."
+      }
+    }
+  ]
+}
+      </script>
+    </div>
+
+    <div class="tool-related">
+      <h2>Related tools</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/tools/days-until-new-years-eve">Days until New Year’s Eve</a>
+        <a class="tool-related-item" href="/tools/days-until-new-year">Days until New Year</a>
+        <a class="tool-related-item" href="/tools/christmas-countdown-widget">Christmas countdown</a>
+        <a class="tool-related-item" href="/tools/date-countdown-calculator">Countdown to any date</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Download Left</span>
+        <h2>Count down to what you’re looking forward to.</h2>
+        <p>Left keeps Diwali, birthdays, trips and every other date you’re waiting for on your Home Screen, Lock Screen and Apple Watch.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-en&amp;mt=8" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Download for iOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/tools/tools.js"></script>
+  <script src="/tools/seasonal.js"></script>
+  <script>
+    const MAIN = {"2026":"2026-11-08","2027":"2027-10-29","2028":"2028-10-17","2029":"2029-11-05","2030":"2030-10-26","2031":"2031-11-14","2032":"2032-11-02"};
+    const DAYS = {"2026":["2026-11-06","2026-11-08","2026-11-08","2026-11-10","2026-11-11"],"2027":["2027-10-27","2027-10-28","2027-10-29","2027-10-30","2027-10-31"],"2028":["2028-10-15","2028-10-17","2028-10-17","2028-10-18","2028-10-19"],"2029":["2029-11-04","2029-11-05","2029-11-05","2029-11-06","2029-11-07"],"2030":["2030-10-24","2030-10-26","2030-10-26","2030-10-27","2030-10-28"],"2031":["2031-11-12","2031-11-13","2031-11-14","2031-11-15","2031-11-16"]};
+    const KEYS = ['dhanteras', 'naraka', 'lakshmi', 'govardhan', 'bhai'];
+    const YEARS = Object.keys(MAIN).map(Number).sort((a, b) => a - b);
+    const at = iso => new Date(iso + 'T00:00:00');
+    const same = (a, b) => a.getTime() === b.getTime();
+    const cache = {};
+    function festival(y) {
+      if (!MAIN[y]) return null;
+      if (cache[y]) return cache[y];
+      const d = DAYS[y] ? {} : null;
+      if (d) KEYS.forEach((k, i) => { d[k] = at(DAYS[y][i]); });
+      const main = at(MAIN[y]);
+      return (cache[y] = { year: y, main, days: d, end: d ? d.bhai : main });
+    }
+    function upcoming(today) {
+      for (const y of YEARS) { const f = festival(y); if (f.end >= today) return f; }
+      return null;
+    }
+    // Today's observance, other than Lakshmi Puja (which has its own state).
+    function todayName(f, today) {
+      if (!f.days || same(f.main, today)) return null;
+      const k = KEYS.find(k => same(f.days[k], today));
+      return k ? sxText(k) : null;
+    }
+    const unitsEl = document.getElementById('dw-units');
+    const getUnit = sxUnits(unitsEl, () => render());
+    const whenEl = document.getElementById('dw-when');
+    const result = document.getElementById('dw-result');
+    const secondBox = document.querySelector('.sx-second');
+    const secondLabel = document.getElementById('dw-second-label');
+    const secondEl = document.getElementById('dw-second');
+    const preview = document.querySelector('.sx-preview');
+    const listTitle = document.getElementById('dw-list-title');
+    const list = document.getElementById('dw-days');
+    const rows = Array.from(list.querySelectorAll('[data-day]'));
+    const short = d => sxFormat(d, { weekday: 'short', month: 'short', day: 'numeric' });
+    sxShare(document.querySelector('[data-sx-share]'));
+    let tableFrom = null;
+    function render() {
+      const now = new Date();
+      const today = startOfDay(now);
+      const f = upcoming(today);
+      if (!f) {
+        whenEl.textContent = sxText('noDate', { year: YEARS[YEARS.length - 1] + 1 });
+        result.textContent = '';
+        unitsEl.style.display = secondBox.style.display = list.style.display = listTitle.style.display = 'none';
+        return;
+      }
+      const name = todayName(f, today);
+      const isMain = same(f.main, today);
+      // After Lakshmi Puja (Govardhan Puja, Bhai Dooj) the countdown moves on to next year's Diwali.
+      const target = today > f.main ? festival(f.year + 1) : f;
+      unitsEl.style.display = isMain ? 'none' : '';
+      if (isMain) {
+        whenEl.textContent = sxText('today', { year: f.year });
+        result.innerHTML = '<div class="tool-result-big">' + toolEscape(sxText('big')) + '</div>';
+      } else if (target) {
+        if (target !== f) whenEl.textContent = name ? sxText('after', { year: f.year, name }) : sxText('when', { year: target.year, date: sxDateLong(target.main) });
+        else whenEl.textContent = name ? sxText('begun', { year: f.year, name }) : sxText('when', { year: f.year, date: sxDateLong(f.main) });
+        renderCountdown(result, target.main - now, getUnit());
+      } else {
+        whenEl.textContent = sxText('noDate', { year: f.year + 1 });
+        result.textContent = '';
+        unitsEl.style.display = 'none';
+      }
+      // Second line: Dhanteras before the festival, Bhai Dooj during it, next Diwali after Lakshmi Puja.
+      secondBox.style.display = '';
+      if (target === f && f.days && today < f.days.dhanteras) {
+        secondLabel.textContent = sxText('starts');
+        secondEl.textContent = sxDateLong(f.days.dhanteras);
+      } else if (f.days && today <= f.days.bhai && (isMain || target === f)) {
+        secondLabel.textContent = sxText('ends');
+        secondEl.textContent = sxDateLong(f.days.bhai);
+      } else if (target && target !== f) {
+        secondLabel.textContent = sxText('next', { year: target.year });
+        secondEl.textContent = sxDateLong(target.main);
+      } else secondBox.style.display = 'none';
+      if (isMain) {
+        sxPreview(preview, 0, sxDateShort(f.main));
+        preview.querySelector('[data-sx-num]').textContent = fmtNum(0);
+        preview.querySelector('[data-sx-unit]').textContent = toolPlural('unit.days', 0);
+      } else if (target) sxPreview(preview, target.main - now, sxDateShort(target.main));
+      // The five days of the festival in progress, or of the next one.
+      const shown = f.days ? f : null;
+      list.style.display = listTitle.style.display = shown ? '' : 'none';
+      if (shown) rows.forEach(row => {
+        const d = shown.days[row.dataset.day];
+        row.children[1].textContent = short(d);
+        row.classList.toggle('is-past', d < today);
+        row.classList.toggle('is-now', same(d, today));
+      });
+      const from = target ? target.year : f.year;
+      if (tableFrom !== from) {
+        tableFrom = from;
+        const out = [];
+        for (let y = from; y < from + 5; y++) {
+          const g = festival(y);
+          if (!g) continue;
+          out.push([String(y), short(g.main), g.days ? short(g.days.dhanteras) : '–', g.days ? short(g.days.bhai) : '–']);
+        }
+        if (out.length) sxFillTable(document.getElementById('dw-years'), out);
+      }
+    }
+    tickEvery(1000, render);
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
