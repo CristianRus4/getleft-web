@@ -1,0 +1,544 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","de","es","es-419"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>How to Track Fitness Progress on iPhone: What to Measure (2026) | Left</title>
+  <meta name="description" content="How to track fitness progress: pick 2 to 3 measures that fit your goal, check them on a set schedule, and use the free Fitness and Health apps on your iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/how-to-track-fitness-progress" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/how-to-track-fitness-progress" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/how-to-track-fitness-progress" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="How to Track Fitness Progress on iPhone: What to Measure (2026)" />
+  <meta property="og:description" content="How to track fitness progress: pick 2 to 3 measures that fit your goal, check them on a set schedule, and use the free Fitness and Health apps on your iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/how-to-track-fitness-progress" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://getleft.app/images/blog/stay-consistent-with-goals-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="How to Track Fitness Progress on iPhone: What to Measure (2026)" />
+  <meta name="twitter:description" content="How to track fitness progress: pick 2 to 3 measures that fit your goal, check them on a set schedule, and use the free Fitness and Health apps on your iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/stay-consistent-with-goals-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to Track Fitness Progress on iPhone: What to Measure (2026)",
+  "description": "How to track fitness progress: pick 2 to 3 measures that fit your goal, check them on a set schedule, and use the free Fitness and Health apps on your iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-09",
+  "dateModified": "2026-11-09",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/how-to-track-fitness-progress",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "How to Track Fitness Progress on iPhone: What to Measure (2026)",
+      "item": "https://getleft.app/blog/how-to-track-fitness-progress"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is the best way to track fitness progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pick one goal, then two or three measures that fit it: for example, a timed 5K and weekly distance for endurance, or weight × reps on a few lifts for strength. Log on a fixed schedule and compare weekly or monthly averages rather than single days."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often should I measure fitness progress?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Log workouts as they happen and review weekly numbers such as distance, workouts and average weight once a week. Re-test benchmarks like a 5K time or a lift every 4 to 6 weeks, and take body measurements or photos every 2 to 4 weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track fitness progress on iPhone without an Apple Watch?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Your iPhone counts steps and walking distance on its own, and the Fitness app can show a daily Move ring. The Health app stores that data plus anything you add by hand or from other apps, such as weight, waist circumference and workouts. Pin the few you care about to Favorites on the Summary tab."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I weigh myself every day?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "You can, as long as you judge the weekly average and not the daily number, since weight can shift a few pounds day to day with water, salt and food. If daily weigh-ins bother you, a few times a week under the same conditions works too."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can Left track my workouts automatically?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "With Left Premium, Apple Health automatic tracking lets a habit, streak or Aim fill from Health data such as workouts, steps, distance, exercise time or body mass. Left doesn't record workouts itself; your iPhone, Apple Watch or another app does, and Left turns that into progress toward your goal."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>How to Track Fitness Progress on iPhone: What to Measure (2026)</h1>
+<p class="article-meta">Updated <time datetime="2026-11-09">November 9, 2026</time> · 7 min read</p>
+<p>Most people who quit tracking their fitness don't quit because they stopped training. They quit because they tried to track everything. The answer to how to track fitness progress is smaller than you'd think: pick two or three measures that match your goal, check each one on a fixed schedule, and judge the trend over weeks, not any single day.</p>
+<p>This guide gives you those measures for four common goals, a check-in schedule, and what your iPhone already records for free in the Fitness and Health apps.</p>
+<figure class="post-hero"><img src="/images/blog/stay-consistent-with-goals-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://unsplash.com/photos/a-window-sill-with-a-potted-plant-next-to-it-2Hka5fVDT3g" rel="noopener">Amy Harrison / Unsplash</a></figcaption></figure>
+
+<h2>How to track fitness progress: the short version</h2>
+<ol>
+<li><strong>Name one goal.</strong> "Get fit" is too vague to measure. "Run 5K in under 30 minutes" or "work out three times a week" is not.</li>
+<li><strong>Pick 2 to 3 measures for it.</strong> One that shows performance or outcome, one that shows consistency. A third is optional.</li>
+<li><strong>Set how often you check each one.</strong> Log workouts as they happen, look at weekly numbers once a week, and test benchmarks every 4 to 6 weeks.</li>
+<li><strong>Compare averages, not days.</strong> A month of data tells you more than any morning's reading.</li>
+</ol>
+
+<h2>What to measure for your goal</h2>
+<p>Each goal has a few measures that respond to it. Tracking measures that belong to a different goal adds work and muddies the picture.</p>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Goal</th><th>Measures that fit</th><th>How often to check</th></tr></thead>
+<tbody>
+<tr><td>Strength</td><td>Weight × reps on 2 or 3 main lifts (for example, your best set of squats); max push-ups in one set</td><td>Log each session; compare every 4 weeks</td></tr>
+<tr><td>Endurance</td><td>A timed benchmark (5K or 1 mile); weekly distance or time; resting heart rate</td><td>Distance weekly; benchmark every 4 to 6 weeks; heart rate as a monthly trend</td></tr>
+<tr><td>Body composition</td><td>Waist measurement; weekly average body weight; a monthly photo</td><td>Weight trend weekly; waist every 2 to 4 weeks; photos monthly</td></tr>
+<tr><td>General health and consistency</td><td>Workouts per week; weekly exercise minutes; average daily steps</td><td>Weekly</td></tr>
+</tbody>
+</table>
+</div>
+<p>For the last row, a useful reference: US guidelines and the WHO suggest most adults get at least 150 minutes of moderate activity a week, plus muscle-strengthening activity on two days. That makes "150 minutes and 2 strength sessions a week" a ready-made target if you don't have a more specific one.</p>
+<p>New to exercise, or changing your program a lot? Check with a doctor before you start.</p>
+
+<h2>Why trends beat single readings</h2>
+<p>Single readings are noisy. Body weight can move a few pounds from one day to the next with water, salt, food and sleep. A 5K time depends on heat, wind and how you slept. Resting heart rate can rise after a hard session, a late night or a cold.</p>
+<p>So average before you judge:</p>
+<ul>
+<li><strong>Weight:</strong> weigh under the same conditions (for example, after waking, before breakfast) a few times a week, and compare this week's average with last week's.</li>
+<li><strong>Benchmarks:</strong> test on the same route or with the same lift, at a similar time of day, every 4 to 6 weeks. Testing every week mostly measures how tired you are.</li>
+<li><strong>Consistency:</strong> look at a rolling month. Three workouts in each of the last four weeks says more than one perfect week.</li>
+</ul>
+<p>A worked example: someone weighs 182, 184, 181 and 183 lb one week (average 182.5) and 183, 180, 181 and 180 lb the next (average 181). Tuesday's 184 felt like a setback, but the trend is down 1.5 lb.</p>
+
+<h2>What your iPhone already tracks for free</h2>
+<p>Before you add any app, check what's already there.</p>
+<h3>Fitness app</h3>
+<p>The Fitness app shows your Activity rings. Even without a watch, iPhone counts your steps and walking distance, and the Fitness app can show a daily Move ring based on that movement. With an Apple Watch you get all three rings (Move, Exercise and Stand), workout summaries and, after enough history, Trends that show whether your recent averages are rising or falling.</p>
+<h3>Health app</h3>
+<p>The Health app is where the data lives. It stores workouts, steps, distance, heart rate and body measurements such as weight and waist circumference, from your iPhone, your Apple Watch and many other apps and devices you allow. Open a category to see it by day, week, month or year, and pin the two or three you care about to Favorites on the Summary tab. That's your progress dashboard, built in.</p>
+<h3>Apple Watch</h3>
+<p>If you have one, the Workout app records runs, walks, rides, strength sessions and more, and the watch tracks resting heart rate in the background. For endurance goals, that heart rate trend is one of the most useful free measures you have.</p>
+<p>What Apple's apps don't do: keep a goal you set yourself, like "run 300 km this year", in view every day. More on that below.</p>
+
+<h2>Three setups you can copy</h2>
+<h3>"Run a 5K under 30 minutes by spring"</h3>
+<ul>
+<li><strong>Measures:</strong> a 5K time trial every 4 to 6 weeks, weekly running distance, runs per week.</li>
+<li><strong>Where it lives:</strong> record runs with the Workout app or a running app; distance and workouts land in Health.</li>
+<li><strong>Review:</strong> Sunday, check the week's distance. On test weeks, compare the time with the last test, not with your best day.</li>
+</ul>
+<h3>"Get stronger at the basics"</h3>
+<ul>
+<li><strong>Measures:</strong> best set of weight × reps on squat, a press and a pull; strength sessions per week.</li>
+<li><strong>Where it lives:</strong> a lifting log app or a simple note with date, lift, weight and reps. Health can store the session as a strength workout if you record one.</li>
+<li><strong>Review:</strong> every 4 weeks, compare the best set for each lift. More reps at the same weight counts as progress.</li>
+</ul>
+<h3>"Move more and keep it up"</h3>
+<ul>
+<li><strong>Measures:</strong> workouts per week, weekly exercise minutes, average daily steps.</li>
+<li><strong>Where it lives:</strong> all three already come from iPhone or Apple Watch into Health.</li>
+<li><strong>Review:</strong> once a week, compare with the 150-minute reference and last week's numbers.</li>
+</ul>
+
+<h2>Where Left fits: consistency you can see</h2>
+<p><strong>Left</strong> doesn't log sets and reps or analyze heart rate. It's built for the part most trackers leave out: keeping your goal and your consistency in front of you every day.</p>
+<ul>
+<li><strong>A workout habit or streak.</strong> In Since, add a habit like "Work out" on the days you plan to train, or a streak that counts days since you started. Our guide to <a href="/blog/how-to-build-a-streak">building a streak</a> explains how Left counts them, and the <a href="/habit-tracker">habit tracker</a> page shows the widgets.</li>
+<li><strong>An Aim for the number.</strong> An additive Aim counts up, such as 300 km run or 120 workouts this year. A reductive Aim counts down, such as a waist measurement or body weight. Left shows the amount left and, with a deadline, whether you're on track. See <a href="/support/aims-in-left">how Aims work</a>.</li>
+<li><strong>Health fills it in.</strong> With Left Premium, <a href="/support/apple-health-automatic-tracking">Apple Health automatic tracking</a> lets habits, streaks and Aims fill from Health data such as steps, distance, exercise time, workouts and body mass, so a recorded run completes your habit without logging it twice.</li>
+<li><strong>A countdown to the test.</strong> Add race day or your next benchmark test in Ahead, set Show as… to weeks, and put it on your Home Screen or Lock Screen as a widget.</li>
+<li><strong>On your wrist.</strong> The <a href="/support/apple-watch-app">Left Apple Watch app</a> lets you log habits with a tap and check your streaks and Aims, and complications put your habits, streaks and Aims on your watch face.</li>
+</ul>
+<p>Left is free to download. The free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims. Left Premium, a subscription or lifetime purchase, unlocks unlimited items.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener">Track your workouts in Left</a></p>
+<p>Comparing options first? Our list of the <a href="/blog/best-habit-tracker-apps-iphone">best habit tracker apps for iPhone</a> covers several.</p>
+
+<h2>Common mistakes</h2>
+<ul>
+<li><strong>Tracking ten things.</strong> If logging takes longer than a minute, you'll stop. Cut back to the measures in your row of the table.</li>
+<li><strong>Using only the scale.</strong> Someone who starts lifting may see their waist shrink while their weight barely moves. Pair weight with a waist measurement or a performance number.</li>
+<li><strong>Ignoring the consistency number.</strong> When a benchmark stalls, check workouts per week first. It's usually the answer.</li>
+</ul>
+
+<h2>Questions</h2>
+<h3>What is the best way to track fitness progress?</h3>
+<p>Pick one goal, then two or three measures that fit it: for example, a timed 5K and weekly distance for endurance, or weight × reps on a few lifts for strength. Log on a fixed schedule and compare weekly or monthly averages rather than single days.</p>
+<h3>How often should I measure fitness progress?</h3>
+<p>Log workouts as they happen and review weekly numbers such as distance, workouts and average weight once a week. Re-test benchmarks like a 5K time or a lift every 4 to 6 weeks, and take body measurements or photos every 2 to 4 weeks.</p>
+<h3>How do I track fitness progress on iPhone without an Apple Watch?</h3>
+<p>Your iPhone counts steps and walking distance on its own, and the Fitness app can show a daily Move ring. The Health app stores that data plus anything you add by hand or from other apps, such as weight, waist circumference and workouts. Pin the few you care about to Favorites on the Summary tab.</p>
+<h3>Should I weigh myself every day?</h3>
+<p>You can, as long as you judge the weekly average and not the daily number, since weight can shift a few pounds day to day with water, salt and food. If daily weigh-ins bother you, a few times a week under the same conditions works too.</p>
+<h3>Can Left track my workouts automatically?</h3>
+<p>With Left Premium, <a href="/support/apple-health-automatic-tracking">Apple Health automatic tracking</a> lets a habit, streak or Aim fill from Health data such as workouts, steps, distance, exercise time or body mass. Left doesn't record workouts itself; your iPhone, Apple Watch or another app does, and Left turns that into progress toward your goal.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/id6740155884" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","de","es","es-419"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
