@@ -1,0 +1,548 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="tool" />
+  <title>Calculator al timpului de citire - cât durează citirea | Left</title>
+  <meta name="description" content="Calculează cât durează citirea unui articol, document, capitol de carte sau script pornind de la numărul de cuvinte și viteza de citire. Instrument gratuit pentru timpul de citire."  />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="canonical" href="https://getleft.app/ro/tools/reading-time-calculator" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/tools/reading-time-calculator" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/tools/reading-time-calculator" />
+  <!-- i18n:hreflang:end -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <meta name="robots" content="index,follow" />
+  <meta property="og:title" content="Calculator al timpului de citire - cât durează citirea"  />
+  <meta property="og:description" content="Calculează cât durează citirea unui articol, document, capitol de carte sau script pornind de la numărul de cuvinte și viteza de citire. Instrument gratuit pentru timpul de citire."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/ro/tools/reading-time-calculator" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculator al timpului de citire - cât durează citirea"  />
+  <meta name="twitter:description" content="Calculează cât durează citirea unui articol, document, capitol de carte sau script pornind de la numărul de cuvinte și viteza de citire. Instrument gratuit pentru timpul de citire."  />
+  <meta name="twitter:image" content="https://getleft.app/images/og-image.png" />
+  <link rel="stylesheet" href="/style.css" />
+  <link rel="stylesheet" href="/tools/tools.css" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Calculator al timpului de citire - cât durează citirea",
+  "url": "https://getleft.app/tools/reading-time-calculator",
+  "applicationCategory": "UtilityApplication",
+  "operatingSystem": "All",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "description": "Calculează cât durează citirea unui articol, document, capitol de carte sau script pornind de la numărul de cuvinte și viteza de citire. Instrument gratuit pentru timpul de citire.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left"
+  },
+  "inLanguage": "ro"
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Unelte",
+      "item": "https://getleft.app/tools/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Calculator timp de citire",
+      "item": "https://getleft.app/tools/reading-time-calculator"
+    }
+  ]
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/ro/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ro/#features" class="nav-link">Funcții</a>
+          <a href="/ro/tools/" class="nav-link">Unelte</a>
+          <a href="/ro/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-nav-ro&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Descarcă</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container tool-page">
+    <h1>Calculator timp de citire</h1>
+    <p class="tool-lede">Calculează cât durează citirea unui articol, document, capitol de carte sau script pornind de la numărul de cuvinte și viteza de citire. Instrument gratuit pentru timpul de citire.</p>
+
+    <div class="tool-widget">
+      <div class="tool-widget__row">
+        <div class="tool-widget__field"><label for="rt-words">Număr de cuvinte</label><input type="number" id="rt-words" min="0" value="1200" /></div>
+        <div class="tool-widget__field"><label for="rt-wpm">Viteză de citire (cuvinte/min)</label><input type="number" id="rt-wpm" min="1" value="225" /></div>
+      </div>
+      <div class="tool-result" id="rt-result" aria-live="polite"></div>
+      <!-- tools:card:start -->
+      <div class="tool-card-cta" data-tool-card>
+        <div class="tool-preview tool-preview--grid" data-tool-preview="day" aria-hidden="true">
+          <span class="tool-preview__title">Azi</span>
+          <canvas width="0" height="0"></canvas>
+          <span class="tool-preview__label" data-preview-label></span>
+        </div>
+        <div class="tool-card__body">
+          <div class="tool-card__actions">
+            <a class="dl-btn" data-cta="result" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-result-ro&amp;mt=8" target="_blank" rel="noopener">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              <span data-cta-label>Vezi orele rămase din zi pe ecranul de blocare</span>
+            </a>
+            <button type="button" class="tool-share" data-tool-share>Distribuie</button>
+            <a class="tool-card__more" href="/ro/tools/">Toate uneltele</a>
+          </div>
+        </div>
+      </div>
+      <!-- tools:card:end -->
+    </div>
+
+    <div class="tool-prose">
+      <h2>Cum funcționează calculatorul timpului de citire</h2>
+      <p>Introdu un număr de cuvinte și o viteză de citire în cuvinte pe minut. Instrumentul împarte cuvintele la viteză. Numărul mare este timpul rotunjit în sus la următorul minut întreg, iar linia de dedesubt dă minutele și secundele exacte. Dacă lași viteza goală, folosește 225 de cuvinte pe minut.</p>
+      <h2>Timp de citire în funcție de lungime</h2>
+      <div style="overflow-x:auto;">
+        <table style="width:100%;border-collapse:collapse;margin:8px 0 24px;font-size:16px;line-height:1.5;">
+          <thead><tr><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Cuvinte</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">La 225 de cuvinte pe minut</th><th style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Text tipic</th></tr></thead>
+          <tbody>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">500</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">3 minute</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Postare scurtă de blog sau newsletter prin e-mail</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">5 minute</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Postare standard de blog</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">1,500</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">7 minute</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Postare lungă de blog</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">2,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">9 minute</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Eseu scurt sau articol de actualitate</td></tr>
+          <tr><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">5,000</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">23 de minute</td><td style="text-align:left;padding:10px 16px 10px 0;border-bottom:1px solid var(--hairline);">Articol lung sau nuvelă</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h2>Alegerea unei viteze</h2>
+      <p>Viteza de citire în gând variază mult în funcție de persoană, limbă și text. Sintezele de cercetare indică o medie de aproximativ 240 de cuvinte pe minut pentru cititorii adulți de non-ficțiune, deci 200 până la 250 este un interval rezonabil pentru planificare. Materialul dens sau tehnic este mai lent. Citirea în diagonală este mai rapidă. Citirea cu voce tare este iar mai lentă: discursurile și prezentările se planifică de obicei la aproximativ 125 până la 150 de cuvinte pe minut.</p>
+      <p>Pentru a-ți cronometra propria citire, citește o pagină al cărei număr de cuvinte îl știi, notează minutele și împarte. Introdu acel număr ca viteza ta.</p>
+      <h2>Utilizări</h2>
+      <ul>
+        <li><strong>Scriitori și editori</strong> care adaugă unei postări eticheta „5 minute de citit”.</li>
+        <li><strong>Elevi și studenți</strong> care planifică cât va dura o lectură dată.</li>
+        <li><strong>Vorbitori</strong> care verifică un text față de un interval de timp: folosește o viteză de 130 și compară rezultatul cu intervalul.</li>
+      </ul>
+      <p>Pentru a cronometra o sesiune de citit, folosește <a href="/ro/tools/countdown-timer">temporizatorul de numărătoare inversă</a>. Pentru a încadra citirea înaintea unui termen, folosește <a href="/ro/tools/deadline-countdown-calculator">numărătoarea inversă pentru termen</a>.</p>
+      <h2>Întrebări</h2>
+      <div class="tool-faq">
+        <details class="faq-item">
+          <summary>Cât durează citirea a 1.000 de cuvinte?</summary>
+          <div class="faq-answer"><p>Aproximativ 4 până la 5 minute la 225 de cuvinte pe minut. La 200 de cuvinte pe minut sunt 5 minute, iar la 250 sunt 4 minute.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Ce viteză de citire ar trebui să folosesc?</summary>
+          <div class="faq-answer"><p>Pentru planificarea generală, 200 până la 250 de cuvinte pe minut. Folosește un număr mai mic pentru text dens sau tehnic și cronometrează-te ca să obții o cifră precisă.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>De ce diferă numărul mare de minutele și secundele?</summary>
+          <div class="faq-answer"><p>Numărul mare este rotunjit în sus la următorul minut întreg. Linia de dedesubt arată minutele și secundele exacte.</p></div>
+        </details>
+        <details class="faq-item">
+          <summary>Îl pot folosi pentru un discurs?</summary>
+          <div class="faq-answer"><p>Da, cu o viteză de vorbire de aproximativ 125 până la 150 de cuvinte pe minut. Fă o repetiție ca să-ți găsești propriul ritm.</p></div>
+        </details>
+      </div>
+      <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Cât durează citirea a 1.000 de cuvinte?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Aproximativ 4 până la 5 minute la 225 de cuvinte pe minut. La 200 de cuvinte pe minut sunt 5 minute, iar la 250 sunt 4 minute."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ce viteză de citire ar trebui să folosesc?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Pentru planificarea generală, 200 până la 250 de cuvinte pe minut. Folosește un număr mai mic pentru text dens sau tehnic și cronometrează-te ca să obții o cifră precisă."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "De ce diferă numărul mare de minutele și secundele?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Numărul mare este rotunjit în sus la următorul minut întreg. Linia de dedesubt arată minutele și secundele exacte."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Îl pot folosi pentru un discurs?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Da, cu o viteză de vorbire de aproximativ 125 până la 150 de cuvinte pe minut. Fă o repetiție ca să-ți găsești propriul ritm."
+      }
+    }
+  ],
+  "inLanguage": "ro"
+}
+</script>
+    </div>
+    <!-- tools:more:start -->
+    <div class="tool-related tool-more">
+      <h2>Citește mai mult</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ro/blog/how-to-add-widgets-iphone">Cum adaugi widgeturi pe iPhone</a>
+        <a class="tool-related-item" href="/ro/support/widget-iphone-home-screen">Adaugă un widget Left pe ecranul principal</a>
+        <a class="tool-related-item" href="/ro/countdown-widget">Widget de numărătoare inversă pentru iPhone</a>
+      </div>
+    </div>
+    <!-- tools:more:end -->
+    <div class="tool-related">
+      <h2>Unelte asemănătoare</h2>
+      <div class="tool-related-items">
+        <a class="tool-related-item" href="/ro/tools/countdown-timer">Cronometru cu numărătoare inversă</a>
+        <a class="tool-related-item" href="/ro/tools/meeting-time-calculator">Calculator oră de întâlnire</a>
+        <a class="tool-related-item" href="/ro/tools/time-between-two-times">Timp între două ore</a>
+        <a class="tool-related-item" href="/ro/tools/deadline-countdown-calculator">Numărătoare inversă până la un termen</a>
+      </div>
+    </div>
+
+    <section class="download-block">
+      <div class="section-head">
+        <span class="eyebrow">Descarcă Left</span>
+        <h2>Ține timpul acolo unde te uiți.</h2>
+        <p>Left pune numărători inverse, progresul anului, obiceiuri și serii pe ecranul principal, pe ecranul de blocare și pe Apple Watch.</p>
+      </div>
+      <div class="download-actions">
+        <div class="download-group">
+          <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="Cod QR — atinge pentru instrucțiuni">
+            <div class="bento-inner">
+              <div class="bento-face qr-face-front">
+                <div class="qr-mask"></div>
+              </div>
+              <div class="bento-face bento-face-back">
+                <p class="qr-face-back-text">Scanează sau caută <strong>„Left”</strong> în App Store.</p>
+              </div>
+            </div>
+          </div>
+          <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-tool-end-ro&amp;mt=8" target="_blank" rel="noopener" aria-label="Descarcă Left din App Store" data-cta="end">
+            <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+            Descarcă pentru iOS
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> de oameni fac fiecare moment să conteze.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Subsol">
+          <a href="/ro/support">Asistență</a>
+          <a href="/terms">Termeni</a>
+          <a href="/ro/privacy">Confidențialitate</a>
+          <a href="/ro/press">Presă</a>
+          <a href="/ro/contact">Contact</a>
+          <a href="/ro/tools/">Unelte</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ro/blog/">Blog</a>
+          <a href="#" data-consent-open>Setări cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="true">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>window.LEFT_TOOL_I18N={"result":{"arrived":"Ziua a sosit.","notYet":"Nu încă","futureDate":"Această dată e în viitor.","datePassed":"Această dată a trecut.","selectDate":"Alege o dată validă.","selectBoth":"Alege ambele date.","chooseTarget":"Alege mai sus o dată țintă.","deadlinePassed":"Termenul a trecut","pastDue":"Depășit","deadlineUrgent":"Termen urgent","deadlineSoon":"Se apropie","deadlineAhead":"Termenul e încă departe","fastComplete":"Postul s-a terminat!","weddingArrived":"Data a sosit","weekend":"Weekend!","itsWeekend":"E weekend! Bucură-te.","workdayEnded":"Ziua de muncă s-a terminat","workdayEndedHint":"Alege o oră mai târzie ca să numeri din nou invers.","upcoming":"Urmează: {dates}","since":"De la {date}","fastEnds":"Postul se termină: {date}","sinceJan1":"De la miezul nopții din 1 ianuarie {year}","untilDec31":"Până la miezul nopții din 31 decembrie {year}","fiscalEnds":"Anul fiscal se termină: {date}","quarterEnds":"Trimestrul se termină: {date}","weddingDate":"Data nunții: {date}","departure":"Plecare: {date}","currentAge":"Vârsta actuală: {years} ani, {months} luni, {days} zile","hoursAndMinutes":"{hours} ore și {minutes} minute","minutesExtra":"{minutes} minute în plus, {total} minute în total","readingDetail":"{minutes} minute și {seconds} secunde la {wpm} cuvinte pe minut","workdaysAt":"{days} zile lucrătoare la {hours} ore pe zi","minutesSince":"{minutes} minute în total de la {date}","schoolDays":"Zile de școală","weekdaysMinusBreaks":"{weekdays} zile lucrătoare minus {breaks} zile libere","businessAfter":"{count} zile lucrătoare după {date}","businessBefore":"{count} zile lucrătoare înainte de {date}","futureTime":"Această oră e în viitor.","unitEquals":"{amount} {from} echivalează cu aproximativ {value} {to}","invalidTimestamp":"Marcaj de timp nevalid.","invalidDate":"Dată nevalidă.","local":"local","pregFirst":"Primul trimestru","pregSecond":"Al doilea trimestru","pregThird":"Al treilea trimestru","pregWeekDay":"{weeks} săpt. {days} z","dueWas":"Termenul estimat a fost {date} — felicitări!","yearDays":"Anul {year} — {days} zile în total","easterDates":"Occidental — {western}; ortodox — {orthodox}"},"stat":{"days":"zile","hours":"ore","min":"min","sec":"sec","weeks":"săptămâni","months":"luni","daysSince":"zile de la","daysUntil":"zile până la","yearAnniversary":"aniversare anuală","elapsed":"trecut","left":"rămas","daysLeft":"zile rămase","weeksLeft":"săptămâni rămase","yearsLeft":"ani rămași","streakDays":"zile completate","fullWeeks":"săptămâni întregi","approxMonths":"luni aproximative","durationMin":"durată (min)","elapsedMin":"minute trecute","minutesLeft":"minute rămase","currentQuarter":"trimestrul curent","remaining":"rămas","daysSober":"zile sobre","daysToMilestone":"zile până la următorul prag","nextMilestone":"următorul prag","daysUntilDeparture":"zile până la plecare","tripDays":"zile de călătorie"},"unit":{"months":{"one":"lună","few":"luni","other":"de luni"},"weeks":{"one":"săptămână","few":"săptămâni","other":"de săptămâni"},"days":{"one":"zi","few":"zile","other":"de zile"},"hours":{"one":"oră","few":"ore","other":"de ore"},"minutes":{"one":"minut","few":"minute","other":"de minute"},"seconds":{"one":"secundă","few":"secunde","other":"de secunde"},"years":{"one":"an","few":"ani","other":"de ani"}},"next":{"christmas":"Următorul Crăciun: {date}","newYear":"Următorul An Nou: {date}","halloween":"Următorul Halloween: {date}","thanksgiving":"Următorul Thanksgiving în SUA: {date}","valentines":"Următoarea Zi a îndrăgostiților: {date}","mothersDay":"Următoarea Ziua Mamei în SUA: {date}","fathersDay":"Următoarea Ziua Tatălui în SUA: {date}","spring":"Următorul echinocțiu de primăvară: {date}","summer":"Următorul solstițiu de vară: {date}","fall":"Următorul echinocțiu de toamnă: {date}","winter":"Următorul solstițiu de iarnă: {date}","westernEaster":"Următorul Paște occidental: {date}","orthodoxEaster":"Următorul Paște ortodox: {date}","birthday":"Următoarea zi de naștere: {date}","anniversary":"Următoarea aniversare: {date}","saturday":"Următoarea sâmbătă: {date}","birthdayAway":{"one":"Următoarea zi de naștere: {date} (peste {count} zi)","few":"Următoarea zi de naștere: {date} (peste {count} zile)","other":"Următoarea zi de naștere: {date} (peste {count} de zile)"}},"sleep":{"bed9":"9 ore (6 cicluri)","bed75":"7,5 ore (5 cicluri, recomandat)","bed6":"6 ore (4 cicluri)","bed45":"4,5 ore (3 cicluri)","wake45":"4,5 ore","wake6":"6 ore","wake75":"7,5 ore (recomandat)","wake9":"9 ore"},"preg":{"weeksPregnant":"weeks pregnant","weeksToGo":"weeks to go","daysToGo":"days to go","dueDate":"Estimated due date: {date}","dueDateTitle":"Due date"},"life":{"mark":"Marked: age {age}, week {week}"},"card":{"handoff":"Send the link to your iPhone","handoffTitle":"Left for iPhone","copied":"Link copied","android":"On Android? See your options","shareText":"{title}: {result}","today":"today","daysLeft":{"one":"{count} day left","other":"{count} days left"},"hoursLeft":{"one":"{count} hour left today","other":"{count} hours left today"},"yearsLeft":{"one":"{count} year left","other":"{count} years left"},"weeksLeft":{"one":"{count} week left","other":"{count} weeks left"}}};</script>
+  <script src="/tools/tools.js"></script>
+  <script>
+    const wordsEl = document.getElementById('rt-words'); const wpmEl = document.getElementById('rt-wpm'); const result = document.getElementById('rt-result');
+    function render() {
+      const words = parseFloat(wordsEl.value) || 0; const wpm = Math.max(1, parseFloat(wpmEl.value) || 225); const min = words / wpm; const whole = Math.floor(min); const sec = Math.round((min - whole) * 60);
+      result.innerHTML = '<div class="tool-result-big">' + Math.ceil(min) + ' <span class="tool-result-unit">' + toolEscape(toolT('stat.min')) + '</span></div><p class="tool-result-sub">' + toolEscape(toolT('result.readingDetail', { minutes: whole, seconds: sec, wpm: wpm })) + '</p>';
+    }
+    wordsEl.addEventListener('input', render); wpmEl.addEventListener('input', render); render();
+  </script>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consimțământ cookie">
+  <p class="left-consent__text">Folosim Google Analytics ca să înțelegem care pagini îi ajută pe oameni. Fără reclame, fără urmărire între site-uri.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permite analitica</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Nu, mulțumesc</button>
+    <a class="left-consent__link" href="/ro/privacy#website" data-consent-privacy>Confidențialitate</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
