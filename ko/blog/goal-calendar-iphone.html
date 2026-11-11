@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhone 캘린더에 목표를 올리는 방법 (2027) | Left</title>
+  <meta name="description" content="iPhone에서 목표를 캘린더 시간으로 바꾸기: 마감과 중간 목표, 반복 시간 블록, 주간 점검, 목표와 일정을 한눈에 보는 화면. 실제 예시와 함께."  />
+  <link rel="canonical" href="https://getleft.app/ko/blog/goal-calendar-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 캘린더에 목표를 올리는 방법 (2027)"  />
+  <meta property="og:description" content="iPhone에서 목표를 캘린더 시간으로 바꾸기: 마감과 중간 목표, 반복 시간 블록, 주간 점검, 목표와 일정을 한눈에 보는 화면. 실제 예시와 함께."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ko/blog/goal-calendar-iphone" />
+  <meta property="og:locale" content="ko_KR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 캘린더에 목표를 올리는 방법 (2027)"  />
+  <meta name="twitter:description" content="iPhone에서 목표를 캘린더 시간으로 바꾸기: 마감과 중간 목표, 반복 시간 블록, 주간 점검, 목표와 일정을 한눈에 보는 화면. 실제 예시와 함께."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone 캘린더에 목표를 올리는 방법",
+  "description": "iPhone에서 목표를 캘린더 시간으로 바꾸기: 마감과 중간 목표, 반복 시간 블록, 주간 점검, 목표와 일정을 한눈에 보는 화면. 실제 예시와 함께.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/goal-calendar-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "블로그",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone 캘린더에 목표를 올리는 방법",
+      "item": "https://getleft.app/blog/goal-calendar-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "iPhone용 최고의 목표 캘린더 앱은 무엇인가요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "대부분의 사람에게는 iPhone에 이미 있는 Apple 캘린더 앱에 마감, 중간 목표, 시간 블록을 위한 별도의 목표 캘린더를 두는 것입니다. 카운트다운과 진행 상황을 보여 주는 Left 같은 앱과 함께 쓰세요."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iPhone에서 목표용 캘린더를 따로 만들려면 어떻게 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "캘린더를 열고 캘린더를 탭한 다음 캘린더 추가를 탭하세요. 이름을 “목표”로 정하고 전용 색을 고른 뒤 완료를 탭하면 됩니다. 이후 같은 캘린더 목록에서 보이거나 숨길 수 있습니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "목표와 캘린더 일정을 한곳에서 볼 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. Left Premium에 포함된 Left의 Planner는 Apple 캘린더 일정, Apple 미리 알림, Todoist 작업을 습관, 목표, Ahead 카운트다운 옆에 목록, 주, 월 레이아웃으로 보여 줍니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Left가 목표 마감을 캘린더에 추가할 수 있나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "네. Ahead 날짜를 캘린더에 저장할 수 있어서 마감이 Left의 카운트다운뿐 아니라 Apple 캘린더에도 표시됩니다. 이를 위해 Left에 캘린더 접근 권한이 필요합니다."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "목표 하나에 일주일에 시간 블록을 몇 개 잡아야 하나요?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "남은 양을 남은 주 수로 나눈 다음 한 시간 정도의 세션으로 나누세요. 대부분의 개인 목표에는 주 3회 블록에 예비 시간대 하나가 좋은 시작입니다."
+      }
+    }
+  ],
+  "inLanguage": "ko"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="기본">
+    <div class="container nav-inner">
+      <a href="/ko/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ko/#features" class="nav-link">기능</a>
+          <a href="/ko/tools/" class="nav-link">도구</a>
+          <a href="/ko/blog/" class="nav-link">블로그</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ko&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">다운로드</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>iPhone 캘린더에 목표를 올리는 방법</h1>
+<p class="article-meta">업데이트: <time datetime="2026-11-12">2026년 11월 12일</time> · 10분 읽기</p>
+<p>대부분의 <a href="/ko/blog/goal-setting-examples">목표</a>는 목록 안에 있습니다. “2027”이라는 이름의 메모, 일기장의 한 페이지, 목표 앱의 한 줄. 그러는 사이 캘린더는 회의, 약속, 남들의 계획으로 채워집니다. 목표는 시간을 한 칸도 받지 못하고 남는 시간을 받는데, 그건 대개 없습니다.</p>
+<p>캘린더는 의도가 시간으로 바뀌는 곳입니다. 이 가이드에서는 목표를 iPhone 캘린더에 네 겹으로 올리는 방법을 보여 드립니다. 마감과 중간 목표, 반복 시간 블록으로 잡은 주간 행동, 주간 점검, 그리고 목표와 캘린더를 함께 보는 화면 하나입니다. 시간에는 Apple 캘린더를, 카운트다운과 숫자에는 <strong>Left</strong>를 쓰며, 만들게 될 모든 일정을 보여 주는 12주 예시로 끝납니다.</p>
+
+<figure class="post-hero"><img src="/images/blog/smart-goals-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/yellow-pencil-on-white-paper-and-carpentry-tools-5973969/" rel="noopener">Ono Kosuki / Pexels</a></figcaption></figure>
+
+<h2>목표가 캘린더에 닿지 못하는 이유</h2>
+<ul>
+  <li><strong>목록은 “언제?”라고 묻지 않습니다.</strong> “강의 끝내기”는 어느 저녁에 할 건지 아무도 묻지 않은 채 몇 달이고 목록에 머물 수 있습니다.</li>
+  <li><strong>캘린더는 시간이 있는 것만 담습니다.</strong> 목표에 시간이 붙어 있지 않으면 캘린더는 그것을 지켜 줄 수 없습니다. 시간이 있는 것이 항상 이깁니다.</li>
+  <li><strong>마감은 길이 아닙니다.</strong> 마감을 캘린더에 넣는 사람들도 마감만 넣는 경우가 많습니다. 딱 한 번 나타나고, 도움이 되기에는 너무 늦습니다.</li>
+</ul>
+<p>해법은 새 앱이 아닙니다. 목표에 회의가 가진 것을 똑같이 주는 것입니다. 날짜, 시작 시각, 길이, 알림입니다.</p>
+
+<h2>목표 캘린더의 네 겹</h2>
+<ol>
+  <li><strong>마감과 중간 목표.</strong> 끝나는 날짜, 그리고 중간 지점과 첫 점검으로, 캘린더가 마지막 날이 아니라 일찍부터 경고해 줍니다.</li>
+  <li><strong>반복 시간 블록으로 잡은 주간 행동.</strong> 일 자체를 약속처럼 예약하고, 현실적인 길이와 예비 시간대를 둡니다.</li>
+  <li><strong>주간 점검.</strong> 한 주를 돌아보고, 겹친 것을 옮기고, 숫자를 확인하는 짧은 반복 일정입니다.</li>
+  <li><strong>목표와 캘린더를 한눈에.</strong> 카운트다운, 진행 상황, 오늘의 일정이 함께 있는 곳입니다.</li>
+</ol>
+<p>시작하기 전에 목표 자체에 분명한 결승선과 셀 수 있는 것이 필요합니다. 아직 막연하다면(“더 건강해지기”, “스페인어 배우기”) <a href="/ko/blog/smart-goals-guide">SMART 목표 가이드</a>가 일정에 올릴 수 있는 것으로 바꿔 줍니다.</p>
+
+<h2>1. 마감을 캘린더에 넣고 거꾸로 계획하기</h2>
+<p>끝에서 시작하세요. 마감을 종일 일정으로 추가한 다음 거기서부터 거꾸로 짜세요.</p>
+<ul>
+  <li><strong>마감.</strong> 끝나는 날. 일주일 전에 알림을 추가하세요.</li>
+  <li><strong>중간 지점.</strong> 50%에 도달해 있어야 하는 날짜입니다. 가장 유용한 중간 목표입니다. 방향을 바꾸기에 충분히 이르고, 실제로 의미 있는 것을 알려 줄 만큼 늦습니다.</li>
+  <li><strong>첫 점검.</strong> 2~3주 뒤. 느린 출발이 습관이 되기 전에 “블록이 실제로 지켜졌나?”를 묻는 것이 유일한 역할입니다.</li>
+</ul>
+<p>중간 목표 이름에는 단계만이 아니라 도달해야 할 숫자를 붙이세요. “중간 지점”보다 “중간 지점: 24개 중 12개 모듈”이 낫습니다. 날짜를 찾으려면 <a href="/ko/tools/weeks-until-date">마감까지 남은 주</a>를 세거나, <a href="/ko/tools/add-subtract-date-calculator">날짜 계산기</a>로 시작일에 일수를 더하거나 빼 보세요.</p>
+
+<h2>2. 주간 행동을 반복 시간 블록으로 예약하기</h2>
+<p>먼저 주간 속도를 계산하세요. 남은 할 일을 남은 주 수로 나눕니다. 그다음 고정된 요일, 시각, 길이를 가진 세션으로 바꾸세요.</p>
+<ul>
+  <li><strong>현실적인 길이를 고르세요.</strong> 대부분의 사람은 저녁 한 번에 들어가는 양을 과대평가합니다. 세션이 보통 50분 걸린다면 60분을 예약하세요. 끝낸 블록이 중간에 포기한 블록보다 기분이 좋습니다.</li>
+  <li><strong>적더라도 지켜지는 시간대를 고르세요.</strong> 지켜지는 주 3회 블록이 지켜지지 않는 6회보다 낫습니다. 캘린더가 마침 비어 있는 곳이 아니라 에너지가 있는 곳에 두세요.</li>
+  <li><strong>예비 시간대 하나를 추가하세요.</strong> 보통 주말에 두는 주간 블록으로, 주요 블록을 놓쳤을 때만 씁니다. “목요일을 놓쳤다”가 한 주를 날리는 대신 “목요일이 일요일로 옮겨졌다”가 됩니다.</li>
+  <li><strong>종료일을 정하세요.</strong> 반복 일정은 마감에서 끝나야 합니다. 그렇지 않으면 몇 년 동안 캘린더에 출몰합니다.</li>
+</ul>
+
+<h2>3. 주간 점검 일정 추가하기</h2>
+<p>매주 같은 시각의 15분짜리 반복 일정입니다. 대부분의 사람에게는 일요일 저녁이 맞습니다. 이 시간에 세 가지 질문에 답하세요.</p>
+<ol>
+  <li>어떤 블록은 지켜졌고, 어떤 블록은 아니었나?</li>
+  <li>숫자는 있어야 할 곳과 비교해 어디쯤인가?</li>
+  <li>다음 주에 블록과 겹치는 일이 있는가? 있다면 당일이 아니라 지금 그 블록을 옮기세요.</li>
+</ol>
+<p>점검이 캘린더를 정직하게 유지합니다. 점검이 없으면 놓친 블록은 그냥 스크롤되어 지나가고, 계획은 어느새 현실과 맞지 않게 됩니다.</p>
+
+<h2>4. 목표와 캘린더를 함께 보기</h2>
+<p>시간 블록은 언제 일할지는 알려 주지만 얼마나 왔는지, 시간이 얼마나 남았는지는 알려 주지 않습니다. 그래서 목표와 캘린더가 멀어집니다. 진행 상황은 한 앱에, 시간은 다른 앱에 있기 때문입니다. 둘을 한눈에, 이왕이면 아무것도 열지 않고 보고 싶을 것입니다.</p>
+
+<h2>Apple 캘린더에서 설정하는 방법</h2>
+<p>Apple 캘린더는 1~3단계에 필요한 것을 이미 모두 해 줍니다. 요령은 목표에 전용 캘린더를 주는 것입니다.</p>
+<h3>목표 캘린더 만들기</h3>
+<ol>
+  <li>캘린더를 열고 하단의 <strong>캘린더</strong>를 탭하세요.</li>
+  <li><strong>캘린더 추가</strong>를 탭하고 다시 <strong>캘린더 추가</strong>를 탭하세요.</li>
+  <li>이름을 “목표”로 정하고, 다른 곳에 쓰지 않는 색을 고른 다음 <strong>완료</strong>를 탭하세요.</li>
+</ol>
+<p>이제 모든 목표 일정이 한 가지 색이어서, 한 주의 얼마만큼이 목표에 속하는지 한눈에 보입니다. 같은 캘린더 목록에서 목표를 체크하거나 체크 해제해 그 일정을 보이거나 숨길 수 있습니다. 업무를 계획할 때는 숨기고, 한 주를 계획할 때는 보이게 하세요.</p>
+<h3>마감과 중간 목표 추가하기</h3>
+<ol>
+  <li><strong>+</strong>를 탭하고 일정 이름을 입력하세요. 예를 들면 “강의 수료: 24개 모듈”입니다.</li>
+  <li><strong>종일</strong>을 켜고 날짜를 설정하세요.</li>
+  <li><strong>캘린더</strong>를 목표로 설정하고 일주일 전의 <strong>알림</strong>을 추가하세요.</li>
+</ol>
+<p>중간 지점과 첫 점검도 같은 방식으로 반복하세요.</p>
+<h3>반복 시간 블록 추가하기</h3>
+<ol>
+  <li>세션 하나의 시작 시각과 길이로 일정을 만드세요.</li>
+  <li><strong>반복</strong>을 탭하세요. <strong>매주</strong>를 고르거나, 화요일과 목요일처럼 같은 시각을 쓰는 여러 요일을 고르려면 <strong>사용자화</strong>를 고르세요.</li>
+  <li><strong>반복 종료</strong>를 마감일로 설정하세요.</li>
+  <li><strong>캘린더</strong>를 목표로 설정하고 하던 일을 마무리할 수 있도록 10분이나 15분 전의 <strong>알림</strong>을 추가하세요.</li>
+</ol>
+<p>시각이 다른 세션(예를 들어 평일 저녁과 토요일 오전)에는 각각 반복 일정이 하나씩 필요합니다. 예비 시간대와 주간 점검도 같은 방식으로 추가하세요.</p>
+
+<h2>Left로 카운트다운과 숫자 추가하기</h2>
+<p>Apple 캘린더는 시간을 담습니다. Left는 캘린더가 보여 줄 수 없는 부분을 담습니다. 남은 시간이 얼마인지, 얼마나 왔는지입니다.</p>
+<ul>
+  <li><strong>마감은 Ahead 카운트다운으로.</strong> Ahead는 그 날짜까지 카운트다운하고 설정한 날부터의 진행을 보여 줍니다. 사진과 알림을 추가하고 Left에서 날짜를 캘린더에 저장하면 마감이 Apple 캘린더에도 나타납니다.</li>
+  <li><strong>숫자는 목표로.</strong> 목표에는 단위, 목표치, 시작일, 선택 사항인 마감일이 있습니다. 카운트업(끝낸 모듈, 모은 돈, 달린 km)이나 카운트다운(남은 빚)으로 설정하고, 기본 단위 증가량으로 탭 한 번에 기록하세요.</li>
+  <li><strong>주간 행동은 습관으로.</strong> 주간 습관은 완료를 한 번 이상 요구할 수 있어서, “주 3회 세션”이 체크 세 번짜리 습관 하나가 됩니다.</li>
+  <li><strong>눈이 가는 곳에 위젯을.</strong> 잠금 화면에는 카운트다운, 첫 번째 홈 화면 페이지에는 목표를 두세요. Left에는 수십 가지 위젯이 있으며, <a href="/ko/blog/how-to-add-widgets-iphone">iPhone에 위젯 추가하기</a> 가이드가 모든 위치를 다룹니다.</li>
+</ul>
+<p>Left Premium에 포함된 <strong>Planner</strong>가 4단계입니다. Apple 캘린더 일정, Apple 미리 알림, Todoist 작업이 습관, 연속 기록, 목표, Ahead 날짜 옆에 목록, 주, 월 레이아웃으로 보입니다. 그래서 화요일 시간 블록, 그 뒤에 체크하는 습관, 그로 인해 움직이는 목표가 같은 화면에 있습니다. 여기서 습관을 기록하거나 일정을 추가할 수 있고, Planner 위젯은 오늘 버전을 홈 화면에 올려 줍니다. 설정 방법은 <a href="/ko/blog/left-planner-guide">Left Planner 가이드</a>에서 따라 할 수 있습니다.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">Try Left's goal countdowns</a></p>
+
+<h2>실제 예시: 12주 강의</h2>
+<p>24개 모듈짜리 온라인 강의에 등록했다고 해 봅시다. 2027년 1월 4일 월요일에 시작해서 <a href="/ko/blog/quarterly-goal-tracker">12주</a> 안인 3월 28일 일요일까지 끝내고 싶습니다. 한 주에 모듈 2개입니다. 모듈 하나에 약 90분이 걸리니, 주간 행동은 60분 세션 세 번입니다.</p>
+<p>목표 캘린더의 모든 일정은 다음과 같습니다.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>일정</th><th>시기</th><th>반복</th><th>알림</th></tr></thead>
+  <tbody>
+    <tr><td>강의: 학습 세션</td><td>화·목, 오후 7:00~8:00</td><td>사용자화, 매주, 3월 28일까지</td><td>15분 전</td></tr>
+    <tr><td>강의: 학습 세션</td><td>토, 오전 9:00~10:00</td><td>매주, 3월 28일까지</td><td>15분 전</td></tr>
+    <tr><td>강의: 예비</td><td>일, 오후 4:00~5:00</td><td>매주, 3월 28일까지</td><td>없음</td></tr>
+    <tr><td>목표 점검</td><td>일, 오후 6:00~6:15</td><td>매주, 3월 28일까지</td><td>일정 시각에</td></tr>
+    <tr><td>첫 점검: 24개 중 4개 모듈</td><td>1월 17일 일요일 (종일)</td><td>없음</td><td>당일 아침</td></tr>
+    <tr><td>중간 지점: 24개 중 12개 모듈</td><td>2월 14일 일요일 (종일)</td><td>없음</td><td>1주 전</td></tr>
+    <tr><td>강의 수료: 24개 모듈</td><td>3월 28일 일요일 (종일)</td><td>없음</td><td>1주 전</td></tr>
+  </tbody>
+</table>
+</div>
+<p>예비 시간대에는 일부러 알림을 두지 않았습니다. 세션을 놓쳤을 때만 쓰는 시간이라, 매주 일요일마다 알림이 오면 무시하는 습관이 들기 때문입니다.</p>
+<p>Left에서는 같은 목표가 세 가지 항목이 됩니다. 3월 28일을 향한 Ahead 카운트다운 “강의 수료”, 기본 증가량 1에 같은 마감일로 24까지 카운트업하는 목표 “모듈”, 체크가 세 번 필요한 주간 습관 “학습 세션”입니다.</p>
+<p>이제 3주 차입니다. 목요일에 회식이 잡혔습니다. 일요일 점검에서 그것을 미리 보고 목요일 세션을 예비 시간대로 옮깁니다. 1월 17일에 첫 점검이 울립니다. 목표에 모듈 4개가 표시되니 속도에 맞는 것입니다. 2개로 표시됐다면 10주가 아니라 2주 만에 알게 되고, 아직 쉬운 결정일 때 네 번째 세션을 추가하거나 마감일을 옮길 수 있습니다.</p>
+
+<h2>별도의 목표 캘린더 앱이 필요한가요?</h2>
+<p>대부분의 사람에게는 아닙니다. 전용 목표 캘린더를 둔 Apple 캘린더가 시간을 맡고, 앱 하나가 카운트다운과 숫자를 맡습니다. 캘린더와 겹치는 세 번째 앱을 더하면 대개 최신 상태로 유지해야 할 곳이 두 곳이 됩니다.</p>
+<p>몇 가지 경우에는 다른 도구가 더 낫습니다.</p>
+<ul>
+  <li><strong>프로젝트나 계획 도구</strong>는 목표가 사실상 서로 의존하는 작업이 많은 프로젝트이거나, 여러 사람이 관련되거나, 모든 것을 한꺼번에 보는 타임라인 보기가 필요할 때 좋습니다.</li>
+  <li><strong>종이 벽걸이 달력</strong>은 목표를 집에서 함께 공유하거나(가족 저축 목표, 아이의 독서 챌린지) 폰에서 떨어져 있을 때 계획이 더 잘 된다면 좋습니다. 벽에서 날짜를 지워 나가는 것은 무시하기 어렵습니다.</li>
+  <li><strong>공유 iCloud 캘린더</strong>는 배우자나 운동 파트너도 블록을 봐야 할 때 좋습니다.</li>
+</ul>
+
+<h2>흔한 실수</h2>
+<ul>
+  <li><strong>너무 긴 블록.</strong> 평일 밤의 두 시간짜리 블록은 건너뛰게 됩니다. 한 시간짜리 블록 두 개는 해냅니다.</li>
+  <li><strong>반복에 종료일이 없음.</strong> 목표를 마친 뒤에도 블록이 계속 나타나고, 캘린더 전체를 무시하는 법을 배우게 됩니다.</li>
+  <li><strong>업무 캘린더에 둔 목표 일정.</strong> 회의에 섞여 버려서 따로 보거나 숨길 수 없습니다.</li>
+  <li><strong>모든 일정에 알림.</strong> 세션과 점검에는 알림을 두고, 예비 시간대는 조용히 두세요.</li>
+  <li><strong>옮긴 블록을 실패로 여기기.</strong> 점검에서 블록을 옮기는 것은 시스템이 작동하는 것이지 망가지는 것이 아닙니다.</li>
+</ul>
+<p>목표가 캘린더에 올라가면 더 큰 틀도 함께 보면 도움이 됩니다. 몇 번째 주인지, 올해가 며칠 남았는지입니다. <a href="/ko/blog/weeks-and-days-iphone-screen">iPhone 화면에 주와 일 올리기</a> 방법을 소개합니다.</p>
+
+<p>Left는 무료로 다운로드할 수 있습니다. 무료 플랜에는 남은 시간 보기, 시간 격자 위젯, 배경화면, 그리고 카운트다운 2개, 습관 2개, 연속 기록 2개, 목표 2개가 포함됩니다. 카운트다운이나 습관처럼 직접 만든 것을 보여 주는 위젯에는 Left Premium이 필요합니다. Left Premium은 구독 또는 평생 구매입니다. 가격은 구매하기 전에 앱에서 확인할 수 있습니다.</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ko&amp;mt=8" target="_blank" rel="noopener">Download Left</a></p>
+<p>함께 읽어 보세요: <a href="/ko/blog/quarterly-goal-tracker">분기 목표 트래커: iPhone에서 90일 목표를 세우고 추적하는 법</a>.</p>
+
+<h2>질문</h2>
+<h3>iPhone용 최고의 목표 캘린더 앱은 무엇인가요?</h3>
+<p>대부분의 사람에게는 iPhone에 이미 있는 Apple 캘린더 앱에 마감, 중간 목표, 시간 블록을 위한 별도의 목표 캘린더를 두는 것입니다. 카운트다운과 진행 상황을 보여 주는 Left 같은 앱과 함께 쓰세요.</p>
+<h3>iPhone에서 목표용 캘린더를 따로 만들려면 어떻게 하나요?</h3>
+<p>캘린더를 열고 캘린더를 탭한 다음 캘린더 추가를 탭하세요. 이름을 “목표”로 정하고 전용 색을 고른 뒤 완료를 탭하면 됩니다. 이후 같은 캘린더 목록에서 보이거나 숨길 수 있습니다.</p>
+<h3>목표와 캘린더 일정을 한곳에서 볼 수 있나요?</h3>
+<p>네. Left Premium에 포함된 Left의 Planner는 Apple 캘린더 일정, Apple 미리 알림, Todoist 작업을 습관, 목표, Ahead 카운트다운 옆에 목록, 주, 월 레이아웃으로 보여 줍니다.</p>
+<h3>Left가 목표 마감을 캘린더에 추가할 수 있나요?</h3>
+<p>네. Ahead 날짜를 캘린더에 저장할 수 있어서 마감이 Left의 카운트다운뿐 아니라 Apple 캘린더에도 표시됩니다. 이를 위해 Left에 캘린더 접근 권한이 필요합니다.</p>
+<h3>목표 하나에 일주일에 시간 블록을 몇 개 잡아야 하나요?</h3>
+<p>남은 양을 남은 주 수로 나눈 다음 한 시간 정도의 세션으로 나누세요. 대부분의 개인 목표에는 주 3회 블록에 예비 시간대 하나가 좋은 시작입니다.</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left 다운로드</span>
+          <h2>중요한 것을 알아차리기 시작하세요.</h2>
+          <p>iPhone에 Left를 다운로드해 남은 시간을 보고, 기대하는 날짜를 확인하고, 지키고 싶은 습관을 만들고, 더 나은 자신이 되어 보세요.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR 코드 - 탭하여 안내 보기">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">스캔하거나 App Store에서 <strong>"Left"</strong>를 검색하세요.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ko&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store에서 Left 다운로드" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS용 다운로드
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 명이 매 순간을 값지게 보내고 있습니다.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="푸터">
+          <a href="/ko/support">지원</a>
+          <a href="/terms">약관</a>
+          <a href="/ko/privacy">개인정보</a>
+          <a href="/ko/press">프레스</a>
+          <a href="/ko/contact">문의</a>
+          <a href="/ko/tools/">도구</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ko/blog/">블로그</a>
+          <a href="#" data-consent-open>쿠키 설정</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>KO</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="true">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="쿠키 동의">
+  <p class="left-consent__text">어떤 페이지가 도움이 되는지 알아보기 위해 Google Analytics를 사용합니다. 광고나 사이트 간 추적은 하지 않습니다.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>분석 허용</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>허용 안 함</button>
+    <a class="left-consent__link" href="/ko/privacy#website" data-consent-privacy>개인정보 처리방침</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

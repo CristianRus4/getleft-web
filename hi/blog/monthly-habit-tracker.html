@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="hi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>मासिक आदत ट्रैकर: iPhone पर महीने के हिसाब से समीक्षा | Left</title>
+  <meta name="description" content="मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है। महीने की ग्रिड कैसे काम करती है, 15 मिनट का मासिक रीसेट कैसे करें, और इसे iPhone पर कैसे सेट करें।"  />
+  <link rel="canonical" href="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="मासिक आदत ट्रैकर: iPhone पर महीने के हिसाब से समीक्षा"  />
+  <meta property="og:description" content="मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है। महीने की ग्रिड कैसे काम करती है, 15 मिनट का मासिक रीसेट कैसे करें, और इसे iPhone पर कैसे सेट करें।"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <meta property="og:locale" content="hi_IN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="मासिक आदत ट्रैकर: iPhone पर महीने के हिसाब से समीक्षा"  />
+  <meta name="twitter:description" content="मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है। महीने की ग्रिड कैसे काम करती है, 15 मिनट का मासिक रीसेट कैसे करें, और इसे iPhone पर कैसे सेट करें।"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "मासिक आदत ट्रैकर: महीने से अपनी आदतों की समीक्षा करें, हर दिन को परखने के लिए नहीं",
+  "description": "मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है। महीने की ग्रिड कैसे काम करती है, 15 मिनट का मासिक रीसेट कैसे करें, और इसे iPhone पर कैसे सेट करें।",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-habit-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ब्लॉग",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "मासिक आदत ट्रैकर: महीने से अपनी आदतों की समीक्षा करें, हर दिन को परखने के लिए नहीं",
+      "item": "https://getleft.app/blog/monthly-habit-tracker"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "मासिक आदत ट्रैकर क्या है?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है, आमतौर पर ऐसी ग्रिड के रूप में जिसमें किनारे पर आदतें और ऊपर दिन होते हैं। आप रोज़ लॉग करते हैं और पूरा हो चुका महीना देखकर समीक्षा करते हैं कि कौन-सी आदतें टिकीं।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "मासिक ट्रैकर में कौन-सी आदतें रखूँ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "रोज़ की वे आदतें जिनकी समीक्षा आप महीने में करना चाहते हैं, जैसे पढ़ना या स्ट्रेच करना, और वे आदतें जिन्हें बस महीने की गिनती चाहिए, जैसे परिवार को चार बार फ़ोन करना या दो बार गहरी सफ़ाई करना। पाँच या छह आदतें सँभालने लायक संख्या है।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "मासिक आदत समीक्षा कैसे करूँ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "हर आदत को एक संख्या से अंक दें, फिर उसे रखें, छोटा करें या छोड़ें, ज़्यादा से ज़्यादा एक नई आदत जोड़ें, और इस महीने के लक्ष्य तय करें। महीने के अंत में इसमें लगभग 15 मिनट लगते हैं।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "क्या मैं iPhone पर ऐसी आदत ट्रैक कर सकता हूँ जो महीने में बस कुछ बार करता हूँ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "हाँ। Left में महीने की अवधि और गिनती के साथ आदत बनाएँ, जैसे 4 बार, और उसे महीने के किसी भी दिन तब तक लॉग करें जब तक वह पूरी न हो जाए।"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "कागज़ वाला मासिक आदत ट्रैकर बेहतर है या ऐप वाला?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "पूरा हो चुका महीना सोचने-समझने के लिए कागज़ की ग्रिड बेहतर है; रोज़ लॉग करने और विजेट से दिन भर अपनी आदतें देखने के लिए ऐप बेहतर है। कई लोग ऐप में लॉग करते हैं और कागज़ पर या ऐप की पूरा होने की ग्रिड में समीक्षा करते हैं।"
+      }
+    }
+  ],
+  "inLanguage": "hi"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="मुख्य">
+    <div class="container nav-inner">
+      <a href="/hi/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/hi/#features" class="nav-link">विशेषताएँ</a>
+          <a href="/hi/tools/" class="nav-link">टूल्स</a>
+          <a href="/hi/blog/" class="nav-link">ब्लॉग</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-hi&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">डाउनलोड</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>मासिक आदत ट्रैकर: महीने से अपनी आदतों की समीक्षा करें, हर दिन को परखने के लिए नहीं</h1>
+<p class="article-meta">अपडेट: <time datetime="2026-11-12">12 नवंबर 2026</time> · पढ़ने में 8 मिनट</p>
+<p>किसी आदत को दिन-दिन परखेंगे तो हर चूक फ़ैसले जैसी लगेगी। मंगलवार को सैर छूट गई? नाकाम। वही आदत पूरे महीने में देखें तो मंगलवार अपने असली आकार में आ जाता है: ज़्यादातर भरे हुए खानों की कतार में एक खाली खाना। आदतें महीने के पैमाने पर ही सही मायने में समझ आती हैं।</p>
+<p>यही मासिक आदत ट्रैकर का विचार है। आप हर दिन लॉग करते हैं, लेकिन फ़ैसले महीने में एक बार लेते हैं: क्या चल रहा है, क्या छोड़ना है, क्या छोटा करना है, आगे क्या आज़माना है। यहाँ बताया गया है कि महीने की ग्रिड कैसे काम करती है, 15 मिनट का मासिक रीसेट क्या है, और इसे iPhone पर कैसे सेट करें।</p>
+<figure class="post-hero"><img src="/images/blog/way-of-life-alternatives-hero.webp" alt="बिंदुओं वाले सफ़ेद कागज़ पर हाथ से बना लक्ष्य ट्रैकर, जिसमें हफ़्ते के खानों की एक कतार हरे या लाल रंग से भरी है, और पन्ने पर पेन पड़े हैं।" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18" rel="noopener">फ़ोटो: Unsplash पर Isaac Smith</a></figcaption></figure>
+
+<h2>मासिक आदत ट्रैकर क्या है</h2>
+<p>क्लासिक रूप बुलेट जर्नल से आता है: एक ग्रिड जिसमें बाईं ओर आपकी आदतें होती हैं और ऊपर महीने के दिन, 1 से 31 तक। हर दिन आप जो-जो आदतें निभाते हैं, उनका खाना भर देते हैं। <a href="/hi/tools/days-left-in-month">महीने के अंत</a> में पूरा महीना आपके सामने एक पन्ने पर होता है।</p>
+<p>इसे उपयोगी लॉग करना नहीं बनाता। उपयोगी वह है जो आप पूरी हो चुकी ग्रिड से पढ़ पाते हैं:</p>
+<ul>
+  <li><strong>पंक्तियाँ</strong> बताती हैं कि कौन-सी आदतें टिकीं और कौन-सी कभी शुरू ही नहीं हुईं।</li>
+  <li><strong>कॉलम</strong> बताते हैं कि कौन-से दिन बिखर गए। अगर हर आदत उन्हीं रविवारों को खाली है, तो समस्या रविवार है, आपकी इच्छाशक्ति नहीं।</li>
+  <li><strong>खाली जगहें</strong> बताती हैं कि क्या हुआ था: कोई यात्रा, ज़ुकाम, डेडलाइन वाला हफ़्ता।</li>
+</ul>
+<p>फ़ॉर्मैट से ज़्यादा मायने इस बात का है कि महीना बीतने पर आप उसे देखने की आदत डालें।</p>
+
+<h2>महीना क्यों काम करता है</h2>
+<ul>
+  <li><strong>1 तारीख़ को नई शुरुआत।</strong> नया महीना एक स्वाभाविक रेखा है। जनवरी का इंतज़ार करने की जगह आपको साल में बारह बार साफ़ ग्रिड मिलती है।</li>
+  <li><strong>पैटर्न दिखने लायक दिन।</strong> एक हफ़्ता बहुत छोटा है: एक बुरा हफ़्ता बस बुरी किस्मत हो सकता है। तीस दिन दिखाते हैं कि आदत आपकी ज़िंदगी में फ़िट बैठती है या बार-बार उससे हार जाती है।</li>
+  <li><strong>बदलाव करने लायक छोटा।</strong> कोई योजना काम न कर रही हो तो उसे साल भर निभाना बहुत लंबा है। महीना आपको दिशा बदलने देता है, इससे पहले कि गलत सेटअप आपका पूरा मौसम खा जाए।</li>
+  <li><strong>यह करने और परखने को अलग करता है।</strong> रोज़ आपका बस एक काम है: आदत निभाना और लॉग करना। मूल्यांकन समीक्षा तक रुकता है। सिर्फ़ इससे छूटे हुए दिन का काफ़ी दबाव उतर जाता है।</li>
+</ul>
+
+<h2>मासिक आदतों के दो प्रकार</h2>
+<p>“मासिक आदत” के दो अलग मतलब हो सकते हैं, और दोनों के सेटअप अलग चाहिए।</p>
+<h3>रोज़ की आदतें, महीने के नज़रिए से</h3>
+<p>“10 पन्ने पढ़ना”, “एक मिनट स्ट्रेच करना”, “बिस्तर में फ़ोन नहीं”। इन्हें आप रोज़ या तय दिनों पर करते हैं, और महीना बस वह खिड़की है जिसमें आप इनकी समीक्षा करते हैं। महीने के अंत का सवाल है: मैं कितना नियमित रहा, और क्या आदत आसान होती जा रही है?</p>
+<h3>महीने के लक्ष्य वाली आदतें</h3>
+<p>कुछ आदतें किसी ख़ास दिन की नहीं होतीं। उनकी गिनती महीने के लिए होती है:</p>
+<ul>
+  <li>“रसोई की गहरी सफ़ाई, महीने में दो बार”</li>
+  <li>“नानी को फ़ोन, महीने में 4 बार”</li>
+  <li>“हर हफ़्ते एक नई रेसिपी बनाना”, जो या तो हफ़्ते की आदत है या महीने में 4 बार, इस पर निर्भर करते हुए कि आपको उनका फैला हुआ होना मायने रखता है या नहीं</li>
+</ul>
+<p>इन्हें रोज़ के चेकबॉक्स में ठूँसने पर ज़्यादातर दिन चूक जैसे दिखते हैं। इन्हें महीने की गिनती दें, तो जिस भी दिन आप इन्हें करें वह कुल में जुड़ता है। महीना तब सफल है जब आप संख्या तक पहुँच जाएँ, चाहे वह 3 और 4 तारीख़ को हुआ हो या 20 और 28 को।</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>आदत</th><th>अवधि</th><th>गिनती</th><th>आप क्या देखते हैं</th></tr></thead>
+  <tbody>
+    <tr><td>10 पन्ने पढ़ें</td><td>दिन</td><td>1, रोज़</td><td>पूरे हुए दिन, आदत की मज़बूती</td></tr>
+    <tr><td>जिम</td><td>दिन</td><td>हफ़्ते में 3 दिन</td><td>वे हफ़्ते जिनमें 3 पूरे हुए</td></tr>
+    <tr><td>नई रेसिपी बनाएँ</td><td>हफ़्ता</td><td>1</td><td>4 या 5 में से पूरे हुए हफ़्ते</td></tr>
+    <tr><td>नानी को फ़ोन करें</td><td>महीना</td><td>4</td><td>क्या आप 4 तक पहुँचे</td></tr>
+    <tr><td>रसोई की गहरी सफ़ाई</td><td>महीना</td><td>2</td><td>क्या आप 2 तक पहुँचे</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>15 मिनट का मासिक रीसेट</h2>
+<p>इसे महीने के आख़िरी दिन या नए महीने की पहली सुबह करें। इसके लिए समय तय कर लें, क्योंकि बिना तारीख़ वाली समीक्षा कभी होती नहीं।</p>
+<ol>
+  <li><strong>पिछले महीने के अंक दें (5 मिनट)।</strong> हर आदत के लिए एक संख्या लिखें: पूरे हुए दिन, या लक्ष्य के मुकाबले पहुँची गिनती। अभी कोई बहाना नहीं।</li>
+  <li><strong>रखें, छोड़ें या छोटा करें (5 मिनट)।</strong> Go habit by habit.
+    <ul>
+      <li><strong>रखें</strong> वह सब कुछ जो आपने ज़्यादातर उन दिनों किया जिन दिनों करना तय था। अभी उसे कठिन न बनाएँ; उसी आकार में एक और महीना उसे अपने-आप होने वाला बना देगा।</li>
+      <li><strong>छोटा करें</strong> वह सब कुछ जिसे आप शुरू करके छोड़ते रहे। “5 km दौड़ना” बन जाता है “दौड़ने के जूते पहनकर दरवाज़े से बाहर निकलना”। “30 मिनट पढ़ना” बन जाता है “10 पन्ने पढ़ना”। जो छोटी आदत आप निभाते हैं, वह बड़ी आदत से बेहतर है जिसे आप टाल देते हैं।</li>
+      <li><strong>छोड़ें</strong> वह सब कुछ जिसे आपने मुश्किल से छुआ और जिसकी कमी महसूस नहीं होती। किसी आदत को जान-बूझकर छोड़ना एक फ़ैसला है, नाकामी नहीं।</li>
+    </ul>
+  </li>
+  <li><strong>ज़्यादा से ज़्यादा एक नई आदत चुनें (3 मिनट)।</strong> सिर्फ़ एक। हर महीने तीन नई आदतों का मतलब है वसंत तक एक दर्जन, और उनमें से कोई भी ठीक से निभी नहीं।</li>
+  <li><strong>इस महीने की गिनती तय करें (2 मिनट)।</strong> कैलेंडर देखें। जिस महीने में छुट्टियों की यात्रा है, उसमें जिम की गिनती आम महीने जैसी नहीं रखी जाती। लक्ष्य ऐसे ढालें कि एक यथार्थवादी महीना अच्छा महीना दिखे।</li>
+</ol>
+<p>लक्ष्य एक परफ़ेक्ट महीना नहीं है, बस साल में बारह बार थोड़ा बेहतर सेटअप है। समीक्षाओं के बीच जुटे रहने के लिए <a href="/hi/blog/stay-consistent-with-goals">लक्ष्यों पर टिके कैसे रहें</a> देखें।</p>
+
+<h2>कागज़, प्रिंट या ऐप?</h2>
+<p>तीनों काम करते हैं। वे काम के अलग-अलग हिस्सों में अच्छे हैं।</p>
+<ul>
+  <li><strong>कागज़ (बुलेट जर्नल)।</strong> 1 तारीख़ को ग्रिड बनाना रस्म का हिस्सा है, और खाने हाथ से भरना सुकून देता है। कागज़ पर पूरा हुआ महीना सोच-विचार के लिए भी सबसे अच्छा है: सब कुछ एक पन्ने पर, स्क्रॉल नहीं करना। कमज़ोरी यह है कि जर्नल दिन के ज़्यादातर समय बंद रहता है, इसलिए लॉग करना भूलना आसान है, और फिर आप हफ़्ते भर का हाल याददाश्त से भर रहे होते हैं।</li>
+  <li><strong>प्रिंट।</strong> कागज़ जैसी ही खूबियाँ, कम तैयारी के साथ। महीने की ग्रिड प्रिंट करें, फ्रिज या डेस्क के पास चिपका दें। घर से बाहर होने पर किसी काम की नहीं।</li>
+  <li><strong>ऐप।</strong> हमेशा साथ, एक टैप में लॉग, रिमाइंडर देता है, और मासिक लक्ष्य बिना आपके गिनती गिने सँभालता है। विजेट के साथ आज की आदतें आपकी होम स्क्रीन या लॉक स्क्रीन पर रहती हैं, यानी रोज़ की ऐसी दृश्यता जो कोई नोटबुक नहीं दे सकती। कमज़ोरी: सिर्फ़ आज को देखते रहना और कभी ज़ूम आउट न करना आसान है।</li>
+</ul>
+<p>कई लोगों के लिए अच्छा बँटवारा: रोज़ के हिस्से के लिए ऐप, और एक मासिक समीक्षा जिसमें आप सच में महीने को देखें, ऐप में या, अगर आपको रस्म पसंद है, तो कागज़ की ग्रिड पर उतारकर।</p>
+
+<h2>iPhone पर मासिक आदत ट्रैकर कैसे सेट करें</h2>
+<p>यहाँ Left में तरीका है, जो हमारा बनाया iPhone ऐप है। यही ढाँचा हर उस ट्रैकर में काम करता है जो मासिक अवधि और विजेट सपोर्ट करता है।</p>
+<h3>महीने के लक्ष्य वाली आदतें</h3>
+<ol>
+  <li>Left खोलें, <strong>शुरुआत से</strong> में जाएँ और <strong>+</strong> पर टैप करें। जो करना चाहते हैं वह लिखें (“नानी को फ़ोन”) ताकि टेम्पलेट मिल जाए, या <strong>शुरू से बनाएँ</strong> चुनें।</li>
+  <li>अवधि को <strong>महीना</strong> पर सेट करें और गिनती भी, जैसे 4 बार। आप इसे महीने के किसी भी दिन लॉग कर सकते हैं; हर टैप आदत को थोड़ा और भरता है, जब तक वह महीने के लिए पूरी न हो जाए।</li>
+  <li>“हफ़्ते में एक नई रेसिपी” के लिए इसके बजाय हफ़्ते की अवधि और 1 की गिनती इस्तेमाल करें, ताकि हर हफ़्ते का अपना लक्ष्य हो।</li>
+</ol>
+<h3>रोज़ की आदतें जिनकी समीक्षा आप महीने में करेंगे</h3>
+<ol>
+  <li>आदत उसी तरह बनाएँ, लेकिन दिन की अवधि के साथ। रोज़, कामकाजी दिन, सप्ताहांत, ख़ास दिन, या हफ़्ते में कुछ दिन चुनें।</li>
+  <li>इसे हर दिन ऐप में <strong>लॉग</strong> से या किसी विजेट से लॉग करें। अगर गलती से लॉग हो जाए, तो आप उसे पूर्ववत कर सकते हैं।</li>
+  <li>महीने के अंत में आदत खोलें। उसके पेज पर पूरा होने की ग्रिड, पूरे और छूटे हुए दिन, मौजूदा और सबसे लंबी <a href="/hi/blog/how-to-build-a-streak">स्ट्रीक</a>, और <strong>आदत की मज़बूती</strong> दिखती है, जो निरंतरता का एक माप है और चूक के बाद शून्य पर रीसेट होने की जगह थोड़ा ही गिरता है। मासिक समीक्षा के लिए मज़बूती सबसे अच्छी एकल संख्या है। <a href="/hi/support/streaks-vs-habits">स्ट्रीक बनाम आदतें</a> पेज समझाता है कि आदतें Left के स्ट्रीक ट्रैकर से कैसे अलग हैं।</li>
+</ol>
+<h3>आदतों को खोए बिना छोड़ें</h3>
+<p>जब रीसेट कहे “छोड़ो”, तो आदत को संग्रहित कर दें। वह शुरुआत से और आपके विजेट से गायब हो जाती है, उसका इतिहास रहता है, और संग्रहित दिन छोड़े हुए गिने जाते हैं, इसलिए अगर आप बाद में उसे वापस लाएँ तो वे चूक की तरह जमा नहीं होते।</p>
+<h3>महीने को वहाँ रखें जहाँ वह आपको दिखे</h3>
+<ul>
+  <li><strong>आदतों की सूची विजेट।</strong> एक साथ कई आदतें और उनकी प्रगति दिखाता है, बड़े आकार में 8 तक, लॉक स्क्रीन पर भी। महीना बीतने के साथ आपके मासिक लक्ष्य वहाँ भरते जाते हैं।</li>
+  <li><strong>महीने का शेष समय विजेट।</strong> मौजूदा महीने की ग्रिड, जो दिखाती है कि उसका कितना बचा है। महीने की ऐसी आदत के बगल में जो 4 में से सिर्फ़ 1 कॉल पर है, 70% बीत चुका महीना एक काम का इशारा है। शेष समय विजेट मुफ़्त हैं।</li>
+  <li><strong>रीसेट का रिमाइंडर।</strong> अगले महीने की 1 तारीख़ तक का आगामी काउंटडाउन जोड़ें। यह एक शांत संकेत है कि समीक्षा आने वाली है।</li>
+</ul>
+<p><a href="/hi/habit-tracker">आदत ट्रैकर पेज</a> हर आदत विजेट और उसका आकार दिखाता है, और <a href="/hi/blog/weeks-and-days-iphone-screen">अपनी iPhone स्क्रीन पर हफ़्ते और दिन कैसे देखें</a> शेष समय की ग्रिड के बारे में बताता है।</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-hi&amp;mt=8" target="_blank" rel="noopener">Get the monthly habit tracker</a></p>
+<p>Left डाउनलोड करना मुफ़्त है। मुफ़्त प्लान में 2 आदतें और 2 स्ट्रीक (साथ में 2 Aims और 2 काउंटडाउन) शामिल हैं, और यह गिनती आपके अब तक बनाई हर चीज़ पर लागू होती है। Left Premium सब्सक्रिप्शन या लाइफ़टाइम खरीदारी है। खरीदने से पहले ऐप में कीमतें दिखाई जाती हैं।</p>
+
+<h2>मासिक ट्रैकर की आम गलतियाँ</h2>
+<ul>
+  <li><strong>बहुत ज़्यादा आदतें ट्रैक करना।</strong> 15 पंक्तियों वाली ग्रिड 1 तारीख़ को प्रभावशाली लगती है और 10 तक आते-आते छूट चुकी होती है। पाँच या छह काफ़ी हैं।</li>
+  <li><strong>हर दिन समीक्षा करना।</strong> ग्रिड को रोज़ देखने से वह फिर रोज़ का फ़ैसला बन जाती है। लॉग रोज़ करें, परखें महीने में।</li>
+  <li><strong>बुरे महीने को छोड़ देने की वजह बनाना।</strong> बुरा महीना एक डेटा है। आदत छोटी करें और उसे फिर चलाएँ। चूक के बाद दोबारा शुरू करने पर <a href="/hi/blog/how-to-build-a-streak">स्ट्रीक कैसे बनाएँ</a> में और बातें हैं।</li>
+</ul>
+<p>यह भी पढ़ें: <a href="/hi/blog/habit-tracker-ideas">आदत ट्रैकर के आइडिया</a>।</p>
+
+<h2>सवाल</h2>
+<h3>मासिक आदत ट्रैकर क्या है?</h3>
+<p>मासिक आदत ट्रैकर एक साथ पूरे महीने की आदतें दिखाता है, आमतौर पर ऐसी ग्रिड के रूप में जिसमें किनारे पर आदतें और ऊपर दिन होते हैं। आप रोज़ लॉग करते हैं और पूरा हो चुका महीना देखकर समीक्षा करते हैं कि कौन-सी आदतें टिकीं।</p>
+<h3>मासिक ट्रैकर में कौन-सी आदतें रखूँ?</h3>
+<p>रोज़ की वे आदतें जिनकी समीक्षा आप महीने में करना चाहते हैं, जैसे पढ़ना या स्ट्रेच करना, और वे आदतें जिन्हें बस महीने की गिनती चाहिए, जैसे परिवार को चार बार फ़ोन करना या दो बार गहरी सफ़ाई करना। पाँच या छह आदतें सँभालने लायक संख्या है।</p>
+<h3>मासिक आदत समीक्षा कैसे करूँ?</h3>
+<p>हर आदत को एक संख्या से अंक दें, फिर उसे रखें, छोटा करें या छोड़ें, ज़्यादा से ज़्यादा एक नई आदत जोड़ें, और इस महीने के लक्ष्य तय करें। महीने के अंत में इसमें लगभग 15 मिनट लगते हैं।</p>
+<h3>क्या मैं iPhone पर ऐसी आदत ट्रैक कर सकता हूँ जो महीने में बस कुछ बार करता हूँ?</h3>
+<p>हाँ। Left में महीने की अवधि और गिनती के साथ आदत बनाएँ, जैसे 4 बार, और उसे महीने के किसी भी दिन तब तक लॉग करें जब तक वह पूरी न हो जाए।</p>
+<h3>कागज़ वाला मासिक आदत ट्रैकर बेहतर है या ऐप वाला?</h3>
+<p>पूरा हो चुका महीना सोचने-समझने के लिए कागज़ की ग्रिड बेहतर है; रोज़ लॉग करने और विजेट से दिन भर अपनी आदतें देखने के लिए ऐप बेहतर है। कई लोग ऐप में लॉग करते हैं और कागज़ पर या ऐप की पूरा होने की ग्रिड में समीक्षा करते हैं।</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Left डाउनलोड करें</span>
+          <h2>जो मायने रखता है, उस पर ध्यान देना शुरू करें।</h2>
+          <p>अपने iPhone पर Left डाउनलोड करें। बचा हुआ समय और जिन तारीख़ों का इंतज़ार है उन्हें देखें, जिन आदतों को बनाए रखना चाहते हैं उन्हें अपनाएँ और ख़ुद को बेहतर बनाएँ।</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR कोड - निर्देशों के लिए टैप करें">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">स्कैन करें या App Store पर <strong>"Left"</strong> खोजें।</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-hi&amp;mt=8" target="_blank" rel="noopener" aria-label="App Store से Left डाउनलोड करें" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS के लिए डाउनलोड
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> लोग हर पल को मायने दे रहे हैं।</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="फ़ुटर">
+          <a href="/hi/support">सहायता</a>
+          <a href="/terms">शर्तें</a>
+          <a href="/hi/privacy">गोपनीयता</a>
+          <a href="/hi/press">प्रेस</a>
+          <a href="/hi/contact">संपर्क</a>
+          <a href="/hi/tools/">टूल्स</a>
+          <!-- left:footer-extra:start -->
+          <a href="/hi/blog/">ब्लॉग</a>
+          <a href="#" data-consent-open>कुकी सेटिंग</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>HI</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="true">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="कुकी सहमति">
+  <p class="left-consent__text">हम यह समझने के लिए Google Analytics इस्तेमाल करते हैं कि कौन-से पेज लोगों के काम आते हैं। कोई विज्ञापन नहीं, साइटों के बीच कोई ट्रैकिंग नहीं।</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>एनालिटिक्स की अनुमति दें</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>नहीं, धन्यवाद</button>
+    <a class="left-consent__link" href="/hi/privacy#website" data-consent-privacy>गोपनीयता</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

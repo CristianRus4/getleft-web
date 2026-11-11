@@ -1,0 +1,621 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>如何在 iPhone 行事曆上安排你的目標（2027 年）| Left</title>
+  <meta name="description" content="把目標變成 iPhone 上的行事曆時間：期限與里程碑、重複時段、每週回顧，以及同時呈現目標與事件的檢視。附實際範例。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="如何在 iPhone 行事曆上安排你的目標（2027 年）"  />
+  <meta property="og:description" content="把目標變成 iPhone 上的行事曆時間：期限與里程碑、重複時段、每週回顧，以及同時呈現目標與事件的檢視。附實際範例。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/blog/goal-calendar-iphone" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="如何在 iPhone 行事曆上安排你的目標（2027 年）"  />
+  <meta name="twitter:description" content="把目標變成 iPhone 上的行事曆時間：期限與里程碑、重複時段、每週回顧，以及同時呈現目標與事件的檢視。附實際範例。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/smart-goals-guide-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "如何在 iPhone 行事曆上安排你的目標",
+  "description": "把目標變成 iPhone 上的行事曆時間：期限與里程碑、重複時段、每週回顧，以及同時呈現目標與事件的檢視。附實際範例。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/goal-calendar-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部落格",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "如何在 iPhone 行事曆上安排你的目標",
+      "item": "https://getleft.app/blog/goal-calendar-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "iPhone 上最好的目標行事曆 App 是哪一款？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "對大多數人來說，就是你 iPhone 上本來就有的 Apple「行事曆」App，再另外建立一個「目標」行事曆，放期限、里程碑和時段。搭配一個能顯示倒數和進度的 App，例如 Left。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何在 iPhone 上為目標建立獨立的行事曆？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "打開「行事曆」，點「行事曆」，再點「加入行事曆」。命名為「目標」，選擇專屬的顏色，然後點「完成」。之後你可以在同一個「行事曆」清單中顯示或隱藏它。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我可以在同一個地方看到我的目標和行事曆事件嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。Left 的「計畫」屬於 Left Premium，會以清單、週或月的版面，顯示 Apple「行事曆」事件、Apple「提醒事項」和 Todoist 任務，與你的習慣、目標和「即將到來」倒數並列。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Left 可以把目標期限加到我的行事曆嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。「即將到來」日期可以存到你的行事曆，所以期限除了出現在 Left 的倒數中，也會顯示在 Apple「行事曆」裡。Left 需要取用「行事曆」的權限才能做到。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "一個目標每週應該安排多少個時段？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "用剩下的量除以剩下的週數，再拆成約一小時的時段。對大多數個人目標來說，每週三個時段加上一個備用時段是不錯的開始。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>如何在 iPhone 行事曆上安排你的目標</h1>
+<p class="article-meta">更新於 <time datetime="2026-11-12">2026 年 11 月 12 日</time>・閱讀約 10 分鐘</p>
+<p>大多數<a href="/zh-Hant/blog/goal-setting-examples">目標</a>都躺在清單裡。一則名為「2027」的備忘錄、日記本上的一頁、目標 App 裡的一列。同時，你的行事曆卻被會議、約診和別人的計畫填滿。目標始終沒有分到一個時段，所以只能拿到剩下的時間，而那通常是零。</p>
+<p>行事曆是意圖化為時間的地方。這份指南說明如何用四個層次，把目標放進你的 iPhone 行事曆：期限與它的里程碑、以重複時段安排的每週行動、每週回顧，以及一個能同時看到目標和行事曆的檢視。它用 Apple「行事曆」處理時間，用 <strong>Left</strong> 處理倒數和數字，最後還有一個 12 週的範例，列出你會建立的每個事件。</p>
+
+<figure class="post-hero"><img src="/images/blog/smart-goals-guide-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/yellow-pencil-on-white-paper-and-carpentry-tools-5973969/" rel="noopener">Ono Kosuki / Pexels</a></figcaption></figure>
+
+<h2>為什麼目標進不了行事曆</h2>
+<ul>
+  <li><strong>清單從不會問「什麼時候？」</strong>「完成課程」可以在清單上放好幾個月，卻沒人問是哪個晚上要做。</li>
+  <li><strong>行事曆只容納有時間的事。</strong>如果目標沒有附上時間，行事曆就保護不了它。有時間的事永遠會贏。</li>
+  <li><strong>期限不等於路徑。</strong>即使是把期限加進行事曆的人，通常也只加了期限。它只出現一次，而且已經太晚，幫不上忙。</li>
+</ul>
+<p>解決的辦法不是換一個新 App，而是給目標和會議相同的東西：日期、開始時間、長度和提醒。</p>
+
+<h2>目標行事曆的四個層次</h2>
+<ol>
+  <li><strong>期限與里程碑。</strong>完成日期，加上中點和第一次檢查，讓行事曆提早警告你，而不是在最後一天。</li>
+  <li><strong>以重複時段安排的每週行動。</strong>工作本身，像約診一樣預約，有合理的長度和一個備用時段。</li>
+  <li><strong>每週回顧。</strong>一個簡短的重複事件，在其中檢視這一週、移動發生衝突的事項，並確認數字。</li>
+  <li><strong>一個同時呈現目標與行事曆的檢視。</strong>讓倒數、進度和今天的事件放在一起的地方。</li>
+</ol>
+<p>開始之前，目標本身需要有清楚的終點線，以及你能計算的東西。如果它還很模糊（「變得更健康」、「學西班牙語」），我們的 <a href="/zh-Hant/blog/smart-goals-guide">SMART 目標指南</a>可以把它變成你能排進行程的事。</p>
+
+<h2>1. 把期限放上行事曆，並倒推規劃</h2>
+<p>從終點開始。把期限加成整天事件，然後從它往回推：</p>
+<ul>
+  <li><strong>期限。</strong>完成的那一天。在一週前加上提醒。</li>
+  <li><strong>中點。</strong>你應該完成 50% 的日期。這是最有用的里程碑：它夠早，還能調整方向，又夠晚，能告訴你一些真實的情況。</li>
+  <li><strong>第一次檢查。</strong>開始後兩三週。它唯一的任務，是在緩慢的起步變成習慣之前問一句：「這些時段真的有做嗎？」</li>
+</ul>
+<p>為每個里程碑標上你應該達到的數字，而不只是階段：「中點：24 個單元完成 12 個」勝過「中點」。要找出這些日期，可以計算<a href="/zh-Hant/tools/weeks-until-date">距離期限還有幾週</a>，或用<a href="/zh-Hant/tools/add-subtract-date-calculator">日期計算機</a>從開始日期加上或減去天數。</p>
+
+<h2>2. 把每週行動預約為重複時段</h2>
+<p>先算出每週的步調：剩下要做的事，除以剩下的週數。然後把它變成有固定日期、時間和長度的時段。</p>
+<ul>
+  <li><strong>選擇實際的長度。</strong>大多數人會高估一個晚上能做完的事。如果一個時段通常要 50 分鐘，就預約 60 分鐘。做完的時段，感覺比做到一半放棄的好。</li>
+  <li><strong>選少一點、受保護的時段。</strong>一週三個真的會發生的時段，勝過六個不會發生的。把它們放在你精力充沛的時候，而不是行事曆剛好有空的地方。</li>
+  <li><strong>加一個備用時段。</strong>每週一個通常在週末的時段，只有在主要時段被錯過時才使用。它能把「我錯過了星期四」變成「星期四改到星期日」，而不是整個星期泡湯。</li>
+  <li><strong>設定結束日期。</strong>重複事件應該在期限停止，否則它會在你的行事曆裡糾纏好幾年。</li>
+</ul>
+
+<h2>3. 加入每週回顧事件</h2>
+<p>一個 15 分鐘的重複事件，每週同一時間。對大多數人來說，週日晚上最合適。在其中回答三個問題：</p>
+<ol>
+  <li>哪些時段有做到，哪些沒有？</li>
+  <li>數字和應該到達的位置相比，現在在哪裡？</li>
+  <li>下週有沒有任何事情和某個時段衝突？如果有，現在就移動那個時段，而不是等到當天。</li>
+</ol>
+<p>回顧能讓行事曆保持誠實。沒有它，錯過的時段只會滑過去，計畫也悄悄地不再符合現實。</p>
+
+<h2>4. 同時看到你的目標與行事曆</h2>
+<p>時段告訴你什麼時候工作，卻不會告訴你已經走了多遠，或還剩多少時間。這就是目標和行事曆會漸行漸遠的原因：進度在一個 App，時間在另一個 App。你想要的是一眼就能同時看到兩者，最好連打開都不用。</p>
+
+<h2>如何在 Apple「行事曆」設定</h2>
+<p>Apple「行事曆」已經能做到第 1 到第 3 層所需的一切。訣竅是為你的目標建立專屬的行事曆。</p>
+<h3>建立「目標」行事曆</h3>
+<ol>
+  <li>打開「行事曆」，點一下底部的<strong>行事曆</strong>。</li>
+  <li>點一下<strong>加入行事曆</strong>，再點一次<strong>加入行事曆</strong>。</li>
+  <li>命名為「目標」，選一個你沒有用在其他地方的顏色，然後點一下<strong>完成</strong>。</li>
+</ol>
+<p>現在每個目標事件都有同一種顏色，所以你一眼就能看出這週有多少時間屬於你的目標。在同一個「行事曆」清單中，你可以勾選或取消勾選「目標」來顯示或隱藏這些事件。規劃工作時把它們隱藏，規劃一週時再顯示出來。</p>
+<h3>加入期限與里程碑</h3>
+<ol>
+  <li>點一下 <strong>+</strong> 並為事件命名，例如「課程完成：24 個單元」。</li>
+  <li>開啟<strong>整天</strong>並設定日期。</li>
+  <li>把<strong>行事曆</strong>設為「目標」，並在一週前加上<strong>提醒</strong>。</li>
+</ol>
+<p>對中點和第一次檢查重複同樣的步驟。</p>
+<h3>加入重複時段</h3>
+<ol>
+  <li>建立一個事件，設定一個時段的開始時間和長度。</li>
+  <li>點一下<strong>重複</strong>。選擇<strong>每週</strong>，或選<strong>自訂</strong>來挑選時間相同的幾天，例如週二和週四。</li>
+  <li>把<strong>結束重複</strong>設為期限。</li>
+  <li>把<strong>行事曆</strong>設為「目標」，並在 10 或 15 分鐘前加上<strong>提醒</strong>，讓你能先收尾手邊的事。</li>
+</ol>
+<p>時間不同的時段（例如平日晚上和週六早上），各需要一個重複事件。備用時段和每週回顧也用同樣的方式加入。</p>
+
+<h2>用 Left 加入倒數和數字</h2>
+<p>Apple「行事曆」負責時間。Left 負責行事曆無法顯示的部分：還剩多少時間，以及你已經走了多遠。</p>
+<ul>
+  <li><strong>把期限做成「即將到來」倒數。</strong>「即將到來」會倒數到那個日期，並從你設定的那天起顯示進度。加上照片和提醒，並從 Left 把日期存到你的行事曆，讓期限也出現在 Apple「行事曆」裡。</li>
+  <li><strong>把數字做成目標。</strong>目標有單位、目標值、開始日期和可選的期限。可以往上數（完成的單元、存下的錢、跑的公里數）或往下數（剩下的債務），並用預設的步進值點一下就能記錄。</li>
+  <li><strong>把每週行動做成習慣。</strong>每週習慣可以要求完成不只一次，所以「每週三次」就是一個有三次打卡的習慣。</li>
+  <li><strong>把小工具放在你看得到的地方。</strong>倒數放在鎖定畫面，目標放在主畫面第一頁。Left 有幾十種小工具；我們的 <a href="/zh-Hant/blog/how-to-add-widgets-iphone">iPhone 加入小工具</a>指南涵蓋了每個位置。</li>
+</ul>
+<p><strong>「計畫」</strong>（屬於 Left Premium）是第 4 層。它會以清單、週或月的版面，顯示你的 Apple「行事曆」事件、Apple「提醒事項」和 Todoist 任務，與你的習慣、連續紀錄、目標和「即將到來」日期並列。所以週二的時段、你在它之後勾選的習慣，以及它推進的目標，都在同一個畫面上。你可以從那裡記錄習慣或新增事件，而「計畫」小工具會把今天的版本放到你的主畫面。<a href="/zh-Hant/blog/left-planner-guide">Left「計畫」指南</a>會帶你走過設定。</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener">Try Left's goal countdowns</a></p>
+
+<h2>實際範例：12 週的課程</h2>
+<p>假設你報名了一門有 24 個單元的線上課程。你從 2027 年 1 月 4 日星期一開始，想在 <a href="/zh-Hant/blog/quarterly-goal-tracker">12 週</a>內完成，也就是在 3 月 28 日星期日之前。這等於每週 2 個單元。每個單元約需 90 分鐘，所以每週的行動是三個 60 分鐘的時段。</p>
+<p>以下是「目標」行事曆中的每個事件：</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>事件</th><th>時間</th><th>重複</th><th>提醒</th></tr></thead>
+  <tbody>
+    <tr><td>課程：學習時段</td><td>週二和週四，晚上 7:00–8:00</td><td>自訂，每週，到 3 月 28 日</td><td>15 分鐘前</td></tr>
+    <tr><td>課程：學習時段</td><td>週六，上午 9:00–10:00</td><td>每週，到 3 月 28 日</td><td>15 分鐘前</td></tr>
+    <tr><td>課程：備用時段</td><td>週日，下午 4:00–5:00</td><td>每週，到 3 月 28 日</td><td>無</td></tr>
+    <tr><td>目標回顧</td><td>週日，下午 6:00–6:15</td><td>每週，到 3 月 28 日</td><td>事件開始時</td></tr>
+    <tr><td>第一次檢查：24 個單元完成 4 個</td><td>1 月 17 日 週日（整天）</td><td>無</td><td>當天早上</td></tr>
+    <tr><td>中點：24 個單元完成 12 個</td><td>2 月 14 日 週日（整天）</td><td>無</td><td>1 週前</td></tr>
+    <tr><td>課程完成：24 個單元</td><td>3 月 28 日 週日（整天）</td><td>無</td><td>1 週前</td></tr>
+  </tbody>
+</table>
+</div>
+<p>備用時段刻意不設提醒。你只有在錯過某個時段時才會用到它，而每週日都響的提醒，只會讓你學會忽略它。</p>
+<p>在 Left 裡，同一個目標會是三個項目：一個 3 月 28 日的「即將到來」倒數「課程完成」、一個往上數到 24 的目標「單元」（預設步進值為 1，期限相同），以及一個需要三次打卡的每週習慣「學習時段」。</p>
+<p>現在來看第 3 週。星期四有一場工作聚餐。在週日的回顧中你就看到了，所以星期四的時段移到了備用時段。1 月 17 日，第一次檢查登場：目標顯示完成 4 個單元，符合進度。如果顯示的是 2 個，你在兩週後就會知道，而不是十週後，而且你還能趁決定還很容易時，加上第四個時段或延後完成日期。</p>
+
+<h2>你需要另一個專門的目標行事曆 App 嗎？</h2>
+<p>對大多數人來說，不需要。Apple「行事曆」搭配專屬的「目標」行事曆就能處理時間，再用一個 App 處理倒數和數字。再加上第三個與你的行事曆重複的 App，通常代表要同時維護兩個地方。</p>
+<p>在少數情況下，其他工具更合適：</p>
+<ul>
+  <li><strong>專案或規劃工具</strong>：如果目標其實是一個專案，有許多彼此相依的任務、好幾個人，或需要一次看到所有事項的時間軸檢視。</li>
+  <li><strong>紙本壁掛日曆</strong>：如果目標是家裡共同的（家庭儲蓄目標、孩子的閱讀挑戰），或是你離開手機規劃得更好。在牆上劃掉日子，很難視而不見。</li>
+  <li><strong>共享的 iCloud 行事曆</strong>：如果另一半或訓練夥伴也需要看到這些時段。</li>
+</ul>
+
+<h2>常見錯誤</h2>
+<ul>
+  <li><strong>時段太長。</strong>平日晚上的兩小時時段會被跳過；兩個一小時的時段卻會完成。</li>
+  <li><strong>重複沒有設定結束日期。</strong>目標完成後，時段仍然不斷出現，讓你學會忽略整個行事曆。</li>
+  <li><strong>把目標事件放在工作行事曆裡。</strong>它們會和會議混在一起，你也沒辦法單獨檢視或隱藏它們。</li>
+  <li><strong>每件事都設提醒。</strong>替各個時段和回顧設提醒，備用時段保持安靜。</li>
+  <li><strong>把移動時段視為失敗。</strong>在回顧時移動時段，是系統在運作，而不是壞掉。</li>
+</ul>
+<p>目標放進行事曆之後，看看更大的框架也有幫助：週數和今年剩下的天數。以下是如何把<a href="/zh-Hant/blog/weeks-and-days-iphone-screen">週數與天數放到你的 iPhone 螢幕上</a>。</p>
+
+<p>Left 可免費下載。免費方案包含「剩餘時間」檢視、時間格狀小工具、桌布，以及 2 個倒數、2 個習慣、2 個連續紀錄和 2 個目標。顯示你所建立項目的小工具，例如倒數或習慣，需要 Left Premium。Left Premium 為訂閱或一次買斷。價格會在你購買前顯示於 App 中。</p>
+
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hant&amp;mt=8" target="_blank" rel="noopener">Download Left</a></p>
+<p>相關閱讀：<a href="/zh-Hant/blog/quarterly-goal-tracker">季度目標追蹤器：如何在 iPhone 上設定並追蹤 90 天目標</a>。</p>
+
+<h2>問題</h2>
+<h3>iPhone 上最好的目標行事曆 App 是哪一款？</h3>
+<p>對大多數人來說，就是你 iPhone 上本來就有的 Apple「行事曆」App，再另外建立一個「目標」行事曆，放期限、里程碑和時段。搭配一個能顯示倒數和進度的 App，例如 Left。</p>
+<h3>如何在 iPhone 上為目標建立獨立的行事曆？</h3>
+<p>打開「行事曆」，點「行事曆」，再點「加入行事曆」。命名為「目標」，選擇專屬的顏色，然後點「完成」。之後你可以在同一個「行事曆」清單中顯示或隱藏它。</p>
+<h3>我可以在同一個地方看到我的目標和行事曆事件嗎？</h3>
+<p>可以。Left 的「計畫」屬於 Left Premium，會以清單、週或月的版面，顯示 Apple「行事曆」事件、Apple「提醒事項」和 Todoist 任務，與你的習慣、目標和「即將到來」倒數並列。</p>
+<h3>Left 可以把目標期限加到我的行事曆嗎？</h3>
+<p>可以。「即將到來」日期可以存到你的行事曆，所以期限除了出現在 Left 的倒數中，也會顯示在 Apple「行事曆」裡。Left 需要取用「行事曆」的權限才能做到。</p>
+<h3>一個目標每週應該安排多少個時段？</h3>
+<p>用剩下的量除以剩下的週數，再拆成約一小時的時段。對大多數個人目標來說，每週三個時段加上一個備用時段是不錯的開始。</p>
+
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>開始留意真正重要的事。</h2>
+          <p>在 iPhone 下載 Left，看看剩餘時間、期待中的日子，養成想維持的習慣，成為更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下載 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下載 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Monthly Habit Tracker: Review by the Month on iPhone | Left</title>
+  <meta name="description" content="A monthly habit tracker shows a whole month of habits at once. How the month grid works, how to run a 15-minute monthly reset, and how to set one up on iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Monthly Habit Tracker: Review by the Month on iPhone" />
+  <meta property="og:description" content="A monthly habit tracker shows a whole month of habits at once. How the month grid works, how to run a 15-minute monthly reset, and how to set one up on iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/monthly-habit-tracker" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Monthly Habit Tracker: Review by the Month on iPhone" />
+  <meta name="twitter:description" content="A monthly habit tracker shows a whole month of habits at once. How the month grid works, how to run a 15-minute monthly reset, and how to set one up on iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Monthly Habit Tracker: Use the Month to Review Your Habits, Not to Judge Each Day",
+  "description": "A monthly habit tracker shows a whole month of habits at once. How the month grid works, how to run a 15-minute monthly reset, and how to set one up on iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-habit-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Monthly Habit Tracker: Use the Month to Review Your Habits, Not to Judge Each Day",
+      "item": "https://getleft.app/blog/monthly-habit-tracker"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a monthly habit tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A monthly habit tracker shows a whole month of habits at once, usually as a grid with habits down the side and days across the top. You log daily and review the finished month to see which habits stuck."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What habits should I put in a monthly tracker?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Daily habits you want to review over a month, like reading or stretching, and habits that only need a monthly count, like calling family four times or deep cleaning twice. Five or six habits is a manageable number."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I do a monthly habit review?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Score each habit with one number, then keep, shrink or drop it, add at most one new habit, and set this month's targets. It takes about 15 minutes at the end of the month."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I track a habit I only do a few times a month on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. In Left, create a habit with a month period and a count, such as 4 times, and log it on any days in the month until it's done."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a paper or app monthly habit tracker better?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A paper grid is better for reflecting on a finished month; an app is better for logging daily and seeing your habits all day through widgets. Many people log in an app and review on paper or in the app's completion grid."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-en&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Monthly Habit Tracker: Use the Month to Review Your Habits, Not to Judge Each Day</h1>
+<p class="article-meta">Updated <time datetime="2026-11-12">November 12, 2026</time> · 8 min read</p>
+<p>Judge a habit day by day and every miss feels like a verdict. Skipped the walk on Tuesday? Failed. Look at the same habit across a month and Tuesday shrinks to what it was: one empty square in a row of mostly filled ones. The month is where habits actually make sense.</p>
+<p>That's the idea behind a monthly habit tracker. You still log every day, but you only decide things once a month: what's working, what to drop, what to shrink, what to try next. Here's how the month grid works, a 15-minute monthly reset, and how to set it up on iPhone.</p>
+<figure class="post-hero"><img src="/images/blog/way-of-life-alternatives-hero.webp" alt="A hand-drawn goal tracker on dotted white paper with a row of weekly cells shaded in green or red, and pens lying across the page." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18" rel="noopener">Photo: Isaac Smith on Unsplash</a></figcaption></figure>
+
+<h2>What a monthly habit tracker is</h2>
+<p>The classic version comes from bullet journals: a grid with your habits down the left side and the days of the month across the top, 1 to 31. Each day you fill in the square for every habit you did. At the <a href="/tools/days-left-in-month">end of the month</a> you have a picture of the whole month on one page.</p>
+<p>What makes it useful isn't the logging. It's what you can read off the finished grid:</p>
+<ul>
+  <li><strong>Rows</strong> tell you which habits stuck and which never got going.</li>
+  <li><strong>Columns</strong> tell you which days fell apart. If every habit is empty on the same Sundays, the problem is Sundays, not your willpower.</li>
+  <li><strong>Gaps</strong> tell you what happened: a trip, a cold, a deadline week.</li>
+</ul>
+<p>The format matters less than the habit of looking at it once the month is over.</p>
+
+<h2>Why the month works</h2>
+<ul>
+  <li><strong>A fresh start on the 1st.</strong> A new month is a natural line to draw. You get a clean grid twelve times a year instead of waiting for January.</li>
+  <li><strong>Enough days to see a pattern.</strong> A week is too short: one bad week can be bad luck. Thirty days shows whether a habit fits your life or keeps losing to it.</li>
+  <li><strong>Short enough to adjust.</strong> A year is too long to stick with a plan that isn't working. A month lets you change course before a bad setup costs you a season.</li>
+  <li><strong>It separates doing from judging.</strong> Day to day, your only job is to do the habit and log it. Evaluation waits for the review. That alone takes a lot of pressure off a missed day.</li>
+</ul>
+
+<h2>Two kinds of monthly habits</h2>
+<p>"Monthly habit" can mean two different things, and they need different setups.</p>
+<h3>Daily habits, viewed by month</h3>
+<p>"Read 10 pages", "Stretch for one minute", "No phone in bed". You do these every day or on set days, and the month is just the window you review them in. The question at month end is: how regular was I, and is the habit getting easier?</p>
+<h3>Habits with a monthly target</h3>
+<p>Some habits don't belong to any particular day. They have a count for the month:</p>
+<ul>
+  <li>"Deep clean the kitchen, twice a month"</li>
+  <li>"Call grandma, 4 times a month"</li>
+  <li>"Cook one new recipe a week", which is either a weekly habit or 4 times a month, depending on whether you care that they're spread out</li>
+</ul>
+<p>Forcing these into a daily checkbox makes most days look like misses. Give them a monthly count instead, and any day you do them counts toward the total. The month is a success when you hit the number, whether that happened on the 3rd and 4th or the 20th and 28th.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Habit</th><th>Period</th><th>Count</th><th>What you review</th></tr></thead>
+  <tbody>
+    <tr><td>Read 10 pages</td><td>Day</td><td>1, every day</td><td>Days done, habit strength</td></tr>
+    <tr><td>Gym</td><td>Day</td><td>3 days per week</td><td>Weeks you hit 3</td></tr>
+    <tr><td>Cook a new recipe</td><td>Week</td><td>1</td><td>Weeks done out of 4 or 5</td></tr>
+    <tr><td>Call grandma</td><td>Month</td><td>4</td><td>Did you reach 4</td></tr>
+    <tr><td>Deep clean the kitchen</td><td>Month</td><td>2</td><td>Did you reach 2</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>The 15-minute monthly reset</h2>
+<p>Do this on the last day of the month or the first morning of the new one. Put a time on it, because a review with no date never happens.</p>
+<ol>
+  <li><strong>Score last month (5 minutes).</strong> For each habit, write one number: days done, or count reached against the target. No excuses yet.</li>
+  <li><strong>Keep, drop or shrink (5 minutes).</strong> Go habit by habit.
+    <ul>
+      <li><strong>Keep</strong> anything you did on most of the days you planned to. Don't make it harder yet; one more month at the same size makes it automatic.</li>
+      <li><strong>Shrink</strong> anything you kept starting and dropping. "Run 5 km" becomes "Put on running shoes and walk out the door". "Read 30 minutes" becomes "Read 10 pages". A small habit you do beats a big one you skip.</li>
+      <li><strong>Drop</strong> anything you barely touched and don't miss. Dropping a habit on purpose is a decision, not a failure.</li>
+    </ul>
+  </li>
+  <li><strong>Pick at most one new habit (3 minutes).</strong> One. Three new habits a month means a dozen by spring, none of them kept well.</li>
+  <li><strong>Set this month's counts (2 minutes).</strong> Look at the calendar. A month with a holiday trip doesn't get the same gym count as a normal month. Adjust targets so a realistic month looks like a good one.</li>
+</ol>
+<p>The goal isn't a perfect month, just a slightly better setup, twelve times a year. For keeping going between reviews, see <a href="/blog/stay-consistent-with-goals">how to stay consistent with goals</a>.</p>
+
+<h2>Paper, printable or app?</h2>
+<p>All three work. They're good at different parts of the job.</p>
+<ul>
+  <li><strong>Paper (bullet journal).</strong> Drawing the grid on the 1st is part of the ritual, and filling squares by hand is satisfying. A finished month on paper is also the best thing to reflect on: everything on one page, no scrolling. The weakness is that the journal is closed most of the day, so it's easy to forget to log, and then you're filling in a week from memory.</li>
+  <li><strong>Printable.</strong> Same strengths as paper with less setup. Print a month grid, stick it on the fridge or near your desk. Useless when you're not at home.</li>
+  <li><strong>App.</strong> Always with you, logs in one tap, reminds you, and handles monthly targets without you counting tallies. With widgets, today's habits sit on your Home Screen or Lock Screen, which is daily visibility no notebook can match. The weakness: it's easy to only ever look at today and never zoom out.</li>
+</ul>
+<p>A good split for many people: an app for the daily part, and a monthly review where you actually look at the month, in the app or copied onto a paper grid if you like the ritual.</p>
+
+<h2>How to set up a monthly habit tracker on iPhone</h2>
+<p>Here's how in Left, an iPhone app we make. The same structure works in any tracker that supports monthly periods and widgets.</p>
+<h3>Habits with a monthly target</h3>
+<ol>
+  <li>Open Left, go to <strong>Since</strong> and tap <strong>+</strong>. Type what you want to do ("Call grandma") to find a template, or choose <strong>Build from scratch</strong>.</li>
+  <li>Set the period to <strong>month</strong> and the count, for example 4 times. You can log it on any days in the month; each tap fills the habit a bit more until it's done for the month.</li>
+  <li>For "one new recipe a week", use a week period with a count of 1 instead, so each week gets its own target.</li>
+</ol>
+<h3>Daily habits you'll review monthly</h3>
+<ol>
+  <li>Create the habit the same way with a day period. Pick every day, weekdays, weekends, specific days, or a number of days per week.</li>
+  <li>Log it each day with <strong>Log</strong> in the app, or from a widget. If you log by mistake, you can undo.</li>
+  <li>At month end, open the habit. Its page shows the completion grid, days completed and missed, current and longest <a href="/blog/how-to-build-a-streak">streak</a>, and <strong>habit strength</strong>, a consistency measure that drops a little after a miss instead of resetting to zero. Strength is the best single number for a monthly review. The <a href="/support/streaks-vs-habits">streaks vs habits</a> page explains how habits differ from Left's streak trackers.</li>
+</ol>
+<h3>Drop habits without losing them</h3>
+<p>When the reset says "drop", archive the habit. It disappears from Since and your widgets, its history stays, and archived days count as skipped, so they don't pile up as misses if you bring it back later.</p>
+<h3>Put the month where you'll see it</h3>
+<ul>
+  <li><strong>Habits list widget.</strong> Shows several habits and their progress at once, up to 8 in the large size, also on the Lock Screen. Your monthly targets fill up there as the month goes on.</li>
+  <li><strong>Month Time Left widget.</strong> A grid of the current month showing how much of it is left. Next to a monthly habit that's at 1 of 4 calls, a month that's 70% gone is a useful nudge. Time Left widgets are free.</li>
+  <li><strong>A reset reminder.</strong> Add an Ahead countdown to the 1st of next month. It's a quiet signal that the review is coming.</li>
+</ul>
+<p>The <a href="/habit-tracker">habit tracker page</a> shows each habit widget and size, and <a href="/blog/weeks-and-days-iphone-screen">how to see weeks and days on your iPhone screen</a> covers the Time Left grids.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-en&amp;mt=8" target="_blank" rel="noopener">Get the monthly habit tracker</a></p>
+<p>Left is free to download. The free plan includes 2 habits and 2 streaks (plus 2 Aims and 2 countdowns), counted over everything you've ever created. Left Premium is a subscription or lifetime purchase. Prices are shown in the app before you buy.</p>
+
+<h2>Common monthly tracker mistakes</h2>
+<ul>
+  <li><strong>Tracking too many habits.</strong> A grid with 15 rows looks impressive on the 1st and abandoned by the 10th. Five or six is plenty.</li>
+  <li><strong>Reviewing every day.</strong> Looking at the grid daily turns it back into a daily verdict. Log daily, judge monthly.</li>
+  <li><strong>Treating a bad month as a reason to quit.</strong> A bad month is data. Shrink the habit and run it again. <a href="/blog/how-to-build-a-streak">How to build a streak</a> has more on restarting after a miss.</li>
+</ul>
+<p>Related reading: <a href="/blog/habit-tracker-ideas">Habit Tracker Ideas</a>.</p>
+
+<h2>Questions</h2>
+<h3>What is a monthly habit tracker?</h3>
+<p>A monthly habit tracker shows a whole month of habits at once, usually as a grid with habits down the side and days across the top. You log daily and review the finished month to see which habits stuck.</p>
+<h3>What habits should I put in a monthly tracker?</h3>
+<p>Daily habits you want to review over a month, like reading or stretching, and habits that only need a monthly count, like calling family four times or deep cleaning twice. Five or six habits is a manageable number.</p>
+<h3>How do I do a monthly habit review?</h3>
+<p>Score each habit with one number, then keep, shrink or drop it, add at most one new habit, and set this month's targets. It takes about 15 minutes at the end of the month.</p>
+<h3>Can I track a habit I only do a few times a month on iPhone?</h3>
+<p>Yes. In Left, create a habit with a month period and a count, such as 4 times, and log it on any days in the month until it's done.</p>
+<h3>Is a paper or app monthly habit tracker better?</h3>
+<p>A paper grid is better for reflecting on a finished month; an app is better for logging daily and seeing your habits all day through widgets. Many people log in an app and review on paper or in the app's completion grid.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-en&amp;mt=8" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

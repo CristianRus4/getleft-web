@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- i18n:auto-detect:start -->
+<script>
+(function () {
+  try {
+    // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+    var ALIASES = {"en":"en","id":"id","in":"id","de":"de","hi":"hi","es":"es","es-es":"es","es-419":"es-419","es-mx":"es-419","es-us":"es-419","es-ar":"es-419","es-co":"es-419","es-cl":"es-419","es-pe":"es-419","es-ve":"es-419","es-ec":"es-419","es-gt":"es-419","es-cu":"es-419","es-bo":"es-419","es-do":"es-419","es-hn":"es-419","es-py":"es-419","es-sv":"es-419","es-ni":"es-419","es-cr":"es-419","es-pa":"es-419","es-uy":"es-419","es-pr":"es-419","fr":"fr","it":"it","nl":"nl","pl":"pl","pt":"pt","pt-pt":"pt","pt-ao":"pt","pt-mz":"pt","pt-br":"pt-BR","ro":"ro","ru":"ru","tr":"tr","ko":"ko","ja":"ja","zh-hans":"zh-Hans","zh-cn":"zh-Hans","zh-sg":"zh-Hans","zh":"zh-Hans","zh-hant":"zh-Hant","zh-tw":"zh-Hant","zh-hk":"zh-Hant","zh-mo":"zh-Hant"};
+    var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+    var qp = new URLSearchParams(location.search).get('lang');
+    var override = qp;
+    if (!override) { try { override = localStorage.getItem('left.lang'); } catch (e) {} }
+    if (qp) { try { localStorage.setItem('left.lang', qp); } catch (e) {} }
+    if (override === 'en') return;
+    if (location.search.indexOf('nolang=1') >= 0) return;
+    function resolve(tag) {
+      if (!tag) return null;
+      var t = String(tag).toLowerCase();
+      if (ALIASES[t]) return ALIASES[t];
+      var base = t.split('-')[0];
+      return ALIASES[base] || null;
+    }
+    var pick = override ? resolve(override) : null;
+    if (!pick) {
+      var prefs = (navigator.languages && navigator.languages.length) ? navigator.languages : [navigator.language || 'en'];
+      for (var i = 0; i < prefs.length && !pick; i++) pick = resolve(prefs[i]);
+    }
+    if (!pick || pick === 'en' || AVAILABLE.indexOf(pick) < 0) return;
+    var path = location.pathname.replace(/^\//, '');
+    window.__leftLangRedirect = true;
+    location.replace('/' + pick + '/' + path + location.search + location.hash);
+  } catch (e) { /* fail open */ }
+})();
+</script>
+<!-- i18n:auto-detect:end -->
+
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Quit Smoking Timeline: What Happens and How to Track It on iPhone | Left</title>
+  <meta name="description" content="A quit smoking timeline from the first 20 minutes to 15 years, the hardest days to plan for, and how to count your smoke-free days on iPhone." />
+  <link rel="canonical" href="https://getleft.app/blog/quit-smoking-timeline" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/quit-smoking-timeline" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/quit-smoking-timeline" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Quit Smoking Timeline: What Happens and How to Track It on iPhone" />
+  <meta property="og:description" content="A quit smoking timeline from the first 20 minutes to 15 years, the hardest days to plan for, and how to count your smoke-free days on iPhone." />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/blog/quit-smoking-timeline" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-sobriety-counter-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Quit Smoking Timeline: What Happens and How to Track It on iPhone" />
+  <meta name="twitter:description" content="A quit smoking timeline from the first 20 minutes to 15 years, the hardest days to plan for, and how to count your smoke-free days on iPhone." />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-sobriety-counter-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="../favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="../favicon/favicon-16x16.png" />
+  <link rel="manifest" href="../favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Quit Smoking Timeline: What Changes After You Stop, and How to Track Your Smoke-Free Days",
+  "description": "A quit smoking timeline from the first 20 minutes to 15 years, the hardest days to plan for, and how to count your smoke-free days on iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/quit-smoking-timeline",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+  </script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Quit Smoking Timeline: What Changes After You Stop, and How to Track Your Smoke-Free Days",
+      "item": "https://getleft.app/blog/quit-smoking-timeline"
+    }
+  ]
+}
+  </script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What happens to your body after you quit smoking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Health bodies describe heart rate and blood pressure starting to fall within about 20 minutes, carbon monoxide levels dropping within a day, circulation and breathing improving over weeks and months, and heart disease and cancer risks falling steadily over the years. Timings vary from person to person."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the hardest day when you quit smoking?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "For many people, the first three days are the hardest, when nicotine leaves the body and cravings and irritability peak. Cravings usually become less frequent after the first couple of weeks."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How long do nicotine cravings last?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A single craving usually passes within a few minutes. Strong cravings are most frequent in the first weeks and become occasional over the following months."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I track how long since I quit smoking on iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use a day counter or streak app. In Left, add a streak in Since with your quit date and add a streak widget to your Lock Screen. Our sobriety calculator also counts the days since any date."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I quit smoking cold turkey or cut down?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Both can work. Many people find it easier with nicotine replacement or medication, so it's worth talking to a doctor or pharmacist about which approach suits you."
+      }
+    }
+  ]
+}
+  </script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Primary">
+    <div class="container nav-inner">
+      <a href="/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/#features" class="nav-link" data-i18n="common.nav.features">Features</a>
+          <a href="/tools/" class="nav-link" data-i18n="common.nav.tools">Tools</a>
+          <a href="/blog/" class="nav-link" data-i18n="common.nav.blog">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-en&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Download</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Quit Smoking Timeline: What Changes After You Stop, and How to Track Your Smoke-Free Days</h1>
+<p class="article-meta">Updated <time datetime="2026-11-12">November 12, 2026</time> · 6 min read</p>
+<p>The day you stop smoking, the benefits start, and they keep adding up for years. Knowing what happens when helps in two ways: it gives you milestones to look forward to, and it warns you which days are likely to be hardest, so you can plan for them instead of being surprised.</p>
+<p>Below is a general quit smoking timeline based on what major health bodies such as the CDC, the NHS and the WHO describe, a plan for the first two weeks, and how to track your smoke-free days on iPhone. Everyone's body is different, and this isn't medical advice. Your doctor or pharmacist can help with nicotine replacement or medication, which make quitting more likely to stick.</p>
+<figure class="post-hero"><img src="/images/blog/best-sobriety-counter-apps-iphone-hero.webp" alt="A steaming white mug on a wooden table in front of a sunlit window." width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption><a href="https://unsplash.com/photos/steaming-mug-on-wooden-table-u1QfqxhsrXQ" rel="noopener">Photo: Aimee Giles on Unsplash</a></figcaption></figure>
+
+<h2>The quit smoking timeline</h2>
+<p>These are the changes most often described by health organizations. Timings are approximate and vary from person to person.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Time smoke-free</th><th>What generally happens</th></tr></thead>
+  <tbody>
+    <tr><td>20 minutes</td><td>Heart rate and blood pressure start to come down.</td></tr>
+    <tr><td>8 to 12 hours</td><td>Carbon monoxide in your blood drops, and oxygen levels improve.</td></tr>
+    <tr><td>2 to 3 days</td><td>Nicotine is mostly out of your body. Taste and smell often start to improve. Cravings and irritability tend to peak around now.</td></tr>
+    <tr><td>2 to 12 weeks</td><td>Circulation improves, and walking or exercise often feels easier.</td></tr>
+    <tr><td>1 to 9 months</td><td>Coughing and shortness of breath decrease as the lungs clear.</td></tr>
+    <tr><td>1 year</td><td>The extra risk of coronary heart disease is about half that of someone who still smokes.</td></tr>
+    <tr><td>5 to 10 years</td><td>Risks of several cancers, including mouth, throat and bladder, drop substantially, and stroke risk keeps falling.</td></tr>
+    <tr><td>10 years</td><td>The risk of dying from lung cancer is about half that of someone who still smokes.</td></tr>
+    <tr><td>15 years</td><td>The risk of coronary heart disease is close to that of someone who never smoked.</td></tr>
+  </tbody>
+</table>
+</div>
+<p>The early milestones come fast, which is why counting matters most at the start. Day 3 is a real achievement, not a small one.</p>
+<h2>The hardest days, and what to plan for them</h2>
+<p>Withdrawal is temporary, and it's predictable enough to plan around:</p>
+<ul>
+  <li><strong>Days 1 to 3:</strong> cravings, irritability and trouble concentrating usually peak. Plan easy days if you can. Keep your hands and mouth busy: water, gum, a walk.</li>
+  <li><strong>Week 1 to 2:</strong> cravings become less constant but still strong around triggers: coffee, a drink, the end of a meal, a stressful call. Change the routine around each trigger rather than relying on willpower.</li>
+  <li><strong>Weeks 2 to 4:</strong> most physical symptoms ease. The risk now is the "just one" thought. One usually leads to more.</li>
+  <li><strong>Months 2 and beyond:</strong> occasional strong cravings still show up, often linked to places or people. They pass, usually within minutes.</li>
+</ul>
+<p>A craving typically fades within a few minutes if you don't act on it. Having a plan for those minutes, like a walk, a glass of water or messaging someone, is more useful than trying to tough it out.</p>
+<h2>Why counting smoke-free days helps</h2>
+<p>A visible count turns an absence into something you can see growing. "I didn't smoke today" is easy to forget by evening; "Day 19" on your Lock Screen is not. It also gives you something to protect. People who track a streak often describe the number itself as a reason to get through a hard craving.</p>
+<p>The counter you choose matters less than seeing it often. Put it where you'll look many times a day.</p>
+<h2>Track your quit on iPhone with Left</h2>
+<p><strong>Left</strong> is a time awareness app, not a quit-smoking program, but its <strong>Since</strong> section does the counting well:</p>
+<ul>
+  <li><strong>A streak from your quit date.</strong> Add a streak in Since with the day you stopped. It counts the <a href="/days-since-widget">days since</a>, and a streak widget puts that number on your Home Screen or Lock Screen. If you slip, you can start the streak again; our guide on <a href="/blog/how-to-build-a-streak">how to build a streak</a> covers what to do after a reset.</li>
+  <li><strong>An Aim that counts down.</strong> If you're cutting down rather than stopping at once, a reductive Aim tracks cigarettes per day going down toward zero. See <a href="/support/aims-in-left">how Aims work in Left</a>.</li>
+  <li><strong>Milestones as countdowns.</strong> Add "1 month smoke-free" and "1 year smoke-free" as dates in Ahead, so you count down to the next milestone as well as up from your quit date.</li>
+  <li><strong>Support from friends.</strong> With Left Premium, you can share a streak with a friend so someone else sees your progress too. See <a href="/support/accountability-with-friends">how to be accountable to friends</a>.</li>
+</ul>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-en&amp;mt=8" target="_blank" rel="noopener">Start counting smoke-free days</a></p>
+<h2>Count the money too</h2>
+<p>Money saved is the other number that keeps people going. The maths is simple: what you spent per day on cigarettes, times the days since you stopped. At, say, $10 a day, a month smoke-free is about $300 and a year is about $3,650. Pick a reward, put it in Ahead as a dated goal, and watch both numbers move. For the days count alone, our <a href="/tools/sobriety-calculator">sobriety calculator</a> works it out from any date in your browser.</p>
+<h2>A first-two-weeks plan</h2>
+<ol>
+  <li><strong>Pick a quit date in the next two weeks.</strong> Close enough to keep momentum, far enough to prepare. Add it as a countdown.</li>
+  <li><strong>Talk to a doctor or pharmacist.</strong> Nicotine replacement and prescription options are widely used and can make quitting more likely to stick.</li>
+  <li><strong>List your triggers.</strong> Morning coffee, the commute, breaks at work, drinks. Write one swap for each.</li>
+  <li><strong>Clear it out.</strong> Cigarettes, lighters and ashtrays, the day before.</li>
+  <li><strong>Tell people.</strong> Friends and family can help, and in many countries free quitline and text-message programs exist (in the US, 1-800-QUIT-NOW).</li>
+  <li><strong>Day 1: start the streak.</strong> Put it on your Lock Screen.</li>
+  <li><strong>Days 1 to 14: one day at a time.</strong> Each evening, look at the number. That's the whole job.</li>
+</ol>
+<p>Left is free to download. The free plan includes 2 countdowns, 2 habits, 2 streaks and 2 Aims, counted over every item you've ever created, so deleting one doesn't free a slot. Left Premium, a subscription or lifetime purchase, unlocks unlimited items. Prices are shown in the app before you buy. For other counters, see our comparison of <a href="/blog/best-sobriety-counter-apps-iphone">sobriety counter apps for iPhone</a>.</p>
+<p>Related reading: <a href="/blog/healthy-habits-for-life">Healthy Habits for Life</a> and <a href="/blog/best-sobriety-counter-apps-iphone">Best Sobriety Counter Apps for iPhone in 2027: 7 Compared</a>.</p>
+
+<h2>Questions</h2>
+<h3>What happens to your body after you quit smoking?</h3>
+<p>Health bodies describe heart rate and blood pressure starting to fall within about 20 minutes, carbon monoxide levels dropping within a day, circulation and breathing improving over weeks and months, and heart disease and cancer risks falling steadily over the years. Timings vary from person to person.</p>
+<h3>What is the hardest day when you quit smoking?</h3>
+<p>For many people, the first three days are the hardest, when nicotine leaves the body and cravings and irritability peak. Cravings usually become less frequent after the first couple of weeks.</p>
+<h3>How long do nicotine cravings last?</h3>
+<p>A single craving usually passes within a few minutes. Strong cravings are most frequent in the first weeks and become occasional over the following months.</p>
+<h3>How do I track how long since I quit smoking on iPhone?</h3>
+<p>Use a day counter or streak app. In Left, add a streak in Since with your quit date and add a streak widget to your Lock Screen. Our <a href="/tools/sobriety-calculator">sobriety calculator</a> also counts the days since any date.</p>
+<h3>Should I quit smoking cold turkey or cut down?</h3>
+<p>Both can work. Many people find it easier with nicotine replacement or medication, so it's worth talking to a doctor or pharmacist about which approach suits you.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Download Left</span>
+          <h2>Start noticing what matters.</h2>
+          <p>Download Left on your iPhone to see the time you have left, dates you are looking forward to, build the habits you want to keep, and become a better version of yourself.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - tap for instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scan or search <strong>"Left"</strong> on the App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-en&amp;mt=8" target="_blank" rel="noopener" aria-label="Download Left on the App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Download for iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> people making every moment count.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="/support">Support</a>
+          <a href="/terms">Terms</a>
+          <a href="/privacy">Privacy</a>
+          <a href="/press">Press</a>
+          <a href="/contact">Contact</a>
+          <a href="/tools/">Tools</a>
+          <!-- left:footer-extra:start -->
+          <a href="/blog/" data-i18n="common.footer.blog">Blog</a>
+          <a href="#" data-consent-open data-i18n="common.footer.cookie_settings">Cookie settings</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>EN</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en">English</button>
+              <button type="button" role="option" data-lang-option="es">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr">Français</button>
+              <button type="button" role="option" data-lang-option="it">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro">Română</button>
+              <button type="button" role="option" data-lang-option="tr">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru">Русский</button>
+              <button type="button" role="option" data-lang-option="hi">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko">한국어</button>
+              <button type="button" role="option" data-lang-option="ja">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" data-i18n-attr="aria-label:common.consent.label" aria-label="Cookie consent">
+  <p class="left-consent__text" data-i18n="common.consent.text">We use Google Analytics to understand which pages help people. No ads, no cross-site tracking.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept data-i18n="common.consent.accept">Allow analytics</button>
+    <button type="button" class="left-consent__btn" data-consent-decline data-i18n="common.consent.decline">No thanks</button>
+    <a class="left-consent__link" href="/privacy#website" data-consent-privacy data-i18n="common.consent.privacy">Privacy</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

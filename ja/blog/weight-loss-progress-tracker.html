@@ -1,0 +1,602 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhoneの減量進捗トラッカー：数字より傾向 | Left</title>
+  <meta name="description" content="毎日の数字ではなく週ごとの傾向を追い、実際にコントロールできるいくつかの習慣と組み合わせる、iPhoneの減量進捗トラッカーの設定方法です。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/weight-loss-progress-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/weight-loss-progress-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/weight-loss-progress-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhoneの減量進捗トラッカー：数字より傾向"  />
+  <meta property="og:description" content="毎日の数字ではなく週ごとの傾向を追い、実際にコントロールできるいくつかの習慣と組み合わせる、iPhoneの減量進捗トラッカーの設定方法です。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/weight-loss-progress-tracker" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-fasting-tracker-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhoneの減量進捗トラッカー：数字より傾向"  />
+  <meta name="twitter:description" content="毎日の数字ではなく週ごとの傾向を追い、実際にコントロールできるいくつかの習慣と組み合わせる、iPhoneの減量進捗トラッカーの設定方法です。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-fasting-tracker-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "傾向を追えるiPhoneの減量進捗トラッカーの設定方法",
+  "description": "毎日の数字ではなく週ごとの傾向を追い、実際にコントロールできるいくつかの習慣と組み合わせる、iPhoneの減量進捗トラッカーの設定方法です。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/weight-loss-progress-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ブログ",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "傾向を追えるiPhoneの減量進捗トラッカーの設定方法",
+      "item": "https://getleft.app/blog/weight-loss-progress-tracker"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "iPhoneで減量の進捗を記録するには、どうするのがいちばんいい？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "1日の同じ時間に量り、測定値はヘルスケアアプリに保存して、毎日の数字ではなく週平均で進み具合を判断します。その傾向に、毎日の散歩のような自分でコントロールできる2〜3個の習慣を組み合わせて、Leftのようなアプリで記録しましょう。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "体重が毎日上がったり下がったりするのはなぜ？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "日々の変化はほとんどが水分で、塩分、炭水化物、運動、睡眠、食事の時間、ホルモンの周期の影響を受けます。同じ条件で量り、1週間で平均すれば、本当の方向が見えてきます。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "体重は、どれくらいの頻度で量るべき？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎日量って週平均を見るか、週に1〜2回、同じ曜日と時間に量るかのどちらかです。毎日量ると平均は安定し、週1回の測定は、毎日の数字がストレスになる人に向いています。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "LeftはAppleヘルスケアから体重を読み取れますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい、Left Premiumなら可能です。カウントダウンの目標のトラッキングをAppleヘルスケアに設定して体重を選ぶと、ヘルスケアの測定値から進捗が埋まります。無料プランでは、目標を自分で記録します。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "減量が停滞したら、どうすればいい？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "習慣が崩れていないか、測定の条件が変わっていないか、サイズがまだ動いているかを確認します。習慣が安定しているなら、時間を置きましょう。停滞期が長引くなら、医師か管理栄養士に相談してください。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "体重を量るのをやめてもいい？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。体重の記録が不健康に感じられるなら、やめて習慣だけを記録するか、完全に休んでもかまいません。自分に合ったやり方は、医師や管理栄養士が一緒に探してくれます。"
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>傾向を追えるiPhoneの減量進捗トラッカーの設定方法</h1>
+<p class="article-meta">更新：<time datetime="2026-11-12">2026年11月12日</time>・8分</p>
+<p>月曜に体重計に乗ったら、減っていました。火曜は、減った分以上に増えています。変わったのは、夕食がしょっぱかったことと、よく眠れなかったことだけ。トラッカーが毎日の数字のリストだと、火曜の数字は失敗のように感じられ、それが何回か続くと、人はやめてしまいます。</p>
+<p>よい<a href="/ja/blog/weight-loss-timeline">減量</a>の進捗トラッカーは、そのノイズをならして本当の方向を見せ、結果を、その日にコントロールできるいくつかの行動の隣に並べます。ここでは、何を記録するか、どれくらいの頻度で量るか、停滞期を落ち着いて読む方法、そしてiPhoneとApple Watchでの設定を紹介します。</p>
+<figure class="post-hero"><img src="/images/blog/best-fasting-tracker-apps-iphone-hero.webp" alt="木のテーブルの中央にある、ナイフとフォークが交差した空の灰色の皿。まわりを色とりどりの新鮮な野菜が囲んでいる。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://www.pexels.com/photo/knife-and-fork-on-a-ceramic-plate-surrounded-by-assorted-vegetables-5677621/" rel="noopener">写真：Viktoria Slowikowska（Pexels）</a></figcaption></figure>
+<p>最初に1つお断りします。これは記録の話であって、何を食べるか、どれだけ減らすかの話ではありません。プランを立てるなら、医師か管理栄養士が適任です。持病がある場合や薬を飲んでいる場合は特に。そして、体重を記録することが不健康に感じられるようなら、やめてもかまいませんし、習慣だけを記録してもかまいません。</p>
+
+<h2>毎日の数字があなたを惑わす理由</h2>
+<p>体重は、脂肪とはあまり関係のない理由で、1日の中でも、1日ごとにも変わります。大きいのは水分です。塩分の多い食事、いつもより多い炭水化物、きつい運動、遅い夕食、暑い日、月経周期のタイミングの違いなどで、一晩のうちに体重計の数字が目に見えて動くことがあります。量る時間が違うだけでも同じです。</p>
+<p>どれも、進歩でも後退でもありません。ゆっくりした本来のシグナルの上に乗ったノイズです。対処法は、条件をそろえて、平均を見ることです。</p>
+
+<h2>何を記録するか</h2>
+<p>役に立つトラッカーは4つの部分でできています。それぞれが、ほかの部分の足りないところを補います。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>項目</th><th>頻度</th><th>役立つ理由</th></tr></thead>
+  <tbody>
+    <tr><td>体重の傾向（週平均）</td><td>毎日、または週に数回量り、週ごとに見直す</td><td>毎日の上下に惑わされず、方向がわかる</td></tr>
+    <tr><td>サイズ（ウエスト、ヒップ）</td><td>2〜4週間ごと</td><td>体重計が動かないときでも変わることがある</td></tr>
+    <tr><td>2〜3個の行動の習慣</td><td>予定どおり、毎日または毎週</td><td>今日コントロールできる部分</td></tr>
+    <tr><td>体重以外の成果</td><td>あったとき</td><td>全体像を見失わずにいられる</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h3>体重の傾向</h3>
+<p>週に1回、その週の測定値を平均して、先週の平均と比べます。この1回の比較から、7つの個別の数字よりも多くのことがわかります。</p>
+
+<h3>サイズ</h3>
+<p>毎回同じ位置でウエストにメジャーを当てるのは、もう1つの確かな指標になります。服の着心地が変わったことも、その1つです。</p>
+
+<h3>行動の習慣</h3>
+<p>ほとんどのトラッカーが飛ばす部分ですが、実際に効果を出すのはここです。その日にできたか、できなかったかがはっきりしていて、信頼できる専門家も賛成してくれそうな行動を、2〜3個選びましょう。たとえば、次のようなものです。</p>
+<ul>
+  <li><strong>20分歩く</strong>、または毎日の歩数の目標を達成する</li>
+  <li><strong>朝食でたんぱく質をとる</strong></li>
+  <li><strong>夜8時以降はキッチンを閉める</strong></li>
+  <li><strong>11時までにベッドに入る</strong></li>
+</ul>
+<p>多くても3つまでにしましょう。週平均が停滞したときも、リストが短ければ、どの習慣が崩れたかがすぐにわかります。</p>
+
+<h3>体重以外の成果</h3>
+<p>階段が楽になった。ベルトの穴が1つ縮まった。こうしたことは、日付とともに書き留めておきましょう。もどかしい週には、何かが変わりつつある証拠になります。</p>
+
+<h2>どれくらいの頻度で量るか</h2>
+<p>現実的な選択肢は2つあり、条件さえそろえれば、どちらでもうまくいきます。</p>
+<ul>
+  <li><strong>毎日量って、平均する。</strong>測定が多いほど、平均は安定します。数字を見ても気にせずにいられる人に向いています。</li>
+  <li><strong>週に1〜2回。</strong>ノイズに触れる機会が減ります。毎日の数字がストレスになる人に向いています。</li>
+</ul>
+<p>どちらを選んでも、1日の同じ時間に量りましょう。できれば朝、トイレのあと、食事や飲み物の前に、似た服装で、同じ体重計を硬い床に置いて。</p>
+
+<h2>停滞期を慌てずに読み解く方法</h2>
+<p>遅かれ早かれ、週平均が1〜2週間動かなくなる時期が来ます。何かを変える前に、次の順に確認しましょう。</p>
+<ol>
+  <li><strong>まず習慣を確認する。</strong>散歩、朝食、夜の食事の締め切りを、ほとんどの日でやり遂げましたか？崩れていたなら、それが答えです。対策は新しいルールを足すことではなく、元に戻すことです。</li>
+  <li><strong>条件を確認する。</strong>測定の時間の違い、旅行、新しい運動、睡眠不足、ストレスの多い週、周期のタイミングの違いなどで、しばらく体重計の数字が下がらないことがあります。</li>
+  <li><strong>ほかのシグナルを確認する。</strong>サイズや服の着心地がまだいい方向に動いているなら、体重計が遅れているだけかもしれません。習慣が安定しているなら、2週間ほど横ばいなのは普通のことです。</li>
+  <li><strong>長引くなら助けを求める。</strong>傾向が長いあいだ横ばいのままだったり、極端なことを試したくなったりしたら、自分でさらに減らそうとせずに、医師か管理栄養士に相談してください。</li>
+</ol>
+<p>習慣のリストがあるから、落ち着いていられます。計画が止まったのか、自分が止まったのかが、10秒でわかります。</p>
+
+<h2>データの拠点としてのAppleヘルスケアアプリ</h2>
+<p>iPhoneでは、体重の元データの置き場所として、ヘルスケアアプリが自然です。「身体測定値」で体重を手入力でき、多くのスマート体重計は、アプリを連携すると、測定のたびに自動でヘルスケアに書き込みます。ヘルスケアは体重を週、月、年ごとにグラフ化するので、長期的な方向をすばやく確認できます。</p>
+<p>ヘルスケアは、iPhoneとApple Watchから歩数、ワークアウト、睡眠も集めているので、上記の習慣のいくつかは、すでに計測されています。</p>
+
+<h2>Leftですべてを設定する</h2>
+<p>Leftは、Apple WatchアプリのあるiPhoneアプリです。体重の測定値の元データについてはヘルスケアの代わりにはなりませんが、傾向、習慣、やめることを1か所にまとめます。この3つは、すべて<strong>経過</strong>にあります。（Leftは私たちが作っています。数字の目標と習慣を扱えるアプリなら、同じ構成が使えます。）</p>
+
+<h3>1. 体重の傾向のための目標</h3>
+<p><strong>目標</strong>は、カウントアップまたはカウントダウンする数字のゴールです。体重には、カウントダウンの目標を使い、毎回の測定ではなく傾向を記録します。</p>
+<ol>
+  <li><strong>経過</strong>を開き、<strong>＋</strong>をタップして目標を選びます。<strong>カウントダウン</strong>を選びます。</li>
+  <li>単位（kgまたはlb）、開始時の数字、目標値を設定します。</li>
+  <li><strong>デフォルトの記録量</strong>を、0.5kgや1lbのような小さな単位に設定します。ワンタップで記録できます。</li>
+  <li>期限は、必要な場合だけ追加します。すると、順調か、先行か、遅れているかをLeftが表示します。期限が不安になるなら、設定しないでください。</li>
+</ol>
+<p>毎週、その週の平均を、前回記録した値と比べます。設定した単位ぶん下がっていたら、1回タップ。上がっていたら、そのままにするか、記録を修正します。Leftは進捗の履歴を残すので、すべての記録を確認でき、あとで間違いも直せます。目標が動くのは、傾向が動いたときだけです。</p>
+<p>自動のほうがいいですか？Left Premiumなら、目標の<strong>トラッキング</strong>を<strong>Appleヘルスケア</strong>に設定して、体重を選びます。すると、体重計がヘルスケアに書き込んだ測定値でも、手入力した測定値でも、進捗が自動で埋まります。すべての測定値に反応するので、毎日ではなく週ごとに見るようにしましょう。</p>
+
+<h3>2. 2〜3個の習慣</h3>
+<p>行動ごとに<strong>習慣</strong>を追加します。毎日の習慣は、毎日、平日、特定の曜日、または週に何日かのペースで続けられるので、「20分歩く、週5日」も簡単に表現できます。各習慣には、ストリーク、最長ストリーク、達成グリッド、<strong>習慣の強さ</strong>が表示されます。習慣の強さは、1日休んだだけでゼロに戻ってしまうストリークより、やさしい指標です。</p>
+<p>夜7時の散歩を促すには<strong>リマインダーを受け取る</strong>を、つい忘れてしまう習慣には<strong>消えないリマインダーを受け取る</strong>を使います。</p>
+<p>Left Premiumなら、<a href="/ja/support/apple-health-automatic-tracking">Appleヘルスケアの自動トラッキング</a>で、iPhoneやApple Watchがすでに数えている歩数を使って、「8,000歩」のような習慣を自動で達成にできます。</p>
+
+<h3>3. やめることのためのストリーク</h3>
+<p>炭酸飲料、夜食、平日のテイクアウトなど、何かをやめるなら、習慣よりも<strong>ストリーク</strong>が向いています。<strong>開始日...</strong>から自動でカウントアップされ、記録は不要です。つい破ってしまったら<strong>再スタート</strong>をタップします。Leftは最長と平均のストリークを残すので、再スタートしても記録は消えません。</p>
+
+<h3>4. いつも見える場所に置く</h3>
+<ul>
+  <li><strong>ウィジェット：</strong>ホーム画面の目標ウィジェットは、現在の数字、目標値、<a href="/ja/blog/goal-progress-tracker-setup">プログレスバー</a>を表示します。習慣リストとストリークのウィジェットをその隣に置けます。いくつかはロック画面でも使えます。</li>
+  <li><strong>Apple Watch：</strong><strong>目標</strong>画面では、手首から進捗を記録したり取り消したりでき、<strong>習慣</strong>画面では、今日やることを表示して、ワンタップで記録できます。表示する画面は、iPhoneアプリで選びます。</li>
+  <li><strong>メモ：</strong>体重以外の成果や、いつもと違う週（「旅行、夜に測定」）について、日付つきのメモを目標に追加できます。</li>
+</ul>
+<p>Leftはダウンロード無料です。無料プランでは、習慣2つとストリーク2つ（さらに目標2つとカウントダウン2つ）まで作れます。数に含まれるのは、これまでに作成したものすべてです。Left Premiumはサブスクリプションまたは買い切りで、価格は購入前にアプリ内で表示されます。上の設定、つまり目標1つ、習慣2つ、ストリーク1つは、無料プランに収まります。3つ目の習慣や、ヘルスケアの自動トラッキングには、Premiumが必要です。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ja&amp;mt=8" target="_blank" rel="noopener">Track the trend with Left</a></p>
+<p>詳しくは、<a href="/ja/support/aims-in-left">目標ガイド</a>、<a href="/ja/blog/aim-goal-tracker-left">例で見る目標の使い方</a>、<a href="/ja/habit-tracker">習慣トラッカー</a>の概要をご覧ください。</p>
+
+<h2>減量を記録するほかの方法</h2>
+<ul>
+  <li><strong>ヘルスケアアプリだけ：</strong>無料で、iPhoneにすでに入っています。体重の測定値の保存や、長期のグラフを見るのには向いていますが、数字と習慣は組み合わせられません。</li>
+  <li><strong>体重専用のアプリ：</strong>体重のグラフと傾向線を中心に作られています。数字だけを追いたい人に向いています。</li>
+  <li><strong>スマート体重計のアプリ：</strong>入力しなくても測定値が届きますが、ほとんどは、その体重計自身のデータを中心に作られています。</li>
+  <li><strong>ノートやスプレッドシート：</strong>自由度が高く、プライバシーも守れますが、リマインダーはなく、平均の計算は自分でやることになります。</li>
+</ul>
+<p>どれを使う場合も、同じ条件で量り、週の傾向で判断し、いまできる習慣にいちばん注意を向けましょう。やる気が薄れる週には、<a href="/ja/blog/stay-consistent-with-goals">目標を継続するコツ</a>にもっとアイデアがあります。</p>
+<p>関連記事：<a href="/ja/blog/healthy-habits-for-life">一生続く健康的な習慣</a>。</p>
+
+<h2>質問</h2>
+<h3>iPhoneで減量の進捗を記録するには、どうするのがいちばんいい？</h3>
+<p>1日の同じ時間に量り、測定値はヘルスケアアプリに保存して、毎日の数字ではなく週平均で進み具合を判断します。その傾向に、毎日の散歩のような自分でコントロールできる2〜3個の習慣を組み合わせて、Leftのようなアプリで記録しましょう。</p>
+<h3>体重が毎日上がったり下がったりするのはなぜ？</h3>
+<p>日々の変化はほとんどが水分で、塩分、炭水化物、運動、睡眠、食事の時間、ホルモンの周期の影響を受けます。同じ条件で量り、1週間で平均すれば、本当の方向が見えてきます。</p>
+<h3>体重は、どれくらいの頻度で量るべき？</h3>
+<p>毎日量って週平均を見るか、週に1〜2回、同じ曜日と時間に量るかのどちらかです。毎日量ると平均は安定し、週1回の測定は、毎日の数字がストレスになる人に向いています。</p>
+<h3>LeftはAppleヘルスケアから体重を読み取れますか？</h3>
+<p>はい、Left Premiumなら可能です。カウントダウンの目標のトラッキングをAppleヘルスケアに設定して体重を選ぶと、ヘルスケアの測定値から進捗が埋まります。無料プランでは、目標を自分で記録します。</p>
+<h3>減量が停滞したら、どうすればいい？</h3>
+<p>習慣が崩れていないか、測定の条件が変わっていないか、サイズがまだ動いているかを確認します。習慣が安定しているなら、時間を置きましょう。停滞期が長引くなら、医師か管理栄養士に相談してください。</p>
+<h3>体重を量るのをやめてもいい？</h3>
+<p>はい。体重の記録が不健康に感じられるなら、やめて習慣だけを記録するか、完全に休んでもかまいません。自分に合ったやり方は、医師や管理栄養士が一緒に探してくれます。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

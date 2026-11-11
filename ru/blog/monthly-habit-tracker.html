@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Ежемесячный трекер привычек: обзор по месяцам на iPhone | Left</title>
+  <meta name="description" content="Ежемесячный трекер привычек показывает сразу целый месяц привычек. Как работает сетка месяца, как провести 15-минутную ежемесячную перезагрузку и как настроить всё на iPhone."  />
+  <link rel="canonical" href="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Ежемесячный трекер привычек: обзор по месяцам на iPhone"  />
+  <meta property="og:description" content="Ежемесячный трекер привычек показывает сразу целый месяц привычек. Как работает сетка месяца, как провести 15-минутную ежемесячную перезагрузку и как настроить всё на iPhone."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Ежемесячный трекер привычек: обзор по месяцам на iPhone"  />
+  <meta name="twitter:description" content="Ежемесячный трекер привычек показывает сразу целый месяц привычек. Как работает сетка месяца, как провести 15-минутную ежемесячную перезагрузку и как настроить всё на iPhone."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Ежемесячный трекер привычек: используйте месяц, чтобы пересматривать привычки, а не судить каждый день",
+  "description": "Ежемесячный трекер привычек показывает сразу целый месяц привычек. Как работает сетка месяца, как провести 15-минутную ежемесячную перезагрузку и как настроить всё на iPhone.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-habit-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Блог",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Ежемесячный трекер привычек: используйте месяц, чтобы пересматривать привычки, а не судить каждый день",
+      "item": "https://getleft.app/blog/monthly-habit-tracker"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Что такое ежемесячный трекер привычек?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ежемесячный трекер привычек показывает сразу целый месяц привычек, обычно в виде сетки, где сбоку привычки, а сверху дни. Вы отмечаете ежедневно и пересматриваете готовый месяц, чтобы увидеть, какие привычки прижились."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие привычки поместить в ежемесячный трекер?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ежедневные привычки, которые вы хотите пересматривать за месяц, например чтение или растяжку, и привычки, которым нужно только месячное количество, например позвонить родным четыре раза или дважды сделать генеральную уборку. Пять-шесть привычек — посильное число."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как провести ежемесячный обзор привычек?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Оцените каждую привычку одним числом, затем сохраните, уменьшите или откажитесь от неё, добавьте не больше одной новой привычки и задайте цели на этот месяц. Это занимает около 15 минут в конце месяца."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно ли отслеживать на iPhone привычку, которую я выполняю всего несколько раз в месяц?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. В Left создайте привычку с периодом «месяц» и количеством, например 4 раза, и отмечайте её в любые дни месяца, пока она не будет выполнена."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что лучше: бумажный или приложение-трекер привычек на месяц?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Бумажная сетка лучше для осмысления готового месяца; приложение лучше для ежедневных отметок и просмотра привычек в течение дня через виджеты. Многие отмечают в приложении, а пересматривают на бумаге или в сетке выполнения в приложении."
+      }
+    }
+  ],
+  "inLanguage": "ru"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Основной">
+    <div class="container nav-inner">
+      <a href="/ru/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ru/#features" class="nav-link">Возможности</a>
+          <a href="/ru/tools/" class="nav-link">Инструменты</a>
+          <a href="/ru/blog/" class="nav-link">Блог</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-ru&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Скачать</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Ежемесячный трекер привычек: используйте месяц, чтобы пересматривать привычки, а не судить каждый день</h1>
+<p class="article-meta">Обновлено <time datetime="2026-11-12">12 ноября 2026</time> · 8 мин чтения</p>
+<p>Оценивайте привычку день за днём, и каждый пропуск ощущается как приговор. Пропустили прогулку во вторник? Провал. Посмотрите на ту же привычку за месяц, и вторник уменьшается до того, чем был: один пустой квадрат в ряду, где почти все закрашены. Именно в масштабе месяца привычки приобретают смысл.</p>
+<p>В этом идея ежемесячного трекера привычек. Вы по-прежнему отмечаете каждый день, но решаете что-либо только раз в месяц: что работает, от чего отказаться, что уменьшить, что попробовать дальше. Здесь описано, как работает сетка месяца, 15-минутная ежемесячная перезагрузка и как настроить всё это на iPhone.</p>
+<figure class="post-hero"><img src="/images/blog/way-of-life-alternatives-hero.webp" alt="Нарисованный от руки трекер целей на белой бумаге в точку с рядом недельных ячеек, закрашенных зелёным или красным, и ручки, лежащие поперёк страницы." width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18" rel="noopener">Фото: Isaac Smith на Unsplash</a></figcaption></figure>
+
+<h2>Что такое ежемесячный трекер привычек</h2>
+<p>Классическая версия пришла из блокнотов-ежедневников: сетка, где слева ваши привычки, а сверху дни месяца от 1 до 31. Каждый день вы закрашиваете квадрат для каждой выполненной привычки. К <a href="/ru/tools/days-left-in-month">концу месяца</a> у вас есть картина всего месяца на одной странице.</p>
+<p>Полезна не сама отметка. Полезно то, что можно прочитать по готовой сетке:</p>
+<ul>
+  <li><strong>Строки</strong> показывают, какие привычки прижились, а какие так и не начались.</li>
+  <li><strong>Столбцы</strong> показывают, какие дни рассыпались. Если все привычки пусты в одни и те же воскресенья, проблема в воскресеньях, а не в вашей силе воли.</li>
+  <li><strong>Пробелы</strong> показывают, что случилось: поездка, простуда, неделя дедлайна.</li>
+</ul>
+<p>Формат важен меньше, чем привычка смотреть на сетку после конца месяца.</p>
+
+<h2>Почему работает месяц</h2>
+<ul>
+  <li><strong>Новое начало 1-го числа.</strong> Новый месяц — естественная черта. Вы получаете чистую сетку двенадцать раз в год, а не ждёте января.</li>
+  <li><strong>Достаточно дней, чтобы увидеть закономерность.</strong> Неделя слишком коротка: одна плохая неделя может быть невезением. Тридцать дней показывают, вписывается ли привычка в вашу жизнь или продолжает ей проигрывать.</li>
+  <li><strong>Достаточно коротко, чтобы корректировать.</strong> Год слишком долог, чтобы держаться плана, который не работает. Месяц позволяет сменить курс, прежде чем плохая настройка обойдётся вам в сезон.</li>
+  <li><strong>Он разделяет действие и оценку.</strong> Изо дня в день ваша единственная задача — выполнить привычку и отметить её. Оценка ждёт обзора. Одно это снимает много давления с пропущенного дня.</li>
+</ul>
+
+<h2>Два вида ежемесячных привычек</h2>
+<p>«Ежемесячная привычка» может означать две разные вещи, и им нужны разные настройки.</p>
+<h3>Ежедневные привычки, просматриваемые по месяцам</h3>
+<p>«Читать 10 страниц», «Растяжка одну минуту», «Без телефона в постели». Вы выполняете их каждый день или в заданные дни, а месяц — всего лишь окно, в котором вы их пересматриваете. Вопрос в конце месяца: насколько регулярен я был и становится ли привычка проще?</p>
+<h3>Привычки с ежемесячной целью</h3>
+<p>Некоторые привычки не привязаны к конкретному дню. У них есть счёт на месяц:</p>
+<ul>
+  <li>«Генеральная уборка кухни, дважды в месяц»</li>
+  <li>«Позвонить бабушке, 4 раза в месяц»</li>
+  <li>«Новый рецепт раз в неделю» — это либо недельная привычка, либо 4 раза в месяц, в зависимости от того, важно ли вам, чтобы они были распределены равномерно</li>
+</ul>
+<p>Если запихнуть их в ежедневный флажок, большинство дней будут выглядеть пропусками. Лучше задайте им месячный счёт, и любой день, когда вы их делаете, идёт в общий итог. Месяц удался, когда вы достигли числа, неважно, случилось это 3-го и 4-го или 20-го и 28-го.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Привычка</th><th>Период</th><th>Количество</th><th>Что вы пересматриваете</th></tr></thead>
+  <tbody>
+    <tr><td>Читать 10 страниц</td><td>День</td><td>1, каждый день</td><td>Выполненные дни, сила привычки</td></tr>
+    <tr><td>Спортзал</td><td>День</td><td>3 дня в неделю</td><td>Недели, когда вы достигли 3</td></tr>
+    <tr><td>Приготовить новый рецепт</td><td>Неделя</td><td>1</td><td>Выполненные недели из 4 или 5</td></tr>
+    <tr><td>Позвонить бабушке</td><td>Месяц</td><td>4</td><td>Достигли ли вы 4</td></tr>
+    <tr><td>Генеральная уборка кухни</td><td>Месяц</td><td>2</td><td>Достигли ли вы 2</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>15-минутная ежемесячная перезагрузка</h2>
+<p>Делайте это в последний день месяца или в первое утро нового. Назначьте время, потому что обзор без даты никогда не происходит.</p>
+<ol>
+  <li><strong>Оцените прошлый месяц (5 минут).</strong> Для каждой привычки запишите одно число: выполненные дни или достигнутое количество относительно цели. Пока без оправданий.</li>
+  <li><strong>Сохранить, отказаться или уменьшить (5 минут).</strong> Go habit by habit.
+    <ul>
+      <li><strong>Сохраните</strong> всё, что вы делали в большинство запланированных дней. Пока не усложняйте; ещё один месяц того же размера сделает это автоматическим.</li>
+      <li><strong>Уменьшите</strong> всё, что вы всё время начинали и бросали. «Бегать 5 км» становится «Надеть кроссовки и выйти за дверь». «Читать 30 минут» становится «Читать 10 страниц». Маленькая привычка, которую вы выполняете, лучше большой, которую пропускаете.</li>
+      <li><strong>Откажитесь</strong> от того, к чему вы почти не прикасались и не скучаете. Намеренный отказ от привычки — решение, а не провал.</li>
+    </ul>
+  </li>
+  <li><strong>Выберите не больше одной новой привычки (3 минуты).</strong> Одну. Три новые привычки в месяц — это дюжина к весне, и ни одна не будет держаться хорошо.</li>
+  <li><strong>Задайте количества на этот месяц (2 минуты).</strong> Посмотрите на календарь. Месяцу с праздничной поездкой не нужно то же количество тренировок, что обычному. Корректируйте цели так, чтобы реалистичный месяц выглядел хорошим.</li>
+</ol>
+<p>Цель не в идеальном месяце, а в чуть лучшей настройке, двенадцать раз в год. О том, как продолжать между обзорами, см. <a href="/ru/blog/stay-consistent-with-goals">как держать цели стабильно</a>.</p>
+
+<h2>Бумага, распечатка или приложение?</h2>
+<p>Подходят все три. Они хороши в разных частях работы.</p>
+<ul>
+  <li><strong>Бумага (блокнот-ежедневник).</strong> Рисовать сетку 1-го числа — часть ритуала, а закрашивать квадраты вручную приятно. Готовый месяц на бумаге — ещё и лучшее, на что стоит оглянуться: всё на одной странице, без прокрутки. Слабость в том, что блокнот большую часть дня закрыт, поэтому легко забыть отметить, и вы заполняете неделю по памяти.</li>
+  <li><strong>Распечатка.</strong> Те же достоинства, что у бумаги, при меньшей подготовке. Распечатайте сетку месяца и повесьте на холодильник или у стола. Бесполезна, когда вы не дома.</li>
+  <li><strong>Приложение.</strong> Всегда с вами, отмечается одним касанием, напоминает и обрабатывает месячные цели без подсчёта чёрточек. С виджетами сегодняшние привычки лежат на экране «Домой» или экране блокировки, а это ежедневная видимость, которой не добиться блокнотом. Слабость: легко смотреть только на сегодня и никогда не отдаляться.</li>
+</ul>
+<p>Хорошее разделение для многих: приложение для ежедневной части и ежемесячный обзор, где вы действительно смотрите на месяц, в приложении или скопированный на бумажную сетку, если вам нравится ритуал.</p>
+
+<h2>Как настроить ежемесячный трекер привычек на iPhone</h2>
+<p>Вот как это сделать в Left, приложении для iPhone, которое делаем мы. Та же структура работает в любом трекере с месячными периодами и виджетами.</p>
+<h3>Привычки с ежемесячной целью</h3>
+<ol>
+  <li>Откройте Left, перейдите в <strong>«С начала»</strong> и нажмите <strong>+</strong>. Введите, что вы хотите делать («Позвонить бабушке»), чтобы найти шаблон, или выберите <strong>«Создать с нуля»</strong>.</li>
+  <li>Задайте период <strong>месяц</strong> и количество, например 4 раза. Отмечать можно в любые дни месяца; каждое касание заполняет привычку чуть больше, пока она не будет выполнена на месяц.</li>
+  <li>Для «одного нового рецепта в неделю» используйте недельный период с количеством 1, чтобы у каждой недели была своя цель.</li>
+</ol>
+<h3>Ежедневные привычки, которые вы пересматриваете раз в месяц</h3>
+<ol>
+  <li>Создайте привычку так же с периодом «день». Выберите каждый день, будни, выходные, определённые дни или число дней в неделю.</li>
+  <li>Отмечайте её каждый день через <strong>«Отметить»</strong> в приложении или из виджета. Если отметили по ошибке, можно отменить.</li>
+  <li>В конце месяца откройте привычку. На её странице вы увидите сетку выполнения, выполненные и пропущенные дни, текущую и самую длинную <a href="/ru/blog/how-to-build-a-streak">серию</a> и <strong>силу привычки</strong> — меру постоянства, которая слегка падает после пропуска, а не сбрасывается до нуля. Сила — лучшее единственное число для ежемесячного обзора. Страница <a href="/ru/support/streaks-vs-habits">серии и привычки</a> объясняет, чем привычки отличаются от трекеров серий Left.</li>
+</ol>
+<h3>Отказывайтесь от привычек, не теряя их</h3>
+<p>Когда перезагрузка говорит «отказаться», архивируйте привычку. Она исчезает из «С начала» и ваших виджетов, история остаётся, а дни в архиве считаются пропущенными по плану, поэтому не копятся как промахи, если вы вернёте её позже.</p>
+<h3>Поместите месяц туда, где вы его увидите</h3>
+<ul>
+  <li><strong>Виджет «Список привычек».</strong> Показывает сразу несколько привычек и их прогресс, до 8 в большом размере, также на экране блокировки. Ваши месячные цели заполняются там по ходу месяца.</li>
+  <li><strong>Виджет «Оставшееся время» для месяца.</strong> Сетка текущего месяца, показывающая, сколько от него осталось. Рядом с ежемесячной привычкой на уровне 1 звонка из 4 месяц, прошедший на 70%, — полезный толчок. Виджеты «Оставшееся время» бесплатны.</li>
+  <li><strong>Напоминание о перезагрузке.</strong> Добавьте обратный отсчёт «Впереди» на 1-е число следующего месяца. Это тихий сигнал, что обзор близко.</li>
+</ul>
+<p>На <a href="/ru/habit-tracker">странице трекера привычек</a> показан каждый виджет привычки и размер, а <a href="/ru/blog/weeks-and-days-iphone-screen">как увидеть недели и дни на экране iPhone</a> описывает сетки «Оставшееся время».</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-ru&amp;mt=8" target="_blank" rel="noopener">Get the monthly habit tracker</a></p>
+<p>Left можно скачать бесплатно. В бесплатный план входят 2 привычки и 2 серии (а также 2 цели и 2 обратных отсчёта), причём считается всё, что вы когда-либо создали. Left Premium — подписка или разовая покупка навсегда. Цены показываются в приложении до покупки.</p>
+
+<h2>Типичные ошибки ежемесячного трекера</h2>
+<ul>
+  <li><strong>Слишком много привычек.</strong> Сетка из 15 строк выглядит впечатляюще 1-го числа и брошенной к 10-му. Пяти-шести вполне достаточно.</li>
+  <li><strong>Просмотр каждый день.</strong> Ежедневный взгляд на сетку снова превращает её в ежедневный приговор. Отмечайте ежедневно, оценивайте ежемесячно.</li>
+  <li><strong>Считать плохой месяц поводом бросить.</strong> Плохой месяц — это данные. Уменьшите привычку и запустите снова. В материале <a href="/ru/blog/how-to-build-a-streak">как создать серию</a> больше о том, как начинать заново после пропуска.</li>
+</ul>
+<p>Читайте также: <a href="/ru/blog/habit-tracker-ideas">Идеи для трекера привычек</a>.</p>
+
+<h2>Вопросы</h2>
+<h3>Что такое ежемесячный трекер привычек?</h3>
+<p>Ежемесячный трекер привычек показывает сразу целый месяц привычек, обычно в виде сетки, где сбоку привычки, а сверху дни. Вы отмечаете ежедневно и пересматриваете готовый месяц, чтобы увидеть, какие привычки прижились.</p>
+<h3>Какие привычки поместить в ежемесячный трекер?</h3>
+<p>Ежедневные привычки, которые вы хотите пересматривать за месяц, например чтение или растяжку, и привычки, которым нужно только месячное количество, например позвонить родным четыре раза или дважды сделать генеральную уборку. Пять-шесть привычек — посильное число.</p>
+<h3>Как провести ежемесячный обзор привычек?</h3>
+<p>Оцените каждую привычку одним числом, затем сохраните, уменьшите или откажитесь от неё, добавьте не больше одной новой привычки и задайте цели на этот месяц. Это занимает около 15 минут в конце месяца.</p>
+<h3>Можно ли отслеживать на iPhone привычку, которую я выполняю всего несколько раз в месяц?</h3>
+<p>Да. В Left создайте привычку с периодом «месяц» и количеством, например 4 раза, и отмечайте её в любые дни месяца, пока она не будет выполнена.</p>
+<h3>Что лучше: бумажный или приложение-трекер привычек на месяц?</h3>
+<p>Бумажная сетка лучше для осмысления готового месяца; приложение лучше для ежедневных отметок и просмотра привычек в течение дня через виджеты. Многие отмечают в приложении, а пересматривают на бумаге или в сетке выполнения в приложении.</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Скачать Left</span>
+          <h2>Начните замечать то, что важно.</h2>
+          <p>Скачайте Left на iPhone, чтобы видеть оставшееся время, даты, которых ждёте, строить привычки и становиться лучше.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR-код — нажмите для инструкции">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Отсканируйте или найдите <strong>«Left»</strong> в App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-ru&amp;mt=8" target="_blank" rel="noopener" aria-label="Скачайте Left в App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Скачать для iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> человек берегут каждое мгновение.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Подвал">
+          <a href="/ru/support">Поддержка</a>
+          <a href="/terms">Условия</a>
+          <a href="/ru/privacy">Конфиденциальность</a>
+          <a href="/ru/press">Пресса</a>
+          <a href="/ru/contact">Контакты</a>
+          <a href="/ru/tools/">Инструменты</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ru/blog/">Блог</a>
+          <a href="#" data-consent-open>Настройки cookie</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>RU</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="true">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Согласие на использование cookie">
+  <p class="left-consent__text">Мы используем Google Analytics, чтобы понимать, какие страницы помогают людям. Без рекламы и без отслеживания между сайтами.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Разрешить аналитику</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Нет, спасибо</button>
+    <a class="left-consent__link" href="/ru/privacy#website" data-consent-privacy>Конфиденциальность</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

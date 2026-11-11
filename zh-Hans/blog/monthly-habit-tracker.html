@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-banner&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>每月习惯追踪：在 iPhone 上按月回顾 | Left</title>
+  <meta name="description" content="每月习惯追踪会一次显示一整个月的习惯。了解月度网格怎么用、如何做 15 分钟的每月重置，以及如何在 iPhone 上设置。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-habit-tracker" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="每月习惯追踪：在 iPhone 上按月回顾"  />
+  <meta property="og:description" content="每月习惯追踪会一次显示一整个月的习惯。了解月度网格怎么用、如何做 15 分钟的每月重置，以及如何在 iPhone 上设置。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/monthly-habit-tracker" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="每月习惯追踪：在 iPhone 上按月回顾"  />
+  <meta name="twitter:description" content="每月习惯追踪会一次显示一整个月的习惯。了解月度网格怎么用、如何做 15 分钟的每月重置，以及如何在 iPhone 上设置。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/way-of-life-alternatives-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "每月习惯追踪：用一个月来回顾习惯，而不是评判每一天",
+  "description": "每月习惯追踪会一次显示一整个月的习惯。了解月度网格怎么用、如何做 15 分钟的每月重置，以及如何在 iPhone 上设置。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-12",
+  "dateModified": "2026-11-12",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-habit-tracker",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部落格",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "每月习惯追踪：用一个月来回顾习惯，而不是评判每一天",
+      "item": "https://getleft.app/blog/monthly-habit-tracker"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "什么是每月习惯追踪？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "每月习惯追踪会一次显示一整个月的习惯，通常是一张网格，习惯在左边，日期在顶部。你每天记录，月底回顾，看看哪些习惯坚持下来了。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "每月追踪表里应该放哪些习惯？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "放你想按月回顾的每日习惯，比如阅读或拉伸，也放只需要每月计次的习惯，比如给家人打四次电话，或者深度清洁两次。五六个习惯是个容易管理的数量。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "怎么做每月习惯回顾？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "为每个习惯打一个分，然后决定保留、缩小还是放弃，最多添加一个新习惯，并设定这个月的目标。月底花大约 15 分钟就够了。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "在 iPhone 上，可以追踪一个每月只做几次的习惯吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。在 Left 中，创建一个周期为月、带次数的习惯，例如 4 次，然后在这个月的任意日子记录，直到完成。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "纸质和 App 的每月习惯追踪，哪个更好？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "纸质网格更适合在月底回头反思；App 更适合每天记录，并通过小组件让你一整天都能看到习惯。很多人在 App 里记录，再在纸上或 App 的完成情况网格里回顾。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-nav-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>每月习惯追踪：用一个月来回顾习惯，而不是评判每一天</h1>
+<p class="article-meta">更新：<time datetime="2026-11-12">2026 年 11 月 12 日</time>・8 分钟阅读</p>
+<p>如果一天一天地评判习惯，每一次漏掉都像一次判决。周二没去散步？失败。可如果把同一个习惯放到一个月里来看，周二就缩回了它本来的样子：一排大多填满的方格里，空了一格。习惯真正的意义，要放在一个月里才看得出来。</p>
+<p>这就是每月习惯追踪的理念。你仍然每天记录，但只在每个月做一次决定：哪些有效，哪些放弃，哪些缩小，接下来尝试什么。下面介绍月度网格怎么用、15 分钟的每月重置，以及如何在 iPhone 上设置。</p>
+<figure class="post-hero"><img src="/images/blog/way-of-life-alternatives-hero.webp" alt="点阵白纸上的手绘目标追踪表，一排每周格子被涂成绿色或红色，几支笔横放在纸页上。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/white-printer-paper-Ij7h-m4nJ18" rel="noopener">照片：Isaac Smith，来自 Unsplash</a></figcaption></figure>
+
+<h2>什么是每月习惯追踪</h2>
+<p>经典版本来自子弹笔记：一张网格，左边是你的各个习惯，顶部是这个月的日期，从 1 到 31。每天，你为做过的每个习惯涂满对应的方格。<a href="/zh-Hans/tools/days-left-in-month">到了月底</a>，整个月的样子就在一页纸上一目了然。</p>
+<p>它的价值不在于记录，而在于你能从完成后的网格里读出什么：</p>
+<ul>
+  <li><strong>行</strong>告诉你哪些习惯坚持下来了，哪些一直没能启动。</li>
+  <li><strong>列</strong>告诉你哪几天全线崩盘。如果每个习惯都在同样几个周日是空的，问题出在周日，而不是你的意志力。</li>
+  <li><strong>空档</strong>告诉你发生了什么：一次旅行、一场感冒、一个赶截止日期的星期。</li>
+</ul>
+<p>形式没那么重要，重要的是月底回头看一看的习惯。</p>
+
+<h2>为什么以月为单位有效</h2>
+<ul>
+  <li><strong>每月 1 日重新开始。</strong>新的一个月是天然的分界线。一年里你有十二次拿到全新网格的机会，不必等到一月。</li>
+  <li><strong>天数足够看出规律。</strong>一周太短：糟糕的一周可能只是运气不好。三十天才能看出一个习惯是适合你的生活，还是总被生活打败。</li>
+  <li><strong>又短到来得及调整。</strong>一年太长，不适合死守一个行不通的计划。一个月让你在糟糕的设置耗掉你一整个季节之前就能调整方向。</li>
+  <li><strong>它把“做”和“评判”分开。</strong>平时你只需要做习惯并记录下来，评估留到回顾的时候。光是这一点，就能大大减轻漏掉一天的压力。</li>
+</ul>
+
+<h2>两种每月习惯</h2>
+<p>“每月习惯”可能指两种不同的东西，需要不同的设置。</p>
+<h3>每日习惯，按月查看</h3>
+<p>“读 10 页”“拉伸一分钟”“床上不玩手机”。这些事你每天做，或者在固定的日子做，而一个月只是你回顾它们的时间窗口。月底要问的是：我有多规律，这个习惯是不是越来越容易了？</p>
+<h3>有每月目标的习惯</h3>
+<p>有些习惯不属于某一天，它们只有一个整月的次数：</p>
+<ul>
+  <li>“每月深度清洁厨房两次”</li>
+  <li>“每月给奶奶打 4 次电话”</li>
+  <li>“每周做一道新菜”，这可以设成每周习惯，也可以设成每月 4 次，取决于你是否在意它们分散得均不均匀</li>
+</ul>
+<p>把这些习惯硬塞进每日复选框，大多数日子都会显得像是漏掉了。给它们设一个每月次数吧：任何一天做了都计入总数。只要达到了这个数字，这个月就算成功，不管是在 3 日和 4 日完成的，还是在 20 日和 28 日。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>习惯</th><th>周期</th><th>次数</th><th>回顾什么</th></tr></thead>
+  <tbody>
+    <tr><td>读 10 页</td><td>天</td><td>1，每天</td><td>完成天数、习惯强度</td></tr>
+    <tr><td>健身房</td><td>天</td><td>每周 3 天</td><td>达到 3 次的周数</td></tr>
+    <tr><td>做一道新菜</td><td>周</td><td>1</td><td>4 周或 5 周中完成的周数</td></tr>
+    <tr><td>给奶奶打电话</td><td>月</td><td>4</td><td>是否达到 4 次</td></tr>
+    <tr><td>深度清洁厨房</td><td>月</td><td>2</td><td>是否达到 2 次</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>15 分钟的每月重置</h2>
+<p>在这个月的最后一天，或新月份的第一个早晨进行。给它定一个时间，因为没有日期的回顾永远不会发生。</p>
+<ol>
+  <li><strong>给上个月打分（5 分钟）。</strong>为每个习惯写下一个数字：完成天数，或是已达到的次数与目标次数。先不要找借口。</li>
+  <li><strong>保留、放弃还是缩小（5 分钟）。</strong> Go habit by habit.
+    <ul>
+      <li><strong>保留</strong>你在计划的大部分日子里都做到了的习惯。先别加大难度；再按同样的规模坚持一个月，就会变成自动的。</li>
+      <li><strong>缩小</strong>你一直开始又放弃的习惯。“跑 5 公里”变成“穿上跑鞋走出家门”。“阅读 30 分钟”变成“读 10 页”。你做得到的小习惯，胜过你总是跳过的大习惯。</li>
+      <li><strong>放弃</strong>你几乎没碰过、也不觉得可惜的习惯。有意放弃一个习惯是一种决定，而不是失败。</li>
+    </ul>
+  </li>
+  <li><strong>最多选一个新习惯（3 分钟）。</strong>只要一个。每个月三个新习惯，到春天就有一打了，没有一个能好好坚持。</li>
+  <li><strong>设定这个月的次数（2 分钟）。</strong>看看日历。有假期旅行的月份，健身次数不该和普通月份一样。调整目标，让一个现实的月份看起来也是个好月份。</li>
+</ol>
+<p>目标不是完美的一个月，而是每年十二次让设置稍微好一点。想在两次回顾之间保持坚持，请参阅<a href="/zh-Hans/blog/stay-consistent-with-goals">如何在目标上保持一致</a>。</p>
+
+<h2>纸质、可打印还是 App？</h2>
+<p>三种都行，只是各自擅长的环节不同。</p>
+<ul>
+  <li><strong>纸质（子弹笔记）。</strong>在 1 日画网格本身就是仪式的一部分，亲手涂满方格也很有成就感。写满一个月的纸质网格也是最适合反思的东西：所有内容都在一页上，不用滚动。缺点是笔记本一天中大部分时间都合着，所以很容易忘记记录，然后你就得凭记忆补一周的账。</li>
+  <li><strong>可打印。</strong>优点和纸质一样，准备工作更少。打印一张月度网格，贴在冰箱上或书桌旁。你不在家的时候就没用了。</li>
+  <li><strong>App。</strong>随身携带，轻点一下就能记录，会提醒你，还能处理每月目标，不用你自己数笔画。有了小组件，今天的习惯就摆在主屏幕或锁定屏幕上，这种每天都能看见的效果是任何笔记本都比不了的。缺点是：很容易只看今天，从不拉远来看整体。</li>
+</ul>
+<p>对许多人来说，一个不错的分工是：每天的部分用 App，每月再安排一次真正看整个月的回顾，可以在 App 里看，如果喜欢那种仪式感，也可以抄到纸质网格上。</p>
+
+<h2>如何在 iPhone 上设置每月习惯追踪</h2>
+<p>下面以我们开发的 iPhone App Left 为例。同样的结构适用于任何支持每月周期和小组件的追踪工具。</p>
+<h3>有每月目标的习惯</h3>
+<ol>
+  <li>打开 Left，进入<strong>事件计时</strong>，点按 <strong>+</strong>。输入你想做的事（“给奶奶打电话”）来找到模板，或选择<strong>从头开始创建</strong>。</li>
+  <li>把周期设为<strong>月</strong>，并设置次数，例如 4 次。你可以在这个月的任意日子记录；每点按一次，习惯就多填满一点，直到这个月完成。</li>
+  <li>对于“每周一道新菜”，改用周周期，次数为 1，这样每一周都有自己的目标。</li>
+</ol>
+<h3>按月回顾的每日习惯</h3>
+<ol>
+  <li>用同样的方式创建习惯，周期选天。可以选择每天、工作日、周末、指定日期，或每周若干天。</li>
+  <li>每天在 App 中点按<strong>记录</strong>，或在小组件上记录。如果记录错了，可以撤销。</li>
+  <li>月底时，打开这个习惯。它的页面会显示完成情况网格、已完成和已错过的天数、当前和最长<a href="/zh-Hans/blog/how-to-build-a-streak">连续记录</a>，以及<strong>习惯强度</strong>：这是一个衡量规律性的指标，漏掉一次后只会小幅下降，而不是归零。习惯强度是每月回顾时最好的单一数字。<a href="/zh-Hans/support/streaks-vs-habits">连续记录与习惯</a>页面解释了习惯与 Left 的连续记录追踪器有什么不同。</li>
+</ol>
+<h3>放弃习惯，但不丢失记录</h3>
+<p>当重置得出“放弃”的结论时，就把这个习惯归档。它会从“事件计时”和你的小组件中消失，历史记录保留，而且归档期间的天数算作已跳过，所以以后如果你把它找回来，这些天不会累积成漏掉的记录。</p>
+<h3>把这个月放在你看得到的地方</h3>
+<ul>
+  <li><strong>习惯列表小组件。</strong>一次显示多个习惯及其进度，大号最多 8 个，也可以放在锁定屏幕上。随着这个月过去，你的每月目标会在这里一点点填满。</li>
+  <li><strong>“月”剩余时间小组件。</strong>当前这个月的网格，显示还剩多少。当某个每月习惯停在“4 次里才打了 1 次”，而这个月已经过去了 70%，这就是一个很有用的提醒。“剩余时间”小组件是免费的。</li>
+  <li><strong>重置提醒。</strong>添加一个倒数到下个月 1 日的“即将到来”倒数。这是一个安静的信号：回顾就要到了。</li>
+</ul>
+<p><a href="/zh-Hans/habit-tracker">习惯追踪页面</a>展示了每个习惯小组件及其尺寸，<a href="/zh-Hans/blog/weeks-and-days-iphone-screen">如何在 iPhone 屏幕上查看周和天</a>则介绍了“剩余时间”网格。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-inline-zh-Hans&amp;mt=8" target="_blank" rel="noopener">Get the monthly habit tracker</a></p>
+<p>Left 可免费下载。免费方案包含 2 个习惯和 2 个连续记录（另有 2 个目标和 2 个倒数），按你创建过的所有项目计数。Left Premium 是订阅或终身买断。购买前会在 App 中显示价格。</p>
+
+<h2>每月追踪的常见错误</h2>
+<ul>
+  <li><strong>追踪的习惯太多。</strong>一张有 15 行的网格在 1 日看起来很厉害，到 10 日就被放弃了。五六个就足够了。</li>
+  <li><strong>每天都回顾。</strong>每天看网格，又会把它变回每天的判决。每天记录，每月评判。</li>
+  <li><strong>把糟糕的一个月当成放弃的理由。</strong>糟糕的一个月只是数据。把习惯缩小，再来一遍。<a href="/zh-Hans/blog/how-to-build-a-streak">如何建立连续记录</a>里有更多关于中断后如何重新开始的内容。</li>
+</ul>
+<p>延伸阅读：<a href="/zh-Hans/blog/habit-tracker-ideas">习惯追踪创意</a>。</p>
+
+<h2>问题</h2>
+<h3>什么是每月习惯追踪？</h3>
+<p>每月习惯追踪会一次显示一整个月的习惯，通常是一张网格，习惯在左边，日期在顶部。你每天记录，月底回顾，看看哪些习惯坚持下来了。</p>
+<h3>每月追踪表里应该放哪些习惯？</h3>
+<p>放你想按月回顾的每日习惯，比如阅读或拉伸，也放只需要每月计次的习惯，比如给家人打四次电话，或者深度清洁两次。五六个习惯是个容易管理的数量。</p>
+<h3>怎么做每月习惯回顾？</h3>
+<p>为每个习惯打一个分，然后决定保留、缩小还是放弃，最多添加一个新习惯，并设定这个月的目标。月底花大约 15 分钟就够了。</p>
+<h3>在 iPhone 上，可以追踪一个每月只做几次的习惯吗？</h3>
+<p>可以。在 Left 中，创建一个周期为月、带次数的习惯，例如 4 次，然后在这个月的任意日子记录，直到完成。</p>
+<h3>纸质和 App 的每月习惯追踪，哪个更好？</h3>
+<p>纸质网格更适合在月底回头反思；App 更适合每天记录，并通过小组件让你一整天都能看到习惯。很多人在 App 里记录，再在纸上或 App 的完成情况网格里回顾。</p>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-blog-end-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

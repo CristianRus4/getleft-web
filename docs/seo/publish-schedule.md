@@ -5,9 +5,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 | Date | Item | Type | Status |
 |---|---|---|---|
-| 2026-10-20 | `blog/de`: blog in Deutsch, 73 pages | Translation release | live |
-| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 73 pages | Translation release | live |
-| 2026-10-20 | `blog/es`: blog in Español (España), 73 pages | Translation release | live |
+| 2026-10-20 | `blog/de`: blog in Deutsch, 89 pages | Translation release | live |
+| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 89 pages | Translation release | live |
+| 2026-10-20 | `blog/es`: blog in Español (España), 89 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 10 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 10 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 82 pages | Translation release | live |
@@ -25,39 +25,39 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-25 | `tools/de`: tools in Deutsch, 82 pages | Translation release | live |
 | 2026-10-25 | `tools/es-419`: tools in Español (Latinoamérica), 82 pages | Translation release | live |
 | 2026-10-25 | `tools/es`: tools in Español (España), 82 pages | Translation release | live |
-| 2026-10-26 | `blog/fr`: blog in Français, 73 pages | Translation release | live |
-| 2026-10-26 | `blog/it`: blog in Italiano, 73 pages | Translation release | live |
+| 2026-10-26 | `blog/fr`: blog in Français, 89 pages | Translation release | live |
+| 2026-10-26 | `blog/it`: blog in Italiano, 89 pages | Translation release | live |
 | 2026-10-26 | `blog/streaks-app-alternatives.html` | English page | live |
 | 2026-10-26 | `pages/it`: pages in Italiano, 10 pages | Translation release | live |
 | 2026-10-26 | `pages/ko`: pages in 한국어, 10 pages | Translation release | live |
 | 2026-10-26 | `tools/fr`: tools in Français, 82 pages | Translation release | live |
 | 2026-10-26 | `tools/it`: tools in Italiano, 82 pages | Translation release | live |
 | 2026-10-27 | `blog/best-birthday-countdown-apps-iphone.html` | English page | live |
-| 2026-10-27 | `blog/hi`: blog in हिन्दी, 73 pages | Translation release | live |
-| 2026-10-27 | `blog/zh-Hant`: blog in 繁體中文, 73 pages | Translation release | live |
+| 2026-10-27 | `blog/hi`: blog in हिन्दी, 89 pages | Translation release | live |
+| 2026-10-27 | `blog/zh-Hant`: blog in 繁體中文, 89 pages | Translation release | live |
 | 2026-10-27 | `pages/hi`: pages in हिन्दी, 10 pages | Translation release | live |
 | 2026-10-27 | `tools/hi`: tools in हिन्दी, 82 pages | Translation release | live |
 | 2026-10-27 | `tools/zh-Hant`: tools in 繁體中文, 82 pages | Translation release | live |
-| 2026-10-28 | `blog/id`: blog in Bahasa Indonesia, 73 pages | Translation release | live |
-| 2026-10-28 | `blog/pt-BR`: blog in Português (Brasil), 73 pages | Translation release | live |
-| 2026-10-28 | `blog/ru`: blog in Русский, 73 pages | Translation release | live |
+| 2026-10-28 | `blog/id`: blog in Bahasa Indonesia, 89 pages | Translation release | live |
+| 2026-10-28 | `blog/pt-BR`: blog in Português (Brasil), 89 pages | Translation release | live |
+| 2026-10-28 | `blog/ru`: blog in Русский, 89 pages | Translation release | live |
 | 2026-10-28 | `blog/structured-app-alternatives.html` | English page | live |
 | 2026-10-28 | `pages/id`: pages in Bahasa Indonesia, 10 pages | Translation release | live |
 | 2026-10-28 | `pages/ru`: pages in Русский, 10 pages | Translation release | live |
 | 2026-10-28 | `tools/id`: tools in Bahasa Indonesia, 82 pages | Translation release | live |
 | 2026-10-28 | `tools/pt-BR`: tools in Português (Brasil), 82 pages | Translation release | live |
 | 2026-10-28 | `tools/ru`: tools in Русский, 82 pages | Translation release | live |
-| 2026-10-29 | `blog/pl`: blog in Polski, 73 pages | Translation release | live |
+| 2026-10-29 | `blog/pl`: blog in Polski, 89 pages | Translation release | live |
 | 2026-10-29 | `blog/tiimo-alternatives.html` | English page | live |
-| 2026-10-29 | `blog/tr`: blog in Türkçe, 73 pages | Translation release | live |
+| 2026-10-29 | `blog/tr`: blog in Türkçe, 89 pages | Translation release | live |
 | 2026-10-29 | `pages/pl`: pages in Polski, 10 pages | Translation release | live |
 | 2026-10-29 | `pages/tr`: pages in Türkçe, 10 pages | Translation release | live |
 | 2026-10-29 | `tools/pl`: tools in Polski, 82 pages | Translation release | live |
 | 2026-10-29 | `tools/tr`: tools in Türkçe, 82 pages | Translation release | live |
 | 2026-10-30 | `blog/habitkit-alternatives.html` | English page | live |
-| 2026-10-30 | `blog/nl`: blog in Nederlands, 73 pages | Translation release | live |
-| 2026-10-30 | `blog/pt`: blog in Português (Portugal), 73 pages | Translation release | live |
-| 2026-10-30 | `blog/zh-Hans`: blog in 简体中文, 73 pages | Translation release | live |
+| 2026-10-30 | `blog/nl`: blog in Nederlands, 89 pages | Translation release | live |
+| 2026-10-30 | `blog/pt`: blog in Português (Portugal), 89 pages | Translation release | live |
+| 2026-10-30 | `blog/zh-Hans`: blog in 简体中文, 89 pages | Translation release | live |
 | 2026-10-30 | `pages/nl`: pages in Nederlands, 10 pages | Translation release | live |
 | 2026-10-30 | `pages/pt`: pages in Português (Portugal), 10 pages | Translation release | live |
 | 2026-10-30 | `pages/zh-Hans`: pages in 简体中文, 10 pages | Translation release | live |
@@ -65,9 +65,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-30 | `tools/pt`: tools in Português (Portugal), 82 pages | Translation release | live |
 | 2026-10-30 | `tools/zh-Hans`: tools in 简体中文, 82 pages | Translation release | live |
 | 2026-10-31 | `blog/best-fasting-tracker-apps-iphone.html` | English page | live |
-| 2026-10-31 | `blog/ja`: blog in 日本語, 73 pages | Translation release | live |
-| 2026-10-31 | `blog/ko`: blog in 한국어, 73 pages | Translation release | live |
-| 2026-10-31 | `blog/ro`: blog in Română, 73 pages | Translation release | live |
+| 2026-10-31 | `blog/ja`: blog in 日本語, 89 pages | Translation release | live |
+| 2026-10-31 | `blog/ko`: blog in 한국어, 89 pages | Translation release | live |
+| 2026-10-31 | `blog/ro`: blog in Română, 89 pages | Translation release | live |
 | 2026-10-31 | `pages/ro`: pages in Română, 10 pages | Translation release | live |
 | 2026-10-31 | `tools/ko`: tools in 한국어, 82 pages | Translation release | live |
 | 2026-10-31 | `tools/ro`: tools in Română, 82 pages | Translation release | live |
@@ -84,7 +84,23 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-09 | `blog/best-day-counter-apps-iphone.html` | English page | live |
 | 2026-11-10 | `blog/best-retirement-countdown-apps-iphone.html` | English page | live |
 | 2026-11-11 | `blog/best-streak-counter-apps-iphone.html` | English page | live |
+| 2026-11-12 | `blog/100-day-challenge-tracker.html` | English page | live |
+| 2026-11-12 | `blog/best-motivation-apps-iphone.html` | English page | live |
+| 2026-11-12 | `blog/goal-calendar-iphone.html` | English page | live |
+| 2026-11-12 | `blog/goal-setting-examples.html` | English page | live |
+| 2026-11-12 | `blog/goal-setting-for-students.html` | English page | live |
+| 2026-11-12 | `blog/goal-setting-mistakes.html` | English page | live |
+| 2026-11-12 | `blog/habit-schedule.html` | English page | live |
+| 2026-11-12 | `blog/habit-tracker-ideas.html` | English page | live |
+| 2026-11-12 | `blog/healthy-habits-for-life.html` | English page | live |
+| 2026-11-12 | `blog/how-to-motivate-yourself-daily.html` | English page | live |
+| 2026-11-12 | `blog/monthly-habit-tracker.html` | English page | live |
+| 2026-11-12 | `blog/monthly-progress-report.html` | English page | live |
 | 2026-11-12 | `blog/productive-app-alternatives.html` | English page | live |
+| 2026-11-12 | `blog/quarterly-goal-tracker.html` | English page | live |
+| 2026-11-12 | `blog/quit-smoking-timeline.html` | English page | live |
+| 2026-11-12 | `blog/weight-loss-progress-tracker.html` | English page | live |
+| 2026-11-12 | `blog/weight-loss-timeline.html` | English page | live |
 | 2026-11-13 | `blog/best-lock-screen-widget-apps-iphone.html` | English page | scheduled |
 | 2026-11-14 | `blog/color-widgets-alternatives.html` | English page | scheduled |
 | 2026-11-15 | `blog/way-of-life-alternatives.html` | English page | scheduled |
@@ -127,51 +143,35 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-12-22 | `blog/best-productivity-apps-iphone.html` | English page | scheduled |
 | 2026-12-23 | `blog/how-long-is-a-million-hours.html` | English page | scheduled |
 | 2026-12-24 | `blog/apple-watch-goal-tracker.html` | English page | scheduled |
-| 2026-12-25 | `blog/healthy-habits-for-life.html` | English page | scheduled |
-| 2026-12-26 | `blog/goal-setting-examples.html` | English page | scheduled |
-| 2026-12-27 | `blog/habit-tracker-ideas.html` | English page | scheduled |
-| 2026-12-28 | `blog/100-day-challenge-tracker.html` | English page | scheduled |
-| 2026-12-29 | `blog/quit-smoking-timeline.html` | English page | scheduled |
-| 2026-12-30 | `blog/best-motivation-apps-iphone.html` | English page | scheduled |
-| 2026-12-31 | `blog/monthly-habit-tracker.html` | English page | scheduled |
-| 2027-01-01 | `blog/quarterly-goal-tracker.html` | English page | scheduled |
-| 2027-01-02 | `blog/weight-loss-timeline.html` | English page | scheduled |
-| 2027-01-03 | `blog/how-to-motivate-yourself-daily.html` | English page | scheduled |
-| 2027-01-04 | `blog/habit-schedule.html` | English page | scheduled |
-| 2027-01-05 | `blog/monthly-progress-report.html` | English page | scheduled |
-| 2027-01-06 | `blog/travel-planning-timeline.html` | English page | scheduled |
-| 2027-01-07 | `blog/goal-setting-mistakes.html` | English page | scheduled |
-| 2027-01-08 | `blog/weight-loss-progress-tracker.html` | English page | scheduled |
-| 2027-01-09 | `blog/goal-calendar-iphone.html` | English page | scheduled |
-| 2027-01-10 | `blog/wedding-planning-timeline.html` | English page | scheduled |
-| 2027-01-11 | `blog/goal-setting-for-students.html` | English page | scheduled |
-| 2027-01-12 | `blog/how-to-track-fitness-progress.html` | English page | scheduled |
-| 2027-01-13 | `blog/best-time-management-apps-students-iphone.html` | English page | scheduled |
-| 2027-01-14 | `blog/how-many-weeks-are-in-an-academic-year.html` | English page | scheduled |
-| 2027-01-15 | `blog/assignment-tracker-app-iphone.html` | English page | scheduled |
-| 2027-01-16 | `blog/how-to-plan-your-week.html` | English page | scheduled |
-| 2027-01-17 | `blog/visual-timer-iphone.html` | English page | scheduled |
-| 2027-01-18 | `blog/how-to-use-time-blocking.html` | English page | scheduled |
-| 2027-01-19 | `blog/focus-time-tracker-iphone.html` | English page | scheduled |
-| 2027-01-20 | `blog/work-break-timer-iphone.html` | English page | scheduled |
-| 2027-01-21 | `blog/adhd-motivation-iphone.html` | English page | scheduled |
-| 2027-01-22 | `blog/group-goal-tracking-iphone.html` | English page | scheduled |
-| 2027-01-23 | `blog/tax-deadline-countdown.html` | English page | scheduled |
-| 2027-01-24 | `blog/calendar-management-tips.html` | English page | scheduled |
-| 2027-01-25 | `blog/how-to-build-accountability.html` | English page | scheduled |
-| 2027-01-26 | `blog/home-renovation-timeline.html` | English page | scheduled |
-| 2027-01-27 | `blog/executive-function-apps-iphone.html` | English page | scheduled |
-| 2027-01-28 | `blog/how-to-achieve-goals-faster.html` | English page | scheduled |
-| 2027-01-29 | `blog/car-maintenance-schedule-iphone.html` | English page | scheduled |
-| 2027-01-30 | `blog/how-to-stop-procrastinating.html` | English page | scheduled |
-| 2027-01-31 | `blog/how-to-manage-multiple-deadlines.html` | English page | scheduled |
-| 2027-02-01 | `blog/product-launch-timeline.html` | English page | scheduled |
-| 2027-02-02 | `blog/overcoming-executive-dysfunction.html` | English page | scheduled |
-| 2027-02-03 | `blog/project-deadline-tracker.html` | English page | scheduled |
-| 2027-02-04 | `blog/what-time-does-a-business-day-start.html` | English page | scheduled |
-| 2027-02-05 | `blog/adhd-home-organization.html` | English page | scheduled |
-| 2027-02-06 | `blog/job-application-tracker.html` | English page | scheduled |
-| 2027-02-07 | `blog/graduation-countdown-ideas.html` | English page | scheduled |
+| 2026-12-25 | `blog/travel-planning-timeline.html` | English page | scheduled |
+| 2026-12-26 | `blog/wedding-planning-timeline.html` | English page | scheduled |
+| 2026-12-27 | `blog/how-to-track-fitness-progress.html` | English page | scheduled |
+| 2026-12-28 | `blog/best-time-management-apps-students-iphone.html` | English page | scheduled |
+| 2026-12-29 | `blog/how-many-weeks-are-in-an-academic-year.html` | English page | scheduled |
+| 2026-12-30 | `blog/assignment-tracker-app-iphone.html` | English page | scheduled |
+| 2026-12-31 | `blog/how-to-plan-your-week.html` | English page | scheduled |
+| 2027-01-01 | `blog/visual-timer-iphone.html` | English page | scheduled |
+| 2027-01-02 | `blog/how-to-use-time-blocking.html` | English page | scheduled |
+| 2027-01-03 | `blog/focus-time-tracker-iphone.html` | English page | scheduled |
+| 2027-01-04 | `blog/work-break-timer-iphone.html` | English page | scheduled |
+| 2027-01-05 | `blog/adhd-motivation-iphone.html` | English page | scheduled |
+| 2027-01-06 | `blog/group-goal-tracking-iphone.html` | English page | scheduled |
+| 2027-01-07 | `blog/tax-deadline-countdown.html` | English page | scheduled |
+| 2027-01-08 | `blog/calendar-management-tips.html` | English page | scheduled |
+| 2027-01-09 | `blog/how-to-build-accountability.html` | English page | scheduled |
+| 2027-01-10 | `blog/home-renovation-timeline.html` | English page | scheduled |
+| 2027-01-11 | `blog/executive-function-apps-iphone.html` | English page | scheduled |
+| 2027-01-12 | `blog/how-to-achieve-goals-faster.html` | English page | scheduled |
+| 2027-01-13 | `blog/car-maintenance-schedule-iphone.html` | English page | scheduled |
+| 2027-01-14 | `blog/how-to-stop-procrastinating.html` | English page | scheduled |
+| 2027-01-15 | `blog/how-to-manage-multiple-deadlines.html` | English page | scheduled |
+| 2027-01-16 | `blog/product-launch-timeline.html` | English page | scheduled |
+| 2027-01-17 | `blog/overcoming-executive-dysfunction.html` | English page | scheduled |
+| 2027-01-18 | `blog/project-deadline-tracker.html` | English page | scheduled |
+| 2027-01-19 | `blog/what-time-does-a-business-day-start.html` | English page | scheduled |
+| 2027-01-20 | `blog/adhd-home-organization.html` | English page | scheduled |
+| 2027-01-21 | `blog/job-application-tracker.html` | English page | scheduled |
+| 2027-01-22 | `blog/graduation-countdown-ideas.html` | English page | scheduled |
 
 ## Held translations
 
