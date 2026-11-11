@@ -5,6 +5,7 @@
 // untagged links so the site keeps working.
 
 import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -27,20 +28,67 @@ function resolveConfig(override) {
 // https://developer.apple.com/help/app-store-connect-analytics/acquisition/campaign-links
 export const CT_MAX_LENGTH = 30;
 
-export function campaignToken({ family, placement, locale, config } = {}) {
+// Token: <prefix>-<page id>-<position>-<locale>, e.g. w-home-h-en, w-countdown-widget-i-de,
+// w-countdown-wal-3f2a-b-zh-Hans. The build writes every token with its page, position and
+// locale to CAMPAIGN_FILE (scripts/build-campaigns.mjs), so App Store Connect reports can be
+// read per page.
+export const CAMPAIGN_FILE = 'docs/seo/campaign-tokens.tsv';
+export const POSITIONS = { nav: 'n', hero: 'h', float: 'f', inline: 'i', end: 'e', footer: 't', result: 'r', banner: 'b', qr: 'q' };
+export const POSITION_NAMES = Object.fromEntries(Object.entries(POSITIONS).map(([k, v]) => [v, k]));
+const LONGEST_LOCALE = 7; // zh-Hans, zh-Hant
+const FILLER = new Set(['best', 'apps', 'app', 'iphone', 'how', 'to', 'the', 'a', 'an', 'for', 'in', 'of', 'and', 'on', 'with', 'your', 'you', 'is', 'are', 'what', 'vs', 'days', 'until', 'from', 'today', 'calculator']);
+
+const ABBREVIATIONS = { alternatives: 'alt', countdown: 'cd', countdowns: 'cd', tracker: 'trk', trackers: 'trk', widget: 'wdg', widgets: 'wdg', wallpaper: 'wall', progress: 'prog', challenge: 'chal', automatic: 'auto', management: 'mgmt', productivity: 'prod', intermittent: 'if', birthday: 'bday', anniversary: 'anniv', calendar: 'cal', reminder: 'rem', reminders: 'rem', retirement: 'retire', relationship: 'rel', academic: 'acad', screen: 'scr', minutes: 'min', hours: 'hrs', weeks: 'wks', between: 'btw' };
+
+// A short stable id for an English page path ('blog/x.html', 'index.html', 'tools/index.html').
+// The slug when it fits; else its main words (abbreviated, the longest trimmed first) plus 4 hex of the
+// path so two pages never share an id (scripts/build-campaigns.mjs checks).
+export function pageCampaignId(page, config) {
   const cfg = resolveConfig(config);
-  if (!family || !placement || !locale) throw new Error(`campaignToken needs family, placement and locale (got ${family}/${placement}/${locale})`);
-  const ct = `${cfg.campaignPrefix}-${String(family).toLowerCase()}-${String(placement).toLowerCase()}-${locale}`;
+  const max = CT_MAX_LENGTH - cfg.campaignPrefix.length - LONGEST_LOCALE - 5; // 3 dashes, position
+  let slug;
+  if (page === 'index.html') slug = 'home';
+  else if (page.endsWith('/index.html')) slug = page.slice(0, -'/index.html'.length).replace(/\//g, '-');
+  else slug = page.replace(/\.html$/, '').split('/').pop();
+  slug = slug.toLowerCase().replace(/[^a-z0-9-]+/g, '-');
+  if (slug.length <= max) return slug;
+  const budget = max - 5;
+  let words = slug.split('-').filter(w => w && !FILLER.has(w)).map(w => ABBREVIATIONS[w] || w);
+  if (!words.length) words = slug.split('-').filter(Boolean);
+  const size = () => words.join('-').length;
+  while (size() > budget) {
+    const longest = words.reduce((i, w, j) => (w.length > words[i].length ? j : i), 0);
+    if (words[longest].length <= 3) break;
+    words[longest] = words[longest].slice(0, -1);
+  }
+  const base = words.join('-').slice(0, budget).replace(/-+$/, '');
+  return `${base}-${createHash('sha1').update(page).digest('hex').slice(0, 4)}`;
+}
+
+export function campaignToken({ page, placement, locale, config } = {}) {
+  const cfg = resolveConfig(config);
+  if (!page || !placement || !locale) throw new Error(`campaignToken needs page, placement and locale (got ${page}/${placement}/${locale})`);
+  const position = POSITIONS[String(placement).toLowerCase()] || String(placement).toLowerCase().slice(0, 1);
+  const ct = `${cfg.campaignPrefix}-${pageCampaignId(page, cfg)}-${position}-${locale}`;
   if (!/^[A-Za-z0-9-]+$/.test(ct)) throw new Error(`Campaign token "${ct}" has characters outside [A-Za-z0-9-]`);
   if (ct.length > CT_MAX_LENGTH) throw new Error(`Campaign token "${ct}" is ${ct.length} characters; App Store Connect allows ${CT_MAX_LENGTH}`);
   return ct;
 }
 
-export function appStoreUrl({ family, placement, locale, config } = {}) {
+export function appStoreUrl({ page, placement, locale, config } = {}) {
   const cfg = resolveConfig(config);
   if (!cfg.appStoreProviderToken) return `https://apps.apple.com/app/id${cfg.appId}`;
-  const ct = campaignToken({ family, placement, locale, config });
+  const ct = campaignToken({ page, placement, locale, config });
   return `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=${encodeURIComponent(cfg.appStoreProviderToken)}&ct=${encodeURIComponent(ct)}&mt=8`;
+}
+
+// Translation units hold this app's App Store links in one fixed form, so a unit keeps its
+// key and translations whatever token the page gives the link (the build retags every link).
+export function canonicalAppStoreLinks(html, config) {
+  const cfg = resolveConfig(config);
+  if (!html.includes('apps.apple.com')) return html;
+  return html.replace(/(\shref=")(https:\/\/apps\.apple\.com\/[^"]*)"/g, (m, pre, href) =>
+    isOwnAppStoreHref(decodeEntities(href), cfg.appId) ? `${pre}https://apps.apple.com/app/id${cfg.appId}"` : m);
 }
 
 // Smart App Banner. Apple's WebKit reference ("Promoting apps with Smart App
@@ -54,14 +102,23 @@ export function appStoreUrl({ family, placement, locale, config } = {}) {
 // confirmed by Apple). So the campaign is added only once a provider token
 // exists; an unrecognised parameter is ignored by Safari, so this cannot break
 // the banner. Campaign data appears after 5+ first-time downloads.
-export function smartBannerMeta({ appArgument, config } = {}) {
+export function smartBannerMeta({ appArgument, page, locale, config } = {}) {
   const cfg = resolveConfig(config);
   const parts = [`app-id=${cfg.appId}`];
   if (appArgument) parts.push(`app-argument=${appArgument}`);
   if (cfg.appStoreProviderToken) {
-    parts.push(`affiliate-data=pt=${cfg.appStoreProviderToken}&ct=${cfg.campaignPrefix}-banner&mt=8`);
+    if (!page || !locale) throw new Error('smartBannerMeta needs page and locale for its campaign token');
+    parts.push(`affiliate-data=pt=${cfg.appStoreProviderToken}&ct=${campaignToken({ page, placement: 'banner', locale, config })}&mt=8`);
   }
   return `<meta name="apple-itunes-app" content="${escapeAttr(parts.join(', '))}" />`;
+}
+
+// Rewrites an existing banner tag for this page and locale, keeping its app-argument.
+export function retagSmartBanner(html, { page, locale, config } = {}) {
+  return html.replace(/<meta\s+name="apple-itunes-app"\s+content="([^"]*)"\s*\/?>/i, (tag, content) => {
+    const arg = /app-argument=([^,]+)/.exec(content.replace(/&amp;/g, '&'));
+    return smartBannerMeta({ appArgument: arg ? arg[1].trim() : undefined, page, locale, config });
+  });
 }
 
 // ───────── Link rewriting ─────────
@@ -129,7 +186,7 @@ export function isOwnAppStoreHref(href, appId = siteConfig().appId) {
 // apps.apple.com/redeem links and the apple-itunes-app meta tag alone.
 // Returns the new HTML; `links` on the options object (when passed) receives
 // one { placement, ct, url } record per rewritten link.
-export function rewriteAppStoreLinks(html, { family, locale, config, links } = {}) {
+export function rewriteAppStoreLinks(html, { page, locale, config, links } = {}) {
   const cfg = resolveConfig(config);
   const stack = [];
   let out = '';
@@ -156,7 +213,7 @@ export function rewriteAppStoreLinks(html, { family, locale, config, links } = {
     if (tag === 'a' && attrs.get('href') && isOwnAppStoreHref(attrs.get('href').value, cfg.appId)) {
       const existing = attrs.get('data-cta')?.value;
       const placement = existing || inferPlacement([...stack, node]);
-      const url = appStoreUrl({ family, placement, locale, config });
+      const url = appStoreUrl({ page, placement, locale, config });
       const href = attrs.get('href');
       let newTag = text;
       if (href.raw !== undefined) {
@@ -168,7 +225,7 @@ export function rewriteAppStoreLinks(html, { family, locale, config, links } = {
       if (!existing) newTag = newTag.replace(/\s*(\/?)>$/, ` data-cta="${escapeAttr(placement)}"$1>`);
       out += html.slice(pos, m.index) + newTag;
       pos = m.index + text.length;
-      if (links) links.push({ placement, ct: cfg.appStoreProviderToken ? campaignToken({ family, placement, locale, config }) : null, url });
+      if (links) links.push({ placement, ct: cfg.appStoreProviderToken ? campaignToken({ page, placement, locale, config }) : null, url });
     }
 
     if (RAW_TEXT_TAGS.has(tag)) {

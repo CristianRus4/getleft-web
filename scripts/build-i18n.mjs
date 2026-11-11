@@ -38,7 +38,6 @@ const DATE = buildDate();
 
 const annotateModule = (!process.env.LEFT_SKIP_ANNOTATE && existsSync(path.join(ROOT, 'scripts/lib/annotate.mjs'))) ? await import('./lib/annotate.mjs') : null;
 const appstore = (!process.env.LEFT_SKIP_APPSTORE && existsSync(path.join(ROOT, 'scripts/lib/appstore.mjs'))) ? await import('./lib/appstore.mjs') : null;
-const { ctaFamily } = await import('./site-inject.mjs');
 
 const INJECTION_MARK_START = '<!-- i18n:auto-detect:start -->';
 const INJECTION_MARK_END = '<!-- i18n:auto-detect:end -->';
@@ -585,7 +584,8 @@ function transform(html, pagePath, locale, data, enData, ctx) {
   if (ctx.family.id === 'tools') html = injectToolRuntime(html, data);
 
   if (appstore?.rewriteAppStoreLinks) {
-    html = appstore.rewriteAppStoreLinks(html, { family: ctaFamily(pagePath), locale: locale.code });
+    html = appstore.rewriteAppStoreLinks(html, { page: pagePath, locale: locale.code });
+    html = appstore.retagSmartBanner(html, { page: pagePath, locale: locale.code });
   }
 
   html = html.replace(/\s+data-i18n(-attr|-html|-list|-list-template|-jsonld|-jsonld-generate|-ld)?="[^"]*"/g, '');

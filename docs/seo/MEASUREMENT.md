@@ -171,25 +171,43 @@ App Store Connect (section 6).
 - The invite pages (no analytics) carry a fixed `ct=w-invite`.
 - The home pages' hand-written banner keeps its `app-argument` and gains `affiliate-data`.
 
-**Campaign token (`ct`)** = `<prefix>-<family>-<placement>-<locale>`, family and
-placement lowercased, locale as published. Families come from
-`ctaFamily(page)` in `scripts/site-inject.mjs`: `home`, `blog`, `tool`,
-`support`, `legal`, `land`, `other`. Placements are the `data-cta` values above.
+**Campaign token (`ct`)** = `<prefix>-<page id>-<position>-<locale>`, so App
+Store Connect shows installs per page, position and language (since 2026-11-12;
+before that the middle part was a page family such as `blog`).
+
+- **Page id** (`pageCampaignId()`): the page's slug when it fits (`home`,
+  `blog`, `countdown-widget`, `404`); a longer slug becomes its main words,
+  abbreviated and trimmed, plus 4 hex of the page path
+  (`best-countdown-wallpaper-apps-iphone` → `cd-wall-997a`). Ids are stable and
+  unique; the build fails if two pages share one.
+- **Position**: one letter: `n` nav, `h` hero, `f` float, `i` inline, `e` end,
+  `t` footer, `r` result, `b` Smart App Banner, `q` QR. Positions come from
+  `data-cta` or the link's place in the page (section 5).
+- **Locale** as published (`en`, `pt-BR`, `zh-Hans`).
 
 | Link | `ct` |
 |---|---|
-| Top-nav button on the home page | `w-home-nav-en` |
-| Floating mobile button, Spanish home | `w-home-float-es` |
-| End-of-post button, Traditional Chinese blog | `w-blog-end-zh-Hant` |
-| Result card on a German tool | `w-tool-result-de` |
-| QR code | `w-other-qr-all` |
-| Smart App Banner | `w-banner` |
+| Hero button, English home | `w-home-h-en` |
+| Inline link, Simplified Chinese wallpaper apps post | `w-cd-wall-997a-i-zh-Hans` |
+| Smart App Banner, German home | `w-home-b-de` |
+| Result card on the German age calculator | `w-age-calculator-r-de` |
+
+**Token list.** `docs/seo/campaign-tokens.tsv` (written by
+`scripts/build-campaigns.mjs` on every build) lists every token on the site with
+its page URL, position and locale, plus the short links in `_redirects`
+(`/app`, `/download`, `/ios`, kept as they are). Join App Store Connect's
+campaign export on the token column. A new page gets its tokens on the build
+that publishes it.
 
 **Length limit.** App Store Connect Help ("Campaign links") allows up to **30**
 characters for a campaign token; older guidance said 40. `campaignToken()`
-throws above 30 so the build fails instead of silently losing data. The
-longest token the current families can produce (`w-support-result-zh-Hans`)
-is 24.
+throws above 30 so the build fails instead of silently losing data; page ids
+are cut so the longest locale still fits.
+
+**Five-download floor.** App Store Connect shows a campaign only once it has 5
+first-time downloads, so low-traffic pages may not appear on their own. Sum
+tokens by page id, position or locale from the token list when a page is
+below the floor.
 
 **Provider token.** It identifies the developer account and is the same for
 every campaign. Get it once: App Store Connect → Apps → Left → Analytics →
@@ -206,7 +224,9 @@ attributed when they happen within 24 hours of the click.
 
 `smartBannerMeta()` writes `<meta name="apple-itunes-app" content="app-id=6740155884">`.
 Once a provider token exists it adds
-`affiliate-data=pt=<pt>&ct=w-banner&mt=8`.
+`affiliate-data=pt=<pt>&ct=<prefix>-<page id>-b-<locale>&mt=8`, on every page
+that has a banner and in every locale copy (`retagSmartBanner()` keeps a
+hand-written `app-argument`).
 
 Apple's WebKit reference ("Promoting apps with Smart App Banners") documents
 only `app-id` and `app-argument`. App Store Connect Help ("Campaign links")

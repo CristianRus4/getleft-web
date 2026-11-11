@@ -6,15 +6,16 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import assert from 'node:assert/strict';
 import { fileURLToPath } from 'node:url';
-import { appStoreUrl, rewriteAppStoreLinks, smartBannerMeta, isOwnAppStoreHref, CT_MAX_LENGTH, siteConfig } from './appstore.mjs';
+import { appStoreUrl, rewriteAppStoreLinks, smartBannerMeta, retagSmartBanner, canonicalAppStoreLinks, campaignToken, pageCampaignId, isOwnAppStoreHref, CT_MAX_LENGTH, siteConfig } from './appstore.mjs';
+import { englishPages } from '../site-inject.mjs';
 
 const ROOT_DIR = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 const PAGES = [
-  ['index.html', 'home', 'en'],
-  ['blog/how-to-build-a-streak.html', 'blog', 'en'],
-  ['tools/days-until-birthday.html', 'tool', 'en'],
-  ['support/streaks-vs-habits.html', 'support', 'en'],
+  ['index.html', 'en'],
+  ['blog/how-to-build-a-streak.html', 'en'],
+  ['tools/days-until-birthday.html', 'en'],
+  ['support/streaks-vs-habits.html', 'en'],
 ];
 const DUMMY = { appStoreProviderToken: '000000' };
 
@@ -36,10 +37,10 @@ console.log(`site.config.json: appId=${cfg.appId} providerToken=${cfg.appStorePr
 
 for (const [mode, override] of [['config as is', undefined], ['dummy provider token', DUMMY]]) {
   console.log(`\n== ${mode}`);
-  for (const [page, family, locale] of PAGES) {
+  for (const [page, locale] of PAGES) {
     const html = readFileSync(path.join(ROOT_DIR, page), 'utf8');
     const links = [];
-    const out = rewriteAppStoreLinks(html, { family, locale, config: override, links });
+    const out = rewriteAppStoreLinks(html, { page, locale, config: override, links });
     console.log(`-- ${page} (${links.length} links)`);
     for (const l of links) {
       console.log(`   ${l.placement.padEnd(7)} ${l.url}${l.ct ? `  [ct ${l.ct.length} chars]` : ''}`);
@@ -47,7 +48,7 @@ for (const [mode, override] of [['config as is', undefined], ['dummy provider to
     }
     assert.ok(links.length > 0, `${page}: no App Store links found`);
     assert.equal(metaTag(out), metaTag(html), `${page}: apple-itunes-app meta changed`);
-    assert.equal(rewriteAppStoreLinks(out, { family, locale, config: override }), out, `${page}: rewrite is not idempotent`);
+    assert.equal(rewriteAppStoreLinks(out, { page, locale, config: override }), out, `${page}: rewrite is not idempotent`);
     const own = anchors(out).filter(a => isOwnAppStoreHref(a.href, cfg.appId));
     for (const a of own) {
       assert.ok(a.cta, `${page}: link without data-cta: ${a.tag}`);
@@ -65,19 +66,40 @@ for (const [mode, override] of [['config as is', undefined], ['dummy provider to
   }
 }
 
-assert.equal(appStoreUrl({ family: 'blog', placement: 'END', locale: 'zh-Hant', config: DUMMY }),
-  `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=000000&ct=w-blog-end-zh-Hant&mt=8`);
-assert.throws(() => appStoreUrl({ family: 'a-very-long-family-name', placement: 'inline', locale: 'zh-Hant', config: DUMMY }), /characters/);
-assert.equal(appStoreUrl({ family: 'other', placement: 'qr', locale: 'all' }), cfg.appStoreProviderToken
-  ? `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=${cfg.appStoreProviderToken}&ct=w-other-qr-all&mt=8`
+// Tokens: <prefix>-<page id>-<position letter>-<locale>, at most CT_MAX_LENGTH, one id per page.
+assert.equal(appStoreUrl({ page: 'index.html', placement: 'END', locale: 'zh-Hant', config: DUMMY }),
+  `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=000000&ct=w-home-e-zh-Hant&mt=8`);
+assert.equal(campaignToken({ page: 'countdown-widget.html', placement: 'hero', locale: 'en', config: DUMMY }), 'w-countdown-widget-h-en');
+assert.equal(campaignToken({ page: 'blog/index.html', placement: 'nav', locale: 'de', config: DUMMY }), 'w-blog-n-de');
+assert.match(campaignToken({ page: 'blog/best-countdown-wallpaper-apps-iphone.html', placement: 'inline', locale: 'zh-Hans', config: DUMMY }), /^w-cd-wall-[0-9a-f]{4}-i-zh-Hans$/);
+assert.throws(() => campaignToken({ page: 'index.html', placement: 'inline', locale: 'zh-Hant', config: { ...DUMMY, campaignPrefix: 'a-very-long-campaign-prefix' } }), /characters/);
+assert.equal(appStoreUrl({ page: 'index.html', placement: 'qr', locale: 'all' }), cfg.appStoreProviderToken
+  ? `https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=${cfg.appStoreProviderToken}&ct=w-home-q-all&mt=8`
   : `https://apps.apple.com/app/id${cfg.appId}`);
+{
+  const ids = new Map();
+  for (const page of await englishPages()) {
+    const id = pageCampaignId(page);
+    assert.ok(!ids.has(id) || ids.get(id) === page, `pages ${ids.get(id)} and ${page} share the campaign id ${id}`);
+    ids.set(id, page);
+    assert.ok(campaignToken({ page, placement: 'banner', locale: 'zh-Hans', config: DUMMY }).length <= CT_MAX_LENGTH);
+  }
+}
 const redeem = '<a href="https://apps.apple.com/redeem?ctx=offercodes&id=6740155884&code=X">r</a>';
-assert.equal(rewriteAppStoreLinks(redeem, { family: 'other', locale: 'en', config: DUMMY }), redeem);
+assert.equal(rewriteAppStoreLinks(redeem, { page: 'index.html', locale: 'en', config: DUMMY }), redeem);
 const variants = `<nav class="top-nav"><a href='https://apps.apple.com/us/app/x/id${cfg.appId}?a=1&amp;b=2'>a</a></nav><div data-tool-result><p><a class="dl-btn" href="https://apps.apple.com/app/id${cfg.appId}">b</a></p></div><a href="https://apps.apple.com/app/id1">other app</a>`;
 const vlinks = [];
-rewriteAppStoreLinks(variants, { family: 'tool', locale: 'de', config: DUMMY, links: vlinks });
-assert.deepEqual(vlinks.map(l => l.ct), ['w-tool-nav-de', 'w-tool-result-de']);
+rewriteAppStoreLinks(variants, { page: 'tools/age.html', locale: 'de', config: DUMMY, links: vlinks });
+assert.deepEqual(vlinks.map(l => l.ct), ['w-age-n-de', 'w-age-r-de']);
 
-console.log('\nsmartBannerMeta() now:        ' + smartBannerMeta());
-console.log('smartBannerMeta() with token: ' + smartBannerMeta({ config: DUMMY }));
+// Banner: the page's own token; a hand-written app-argument is kept.
+const handBanner = `<meta name="apple-itunes-app" content="app-id=${cfg.appId}, app-argument=https://example.com/x, affiliate-data=pt=000000&amp;ct=w-banner&amp;mt=8" />`;
+assert.equal(retagSmartBanner(handBanner, { page: '404.html', locale: 'fr', config: DUMMY }),
+  `<meta name="apple-itunes-app" content="app-id=${cfg.appId}, app-argument=https://example.com/x, affiliate-data=pt=000000&amp;ct=w-404-b-fr&amp;mt=8" />`);
+
+// Units hold one fixed App Store URL, whatever the token; other apps' links are untouched.
+const unit = `Get <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id${cfg.appId}?pt=1&amp;ct=w-x-i-en&amp;mt=8">Left</a> or <a href="https://apps.apple.com/us/app/id1">this</a>`;
+assert.equal(canonicalAppStoreLinks(unit), `Get <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/id${cfg.appId}">Left</a> or <a href="https://apps.apple.com/us/app/id1">this</a>`);
+
+console.log('\nsmartBannerMeta() on the home page: ' + smartBannerMeta({ page: 'index.html', locale: 'en' }));
 console.log('\nAll assertions passed.');

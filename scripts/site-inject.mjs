@@ -75,12 +75,6 @@ export function contentType(page) {
   return 'landing';
 }
 
-// The family label used in App Store campaign tokens.
-export function ctaFamily(page) {
-  const t = contentType(page);
-  return ({ home: 'home', blog: 'blog', tool: 'tool', support: 'support', legal: 'legal', press: 'other', contact: 'other', webapp: 'other', landing: 'land' })[t] || 'other';
-}
-
 function cleanInternalLinks(html, page) {
   // Absolute .html links → clean URLs (Cloudflare 308s them anyway).
   html = html.replace(/(href)="(\/[^"#?]*?)(?:index\.html|\.html)([?#][^"]*)?"/g, (full, attr, p, qs = '') => {
@@ -212,16 +206,14 @@ export async function run({ quiet = false } = {}) {
     if (config.naverSiteVerification) html = setMeta(html, 'naver-site-verification', config.naverSiteVerification); // Naver Search Advisor (ko)
 
     const indexable = !NOINDEX.has(page);
-    if (indexable && !NO_ANALYTICS.has(page) && page !== 'web.html') {
-      const banner = appstore?.smartBannerMeta ? appstore.smartBannerMeta() : `<meta name="apple-itunes-app" content="app-id=${config.appId || '6740155884'}">`;
-      if (!/<meta\s+name="apple-itunes-app"/i.test(html) || /<!-- left:smart-banner:start -->/.test(html)) {
+    const handBanner = /<meta\s+name="apple-itunes-app"/i.test(html) && !/<!-- left:smart-banner:start -->/.test(html);
+    if ((indexable || handBanner) && !NO_ANALYTICS.has(page) && page !== 'web.html') {
+      if (!handBanner) {
+        const banner = appstore?.smartBannerMeta ? appstore.smartBannerMeta({ page, locale: 'en' }) : `<meta name="apple-itunes-app" content="app-id=${config.appId || '6740155884'}">`;
         html = upsertBlock(html, 'smart-banner', `  ${banner}`, /<meta\s+name="viewport"[^>]*>/i);
-      } else if (appstore?.smartBannerMeta) {
-        // Hand-written banner (the home pages pass an app-argument): keep that, add the campaign token.
-        html = html.replace(/<meta\s+name="apple-itunes-app"\s+content="([^"]*)"\s*\/?>/i, (tag, content) => {
-          const arg = /app-argument=([^,]+)/.exec(content.replace(/&amp;/g, '&'));
-          return arg ? appstore.smartBannerMeta({ appArgument: arg[1].trim() }) : tag;
-        });
+      } else if (appstore?.retagSmartBanner) {
+        // Hand-written banner (the home pages pass an app-argument): keep that, set this page's campaign token.
+        html = appstore.retagSmartBanner(html, { page, locale: 'en' });
       }
     }
 
@@ -238,7 +230,7 @@ export async function run({ quiet = false } = {}) {
       if (consentPartial) html = upsertBlock(html, 'consent', consentPartial.trim(), /<\/body>/i, 'before');
       else html = removeBlock(html, 'consent');
       if (appstore?.rewriteAppStoreLinks) {
-        html = appstore.rewriteAppStoreLinks(html, { family: ctaFamily(page), locale: 'en' });
+        html = appstore.rewriteAppStoreLinks(html, { page, locale: 'en' });
       }
     }
 

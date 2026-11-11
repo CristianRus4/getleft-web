@@ -6,6 +6,10 @@ import { readFileSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { annotateHash, translateJsonLd, _internal } from './annotate.mjs';
+import { canonicalQueued } from './queued.mjs';
+import { canonicalAppStoreLinks } from './appstore.mjs';
+// Entries hold a unit's stable form (queued links switched on, App Store links untagged).
+const stable = s => canonicalAppStoreLinks(canonicalQueued(s));
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..', '..');
 const { parseHtml, markerRanges, hasLetters, collectText, CONTENT_EXCLUDED } = _internal;
@@ -116,8 +120,8 @@ function check(label, src, prefix, { expectUncovered = null, print = true } = {}
       textUnits++;
       const suffix = k.slice(pfx.length);
       referenced.add(suffix);
-      // (b) inner HTML equals the entry
-      const inner = html.slice(el.startTagEnd, el.endStart);
+      // (b) inner HTML, in its stable form, equals the entry
+      const inner = stable(html.slice(el.startTagEnd, el.endStart));
       if (entries[suffix] === undefined) fail(label, `missing entry ${suffix}`);
       else if (entries[suffix] !== inner && entries[suffix].replace(/\s+/g, ' ').trim() !== inner.replace(/\s+/g, ' ').trim()) {
         fail(label, `inner HTML of ${k} differs from its entry`);
@@ -147,7 +151,7 @@ function check(label, src, prefix, { expectUncovered = null, print = true } = {}
     if (!key.startsWith(pfx)) return full;
     regexText++;
     const e = entries[key.slice(pfx.length)];
-    if (e === undefined || e.replace(/\s+/g, ' ').trim() !== inner.replace(/\s+/g, ' ').trim()) fail(label, `build regex sees different inner HTML for ${key}`);
+    if (e === undefined || e.replace(/\s+/g, ' ').trim() !== stable(inner).replace(/\s+/g, ' ').trim()) fail(label, `build regex sees different inner HTML for ${key}`);
     return full;
   });
   if (regexText !== textUnits) fail(label, `build regex matched ${regexText} text units, tree has ${textUnits}`);

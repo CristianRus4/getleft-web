@@ -4,7 +4,8 @@
 // 0. promote scheduled pages that are due  1. tools pages
 // 2. English page normalisation (links, canonicals, nav, analytics, CTAs)
 // 3. blog list cards for live posts that have none, and each post's Related list
-// 4. locale copies + sitemap + publish calendar  5. translation report + gate
+// 4. locale copies + sitemap + publish calendar, then the App Store campaign token list
+// 5. translation report + gate
 // 6. publish schedule checks  7. site checks
 // Cloudflare Pages serves the committed output, so commit what this writes.
 //
@@ -34,6 +35,7 @@ const steps = [
   ['blog-list', ['scripts/build-blog-list.mjs']],
   ['related', ['scripts/build-related.mjs']],
   ['i18n', ['scripts/build-i18n.mjs', '--allow-missing']],
+  ['campaigns', ['scripts/build-campaigns.mjs']],
   ['translations', ['scripts/check-i18n.mjs', ...(skipGate ? [] : ['--gate'])]],
   ['schedule', ['scripts/check-publish.mjs']],
   ['checks', ['scripts/check-site.mjs']],
