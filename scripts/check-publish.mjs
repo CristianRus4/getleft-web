@@ -11,8 +11,12 @@
 //   - more than three locales releasing on the same future day, or two future English pages on the same day
 //     (policy: up to three languages and one English page per day; owner, 2026-10-24)
 //   - a future page missing from scheduled/, or already at its live path
-//   - any live page, sitemap.xml or llms.txt linking to a page that is still scheduled
-//     (links are not rewritten: add the link on or after the page's date)
+//   - any live page, sitemap.xml or llms.txt linking to a page that is still scheduled, unless
+//     the link is marked with data-queued (lib/queued.mjs): then the page shows a fallback and
+//     the build switches the link on from the page's date
+//   - a data-queued marker in another shape, or whose target is live (the build should have
+//     switched it on) or is neither a page nor scheduled; a marker left in a locale copy
+//   - a Related list entry (data-manual, lib/related.mjs) that is neither a page nor scheduled
 //   - a locale copy or sitemap URL for a family/locale whose release has not come
 
 import { promises as fs, existsSync } from 'node:fs';
@@ -24,6 +28,7 @@ import { SCHEDULE_FILE, SCHEDULED_DIR, CALENDAR_FILE, buildDate, isDate, isRelea
 import { englishPages } from './site-inject.mjs';
 import { BLOG_INDEX, listedSlugs, addCards } from './build-blog-list.mjs';
 import { hashValue } from './lib/annotate.mjs';
+import { QUEUED_A_RE, QUEUED_SPAN_RE, QUEUED_ANY_RE, cleanPath } from './lib/queued.mjs';
 
 const errors = [];
 const warnings = [];
@@ -111,6 +116,32 @@ async function checkTree(date) {
       for (const href of hrefs) {
         const p = target.get(normalizeHref(href));
         if (p) fail(`${file} links to ${href}, which is scheduled for ${pages[p]}; remove the link until then (or link it on that day)`);
+      }
+    }
+  }
+
+  // Links to queued pages (lib/queued.mjs) and Related list entries (lib/related.mjs).
+  {
+    const pendingPaths = new Set(pending.map(p => `/${pageToUrlPath(p)}`));
+    const scheduledPaths = new Set(Object.keys(pages).map(p => `/${pageToUrlPath(p)}`));
+    const english = new Set(await englishPages());
+    const isPage = p => existsSync(path.join(ROOT, p === '/' ? 'index.html' : p.endsWith('/') ? `${p.slice(1)}index.html` : `${p.slice(1)}.html`));
+    for (const file of await liveFiles()) {
+      const text = await fs.readFile(path.join(ROOT, file), 'utf8');
+      if (!text.includes('data-queued') && !text.includes('data-manual')) continue;
+      const any = [...text.matchAll(QUEUED_ANY_RE)].map(m => m[1]);
+      if (any.length && !english.has(file)) { fail(`${file} still has a data-queued marker; locale copies render the fallback`); continue; }
+      const shaped = [...text.matchAll(QUEUED_A_RE)].map(m => m[2]).concat([...text.matchAll(QUEUED_SPAN_RE)].map(m => m[1]));
+      if (shaped.length !== any.length) fail(`${file}: a data-queued marker has another shape; write <a href="/live" data-queued="/queued"> or <span data-queued="/queued">words</span>`);
+      for (const target of shaped.map(cleanPath)) {
+        if (pendingPaths.has(target)) continue;
+        if (isPage(target)) fail(`${file}: data-queued="${target}" is live; the build should have switched the link on`);
+        else fail(`${file}: data-queued="${target}" is not a page or a scheduled page`);
+      }
+      for (const m of text.matchAll(/\sdata-manual="([^"]*)"/g)) {
+        for (const entry of m[1].split(/\s+/).filter(Boolean)) {
+          if (!isPage(entry) && !scheduledPaths.has(entry)) fail(`${file}: Related list entry ${entry} is not a page or a scheduled page`);
+        }
       }
     }
   }
@@ -231,8 +262,29 @@ async function selftest() {
   expect(!linked.ok && linked.out.includes(`${host} links to /${pageToUrlPath(fixturePage)}`), `${D0}: a link from ${host} to the scheduled page fails the check`);
   await fs.writeFile(T(host), hostHtml);
 
+  // Marked links to the scheduled page pass, show their fallback until its date, then switch on.
+  const fixturePath = `/${pageToUrlPath(fixturePage)}`;
+  const badShape = hostHtml.replace('</body>', `<p><a data-queued="${fixturePath}" href="/">soon</a></p>\n</body>`);
+  await fs.writeFile(T(host), badShape);
+  const shapeRun = run(['scripts/check-publish.mjs'], D0);
+  expect(!shapeRun.ok && shapeRun.out.includes('has another shape'), `${D0}: a data-queued marker in another shape fails the check`);
+  const marked = `<p>Read <a href="/" data-queued="${fixturePath}">the new page</a> or <span data-queued="${fixturePath}">this one</span>.</p>`;
+  const finalUnit = `Read <a href="${fixturePath}">the new page</a> or <a href="${fixturePath}">this one</a>.`;
+  await fs.writeFile(T(host), hostHtml.replace('</body>', `${marked}\n</body>`));
+  const markedRun = run(['scripts/check-publish.mjs'], D0);
+  expect(markedRun.ok, `${D0}: links to the scheduled page marked with data-queued pass the check`);
+
   // D1: release live, page still held, so no translation of it either.
   build(D1);
+  {
+    const en = await read(host);
+    const loc1 = existsSync(T(`${loc}/${host}`)) ? await read(`${loc}/${host}`) : '';
+    expect(en.includes(marked), `${D1}: the English page keeps the marked links and shows the fallback`);
+    expect(loc1 && !loc1.includes('data-queued') && !loc1.includes(`${fixturePath}"`) && loc1.includes(`href="/${loc}/">the new page</a>`) && loc1.includes('this one'),
+      `${D1}: the ${loc} copy renders the fallback link and the plain words`);
+    const enCat = await read(`i18n/${family.id}/en.json`);
+    expect(enCat.includes(JSON.stringify(finalUnit)), `${D1}: the unit is extracted in its final form, so its key survives the switch`);
+  }
   sitemap = await read('sitemap.xml');
   const live = await familyCopies();
   expect(live.length >= ready, `${D1}: ${live.length} ${loc}/${dir}/ copies published (${ready} ready)`);
@@ -258,6 +310,13 @@ async function selftest() {
   expect(existsSync(T(`${loc}/${fixturePage}`)) && sitemap.includes(`<loc>${pageUrl(fixturePage, loc)}</loc>`), `${D2}: its ${loc} copy is published with it`);
   expect((await read(`i18n/${family.id}/en.json`)).includes(`"${slugOf(fixturePage)}"`), `${D2}: the build extracts its English for translation`);
   expect(!/\| scheduled \|/.test(await read(CALENDAR_FILE)), `${D2}: calendar shows both items live`);
+  {
+    const en = await read(host);
+    expect(en.includes(`<p>${finalUnit}</p>`) && !en.includes('data-queued'), `${D2}: the marked links are plain links to the new page`);
+    expect((await read(`i18n/${family.id}/en.json`)).includes(JSON.stringify(finalUnit)), `${D2}: the unit keeps the same key and text`);
+    const loc2 = existsSync(T(`${loc}/${host}`)) ? await read(`${loc}/${host}`) : '';
+    expect(loc2.includes(`href="/${loc}${fixturePath}">the new page</a>`), `${D2}: the ${loc} copy links to the new page's ${loc} copy`);
+  }
   if (blogList) await checkBlogList({ T, read, run, expect, dir, loc, D2, fixturePage, englishOnly, noindexPage, slug });
 
   for (const [ok, msg] of results) console.log(`  ${ok ? '✓' : '✗'} ${msg}`);

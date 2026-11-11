@@ -187,30 +187,9 @@ None.
 
 ## Links to restore when the target goes live
 
-The New Year posts went live early on 2026-11-12. Their links to posts that were still queued were pointed at live pages, or the words were kept without the link, in English and all 17 languages. When a target goes live, point these links back at it, in every language. For "Related reading" links, the link text was also changed to the new page's title.
+None. A live page may link to a queued page by marking the link (`scripts/lib/queued.mjs`):
 
-| Target | Live date | Page | Link text | Current link |
-|---|---|---|---|---|
-| `blog/daily-habit-tracker-iphone` | 2026-11-17 | `blog/habit-tracker-ideas` | Related reading: "Daily Habit Tracker for iPhone" | `/blog/best-habit-tracker-apps-iphone` ("7 Best Habit Tracker Apps for iPhone (2027)") |
-| `blog/daily-habit-tracker-iphone` | 2026-11-17 | `blog/healthy-habits-for-life` | Related reading: "Daily Habit Tracker for iPhone" | `/blog/best-habit-tracker-apps-iphone` ("7 Best Habit Tracker Apps for iPhone (2027)") |
-| `blog/monthly-countdown-iphone` | 2026-11-18 | `blog/monthly-habit-tracker` | "end of the month" | `/tools/days-left-in-month` |
-| `blog/progress-bar-examples` | 2026-11-19 | `blog/goal-setting-examples` | "progress" | `/blog/goal-progress-tracker-setup` |
-| `blog/progress-bar-examples` | 2026-11-19 | `blog/quarterly-goal-tracker` | "percentage" | `/blog/goal-progress-tracker-setup` |
-| `blog/progress-bar-examples` | 2026-11-19 | `blog/weight-loss-progress-tracker` | "progress bar" | `/blog/goal-progress-tracker-setup` |
-| `blog/progress-bar-examples` | 2026-11-19 | `blog/weight-loss-timeline` | "percentage" | `/blog/goal-progress-tracker-setup` |
-| `blog/date-tracker-app-iphone` | 2026-11-30 | `blog/quit-smoking-timeline` | "days since" | `/days-since-widget` |
-| `blog/visual-habit-tracker` | 2026-12-02 | `blog/100-day-challenge-tracker` | "streak" | `/blog/how-to-build-a-streak` |
-| `blog/visual-habit-tracker` | 2026-12-02 | `blog/habit-tracker-ideas` | "streak" | `/blog/how-to-build-a-streak` |
-| `blog/visual-habit-tracker` | 2026-12-02 | `blog/monthly-habit-tracker` | "streak" | `/blog/how-to-build-a-streak` |
-| `blog/study-countdown-timer-iphone` | 2026-12-08 | `blog/goal-setting-for-students` | "exams" | `/blog/best-exam-countdown-apps-iphone` |
-| `blog/marathon-training-timeline` | 2026-12-10 | `blog/goal-setting-examples` | "race day" | `/countdown-widget` |
-| `blog/habit-building-app-iphone` | 2026-12-11 | `blog/100-day-challenge-tracker` | Related reading: "How to Use a Habit Building App on iPhone, From Day 1 to Automatic" | `/blog/how-to-build-a-streak` ("How to Build a Streak on Your iPhone") |
-| `blog/habit-building-app-iphone` | 2026-12-11 | `blog/healthy-habits-for-life` | Related reading: "How to Use a Habit Building App on iPhone, From Day 1 to Automatic" | `/blog/how-to-build-a-streak` ("How to Build a Streak on Your iPhone") |
-| `blog/habit-building-app-iphone` | 2026-12-11 | `blog/how-to-motivate-yourself-daily` | Related reading: "How to Use a Habit Building App on iPhone, From Day 1 to Automatic" | `/blog/stay-consistent-with-goals` ("How to Stay Consistent with Goals (Without Relying on Willpower)") |
-| `blog/long-term-goal-tracker-iphone` | 2026-12-13 | `blog/goal-setting-examples` | "Big goals" | `/blog/aim-goal-tracker-left` |
-| `blog/long-term-goal-tracker-iphone` | 2026-12-13 | `blog/goal-calendar-iphone` | Related reading: "How to Track Long-Term Goals on iPhone" | `/blog/quarterly-goal-tracker` ("Quarterly Goal Tracker: How to Set and Track 90-Day Goals on iPhone") |
-| `blog/long-term-goal-tracker-iphone` | 2026-12-13 | `blog/quarterly-goal-tracker` | Related reading: "How to Track Long-Term Goals on iPhone" | `/blog/goal-calendar-iphone` ("How to Put Your Goals on a Calendar on iPhone") |
-| `blog/habit-reminder-app-iphone` | 2026-12-15 | `blog/habit-schedule` | "reminders" | none (words kept, link removed) |
-| `blog/habit-reminder-app-iphone` | 2026-12-15 | `blog/healthy-habits-for-life` | "reminders" | none (words kept, link removed) |
-| `blog/habit-reminder-app-iphone` | 2026-12-15 | `blog/quit-smoking-timeline` | Related reading: "Habit Reminder App for iPhone" | `/blog/best-sobriety-counter-apps-iphone` ("Best Sobriety Counter Apps for iPhone in 2027: 7 Compared") |
-| `blog/best-productivity-apps-iphone` | 2026-12-22 | `blog/best-motivation-apps-iphone` | Related reading: "The Best Productivity Apps for iPhone in 2027, One App per Job" | `/blog/best-goal-tracking-apps-iphone` ("Best Goal Tracking Apps for iPhone (2027)") |
+- `<a href="/live-page" data-queued="/blog/queued-post">words</a>` shows the live link until the post's date;
+- `<span data-queued="/blog/queued-post">words</span>` shows just the words until then.
+
+From the post's date the build turns either into `<a href="/blog/queued-post">words</a>`, in English and every language, and check-publish fails on unmarked links to queued pages. The links taken out on 2026-11-12 (and the Widgy alternatives link to the Lock Screen widget apps post) are back in this form. "Related reading" lines now live in each post's generated Related list (`scripts/lib/related.mjs`), where a queued entry shows from its date.

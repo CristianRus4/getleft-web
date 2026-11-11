@@ -12,6 +12,7 @@
 // attribute must be double-quoted.
 
 import { createHash } from 'node:crypto';
+import { canonicalQueued } from './queued.mjs';
 
 const VOID = new Set(['area', 'base', 'br', 'col', 'embed', 'hr', 'img', 'input', 'keygen', 'link', 'meta', 'param', 'source', 'track', 'wbr']);
 const RAW_TEXT = new Set(['script', 'style', 'textarea', 'title', 'xmp', 'iframe', 'noembed', 'noframes', 'noscript']);
@@ -68,7 +69,9 @@ export function annotateHash(html, prefix) {
     for (let a = el.parent; a && a.type === 'el'; a = a.parent) a.annotatedDesc = true;
   };
   const annotateText = el => {
-    const inner = html.slice(el.startTagEnd, el.endStart);
+    // Units are keyed and translated in their final form: a link to a queued page
+    // (lib/queued.mjs) counts as the plain link it becomes on the page's date.
+    const inner = canonicalQueued(html.slice(el.startTagEnd, el.endStart));
     const suffix = 't' + hash(inner);
     addEntry(suffix, inner);
     el.textKey = `${prefix}.${suffix}`;

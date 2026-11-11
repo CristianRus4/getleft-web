@@ -7,6 +7,8 @@
 import { promises as fs, existsSync } from 'node:fs';
 import path from 'node:path';
 import { ROOT, SITE_ORIGIN, FAMILIES, listFamilyPages, pageToUrlPath, readJson } from './lib/site.mjs';
+import { buildDate, pendingPages } from './lib/publish.mjs';
+import { resolveQueuedLinks } from './lib/queued.mjs';
 
 // Pages that must never be indexed. Mood and the Apple Watch app are not shipped yet
 // (Apple Watch is planned, Mood is hidden in production builds); restore them when they ship.
@@ -187,7 +189,8 @@ export async function run({ quiet = false } = {}) {
   for (const f of FAMILIES) familyPages.set(f.id, new Set(await listFamilyPages(f)));
 
   const pages = await englishPages();
-  let changed = 0;
+  const pending = new Set(pendingPages(buildDate()).map(p => `/${pageToUrlPath(p)}`));
+  let changed = 0, linksOn = 0;
   for (const page of pages) {
     const file = path.join(ROOT, page);
     const before = await fs.readFile(file, 'utf8');
@@ -196,6 +199,10 @@ export async function run({ quiet = false } = {}) {
     if (!isDocument) continue;
 
     html = cleanInternalLinks(html, page);
+    // Links to queued pages (lib/queued.mjs) switch on once their target is live.
+    const queued = resolveQueuedLinks(html, target => pending.has(target));
+    html = queued.html;
+    linksOn += queued.resolved.length;
     html = setCanonical(html, page);
     html = setRobots(html, page);
     html = dedupeHreflang(html);
@@ -240,7 +247,7 @@ export async function run({ quiet = false } = {}) {
       changed++;
     }
   }
-  if (!quiet) console.log(`[inject] ${pages.length} English pages checked, ${changed} updated${gaId ? '' : ' (analytics off: no GA4 ID yet)'}.`);
+  if (!quiet) console.log(`[inject] ${pages.length} English pages checked, ${changed} updated${gaId ? '' : ' (analytics off: no GA4 ID yet)'}${linksOn ? `; ${linksOn} link(s) to newly live pages switched on` : ''}.`);
   return { pages, familyPages };
 }
 

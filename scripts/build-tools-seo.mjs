@@ -1030,32 +1030,36 @@ const relatedOverrides = {
 
 const groups = [
   {
+    name: 'Holidays & seasons',
+    slugs: ['christmas-countdown-widget', 'days-until-new-year', 'days-until-new-years-eve', 'days-until-easter', 'days-until-valentines', 'days-until-halloween', 'days-until-thanksgiving', 'days-until-mothers-day', 'days-until-fathers-day', 'days-until-spring', 'days-until-summer', 'days-until-fall', 'days-until-winter', 'days-until-anzac-day', 'days-until-black-friday', 'days-until-boxing-day', 'days-until-chinese-new-year', 'days-until-diwali', 'days-until-eid', 'days-until-hanukkah', 'days-until-july-4th', 'days-until-labor-day', 'days-until-pride-month', 'days-until-ramadan', 'days-until-super-bowl', 'weeks-until-memorial-day'],
+  },
+  {
     name: 'Countdowns',
-    slugs: ['date-countdown-calculator', 'time-left-in-year-calculator', 'time-passed-in-year-calculator', 'percentage-year-calculator', 'christmas-countdown-widget', 'days-until-easter', 'days-until-spring', 'days-until-summer', 'days-until-fall', 'days-until-winter', 'days-until-new-year', 'days-until-halloween', 'days-until-valentines', 'days-until-thanksgiving', 'days-until-mothers-day', 'days-until-fathers-day', 'days-until-birthday', 'time-until-weekend', 'days-until-anzac-day', 'days-until-black-friday', 'days-until-boxing-day', 'days-until-chinese-new-year', 'days-until-diwali', 'days-until-eid', 'days-until-hanukkah', 'days-until-july-4th', 'days-until-labor-day', 'days-until-new-years-eve', 'days-until-pride-month', 'days-until-ramadan', 'days-until-super-bowl', 'weeks-until-memorial-day'],
+    slugs: ['date-countdown-calculator', 'countdown-timer', 'deadline-countdown-calculator', 'days-until-birthday', 'anniversary-countdown', 'vacation-countdown', 'wedding-countdown', 'retirement-countdown-calculator', 'time-until-weekend'],
+  },
+  {
+    name: 'Time left & progress',
+    slugs: ['time-left-in-year-calculator', 'time-passed-in-year-calculator', 'percentage-year-calculator', 'weeks-left-in-year', 'days-left-in-month', 'quarter-countdown-calculator', 'fiscal-year-progress-calculator', 'year-progress-wallpaper'],
   },
   {
     name: 'Date math',
-    slugs: ['days-between-two-dates', 'hours-between-two-dates', 'weeks-until-date', 'business-days-calculator', 'add-subtract-date-calculator', 'what-was-the-date', 'age-calculator', 'iso-week-number', 'minutes-between-two-times', 'time-between-two-times', '120-days-from-today', '30-days-from-today', '45-days-from-today', '60-days-from-today', '90-days-from-today', 'days-from-today', 'days-left-in-month', 'weeks-left-in-year'],
+    slugs: ['days-between-two-dates', 'hours-between-two-dates', 'weeks-until-date', 'add-subtract-date-calculator', 'what-was-the-date', 'age-calculator', 'iso-week-number', 'minutes-between-two-times', 'time-between-two-times', 'days-from-today', '30-days-from-today', '45-days-from-today', '60-days-from-today', '90-days-from-today', '120-days-from-today'],
   },
   {
-    name: 'Since & streaks',
-    slugs: ['days-since-date', 'hours-since-date', 'anniversary-countdown', 'sobriety-calculator', 'habit-streak-calculator'],
+    name: 'Habits & streaks',
+    slugs: ['habit-streak-calculator', 'days-since-date', 'hours-since-date', 'sobriety-calculator'],
   },
   {
     name: 'Work & school',
-    slugs: ['business-days-from-date', 'working-hours-calculator', 'workday-countdown', 'school-days-calculator', 'semester-countdown-calculator', 'meeting-time-calculator'],
+    slugs: ['business-days-calculator', 'business-days-from-date', 'working-hours-calculator', 'workday-countdown', 'school-days-calculator', 'semester-countdown-calculator', 'meeting-time-calculator'],
   },
   {
-    name: 'Planning countdowns',
-    slugs: ['deadline-countdown-calculator', 'vacation-countdown', 'wedding-countdown', 'retirement-countdown-calculator', 'quarter-countdown-calculator', 'fiscal-year-progress-calculator', 'countdown-timer'],
+    name: 'Life & health',
+    slugs: ['life-in-weeks-calculator', 'life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'fasting-countdown', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator'],
   },
   {
     name: 'Time converters',
     slugs: ['unix-timestamp-converter', 'unix-milliseconds-converter', 'date-units-converter', 'time-zone-meeting-planner', 'reading-time-calculator'],
-  },
-  {
-    name: 'Life & health',
-    slugs: ['life-in-weeks-calculator', 'life-expectancy-calculator', 'pregnancy-due-date-calculator', 'sleep-calculator', 'intermittent-fasting-duration-calculator', 'end-of-fasting-calculator', 'fasting-countdown', 'year-progress-wallpaper'],
   },
 ];
 

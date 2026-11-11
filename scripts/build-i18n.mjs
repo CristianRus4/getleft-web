@@ -28,6 +28,8 @@ import {
   listFamilyPages, pageToUrlPath, pageUrl, hreflangBlock, lastModified, escapeText, escapeAttr, readJson,
 } from './lib/site.mjs';
 import { buildDate, isReleased, writeCalendar } from './lib/publish.mjs';
+import { queuedFallbacks, renderQueuedFallbacks, QUEUED_ANY_RE } from './lib/queued.mjs';
+import { localizeBlock, h1Inner } from './lib/related.mjs';
 
 const args = new Set(process.argv.slice(2));
 const ALLOW_MISSING = args.has('--allow-missing');
@@ -168,6 +170,18 @@ async function main() {
     if (html !== before) await fs.writeFile(file, html);
   }
 
+  // Titles for the Related list (lib/related.mjs): the target's translated h1, where the
+  // target has a copy in that language.
+  const relatedTitle = (href, langCode, tree) => {
+    const page = urlToPage.get(href.replace(/\.html$/, ''));
+    if (!page || !availability.get(page)?.has(langCode)) return null;
+    const f = pageFamily.get(page);
+    const inner = f.mode === 'hash' ? h1Inner(annotated.get(page)?.html || '') : null;
+    if (inner == null || !annotateModule) return null;
+    const value = lookupRaw(tree, `${f.id}.${hashSlug(page)}.t${annotateModule.hashValue(inner)}`);
+    return typeof value === 'string' && value.trim() ? value : null;
+  };
+
   // 5. Locale copies.
   let totalErrors = 0;
   for (const loc of TARGET_LOCALES) {
@@ -181,7 +195,7 @@ async function main() {
       const src = f.mode === 'hash'
         ? pruned.get(`${loc.code}/${page}`) ?? annotated.get(page).html
         : await fs.readFile(path.join(ROOT, page), 'utf8');
-      const { html, missing } = transform(src, page, loc, tree, enData, { availability, urlToPage, family: f, switcherTpl });
+      const { html, missing } = transform(src, page, loc, tree, enData, { availability, urlToPage, family: f, switcherTpl, relatedTitle });
       if (f.mode === 'keys') {
         totalErrors += missing.length;
         if (missing.length && VERBOSE) console.warn(`[i18n] ${loc.code} ${page}: ${missing.length} missing key(s): ${missing.slice(0, 5).join(', ')}${missing.length > 5 ? '…' : ''}`);
@@ -473,6 +487,8 @@ function transform(html, pagePath, locale, data, enData, ctx) {
   const missing = [];
 
   html = stripInjection(html, INJECTION_MARK_START, INJECTION_MARK_END);
+  // Links to queued pages: the English page's fallbacks, read before the units are replaced.
+  const fallbacks = queuedFallbacks(html);
 
   html = html.replace(
     /<([a-zA-Z][\w-]*)([^>]*?)\sdata-i18n="([^"]+)"([^>]*?)>([\s\S]*?)<\/\1>/g,
@@ -533,6 +549,8 @@ function transform(html, pagePath, locale, data, enData, ctx) {
   html = setOgLocale(html, locale, available, pagePath);
 
   html = upsertFooterSwitcher(html, `${SWITCHER_MARK_START}\n${fillSwitcher(ctx.switcherTpl, available)}\n${SWITCHER_MARK_END}`);
+  html = renderQueuedFallbacks(html, fallbacks).replace(QUEUED_ANY_RE, '');
+  if (ctx.relatedTitle) html = localizeBlock(html, href => ctx.relatedTitle(href, locale.code, data));
   html = rewriteLinks(html, locale.code, ctx);
   html = rewriteRelativeAssetPaths(html);
   html = updateCustomSwitcher(html, locale);
