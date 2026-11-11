@@ -184,8 +184,8 @@ async function selftest() {
   const expect = (ok, msg) => results.push([ok, msg]);
   const run = (script, date) => {
     try {
-      execFileSync('node', script, { cwd: tmp, encoding: 'utf8', stdio: 'pipe', env: { ...process.env, BUILD_DATE: date, LEFT_SKIP_I18N_GATE: '1' } });
-      return { ok: true, out: '' };
+      const out = execFileSync('node', script, { cwd: tmp, encoding: 'utf8', stdio: 'pipe', env: { ...process.env, BUILD_DATE: date, LEFT_SKIP_I18N_GATE: '1' } });
+      return { ok: true, out };
     } catch (err) {
       return { ok: false, out: `${err.stdout || ''}${err.stderr || ''}` };
     }
@@ -194,12 +194,17 @@ async function selftest() {
     const r = run(['scripts/build.mjs'], date);
     expect(r.ok, `${date}: build passes`);
     if (!r.ok) console.error(r.out.split('\n').slice(-25).join('\n'));
+    return r;
   };
   const allFamilyPages = async () => (await fs.readdir(T(dir))).filter(e => e.endsWith('.html')).map(e => `${dir}/${e}`);
   const familyCopies = async () => (await allFamilyPages()).filter(p => existsSync(T(`${loc}/${p}`)));
 
-  // D0: release and page both held.
-  build(D0);
+  // D0: release and page both held. Pages with date-driven English (season countdowns) can lose
+  // translation coverage in 2099, so D1 must publish what the build reports ready, not today's count.
+  const d0 = build(D0);
+  const readyRe = new RegExp(`Held until scheduled \\(${D0}\\):[^\\n]*\\b${relKey} (\\d+)`);
+  const ready = Number(d0.out.match(readyRe)?.[1] ?? 0);
+  expect(ready > 0 && ready >= copies.length - 10, `${D0}: ${ready} ${loc}/${dir}/ copies ready and held (${copies.length} live today)`);
   let sitemap = await read('sitemap.xml');
   expect((await familyCopies()).length === 0, `${D0}: no ${loc}/${dir}/ copies before the release`);
   expect(!sitemap.includes(`${SITE_ORIGIN}/${loc}/${dir}/`), `${D0}: sitemap has no ${loc}/${dir}/ URL or hreflang`);
@@ -230,7 +235,7 @@ async function selftest() {
   build(D1);
   sitemap = await read('sitemap.xml');
   const live = await familyCopies();
-  expect(live.length >= copies.length, `${D1}: ${live.length} ${loc}/${dir}/ copies published (${copies.length} live today)`);
+  expect(live.length >= ready, `${D1}: ${live.length} ${loc}/${dir}/ copies published (${ready} ready)`);
   let bad = [];
   for (const p of live) {
     const html = await read(`${loc}/${p}`);
