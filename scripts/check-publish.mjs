@@ -101,8 +101,15 @@ async function checkTree(date) {
     if (!existsSync(path.join(ROOT, SCHEDULED_DIR, page))) fail(`${page} is scheduled for ${pages[page]} but ${SCHEDULED_DIR}/${page} does not exist`);
     if (existsSync(path.join(ROOT, page))) fail(`${page} is scheduled for ${pages[page]} but is already live at ${page}; move it to ${SCHEDULED_DIR}/${page}`);
   }
+  // Due but still in scheduled/: this is the normal state on a publish day before the build runs
+  // (the build moves the file live and switches its data-queued links on).
+  const dueUnmoved = Object.entries(pages)
+    .filter(([page, d]) => d <= date && !existsSync(path.join(ROOT, page)) && existsSync(path.join(ROOT, SCHEDULED_DIR, page)))
+    .map(([page]) => page);
   for (const [page, d] of Object.entries(pages)) {
-    if (d <= date && !existsSync(path.join(ROOT, page))) warnings.push(`${page} was due on ${d} but does not exist`);
+    if (d > date || existsSync(path.join(ROOT, page))) continue;
+    if (dueUnmoved.includes(page)) warnings.push(`${page} is due (${d}) and still in ${SCHEDULED_DIR}/; the next build publishes it`);
+    else warnings.push(`${page} was due on ${d} but exists neither live nor in ${SCHEDULED_DIR}/`);
   }
   for (const f of scheduledFiles()) if (!(f in pages)) warnings.push(`${SCHEDULED_DIR}/${f} has no date in ${SCHEDULE_FILE}; it stays unpublished`);
 
@@ -122,7 +129,7 @@ async function checkTree(date) {
 
   // Links to queued pages (lib/queued.mjs) and Related list entries (lib/related.mjs).
   {
-    const pendingPaths = new Set(pending.map(p => `/${pageToUrlPath(p)}`));
+    const pendingPaths = new Set([...pending, ...dueUnmoved].map(p => `/${pageToUrlPath(p)}`));
     const scheduledPaths = new Set(Object.keys(pages).map(p => `/${pageToUrlPath(p)}`));
     const english = new Set(await englishPages());
     const isPage = p => existsSync(path.join(ROOT, p === '/' ? 'index.html' : p.endsWith('/') ? `${p.slice(1)}index.html` : `${p.slice(1)}.html`));
@@ -300,6 +307,12 @@ async function selftest() {
   }
   expect(bad.length === 0, `${D1}: every ${loc}/${dir}/ copy is indexable, in the sitemap and in hreflang${bad.length ? `: ${bad.slice(0, 3).join('; ')}` : ''}`);
   expect(!existsSync(T(fixturePage)) && !existsSync(T(`${loc}/${fixturePage}`)), `${D1}: the new page and its translation stay held`);
+
+  // D2 before the build: the page is due but still in scheduled/. The daily Action runs this check
+  // before its build moves the page, so marked links to it must pass here (failed on 13 Nov 2026).
+  const dueRun = run(['scripts/check-publish.mjs'], D2);
+  expect(dueRun.ok, `${D2}: before the build, marked links to the page due today pass the check`);
+  if (!dueRun.ok) console.error(dueRun.out.split('\n').slice(-5).join('\n'));
 
   // D2: page promoted, normalised, translated in the same build.
   build(D2);
