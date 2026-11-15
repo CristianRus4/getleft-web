@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-holiday-cd-f619-b-zh-Hans&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhone 节日倒数 App：所有节日放进一个小组件（2027）| Left</title>
+  <meta name="description" content="在 iPhone 上一次设置好节日倒数 App，管一整年：每年重复、一个小组件显示多个节日，以及复活节和排灯节这样会移动的日期。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/blog/holiday-countdown-app-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/holiday-countdown-app-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/holiday-countdown-app-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 节日倒数 App：所有节日放进一个小组件（2027）"  />
+  <meta property="og:description" content="在 iPhone 上一次设置好节日倒数 App，管一整年：每年重复、一个小组件显示多个节日，以及复活节和排灯节这样会移动的日期。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/blog/holiday-countdown-app-iphone" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/countdown-widget-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 节日倒数 App：所有节日放进一个小组件（2027）"  />
+  <meta name="twitter:description" content="在 iPhone 上一次设置好节日倒数 App，管一整年：每年重复、一个小组件显示多个节日，以及复活节和排灯节这样会移动的日期。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/countdown-widget-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone 节日倒数 App：所有节日放进一个小组件（2027）",
+  "description": "在 iPhone 上一次设置好节日倒数 App，管一整年：每年重复、一个小组件显示多个节日，以及复活节和排灯节这样会移动的日期。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-16",
+  "dateModified": "2026-11-16",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/holiday-countdown-app-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部落格",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone 节日倒数 App：所有节日放进一个小组件（2027）",
+      "item": "https://getleft.app/blog/holiday-countdown-app-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "iPhone 上最好的节日倒数 App 是哪一款？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "要找一款能在一个小组件里显示多个节日、能让固定日期每年重复、能让你为每个日期选择天或周、并且能在锁定屏幕上使用的 App。Left 四项都具备；许多倒数 App 只覆盖其中一部分。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "节日倒数可以每年重复吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，适用于日期固定的节日，比如圣诞节、新年和万圣节：把“重复”设为每年。复活节、感恩节、春节、排灯节、开斋节和光明节每年落在不同的日期，所以这些倒数每年更新一次即可。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "距离圣诞节还有几天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在 2026 年 11 月 9 日，距离圣诞节还有 46 天。想看今天的数字，请打开实时的圣诞倒数。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "可以把节日倒数放在 iPhone 锁定屏幕上吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。添加 Left 的“即将到来”小组件（锁定屏幕的圆形或矩形尺寸），并选择节日。开启“为开始做好准备”，还能在节日开始前的几个小时看到实时活动。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我的家人能看到同一个节日倒数吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，需要 Left Premium。联合“即将到来”日期可以让你与已在 Left 中添加的朋友共享一个倒数，这样每个人都能在自己的 iPhone 上倒数到同一天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "不用 App，怎么查距离新年或万圣节还有几天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在浏览器里使用实时倒数，比如距离新年还有几天或距离万圣节还有几天。无需安装或设置。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-holiday-cd-f619-n-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>iPhone 节日倒数 App：所有节日放进一个小组件（2027）</h1>
+<p class="article-meta">更新：<time datetime="2026-11-16">2026 年 11 月 16 日</time>・8 分钟阅读</p>
+<p>大多数人会在 11 月下旬在 iPhone 上找节日倒数 App，加一个圣诞倒数，然后在 12 月 26 日删掉。接着春节、复活节和万圣节又各需要另一个 App。其实有更好的办法：把所有节日在一个 App 里设置一次，让一个小组件显示接下来要到的节日。</p>
+<p>下面会讲：哪些节日可以自动重复，哪些节日每年日期都会变，能同时显示多个节日的小组件，以及为最重要的那个节日准备的 12 月额外设置。示例使用的是我们开发的 App Left，但这些规则适用于任何倒数 App。</p>
+<figure class="post-hero"><img src="/images/blog/countdown-widget-hero.webp" alt="" width="1200" height="675" fetchpriority="high" decoding="async" /><figcaption translate="no"><a href="https://www.pexels.com/photo/paper-envelopes-with-christmas-labels-19312036/" rel="noopener">Nati / Pexels</a></figcaption></figure>
+
+<h2>iPhone 上的节日倒数 App 应该做到什么</h2>
+<p>一个你全年都在用的 App，需要几样只做圣诞倒数的 App 所不具备的功能：</p>
+<ul>
+  <li><strong>一个小组件里有多个日期。</strong>六个节日用六个小组件，会占满整页主屏幕。</li>
+  <li><strong>每年重复。</strong>圣诞节和万圣节应该自己回来，不用你重新添加。</li>
+  <li><strong>每个日期各有单位。</strong>距离圣诞节“46 天”很有用。距离复活节“139 天”就是噪音；“大约 20 周”读起来更好。</li>
+  <li><strong>锁定屏幕和 StandBy。</strong>在 12 月，那是你看得最多的地方。</li>
+  <li><strong>对移动节日给出诚实的答案。</strong>没有任何每年重复的设置知道 2027 年的复活节是 3 月 28 日。得有人去查。</li>
+  <li><strong>共享功能，</strong>如果和家人一起倒数也是乐趣的一部分。</li>
+</ul>
+
+<h2>固定节日与会移动的节日</h2>
+<p>有些节日每年都在日历上的同一天：元旦（1 月 1 日）、情人节（2 月 14 日）、美国独立日（7 月 4 日）、万圣节（10 月 31 日）和圣诞节（12 月 25 日）。每年重复完全能处理好这些节日。</p>
+<p>还有许多节日遵循星期规则或农历，所以每年落在不同的日期。每年重复会让倒数在同一个月同一天回来，这意味着重复的复活节倒数到明年春天就会出错。下面是会移动的主要节日：</p>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>节日</th><th>日期如何确定</th><th>通常范围</th><th>下一个日期</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>感恩节（美国）</td><td>11 月的第四个星期四</td><td>11 月 22 日至 28 日</td><td>2026 年 11 月 26 日</td></tr>
+    <tr><td>光明节</td><td>希伯来历的基斯流月 25 日，从日落开始</td><td>11 月下旬至 12 月下旬</td><td>2026 年 12 月 4 日晚上</td></tr>
+    <tr><td>春节</td><td>中国农历中的新月</td><td>1 月 21 日至 2 月 20 日</td><td>2027 年 2 月 6 日</td></tr>
+    <tr><td>开斋节</td><td>伊斯兰阴历中斋月结束时</td><td>每年大约提前 11 天</td><td>2027 年 3 月 9 日或 10 日前后</td></tr>
+    <tr><td>复活节（西方）</td><td>教会规定的春季满月之后的星期日</td><td>3 月 22 日至 4 月 25 日</td><td>2027 年 3 月 28 日</td></tr>
+    <tr><td>排灯节</td><td>印度教历 Kartika 月的新月</td><td>10 月中旬至 11 月中旬</td><td>2027 年 10 月 29 日</td></tr>
+  </tbody>
+</table>
+</div>
+<p>开斋节取决于见月，各国之间可能相差一天；排灯节和春节也可能因你所在的地方相差一天。在锁定日期之前，请向当地社区、清真寺、寺庙或犹太会堂确认。按星期规则确定的节日也会移动：在美国，母亲节是 5 月的第二个星期日，阵亡将士纪念日是 5 月的最后一个星期一。</p>
+<p>所以规则很简单：<strong>固定节日设为重复，会移动的节日每年查一次。</strong>如果想不做任何设置就快速看一眼，有 <a href="/zh-Hans/tools/days-until-easter">距离复活节还有几天</a>和<a href="/zh-Hans/tools/days-until-thanksgiving">距离感恩节还有几天</a>的实时页面。</p>
+
+<h2>一次设置好全年</h2>
+<p>下面是在 Left 中的设置方法。你只需要做一次。</p>
+<h3>固定节日：添加一次，每年重复</h3>
+<ol>
+  <li>打开 Left，进入<strong>即将到来</strong>。轻点<strong>添加即将到来的日期</strong>（或 <strong>+</strong>）。</li>
+  <li>在现成的日期里搜索这个节日。如果没有，就输入名称或选择<strong>新日期</strong>。</li>
+  <li>把<strong>开始</strong>设为它开始的那一天。对于会持续一段时间的节日，比如圣诞节期间放一周假，把<strong>直到</strong>设为最后一天。</li>
+  <li>把<strong>重复</strong>设为每年，然后保存。</li>
+</ol>
+<h3>会移动的节日：添加今年的日期，然后更新</h3>
+<p>用同样的方式添加复活节、感恩节、春节、排灯节、开斋节或光明节，但要对照上面的表格或你自己的日历核对日期，并保持“重复”关闭。节日过后的第二天，查好明年的日期，修改“开始”。只需要 30 秒，倒数就能再准确一年。</p>
+<p>如果这个节日已经显示在 Apple 的日历 App 中（它可以显示你所在地区的节假日日历），请改为选择<strong>从日历</strong>，导入它的日期和时间。</p>
+<h3>使用开始时间，而不只是日期</h3>
+<p>光明节在日落时开始，所以把“开始”设为 12 月 4 日晚上，而不是午夜。对于新年，把“开始”设为 1 月 1 日凌晨 12:00。这样倒数就会在节日真正开始的那一刻结束。</p>
+
+<h2>一个小组件放下所有节日</h2>
+<p>Left 的<strong>即将到来列表</strong>小组件在大尺寸下最多显示 7 个日期（中尺寸为 3 个）。要添加它，请长按主屏幕的空白处，轻点<strong>编辑</strong>，再轻点<strong>添加小组件</strong>，搜索 Left 并选择即将到来列表。</p>
+<p>列表中的每个日期都保留各自的单位，你可以在 App 里的<strong>更多选项</strong> → <strong>显示为…</strong>中设置（小时、天、周、月或年）。一个简单的方案：</p>
+<div class="table-wrap">
+<table>
+  <thead>
+    <tr><th>距离多远</th><th>显示为</th><th>原因</th></tr>
+  </thead>
+  <tbody>
+    <tr><td>超过 2 个月</td><td>周</td><td>“13 周”比“89 天”更容易想象</td></tr>
+    <tr><td>2 个月到 1 天</td><td>天</td><td>为礼物、旅行和饮食做计划的时间范围</td></tr>
+    <tr><td>最后一天</td><td>小时</td><td>新年前夜和平安夜</td></tr>
+  </tbody>
+</table>
+</div>
+<p>在 2026 年 11 月 9 日，按这种方式设置的列表大致会显示：感恩节 17 天，光明节 25 天，圣诞节 46 天，新年 53 天，春节约 13 周，复活节约 20 周。当较远的节日进入两个月之内时，把它改成按天显示。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-holiday-cd-f619-i-zh-Hans&amp;mt=8" target="_blank" rel="noopener">在 Left 中设置你的节日</a></p>
+
+<h2>让每个节日都有自己的样子</h2>
+<p>轻点日期顶部的预览卡片，选择<strong>添加图片</strong>，从你的照片库或 Unsplash 选一张照片，或选一个符号。单个日期的“即将到来”小组件可以把这张照片显示在数字后面：圣诞节用去年的圣诞树，春节用灯笼，万圣节用南瓜。</p>
+
+<h2>12 月：把最重要的节日放到锁定屏幕上</h2>
+<p>对于你最看重的那个节日，不要只停留在主屏幕：</p>
+<ul>
+  <li><strong>锁定屏幕小组件。</strong>长按锁定屏幕，轻点<strong>自定义</strong>，选择<strong>锁定屏幕</strong>，轻点小组件区域，添加 Left 的“即将到来”小组件（圆形或矩形尺寸），再轻点它来选择节日。</li>
+  <li><strong>最后几个小时的实时活动。</strong>在日期的选项中，开启<strong>为开始做好准备</strong>。在节日开始前的几个小时，锁定屏幕和灵动岛上会显示倒计时。如果把新年设为午夜，就能覆盖 12 月 31 日的最后几个小时。</li>
+  <li><strong>StandBy。</strong>Left 小组件可在 StandBy 中使用，所以在床头柜上横放充电的手机也能显示倒数。</li>
+  <li><strong>会计数的壁纸。</strong>Left 壁纸免费，并通过快捷指令 App 自动更新。它的“特殊日期”模式会倒数到你的某个“即将到来”日期。请参阅<a href="/zh-Hans/support/wallpaper-shortcut">如何设置壁纸快捷指令</a>。</li>
+</ul>
+<p>只想知道今天的数字？实时的<a href="/zh-Hans/tools/christmas-countdown-widget">圣诞倒数</a>可以直接在浏览器中使用。</p>
+
+<h2>和家人一起倒数</h2>
+<p>当每个人看到同一个数字时，节日倒数会更有趣。有了 Left Premium，<a href="/zh-Hans/support/joint-ahead-dates">联合“即将到来”日期</a>可以让你与已在 Left 中添加的朋友共享一个日期，让全家一起倒数到同一顿感恩节晚餐或同一趟回家旅程。</p>
+
+<h2>不用倒数 App 的做法</h2>
+<p>Apple 的日历 App 可以显示你所在地区的节假日，它的小组件会列出即将到来的事项。不过它不会替你数天数。</p>
+<p>其他倒数 App 也能覆盖这套设置的一部分。如果你在比较别的节日倒数计时 App，请检查三件事：小组件能否显示不止一个日期，日期能否每年重复，以及明年的复活节和其他会移动的节日会怎么处理。</p>
+
+<h2>Left 中有哪些是免费的</h2>
+<p>Left 可免费下载。免费方案包含 2 个倒数、2 个习惯、2 条连续记录和 2 个目标，按你创建过的所有项目计数，所以删除一个并不会腾出名额。这够用来放你最重要的两个节日。要放满一整年的节日，需要 Left Premium，它是订阅或终身买断，可解锁不限数量的项目。购买前会在 App 中显示价格。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-holiday-cd-f619-i-zh-Hans&amp;mt=8" target="_blank" rel="noopener">在 Left 中开始倒计时</a></p>
+
+<h2>问题</h2>
+<h3>iPhone 上最好的节日倒数 App 是哪一款？</h3>
+<p>要找一款能在一个小组件里显示多个节日、能让固定日期每年重复、能让你为每个日期选择天或周、并且能在锁定屏幕上使用的 App。Left 四项都具备；许多倒数 App 只覆盖其中一部分。</p>
+<h3>节日倒数可以每年重复吗？</h3>
+<p>可以，适用于日期固定的节日，比如圣诞节、新年和万圣节：把“重复”设为每年。复活节、感恩节、春节、排灯节、开斋节和光明节每年落在不同的日期，所以这些倒数每年更新一次即可。</p>
+<h3>距离圣诞节还有几天？</h3>
+<p>在 2026 年 11 月 9 日，距离圣诞节还有 46 天。想看今天的数字，请打开实时的<a href="/zh-Hans/tools/christmas-countdown-widget">圣诞倒数</a>。</p>
+<h3>可以把节日倒数放在 iPhone 锁定屏幕上吗？</h3>
+<p>可以。添加 Left 的“即将到来”小组件（锁定屏幕的圆形或矩形尺寸），并选择节日。开启“为开始做好准备”，还能在节日开始前的几个小时看到实时活动。</p>
+<h3>我的家人能看到同一个节日倒数吗？</h3>
+<p>可以，需要 Left Premium。联合“即将到来”日期可以让你与已在 Left 中添加的朋友共享一个倒数，这样每个人都能在自己的 iPhone 上倒数到同一天。</p>
+<h3>不用 App，怎么查距离新年或万圣节还有几天？</h3>
+<p>在浏览器里使用实时倒数，比如<a href="/zh-Hans/tools/days-until-new-year">距离新年还有几天</a>或<a href="/zh-Hans/tools/days-until-halloween">距离万圣节还有几天</a>。无需安装或设置。</p>
+
+      <!-- left:related:start -->
+      <section class="support-related">
+        <h2 class="support-related-h2">相关指南</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hans/blog/countdown-screensaver-iphone">如何在 iPhone 上把倒数当作屏幕保护程序</a>
+          <a class="support-related-item" href="/zh-Hans/blog/best-countdown-wallpaper-apps-iphone">2027 年 iPhone 最佳剩余天数和倒数壁纸 App：6 款对比</a>
+          <a class="support-related-item" href="/zh-Hans/blog/countdown-clock-graphic-guide">设计倒数时钟图形：2027 指南</a>
+        </div>
+      </section>
+      <!-- left:related:end -->
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>开始留意真正重要的事。</h2>
+          <p>在 iPhone 下载 Left，看看剩余时间、期待中的日子，养成想维持的习惯，成为更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-holiday-cd-f619-e-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下载 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下载 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
