@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-monthly-cd-9e0d-b-ja&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗 | Left</title>
+  <meta name="description" content="iPhoneで毎月のカウントダウンタイマーを設定。今月の残り日数、月の進捗の割合、家賃や給料日でリセットされるカウントダウンまで。"  />
+  <link rel="canonical" href="https://getleft.app/ja/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗"  />
+  <meta property="og:description" content="iPhoneで毎月のカウントダウンタイマーを設定。今月の残り日数、月の進捗の割合、家賃や給料日でリセットされるカウントダウンまで。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/ja/blog/monthly-countdown-iphone" />
+  <meta property="og:locale" content="ja_JP" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗"  />
+  <meta name="twitter:description" content="iPhoneで毎月のカウントダウンタイマーを設定。今月の残り日数、月の進捗の割合、家賃や給料日でリセットされるカウントダウンまで。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗",
+  "description": "iPhoneで毎月のカウントダウンタイマーを設定。今月の残り日数、月の進捗の割合、家賃や給料日でリセットされるカウントダウンまで。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-countdown-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "ブログ",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗",
+      "item": "https://getleft.app/blog/monthly-countdown-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "今月はあと何日ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "その月の日数から今日の日付を引きます。今日を数えるなら1を足します。2026年11月9日なら、今日を含めて22日、含めなければ21日です。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "今月が何パーセント過ぎたかは、どう計算しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "過ぎた日数に、今日の経過分を足して、その月の日数で割り、100をかけます。2026年11月9日の午後6時なら、(8 + 0.75) ÷ 30 = 29.2%が経過で、70.8%が残りです。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iPhoneに月の進捗ウィジェットはありますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "はい。Leftの「月」ウィジェットは、月をグリッドで表示し、残りの日数または割合をホーム画面やロック画面で確認できます。しかも無料です。Appleのカレンダーウィジェットも月を表示しますが、残りは数えてくれません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "毎月繰り返すカウントダウンはどう設定しますか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "毎月の繰り返しに対応したカウントダウンアプリを使います。Leftなら、「これから」で日付を追加し、開始を次の期日に、繰り返しを毎月に設定します。リマインダーやカレンダーも毎月の繰り返しはできますが、表示されるのは期日で、カウントではありません。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "今月の稼働日はあと何日ですか？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "今日から月末までの平日を数え、職場が休みになる祝日を引きます。2026年11月9日（月）からなら、今日を含めて16日、感謝祭で休みなら15日です。営業日計算ツールでは、任意の2つの日付のあいだの営業日を数えられます。"
+      }
+    }
+  ],
+  "inLanguage": "ja"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="メイン">
+    <div class="container nav-inner">
+      <a href="/ja/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/ja/#features" class="nav-link">機能</a>
+          <a href="/ja/tools/" class="nav-link">ツール</a>
+          <a href="/ja/blog/" class="nav-link">ブログ</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-n-ja&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">ダウンロード</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>iPhoneの月間カウントダウンタイマー：月の残り日数と月の進捗</h1>
+<p class="article-meta">更新：<time datetime="2026-11-18">2026年11月18日</time>・7分</p>
+<p>月間カウントダウンタイマーには、2つの意味があります。今月がどれだけ残っているか、つまり月の残り日数や月の進捗を割合で見たい人もいれば、家賃、給料日、支払いのために、毎月やり直すカウントダウンがほしい人もいます。このガイドでは、iPhoneでのその両方を、計算方法、具体例、そのまま使える設定例とともに紹介します。</p>
+<p>計算には、鉛筆があれば十分です。アプリが役立つ場面では、私たちが作っている時間を意識するアプリ、Leftでのやり方を紹介します。</p>
+<figure class="post-hero"><img src="/images/blog/best-day-counter-apps-iphone-hero.webp" alt="白い紙のカレンダーの31日の上に置かれたオレンジ色の蛍光ペン。隣は30日。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/marker-on-calendar-tT2DSShVDTI" rel="noopener">写真：Eliza Diamond（Unsplash）</a></figcaption></figure>
+
+<h2>月間カウントダウンタイマーの2つの種類</h2>
+<p>答える問いが違うので、まずどちらが必要かを決めましょう。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th></th><th>今月がどれだけ残っているか</th><th>毎月リセットされるカウントダウン</th></tr></thead>
+  <tbody>
+    <tr><td>答える問い</td><td>11月のどのあたりまで来ている？</td><td>家賃の支払いまであとどのくらい？</td></tr>
+    <tr><td>カウントダウンの対象</td><td>月の最後の瞬間</td><td>1日や25日など、決まった日付</td></tr>
+    <tr><td>一般的な表示</td><td>残り22日、または残り71%</td><td>給料日まで16日</td></tr>
+    <tr><td>やり直し</td><td>毎月1日に、自動で</td><td>日付が過ぎると、翌月の日付に移る</td></tr>
+    <tr><td>向いているもの</td><td>月間の目標、予算のペース配分、月末の仕事</td><td>家賃、給料日、支払い、月次の振り返り</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>月の残り日数の求め方</h2>
+<p>まず、その月の日数から始めます。</p>
+<ul>
+  <li><strong>31日：</strong>1月、3月、5月、7月、8月、10月、12月。</li>
+  <li><strong>30日：</strong>4月、6月、9月、11月。</li>
+  <li><strong>28日：</strong>2月。うるう年は29日（次は2028年）。</li>
+</ul>
+<p>次に、数え方を決めます。「残り日数」には、2つの正しい答えがあるからです。</p>
+<ul>
+  <li><strong>今日を含める：</strong>その月の日数 − 今日の日付 + 1。1日の予算や毎日の習慣のように、今日もまだ使える場合に使います。</li>
+  <li><strong>今日を含めない：</strong>その月の日数 − 今日の日付。今日がほぼ終わっている夜に使います。</li>
+</ul>
+<p>月の進捗は、丸ごと過ぎた日数に、今日のうちすでに過ぎた分を足し、その月の日数で割って求めます。</p>
+<p><strong>経過した割合</strong> ＝（今日の日付 − 1 + 今日これまでの時間 ÷ 24）÷ その月の日数 × 100。残りの割合は、100からその値を引いたものです。</p>
+
+<h3>具体例：2026年11月9日の午後6時</h3>
+<ul>
+  <li>11月は30日あります。</li>
+  <li>今日を含めた残り日数：30 − 9 + 1 = <strong>22</strong>。今日を含めない場合：<strong>21</strong>。</li>
+  <li>経過した時間：丸8日と18時間、つまり8.75日。</li>
+  <li>月の進捗：8.75 ÷ 30 = <strong>29.2%経過</strong>、つまり<strong>70.8%が残り</strong>。</li>
+</ul>
+<p>任意の日付までの日数、時間、分、秒を数えるなら、<a href="/ja/tools/date-countdown-calculator">日付カウントダウン計算ツール</a>が計算してくれます。</p>
+
+<h2>「15日目」より「月の何%」のほうが正確な理由</h2>
+<p>月の日数は28日から31日まであるので、同じ日付でも、月ごとに位置が違います。15日の朝の時点で、その月のどのあたりまで来ているかを見てみましょう。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>月の日数</th><th>例</th><th>15日の朝までに経過した割合</th><th>15日を含めた残り日数</th></tr></thead>
+  <tbody>
+    <tr><td>28日</td><td>2026年2月</td><td>50.0%</td><td>14</td></tr>
+    <tr><td>29日</td><td>2028年2月</td><td>48.3%</td><td>15</td></tr>
+    <tr><td>30日</td><td>11月</td><td>46.7%</td><td>16</td></tr>
+    <tr><td>31日</td><td>12月</td><td>45.2%</td><td>17</td></tr>
+  </tbody>
+</table>
+</div>
+<p>「同じ」日付で、3日の差があるということです。28日は2月の最後の日ですが、31日ある月には、まだ4日残っています。支出の上限、売上の目標、読書の目標など、カレンダーに合わせて何かのペースを管理するなら、日付では誤解しがちなところを、割合が正確に伝えてくれます。</p>
+<p>これは、1年の進捗をもっと小さな単位にしたものと同じ考え方です。詳しくは<a href="/ja/blog/what-is-year-progress">1年の進捗とは何か、どう計算するか</a>で、もっと大きな全体像は<a href="/ja/tools/time-left-in-year-calculator">1年の残り時間の計算ツール</a>で確認できます。</p>
+
+<h2>iPhoneに月の進捗ウィジェットを追加する方法</h2>
+<p>Appleの「カレンダー」ウィジェットは、今日に印をつけて月を表示できますが、残りを数えてはくれません。数字や割合を知りたいなら、計算してくれるウィジェットが必要です。</p>
+<p>Leftには、月の進捗が最初から入っています。「残り時間」には「月」タブがあり、月を日のグリッドとして表示します。「月」ウィジェットは、同じグリッドを、残りの日数または割合とともに、ホーム画面やロック画面に表示します。「月」を含む時間グリッドのウィジェットは無料で、先に何かを作る必要はありません。</p>
+<ol>
+  <li>Leftをインストールして、一度開きます。</li>
+  <li>ホーム画面の何もない場所を長押しして、<strong>編集</strong>、<strong>ウィジェットを追加</strong>の順にタップします。</li>
+  <li>Leftを検索して<strong>月</strong>を選び、サイズを決めて<strong>ウィジェットを追加</strong>をタップします。</li>
+  <li>ウィジェットを長押しして<strong>ウィジェットを編集</strong>をタップし、<strong>残り時間</strong>を残りの量（残り日数）か割合のどちらかに設定します。</li>
+</ol>
+<p>ロック画面の円形の「月」ウィジェットは、時計の下に残りの数字または割合を表示します。ウィジェットの更新タイミングはiOSが決めるため、アプリより少し遅れることがあります。<a href="/ja/year-progress-widget">年の進捗ウィジェット</a>のページでは、すべての「残り時間」ウィジェットとサイズを一覧できます。</p>
+
+<h2>毎月リセットされるカウントダウンの作り方</h2>
+<p>家賃、給料日、支払いなどは、日付に向かってカウントダウンし、ゼロになったらまた最初から始まってほしいものです。Appleのリマインダーやカレンダーでも毎月の繰り返しは設定できますが、表示されるのは期日で、日数のカウントではありません。</p>
+<p>Leftでは、毎月繰り返す「これから」の日付として作ります。</p>
+<ol>
+  <li><strong>これから</strong>を開いて、<strong>これからの日付を追加</strong>（または<strong>＋</strong>）をタップします。</li>
+  <li>「家賃の支払い」などの名前を入力するか、<strong>新しい日付</strong>をタップします。日付がすでにカレンダーに入っているなら、<strong>カレンダーから</strong>で取り込めます。</li>
+  <li><strong>開始</strong>を次の期日（たとえば12月1日）に設定します。</li>
+  <li><strong>繰り返し</strong>を<strong>毎月</strong>に設定します。</li>
+  <li><strong>その他のオプション</strong>の<strong>表示形式…</strong>を「日」にします。</li>
+  <li>リマインダーを追加します。1か月前から1日前まで、好きなタイミングで設定できます。</li>
+  <li>ホーム画面かロック画面に「これから」ウィジェットを追加し、その日付を選びます。</li>
+</ol>
+<p>日付が29日、30日、31日の場合は、設定後の数か月を確認してください。アプリやカレンダーによって短い月の扱いが違うため、31日の日付はずれたり、月が飛ばされたりすることがあります。</p>
+<p>Leftはダウンロード無料です。無料プランにはカウントダウン2つ、習慣2つ、ストリーク2つ、目標2つが含まれます。数に含まれるのは、これまでに作成したものすべてなので、1つ削除しても枠は空きません。サブスクリプションまたは買い切りのLeft Premiumでは、項目が無制限になります。価格は購入前にアプリ内で表示されます。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-i-ja&amp;mt=8" target="_blank" rel="noopener">Leftで毎月のカウントダウンを始める</a></p>
+
+<h2>毎月のカウントダウンの使い方4選</h2>
+<h3>給料日までの予算</h3>
+<p>残りの金額を残りの日数で割ります。たとえば今日が11月9日、給料日が25日で、食費などに使える金額が$480だとします。今日を数えて給料日は数えないと16日なので、1日あたり$30です。1週間後、残りが$300で9日あるなら、1日あたり$33。少しペースに余裕があります。</p>
+<p>毎月繰り返す給料日のカウントダウンがあれば、この2つ目の数字がいつも目に入ります。給料日が週末や<a href="/ja/blog/holiday-countdown-app-iphone">祝日</a>でずれる場合は、毎月確認しましょう。これはあくまで計算であり、金融アドバイスではありません。本格的な家計の計画は、専門家に相談してください。</p>
+
+<h3>「目標」で作る月間目標</h3>
+<p>目標を数字にして、2つの割合を比べます。たとえば、11月に100km走りたいとします。1日あたり約3.3kmです。11月9日の午後6時の時点で月の29%が過ぎているので、約29km記録できていればペースどおりです。</p>
+<p>Leftでは、100kmまでカウントアップする「目標」として設定し、「月」ウィジェットを割合表示にします。「目標」が22%達成で、月の残りが71%なら、約7km遅れていますが、挽回するための3週間があります。</p>
+
+<h3>月末の仕事の締め切り</h3>
+<p>日数ではなく、稼働日を数えましょう。11月9日（月）の時点で、暦の上では残り22日ですが、平日は16日だけ。職場が26日の感謝祭で休みなら15日です。22日で計画すると、月末に慌てることになります。</p>
+<p>締め切りを「これから」の日付として追加し、<strong>開始に備える</strong>をオンにします。直前の数時間は、ライブアクティビティがロック画面とDynamic Islandにカウントダウンを表示します。最終日には、<a href="/ja/tools/workday-countdown">勤務日カウントダウン</a>で、仕事を終えるまでの時間と分がわかります。</p>
+
+<h3>毎月の振り返り</h3>
+<p>月末ではなく、毎月1日にしましょう。31日がない月でも、日付がずれません。1日前のリマインダーを付けた、毎月繰り返す「これから」の日付があれば十分です。10分あればできます。何が動いたか、何が動かなかったか、そして来月注目する数字を1つ決めるだけです。</p>
+
+<h2>質問</h2>
+<h3>今月はあと何日ですか？</h3>
+<p>その月の日数から今日の日付を引きます。今日を数えるなら1を足します。2026年11月9日なら、今日を含めて22日、含めなければ21日です。</p>
+<h3>今月が何パーセント過ぎたかは、どう計算しますか？</h3>
+<p>過ぎた日数に、今日の経過分を足して、その月の日数で割り、100をかけます。2026年11月9日の午後6時なら、(8 + 0.75) ÷ 30 = 29.2%が経過で、70.8%が残りです。</p>
+<h3>iPhoneに月の進捗ウィジェットはありますか？</h3>
+<p>はい。Leftの「月」ウィジェットは、月をグリッドで表示し、残りの日数または割合をホーム画面やロック画面で確認できます。しかも無料です。Appleのカレンダーウィジェットも月を表示しますが、残りは数えてくれません。</p>
+<h3>毎月繰り返すカウントダウンはどう設定しますか？</h3>
+<p>毎月の繰り返しに対応したカウントダウンアプリを使います。Leftなら、「これから」で日付を追加し、開始を次の期日に、繰り返しを毎月に設定します。リマインダーやカレンダーも毎月の繰り返しはできますが、表示されるのは期日で、カウントではありません。</p>
+<h3>今月の稼働日はあと何日ですか？</h3>
+<p>今日から月末までの平日を数え、職場が休みになる祝日を引きます。2026年11月9日（月）からなら、今日を含めて16日、感謝祭で休みなら15日です。<a href="/ja/tools/business-days-calculator">営業日計算ツール</a>では、任意の2つの日付のあいだの営業日を数えられます。</p>
+
+      <!-- left:related:start -->
+      <section class="support-related">
+        <h2 class="support-related-h2">関連ガイド</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/ja/blog/best-life-calendar-apps-iphone">iPhone 向けライフカレンダーアプリのおすすめ（2027年版）：人生の週数・メメント・モリアプリ7選を比較</a>
+          <a class="support-related-item" href="/ja/blog/event-planning-timeline">イベント計画タイムライン：ステップバイステップガイド</a>
+          <a class="support-related-item" href="/ja/blog/home-screen-timer-iphone">iPhoneのホーム画面にカウントダウンタイマーを置く</a>
+        </div>
+      </section>
+      <!-- left:related:end -->
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Leftをダウンロード</span>
+          <h2>大切なことに、気づきはじめよう。</h2>
+          <p>iPhoneにLeftをダウンロードして、残された時間を見て、楽しみな日を数え、続けたい習慣を築き、なりたい自分に近づいていこう。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QRコード - タップで詳細">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">スキャンするか、App Storeで<strong>「Left」</strong>を検索。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-e-ja&amp;mt=8" target="_blank" rel="noopener" aria-label="App Storeでダウンロード" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              iOS版をダウンロード
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span>人が、一瞬一瞬を大切にしています。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="フッター">
+          <a href="/ja/support">サポート</a>
+          <a href="/terms">利用規約</a>
+          <a href="/ja/privacy">プライバシー</a>
+          <a href="/ja/press">プレス</a>
+          <a href="/ja/contact">お問い合わせ</a>
+          <a href="/ja/tools/">ツール</a>
+          <!-- left:footer-extra:start -->
+          <a href="/ja/blog/">ブログ</a>
+          <a href="#" data-consent-open>Cookieの設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>JA</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="true">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookieの同意">
+  <p class="left-consent__text">Google Analyticsを使って、役立っているページを把握しています。広告やサイト間のトラッキングは行いません。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>分析を許可</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>許可しない</button>
+    <a class="left-consent__link" href="/ja/privacy#website" data-consent-privacy>プライバシー</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

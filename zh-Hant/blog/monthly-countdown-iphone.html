@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-monthly-cd-9e0d-b-zh-Hant&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>iPhone 每月倒數計時器：剩餘天數與本月進度 | Left</title>
+  <meta name="description" content="在 iPhone 上設定每月倒數計時器：查看這個月還剩幾天、以百分比顯示月進度，以及為房租或發薪日自動重設的倒數。"  />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 每月倒數計時器：剩餘天數與本月進度"  />
+  <meta property="og:description" content="在 iPhone 上設定每月倒數計時器：查看這個月還剩幾天、以百分比顯示月進度，以及為房租或發薪日自動重設的倒數。"  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 每月倒數計時器：剩餘天數與本月進度"  />
+  <meta name="twitter:description" content="在 iPhone 上設定每月倒數計時器：查看這個月還剩幾天、以百分比顯示月進度，以及為房租或發薪日自動重設的倒數。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "iPhone 每月倒數計時器：剩餘天數與本月進度",
+  "description": "在 iPhone 上設定每月倒數計時器：查看這個月還剩幾天、以百分比顯示月進度，以及為房租或發薪日自動重設的倒數。",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-countdown-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "部落格",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "iPhone 每月倒數計時器：剩餘天數與本月進度",
+      "item": "https://getleft.app/blog/monthly-countdown-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "這個月還剩幾天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "用這個月的總天數減去今天的日期；如果要把今天算進去，再加 1。2026 年 11 月 9 日，算今天是 22 天，不算則是 21 天。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我該如何計算這個月已經過了百分之幾？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "把已經過完的整天數，加上今天已過的部分，除以這個月的天數，再乘以 100。2026 年 11 月 9 日下午 6 點：(8 + 0.75) ÷ 30 = 已過 29.2%，所以還剩 70.8%。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "iPhone 有月進度小工具嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "有。Left 的「月」小工具以格狀圖顯示這個月，並標示剩餘天數或百分比，可放在主畫面或鎖定畫面，而且免費。Apple 行事曆小工具會顯示月份，但不會計算還剩多少。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "如何設定每個月重複的倒數？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "使用有每月重複功能的倒數 App。在 Left 裡，於 Ahead 新增一個日期，把「開始」設為下一個到期日，並把「重複」設為「每月」。提醒事項和行事曆也能每月重複，但顯示的是到期日，而不是倒數天數。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "這個月還剩幾個工作天？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "計算從今天到月底的平日數，再扣掉你的公司放假的日子。從 2026 年 11 月 9 日星期一起算，算今天是 16 天；如果你感恩節放假，則是 15 天。工作天計算機可計算任意兩個日期之間的工作天。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-n-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>iPhone 每月倒數計時器：剩餘天數與本月進度</h1>
+<p class="article-meta">更新：<time datetime="2026-11-18">2026 年 11 月 18 日</time>・7 分鐘</p>
+<p>「每月倒數計時器」可能有兩種不同的意思。有些人想看這個月還剩多少：本月剩餘天數，或是以百分比表示的本月進度。有些人想要的是每個月重新開始的倒數，用於房租、發薪日或帳單。這篇指南涵蓋 iPhone 上的兩種做法，附上算法、一個實際範例，以及可以照抄的設定。</p>
+<p>算法只需要一支鉛筆。需要 App 幫忙的地方，我們會用 Left 來示範，這是我們開發的時間意識 App。</p>
+<figure class="post-hero"><img src="/images/blog/best-day-counter-apps-iphone-hero.webp" alt="橘色螢光筆停在白色紙本月曆的 31 日上，旁邊是 30 日。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/marker-on-calendar-tT2DSShVDTI" rel="noopener">照片：Eliza Diamond，來自 Unsplash</a></figcaption></figure>
+
+<h2>兩種每月倒數計時器</h2>
+<p>它們回答的是不同的問題，所以先決定你需要哪一種。</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th></th><th>這個月還剩多少</th><th>每月重設的倒數</th></tr></thead>
+  <tbody>
+    <tr><td>回答的問題</td><td>11 月我走到哪了？</td><td>房租還有多久到期？</td></tr>
+    <tr><td>倒數到</td><td>這個月的最後一刻</td><td>固定日期，例如 1 號或 25 號</td></tr>
+    <tr><td>典型顯示方式</td><td>剩 22 天，或剩 71%</td><td>距離發薪日 16 天</td></tr>
+    <tr><td>重新開始</td><td>在 1 號，自動重新開始</td><td>日期過去後，會移到下個月的日期</td></tr>
+    <tr><td>適合</td><td>每月目標、控制預算進度、月底工作</td><td>房租、發薪日、帳單、每月檢視</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>如何算出本月剩餘天數</h2>
+<p>先從這個月的長度開始：</p>
+<ul>
+  <li><strong>31 天：</strong>1 月、3 月、5 月、7 月、8 月、10 月、12 月。</li>
+  <li><strong>30 天：</strong>4 月、6 月、9 月、11 月。</li>
+  <li><strong>28 天：</strong>2 月，閏年則是 29 天（下一個閏年是 2028 年）。</li>
+</ul>
+<p>然後選擇你的算法，因為「剩餘天數」有兩個合理的答案：</p>
+<ul>
+  <li><strong>把今天算進去：</strong>本月天數 − 今天的日期 + 1。當今天仍然算數時使用，例如每日預算或每日習慣。</li>
+  <li><strong>不把今天算進去：</strong>本月天數 − 今天的日期。在傍晚使用，因為今天大部分已經過去了。</li>
+</ul>
+<p>要算本月進度，取已完整過去的天數，加上今天已過去的部分，再除以本月的長度：</p>
+<p><strong>已過百分比</strong>＝（今天的日期 − 1 + 今天已過的小時數 ÷ 24）÷ 本月天數 × 100。剩餘百分比則是 100 減去它。</p>
+
+<h3>實際範例：2026 年 11 月 9 日晚上 6 點</h3>
+<ul>
+  <li>11 月有 30 天。</li>
+  <li>剩餘天數，把今天算進去：30 − 9 + 1 = <strong>22</strong>。不把今天算進去：<strong>21</strong>。</li>
+  <li>已過時間：8 整天加 18 小時，也就是 8.75 天。</li>
+  <li>本月進度：8.75 ÷ 30 = <strong>已過 29.2%</strong>，所以<strong>剩 70.8%</strong>。</li>
+</ul>
+<p>若要以天、小時、分鐘和秒數倒數到任何日期，<a href="/zh-Hant/tools/date-countdown-calculator">日期倒數計算機</a>會幫你算。</p>
+
+<h2>為什麼「本月的百分比」比「第 15 天」更誠實</h2>
+<p>每個月有 28 到 31 天，所以同一個日期在每個月中的位置都不同。以下是 15 號早上，你在這個月走了多遠：</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>本月長度</th><th>範例</th><th>15 號早上已過</th><th>剩餘天數，把 15 號算進去</th></tr></thead>
+  <tbody>
+    <tr><td>28 天</td><td>2026 年 2 月</td><td>50.0%</td><td>14</td></tr>
+    <tr><td>29 天</td><td>2028 年 2 月</td><td>48.3%</td><td>15</td></tr>
+    <tr><td>30 天</td><td>11 月</td><td>46.7%</td><td>16</td></tr>
+    <tr><td>31 天</td><td>12 月</td><td>45.2%</td><td>17</td></tr>
+  </tbody>
+</table>
+</div>
+<p>「同一個」日期就有三天的差距。28 號是 2 月的結尾，卻在 31 天的月份中還剩四天。如果你拿日曆來衡量任何進度，例如支出上限、銷售目標或閱讀目標，百分比能讓你保持誠實，而日期可能會誤導你。</p>
+<p>這和年度進度是同一個概念，只是尺度更小。<a href="/zh-Hant/blog/what-is-year-progress">什麼是年度進度以及如何計算</a>有更深入的說明，<a href="/zh-Hant/tools/time-left-in-year-calculator">今年剩餘時間計算機</a>則展示更大的全貌。</p>
+
+<h2>如何在 iPhone 上加入本月進度小工具</h2>
+<p>Apple 的「行事曆」小工具可以顯示當月並標出今天，但它不會計算剩餘多少。如果你想要數字或百分比，就需要一個會幫你算的小工具。</p>
+<p>在 Left 中，本月進度是內建的。Time Left 有一個「月」分頁，把這個月顯示成一格一格的日子，而「月」小工具會把同樣的格狀圖放到你的主畫面或鎖定畫面上，旁邊並附上剩餘天數或百分比。包含「月」在內的時間格狀小工具都是免費的，也不需要先建立任何東西。</p>
+<ol>
+  <li>安裝 Left 並打開一次。</li>
+  <li>長按主畫面的空白處，點一下<strong>編輯</strong>，再點<strong>加入小工具</strong>。</li>
+  <li>搜尋 Left，選擇<strong>月</strong>，挑一個尺寸，然後點<strong>加入小工具</strong>。</li>
+  <li>長按小工具，點<strong>編輯小工具</strong>，再把<strong>剩餘時間</strong>設為數量（剩餘天數）或百分比。</li>
+</ol>
+<p>在鎖定畫面上，圓形的「月」小工具會在時鐘下方顯示剩餘的數字或百分比。小工具何時更新由 iOS 決定，所以可能比 App 稍微慢一點。<a href="/zh-Hant/year-progress-widget">年度進度小工具</a>頁面列出了所有「剩餘時間」小工具及其尺寸。</p>
+
+<h2>如何製作每個月重設的倒數</h2>
+<p>像房租、發薪日或帳單這類日期，你會希望它一路倒數到零，然後重新開始。Apple 的提醒事項和行事曆可以每月重複一個項目，但顯示的是到期日，而不是剩餘天數。</p>
+<p>在 Left 裡，這是一個設為每月重複的 Ahead 日期：</p>
+<ol>
+  <li>打開「<strong>即將到來</strong>」，點一下<strong>加入未來日期</strong>（或 <strong>+</strong>）。</li>
+  <li>輸入名稱，例如「房租到期」，或點<strong>新日期</strong>。如果這個日期已經在你的行事曆裡，可用<strong>從行事曆</strong>匯入。</li>
+  <li>把<strong>開始</strong>設為下一次到期的日期，例如 12 月 1 日。</li>
+  <li>把<strong>重複</strong>設為<strong>每月</strong>。</li>
+  <li>在<strong>更多選項</strong>下，把<strong>顯示為…</strong>設為天數。</li>
+  <li>加一個提醒，時間可以是到期前一個月到前一天之間的任何時候。</li>
+  <li>把 Ahead 小工具加到主畫面或鎖定畫面，然後選擇這個日期。</li>
+</ol>
+<p>如果日期落在 29、30 或 31 日，設定完成後請檢查接下來幾個月：各個 App 和行事曆處理短月份的方式不同，所以 31 日的日期可能會挪動，或直接跳過某個月。</p>
+<p>Left 可免費下載。免費方案包含 2 個倒數、2 個習慣、2 個連續紀錄和 2 個目標，計算的是你建立過的所有項目，所以刪除一個並不會釋出名額。Left Premium 為訂閱或一次買斷，可解鎖無限個項目。價格會在你購買前顯示於 App 中。</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-i-zh-Hant&amp;mt=8" target="_blank" rel="noopener">在 Left 建立每月倒數</a></p>
+
+<h2>每月倒數的四種用法</h2>
+<h3>把預算分配到發薪日</h3>
+<p>用剩餘金額除以剩餘天數。假設今天是 11 月 9 日，發薪日是 25 日，你有 $480 要支付日常採買和其他開銷。算今天、不算發薪日，一共是 16 天，也就是每天 $30。一週後你剩 $300、還有 9 天：每天 $33，所以你略為超前。</p>
+<p>每月重複的發薪日倒數，會讓第二個數字一直在你眼前。如果你的發薪日會因為週末和<a href="/zh-Hant/blog/holiday-countdown-app-iphone">假日</a>而變動，每個月都要確認一次。這只是算術，不是理財建議；若要擬定真正的預算計畫，請諮詢專業的理財人員。</p>
+
+<h3>用目標（Aim）設定每月目標</h3>
+<p>把目標轉成數字，再比較兩個百分比。假設你想在 11 月跑 100 公里，大約是每天 3.3 公里。11 月 9 日下午 6 點時，這個月已經過了 29%，所以只要你記錄了大約 29 公里，就跟上進度了。</p>
+<p>在 Left 裡，把它設成往上數到 100 公里的目標（Aim），並把「月」小工具設為顯示百分比。如果目標顯示完成 22%，而這個月還剩 71%，你就落後約 7 公里，還有三週可以追上。</p>
+
+<h3>月底的工作截止日</h3>
+<p>要算工作天，不是日曆天。11 月 9 日星期一，日曆上還剩 22 天，但只有 16 個平日；如果你的公司在 26 日感恩節休息，就只剩 15 天。以 22 天來規劃，月底才會手忙腳亂。</p>
+<p>為截止日新增一個 Ahead 日期，並開啟<strong>準備開始</strong>：在開始前的幾個小時，即時動態會在鎖定畫面和動態島上顯示倒數。到了最後一天，<a href="/zh-Hant/tools/workday-countdown">工作日倒數</a>會顯示距離下班還有幾小時幾分鐘。</p>
+
+<h3>每月回顧</h3>
+<p>請用每月 1 日，而不是最後一天，這樣日期就不會落在不存在的 31 日。設定每月重複的 Ahead 日期，並在前一天加一個提醒就夠了。十分鐘就能做完：什麼有進展、什麼沒有，以及下個月要盯的那個數字。</p>
+
+<h2>問題</h2>
+<h3>這個月還剩幾天？</h3>
+<p>用這個月的總天數減去今天的日期；如果要把今天算進去，再加 1。2026 年 11 月 9 日，算今天是 22 天，不算則是 21 天。</p>
+<h3>我該如何計算這個月已經過了百分之幾？</h3>
+<p>把已經過完的整天數，加上今天已過的部分，除以這個月的天數，再乘以 100。2026 年 11 月 9 日下午 6 點：(8 + 0.75) ÷ 30 = 已過 29.2%，所以還剩 70.8%。</p>
+<h3>iPhone 有月進度小工具嗎？</h3>
+<p>有。Left 的「月」小工具以格狀圖顯示這個月，並標示剩餘天數或百分比，可放在主畫面或鎖定畫面，而且免費。Apple 行事曆小工具會顯示月份，但不會計算還剩多少。</p>
+<h3>如何設定每個月重複的倒數？</h3>
+<p>使用有每月重複功能的倒數 App。在 Left 裡，於 Ahead 新增一個日期，把「開始」設為下一個到期日，並把「重複」設為「每月」。提醒事項和行事曆也能每月重複，但顯示的是到期日，而不是倒數天數。</p>
+<h3>這個月還剩幾個工作天？</h3>
+<p>計算從今天到月底的平日數，再扣掉你的公司放假的日子。從 2026 年 11 月 9 日星期一起算，算今天是 16 天；如果你感恩節放假，則是 15 天。<a href="/zh-Hant/tools/business-days-calculator">工作天計算機</a>可計算任意兩個日期之間的工作天。</p>
+
+      <!-- left:related:start -->
+      <section class="support-related">
+        <h2 class="support-related-h2">相關指南</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hant/blog/best-life-calendar-apps-iphone">2027 年最佳 iPhone 人生日曆 App：7 款人生週曆與 memento mori App 比較</a>
+          <a class="support-related-item" href="/zh-Hant/blog/event-planning-timeline">活動規劃時間線：逐步指南</a>
+          <a class="support-related-item" href="/zh-Hant/blog/home-screen-timer-iphone">如何把倒數計時器放到 iPhone 主畫面</a>
+        </div>
+      </section>
+      <!-- left:related:end -->
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>開始留意真正重要的事。</h2>
+          <p>在 iPhone 下載 Left，看看剩餘時間、期待中的日子，養成想維持的習慣，成為更好的自己。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-e-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="到 App Store 下載 Left" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              下載 iOS 版
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>

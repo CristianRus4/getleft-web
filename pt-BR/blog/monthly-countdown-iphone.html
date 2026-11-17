@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-monthly-cd-9e0d-b-pt-BR&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="left:content-type" content="blog" />
+  <title>Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês | Left</title>
+  <meta name="description" content="Configure um timer de contagem regressiva mensal no iPhone: veja os dias restantes do mês, o progresso do mês em porcentagem e contagens regressivas que reiniciam para o aluguel ou o dia do pagamento."  />
+  <link rel="canonical" href="https://getleft.app/pt-BR/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/blog/monthly-countdown-iphone" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês"  />
+  <meta property="og:description" content="Configure um timer de contagem regressiva mensal no iPhone: veja os dias restantes do mês, o progresso do mês em porcentagem e contagens regressivas que reiniciam para o aluguel ou o dia do pagamento."  />
+  <meta property="og:type" content="article" />
+  <meta property="og:url" content="https://getleft.app/pt-BR/blog/monthly-countdown-iphone" />
+  <meta property="og:locale" content="pt_BR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês"  />
+  <meta name="twitter:description" content="Configure um timer de contagem regressiva mensal no iPhone: veja os dias restantes do mês, o progresso do mês em porcentagem e contagens regressivas que reiniciam para o aluguel ou o dia do pagamento."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/best-day-counter-apps-iphone-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style data-post-style>
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .article .app-heading { display: flex; align-items: center; gap: 14px; }
+    .article .app-icon { display: inline-block; width: 48px; height: 48px; border-radius: 22%; flex: none; margin: 0; vertical-align: middle; }
+    .article td .app-icon { width: 40px; height: 40px; }
+    .article td .app-name { display: inline-flex; align-items: center; gap: 10px; }
+    .article .post-cta { margin: 28px 0; }
+    .article .post-cta .dl-btn, .article .post-cta .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .article .post-cta .dl-btn:hover { color: #fff; }
+    .article .post-shot { margin: 28px 0; }
+    .article .post-shot img { display: block; width: 100%; max-width: 300px; height: auto; margin: 0; border-radius: 0; }
+    .article .post-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 300px; }
+    .article table { border-collapse: collapse; width: 100%; margin: 16px 0 24px; font-size: 16px; line-height: 1.5; }
+    .article th, .article td { text-align: left; vertical-align: top; padding: 10px 14px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .article th { font-weight: 700; }
+    .article .table-wrap { overflow-x: auto; }
+  </style>
+  <script type="application/ld+json" data-ld="article">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês",
+  "description": "Configure um timer de contagem regressiva mensal no iPhone: veja os dias restantes do mês, o progresso do mês em porcentagem e contagens regressivas que reiniciam para o aluguel ou o dia do pagamento.",
+  "image": "https://getleft.app/images/og-image.png",
+  "datePublished": "2026-11-18",
+  "dateModified": "2026-11-18",
+  "inLanguage": "en",
+  "mainEntityOfPage": "https://getleft.app/blog/monthly-countdown-iphone",
+  "author": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Left",
+    "url": "https://getleft.app/",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://getleft.app/favicon/apple-touch-icon.png"
+    }
+  }
+}
+</script>
+  <script type="application/ld+json" data-ld="breadcrumb">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Blog",
+      "item": "https://getleft.app/blog/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês",
+      "item": "https://getleft.app/blog/monthly-countdown-iphone"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json" data-ld="faq">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Quantos dias faltam neste mês?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Subtraia a data de hoje do número de dias do mês e some 1 se contar hoje. Em 9 de novembro de 2026, são 22 dias contando hoje, ou 21 sem ele."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como calculo que porcentagem do mês já passou?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Some os dias completos que já passaram à parte de hoje que já foi, divida pelos dias do mês e multiplique por 100. Às 18h de 9 de novembro de 2026: (8 + 0,75) ÷ 30 = 29,2% decorridos, então 70,8% restantes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existe um widget de progresso do mês para iPhone?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Sim. O widget Mês do Left mostra o mês como uma grade com os dias ou a porcentagem restante, na Tela de Início ou na Tela Bloqueada, e é grátis. O widget Calendário da Apple mostra o mês, mas não conta o que resta."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Como configuro uma contagem regressiva que se repete todo mês?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Use um app de contagem regressiva com repetição mensal. No Left, adicione uma data em Futuras, defina Começa como o próximo vencimento e defina Repetir como Mensal. O Lembretes e o Calendário também podem repetir todo mês, mas mostram uma data de vencimento, não uma contagem."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Quantos dias úteis faltam no mês?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Conte os dias de semana de hoje até o fim do mês e depois subtraia os feriados que o seu local de trabalho respeita. A partir de segunda-feira, 9 de novembro de 2026, são 16 contando hoje, ou 15 se você folga no Dia de Ação de Graças. A calculadora de dias úteis conta entre quaisquer duas datas."
+      }
+    }
+  ],
+  "inLanguage": "pt-BR"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/pt-BR/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/pt-BR/#features" class="nav-link">Recursos</a>
+          <a href="/pt-BR/tools/" class="nav-link">Ferramentas</a>
+          <a href="/pt-BR/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-n-pt-BR&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Baixar</a>
+      </div>
+    </div>
+  </nav>
+  <article class="article container">
+<h1>Timer de contagem regressiva mensal no iPhone: dias restantes e progresso do mês</h1>
+<p class="article-meta">Atualizado em <time datetime="2026-11-18">18 de novembro de 2026</time> · 7 min de leitura</p>
+<p>Um timer de contagem regressiva mensal pode significar duas coisas diferentes. Algumas pessoas querem ver quanto falta deste mês: os dias restantes do mês ou o progresso do mês em porcentagem. Outras querem uma contagem regressiva que recomeça todo mês, para o aluguel, o dia do pagamento ou uma conta. Este guia cobre as duas no iPhone, com a matemática, um exemplo prático e configurações que você pode copiar.</p>
+<p>A matemática só precisa de um lápis. Onde um app ajuda, mostramos no Left, o app de consciência do tempo que nós fazemos.</p>
+<figure class="post-hero"><img src="/images/blog/best-day-counter-apps-iphone-hero.webp" alt="Um marca-texto laranja apoiado sobre o dia 31 de um calendário de papel branco, ao lado do dia 30." width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/marker-on-calendar-tT2DSShVDTI" rel="noopener">Foto: Eliza Diamond no Unsplash</a></figcaption></figure>
+
+<h2>Dois tipos de timer de contagem regressiva mensal</h2>
+<p>Eles respondem a perguntas diferentes, então decida primeiro de qual você precisa.</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th></th><th>Quanto falta do mês</th><th>Uma contagem regressiva que reinicia todo mês</th></tr></thead>
+  <tbody>
+    <tr><td>Pergunta que responde</td><td>Quanto já avancei em novembro?</td><td>Quanto falta para o aluguel vencer?</td></tr>
+    <tr><td>Conta até</td><td>O último instante do mês</td><td>Uma data fixa, como o dia 1 ou o dia 25</td></tr>
+    <tr><td>Exibição típica</td><td>Faltam 22 dias, ou 71% restantes</td><td>16 dias até o pagamento</td></tr>
+    <tr><td>Recomeça</td><td>No dia 1, sozinha</td><td>Quando a data passa, vai para a do mês seguinte</td></tr>
+    <tr><td>Boa para</td><td>Metas mensais, controle de orçamento, trabalho de fim de mês</td><td>Aluguel, dia do pagamento, contas, uma revisão mensal</td></tr>
+  </tbody>
+</table>
+</div>
+
+<h2>Como calcular os dias restantes do mês</h2>
+<p>Comece pela duração do mês:</p>
+<ul>
+  <li><strong>31 dias:</strong> janeiro, março, maio, julho, agosto, outubro, dezembro.</li>
+  <li><strong>30 dias:</strong> abril, junho, setembro, novembro.</li>
+  <li><strong>28 dias:</strong> fevereiro, ou 29 em ano bissexto (o próximo é 2028).</li>
+</ul>
+<p>Depois escolha como você conta, porque “dias restantes” tem duas respostas honestas:</p>
+<ul>
+  <li><strong>Contando hoje:</strong> dias do mês − data de hoje + 1. Use quando hoje ainda conta, como num orçamento diário ou num hábito diário.</li>
+  <li><strong>Sem contar hoje:</strong> dias do mês − data de hoje. Use à noite, quando hoje já está quase todo gasto.</li>
+</ul>
+<p>Para o progresso do mês, pegue os dias que já passaram por inteiro, some a parte de hoje que já foi e divida pela duração do mês:</p>
+<p><strong>Porcentagem passada</strong> = (data de hoje − 1 + horas de hoje até agora ÷ 24) ÷ dias do mês × 100. A porcentagem restante é 100 menos isso.</p>
+
+<h3>Exemplo prático: 9 de novembro de 2026, às 18h</h3>
+<ul>
+  <li>Novembro tem 30 dias.</li>
+  <li>Dias restantes, contando hoje: 30 − 9 + 1 = <strong>22</strong>. Sem contar hoje: <strong>21</strong>.</li>
+  <li>Tempo decorrido: 8 dias completos mais 18 horas, ou 8,75 dias.</li>
+  <li>Progresso do mês: 8,75 ÷ 30 = <strong>29,2% decorridos</strong>, então <strong>70,8% restantes</strong>.</li>
+</ul>
+<p>Para contar até qualquer data em dias, horas, minutos e segundos, a <a href="/pt-BR/tools/date-countdown-calculator">calculadora de contagem regressiva de datas</a> faz a conta por você.</p>
+
+<h2>Por que “porcentagem do mês” é mais honesta que “dia 15”</h2>
+<p>Os meses vão de 28 a 31 dias, então a mesma data fica em pontos diferentes de cada um. Veja quanto do mês já passou na manhã do dia 15:</p>
+<div class="table-wrap">
+<table>
+  <thead><tr><th>Duração do mês</th><th>Exemplo</th><th>Decorrido na manhã do dia 15</th><th>Dias restantes, contando o dia 15</th></tr></thead>
+  <tbody>
+    <tr><td>28 dias</td><td>Fevereiro de 2026</td><td>50.0%</td><td>14</td></tr>
+    <tr><td>29 dias</td><td>Fevereiro de 2028</td><td>48.3%</td><td>15</td></tr>
+    <tr><td>30 dias</td><td>Novembro</td><td>46.7%</td><td>16</td></tr>
+    <tr><td>31 dias</td><td>Dezembro</td><td>45.2%</td><td>17</td></tr>
+  </tbody>
+</table>
+</div>
+<p>São três dias de diferença para a “mesma” data. O dia 28 termina fevereiro, mas deixa quatro dias num mês de 31. Se você mede qualquer coisa pelo calendário, como um limite de gastos, uma meta de vendas ou uma meta de leitura, uma porcentagem mantém você honesto onde uma data pode enganar.</p>
+<p>É a mesma ideia do progresso do ano em escala menor. <a href="/pt-BR/blog/what-is-year-progress">O que é o progresso do ano e como ele é calculado</a> aprofunda o assunto, e a <a href="/pt-BR/tools/time-left-in-year-calculator">calculadora de tempo restante no ano</a> mostra o quadro maior.</p>
+
+<h2>Como adicionar um widget de progresso do mês no iPhone</h2>
+<p>O widget Calendário da Apple pode mostrar o mês com o dia de hoje marcado, mas não conta o que resta. Para um número ou uma porcentagem, você precisa de um widget que faça a conta.</p>
+<p>No Left, o progresso do mês já vem pronto. O Tempo restante tem uma aba Mês que mostra o mês como uma grade de dias, e o widget Mês coloca a mesma grade na Tela de Início ou na Tela Bloqueada, com os dias ou a porcentagem restantes ao lado. Os widgets de grade de tempo, incluindo o Mês, são grátis, e não há nada para criar antes.</p>
+<ol>
+  <li>Instale o Left e abra-o uma vez.</li>
+  <li>Toque e segure uma parte vazia da Tela de Início, toque em <strong>Editar</strong> e depois em <strong>Adicionar Widget</strong>.</li>
+  <li>Procure o Left, escolha <strong>Mês</strong>, selecione um tamanho e toque em <strong>Adicionar Widget</strong>.</li>
+  <li>Toque e segure o widget, toque em <strong>Editar Widget</strong> e defina <strong>Tempo restante</strong> como a quantidade (dias restantes) ou a porcentagem.</li>
+</ol>
+<p>Na Tela Bloqueada, o widget Mês circular mostra o número ou a porcentagem restante abaixo do relógio. O iOS decide quando os widgets atualizam, então ele pode ficar um pouco atrás do app. A página do <a href="/pt-BR/year-progress-widget">widget de progresso do ano</a> lista todos os widgets de Tempo restante e os seus tamanhos.</p>
+
+<h2>Como fazer uma contagem regressiva que reinicia todo mês</h2>
+<p>Para o aluguel, o dia do pagamento ou uma conta, você quer uma data que conta para baixo, chega a zero e recomeça. O Lembretes e o Calendário da Apple podem repetir um item todo mês, mas mostram uma data de vencimento, não uma contagem de dias.</p>
+<p>No Left, isso é uma data em Futuras com repetição mensal:</p>
+<ol>
+  <li>Abra <strong>Futuras</strong> e toque em <strong>Adicionar uma data Futuras</strong> (ou em <strong>+</strong>).</li>
+  <li>Digite um nome, como “Aluguel vence”, ou toque em <strong>Nova data</strong>. Se a data já está no seu calendário, <strong>Do calendário</strong> a importa.</li>
+  <li>Defina <strong>Começa</strong> como a próxima vez em que vence, por exemplo 1º de dezembro.</li>
+  <li>Defina <strong>Repetir</strong> como <strong>Mensal</strong>.</li>
+  <li>Em <strong>Mais opções</strong>, defina <strong>Mostrar como…</strong> como dias.</li>
+  <li>Adicione um lembrete, de um mês a um dia antes.</li>
+  <li>Adicione um widget Futuras à Tela de Início ou à Tela Bloqueada e escolha a data.</li>
+</ol>
+<p>Se a data cai no dia 29, 30 ou 31, confira os meses seguintes depois de configurar: apps e calendários lidam de formas diferentes com meses curtos, então uma data no dia 31 pode se mover ou pular um mês.</p>
+<p>O Left é grátis para baixar. O plano grátis inclui 2 contagens regressivas, 2 hábitos, 2 sequências e 2 Objetivos, contados sobre todos os itens que você já criou, então apagar um não libera vaga. O Left Premium, uma assinatura ou compra vitalícia, libera itens ilimitados. Os preços aparecem no app antes da compra.</p>
+<p class="post-cta"><a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-i-pt-BR&amp;mt=8" target="_blank" rel="noopener">Comece uma contagem regressiva mensal no Left</a></p>
+
+<h2>Quatro jeitos de usar uma contagem regressiva mensal</h2>
+<h3>Orçamento até o dia do pagamento</h3>
+<p>Divida o que sobra pelos dias restantes. Digamos que é 9 de novembro, o pagamento cai no dia 25 e você tem $480 para o mercado e todo o resto. Contando hoje, mas não o dia do pagamento, são 16 dias, ou $30 por dia. Uma semana depois você tem $300 sobrando com 9 dias pela frente: $33 por dia, então você está um pouco à frente.</p>
+<p>Uma contagem regressiva repetida do pagamento mantém esse segundo número à vista. Se a data do seu pagamento muda por causa de fins de semana e <a href="/pt-BR/blog/holiday-countdown-app-iphone">feriados</a>, confira todo mês. Isso é aritmética, não orientação financeira; para um plano de orçamento de verdade, converse com um profissional financeiro.</p>
+
+<h3>Uma meta mensal com um Objetivo</h3>
+<p>Transforme a meta em um número e compare duas porcentagens. Digamos que você quer correr 100 km em novembro. São cerca de 3,3 km por dia. Às 18h do dia 9 de novembro, o mês já foi 29%, então você está no ritmo se registrou cerca de 29 km.</p>
+<p>No Left, configure como um Objetivo que conta para cima até 100 km e defina o widget Mês como porcentagem. Se o Objetivo mostra 22% concluído enquanto o mês mostra 71% restantes, você está cerca de 7 km atrás, com três semanas para recuperar.</p>
+
+<h3>Um prazo de trabalho de fim de mês</h3>
+<p>Conte dias úteis, não dias. Na segunda-feira, 9 de novembro, faltam 22 dias corridos, mas só 16 dias de semana, ou 15 se o seu local de trabalho fecha no Dia de Ação de Graças, no dia 26. Planejar com 22 é como acontecem as correrias de fim de mês.</p>
+<p>Adicione uma data em Futuras para o prazo e ative <strong>Prepare-se para o início</strong>: nas horas antes dele, uma Atividade ao Vivo mostra a contagem regressiva na Tela Bloqueada e na Dynamic Island. No último dia, a <a href="/pt-BR/tools/workday-countdown">contagem regressiva da jornada de trabalho</a> mostra as horas e os minutos até você parar de trabalhar.</p>
+
+<h3>Uma revisão mensal</h3>
+<p>Use o dia 1 de cada mês em vez do último dia, para a data nunca cair num 31 que não existe. Uma data em Futuras com repetição e um lembrete no dia anterior bastam. Dez minutos resolvem: o que mudou, o que não mudou e o único número a observar no mês seguinte.</p>
+
+<h2>Perguntas</h2>
+<h3>Quantos dias faltam neste mês?</h3>
+<p>Subtraia a data de hoje do número de dias do mês e some 1 se contar hoje. Em 9 de novembro de 2026, são 22 dias contando hoje, ou 21 sem ele.</p>
+<h3>Como calculo que porcentagem do mês já passou?</h3>
+<p>Some os dias completos que já passaram à parte de hoje que já foi, divida pelos dias do mês e multiplique por 100. Às 18h de 9 de novembro de 2026: (8 + 0,75) ÷ 30 = 29,2% decorridos, então 70,8% restantes.</p>
+<h3>Existe um widget de progresso do mês para iPhone?</h3>
+<p>Sim. O widget Mês do Left mostra o mês como uma grade com os dias ou a porcentagem restante, na Tela de Início ou na Tela Bloqueada, e é grátis. O widget Calendário da Apple mostra o mês, mas não conta o que resta.</p>
+<h3>Como configuro uma contagem regressiva que se repete todo mês?</h3>
+<p>Use um app de contagem regressiva com repetição mensal. No Left, adicione uma data em Futuras, defina Começa como o próximo vencimento e defina Repetir como Mensal. O Lembretes e o Calendário também podem repetir todo mês, mas mostram uma data de vencimento, não uma contagem.</p>
+<h3>Quantos dias úteis faltam no mês?</h3>
+<p>Conte os dias de semana de hoje até o fim do mês e depois subtraia os feriados que o seu local de trabalho respeita. A partir de segunda-feira, 9 de novembro de 2026, são 16 contando hoje, ou 15 se você folga no Dia de Ação de Graças. A <a href="/pt-BR/tools/business-days-calculator">calculadora de dias úteis</a> conta entre quaisquer duas datas.</p>
+
+      <!-- left:related:start -->
+      <section class="support-related">
+        <h2 class="support-related-h2">Guias relacionados</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/pt-BR/blog/best-life-calendar-apps-iphone">Melhores apps de calendário da vida para iPhone em 2027: 7 apps de vida em semanas e memento mori comparados</a>
+          <a class="support-related-item" href="/pt-BR/blog/event-planning-timeline">Cronograma de evento: guia passo a passo</a>
+          <a class="support-related-item" href="/pt-BR/blog/home-screen-timer-iphone">Como colocar um timer de contagem regressiva na Tela de Início</a>
+        </div>
+      </section>
+      <!-- left:related:end -->
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Baixe o Left</span>
+          <h2>Comece a notar o que importa.</h2>
+          <p>Baixe o Left no iPhone para ver o tempo que resta, as datas que você espera, criar os hábitos que quer manter e se tornar uma versão melhor de você.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - toque para ver as instruções">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Escaneie ou busque <strong>“Left”</strong> na App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-monthly-cd-9e0d-e-pt-BR&amp;mt=8" target="_blank" rel="noopener" aria-label="Baixar na App Store" data-cta="end">
+              <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+              Baixar para iOS
+            </a>
+          </div>
+        </div>
+      </section>
+  </article>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525.000</span> pessoas fazendo cada momento valer.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Rodapé">
+          <a href="/pt-BR/support">Suporte</a>
+          <a href="/terms">Termos</a>
+          <a href="/pt-BR/privacy">Privacidade</a>
+          <a href="/pt-BR/press">Imprensa</a>
+          <a href="/pt-BR/contact">Contato</a>
+          <a href="/pt-BR/tools/">Ferramentas</a>
+          <!-- left:footer-extra:start -->
+          <a href="/pt-BR/blog/">Blog</a>
+          <a href="#" data-consent-open>Configurações de cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>BR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="true">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+</nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentimento de cookies">
+  <p class="left-consent__text">Usamos o Google Analytics para entender quais páginas ajudam as pessoas. Sem anúncios e sem rastreamento entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Permitir análises</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Agora não</button>
+    <a class="left-consent__link" href="/pt-BR/privacy#website" data-consent-privacy>Privacidade</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
