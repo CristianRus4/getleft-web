@@ -1,0 +1,75 @@
+# Indexing queue
+
+English blog posts Google has not indexed yet, most valuable first (visits, and searches the old domain ranked for). The morning "Daily publish and indexing" task reads this file after the day's own pages: it works down the list, skips a post that is already on Google, and requests indexing for the next ones until its limit or Google's daily quota. Remove posts from the top at each 2-weekly check once they are indexed.
+
+Started 18 Nov 2026 with 69 posts (23 of 93 English posts were indexed; `how-to-add-widgets-iphone` was requested by hand that day).
+
+- https://getleft.app/blog/best-free-widget-apps-iphone
+- https://getleft.app/blog/best-countdown-widgets-iphone
+- https://getleft.app/blog/best-habit-tracker-apps-iphone
+- https://getleft.app/blog/habitkit-vs-left
+- https://getleft.app/blog/best-home-screen-widgets-iphone
+- https://getleft.app/blog/best-lock-screen-widget-apps-iphone
+- https://getleft.app/blog/left-wallpaper-guide
+- https://getleft.app/blog/how-to-build-a-streak
+- https://getleft.app/blog/what-is-year-progress
+- https://getleft.app/blog/smart-goals-guide
+- https://getleft.app/blog/best-productivity-apps-mac
+- https://getleft.app/blog/best-birthday-countdown-apps-iphone
+- https://getleft.app/blog/best-year-progress-apps-iphone
+- https://getleft.app/blog/countdown-screensaver-iphone
+- https://getleft.app/blog/best-days-since-apps-iphone
+- https://getleft.app/blog/best-fasting-tracker-apps-iphone
+- https://getleft.app/blog/best-goal-tracking-apps-iphone
+- https://getleft.app/blog/best-sobriety-counter-apps-iphone
+- https://getleft.app/blog/goal-progress-tracker-setup
+- https://getleft.app/blog/home-screen-timer-iphone
+- https://getleft.app/blog/left-planner-guide
+- https://getleft.app/blog/widgetsmith-alternatives
+- https://getleft.app/blog/best-life-calendar-apps-iphone
+- https://getleft.app/blog/best-countdown-wallpaper-apps-iphone
+- https://getleft.app/blog/best-apps-for-adhd-iphone
+- https://getleft.app/blog/best-reminder-apps-iphone
+- https://getleft.app/blog/adhd-body-doubling-apps
+- https://getleft.app/blog/adhd-morning-routine-iphone
+- https://getleft.app/blog/adhd-reward-system
+- https://getleft.app/blog/adhd-students-study-tools-iphone
+- https://getleft.app/blog/adhd-task-initiation-strategies
+- https://getleft.app/blog/adhd-time-blindness-iphone
+- https://getleft.app/blog/adhd-work-from-home-setup
+- https://getleft.app/blog/aim-goal-tracker-left
+- https://getleft.app/blog/best-apple-watch-apps-adhd
+- https://getleft.app/blog/best-day-counter-apps-iphone
+- https://getleft.app/blog/best-exam-countdown-apps-iphone
+- https://getleft.app/blog/best-motivation-apps-iphone
+- https://getleft.app/blog/best-planner-adhd
+- https://getleft.app/blog/best-productivity-apps-adhd
+- https://getleft.app/blog/best-relationship-counter-apps-iphone
+- https://getleft.app/blog/best-retirement-countdown-apps-iphone
+- https://getleft.app/blog/best-streak-counter-apps-iphone
+- https://getleft.app/blog/countdown-clock-graphic-guide
+- https://getleft.app/blog/countdown-next-trip-with-friends
+- https://getleft.app/blog/daily-habit-tracker-iphone
+- https://getleft.app/blog/digital-clock-date-widget-iphone
+- https://getleft.app/blog/event-planning-timeline
+- https://getleft.app/blog/goal-calendar-iphone
+- https://getleft.app/blog/goal-setting-mistakes
+- https://getleft.app/blog/holiday-countdown-app-iphone
+- https://getleft.app/blog/how-to-focus-adhd
+- https://getleft.app/blog/iphone-aesthetic-widgets-guide
+- https://getleft.app/blog/keep-track-multiple-projects
+- https://getleft.app/blog/monthly-countdown-iphone
+- https://getleft.app/blog/presentation-timer-iphone
+- https://getleft.app/blog/productivity-tools-visual-focus
+- https://getleft.app/blog/project-timeline-visualization
+- https://getleft.app/blog/smart-goals-visual-guide
+- https://getleft.app/blog/stay-consistent-with-goals
+- https://getleft.app/blog/time-management-best-practices
+- https://getleft.app/blog/time-management-tips-students
+- https://getleft.app/blog/timer-interval-app-iphone
+- https://getleft.app/blog/visual-goals-track-on-screens
+- https://getleft.app/blog/visual-reminders-adhd-apple-setup
+- https://getleft.app/blog/way-of-life-alternatives
+- https://getleft.app/blog/weeks-and-days-iphone-screen
+- https://getleft.app/blog/weight-loss-timeline
+- https://getleft.app/blog/workplace-productivity-habits
