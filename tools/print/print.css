@@ -1,0 +1,442 @@
+/*
+  Left printables: the look of every printable sheet, plus the tool controls.
+
+  Every printable is built from the shared parts below (header, rule, check,
+  day, box, write-in lines, field, section). Change a part here and it changes
+  on every printable and every paper size. Sizes come from tools/print/core.js,
+  which sets them as CSS variables (--s, --fs, --title...) per paper size.
+*/
+
+/* ─────────── Sheet ─────────── */
+
+.lp-sheet {
+  --ink: #0D0D0D;
+  --muted: #767676;
+  --stroke: rgba(13, 13, 13, 0.4);
+  --stroke-strong: rgba(13, 13, 13, 0.6);
+  --past: rgba(13, 13, 13, 0.2);
+  --lived: rgba(13, 13, 13, 0.08);
+  --writeline: rgba(13, 13, 13, 0.3);
+  --hair: rgba(13, 13, 13, 0.12);
+  --shade: rgba(13, 13, 13, 0.04);
+  --boxline: rgba(13, 13, 13, 0.18);
+  --accent: #FF4F00;
+  position: relative;
+  box-sizing: border-box;
+  width: var(--w);
+  height: var(--h);
+  padding: var(--py) var(--px);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: #FFFFFF;
+  color: var(--ink);
+  font-family: 'SF Pro Rounded', ui-rounded, -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 12px;
+  line-height: 1.2;
+  text-align: left;
+  letter-spacing: 0;
+  -webkit-font-smoothing: antialiased;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+.lp-sheet *,
+.lp-sheet *::before,
+.lp-sheet *::after { box-sizing: border-box; }
+.lp-sheet p, .lp-sheet h1, .lp-sheet h2, .lp-sheet h3 { margin: 0; }
+
+.lp-muted { color: var(--muted); }
+.lp-accent { color: var(--accent); }
+.lp-strong { font-weight: 600; }
+.lp-nowrap { white-space: nowrap; }
+.lp-grow { flex: 1 1 auto; min-height: 0; }
+
+/* ─────────── Header and rule ─────────── */
+
+/* Big title, optional subtitle on the same baseline, optional right side. */
+.lp-head {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+.lp-head__main {
+  display: flex;
+  align-items: baseline;
+  gap: 0.3em;
+  min-width: 0;
+  font-size: var(--title);
+}
+.lp-title {
+  font-size: var(--title);
+  font-weight: 600;
+  letter-spacing: -0.023em;
+  line-height: 0.9;
+  white-space: nowrap;
+}
+.lp-sub {
+  font-size: var(--sub);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lp-head__right {
+  flex: none;
+  display: flex;
+  align-items: flex-end;
+}
+
+/* The black rule under every header. Rounded caps. */
+.lp-rule {
+  flex: none;
+  height: var(--rule);
+  border-radius: var(--rule);
+  background: var(--ink);
+  margin-top: var(--rule-gap);
+}
+/* Rule that runs on from a title on the same line. */
+.lp-rule--inline {
+  flex: 1 1 auto;
+  margin-top: 0;
+}
+
+/* ─────────── Check: circles for habits, streaks, goals and checks ─────────── */
+
+.lp-check {
+  --s: 16px;
+  --c: var(--stroke);
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--s);
+  height: var(--s);
+  border-radius: 50%;
+  border: var(--lw) solid var(--c);
+  font-size: var(--fs, calc(var(--s) * 0.36));
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+  white-space: nowrap;
+}
+/* Fills its grid cell instead of a fixed size. */
+.lp-check.is-fluid { width: 100%; height: auto; aspect-ratio: 1; }
+/* The one that matters: the last circle, a marked date. */
+.lp-check.is-accent {
+  border-width: calc(var(--lw) + 0.7px);
+  border-color: var(--accent);
+  color: var(--accent);
+  font-weight: 700;
+}
+/* A day the habit is not planned. */
+.lp-check.is-off {
+  border-style: dashed;
+  border-color: rgba(13, 13, 13, 0.35);
+}
+.lp-check.is-done { background: var(--c); border-color: var(--c); }
+
+/* ─────────── Day: rounded squares for days that pass ─────────── */
+
+.lp-day {
+  --s: 10px;
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--s);
+  height: var(--s);
+  border-radius: calc(var(--s) * 0.26);
+  border: var(--lw) solid var(--stroke);
+  font-size: var(--fs, calc(var(--s) * 0.4));
+  font-weight: 600;
+  line-height: 1;
+  color: var(--muted);
+}
+.lp-day.is-fluid { width: 100%; height: auto; aspect-ratio: 1; }
+.lp-day.is-past { border-color: transparent; background: var(--past); }
+.lp-day.is-now { border-color: transparent; background: var(--accent); color: #FFFFFF; }
+.lp-day.is-accent { border-width: calc(var(--lw) + 0.7px); border-color: var(--accent); color: var(--accent); }
+.lp-day.is-filled { border-color: transparent; background: var(--ink); color: #FFFFFF; }
+.lp-day.is-blank { border-color: transparent; }
+.lp-day.is-thin { border-width: calc(var(--lw) * 0.65); }
+
+/* ─────────── Box: a rounded write-in box, number in the corner ─────────── */
+
+.lp-box {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  border: 1px solid var(--boxline);
+  border-radius: var(--r, 6px);
+  padding: var(--bp, 4px) var(--bp, 5px);
+  font-size: var(--fs, 10px);
+  font-weight: 600;
+  line-height: 1;
+}
+.lp-box.is-muted { color: var(--muted); }
+.lp-box.is-shaded { background: var(--shade); }
+.lp-box.is-accent { border-color: var(--accent); border-width: calc(var(--lw) + 0.2px); }
+.lp-box.is-accent > .lp-box__n { color: var(--accent); }
+.lp-box.is-past { background: var(--past); border-color: transparent; }
+.lp-box.is-lived { background: var(--lived); border-color: transparent; }
+.lp-box.is-empty { border-color: transparent; }
+.lp-box.is-center { align-items: center; justify-content: center; text-align: center; }
+.lp-box.is-end { align-items: flex-end; justify-content: center; text-align: right; }
+.lp-box__n { line-height: 1; }
+.lp-box__sub { margin-top: 0.3em; font-weight: 400; color: var(--muted); font-size: 0.82em; }
+
+/* ─────────── Write-in lines and fields ─────────── */
+
+.lp-lines { display: flex; flex-direction: column; flex: none; }
+.lp-line {
+  flex: none;
+  height: var(--row, 26px);
+  display: flex;
+  align-items: flex-end;
+}
+.lp-line::after {
+  content: '';
+  flex: 1;
+  height: 1.5px;
+  border-radius: 1px;
+  background: var(--writeline);
+}
+.lp-line.is-faint::after { background: var(--past); }
+/* A line that carries text the visitor typed. */
+.lp-line > span {
+  position: absolute;
+  font-size: var(--lfs, 12px);
+  font-weight: 500;
+  padding-bottom: 0.3em;
+}
+.lp-line.has-text { position: relative; }
+.lp-line.has-text > span { left: 0; right: 0; bottom: 0; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+
+/* Small grey label over a write-in line. */
+.lp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.lp-field__label {
+  font-size: var(--lab, 11px);
+  color: var(--muted);
+  white-space: nowrap;
+}
+.lp-field__value {
+  font-size: calc(var(--lab, 11px) * 1.35);
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.lp-field .lp-line { --row: var(--line-h, 22px); }
+
+/* Bold section title (Goals for 2027, Notes, Why I am doing this). */
+.lp-section { display: flex; flex-direction: column; min-width: 0; }
+.lp-section__title {
+  font-size: var(--fs, 15px);
+  font-weight: 600;
+  line-height: 1.1;
+  white-space: nowrap;
+}
+
+/* Rounded bar: grey, or in ink when on (the year strip on the monthly planner). */
+.lp-bar {
+  flex: none;
+  align-self: stretch;
+  height: var(--h, 4px);
+  border-radius: 999px;
+  background: var(--c, var(--hair));
+}
+.lp-bar.is-on { background: var(--ink); }
+.lp-bar.is-fixed { align-self: auto; }
+
+/* Small grey column labels (weekday initials, day numbers, ages). */
+.lp-label {
+  font-size: var(--fs, 10px);
+  font-weight: 600;
+  color: var(--muted);
+  line-height: 1;
+  white-space: nowrap;
+}
+.lp-label.is-ink { color: var(--ink); }
+.lp-label.is-regular { font-weight: 400; font-variant-numeric: tabular-nums; }
+
+/* Thin grey track with an ink segment: where a month sits in the year. */
+.lp-track {
+  position: relative;
+  flex: none;
+  height: var(--h, 2px);
+  border-radius: 999px;
+  background: var(--hair);
+}
+.lp-track > span {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-radius: 999px;
+  background: var(--ink);
+}
+.lp-label.is-accent { color: var(--accent); }
+
+/* ─────────── Tool page: controls, preview, print ─────────── */
+
+.lp-tool {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(280px, 340px);
+  gap: 32px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .lp-tool { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+}
+.lp-stage {
+  position: relative;
+  min-width: 0;
+}
+@media (min-width: 861px) {
+  .lp-stage { position: sticky; top: calc(var(--nav-h, 56px) + 24px); }
+}
+.lp-frame {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
+  background: #FFFFFF;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+.lp-frame > .lp-sheet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+}
+.lp-controls { display: grid; gap: 18px; min-width: 0; }
+.lp-control { display: flex; flex-direction: column; gap: 9px; min-width: 0; }
+.lp-control__label {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.25;
+}
+.lp-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+.tool-widget .lp-controls input:not([type="color"]),
+.tool-widget .lp-controls select {
+  min-height: 48px;
+  padding: 11px 14px;
+  font-size: 16px;
+  border-radius: 14px;
+}
+.tool-widget .lp-controls select { padding-right: 44px; background-position: calc(100% - 24px) calc(50% - 2px), calc(100% - 16px) calc(50% - 2px); }
+.lp-controls .tool-toggle { display: flex; padding: 4px; gap: 4px; }
+.lp-controls .tool-toggle button { flex: 1; min-height: 40px; padding: 8px 10px; white-space: nowrap; font-size: 14px; }
+
+.lp-list { display: grid; gap: 8px; }
+.lp-list__item { display: flex; gap: 8px; align-items: center; }
+.lp-list__item > * { flex: 1 1 0; min-width: 0; }
+.lp-list__item > .lp-list__narrow { flex: 0 0 auto; width: auto; max-width: 42%; }
+/* Three or more inputs: the first on its own line next to the remove button, the rest wrap below. */
+.lp-list__item.is-stacked {
+  flex-wrap: wrap;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--hairline);
+}
+.lp-list__item.is-stacked > * { order: 2; flex: 1 1 90px; max-width: none; }
+.lp-list__item.is-stacked > :first-child { order: 0; flex: 1 1 calc(100% - 44px); }
+.lp-list__item.is-stacked > .lp-list__remove { order: 1; }
+.lp-list__item.is-stacked > input[type="number"] { flex: 0 0 100px; padding-right: 8px !important; }
+.lp-list__item.is-stacked > input[type="date"] { flex: 1 1 150px; }
+.lp-list__remove,
+.lp-list__add {
+  appearance: none;
+  font: inherit;
+  cursor: pointer;
+  border: 1px solid var(--hairline);
+  background: var(--bg);
+  color: var(--text-secondary);
+}
+.lp-list__remove {
+  flex: 0 0 36px !important;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 18px;
+  line-height: 1;
+  padding: 0;
+}
+.lp-list__remove:hover, .lp-list__add:hover { color: var(--text); border-color: var(--text-secondary); }
+.lp-list__add {
+  justify-self: start;
+  min-height: 40px;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.lp-swatches { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.lp-swatch {
+  appearance: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid var(--hairline);
+  background: var(--c);
+  cursor: pointer;
+  padding: 0;
+}
+.lp-swatch.is-active { box-shadow: 0 0 0 3px var(--bg-surface), 0 0 0 5px var(--text); }
+
+.lp-print-btn {
+  appearance: none;
+  min-height: 52px;
+  border: 0;
+  border-radius: var(--radius-pill);
+  background: var(--accent);
+  color: #FFFFFF;
+  font: inherit;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.lp-print-btn:hover { filter: brightness(1.06); }
+
+/* Printables hub: a live thumbnail of each printable. */
+.lp-hub { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 22px; margin: 8px 0 40px; }
+.lp-hub__card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: var(--radius-card);
+  border: 1px solid var(--hairline);
+  background: var(--bg-surface);
+  color: var(--text);
+  text-decoration: none;
+  transition: border-color 140ms ease, transform 140ms ease;
+}
+.lp-hub__card:hover { border-color: color-mix(in srgb, var(--hairline) 40%, var(--accent) 60%); }
+.lp-hub__thumb {
+  position: relative;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.lp-hub__thumb .lp-frame { width: auto; }
+.lp-hub__title { font-size: 17px; font-weight: 650; line-height: 1.25; }
+.lp-hub__desc { margin: 0; font-size: 15px; line-height: 1.5; color: var(--text-secondary); }
+
+/* ─────────── Printing ─────────── */
+
+.lp-print { display: none; }
+@media print {
+  html, body { margin: 0 !important; padding: 0 !important; background: #FFFFFF !important; }
+  body > *:not(.lp-print) { display: none !important; }
+  .lp-print { display: block !important; }
+  .lp-print__page { overflow: hidden; break-after: avoid; page-break-after: avoid; }
+}

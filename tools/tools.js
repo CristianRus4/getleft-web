@@ -770,7 +770,7 @@ function toolActiveIndex(group) {
 }
 function toolStateFields(widget) {
   return Array.from(widget.querySelectorAll('input[id], select[id], textarea[id]')).filter(el => {
-    if (el.closest('[data-tool-card]')) return false;
+    if (el.closest('[data-tool-card], [data-lp-tool]')) return false;
     return !/^(button|submit|reset|file|password|hidden|image)$/i.test(el.type || '');
   });
 }
@@ -860,7 +860,8 @@ function toolShareOrCopy(data, btn) {
 
 function toolShareResult(btn) {
   const qs = toolStateQuery();
-  const url = location.origin + location.pathname + (qs ? '?' + qs : '');
+  // Printables keep their settings in the hash (tools/print/core.js).
+  const url = document.querySelector('[data-lp-tool]') ? location.href : location.origin + location.pathname + (qs ? '?' + qs : '');
   const h1 = document.querySelector('.tool-page h1');
   const title = toolCleanText(h1 ? h1.textContent : document.title);
   const card = btn.closest('[data-tool-card]');

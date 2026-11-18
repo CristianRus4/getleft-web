@@ -5,7 +5,8 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { applyToolTemplate } from './lib/tool-template.mjs';
+import { applyToolTemplate, TOOLS as TOOL_CARDS } from './lib/tool-template.mjs';
+import { loadPrintables, writePrintStrings } from './lib/printables.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const ROOT = path.resolve(path.dirname(__filename), '..');
@@ -1005,7 +1006,17 @@ const indexOnlyTools = [
   { slug: "weeks-left-in-year", cardTitle: "Weeks left in the year" },
   { slug: "year-progress-wallpaper", cardTitle: "Year progress wallpaper" },
 ];
-const listedTools = [...allTools, ...indexOnlyTools];
+// Printable tools (scripts/printables/*.mjs) and their hub, /tools/printables.
+const printables = await loadPrintables(ROOT);
+const PRINTABLES_HUB = {
+  slug: 'printables',
+  title: 'Printables: Year Calendar, Habit Tracker and Life Calendar | Left',
+  h1: 'Printables',
+  desc: 'Calendars, habit trackers, goal trackers and life calendars to fill in and print, in A5, A4, A3 or Letter, laid out for each paper size.',
+  cardTitle: 'All printables',
+  cardDesc: 'Calendars, habit trackers and life calendars to print.',
+};
+const listedTools = [...allTools, ...indexOnlyTools, PRINTABLES_HUB, ...printables];
 const toolBySlug = new Map(listedTools.map(t => [t.slug, t]));
 
 const relatedOverrides = {
@@ -1029,6 +1040,10 @@ const relatedOverrides = {
 };
 
 const groups = [
+  {
+    name: 'Printables',
+    slugs: ['printables', ...printables.map(p => p.slug)],
+  },
   {
     name: 'Holidays & seasons',
     slugs: ['christmas-countdown-widget', 'days-until-new-year', 'days-until-new-years-eve', 'days-until-easter', 'days-until-valentines', 'days-until-halloween', 'days-until-thanksgiving', 'days-until-mothers-day', 'days-until-fathers-day', 'days-until-spring', 'days-until-summer', 'days-until-fall', 'days-until-winter', 'days-until-anzac-day', 'days-until-black-friday', 'days-until-boxing-day', 'days-until-chinese-new-year', 'days-until-diwali', 'days-until-eid', 'days-until-hanukkah', 'days-until-july-4th', 'days-until-labor-day', 'days-until-pride-month', 'days-until-ramadan', 'days-until-super-bowl', 'weeks-until-memorial-day'],
@@ -1253,6 +1268,131 @@ function newToolPage(tool) {
   <script>
     ${tool.script}
   </script>
+  <script defer src="/index.js"></script>
+</body>
+</html>
+`;
+}
+
+function stripTags(html) {
+  return String(html).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+}
+
+function faqBlock(faq) {
+  if (!faq || !faq.length) return '';
+  return `
+      <h2>Questions</h2>
+      <div class="tool-faq">
+${faq.map(([q, a]) => `        <details class="faq-item">
+          <summary>${escapeHtml(q)}</summary>
+          <div class="faq-answer"><p>${a}</p></div>
+        </details>`).join('\n')}
+      </div>`;
+}
+
+function faqJsonLd(faq) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: stripTags(a) } })),
+  };
+}
+
+function withPrintCss(head) {
+  return head.replace('<link rel="stylesheet" href="/tools/tools.css" />', '<link rel="stylesheet" href="/tools/tools.css" />\n  <link rel="stylesheet" href="/tools/print/print.css" />');
+}
+
+function printScripts(ids) {
+  return ['/tools/print/strings.js', '/tools/print/core.js', ...ids.map(id => `/tools/print/${id}.js`)]
+    .map(src => `<script src="${src}"></script>`).join('\n  ');
+}
+
+// One printable: controls and live preview, then the copy, FAQ and related tools.
+function printablePage(p) {
+  const head = withPrintCss(toolHead(p, p.faq && p.faq.length ? [faqJsonLd(p.faq)] : []));
+  return `${head}<body>
+  ${nav()}
+
+  <main class="container tool-page">
+    <h1>${escapeHtml(p.h1)}</h1>
+    <p class="tool-lede">${escapeHtml(p.lede || p.desc)}</p>
+
+    <div class="tool-widget">
+      <div class="lp-tool" data-lp-tool="${escapeAttr(p.id)}"></div>
+    </div>
+
+    <div class="tool-prose">
+${p.sections.map(([title, paragraphs]) => `      <h2>${escapeHtml(title)}</h2>
+${paragraphs.map(par => `      <p>${par}</p>`).join('\n')}`).join('\n\n')}
+${faqBlock(p.faq)}
+    </div>
+
+    ${related(p.related && p.related.length ? p.related : ['printables'])}
+
+    ${downloadBlock()}
+  </main>
+
+  ${footer()}
+
+  <script src="/tools/tools.js"></script>
+  ${printScripts([p.id])}
+  <script defer src="/index.js"></script>
+</body>
+</html>
+`;
+}
+
+// The hub: a live thumbnail of every printable.
+function printablesHubPage() {
+  const hub = PRINTABLES_HUB;
+  const head = withPrintCss(toolHead(hub, [{
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: hub.h1,
+    numberOfItems: printables.length,
+    itemListElement: printables.map((p, i) => ({ '@type': 'ListItem', position: i + 1, name: p.cardTitle, url: `${SITE}/tools/${p.slug}` })),
+  }]));
+  const card = slug => {
+    const tool = toolBySlug.get(slug);
+    return `        <a class="tool-related-item" href="/tools/${slug}">${escapeHtml(tool ? tool.cardTitle : slug)}</a>`;
+  };
+  return `${head}<body>
+  ${nav()}
+
+  <main class="container tool-page">
+    <h1>${escapeHtml(hub.h1)}</h1>
+    <p class="tool-lede">Fill in your habits, dates and goals, choose A5, A4, A3 or Letter, and print. Each page is laid out for its paper size, not just scaled.</p>
+
+    <div class="lp-hub">
+${printables.map(p => `      <a class="lp-hub__card" href="/tools/${p.slug}">
+        <div class="lp-hub__thumb" data-lp-thumb="${escapeAttr(p.id)}"></div>
+        <div class="lp-hub__title">${escapeHtml(p.cardTitle)}</div>
+        <p class="lp-hub__desc">${escapeHtml(p.cardDesc)}</p>
+      </a>`).join('\n')}
+    </div>
+
+    <div class="tool-prose">
+      <h2>How the printables work</h2>
+      <p>Open a printable and type in what you want on the page, such as your habits, the dates to remember, or your name and birth date. The preview redraws as you type. Choose the paper size and print, or save a PDF from the print window.</p>
+      <p>A5 pages keep only what fits, A4 pages add lists and notes, and A3 pages have room for more habits, more goals and boxes to write in. Everything is drawn in your browser, and nothing you type is uploaded.</p>
+      <h2>Keep it going on your iPhone</h2>
+      <p>Paper is good for the fridge or the desk. Left keeps the same habits, streaks, countdowns and life calendar on your Home Screen, Lock Screen and Apple Watch.</p>
+    </div>
+
+    <div class="tool-related">
+      <h2>Related tools</h2>
+      <div class="tool-related-items">
+${['life-in-weeks-calculator', 'habit-streak-calculator', 'year-progress-wallpaper', 'days-until-new-year'].map(card).join('\n')}
+      </div>
+    </div>
+
+    ${downloadBlock()}
+  </main>
+
+  ${footer()}
+
+  <script src="/tools/tools.js"></script>
+  ${printScripts(printables.map(p => p.id))}
   <script defer src="/index.js"></script>
 </body>
 </html>
@@ -1495,6 +1635,15 @@ async function main() {
     html = replaceHead(html, merged);
     await fs.writeFile(file, html);
   }
+
+  // Printables are generated on every build from scripts/printables/*.mjs.
+  await writePrintStrings(ROOT);
+  for (const p of printables) {
+    TOOL_CARDS[p.slug] = { preview: 'none', ...(p.card || {}) };
+    await fs.writeFile(path.join(toolsDir, `${p.slug}.html`), printablePage(p));
+  }
+  TOOL_CARDS[PRINTABLES_HUB.slug] = { family: 'year', preview: 'none' };
+  await fs.writeFile(path.join(toolsDir, `${PRINTABLES_HUB.slug}.html`), printablesHubPage());
 
   // Shared blocks (result card, read more, closing block) on every tool page,
   // including pages that are not in the lists above yet.

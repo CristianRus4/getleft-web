@@ -593,8 +593,13 @@ function transform(html, pagePath, locale, data, enData, ctx) {
 }
 
 function injectToolRuntime(html, data) {
-  const runtime = data.tools && data.tools.runtime;
+  let runtime = data.tools && data.tools.runtime;
   if (!runtime || typeof runtime !== 'object') return html;
+  // Printable text (runtime.print) only on pages that run a printable.
+  if (runtime.print && !html.includes('/tools/print/core.js')) {
+    const { print, ...rest } = runtime;
+    runtime = rest;
+  }
   const payload = `<script>window.LEFT_TOOL_I18N=${JSON.stringify(runtime).replace(/</g, '\\u003c')};</script>`;
   return html.replace(/(<script\s+src="\/tools\/tools\.js"[^>]*><\/script>)/, `${payload}\n  $1`);
 }

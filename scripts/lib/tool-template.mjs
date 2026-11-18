@@ -174,6 +174,7 @@ const decode = s => String(s).replace(/&(amp|quot|#39|apos|lt|gt);/g, (_, e) => 
 function previewHtml(cfg) {
   const kind = cfg.preview || 'number';
   const title = cfg.title ? esc(cfg.title) : '';
+  if (kind === 'none') return '';
   if (kind === 'year') {
     return `<div class="tool-preview tool-preview--grid" data-tool-preview="year" aria-hidden="true">
           <span class="tool-preview__title" data-preview-title>${new Date().getFullYear()}</span>
