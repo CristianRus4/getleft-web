@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-bday-cd-wdg-7ec5-b-zh-Hant&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="landing" />
+  <title>iPhone 生日倒數小工具（每年自動重複）| Left</title>
+  <meta name="description" content="在 iPhone 的主畫面或鎖定畫面倒數你或別人的生日。在 Left 設定一次，它就會自動延續到明年。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="iPhone 生日倒數小工具"  />
+  <meta property="og:description" content="在 iPhone 的主畫面或鎖定畫面倒數你或別人的生日。在 Left 設定一次，它就會自動延續到明年。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hant/birthday-countdown-widget" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:image" content="https://getleft.app/images/blog/birthday-countdown-widget-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="iPhone 生日倒數小工具"  />
+  <meta name="twitter:description" content="在 iPhone 的主畫面或鎖定畫面倒數你或別人的生日。在 Left 設定一次，它就會自動延續到明年。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/birthday-countdown-widget-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "生日倒數小工具",
+      "item": "https://getleft.app/birthday-countdown-widget"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Left",
+  "operatingSystem": "iOS 26 or later",
+  "applicationCategory": "ProductivityApplication",
+  "url": "https://getleft.app/",
+  "installUrl": "https://apps.apple.com/app/id6740155884",
+  "description": "Left 以主畫面小工具、鎖定畫面小工具、提醒和即時動態，倒數生日和其他每年固定的日期。",
+  "publisher": {
+    "@id": "https://getleft.app/#organization"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "要怎麼在 iPhone 主畫面放上生日倒數？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在 Left 的「未來」中加入生日，並把「重複」設為每年。然後長按主畫面，點「編輯」，選擇「加入小工具」，搜尋 Left 並加入「未來」小工具。長按該小工具，點「編輯小工具」，並在「選擇日期」下挑選生日。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "生日過後倒數會重設嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，只要「重複」設為每年。生日結束後（到「直到」所設的時間），Left 會把它移到明年的同一天，小工具便重新開始倒數。「生日派對」範本已預先開啟每年重複。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我可以倒數不只一個生日嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。每個生日都是各自的「未來」日期，「未來時間」列表小工具在大型尺寸下最多可同時顯示 7 個。免費方案總共包含 2 個倒數；Left Premium 沒有上限。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我可以在生日前收到提醒嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。開啟「取得提醒」，並選擇在日期開始前 1 個月、2 週、1 週、2 天或 1 天，於你方便的時間提醒。「生日派對」範本會在 1 週前設定提醒。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "小工具可以顯示對方的照片嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。從相簿或 Unsplash 為該日期加入背景照片，然後在編輯「未來」小工具時開啟背景照片選項。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我可以在鎖定畫面看到生日倒數嗎？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。把 Left 的「未來」小工具以圓形或長方形尺寸加到鎖定畫面，然後選擇生日。即時動態也可以在鎖定畫面和動態島顯示最後幾個小時。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hant"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hant/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hant/#features" class="nav-link">功能</a>
+          <a href="/zh-Hant/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hant/blog/" class="nav-link">部落格</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-bday-cd-wdg-7ec5-n-zh-Hant&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下載</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/zh-Hant/">Left</a> / 生日倒數小工具</p>
+      <h1>每年自動重設的生日倒數小工具</h1>
+      <p class="article-lede">你自己的生日、另一半的生日、摯友的生日、孩子的第一個生日：當你能看到它一步步接近，生日不但更容易規劃，等待起來也更有趣。在 Left 裡，你只要加入一次日期，設為每年重複，小工具就會顯示剩下的天數。派對結束的隔天，它會靜靜地開始倒數下一個生日。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-bday-cd-wdg-7ec5-h-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 取得生日倒數">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          取得生日倒數
+        </a>
+        <p>適用於 iOS 26 或更新版本的 iPhone。免費方案可建立 2 個倒數日。</p>
+      </div>
+      <figure class="post-hero"><img src="/images/blog/birthday-countdown-widget-hero.webp" alt="一份用手寫字體包裝紙包好、以麻繩綁住的小禮物，旁邊放著一小枝尤加利葉，鋪在白色亞麻布上，帶著柔和的陰影。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://www.pexels.com/photo/gift-box-on-the-bed-9311806/" rel="noopener">照片：Feyza Tuğba，來自 Pexels</a></figcaption></figure>
+
+<nav class="article-toc" aria-label="本頁內容">
+        <p class="article-toc-label">本頁內容</p>
+        <ul class="article-toc-list">
+          <li><a href="#why">為什麼要把生日倒數放在螢幕上</a></li>
+          <li><a href="#setup">如何在 Left 建立生日倒數</a></li>
+          <li><a href="#many">同時追蹤多個生日</a></li>
+          <li><a href="#day">最後幾個小時</a></li>
+          <li><a href="#free">哪些免費，哪些需要 Left Premium</a></li>
+          <li><a href="#faq">常見問題</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="why">為什麼要把生日倒數放在螢幕上</h2>
+        <p>生日總是喜歡一次全部到來。你知道日期，但它總是「還早得很」，直到突然變成下週二，結果沒有禮物、沒有訂位，也沒有計畫。每天都看得到的倒數，可以解決「突然」這件事：還剩 40 天是溫和的提醒，還剩 7 天則是明確的提醒。</p>
+        <p>反過來也一樣。倒數自己的生日、孩子的第一個生日，或像 30 歲、50 歲這樣的里程碑，本身就是樂趣的一部分，而且每天早上稍微變小的數字，會讓等待感覺短一些。</p>
+
+        <h2 id="setup">如何在 Left 建立生日倒數</h2>
+        <h3>1. 加入生日</h3>
+        <ol>
+          <li>打開 Left，前往<strong>即將到來</strong>。</li>
+          <li>點<strong>新增未來日期</strong>（或 <strong>+</strong>），並搜尋「生日」。<strong>生日派對</strong>範本已設為每年重複、以天計算，並在一週前提醒你。你也可以選擇<strong>新日期</strong>，從頭開始。</li>
+          <li>為它命名，例如「Maya 的生日」，並把<strong>開始</strong>設為下一次生日到來的時間。把<strong>直到</strong>設為當天結束，這樣生日一過，倒數就會往下一個日期前進。</li>
+          <li>確認<strong>重複</strong>已設為<strong>每年</strong>。倒數就是靠這個設定，在這一天過後自動延續到明年。</li>
+          <li>在<strong>更多選項</strong>下，選擇如何<strong>顯示為...</strong>：大多數生日用「天」就很合適；離得還遠的時候，用週或月比較好。</li>
+          <li>點一下最上方的預覽卡片來選擇符號，或選擇<strong>加入圖片</strong>，從<strong>我的照片</strong>或 Unsplash 挑選背景照片。</li>
+          <li>儲存。生日現在就和其他日期一起放在「未來」裡了。</li>
+        </ol>
+        <h3>2. 放到主畫面</h3>
+        <ol>
+          <li>長按主畫面的空白處，點<strong>編輯</strong>，再點<strong>加入小工具</strong>。</li>
+          <li>搜尋 <strong>Left</strong>，並加入你喜歡尺寸的<strong>未來</strong>小工具。</li>
+          <li>長按小工具，點<strong>編輯小工具</strong>，並在<strong>選擇日期</strong>下選擇生日。如果想讓對方的臉出現在主畫面上，就開啟背景照片。</li>
+        </ol>
+        <p>鎖定畫面的做法相同：自訂你的鎖定畫面，點小工具區域，並加入圓形或長方形尺寸的 Left <strong>未來</strong>小工具。</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-bday-cd-wdg-7ec5-i-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 開始生日倒數">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  開始生日倒數
+                </a>
+        </div>
+
+        <h2 id="many">同時追蹤多個生日</h2>
+        <p>如果你想同時看到不只一個生日，<strong>未來時間列表</strong>小工具可以一次顯示多個日期：中型最多 3 個，大型最多 7 個，各自使用自己的單位。要知道家人和朋友之中誰的生日最近，這是個簡單的方法。</p>
+        <p>在 App 中，把「未來」依<strong>最近</strong>排序，下一個生日就會永遠排在最上面。每個日期也可以設定提醒：開啟<strong>取得提醒</strong>，並選擇在<strong>開始</strong>時間前一個月、兩週、一週、兩天或一天，於你選擇的時間提醒。凡是需要訂購或寄送的東西，提前一個月差不多剛好。</p>
+
+        <h2 id="day">最後幾個小時</h2>
+        <p><strong>生日派對</strong>範本會開啟<strong>取得最終倒數計時</strong>，也就是在日期的<strong>直到</strong>時間前最後 4 個小時，於鎖定畫面和動態島顯示即時動態。<strong>直到</strong>設為當天結束時，就是生日當晚。若要倒數派對本身，請把<strong>開始</strong>設為派對開始的時間，並開啟<strong>為開始做好準備</strong>：即時動態會涵蓋開始前的 4 個小時。無論哪一種，除非你關閉它，否則最多會停留 4 個小時。</p>
+        <p>要一起籌備派對嗎？有了 Left Premium，你可以把日期以<a href="/zh-Hant/support/joint-ahead-dates">共同未來日期</a>與朋友分享，讓每個人在自己的 Left 裡看到同樣的倒數。</p>
+
+        <h2 id="free">哪些免費，哪些需要 Left Premium</h2>
+        <p>Left 可免費下載，小工具也是免費的。免費方案可建立 <strong>2 個倒數</strong>，足夠放你自己的生日和另一個生日。這個上限計算的是你建立過的所有倒數，所以刪掉一個並不會空出名額。Left Premium 沒有上限，還能與朋友共享日期，並提供「規劃」等功能。價格會在你購買前顯示於 App 中。</p>
+        <p>現在只需要一個數字嗎？免費的<a href="/zh-Hant/tools/days-until-birthday">距離生日天數</a>計算機和<a href="/zh-Hant/tools/age-calculator">年齡計算機</a>可以直接在瀏覽器中使用。</p>
+
+        <h2 id="faq">問題</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>要怎麼在 iPhone 主畫面放上生日倒數？</summary>
+            <div class="faq-answer"><p>在 Left 的「未來」中加入生日，並把「重複」設為每年。然後長按主畫面，點「編輯」，選擇「加入小工具」，搜尋 Left 並加入「未來」小工具。長按該小工具，點「編輯小工具」，並在「選擇日期」下挑選生日。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>生日過後倒數會重設嗎？</summary>
+            <div class="faq-answer"><p>可以，只要「重複」設為每年。生日結束後（到「直到」所設的時間），Left 會把它移到明年的同一天，小工具便重新開始倒數。「生日派對」範本已預先開啟每年重複。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我可以倒數不只一個生日嗎？</summary>
+            <div class="faq-answer"><p>可以。每個生日都是各自的「未來」日期，「未來時間」列表小工具在大型尺寸下最多可同時顯示 7 個。免費方案總共包含 2 個倒數；Left Premium 沒有上限。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我可以在生日前收到提醒嗎？</summary>
+            <div class="faq-answer"><p>可以。開啟「取得提醒」，並選擇在日期開始前 1 個月、2 週、1 週、2 天或 1 天，於你方便的時間提醒。「生日派對」範本會在 1 週前設定提醒。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>小工具可以顯示對方的照片嗎？</summary>
+            <div class="faq-answer"><p>可以。從相簿或 Unsplash 為該日期加入背景照片，然後在編輯「未來」小工具時開啟背景照片選項。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我可以在鎖定畫面看到生日倒數嗎？</summary>
+            <div class="faq-answer"><p>可以。把 Left 的「未來」小工具以圓形或長方形尺寸加到鎖定畫面，然後選擇生日。即時動態也可以在鎖定畫面和動態島顯示最後幾個小時。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">延伸閱讀</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hant/countdown-widget">iPhone 倒數日小工具</a>
+          <a class="support-related-item" href="/zh-Hant/tools/days-until-birthday">距離生日天數計算機</a>
+          <a class="support-related-item" href="/zh-Hant/blog/best-countdown-widgets-iphone">iPhone 最佳倒數日小工具</a>
+          <a class="support-related-item" href="/zh-Hant/support/joint-ahead-dates">共同日期的運作方式</a>
+          <a class="support-related-item" href="/zh-Hant/support/widget-iphone-lock-screen">如何把 Left 小工具加到鎖定畫面</a>
+          <a class="support-related-item" href="/zh-Hant/tools/age-calculator">年齡計算機</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下載 Left</span>
+          <h2>再也不會被生日嚇一跳。</h2>
+          <p>下載 Left，加入對你重要的生日，讓小工具年復一年，為每一個生日倒數。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 點一下看說明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 掃描或搜尋 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-bday-cd-wdg-7ec5-e-zh-Hant&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 取得生日倒數">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          取得生日倒數
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="頁尾">
+          <a href="/zh-Hant/support">支援</a>
+          <a href="/terms">條款</a>
+          <a href="/zh-Hant/privacy">隱私權</a>
+          <a href="/zh-Hant/press">媒體</a>
+          <a href="/zh-Hant/contact">聯絡</a>
+          <a href="/zh-Hant/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hant/blog/">部落格</a>
+          <a href="#" data-consent-open>Cookie 設定</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="true">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我們使用 Google Analytics 了解哪些頁面對大家有幫助。沒有廣告，也不會跨網站追蹤。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允許分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hant/privacy#website" data-consent-privacy>隱私權</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
