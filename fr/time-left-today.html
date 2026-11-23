@@ -1,0 +1,582 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-time-left-today-b-fr&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="landing" />
+  <title>Widget du temps restant dans la journée pour iPhone (heures restantes) | Left</title>
+  <meta name="description" content="Vois combien d’heures il reste aujourd’hui sur l’écran d’accueil ou l’écran verrouillé de ton iPhone. Le widget Jour de Left dessine la journée sous forme de 24 symboles et estompe chaque heure qui passe."  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/fr/time-left-today" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/time-left-today" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/time-left-today" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/time-left-today" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/time-left-today" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/time-left-today" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/time-left-today" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/time-left-today" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/time-left-today" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/time-left-today" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/time-left-today" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/time-left-today" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/time-left-today" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/time-left-today" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/time-left-today" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/time-left-today" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/time-left-today" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/time-left-today" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/time-left-today" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/time-left-today" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/time-left-today" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/time-left-today" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/time-left-today" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/time-left-today" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/time-left-today" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/time-left-today" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/time-left-today" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/time-left-today" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="Combien reste-t-il de la journée ? Un widget pour iPhone"  />
+  <meta property="og:description" content="Vois combien d’heures il reste aujourd’hui sur l’écran d’accueil ou l’écran verrouillé de ton iPhone. Le widget Jour de Left dessine la journée sous forme de 24 symboles et estompe chaque heure qui passe."  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/fr/time-left-today" />
+  <meta property="og:locale" content="fr_FR" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_CN" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/time-left-today-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Combien reste-t-il de la journée ? Un widget pour iPhone"  />
+  <meta name="twitter:description" content="Vois combien d’heures il reste aujourd’hui sur l’écran d’accueil ou l’écran verrouillé de ton iPhone. Le widget Jour de Left dessine la journée sous forme de 24 symboles et estompe chaque heure qui passe."  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/time-left-today-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "Temps restant aujourd’hui",
+      "item": "https://getleft.app/time-left-today"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Left",
+  "operatingSystem": "iOS 26 or later",
+  "applicationCategory": "ProductivityApplication",
+  "url": "https://getleft.app/",
+  "installUrl": "https://apps.apple.com/app/id6740155884",
+  "description": "Left affiche les heures restantes dans la journée, les minutes restantes dans l’heure et la progression de la semaine, du mois et de l’année dans des widgets iPhone gratuits.",
+  "publisher": {
+    "@id": "https://getleft.app/#organization"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Existe-t-il un widget qui affiche combien d’heures il reste dans la journée ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Le widget Jour de Left affiche les heures restantes aujourd’hui, ou le pourcentage restant, sous une grille de 24 symboles, un par heure. Il fonctionne sur l’écran d’accueil en trois tailles et sur l’écran verrouillé en tailles circulaire, rectangulaire et en ligne."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le widget peut-il ne compter que mes heures d’éveil ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui, avec le widget Tout. Règle Début de la journée et Fin de la journée sur tes heures d’éveil et sa barre du jour suit la progression sur ces heures seulement. Le widget Jour utilise toujours les 24 heures complètes."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Puis-je voir le temps restant aujourd’hui sur mon écran verrouillé ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Ajoute le widget Jour de Left à l’écran verrouillé. La taille en ligne tient sur la ligne au-dessus de l’horloge, et les tailles circulaire et rectangulaire se placent en dessous."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Existe-t-il un widget pour les minutes restantes dans l’heure ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Le widget Minutes de Left affiche les minutes restantes dans l’heure en cours, sur l’écran d’accueil ou en widget en ligne sur l’écran verrouillé."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Pourquoi le widget ne se met-il pas à jour chaque minute ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "iOS décide du moment où les widgets se mettent à jour pour économiser la batterie, si bien que le chiffre évolue par paliers. Ouvre la vue Aujourd’hui ou Maintenant dans Left pour connaître le temps restant exact."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Le widget Jour est-il gratuit ?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Oui. Le widget Jour et les autres widgets Temps restant sont gratuits dans Left."
+      }
+    }
+  ],
+  "inLanguage": "fr"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="Principal">
+    <div class="container nav-inner">
+      <a href="/fr/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/fr/#features" class="nav-link">Fonctionnalités</a>
+          <a href="/fr/tools/" class="nav-link">Outils</a>
+          <a href="/fr/blog/" class="nav-link">Blog</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-time-left-today-n-fr&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">Télécharger</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/fr/">Left</a> / Temps restant aujourd’hui</p>
+      <h1>Un widget du temps restant aujourd’hui pour iPhone</h1>
+      <p class="article-lede">Une horloge te dit quelle heure il est. Elle ne te dit pas combien il te reste de la journée. Le widget <strong>Jour</strong> de Left, lui, le fait : il dessine aujourd’hui sous forme de 24 symboles, un par heure, estompe chaque heure qui passe et affiche les heures restantes en dessous. Jette-y un œil à 15 h et « 8 heures restantes » n’a rien à voir avec « 15:00 ».</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-time-left-today-h-fr&amp;mt=8" target="_blank" rel="noopener" aria-label="Obtenir le widget du temps restant aujourd’hui sur l’App Store">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Obtenir le widget du temps restant aujourd’hui
+        </a>
+        <p>Gratuit. Pour iPhone avec iOS 26 ou une version ultérieure.</p>
+      </div>
+      <figure class="post-hero"><img src="/images/blog/time-left-today-hero.webp" alt="Une horloge murale minimaliste gris clair avec une trotteuse rouge, sur un mur blanc lumineux." width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/minimalist-white-wall-clock-on-a-plain-white-background-qP1AadsDwzE" rel="noopener">Photo : bady abbas sur Unsplash</a></figcaption></figure>
+
+<nav class="article-toc" aria-label="Sur cette page">
+        <p class="article-toc-label">Sur cette page</p>
+        <ul class="article-toc-list">
+          <li><a href="#why">Pourquoi voir le temps restant aide</a></li>
+          <li><a href="#widgets">Les widgets de Left pour le temps restant aujourd’hui</a></li>
+          <li><a href="#setup">Comment ajouter le widget Jour</a></li>
+          <li><a href="#waking">Ne compte que tes heures d’éveil</a></li>
+          <li><a href="#app">Aujourd’hui et Maintenant dans l’app</a></li>
+          <li><a href="#free">Est-ce gratuit ?</a></li>
+          <li><a href="#faq">Questions</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="why">Pourquoi voir le temps restant aide</h2>
+        <p>La plupart d’entre nous sont optimistes sur ce qu’une journée peut contenir. Voir ce qu’il reste, plutôt que l’heure qu’il est, rend les heures restantes concrètes : il y a de la place pour une grosse tâche de plus, ou il n’y en a pas. C’est une façon douce de décider ce qu’on laisse tomber avant la soirée, et non après.</p>
+        <p>Pour les personnes qui trouvent les horloges abstraites, dont beaucoup de personnes avec un TDAH, voir le temps sous forme de grille peut le rendre plus concret. Pour en savoir plus, lis <a href="/fr/blog/adhd-time-blindness-iphone">la cécité temporelle et le TDAH sur iPhone</a>.</p>
+
+        <h2 id="widgets">Les widgets de Left pour le temps restant aujourd’hui</h2>
+        <div class="lp-table-wrap">
+        <table>
+          <thead><tr><th>Widget</th><th>Ce qu’il affiche</th><th>Écran d’accueil</th><th>Écran verrouillé</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Jour</strong></td><td>24 symboles, un par heure, avec les heures ou le pourcentage restants</td><td>Petit, Moyen, Grand</td><td>Circulaire, Rectangulaire, En ligne</td></tr>
+            <tr><td><strong>Daytime</strong></td><td>La journée en cinq périodes, du matin à la nuit, avec les périodes passées estompées</td><td>Petit, Moyen, Grand</td><td>Non disponible</td></tr>
+            <tr><td><strong>Minutes</strong></td><td>Les minutes restantes dans l’heure en cours</td><td>Petit, Moyen, Grand</td><td>En ligne</td></tr>
+            <tr><td><strong>Tout</strong></td><td>La progression du jour, de la semaine, du mois et de l’année réunies, avec ton propre début et ta propre fin de journée</td><td>Moyen</td><td>Non disponible</td></tr>
+          </tbody>
+        </table>
+        </div>
+        <p>Quand tu modifies le widget <strong>Jour</strong>, tu peux choisir le <strong>Symbole</strong> (points, carrés, étoiles, cœurs, hexagones et plus encore), l’<strong>Arrière-plan</strong> et le <strong>Thème</strong>, afficher ou non le <strong>Jour en cours</strong>, et choisir si <strong>Temps restant</strong> s’affiche en durée, en pourcentage ou pas du tout.</p>
+
+        <h2 id="setup">Comment ajouter le widget Jour</h2>
+        <ol>
+          <li>Télécharge Left. Le widget Jour ne demande aucune configuration dans l’app.</li>
+          <li>Maintiens le doigt sur une zone vide de ton écran d’accueil, touche <strong>Modifier</strong>, puis <strong>Ajouter un widget</strong>.</li>
+          <li>Cherche <strong>Left</strong>, balaie jusqu’au widget <strong>Jour</strong>, choisis une taille et touche <strong>Ajouter un widget</strong>, puis <strong>OK</strong>.</li>
+          <li>Pour changer son apparence, maintiens le doigt sur le widget et touche <strong>Modifier le widget</strong>.</li>
+        </ol>
+        <p>Pour l’écran verrouillé, maintiens le doigt sur celui-ci, touche <strong>Personnaliser</strong>, choisis <strong>Écran verrouillé</strong> et ajoute le widget <strong>Jour</strong>. La taille en ligne se place sur la ligne au-dessus de l’horloge ; les tailles circulaire et rectangulaire se placent en dessous. iOS décide précisément du moment où les widgets se mettent à jour, si bien que le chiffre évolue par paliers plutôt que chaque seconde.</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-time-left-today-i-fr&amp;mt=8" target="_blank" rel="noopener" aria-label="Ajoute le widget Jour depuis l’App Store">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  Ajoute le widget Jour
+                </a>
+        </div>
+
+        <h2 id="waking">Ne compte que tes heures d’éveil</h2>
+        <p>Une journée complète de 24 heures inclut les heures où tu dors. Si tu préfères voir ce qu’il reste de ta journée <em>éveillée</em>, utilise le widget <strong>Tout</strong>. Règle <strong>Début de la journée</strong> et <strong>Fin de la journée</strong> sur les heures où tu es en général debout, par exemple de 7 h à 23 h, et sa barre du jour montre la progression sur ces heures seulement, à côté de la semaine, du mois et de l’année.</p>
+
+        <h2 id="app">Aujourd’hui et Maintenant dans l’app</h2>
+        <p>Ouvre Left et la même idée remplit l’écran. La vue <strong>Aujourd’hui</strong> dessine la journée sous forme de grille avec les heures restantes en haut, et <strong>Maintenant</strong> zoome sur l’heure en cours. Les autres vues t’emmènent vers la <strong>Semaine</strong>, le <strong>Mois</strong>, l’<strong>Année</strong> et <strong>Ta vie</strong>.</p>
+        <p>Si tu veux voir le reste de la journée organisé, pas seulement mesuré, le <strong>Planificateur</strong> (inclus dans Left Premium) réunit tes événements de calendrier, tes rappels, tes habitudes et tes séries dans une seule vue de la journée, avec son propre widget.</p>
+
+        <h2 id="free">Est-ce gratuit ?</h2>
+        <p>Oui. Les widgets Jour, Daytime, Minutes et Tout, ainsi que les vues Temps restant dans l’app, sont gratuits. Left Premium ajoute des comptes à rebours, habitudes, séries et Objectifs illimités, le Planificateur et plus encore. Les prix sont affichés dans l’app avant l’achat.</p>
+        <p>Tu veux aussi voir le reste de la semaine ou de l’année ? Découvre le <a href="/fr/year-progress-widget">widget de progression de l’année</a>, ou essaie les calculateurs gratuits <a href="/fr/tools/time-until-weekend">temps avant le week-end</a> et <a href="/fr/tools/working-hours-calculator">heures de travail</a>.</p>
+
+        <h2 id="faq">Questions</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>Existe-t-il un widget qui affiche combien d’heures il reste dans la journée ?</summary>
+            <div class="faq-answer"><p>Oui. Le widget Jour de Left affiche les heures restantes aujourd’hui, ou le pourcentage restant, sous une grille de 24 symboles, un par heure. Il fonctionne sur l’écran d’accueil en trois tailles et sur l’écran verrouillé en tailles circulaire, rectangulaire et en ligne.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Le widget peut-il ne compter que mes heures d’éveil ?</summary>
+            <div class="faq-answer"><p>Oui, avec le widget Tout. Règle Début de la journée et Fin de la journée sur tes heures d’éveil et sa barre du jour suit la progression sur ces heures seulement. Le widget Jour utilise toujours les 24 heures complètes.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Puis-je voir le temps restant aujourd’hui sur mon écran verrouillé ?</summary>
+            <div class="faq-answer"><p>Oui. Ajoute le widget Jour de Left à l’écran verrouillé. La taille en ligne tient sur la ligne au-dessus de l’horloge, et les tailles circulaire et rectangulaire se placent en dessous.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Existe-t-il un widget pour les minutes restantes dans l’heure ?</summary>
+            <div class="faq-answer"><p>Oui. Le widget Minutes de Left affiche les minutes restantes dans l’heure en cours, sur l’écran d’accueil ou en widget en ligne sur l’écran verrouillé.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Pourquoi le widget ne se met-il pas à jour chaque minute ?</summary>
+            <div class="faq-answer"><p>iOS décide du moment où les widgets se mettent à jour pour économiser la batterie, si bien que le chiffre évolue par paliers. Ouvre la vue Aujourd’hui ou Maintenant dans Left pour connaître le temps restant exact.</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>Le widget Jour est-il gratuit ?</summary>
+            <div class="faq-answer"><p>Oui. Le widget Jour et les autres widgets Temps restant sont gratuits dans Left.</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">À lire aussi</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/fr/year-progress-widget">Widget de progression de l’année pour iPhone</a>
+          <a class="support-related-item" href="/fr/blog/adhd-time-blindness-iphone">La cécité temporelle et le TDAH sur iPhone</a>
+          <a class="support-related-item" href="/fr/blog/what-is-year-progress">Qu’est-ce que la progression de l’année ?</a>
+          <a class="support-related-item" href="/fr/support/widget-iphone-lock-screen">Comment ajouter un widget Left à ton écran verrouillé</a>
+          <a class="support-related-item" href="/fr/tools/time-until-weekend">Temps avant le week-end</a>
+          <a class="support-related-item" href="/fr/tools/hours-between-two-dates">Heures entre deux dates</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">Télécharger Left</span>
+          <h2>Fais compter le reste de ta journée.</h2>
+          <p>Télécharge Left et ajoute le widget Jour pour voir ce qu’il te reste de la journée.</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - touche pour les instructions">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">Scanne ou cherche <strong>« Left »</strong> sur l’App Store.</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-time-left-today-e-fr&amp;mt=8" target="_blank" rel="noopener" aria-label="Obtenir le widget du temps restant aujourd’hui sur l’App Store">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          Obtenir le widget du temps restant aujourd’hui
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525 000</span> personnes qui font compter chaque instant.</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="Pied de page">
+          <a href="/fr/support">Aide</a>
+          <a href="/terms">Conditions</a>
+          <a href="/fr/privacy">Confidentialité</a>
+          <a href="/fr/press">Presse</a>
+          <a href="/fr/contact">Contact</a>
+          <a href="/fr/tools/">Outils</a>
+          <!-- left:footer-extra:start -->
+          <a href="/fr/blog/">Blog</a>
+          <a href="#" data-consent-open>Réglages des cookies</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>FR</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="true">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="false">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Consentement aux cookies">
+  <p class="left-consent__text">Nous utilisons Google Analytics pour savoir quelles pages sont utiles. Pas de publicité, pas de suivi entre sites.</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>Autoriser les statistiques</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>Non merci</button>
+    <a class="left-consent__link" href="/fr/privacy#website" data-consent-privacy>Confidentialité</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
