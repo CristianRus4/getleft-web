@@ -1,0 +1,577 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<!-- left:analytics:start -->
+<script>
+(function () {
+  // Inserted by the build only when site.config.json has a GA4 measurement ID.
+  // Trust boundary: invite codes and OAuth parameters must never reach analytics,
+  // so the handoff paths load nothing and every URL sent to Google is rebuilt
+  // from an allowlist instead of being read from location.href.
+  var EXCLUDED = ["/invite","/todoist","/friends","/public"];
+  var LOCALE_PREFIX = /^\/[a-z]{2}(?:-[A-Za-z0-9]{2,4})?(?=\/)/;
+  function isExcluded(path) {
+    var p = String(path || '/').toLowerCase();
+    var bare = p.replace(LOCALE_PREFIX, '');
+    for (var i = 0; i < EXCLUDED.length; i++) {
+      var x = String(EXCLUDED[i]).toLowerCase();
+      for (var j = 0, c = [p, bare]; j < c.length; j++) {
+        if (c[j] === x || c[j].indexOf(x + '/') === 0 || c[j].indexOf(x + '.') === 0) return true;
+      }
+    }
+    return false;
+  }
+  // The language-detect script is about to load the localized page; count that one instead.
+  if (window.__leftLangRedirect) return;
+  if (location.hostname !== 'getleft.app' || isExcluded(location.pathname)) return;
+
+  function cleanQuery(search) {
+    var kept = [];
+    try {
+      new URLSearchParams(search).forEach(function (value, key) {
+        var k = key.toLowerCase();
+        if (k.indexOf('utm_') === 0 || k === 'ref') kept.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+      });
+    } catch (e) {}
+    return kept.length ? '?' + kept.join('&') : '';
+  }
+  function cleanReferrer(ref) {
+    if (!ref) return '';
+    try {
+      var u = new URL(ref);
+      var own = u.hostname === 'getleft.app' || /\.getleft\.app$/.test(u.hostname);
+      if (own && (u.hostname !== 'getleft.app' || isExcluded(u.pathname))) return u.origin + '/';
+      return u.origin + u.pathname;
+    } catch (e) { return ''; }
+  }
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function () { window.dataLayer.push(arguments); };
+  var gtag = window.gtag;
+
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'denied',
+    region: ['AT','BE','BG','HR','CY','CZ','DK','EE','FI','FR','DE','GR','HU','IE','IT','LV','LT','LU','MT','NL','PL','PT','RO','SK','SI','ES','SE',
+             'GF','GP','MQ','RE','YT','MF','IS','LI','NO','GB','CH'],
+    wait_for_update: 500
+  });
+  gtag('consent', 'default', {
+    ad_storage: 'denied',
+    ad_user_data: 'denied',
+    ad_personalization: 'denied',
+    analytics_storage: 'granted'
+  });
+  try {
+    var stored = localStorage.getItem('left.consent');
+    if (stored === 'granted' || stored === 'denied') gtag('consent', 'update', { analytics_storage: stored });
+  } catch (e) {}
+
+  gtag('set', 'ads_data_redaction', true);
+  gtag('set', 'url_passthrough', false);
+  gtag('js', new Date());
+  gtag('config', 'G-YJKL80Z8DP', {
+    page_location: location.origin + location.pathname + cleanQuery(location.search),
+    page_referrer: cleanReferrer(document.referrer),
+    allow_google_signals: false,
+    allow_ad_personalization_signals: false
+  });
+
+  var s = document.createElement('script');
+  s.async = true;
+  s.src = 'https://www.googletagmanager.com/gtag/js?id=G-YJKL80Z8DP';
+  (document.head || document.documentElement).appendChild(s);
+})();
+</script>
+<script defer src="/analytics.js"></script>
+<!-- left:analytics:end -->
+<!-- left:smart-banner:start -->
+  <meta name="apple-itunes-app" content="app-id=6740155884, affiliate-data=pt=127436485&amp;ct=w-retire-cd-64a0-b-zh-Hans&amp;mt=8" />
+<!-- left:smart-banner:end -->
+  <meta name="naver-site-verification" content="7e309968ea81d03d0474bafa651eb286f54030f3" />
+  <meta name="left:content-type" content="landing" />
+  <title>iPhone 退休倒数时钟和小组件 | Left</title>
+  <meta name="description" content="在 iPhone 主屏幕或锁定屏幕上为退休倒数，可按年、月、周或天显示，并在旁边追踪你的储蓄目标。一分钟即可设置好。"  />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://getleft.app/zh-Hans/retirement-countdown" />
+  <!-- i18n:hreflang:start -->
+  <link rel="alternate" hreflang="x-default" href="https://getleft.app/retirement-countdown" />
+  <link rel="alternate" hreflang="en" href="https://getleft.app/retirement-countdown" />
+  <link rel="alternate" hreflang="id" href="https://getleft.app/id/retirement-countdown" />
+  <link rel="alternate" hreflang="de" href="https://getleft.app/de/retirement-countdown" />
+  <link rel="alternate" hreflang="hi" href="https://getleft.app/hi/retirement-countdown" />
+  <link rel="alternate" hreflang="es" href="https://getleft.app/es/retirement-countdown" />
+  <link rel="alternate" hreflang="es-ES" href="https://getleft.app/es/retirement-countdown" />
+  <link rel="alternate" hreflang="es-MX" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-US" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-AR" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-CO" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-CL" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-PE" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-VE" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-EC" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-GT" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-CU" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-BO" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-DO" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-HN" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-PY" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-SV" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-NI" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-CR" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-PA" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-UY" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="es-PR" href="https://getleft.app/es-419/retirement-countdown" />
+  <link rel="alternate" hreflang="fr" href="https://getleft.app/fr/retirement-countdown" />
+  <link rel="alternate" hreflang="it" href="https://getleft.app/it/retirement-countdown" />
+  <link rel="alternate" hreflang="nl" href="https://getleft.app/nl/retirement-countdown" />
+  <link rel="alternate" hreflang="pl" href="https://getleft.app/pl/retirement-countdown" />
+  <link rel="alternate" hreflang="pt" href="https://getleft.app/pt/retirement-countdown" />
+  <link rel="alternate" hreflang="pt-PT" href="https://getleft.app/pt/retirement-countdown" />
+  <link rel="alternate" hreflang="pt-BR" href="https://getleft.app/pt-BR/retirement-countdown" />
+  <link rel="alternate" hreflang="ro" href="https://getleft.app/ro/retirement-countdown" />
+  <link rel="alternate" hreflang="ru" href="https://getleft.app/ru/retirement-countdown" />
+  <link rel="alternate" hreflang="tr" href="https://getleft.app/tr/retirement-countdown" />
+  <link rel="alternate" hreflang="ko" href="https://getleft.app/ko/retirement-countdown" />
+  <link rel="alternate" hreflang="ja" href="https://getleft.app/ja/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://getleft.app/zh-Hans/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-CN" href="https://getleft.app/zh-Hans/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-SG" href="https://getleft.app/zh-Hans/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://getleft.app/zh-Hant/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-TW" href="https://getleft.app/zh-Hant/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-HK" href="https://getleft.app/zh-Hant/retirement-countdown" />
+  <link rel="alternate" hreflang="zh-MO" href="https://getleft.app/zh-Hant/retirement-countdown" />
+  <!-- i18n:hreflang:end -->
+  <meta property="og:title" content="适用于 iPhone 的退休倒数小组件"  />
+  <meta property="og:description" content="在 iPhone 主屏幕或锁定屏幕上为退休倒数，可按年、月、周或天显示，并在旁边追踪你的储蓄目标。一分钟即可设置好。"  />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://getleft.app/zh-Hans/retirement-countdown" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:locale:alternate" content="en_US" />
+  <meta property="og:locale:alternate" content="id_ID" />
+  <meta property="og:locale:alternate" content="de_DE" />
+  <meta property="og:locale:alternate" content="hi_IN" />
+  <meta property="og:locale:alternate" content="es_ES" />
+  <meta property="og:locale:alternate" content="es_LA" />
+  <meta property="og:locale:alternate" content="fr_FR" />
+  <meta property="og:locale:alternate" content="it_IT" />
+  <meta property="og:locale:alternate" content="nl_NL" />
+  <meta property="og:locale:alternate" content="pl_PL" />
+  <meta property="og:locale:alternate" content="pt_PT" />
+  <meta property="og:locale:alternate" content="pt_BR" />
+  <meta property="og:locale:alternate" content="ro_RO" />
+  <meta property="og:locale:alternate" content="ru_RU" />
+  <meta property="og:locale:alternate" content="tr_TR" />
+  <meta property="og:locale:alternate" content="ko_KR" />
+  <meta property="og:locale:alternate" content="ja_JP" />
+  <meta property="og:locale:alternate" content="zh_TW" />
+  <meta property="og:image" content="https://getleft.app/images/blog/retirement-countdown-hero.webp" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="675" />
+  <meta property="og:site_name" content="Left" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="适用于 iPhone 的退休倒数小组件"  />
+  <meta name="twitter:description" content="在 iPhone 主屏幕或锁定屏幕上为退休倒数，可按年、月、周或天显示，并在旁边追踪你的储蓄目标。一分钟即可设置好。"  />
+  <meta name="twitter:image" content="https://getleft.app/images/blog/retirement-countdown-hero.webp" />
+  <meta name="theme-color" content="#FAFAFA" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#0C0C0E" media="(prefers-color-scheme: dark)" />
+  <meta name="color-scheme" content="light dark" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png" />
+  <link rel="manifest" href="/favicon/site.webmanifest" />
+  <link rel="stylesheet" href="/style.css" />
+  <style>
+    .lp .lp-crumbs { font-size: 14px; color: var(--text-secondary); margin: 0 0 16px; }
+    .lp .lp-crumbs a { color: var(--text-secondary); }
+    .lp .article-lede { font-size: clamp(18px, 2vw, 21px); line-height: 1.55; color: var(--text-secondary); }
+    .lp .lp-cta { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 16px; margin: 24px 0 8px; }
+    .lp .lp-cta p { margin: 0; font-size: 15px; color: var(--text-secondary); }
+    .lp .dl-btn, .lp .dl-btn:hover { color: var(--bg); font-weight: 700; text-decoration: none; }
+    .lp .dl-btn:hover { color: #fff; }
+    .lp .lp-web-btn { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 14px 18px; border: 1.5px solid var(--text); border-radius: 14px; color: var(--text); font-size: 14px; font-weight: 700; text-decoration: none; white-space: nowrap; }
+    .lp .lp-web-btn:hover { border-color: var(--accent); color: var(--accent); font-weight: 700; }
+    .article .post-hero { margin: 24px 0 28px; }
+    .article .post-hero img { display: block; width: 100%; height: auto; border-radius: 12px; margin: 0; }
+    .article .post-hero figcaption { margin-top: 8px; font-size: 13px; line-height: 1.5; color: var(--text-secondary); }
+    .article .post-hero figcaption a { color: inherit; text-decoration: underline; }
+    .lp .lp-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px 24px; max-width: 640px; margin: 32px 0; }
+    .lp .lp-shot { margin: 0; }
+    .lp .lp-shot img { display: block; width: 100%; max-width: 280px; height: auto; margin: 0; border-radius: 0; }
+    .lp .lp-shot img.lp-shot-flat { border-radius: 24px; }
+    .lp .lp-shot figcaption { margin-top: 8px; font-size: 14px; line-height: 1.5; color: var(--text-secondary); max-width: 280px; }
+    .lp .lp-table-wrap { overflow-x: auto; margin: 16px 0 24px; }
+    .lp table { border-collapse: collapse; width: 100%; font-size: 16px; line-height: 1.5; }
+    .lp th, .lp td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--hairline); }
+    .lp th { font-weight: 700; }
+    .lp .lp-note { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; margin: 24px 0; }
+    .lp .lp-faq { margin-top: 8px; }
+    .lp .lp-faq .faq-answer p { color: var(--text-secondary); font-size: 16px; margin: 0; }
+  </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "Left",
+      "item": "https://getleft.app/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "退休倒计时",
+      "item": "https://getleft.app/retirement-countdown"
+    }
+  ]
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "Left",
+  "operatingSystem": "iOS 26 or later",
+  "applicationCategory": "ProductivityApplication",
+  "url": "https://getleft.app/",
+  "installUrl": "https://apps.apple.com/app/id6740155884",
+  "description": "Left 用主屏幕和锁定屏幕小组件为退休和其他任何日期倒数，并用“目标”追踪储蓄目标。",
+  "publisher": {
+    "@id": "https://getleft.app/#organization"
+  }
+}
+</script>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "如何在我的 iPhone 上放一个退休倒数？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "在 Left 的“未来”板块中添加你的退休日期。然后长按主屏幕，轻点“编辑”，选择“添加小组件”，搜索 Left 并添加“未来”小组件。长按该小组件，轻点“编辑小组件”，在“选择日期”下选择这个日期。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "倒数能显示年和月，而不是天吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。每个日期都有“显示为…”设置，可选年、月、周、天或小时，“未来”小组件的“文字”布局也可以让你选择它显示的单位。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我能在锁定屏幕上看到退休倒数吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。把 Left 的“未来”小组件以圆形或矩形尺寸添加到锁定屏幕，并选择你的退休日期。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我能在 Left 中追踪我的退休储蓄吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "你可以用“目标”追踪自己输入的储蓄数字，它会朝着某个指标往上计数，并可设置截止日期。Left 不会连接银行或养老金账户。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "我和伴侣可以共享这个倒数吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以，需要 Left Premium。把伴侣添加为朋友，并把这个日期作为共同“未来”日期共享，这样同一个倒数也会出现在对方的 Left 里。"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "退休倒数是免费的吗？",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "可以。Left 的小组件是免费的，免费方案包含 2 个倒数和 2 个目标。删除一个不会腾出名额；Left Premium 取消这些限制。"
+      }
+    }
+  ],
+  "inLanguage": "zh-Hans"
+}
+</script>
+</head>
+<body>
+  <nav class="top-nav top-nav--visible" aria-label="主要">
+    <div class="container nav-inner">
+      <a href="/zh-Hans/" class="brand">Left</a>
+      <div class="nav-trailing">
+        <div class="nav-links">
+          <!-- left:nav:start -->
+          <a href="/zh-Hans/#features" class="nav-link">功能</a>
+          <a href="/zh-Hans/tools/" class="nav-link">工具</a>
+          <a href="/zh-Hans/blog/" class="nav-link">博客</a>
+          <!-- left:nav:end -->
+        </div>
+        <a class="btn btn-primary" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-retire-cd-64a0-n-zh-Hans&amp;mt=8" target="_blank" rel="noopener" data-cta="nav">下载</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <article class="article lp">
+      <p class="lp-crumbs"><a href="/zh-Hans/">Left</a> / 退休倒数</p>
+      <h1>适用于 iPhone 的退休倒数</h1>
+      <p class="article-lede">无论退休还有二十年，还是只剩最后几个月，这都是一个值得始终放在眼前的日期。在 Left 中，你只需添加一次退休日期，选择按年、月、周还是天来计数，小组件就会把倒数放在你的主屏幕或锁定屏幕上。旁边还可以用<strong>目标</strong>来追踪能让你走到那一步的储蓄。</p>
+      <div class="lp-cta">
+        <a class="dl-btn" data-cta="hero" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-retire-cd-64a0-h-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 上获取退休倒数">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          获取退休倒数
+        </a>
+        <p>适用于 iOS 26 或更高版本的 iPhone。免费方案包含 2 个倒数和 2 个目标。</p>
+      </div>
+      <figure class="post-hero"><img src="/images/blog/retirement-countdown-hero.webp" alt="几支磨旧的木桨挂在一面饱经风霜的船屋墙上，沐浴在斑驳的阳光里。" width="1200" height="675" fetchpriority="high" decoding="async"  /><figcaption><a href="https://unsplash.com/photos/wooden-paddles-and-oars-hanging-on-a-rustic-wooden-wall-yziKPpG65ZI" rel="noopener">照片：Aubrey Odom，来自 Unsplash</a></figcaption></figure>
+
+<nav class="article-toc" aria-label="本页内容">
+        <p class="article-toc-label">本页内容</p>
+        <ul class="article-toc-list">
+          <li><a href="#why">为什么要为退休倒数</a></li>
+          <li><a href="#setup">如何在 Left 中设置退休倒数</a></li>
+          <li><a href="#savings">在旁边追踪你的储蓄目标</a></li>
+          <li><a href="#final">最后一天，以及之后的岁月</a></li>
+          <li><a href="#free">哪些免费，哪些需要 Left Premium</a></li>
+          <li><a href="#faq">常见问题</a></li>
+        </ul>
+      </nav>
+
+        <h2 id="why">为什么要为退休倒数</h2>
+        <p>退休这种日子，在突然到来之前总觉得很抽象。把它看成一个数字，就真实得足以让人去规划：“6 年”是一份储蓄计划，“18 个月”是一次与雇主的谈话，“40 个工作日”是一次工作交接。而对很多人来说，看着这个数字不断变小，本身就是一种动力。</p>
+        <p>单位很重要。二十年换算成天是一个又大又慢的数字，用年来表示则清晰得多。Left 允许你随着日期临近更换单位，让倒数始终以最合适的尺度显示。</p>
+
+        <h2 id="setup">如何在 Left 中设置退休倒数</h2>
+        <h3>1. 添加你的退休日期</h3>
+        <ol>
+          <li>打开 Left，进入<strong>即将到来</strong>。</li>
+          <li>轻点<strong>添加未来日期</strong>（或 <strong>+</strong>），选择<strong>新日期</strong>。如果你在为工作的最后一天倒数，<strong>当前工作的最后一天</strong>模板是个不错的起点。庆祝时，还有一个<strong>退休派对</strong>模板。</li>
+          <li>给它起个名字，然后把<strong>开始</strong>设为你的退休日期和时间。</li>
+          <li>在<strong>更多选项</strong>下，用<strong>显示为…</strong>选择年、月、周、天或小时。</li>
+          <li>轻点顶部的预览卡片，选择<strong>添加图片</strong>，从<strong>我的照片</strong>或 Unsplash 添加背景照片：一片海滩、一座花园、那条小船。</li>
+          <li>储存。</li>
+        </ol>
+        <h3>2. 放到主屏幕或锁定屏幕上</h3>
+        <ol>
+          <li>长按主屏幕的空白处，轻点<strong>编辑</strong>，再轻点<strong>添加小组件</strong>。</li>
+          <li>搜索 <strong>Left</strong>，添加<strong>未来</strong>小组件；如果你更想看进度，就添加<strong>未来条形</strong>或<strong>未来圆环</strong>。</li>
+          <li>长按小组件，轻点<strong>编辑小组件</strong>，在<strong>选择日期</strong>下选择你的退休日期。在“未来”小组件的<strong>文字</strong>布局中，你可以选择单位，并显示日期或百分比；<strong>网格</strong>布局则把剩余时间画成符号网格。</li>
+        </ol>
+        <p>在锁定屏幕上，添加圆形或矩形尺寸的<strong>未来</strong>小组件。</p>
+        <div class="lp-cta">
+          <a class="dl-btn" data-cta="inline" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-retire-cd-64a0-i-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 上开始你的退休倒数">
+                  <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+                  开始你的退休倒数
+                </a>
+        </div>
+
+        <h2 id="savings">在旁边追踪你的储蓄目标</h2>
+        <p>倒数告诉你什么时候；<strong>目标</strong>告诉你是否在正轨上。在 Left 的<strong>事件计时</strong>板块中，创建一个向某个指标往上计数的目标，比如你的退休储蓄数字，带单位，还可以设置截止日期。每次记录进度，目标都会以百分比显示你已经走了多远。把<strong>目标</strong>小组件放在倒数旁边，两个数字就都在你的主屏幕上了。详见<a href="/zh-Hans/support/aims-in-left">“目标”的使用方法</a>。</p>
+        <p class="lp-note">Left 是一款倒数和追踪 App，不是理财建议。请把它与你和养老金提供方或顾问制定的计划搭配使用。</p>
+
+        <h2 id="final">最后一天，以及之后的岁月</h2>
+        <p>临近最后阶段时，在该日期上打开<strong>准备开始</strong>。这样 Left 会在你退休时间之前的最后 4 小时，在锁定屏幕和灵动岛上显示实时活动：最后一个班次的结束，精确到秒地倒数。</p>
+        <p>退休也是放眼更大图景的好时机。Left 的<a href="/zh-Hans/life-calendar">人生日历</a>按周、月或年显示你的人生，提醒你：倒数结束之后的时间，才是最重要的部分。</p>
+
+        <h2 id="free">哪些免费，哪些需要 Left Premium</h2>
+        <p>Left 可免费下载，小组件也是免费的。免费方案包含 <strong>2 个倒数</strong>和 <strong>2 个目标</strong>，所以一个退休倒数和一个储蓄目标不用付费就够了。这个上限计算的是你创建过的所有项目，所以删除一个并不会把名额还回来。有了 Left Premium，你还可以把这个日期作为<a href="/zh-Hans/support/joint-ahead-dates">共同“未来”日期</a>与伴侣共享。购买前会在 App 中显示价格。</p>
+        <p>只想要这个数字？免费的<a href="/zh-Hans/tools/retirement-countdown-calculator">退休倒数计算器</a>和<a href="/zh-Hans/tools/workday-countdown">工作日倒数</a>可在浏览器中使用。</p>
+
+        <h2 id="faq">问题</h2>
+        <div class="lp-faq">
+          <details class="faq-item">
+            <summary>如何在我的 iPhone 上放一个退休倒数？</summary>
+            <div class="faq-answer"><p>在 Left 的“未来”板块中添加你的退休日期。然后长按主屏幕，轻点“编辑”，选择“添加小组件”，搜索 Left 并添加“未来”小组件。长按该小组件，轻点“编辑小组件”，在“选择日期”下选择这个日期。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>倒数能显示年和月，而不是天吗？</summary>
+            <div class="faq-answer"><p>可以。每个日期都有“显示为…”设置，可选年、月、周、天或小时，“未来”小组件的“文字”布局也可以让你选择它显示的单位。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我能在锁定屏幕上看到退休倒数吗？</summary>
+            <div class="faq-answer"><p>可以。把 Left 的“未来”小组件以圆形或矩形尺寸添加到锁定屏幕，并选择你的退休日期。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我能在 Left 中追踪我的退休储蓄吗？</summary>
+            <div class="faq-answer"><p>你可以用“目标”追踪自己输入的储蓄数字，它会朝着某个指标往上计数，并可设置截止日期。Left 不会连接银行或养老金账户。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>我和伴侣可以共享这个倒数吗？</summary>
+            <div class="faq-answer"><p>可以，需要 Left Premium。把伴侣添加为朋友，并把这个日期作为共同“未来”日期共享，这样同一个倒数也会出现在对方的 Left 里。</p></div>
+          </details>
+          <details class="faq-item">
+            <summary>退休倒数是免费的吗？</summary>
+            <div class="faq-answer"><p>可以。Left 的小组件是免费的，免费方案包含 2 个倒数和 2 个目标。删除一个不会腾出名额；Left Premium 取消这些限制。</p></div>
+          </details>
+        </div>
+
+      <section class="support-related">
+        <h2 class="support-related-h2">继续阅读</h2>
+        <div class="support-related-items">
+          <a class="support-related-item" href="/zh-Hans/countdown-widget">iPhone 倒数日小组件</a>
+          <a class="support-related-item" href="/zh-Hans/tools/retirement-countdown-calculator">退休倒数计算器</a>
+          <a class="support-related-item" href="/zh-Hans/life-calendar">人生日历：用周来看你的一生</a>
+          <a class="support-related-item" href="/zh-Hans/support/aims-in-left">Left 中的目标如何运作</a>
+          <a class="support-related-item" href="/zh-Hans/tools/workday-countdown">下班倒计时</a>
+          <a class="support-related-item" href="/zh-Hans/support/joint-ahead-dates">联合「即将到来」日期的使用方式</a>
+        </div>
+      </section>
+
+      <section class="download-block">
+        <div class="section-head">
+          <span class="eyebrow">下载 Left</span>
+          <h2>让终点线始终在视线之内。</h2>
+          <p>下载 Left，添加你的退休日期，在主屏幕上看着倒数一天天减少。</p>
+        </div>
+        <div class="download-actions">
+          <div class="download-group">
+            <div class="qr-flip bento-cell" tabindex="0" role="button" aria-label="QR code - 点一下看说明">
+              <div class="bento-inner">
+                <div class="bento-face qr-face-front">
+                  <div class="qr-mask"></div>
+                </div>
+                <div class="bento-face bento-face-back">
+                  <p class="qr-face-back-text">在 App Store 扫描或搜寻 <strong>「Left」</strong>。</p>
+                </div>
+              </div>
+            </div>
+            <a class="dl-btn" data-cta="end" href="https://apps.apple.com/app/apple-store/id6740155884?pt=127436485&amp;ct=w-retire-cd-64a0-e-zh-Hans&amp;mt=8" target="_blank" rel="noopener" aria-label="在 App Store 上获取退休倒数">
+          <svg class="dl-btn-apple" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.152 6.896c-.948 0-2.415-1.078-3.96-1.04-2.04.027-3.91 1.183-4.961 3.014-2.117 3.675-.546 9.103 1.519 12.09 1.013 1.454 2.208 3.09 3.792 3.039 1.52-.065 2.09-.987 3.925-.987 1.831 0 2.35.987 3.96.948 1.637-.026 2.676-1.48 3.676-2.948 1.156-1.688 1.636-3.325 1.662-3.415-.039-.013-3.182-1.221-3.22-4.857-.026-3.04 2.48-4.494 2.597-4.559-1.429-2.09-3.623-2.324-4.39-2.376-2-.156-3.675 1.09-4.61 1.09zM15.53 3.83c.843-1.012 1.4-2.427 1.245-3.83-1.207.052-2.662.805-3.532 1.818-.78.896-1.454 2.338-1.273 3.714 1.338.104 2.715-.688 3.559-1.701"/></svg>
+          获取退休倒数
+        </a>
+          </div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <span class="footer-counter-inline"><span id="userCounter">525,000</span> 人正在珍惜每一刻。</span>
+          <span>Left – © <time data-current-year></time> <a href="https://cntxtlabs.co">Cntxt Labs</a></span>
+        </div>
+        <nav class="footer-links" aria-label="页尾">
+          <a href="/zh-Hans/support">支援</a>
+          <a href="/terms">条款</a>
+          <a href="/zh-Hans/privacy">隐私权</a>
+          <a href="/zh-Hans/press">媒体</a>
+          <a href="/zh-Hans/contact">联络</a>
+          <a href="/zh-Hans/tools/">工具</a>
+          <!-- left:footer-extra:start -->
+          <a href="/zh-Hans/blog/">博客</a>
+          <a href="#" data-consent-open>Cookie 设置</a>
+          <!-- left:footer-extra:end -->
+          <!-- i18n:switcher:start -->
+          <div class="lang-switcher" data-lang-switcher>
+            <a class="lang-switcher__button" href="#" role="button" aria-haspopup="listbox" aria-expanded="false" data-lang-switcher-button>
+              <span data-current-language>ZH</span>
+            </a>
+            <div class="lang-switcher__menu" role="listbox" aria-label="Language" hidden data-lang-switcher-menu>
+              <button type="button" role="option" data-lang-option="id" aria-selected="false">Bahasa Indonesia</button>
+              <button type="button" role="option" data-lang-option="de" aria-selected="false">Deutsch</button>
+              <button type="button" role="option" data-lang-option="en" aria-selected="false">English</button>
+              <button type="button" role="option" data-lang-option="es" aria-selected="false">Español (España)</button>
+              <button type="button" role="option" data-lang-option="es-419" aria-selected="false">Español (Latinoamérica)</button>
+              <button type="button" role="option" data-lang-option="fr" aria-selected="false">Français</button>
+              <button type="button" role="option" data-lang-option="it" aria-selected="false">Italiano</button>
+              <button type="button" role="option" data-lang-option="nl" aria-selected="false">Nederlands</button>
+              <button type="button" role="option" data-lang-option="pl" aria-selected="false">Polski</button>
+              <button type="button" role="option" data-lang-option="pt-BR" aria-selected="false">Português (Brasil)</button>
+              <button type="button" role="option" data-lang-option="pt" aria-selected="false">Português (Portugal)</button>
+              <button type="button" role="option" data-lang-option="ro" aria-selected="false">Română</button>
+              <button type="button" role="option" data-lang-option="tr" aria-selected="false">Türkçe</button>
+              <button type="button" role="option" data-lang-option="ru" aria-selected="false">Русский</button>
+              <button type="button" role="option" data-lang-option="hi" aria-selected="false">हिन्दी</button>
+              <button type="button" role="option" data-lang-option="ko" aria-selected="false">한국어</button>
+              <button type="button" role="option" data-lang-option="ja" aria-selected="false">日本語</button>
+              <button type="button" role="option" data-lang-option="zh-Hans" aria-selected="true">简体中文</button>
+              <button type="button" role="option" data-lang-option="zh-Hant" aria-selected="false">繁體中文</button>
+            </div>
+          </div>
+          <script>
+          (function () {
+            var root = document.querySelector('[data-lang-switcher]');
+            if (!root) return;
+            var trigger = root.querySelector('[data-lang-switcher-button]');
+            var menu = root.querySelector('[data-lang-switcher-menu]');
+            var label = root.querySelector('[data-current-language]');
+            var options = Array.prototype.slice.call(root.querySelectorAll('[data-lang-option]'));
+            if (!trigger || !menu || !label || !options.length) return;
+            // Filled per page by scripts/build-i18n.mjs from i18n/locales.json.
+            var LOCALES = {"en":{"name":"English","abbr":"EN"},"id":{"name":"Bahasa Indonesia","abbr":"ID"},"de":{"name":"Deutsch","abbr":"DE"},"hi":{"name":"हिन्दी","abbr":"HI"},"es":{"name":"Español (España)","abbr":"ES"},"es-419":{"name":"Español (Latinoamérica)","abbr":"LAT"},"fr":{"name":"Français","abbr":"FR"},"it":{"name":"Italiano","abbr":"IT"},"nl":{"name":"Nederlands","abbr":"NL"},"pl":{"name":"Polski","abbr":"PL"},"pt":{"name":"Português (Portugal)","abbr":"PT"},"pt-BR":{"name":"Português (Brasil)","abbr":"BR"},"ro":{"name":"Română","abbr":"RO"},"ru":{"name":"Русский","abbr":"RU"},"tr":{"name":"Türkçe","abbr":"TR"},"ko":{"name":"한국어","abbr":"KO"},"ja":{"name":"日本語","abbr":"JA"},"zh-Hans":{"name":"简体中文","abbr":"ZH"},"zh-Hant":{"name":"繁體中文","abbr":"ZH"}};
+            var AVAILABLE = ["en","id","de","hi","es","es-419","fr","it","nl","pl","pt","pt-BR","ro","ru","tr","ko","ja","zh-Hans","zh-Hant"];
+            var SUPPORTED = Object.keys(LOCALES);
+            var m = location.pathname.match(/^\/([a-zA-Z0-9-]+)\//);
+            var current = (m && SUPPORTED.indexOf(m[1]) >= 0) ? m[1] : 'en';
+            var currentLoc = LOCALES[current] || LOCALES.en;
+            label.textContent = currentLoc.abbr || currentLoc.name;
+            options.forEach(function (option) {
+              var selected = option.getAttribute('data-lang-option') === current;
+              option.setAttribute('aria-selected', selected ? 'true' : 'false');
+            });
+            function setOpen(open) {
+              menu.hidden = !open;
+              trigger.setAttribute('aria-expanded', open ? 'true' : 'false');
+            }
+            trigger.addEventListener('click', function (event) {
+              event.preventDefault();
+              setOpen(menu.hidden);
+            });
+            options.forEach(function (option) {
+              option.addEventListener('click', function () {
+                var v = option.getAttribute('data-lang-option');
+                if (!v) return;
+                setOpen(false);
+                var newLoc = LOCALES[v] || { name: v, abbr: v.toUpperCase() };
+                label.textContent = newLoc.abbr || newLoc.name;
+                options.forEach(function (item) {
+                  item.setAttribute('aria-selected', item === option ? 'true' : 'false');
+                });
+                try { localStorage.setItem('left.lang', v); } catch (e) {}
+                var bare = location.pathname.replace(/^\/([a-zA-Z0-9-]+)\//, function (match, prefix) {
+                  return SUPPORTED.indexOf(prefix) >= 0 ? '/' : match;
+                });
+                // A page that has no version in the chosen language opens that language's home page.
+                var newPath = v === 'en' ? bare : (AVAILABLE.indexOf(v) >= 0 ? '/' + v + bare : '/' + v + '/');
+                location.href = newPath + (v === 'en' || AVAILABLE.indexOf(v) >= 0 ? location.search + location.hash : '');
+              });
+            });
+            document.addEventListener('click', function (event) {
+              if (!root.contains(event.target)) setOpen(false);
+            });
+            document.addEventListener('keydown', function (event) {
+              if (event.key === 'Escape') setOpen(false);
+            });
+          })();
+          </script>
+          <!-- i18n:switcher:end -->
+        </nav>
+      </div>
+    </div>
+  </footer>
+  <script defer src="/index.js"></script>
+<!-- left:consent:start -->
+<div class="left-consent" id="left-consent" hidden role="region" aria-label="Cookie 同意">
+  <p class="left-consent__text">我们使用 Google Analytics 了解哪些页面对用户有帮助。没有广告，也没有跨站跟踪。</p>
+  <div class="left-consent__actions">
+    <button type="button" class="left-consent__btn left-consent__btn--primary" data-consent-accept>允许分析</button>
+    <button type="button" class="left-consent__btn" data-consent-decline>不用了</button>
+    <a class="left-consent__link" href="/zh-Hans/privacy#website" data-consent-privacy>隐私</a>
+  </div>
+</div>
+<!-- left:consent:end -->
+</body>
+</html>
