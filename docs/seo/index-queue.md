@@ -1,12 +1,30 @@
 # Indexing queue
 
-English blog posts Google has not indexed yet, most valuable first (visits, and searches the old domain ranked for). The morning "Daily publish and indexing" task reads this file after the day's own pages: it works down the list, skips a post that is already on Google, and requests indexing for the next ones until its limit or Google's daily quota. Remove posts from the top at each 2-weekly check once they are indexed.
+English pages on getleft.app that Google has not indexed yet, most valuable first. The morning "Daily publish and indexing" task requests indexing for them after the day's own new pages, until Google's daily quota runs out.
 
-Started 18 Nov 2026 with 69 posts (23 of 93 English posts were indexed; `how-to-add-widgets-iphone` was requested by hand that day).
+The task keeps its own log of what it requested, outside this repo, so it does not ask for the same page again within 14 days and the queue keeps moving down. A page that is on Google is skipped for good.
+
+Order: landing pages (they bring most of the website's App Store clicks), then blog posts, then tools, then support pages.
+
+Rebuilt on 26 Nov 2026 from Search Console's list of indexed pages: 103 of the 233 English pages in the sitemap were indexed, so 130 are listed here. Rebuild it at each 2-weekly check.
+
+## Landing pages
+
+- https://getleft.app/lock-screen-countdown
+- https://getleft.app/birthday-countdown-widget
+- https://getleft.app/exam-countdown
+- https://getleft.app/relationship-counter
+- https://getleft.app/month-progress-widget
+- https://getleft.app/time-left-today
+- https://getleft.app/retirement-countdown
+- https://getleft.app/pomodoro-timer-iphone
+
+## Blog posts
 
 - https://getleft.app/blog/best-free-widget-apps-iphone
 - https://getleft.app/blog/best-countdown-widgets-iphone
 - https://getleft.app/blog/best-habit-tracker-apps-iphone
+- https://getleft.app/blog/how-to-add-widgets-iphone
 - https://getleft.app/blog/habitkit-vs-left
 - https://getleft.app/blog/best-home-screen-widgets-iphone
 - https://getleft.app/blog/best-lock-screen-widget-apps-iphone
@@ -69,7 +87,65 @@ Started 18 Nov 2026 with 69 posts (23 of 93 English posts were indexed; `how-to-
 - https://getleft.app/blog/timer-interval-app-iphone
 - https://getleft.app/blog/visual-goals-track-on-screens
 - https://getleft.app/blog/visual-reminders-adhd-apple-setup
-- https://getleft.app/blog/way-of-life-alternatives
 - https://getleft.app/blog/weeks-and-days-iphone-screen
 - https://getleft.app/blog/weight-loss-timeline
 - https://getleft.app/blog/workplace-productivity-habits
+- https://getleft.app/blog/progress-bar-examples
+
+## Tools
+
+- https://getleft.app/tools/120-days-from-today
+- https://getleft.app/tools/30-days-from-today
+- https://getleft.app/tools/45-days-from-today
+- https://getleft.app/tools/60-days-from-today
+- https://getleft.app/tools/90-days-from-today
+- https://getleft.app/tools/days-from-today
+- https://getleft.app/tools/days-left-in-month
+- https://getleft.app/tools/days-until-anzac-day
+- https://getleft.app/tools/days-until-black-friday
+- https://getleft.app/tools/days-until-boxing-day
+- https://getleft.app/tools/days-until-chinese-new-year
+- https://getleft.app/tools/days-until-diwali
+- https://getleft.app/tools/days-until-easter
+- https://getleft.app/tools/days-until-eid
+- https://getleft.app/tools/days-until-hanukkah
+- https://getleft.app/tools/days-until-july-4th
+- https://getleft.app/tools/days-until-labor-day
+- https://getleft.app/tools/days-until-pride-month
+- https://getleft.app/tools/days-until-ramadan
+- https://getleft.app/tools/days-until-super-bowl
+- https://getleft.app/tools/days-until-thanksgiving
+- https://getleft.app/tools/days-until-valentines
+- https://getleft.app/tools/fiscal-year-progress-calculator
+- https://getleft.app/tools/hours-between-two-dates
+- https://getleft.app/tools/
+- https://getleft.app/tools/iso-week-number
+- https://getleft.app/tools/life-in-weeks-calculator
+- https://getleft.app/tools/meeting-time-calculator
+- https://getleft.app/tools/pregnancy-due-date-calculator
+- https://getleft.app/tools/printable-goal-tracker
+- https://getleft.app/tools/printable-habit-tracker
+- https://getleft.app/tools/printable-life-calendar
+- https://getleft.app/tools/printable-monthly-planner
+- https://getleft.app/tools/printable-streak-tracker
+- https://getleft.app/tools/printable-year-calendar
+- https://getleft.app/tools/printable-year-in-dots
+- https://getleft.app/tools/printable-year-in-pixels
+- https://getleft.app/tools/printables
+- https://getleft.app/tools/quarter-countdown-calculator
+- https://getleft.app/tools/reading-time-calculator
+- https://getleft.app/tools/retirement-countdown-calculator
+- https://getleft.app/tools/time-zone-meeting-planner
+- https://getleft.app/tools/wedding-countdown
+- https://getleft.app/tools/weeks-left-in-year
+- https://getleft.app/tools/weeks-until-memorial-day
+- https://getleft.app/tools/what-was-the-date
+- https://getleft.app/tools/working-hours-calculator
+- https://getleft.app/tools/year-progress-wallpaper
+
+## Support
+
+- https://getleft.app/support/aims-in-left
+- https://getleft.app/support/apple-health-automatic-tracking
+- https://getleft.app/support/fasting-in-left
+- https://getleft.app/support/focus-timer-in-left
