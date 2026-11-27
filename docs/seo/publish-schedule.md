@@ -5,9 +5,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 
 | Date | Item | Type | Status |
 |---|---|---|---|
-| 2026-10-20 | `blog/de`: blog in Deutsch, 97 pages | Translation release | live |
-| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 97 pages | Translation release | live |
-| 2026-10-20 | `blog/es`: blog in Español (España), 97 pages | Translation release | live |
+| 2026-10-20 | `blog/de`: blog in Deutsch, 98 pages | Translation release | live |
+| 2026-10-20 | `blog/es-419`: blog in Español (Latinoamérica), 98 pages | Translation release | live |
+| 2026-10-20 | `blog/es`: blog in Español (España), 98 pages | Translation release | live |
 | 2026-10-20 | `pages/ja`: pages in 日本語, 17 pages | Translation release | live |
 | 2026-10-20 | `pages/zh-Hant`: pages in 繁體中文, 17 pages | Translation release | live |
 | 2026-10-20 | `tools/ja`: tools in 日本語, 91 pages | Translation release | live |
@@ -25,39 +25,39 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-25 | `tools/de`: tools in Deutsch, 91 pages | Translation release | live |
 | 2026-10-25 | `tools/es-419`: tools in Español (Latinoamérica), 91 pages | Translation release | live |
 | 2026-10-25 | `tools/es`: tools in Español (España), 91 pages | Translation release | live |
-| 2026-10-26 | `blog/fr`: blog in Français, 97 pages | Translation release | live |
-| 2026-10-26 | `blog/it`: blog in Italiano, 97 pages | Translation release | live |
+| 2026-10-26 | `blog/fr`: blog in Français, 98 pages | Translation release | live |
+| 2026-10-26 | `blog/it`: blog in Italiano, 98 pages | Translation release | live |
 | 2026-10-26 | `blog/streaks-app-alternatives.html` | English page | live |
 | 2026-10-26 | `pages/it`: pages in Italiano, 17 pages | Translation release | live |
 | 2026-10-26 | `pages/ko`: pages in 한국어, 17 pages | Translation release | live |
 | 2026-10-26 | `tools/fr`: tools in Français, 91 pages | Translation release | live |
 | 2026-10-26 | `tools/it`: tools in Italiano, 91 pages | Translation release | live |
 | 2026-10-27 | `blog/best-birthday-countdown-apps-iphone.html` | English page | live |
-| 2026-10-27 | `blog/hi`: blog in हिन्दी, 97 pages | Translation release | live |
-| 2026-10-27 | `blog/zh-Hant`: blog in 繁體中文, 97 pages | Translation release | live |
+| 2026-10-27 | `blog/hi`: blog in हिन्दी, 98 pages | Translation release | live |
+| 2026-10-27 | `blog/zh-Hant`: blog in 繁體中文, 98 pages | Translation release | live |
 | 2026-10-27 | `pages/hi`: pages in हिन्दी, 17 pages | Translation release | live |
 | 2026-10-27 | `tools/hi`: tools in हिन्दी, 91 pages | Translation release | live |
 | 2026-10-27 | `tools/zh-Hant`: tools in 繁體中文, 91 pages | Translation release | live |
-| 2026-10-28 | `blog/id`: blog in Bahasa Indonesia, 97 pages | Translation release | live |
-| 2026-10-28 | `blog/pt-BR`: blog in Português (Brasil), 97 pages | Translation release | live |
-| 2026-10-28 | `blog/ru`: blog in Русский, 97 pages | Translation release | live |
+| 2026-10-28 | `blog/id`: blog in Bahasa Indonesia, 98 pages | Translation release | live |
+| 2026-10-28 | `blog/pt-BR`: blog in Português (Brasil), 98 pages | Translation release | live |
+| 2026-10-28 | `blog/ru`: blog in Русский, 98 pages | Translation release | live |
 | 2026-10-28 | `blog/structured-app-alternatives.html` | English page | live |
 | 2026-10-28 | `pages/id`: pages in Bahasa Indonesia, 17 pages | Translation release | live |
 | 2026-10-28 | `pages/ru`: pages in Русский, 17 pages | Translation release | live |
 | 2026-10-28 | `tools/id`: tools in Bahasa Indonesia, 91 pages | Translation release | live |
 | 2026-10-28 | `tools/pt-BR`: tools in Português (Brasil), 91 pages | Translation release | live |
 | 2026-10-28 | `tools/ru`: tools in Русский, 91 pages | Translation release | live |
-| 2026-10-29 | `blog/pl`: blog in Polski, 97 pages | Translation release | live |
+| 2026-10-29 | `blog/pl`: blog in Polski, 98 pages | Translation release | live |
 | 2026-10-29 | `blog/tiimo-alternatives.html` | English page | live |
-| 2026-10-29 | `blog/tr`: blog in Türkçe, 97 pages | Translation release | live |
+| 2026-10-29 | `blog/tr`: blog in Türkçe, 98 pages | Translation release | live |
 | 2026-10-29 | `pages/pl`: pages in Polski, 17 pages | Translation release | live |
 | 2026-10-29 | `pages/tr`: pages in Türkçe, 17 pages | Translation release | live |
 | 2026-10-29 | `tools/pl`: tools in Polski, 91 pages | Translation release | live |
 | 2026-10-29 | `tools/tr`: tools in Türkçe, 91 pages | Translation release | live |
 | 2026-10-30 | `blog/habitkit-alternatives.html` | English page | live |
-| 2026-10-30 | `blog/nl`: blog in Nederlands, 97 pages | Translation release | live |
-| 2026-10-30 | `blog/pt`: blog in Português (Portugal), 97 pages | Translation release | live |
-| 2026-10-30 | `blog/zh-Hans`: blog in 简体中文, 97 pages | Translation release | live |
+| 2026-10-30 | `blog/nl`: blog in Nederlands, 98 pages | Translation release | live |
+| 2026-10-30 | `blog/pt`: blog in Português (Portugal), 98 pages | Translation release | live |
+| 2026-10-30 | `blog/zh-Hans`: blog in 简体中文, 98 pages | Translation release | live |
 | 2026-10-30 | `pages/nl`: pages in Nederlands, 17 pages | Translation release | live |
 | 2026-10-30 | `pages/pt`: pages in Português (Portugal), 17 pages | Translation release | live |
 | 2026-10-30 | `pages/zh-Hans`: pages in 简体中文, 17 pages | Translation release | live |
@@ -65,9 +65,9 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-10-30 | `tools/pt`: tools in Português (Portugal), 91 pages | Translation release | live |
 | 2026-10-30 | `tools/zh-Hans`: tools in 简体中文, 91 pages | Translation release | live |
 | 2026-10-31 | `blog/best-fasting-tracker-apps-iphone.html` | English page | live |
-| 2026-10-31 | `blog/ja`: blog in 日本語, 97 pages | Translation release | live |
-| 2026-10-31 | `blog/ko`: blog in 한국어, 97 pages | Translation release | live |
-| 2026-10-31 | `blog/ro`: blog in Română, 97 pages | Translation release | live |
+| 2026-10-31 | `blog/ja`: blog in 日本語, 98 pages | Translation release | live |
+| 2026-10-31 | `blog/ko`: blog in 한국어, 98 pages | Translation release | live |
+| 2026-10-31 | `blog/ro`: blog in Română, 98 pages | Translation release | live |
 | 2026-10-31 | `pages/ro`: pages in Română, 17 pages | Translation release | live |
 | 2026-10-31 | `tools/ko`: tools in 한국어, 91 pages | Translation release | live |
 | 2026-10-31 | `tools/ro`: tools in Română, 91 pages | Translation release | live |
@@ -116,7 +116,7 @@ Dates are New Zealand dates. The daily publish workflow runs at 07:15 NZ time; s
 | 2026-11-25 | `month-progress-widget.html` | English page | live |
 | 2026-11-26 | `retirement-countdown.html` | English page | live |
 | 2026-11-27 | `blog/days-since-app-alternatives.html` | English page | live |
-| 2026-11-28 | `blog/best-time-awareness-apps-iphone.html` | English page | scheduled |
+| 2026-11-28 | `blog/best-time-awareness-apps-iphone.html` | English page | live |
 | 2026-11-29 | `blog/time-left-app-alternatives.html` | English page | scheduled |
 | 2026-11-30 | `blog/date-tracker-app-iphone.html` | English page | scheduled |
 | 2026-12-01 | `blog/time-management-widget-iphone.html` | English page | scheduled |
